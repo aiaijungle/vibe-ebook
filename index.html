@@ -132,6 +132,32 @@ a:hover{text-decoration:underline}
 .theme-btn{cursor:pointer;background:none;border:none;color:var(--text);font-size:1.3rem;transition:transform .2s}
 .theme-btn:hover{transform:scale(1.1)}
 
+/* ── 모바일 상단 바 ── */
+.mobile-topbar{
+  display:none;position:fixed;top:0;left:0;right:0;z-index:800;
+  background:var(--side-bg);border-bottom:1px solid var(--border);
+  padding:10px 16px;align-items:center;gap:10px;
+  box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+.mobile-topbar-left{
+  display:flex;align-items:center;gap:8px;min-width:0;
+}
+.mobile-chapter{
+  font-size:.8rem;font-weight:700;color:var(--accent);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  max-width:calc(100vw - 140px);
+}
+.mobile-progress-wrap{
+  flex:1;height:4px;background:var(--border);border-radius:2px;margin-left:auto;min-width:60px;
+}
+.mobile-progress-bar{
+  height:100%;background:var(--accent);border-radius:2px;
+  transition:width .3s ease;width:0%;
+}
+.mobile-pct{
+  font-size:.72rem;color:var(--text);opacity:.55;white-space:nowrap;margin-left:6px;
+}
+
 /* ── 모바일 햄버거 메뉴 버튼 ── */
 .menu-btn{
   display:none;position:fixed;bottom:24px;right:20px;z-index:1000;
@@ -167,12 +193,15 @@ a:hover{text-decoration:underline}
   .toc-overlay{display:block;opacity:0;pointer-events:none;transition:opacity .3s}
   .toc-overlay.show{opacity:1;pointer-events:auto}
 
+  /* 상단 바 */
+  .mobile-topbar{display:flex}
+
   /* 햄버거 버튼 */
   .menu-btn{display:flex;align-items:center;justify-content:center}
 
-  /* 본문 — 전체 스크롤 */
+  /* 본문 — 전체 스크롤 (topbar 높이 54px 확보) */
   main{
-    flex:1;overflow-y:auto;padding:24px 18px 100px;
+    flex:1;overflow-y:auto;padding:70px 18px 100px;
     height:100vh;-webkit-overflow-scrolling:touch;
   }
 
@@ -240,6 +269,18 @@ a:hover{text-decoration:underline}
     <button class="lock-btn" onclick="unlock()">전자책 열기 →</button>
     <div class="lock-hint">구매 후 제공된 6자리 비밀번호를 입력하세요.<br>분실 시 구매처로 문의하십시오.</div>
   </div>
+</div>
+
+<!-- ── 모바일 상단 진행 바 ── -->
+<div class="mobile-topbar" id="mobile-topbar">
+  <div class="mobile-topbar-left">
+    <span style="font-size:.9rem">📚</span>
+    <span class="mobile-chapter" id="mobile-chapter">바이브 코딩 실전 바이블</span>
+  </div>
+  <div class="mobile-progress-wrap">
+    <div class="mobile-progress-bar" id="mobile-progress-bar"></div>
+  </div>
+  <span class="mobile-pct" id="mobile-pct">0%</span>
 </div>
 
 <!-- ── 전자책 본문 ── -->
@@ -2098,6 +2139,46 @@ const obs = new IntersectionObserver(entries => {
   });
 }, {rootMargin:'-10% 0px -80% 0px'});
 document.querySelectorAll('h1[id],h2[id],h3[id]').forEach(h => obs.observe(h));
+
+// 모바일 진행률 + 현재 챕터 추적
+(function() {
+  const bar  = document.getElementById('mobile-progress-bar');
+  const pct  = document.getElementById('mobile-pct');
+  const chap = document.getElementById('mobile-chapter');
+  const mainEl = document.getElementById('main-content');
+  if (!bar || !mainEl) return;
+
+  // 스크롤 진행률
+  function updateProgress() {
+    const el = mainEl;
+    const scrolled = el.scrollTop;
+    const total    = el.scrollHeight - el.clientHeight;
+    const p = total > 0 ? Math.round((scrolled / total) * 100) : 0;
+    bar.style.width  = p + '%';
+    pct.textContent  = p + '%';
+  }
+
+  // 현재 챕터명 추적 (h1, h2 기준)
+  const headings = Array.from(document.querySelectorAll('h1[id],h2[id]'));
+  function updateChapter() {
+    const scrollTop = mainEl.scrollTop + 80;
+    let current = headings[0];
+    for (const h of headings) {
+      const rect = h.getBoundingClientRect();
+      const absTop = h.offsetTop;
+      if (absTop <= scrollTop) current = h;
+      else break;
+    }
+    if (current && chap) {
+      // 이모지 제거하고 깔끔하게
+      chap.textContent = current.textContent.replace(/^[^가-힣a-zA-Z0-9\(]*/,'').trim();
+    }
+  }
+
+  mainEl.addEventListener('scroll', () => { updateProgress(); updateChapter(); }, {passive:true});
+  updateProgress();
+  updateChapter();
+})();
 
 // 모바일 TOC 드로어
 function openToc() {
