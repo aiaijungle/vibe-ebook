@@ -1434,8 +1434,34 @@ git push origin master</code></pre>
 <table class='md-table'><thead><tr><th>チームチームメンバーボット主な使命</th></tr></thead><tbody><tr><td>AIマーケティングチーム</td><td>ブログボット、YouTubeコメントボット、トレンドボット、ショーツボット、AEOボット</td><td>コンテンツ自動生産+トレンドコレクション</td></tr><tr><td>セキュリティチームガードボット、KISAボット</td><td>プロンプトインジェクション検出、セキュリティ脆弱性のスキャン</td></tr><tr><td>新規事業チーム</td><td>キウムボット、不動産ボット、動的価格決定ボット</td><td>資産分析、競合他社の価格モニタリング</td></tr><tr><td>CXチーム</td><td>カカオCSボット、CRMボット</td><td>お問い合わせお問い合わせ自動応対、離脱防止</td></tr><tr><td>戦略チーム</td><td>経営支援エージェント、開発チームエージェント</td><td>事業計画、技術の実装</td></tr></tbody></table>
 <h3 id='section-90' class='content-h3'>テレグラムハブ — スマートフォン一つで20人を指揮する</h3>
 <p class='para'>この20人のAIスタッフを別々にターミナルで管理することは不可能です。だから作ったのがテレグラムシングル指揮ハブです。</p>
-<p class='para'>![Telegram AI Command Hub]</p>
-<p class='para'><br><br></p>
+<p class='para'><br></p>
+<p class='para'><div style="background: var(--code-bg); color: var(--code-text); padding: 20px; border-radius: 12px; border: 1px solid var(--accent);"></p>
+<p class='para'>  <h3 style="margin-top:0; color:var(--accent);">📱 Telegram AI Command Hub</h3></p>
+<p class='para'>  <table style="width: 100%; text-align: left; border-collapse: collapse;"></p>
+<p class='para'>    <tr style="border-bottom: 1px solid var(--border);"></p>
+<p class='para'>      <th style="padding: 10px;">コマンド</th></p>
+<p class='para'>      <th style="padding: 10px;">エージェント種類</th></p>
+<p class='para'>      <th style="padding: 10px;">実行ロール</th></p>
+<p class='para'>    </tr></p>
+<p class='para'>    <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);"></p>
+<p class='para'>      <td style="padding: 10px;"><code>/pricing [Item]</code></td></p>
+<p class='para'>      <td style="padding: 10px;">🛒 コマースエージェント</td></p>
+<p class='para'>      <td style="padding: 10px;">競合価格を比較し、最新のROASに基づいて最適価格を自動設定</td></p>
+<p class='para'>    </tr></p>
+<p class='para'>    <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);"></p>
+<p class='para'>      <td style="padding: 10px;"><code>/security [IP]</code></td></p>
+<p class='para'>      <td style="padding: 10px;">🛡️ セキュリティエージェント</td></p>
+<p class='para'>      <td style="padding: 10px;">サーバーのKISA脆弱性診断を自動実行し、PDFで結果を受け取る</td></p>
+<p class='para'>    </tr></p>
+<p class='para'>    <tr></p>
+<p class='para'>      <td style="padding: 10px;"><code>/insight [URL]</code></td></p>
+<p class='para'>      <td style="padding: 10px;">🧠 RAG ナレッジエージェント</td></p>
+<p class='para'>      <td style="padding: 10px;">業界ニュースを要約し、社内技術スタックと自動マッチング</td></p>
+<p class='para'>    </tr></p>
+<p class='para'>  </table></p>
+<p class='para'>  <div style="margin-top: 15px; font-size: 0.9em; opacity: 0.8; text-align: center;">サーバー費用なしで365日24時間稼働する無人司令塔</div></p>
+<p class='para'></div></p>
+<p class='para'><br></p>
 <p class='para'><code>@aitf_assisant_bot</code> 1つですべてのエージェントにアクセスします。出勤路地下鉄で「/biz今日ミーティング資料要約して」と言うと、経営支援エージェントがノッション知識ベース15,723個の文書を検索して資料を抜いてくれます。秘書を雇う必要はありません。</p>
 <p class='para'>コア設計の原則は1つだけです。人がアプリを開く回数を減らす必要があります。管理者は複数のアプリを開く時間がありません。テレグラム一つにすべてが集まらなければなりません。</p>
 <hr class='divider'>
