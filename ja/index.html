@@ -309,7 +309,7 @@ a:hover{text-decoration:underline}
 <div id="lock-screen">
   <div class="lock-card">
     <div class="lock-logo">📚</div>
-    <div class="lock-title">바이브 코딩 실전 바이블</div>
+    <div class="lock-title">バイブコーディング実戦バイブル</div>
     <div class="lock-sub">リミットレスマン · 2026</div>
     <div class="lock-badge">🔐 購入者専用コンテンツ</div>
     <div class="lock-input-wrap">
@@ -320,7 +320,7 @@ a:hover{text-decoration:underline}
     </div>
     <div class="lock-error" id="pw-error">パスワードが正しくありません。</div>
     <button class="lock-btn" onclick="unlock()">電子書籍を開く →</button>
-    <div class="lock-hint">구매 후 제공된 6자리 비밀번호를 입력하세요.<br>분실 시 구매처로 문의하십시오.</div>
+    <div class="lock-hint">購入後に提供された6桁のパスワードを入力してください。<br>紛失した場合は購入先へお問い合わせください。</div>
   </div>
 </div>
 
@@ -328,7 +328,7 @@ a:hover{text-decoration:underline}
 <div class="mobile-topbar" id="mobile-topbar">
   <div class="mobile-topbar-left">
     <span style="font-size:.9rem">📚</span>
-    <span class="mobile-chapter" id="mobile-chapter">바이브 코딩 실전 바이블</span>
+    <span class="mobile-chapter" id="mobile-chapter">バイブコーディング実戦バイブル</span>
   </div>
   <div class="mobile-progress-wrap">
     <div class="mobile-progress-bar" id="mobile-progress-bar"></div>
@@ -342,7 +342,7 @@ a:hover{text-decoration:underline}
   <aside id="sidebar">
     <div class="header">
       <div>
-        <div>📚 바이브 코딩 실전 바이블</div>
+        <div>📚 バイブコーディング実戦バイブル</div>
         <div class="subtitle">リミットレスマン · 2026</div>
       </div>
       <button class="theme-btn" onclick="document.documentElement.toggleAttribute('data-theme')" title="다크모드">🌓</button>
@@ -2256,12 +2256,12 @@ async function submitEbookRequest() {
 
   if (!email || !contact) {
     result.style.color = '#fc8181';
-    result.textContent = '이메일과 연락처를 모두 입력해 주세요.';
+    result.textContent = 'メールアドレスと連絡先の両方を入力してください。';
     return;
   }
 
   btn.disabled = true;
-  btn.textContent = '전송 중...';
+  btn.textContent = '送信中...';
   result.textContent = '';
 
   try {
@@ -2273,12 +2273,12 @@ async function submitEbookRequest() {
     const data = await res.json();
     result.style.color = '#68d391';
     result.textContent = '✅ ' + data.message;
-    btn.textContent = '전송 완료';
+    btn.textContent = '送信完了';
   } catch(e) {
     result.style.color = '#fc8181';
-    result.textContent = '전송 실패. 직접 연락 부탁드립니다.';
+    result.textContent = '送信に失敗しました。直接お問い合わせください。';
     btn.disabled = false;
-    btn.textContent = '다시 시도';
+    btn.textContent = '再試行';
   }
 }
 
