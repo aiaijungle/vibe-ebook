@@ -71,6 +71,16 @@ a:hover{text-decoration:underline}
 ::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
 .theme-btn{cursor:pointer;background:none;border:none;color:var(--text);font-size:1.3rem;transition:transform .2s}
 .theme-btn:hover{transform:scale(1.1)}
+.toc-search{width:100%;padding:7px 12px;border:1px solid var(--border);border-radius:6px;background:var(--bg);color:var(--text);font-size:.82rem;outline:none;transition:border .2s;font-family:'Pretendard',sans-serif;}
+.toc-search:focus{border-color:var(--accent);}
+.toc-search-wrap{padding:8px 14px 4px;}
+.toc-no-result{padding:10px 20px;font-size:.8rem;opacity:.5;display:none;}
+.share-bar{display:flex;gap:6px;padding:8px 14px;border-top:1px solid var(--border);}
+.share-btn{flex:1;padding:6px 0;border:none;border-radius:6px;font-size:.75rem;font-weight:700;cursor:pointer;transition:all .2s;font-family:'Pretendard',sans-serif;}
+.share-btn.kakao{background:#FEE500;color:#3A1D00;}
+.share-btn.kakao:hover{background:#fdd800;}
+.share-btn.copy{background:var(--accent);color:#fff;}
+.share-btn.copy:hover{opacity:.85;}
 
 /* ── 페이월 ── */
 .blurred{filter:blur(12px);user-select:none;pointer-events:none;opacity:.15}
@@ -312,6 +322,14 @@ a:hover{text-decoration:underline}
       </div>
       <button class="theme-btn" onclick="document.documentElement.toggleAttribute('data-theme')" title="다크모드">🌓</button>
     </div>
+    <div class="toc-search-wrap">
+      <input class="toc-search" id="toc-search" type="text" placeholder="🔍 챕터 검색..." oninput="filterToc(this.value)">
+    </div>
+    <div class="share-bar">
+      <button class="share-btn kakao" onclick="shareKakao()">💬 카카오톡 공유</button>
+      <button class="share-btn copy" id="copy-btn" onclick="copyLink()">🔗 링크 복사</button>
+    </div>
+    <div class="toc-no-result" id="toc-no-result">검색 결과 없음</div>
     <ul class="toc"><li><a href='#section-1' class='toc-h1'>바이브 코딩 (Vibe Coding) 실전 바이블 : 코딩 0점이 96시간 만에 B2B 플랫폼을 세운 실화</a></li>
 <li><a href='#section-2' class='toc-h2'>📜 [바이브 코딩 창세기 — 제독의 3대 서약]</a></li>
 <li><a href='#section-3' class='toc-h2'>⚡ 바이브 코딩 5단계 공식 (이 책의 전체 지도)</a></li>
@@ -2383,6 +2401,46 @@ document.querySelectorAll('.toc a').forEach(a => {
     if (window.innerWidth <= 768) closeToc();
   });
 });
+
+// ── 목차 검색 ──
+function filterToc(q) {
+  var items = document.querySelectorAll('.toc li');
+  var keyword = q.trim().toLowerCase();
+  var found = 0;
+  items.forEach(function(li) {
+    var text = li.textContent.toLowerCase();
+    var match = !keyword || text.includes(keyword);
+    li.style.display = match ? '' : 'none';
+    if (match) found++;
+  });
+  document.getElementById('toc-no-result').style.display = (keyword && found === 0) ? 'block' : 'none';
+}
+
+// ── 공유 ──
+function shareKakao() {
+  var url = 'https://sharer.kakao.com/talk/friends/picker/link?app_key=KAKAO_APP_KEY&validation_action=default&validation_params=%7B%7D';
+  var shareUrl = 'https://kakaolink.kakao.com/link/picker/default?link_ver=4.0&template_id=&link_ver=4.0&app_key=none&url=' + encodeURIComponent(location.href);
+  // Kakao SDK 없이 단순 카카오톡 공유 (웹 공유 URL)
+  var kakaoShareUrl = 'https://sharer.kakao.com/talk/friends/picker/easylink?app_key=none&validation_action=default&validation_params=' + encodeURIComponent(JSON.stringify({title:'바이브 코딩 실전 바이블', description:'코딩 0점이 96시간 만에 B2B 플랫폼을 세운 실화', mobile_web_url: location.href, web_url: location.href}));
+  window.open('https://story.kakao.com/share?url=' + encodeURIComponent(location.href), '_blank', 'width=500,height=600');
+}
+function copyLink() {
+  navigator.clipboard.writeText(location.href).then(function() {
+    var btn = document.getElementById('copy-btn');
+    btn.textContent = '✅ 복사됨!';
+    setTimeout(function(){ btn.textContent = '🔗 링크 복사'; }, 2000);
+  }).catch(function() {
+    var ta = document.createElement('textarea');
+    ta.value = location.href;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    var btn = document.getElementById('copy-btn');
+    btn.textContent = '✅ 복사됨!';
+    setTimeout(function(){ btn.textContent = '🔗 링크 복사'; }, 2000);
+  });
+}
 
 // ── 진행률 바 + 위치 저장 ──
 (function() {
