@@ -279,9 +279,28 @@ a:hover{text-decoration:underline}
   <div class="toc-overlay" id="toc-overlay" onclick="closeToc()"></div>
   <aside id="sidebar">
     <div class="header">
-      <a href="https://hits.seeyoufarm.com" target="_blank" style="text-decoration:none; margin-right:12px; flex-shrink:0;">
-        <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Faiaijungle.github.io%2Fvibe-ebook%2F&count_bg=%239D4EDD&title_bg=%23333344&icon=bookopen&icon_color=%23FFFFFF&title=%EB%88%84%EC%A0%81+%EB%B0%A9%EB%AC%B8%EC%9E%90&edge_flat=true" alt="누적 방문자" style="height:22px; vertical-align:middle;">
-      </a>
+      <!-- 방문 카운트용 히든 이미지 (실제 카운팅) -->
+      <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Faiaijungle.github.io%2Fvibe-ebook%2F&count_bg=%239D4EDD&title_bg=%23333344&edge_flat=true" style="display:none;" id="hits-counter-img" alt="">
+      <!-- 표시용 커스텀 뱃지 (오프셋 +97 적용) -->
+      <div id="visit-badge" style="display:flex; align-items:center; gap:6px; background:#333344; border-radius:4px; overflow:hidden; height:22px; margin-right:12px; flex-shrink:0; font-size:12px; font-family:monospace;">
+        <span style="background:#333344; color:#aaa; padding:0 7px; height:100%; display:flex; align-items:center;">👁 누적 방문자</span>
+        <span id="visit-num" style="background:#9D4EDD; color:#fff; font-weight:700; padding:0 8px; height:100%; display:flex; align-items:center;">98</span>
+      </div>
+      <script>
+        (function() {
+          var OFFSET = 97;
+          // hits keep API로 카운트 읽기 (CORS 허용)
+          fetch('https://hits.seeyoufarm.com/api/count/keep/badge.svg?url=https%3A%2F%2Faiaijungle.github.io%2Fvibe-ebook%2F')
+            .then(function(r){ return r.text(); })
+            .then(function(svg){
+              var m = svg.match(/<text[^>]*>(\d+)<\/text>/g);
+              if(m && m.length){
+                var last = m[m.length-1].match(/(\d+)/);
+                if(last) document.getElementById('visit-num').textContent = parseInt(last[1]) + OFFSET;
+              }
+            }).catch(function(){});
+        })();
+      </script>
       <div style="flex:1;">
         <div>📚 바이브 코딩 실전 바이블</div>
         <div class="subtitle">리미트리스맨 저 · 2026</div>
