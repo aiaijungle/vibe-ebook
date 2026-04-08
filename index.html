@@ -1221,10 +1221,30 @@ ANTHROPIC_API_KEY=sk-ant-어쩌고</code></pre>
   <div class="paywall-box">
     <div class="paywall-icon">📚</div>
     <div class="paywall-title">여기서부터는 구매자만 읽을 수 있습니다</div>
-    <div class="paywall-sub">1~3장 무료 미리보기가 끝났습니다.<br>구매 후 비밀번호를 받으면 전체 21장을 읽을 수 있습니다.</div>
-    <div class="paywall-price">정가 <s>790,000원</s> → <strong>베타 특가 290,000원</strong></div>
+    <div class="paywall-sub">1~3장 무료 미리보기가 끝났습니다.<br>아래 3가지 패키지 중 선택 후 구매하시면<br><strong>24시간 이내 비밀번호 + 패키지 파일을 이메일로 발송</strong>해드립니다.</div>
+
+    <!-- 티어 비교표 -->
+    <div style="display:flex;gap:10px;margin:18px 0;text-align:left;flex-wrap:wrap;">
+      <div style="flex:1;min-width:140px;border:1.5px solid rgba(124,58,237,.3);border-radius:10px;padding:14px 12px;">
+        <div style="font-size:.7rem;font-weight:700;color:#a78bfa;margin-bottom:6px;">🅐 STARTER</div>
+        <div style="font-weight:800;font-size:.95rem;margin-bottom:8px;">750,000원</div>
+        <div style="font-size:.75rem;opacity:.7;line-height:1.7;">전자책 0~21장<br>공통 MD 4종</div>
+      </div>
+      <div style="flex:1;min-width:140px;border:2px solid var(--accent);border-radius:10px;padding:14px 12px;position:relative;">
+        <div style="position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;font-size:.65rem;font-weight:700;padding:2px 8px;border-radius:99px;white-space:nowrap;">인기</div>
+        <div style="font-size:.7rem;font-weight:700;color:#a78bfa;margin-bottom:6px;">🅑 BUILDER</div>
+        <div style="font-weight:800;font-size:.95rem;margin-bottom:8px;">1,500,000원</div>
+        <div style="font-size:.75rem;opacity:.7;line-height:1.7;">A 전체<br>+ 부록4종 + 템플릿ZIP</div>
+      </div>
+      <div style="flex:1;min-width:140px;border:1.5px solid rgba(245,158,11,.4);border-radius:10px;padding:14px 12px;">
+        <div style="font-size:.7rem;font-weight:700;color:#f59e0b;margin-bottom:6px;">🅒 COMMANDER</div>
+        <div style="font-weight:800;font-size:.95rem;margin-bottom:8px;">2,990,000원</div>
+        <div style="font-size:.75rem;opacity:.7;line-height:1.7;">B 전체<br>+ 에이전트 소스코드</div>
+      </div>
+    </div>
+
     <button class="paywall-btn" onclick="document.getElementById('paywall-modal').style.display='flex'">
-      구매 문의하기 →
+      패키지 선택 후 구매 문의 →
     </button>
     <div class="paywall-divider">── 이미 구매하셨나요? ──</div>
     <div class="paywall-unlock-wrap">
@@ -1234,7 +1254,7 @@ ANTHROPIC_API_KEY=sk-ant-어쩌고</code></pre>
       <button class="paywall-unlock-btn" onclick="unlockPaywall()">열기 →</button>
     </div>
     <div class="paywall-pw-error" id="paywall-pw-error">비밀번호가 올바르지 않습니다.</div>
-    <div class="paywall-hint">입금 확인 후 24시간 이내 비밀번호를 카톡으로 전달드립니다.</div>
+    <div class="paywall-hint">📧 구매 확인 후 24시간 이내 비밀번호 + 패키지 파일을 이메일로 발송드립니다.</div>
   </div>
 </div>
 
@@ -1243,8 +1263,14 @@ ANTHROPIC_API_KEY=sk-ant-어쩌고</code></pre>
   <div class="modal-card">
     <button class="modal-close" onclick="document.getElementById('paywall-modal').style.display='none'">✕</button>
     <div class="modal-title">📩 구매 문의</div>
-    <div class="modal-sub">이메일과 연락처를 남겨주시면<br>입금 안내 후 비밀번호를 전달드립니다.</div>
-    <input class="modal-input" id="pw-email" type="email" placeholder="이메일 주소" />
+    <div class="modal-sub">패키지를 선택하고 이메일을 남겨주시면<br>입금 안내 후 <strong>비밀번호 + 파일을 이메일로 발송</strong>드립니다.</div>
+    <select class="modal-input" id="pw-tier" style="cursor:pointer;">
+      <option value="">── 패키지 선택 (필수) ──</option>
+      <option value="A">🅐 STARTER — 750,000원 (전자책 + 공통MD)</option>
+      <option value="B">🅑 BUILDER — 1,500,000원 (A + 부록4종 + 템플릿)</option>
+      <option value="C">🅒 COMMANDER — 2,990,000원 (B + 에이전트 소스코드)</option>
+    </select>
+    <input class="modal-input" id="pw-email" type="email" placeholder="📧 이메일 주소 (파일 수신용, 필수)" />
     <input class="modal-input" id="pw-contact" type="text" placeholder="카카오톡 ID 또는 전화번호" />
     <textarea class="modal-input" id="pw-msg" placeholder="남기실 말씀 (선택)" rows="2"></textarea>
     <button class="modal-btn" id="modal-submit-btn" onclick="submitEbookRequest()">문의 보내기</button>
@@ -2704,6 +2730,12 @@ async function submitEbookRequest() {
   const result  = document.getElementById('modal-result');
   const btn     = document.getElementById('modal-submit-btn');
 
+  const tier = document.getElementById('pw-tier') ? document.getElementById('pw-tier').value : '';
+  if (!tier) {
+    result.style.color = '#fc8181';
+    result.textContent = '패키지를 선택해 주세요 (A / B / C).';
+    return;
+  }
   if (!email || !contact) {
     result.style.color = '#fc8181';
     result.textContent = '이메일과 연락처를 모두 입력해 주세요.';
