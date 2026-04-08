@@ -679,6 +679,37 @@ main::-webkit-scrollbar-thumb{background:var(--accent);border-radius:99px;opacit
 <hr class='divider'>
 <h2 id='section-5' class='content-h2'>💡 제0장 : AI 수석 개발자 — 안(An) & 로드(Road) 사용 설명서와 금기사항</h2>
 <p class='para'>AI는 마법 지팡이가 아닙니다. 최고급 인재지만, 당신이 그들의 습성을 모르면 구석에서 딴짓만 하는 바보로 전락합니다. 안티그래비티와 클로드를 200% 활용하기 위한 핵심 지침과, 초보자가 무심코 저지르는 '절대 금기사항'을 팩트 기반으로 정리했습니다.</p>
+<!-- An vs Road 역할 비교 -->
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 28px;">
+  <div style="padding:18px 16px;background:rgba(124,58,237,.08);border:1.5px solid rgba(124,58,237,.3);border-radius:14px;">
+    <div style="font-size:.7rem;font-weight:700;letter-spacing:.12em;color:#a78bfa;margin-bottom:8px;">⚡ 안(An) — Antigravity</div>
+    <div style="font-size:.82rem;font-weight:800;color:#fff;margin-bottom:10px;">실행하는 손</div>
+    <div style="display:flex;flex-direction:column;gap:6px;font-size:.72rem;color:rgba(255,255,255,.65);">
+      <div style="display:flex;gap:6px;align-items:flex-start;"><span style="color:#a78bfa;flex-shrink:0;">✦</span><span>터미널 직접 실행</span></div>
+      <div style="display:flex;gap:6px;align-items:flex-start;"><span style="color:#a78bfa;flex-shrink:0;">✦</span><span>에러 자동 수정 반복</span></div>
+      <div style="display:flex;gap:6px;align-items:flex-start;"><span style="color:#a78bfa;flex-shrink:0;">✦</span><span>파일 생성·수정·삭제</span></div>
+      <div style="display:flex;gap:6px;align-items:flex-start;"><span style="color:#a78bfa;flex-shrink:0;">✦</span><span>배포 및 서버 기동</span></div>
+      <div style="display:flex;gap:6px;align-items:flex-start;"><span style="color:#a78bfa;flex-shrink:0;">✦</span><span>IDE 상주 매니저</span></div>
+    </div>
+    <div style="margin-top:10px;padding:7px 10px;background:rgba(124,58,237,.12);border-radius:7px;font-size:.68rem;color:rgba(255,255,255,.5);">명령은 <strong style="color:#fff;">"목표"</strong>로. 과정은 맡겨라.</div>
+  </div>
+  <div style="padding:18px 16px;background:rgba(245,158,11,.06);border:1.5px solid rgba(245,158,11,.25);border-radius:14px;">
+    <div style="font-size:.7rem;font-weight:700;letter-spacing:.12em;color:#fbbf24;margin-bottom:8px;">🧠 로드(Road) — Claude</div>
+    <div style="font-size:.82rem;font-weight:800;color:#fff;margin-bottom:10px;">설계하는 뇌</div>
+    <div style="display:flex;flex-direction:column;gap:6px;font-size:.72rem;color:rgba(255,255,255,.65);">
+      <div style="display:flex;gap:6px;align-items:flex-start;"><span style="color:#fbbf24;flex-shrink:0;">✦</span><span>전체 아키텍처 설계</span></div>
+      <div style="display:flex;gap:6px;align-items:flex-start;"><span style="color:#fbbf24;flex-shrink:0;">✦</span><span>복잡한 로직 코드 작성</span></div>
+      <div style="display:flex;gap:6px;align-items:flex-start;"><span style="color:#fbbf24;flex-shrink:0;">✦</span><span>기획·전략·카피 작성</span></div>
+      <div style="display:flex;gap:6px;align-items:flex-start;"><span style="color:#fbbf24;flex-shrink:0;">✦</span><span>코드 전체 맥락 분석</span></div>
+      <div style="display:flex;gap:6px;align-items:flex-start;"><span style="color:#fbbf24;flex-shrink:0;">✦</span><span>웹 기획·UI/UX 설계</span></div>
+    </div>
+    <div style="margin-top:10px;padding:7px 10px;background:rgba(245,158,11,.1);border-radius:7px;font-size:.68rem;color:rgba(255,255,255,.5);">코드는 <strong style="color:#fff;">전체 파일째</strong> 던져라. 조각 금지.</div>
+  </div>
+</div>
+<div style="margin:-14px 0 24px;padding:10px 14px;background:rgba(255,255,255,.03);border-radius:8px;font-size:.72rem;color:rgba(255,255,255,.45);text-align:center;">
+  CEO → 로드(기획·설계) → 안(실행·배포) — 이 삼각형이 바이브 코딩의 지휘 체계입니다
+</div>
+
 <h3 id='section-6' class='content-h3'>1. 안(An) — 안티그래비티(Anti-gravity)와 일할 때 알아야 할 것</h3>
 <p class='para'>안티그래비티는 기존 단순 챗봇과 달리 '자율 수행(Autonomous)'이 가능한 에이전트입니다. 코드를 짜주는 것을 넘어, 본인이 짠 코드를 컴퓨터 터미널에서 스스로 실행해 보고, 에러를 만나면 스스로 분석해서 고치는 실무형 수석 개발자입니다.</p>
 <ul class='md-ul'>
@@ -706,7 +737,19 @@ main::-webkit-scrollbar-thumb{background:var(--accent);border-radius:99px;opacit
 </ul>
 <hr class='divider'>
 <h2 id='section-10' class='content-h2'>💡 [핵심] G-Stack(G스택) 방법론의 탄생 배경</h2>
-<p class='para'>이 책의 뼈대가 되는 G-Stack 방법론은 허무맹랑한 뇌피셜이 아닙니다. 미국의 세계 최고 액셀러레이터(투자사)인 '와이콤비네이터(Y Combinator)'의 대표가 직접 60시간 동안 바이브 코딩(Vibe Coding)을 극한으로 몰아붙이며 테스트한 끝에, 가장 오류가 적고 압도적인 효율을 냈던 최적화된 협업 방법론을 자신의 깃허브(GitHub)에 공개한 내용을 기반으로 만들어졌습니다. 저는 이 검증된 실리콘밸리식 개발 철학을 한국의 B2B 무인 비즈니스 환경에 맞게 완벽하게 재조립하여 저만의 5단계 시스템으로 규격화했습니다.</p>
+<div style="display:flex;gap:12px;align-items:stretch;margin:0 0 18px;flex-wrap:wrap;">
+  <div style="flex-shrink:0;padding:14px 18px;background:linear-gradient(135deg,#f26522,#e05c00);border-radius:12px;text-align:center;min-width:90px;">
+    <div style="font-size:.65rem;font-weight:800;color:rgba(255,255,255,.8);letter-spacing:.08em;">Y Combinator</div>
+    <div style="font-size:.62rem;color:rgba(255,255,255,.6);margin-top:2px;">세계 최고 액셀러레이터</div>
+    <div style="font-size:.68rem;color:rgba(255,255,255,.5);margin-top:4px;">Airbnb · Stripe · Dropbox 배출</div>
+  </div>
+  <div style="flex:1;min-width:200px;padding:14px 16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;font-size:.78rem;color:rgba(255,255,255,.7);line-height:1.75;word-break:keep-all;">
+    G-Stack은 뇌피셜이 아닙니다.<br>
+    <strong style="color:#fff;">Y Combinator 대표가 60시간 극한 테스트</strong>로 검증한 바이브 코딩 방법론을<br>
+    저자가 한국 B2B 무인 비즈니스에 맞게 재조립·규격화한 <strong style="color:#fbbf24;">5단계 실전 시스템</strong>입니다.
+  </div>
+</div>
+<p class='para' style="display:none;">이 책의 뼈대가 되는 G-Stack 방법론은 허무맹랑한 뇌피셜이 아닙니다. 미국의 세계 최고 액셀러레이터(투자사)인 '와이콤비네이터(Y Combinator)'의 대표가 직접 60시간 동안 바이브 코딩(Vibe Coding)을 극한으로 몰아붙이며 테스트한 끝에, 가장 오류가 적고 압도적인 효율을 냈던 최적화된 협업 방법론을 자신의 깃허브(GitHub)에 공개한 내용을 기반으로 만들어졌습니다. 저는 이 검증된 실리콘밸리식 개발 철학을 한국의 B2B 무인 비즈니스 환경에 맞게 완벽하게 재조립하여 저만의 5단계 시스템으로 규격화했습니다.</p>
 <hr class='divider'>
 <h2 id='section-11' class='content-h2'>📍 상황별 빠른 찾기 — 막혔을 때 여기서 펼쳐라</h2>
 <blockquote class='quote'><p class='para'>이 책은 처음부터 끝까지 읽는 책이 아닙니다. 막히는 상황이 생기면 아래 표에서 해당 챕터를 바로 펼치십시오.</p></blockquote>
@@ -1591,6 +1634,42 @@ ANTHROPIC_API_KEY=sk-ant-어쩌고</code></pre>
   <div style="font-size:.88rem;color:rgba(255,255,255,.65);margin-bottom:20px;line-height:1.7;word-break:keep-all;">랜딩페이지 배포 · 디버깅 포렌식 · 실무 프롬프트 5선<br>KISA 보안 · 텔레그램 에이전트 · n8n 파이프라인 · 무인 제국 선언<br><strong style="color:#fff;">제4장~제21장 + 부록 전체</strong>가 기다립니다.</div>
   <a href="https://vibecodingbible.jbooking.kr/" target="_blank" style="display:inline-block;background:linear-gradient(135deg,#7c3aed,#f59e0b);color:#fff;font-weight:800;font-size:1rem;padding:14px 32px;border-radius:10px;text-decoration:none;transition:opacity .2s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">⚡ 지금 무기 장착하기 →</a>
   <div style="margin-top:12px;font-size:.75rem;color:rgba(255,255,255,.4);">베타 특가 290,000원 · 평생 열람</div>
+</div>
+
+<!-- 수익화 파이프라인 티저 -->
+<div style="margin:40px 0;padding:28px 24px;background:rgba(15,10,30,.8);border:1px solid rgba(124,58,237,.25);border-radius:16px;">
+  <div style="font-size:.7rem;font-weight:700;letter-spacing:.18em;color:#f59e0b;margin-bottom:8px;">💰 제11장 미리보기 — 잠금 해제 시 공개</div>
+  <div style="font-size:1rem;font-weight:900;color:#fff;margin-bottom:16px;word-break:keep-all;">0원에서 100억으로 — AITF 수익화 파이프라인 4단계</div>
+  <div style="display:flex;gap:0;align-items:stretch;flex-wrap:wrap;">
+    <div style="flex:1;min-width:100px;padding:14px 12px;background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.2);border-radius:10px 0 0 10px;text-align:center;position:relative;">
+      <div style="font-size:.65rem;color:#a78bfa;font-weight:700;margin-bottom:4px;">1단계</div>
+      <div style="font-size:.75rem;font-weight:800;color:#fff;margin-bottom:4px;">랜딩페이지</div>
+      <div style="font-size:.62rem;color:rgba(255,255,255,.45);line-height:1.5;">B2B 고객 영혼을<br>터는 홈페이지</div>
+      <div style="margin-top:8px;font-size:.68rem;color:#86efac;">비용 0원</div>
+    </div>
+    <div style="display:flex;align-items:center;padding:0 4px;color:var(--accent);font-size:1rem;">→</div>
+    <div style="flex:1;min-width:100px;padding:14px 12px;background:rgba(34,197,94,.07);border:1px solid rgba(34,197,94,.2);text-align:center;">
+      <div style="font-size:.65rem;color:#86efac;font-weight:700;margin-bottom:4px;">2단계</div>
+      <div style="font-size:.75rem;font-weight:800;color:#fff;margin-bottom:4px;">RAG 납품</div>
+      <div style="font-size:.62rem;color:rgba(255,255,255,.45);line-height:1.5;">사내 데이터 AI<br>대시보드 구축</div>
+      <div style="margin-top:8px;font-size:.68rem;color:#86efac;">500~2,000만</div>
+    </div>
+    <div style="display:flex;align-items:center;padding:0 4px;color:var(--accent);font-size:1rem;">→</div>
+    <div style="flex:1;min-width:100px;padding:14px 12px;background:rgba(251,191,36,.07);border:1px solid rgba(251,191,36,.2);text-align:center;">
+      <div style="font-size:.65rem;color:#fde68a;font-weight:700;margin-bottom:4px;">3단계</div>
+      <div style="font-size:.75rem;font-weight:800;color:#fff;margin-bottom:4px;">에이전트팀</div>
+      <div style="font-size:.62rem;color:rgba(255,255,255,.45);line-height:1.5;">직무별 AI팀<br>24시간 운영</div>
+      <div style="margin-top:8px;font-size:.68rem;color:#86efac;">월 300만~</div>
+    </div>
+    <div style="display:flex;align-items:center;padding:0 4px;color:var(--accent);font-size:1rem;">→</div>
+    <div style="flex:1;min-width:100px;padding:14px 12px;background:rgba(239,68,68,.07);border:1px solid rgba(239,68,68,.2);border-radius:0 10px 10px 0;text-align:center;">
+      <div style="font-size:.65rem;color:#fca5a5;font-weight:700;margin-bottom:4px;">4단계</div>
+      <div style="font-size:.75rem;font-weight:800;color:#fff;margin-bottom:4px;">MRR 과금</div>
+      <div style="font-size:.62rem;color:rgba(255,255,255,.45);line-height:1.5;">무인 자동<br>구독 수익화</div>
+      <div style="margin-top:8px;font-size:.68rem;color:#86efac;">월 1,000만~</div>
+    </div>
+  </div>
+  <div style="margin-top:12px;text-align:center;font-size:.72rem;color:rgba(255,255,255,.35);">🔒 전체 상세 내용은 구매 후 11장에서 공개됩니다</div>
 </div>
 
 <!-- 실제 구축 증거 -->
