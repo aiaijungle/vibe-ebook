@@ -271,6 +271,7 @@ a:hover{text-decoration:underline}
   <div class="mobile-progress-wrap">
     <div class="mobile-progress-bar" id="mobile-progress-bar"></div>
   </div>
+  <span style="font-size:9px; color:var(--text); opacity:0.55; white-space:nowrap;">👁 <span id="visit-num-mobile">98</span></span>
   <span class="mobile-pct" id="mobile-pct">0%</span>
 </div>
 
@@ -278,10 +279,11 @@ a:hover{text-decoration:underline}
 <div id="ebook">
   <div class="toc-overlay" id="toc-overlay" onclick="closeToc()"></div>
   <aside id="sidebar">
-    <!-- 방문자 카운터 바 -->
-    <div style="padding:6px 20px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:8px; font-size:11.5px; font-family:monospace;">
-      <span style="color:var(--text); opacity:0.5;">👁 누적 방문자</span>
-      <span id="visit-num" style="background:#9D4EDD; color:#fff; font-weight:700; padding:1px 8px; border-radius:3px; font-size:12px;">98</span>
+    <!-- 방문자 카운터 (사이드바 헤더 안) -->
+    <div style="padding:4px 16px 4px; display:flex; align-items:center; gap:5px; font-size:10.5px; opacity:0.7;">
+      <span>👁</span>
+      <span style="color:var(--text);">누적 방문자</span>
+      <span id="visit-num" style="background:#9D4EDD; color:#fff; font-weight:700; padding:0 5px; border-radius:3px; font-size:10px; line-height:16px;">98</span>
       <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Faiaijungle.github.io%2Fvibe-ebook%2F&edge_flat=true" style="display:none;" alt="">
     </div>
     <script>
@@ -293,7 +295,10 @@ a:hover{text-decoration:underline}
             var nums = svg.match(/>(\d+)</g);
             if(nums && nums.length){
               var n = nums[nums.length-1].replace(/[><]/g,'');
-              document.getElementById('visit-num').textContent = parseInt(n) + OFFSET;
+              var count = parseInt(n) + OFFSET;
+              document.getElementById('visit-num').textContent = count;
+              var mob = document.getElementById('visit-num-mobile');
+              if(mob) mob.textContent = count;
             }
           }).catch(function(){});
       })();
