@@ -85,7 +85,16 @@ a:hover{text-decoration:underline}
 /* ── 페이월 ── */
 .blurred{filter:blur(12px);user-select:none;pointer-events:none;opacity:.15}
 .blurred *{color:transparent!important;text-shadow:none!important}
-.toc-locked{color:var(--text)!important;opacity:.4!important;pointer-events:none;cursor:default}
+.toc-locked{color:var(--text)!important;opacity:.4!important;pointer-events:auto;cursor:pointer;}
+.toc-locked:hover{opacity:.7!important;color:var(--accent)!important;}
+#buy-popup{display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:3000;align-items:center;justify-content:center;}
+#buy-popup.show{display:flex;}
+#buy-popup-box{background:var(--bg);border-radius:16px;padding:36px 32px;max-width:380px;width:90%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.4);position:relative;}
+#buy-popup-box h3{font-size:1.2rem;font-weight:800;margin-bottom:10px;word-break:keep-all;}
+#buy-popup-box p{font-size:.9rem;opacity:.7;margin-bottom:24px;word-break:keep-all;line-height:1.7;}
+.buy-popup-btn{display:block;width:100%;padding:14px;background:linear-gradient(135deg,#7c3aed,#9D4EDD);color:#fff;font-weight:800;font-size:1rem;border:none;border-radius:10px;cursor:pointer;text-decoration:none;margin-bottom:10px;transition:opacity .2s;}
+.buy-popup-btn:hover{opacity:.85;}
+.buy-popup-close{background:none;border:none;color:var(--text);opacity:.5;font-size:.85rem;cursor:pointer;}
 #paywall-wall{position:relative;margin:40px 0;text-align:center}
 .paywall-gradient{
   position:absolute;top:-120px;left:0;right:0;height:120px;
@@ -2402,6 +2411,17 @@ document.querySelectorAll('.toc a').forEach(a => {
   });
 });
 
+// ── 잠긴 챕터 클릭 → 구매 팝업 ──
+document.querySelectorAll('.toc-locked').forEach(function(a) {
+  a.addEventListener('click', function(e) {
+    e.preventDefault();
+    document.getElementById('buy-popup').classList.add('show');
+  });
+});
+document.getElementById('buy-popup').addEventListener('click', function(e) {
+  if (e.target === this) this.classList.remove('show');
+});
+
 // ── 목차 검색 ──
 function filterToc(q) {
   var items = document.querySelectorAll('.toc li');
@@ -2503,5 +2523,15 @@ async function submitEbookRequest() {
 
 
 </script>
+
+<!-- 잠긴 챕터 구매 팝업 -->
+<div id="buy-popup">
+  <div id="buy-popup-box">
+    <h3>🔒 이 챕터는 구매 후 열립니다</h3>
+    <p>제4장~제21장 + 부록 전체가 포함된<br><strong>바이브 코딩 실전 바이블</strong>을 지금 바로 받아보세요.</p>
+    <a class="buy-popup-btn" href="https://vibecodingbible.jbooking.kr/" target="_blank">⚡ 지금 구매하기 (베타 특가)</a>
+    <button class="buy-popup-close" onclick="document.getElementById('buy-popup').classList.remove('show')">닫기</button>
+  </div>
+</div>
 </body>
 </html>
