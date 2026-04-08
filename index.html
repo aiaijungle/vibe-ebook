@@ -2438,11 +2438,19 @@ function filterToc(q) {
 
 // ── 공유 ──
 function shareKakao() {
-  var url = 'https://sharer.kakao.com/talk/friends/picker/link?app_key=KAKAO_APP_KEY&validation_action=default&validation_params=%7B%7D';
-  var shareUrl = 'https://kakaolink.kakao.com/link/picker/default?link_ver=4.0&template_id=&link_ver=4.0&app_key=none&url=' + encodeURIComponent(location.href);
-  // Kakao SDK 없이 단순 카카오톡 공유 (웹 공유 URL)
-  var kakaoShareUrl = 'https://sharer.kakao.com/talk/friends/picker/easylink?app_key=none&validation_action=default&validation_params=' + encodeURIComponent(JSON.stringify({title:'바이브 코딩 실전 바이블', description:'코딩 0점이 96시간 만에 B2B 플랫폼을 세운 실화', mobile_web_url: location.href, web_url: location.href}));
-  window.open('https://story.kakao.com/share?url=' + encodeURIComponent(location.href), '_blank', 'width=500,height=600');
+  var shareData = {
+    title: '바이브 코딩 실전 바이블',
+    text: '코딩 0점이 96시간 만에 B2B 플랫폼을 세운 실화 — 리미트리스맨 저',
+    url: location.href
+  };
+  if (navigator.share) {
+    navigator.share(shareData);
+  } else {
+    // 데스크탑 fallback: 링크 복사 후 안내
+    navigator.clipboard.writeText(location.href).then(function() {
+      alert('링크가 복사됐습니다!\n카카오톡에 붙여넣기 해주세요 😊');
+    });
+  }
 }
 function copyLink() {
   navigator.clipboard.writeText(location.href).then(function() {
