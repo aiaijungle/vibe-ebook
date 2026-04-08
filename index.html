@@ -816,6 +816,26 @@ main::-webkit-scrollbar-thumb{background:var(--accent);border-radius:99px;opacit
 <p class='para'>완전 초보자라면:</p>
 <p class='para'>이 책 어디서도 "이것도 모르면 포기해"라는 말은 없습니다. 모르는 단어가 나오면 → 부록 D에서 찾으십시오. 따라 하다 막히면 → 에러 화면을 그대로 AI에게 붙여넣으십시오. AI가 해결해줍니다. 당신이 할 일은 포기하지 않는 것 하나뿐입니다.</p>
 <hr class='divider'>
+<!-- 숫자 증거 배너 -->
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:0 0 40px;">
+  <div style="padding:20px 16px;background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.25);border-radius:14px;text-align:center;">
+    <div style="font-size:2rem;font-weight:900;color:#a78bfa;line-height:1;">₩1,200만</div>
+    <div style="font-size:.72rem;color:var(--muted);margin-top:6px;line-height:1.5;">개발 외주 비용 절감<br><span style="font-size:.65rem;opacity:.6;">— 강무선 대표 실증</span></div>
+  </div>
+  <div style="padding:20px 16px;background:rgba(34,197,94,.07);border:1px solid rgba(34,197,94,.25);border-radius:14px;text-align:center;">
+    <div style="font-size:2rem;font-weight:900;color:#86efac;line-height:1;">4h → 22분</div>
+    <div style="font-size:.72rem;color:var(--muted);margin-top:6px;line-height:1.5;">매주 보고서 작업 단축<br><span style="font-size:.65rem;opacity:.6;">— 김O현 직장인 실증</span></div>
+  </div>
+  <div style="padding:20px 16px;background:rgba(251,191,36,.07);border:1px solid rgba(251,191,36,.25);border-radius:14px;text-align:center;">
+    <div style="font-size:2rem;font-weight:900;color:#fde68a;line-height:1;">3일</div>
+    <div style="font-size:.72rem;color:var(--muted);margin-top:6px;line-height:1.5;">랜딩페이지 글로벌 배포<br><span style="font-size:.65rem;opacity:.6;">— 박O준 팀장 실증</span></div>
+  </div>
+  <div style="padding:20px 16px;background:rgba(239,68,68,.07);border:1px solid rgba(239,68,68,.25);border-radius:14px;text-align:center;">
+    <div style="font-size:2rem;font-weight:900;color:#fca5a5;line-height:1;">96시간</div>
+    <div style="font-size:.72rem;color:var(--muted);margin-top:6px;line-height:1.5;">B2B 플랫폼 전체 구축<br><span style="font-size:.65rem;opacity:.6;">— 저자 직접 기록</span></div>
+  </div>
+</div>
+
 <h2 id='section-15' class='content-h2'>💬 독자 후기</h2>
 <blockquote class='quote'><p class='para'><em>"3일 만에 랜딩페이지를 배포했습니다. 마케팅 팀장 10년 하면서 개발자한테 말 못 했던 게 있었는데, 이제 제가 직접 만들었습니다. 솔직히 처음엔 믿지 않았어요. 근데 되더라고요."</em><br><br>— 마케팅 팀장 박O준 (직장인, 38세)</p></blockquote>
 <hr class='divider'>
@@ -1001,6 +1021,15 @@ MY_SECRET=비밀값</code></pre>
 • <strong>배포 서비스 2개</strong> — API 서버 (Render), 세일즈 랜딩페이지 (Render Static)<br>
 • <strong>비용</strong> — 개발자 고용 0원. 서버 비용 0원(무료 플랜). API 사용료만 발생.<br><br>
 이것이 바이브 코딩의 실체입니다. 코드 한 줄 직접 치지 않았습니다.</div>
+
+<!-- 인라인 CTA #1 -->
+<div style="margin:28px 0;padding:22px 24px;background:linear-gradient(135deg,rgba(124,58,237,.12),rgba(245,158,11,.06));border:1px solid rgba(124,58,237,.3);border-radius:14px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+  <div>
+    <div style="font-size:.88rem;font-weight:800;color:#fff;margin-bottom:4px;word-break:keep-all;">📌 지금 이 시스템, 당신도 그대로 쓸 수 있습니다.</div>
+    <div style="font-size:.76rem;color:rgba(255,255,255,.55);word-break:keep-all;">봇 9개 + 에이전트 2개 + 배포 서비스 2개 — 전체 소스와 가이드를 패키지로 드립니다.</div>
+  </div>
+  <a href="https://vibecodingbible.jbooking.kr/" target="_blank" style="flex-shrink:0;display:inline-block;background:linear-gradient(135deg,#7c3aed,#f59e0b);color:#fff;font-weight:800;font-size:.82rem;padding:11px 22px;border-radius:9px;text-decoration:none;white-space:nowrap;transition:opacity .2s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">무기 장착하기 →</a>
+</div>
 
 <!-- Before / After 비용 비교 -->
 <div style="margin:32px 0;display:grid;grid-template-columns:1fr auto 1fr;gap:0;align-items:center;">
@@ -1367,6 +1396,15 @@ ANTHROPIC_API_KEY=sk-ant-어쩌고</code></pre>
 
 <blockquote class='quote'><p class='para'>💬 철학자의 한마디 — 소크라테스<br><br>"나는 내가 아무것도 모른다는 것을 안다."<br><br>모른다고 인정하는 순간 AI에게 제대로 물어볼 수 있습니다. 소크라테스가 이미 바이브 코딩의 핵심을 말했습니다.<br><br>📌 [3장 지금 당장 할 것 1가지]<br>Claude Code를 쓴다면 <code>CLAUDE.md</code>, Cursor를 쓴다면 <code>.cursorrules</code> 파일을 프로젝트 폴더 최상단에 만드십시오. 그리고 이렇게 한 줄만 쓰십시오: <em>"너는 내 회사의 AI 수석 개발자다. 항상 한국어 주석을 달고, 코드는 초보자도 이해할 수 있게 단순하게 짜라."</em> 지금 이 순간부터 AI가 당신 회사의 문화를 기억하기 시작합니다.</p></blockquote>
 <hr class='divider'>
+<!-- 인라인 CTA #2 -->
+<div style="margin:28px 0;padding:24px;background:rgba(15,10,30,.8);border:1px solid rgba(167,139,250,.35);border-radius:14px;text-align:center;">
+  <div style="font-size:.72rem;letter-spacing:.18em;color:#a78bfa;font-weight:700;margin-bottom:8px;">── 여기서 멈추지 마십시오 ──</div>
+  <div style="font-size:1.05rem;font-weight:900;color:#fff;margin-bottom:6px;word-break:keep-all;">3장까지 읽으셨다면, <span style="color:#fbbf24;">당신은 이미 준비됐습니다.</span></div>
+  <div style="font-size:.8rem;color:rgba(255,255,255,.55);margin-bottom:18px;line-height:1.7;word-break:keep-all;">4장부터 실제 랜딩페이지 배포, 에러 멱살잡기, B2B 수익화 파이프라인이 펼쳐집니다.<br>읽기만 한 것과 직접 만든 것은 하늘과 땅 차이입니다.</div>
+  <a href="https://vibecodingbible.jbooking.kr/" target="_blank" style="display:inline-block;background:linear-gradient(135deg,#7c3aed,#f59e0b);color:#fff;font-weight:800;font-size:.9rem;padding:13px 28px;border-radius:10px;text-decoration:none;transition:opacity .2s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">⚡ 4장부터 잠금 해제하기 →</a>
+  <div style="margin-top:10px;font-size:.72rem;color:rgba(255,255,255,.3);">베타 특가 진행 중 · 평생 열람 · 업데이트 무료</div>
+</div>
+
 <div class="tip-box">💡 <strong>배포하는 날, 저는 화장실에서 새로고침만 20번 눌렀습니다.</strong><br><br>처음으로 내가 만든 페이지가 인터넷에 올라간 날이었습니다. 링크를 카카오톡에 붙여넣고, 친구한테 보냈습니다. "들어가져?" 2초 뒤 "어 됨." 그 두 글자를 보고 저는 어른이 됐는데 울었습니다.<br><br>이 챕터를 읽고 나면 당신도 그 두 글자를 받게 됩니다.</div>
 
 <div style="background:linear-gradient(135deg,#1a0533,#2d1060);border-radius:16px;padding:32px 28px;margin:40px 0;text-align:center;border:1px solid rgba(167,139,250,.3);">
@@ -1468,7 +1506,17 @@ ANTHROPIC_API_KEY=sk-ant-어쩌고</code></pre>
       <div style="flex:1;min-width:150px;border:1.5px solid rgba(245,158,11,.5);border-radius:12px;padding:16px 14px;">
         <div style="font-size:.68rem;font-weight:700;color:#f59e0b;letter-spacing:.1em;margin-bottom:6px;">🅒 COMMANDER</div>
         <div style="font-weight:900;font-size:1rem;margin-bottom:4px;">2,990,000원</div>
-        <div style="font-size:.68rem;color:#ef4444;font-weight:700;margin-bottom:10px;">에이전트 외주 견적의 <u>37%</u></div>
+        <div style="font-size:.68rem;color:#ef4444;font-weight:700;margin-bottom:8px;">에이전트 외주 견적의 <u>37%</u></div>
+        <!-- 외주 환산 breakdown -->
+        <div style="padding:8px 10px;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);border-radius:7px;font-size:.65rem;line-height:1.85;margin-bottom:8px;">
+          <div style="font-weight:700;color:#fde68a;margin-bottom:3px;">📊 시장 외주 견적 환산</div>
+          <div style="display:flex;justify-content:space-between;">경영지원 에이전트<span style="color:#f87171;">300~500만</span></div>
+          <div style="display:flex;justify-content:space-between;">개발팀 에이전트<span style="color:#f87171;">200~300만</span></div>
+          <div style="display:flex;justify-content:space-between;">텔레그램 허브 연동<span style="color:#f87171;">100~200만</span></div>
+          <div style="display:flex;justify-content:space-between;">1억 실행계획서 컨설팅<span style="color:#f87171;">200~400만</span></div>
+          <div style="border-top:1px solid rgba(255,255,255,.1);margin-top:4px;padding-top:4px;display:flex;justify-content:space-between;font-weight:700;">합계<span style="color:#f87171;">800~1,400만원</span></div>
+          <div style="margin-top:4px;color:#86efac;font-weight:700;text-align:center;">이 패키지 299만 — 최대 <span style="color:#86efac;">80% 절감</span></div>
+        </div>
         <div style="font-size:.72rem;line-height:1.8;opacity:.8;">
           ✔ B 전체 포함<br>
           ✔ <code>경영지원_에이전트.py</code> 기본 소스<br>
@@ -1479,8 +1527,45 @@ ANTHROPIC_API_KEY=sk-ant-어쩌고</code></pre>
           💡 완성품이 아닌 <strong>기본 베이스 소스</strong>입니다.<br>
           이 코드를 토대로 AI와 함께 개발하면<br>
           처음부터 짜는 것보다 <strong>수십 배 빠릅니다.</strong></div>
-          <span style="opacity:.55;font-size:.68rem;">※ 에이전트 개발 외주: 최소 800~1,200만원</span>
         </div>
+      </div>
+    </div>
+
+    <!-- FAQ 섹션 -->
+    <div style="margin:28px 0 24px;text-align:left;">
+      <div style="font-size:.78rem;font-weight:800;color:var(--text);margin-bottom:14px;text-align:center;letter-spacing:.05em;">❓ 자주 묻는 질문</div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+
+        <details style="padding:13px 16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;cursor:pointer;">
+          <summary style="font-size:.8rem;font-weight:700;color:var(--text);list-style:none;display:flex;justify-content:space-between;align-items:center;">비개발자도 정말 따라 할 수 있나요? <span style="color:var(--accent);font-size:.9rem;">＋</span></summary>
+          <div style="margin-top:10px;font-size:.76rem;color:var(--muted);line-height:1.75;">네. 이 책의 전제가 "코딩 0점"입니다. 터미널 명령어는 복붙만 하면 되고, 에러가 나면 AI에게 그대로 던지면 됩니다. 실제로 57세 제조업 대표님, 마케팅 팀장, 주부 독자분들이 따라 하고 계십니다.</div>
+        </details>
+
+        <details style="padding:13px 16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;cursor:pointer;">
+          <summary style="font-size:.8rem;font-weight:700;color:var(--text);list-style:none;display:flex;justify-content:space-between;align-items:center;">Claude API 비용이 많이 드나요? <span style="color:var(--accent);font-size:.9rem;">＋</span></summary>
+          <div style="margin-top:10px;font-size:.76rem;color:var(--muted);line-height:1.75;">일반적인 개발 작업 기준 월 3~10만원 수준입니다. 12장 "토큰 절약의 과학"에서 비용을 90% 줄이는 모델 배치 전략을 상세히 다룹니다. 처음에는 무료 크레딧도 제공됩니다.</div>
+        </details>
+
+        <details style="padding:13px 16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;cursor:pointer;">
+          <summary style="font-size:.8rem;font-weight:700;color:var(--text);list-style:none;display:flex;justify-content:space-between;align-items:center;">구매 후 파일은 언제 받나요? <span style="color:var(--accent);font-size:.9rem;">＋</span></summary>
+          <div style="margin-top:10px;font-size:.76rem;color:var(--muted);line-height:1.75;">구매 확인 후 24시간 이내에 비밀번호 + 패키지 파일을 이메일로 발송드립니다. 주말·공휴일에는 다소 늦어질 수 있습니다. 문의는 카카오톡 ID 또는 전화번호로 남겨주세요.</div>
+        </details>
+
+        <details style="padding:13px 16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;cursor:pointer;">
+          <summary style="font-size:.8rem;font-weight:700;color:var(--text);list-style:none;display:flex;justify-content:space-between;align-items:center;">환불이 가능한가요? <span style="color:var(--accent);font-size:.9rem;">＋</span></summary>
+          <div style="margin-top:10px;font-size:.76rem;color:var(--muted);line-height:1.75;">파일이 정상 발송된 이후에는 단순 변심 환불이 어렵습니다. 단, 파일 미발송이거나 안내 내용과 현저히 다른 경우에는 환불을 요청하실 수 있습니다. 구매 전 무료 공개 챕터(0~3장)를 먼저 읽어보시길 권장드립니다.</div>
+        </details>
+
+        <details style="padding:13px 16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;cursor:pointer;">
+          <summary style="font-size:.8rem;font-weight:700;color:var(--text);list-style:none;display:flex;justify-content:space-between;align-items:center;">A, B, C 중 어떤 걸 골라야 하나요? <span style="color:var(--accent);font-size:.9rem;">＋</span></summary>
+          <div style="margin-top:10px;font-size:.76rem;color:var(--muted);line-height:1.75;">처음 시작이라면 <strong style="color:#a78bfa;">A STARTER</strong>로 충분합니다. 전체 시스템 + 실행 스크립트 + 공통 MD가 포함됩니다. 템플릿과 부록이 필요하면 <strong style="color:#93c5fd;">B BUILDER</strong>, 에이전트 소스코드를 직접 커스터마이징하고 싶다면 <strong style="color:#fde68a;">C COMMANDER</strong>를 선택하세요.</div>
+        </details>
+
+        <details style="padding:13px 16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;cursor:pointer;">
+          <summary style="font-size:.8rem;font-weight:700;color:var(--text);list-style:none;display:flex;justify-content:space-between;align-items:center;">책이 업데이트되면 다시 사야 하나요? <span style="color:var(--accent);font-size:.9rem;">＋</span></summary>
+          <div style="margin-top:10px;font-size:.76rem;color:var(--muted);line-height:1.75;">아니요. 구매자는 모든 개정판을 무료로 받습니다. AI 도구가 업데이트되거나 새로운 자동화 방법이 추가될 때마다 업데이트 알림을 이메일로 보내드립니다. 한 번 구매로 평생 최신 버전입니다.</div>
+        </details>
+
       </div>
     </div>
 
