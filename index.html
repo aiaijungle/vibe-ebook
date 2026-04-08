@@ -279,6 +279,31 @@ a:hover{text-decoration:underline}
   .lock-card{padding:28px 18px}
 }
 
+/* ── 모바일 신규 섹션 보정 ── */
+@media(max-width:768px){
+  /* An vs Road 카드 — 세로 스택 */
+  #section-5 ~ div[style*="grid-template-columns:1fr 1fr"],
+  div[style*="grid-template-columns:1fr 1fr"]{
+    grid-template-columns:1fr !important;
+  }
+  /* 수익화 파이프라인 화살표 숨기고 세로 배치 */
+  #market-trigger div[style*="display:grid"]{
+    grid-template-columns:repeat(2,1fr) !important;
+  }
+  /* 30분 퀵스타트 카드 그리드 */
+  div[style*="grid-template-columns:1fr 1fr"]{
+    grid-template-columns:1fr !important;
+  }
+  /* AI 시장 통계 4개 — 2열로 */
+  div[style*="repeat(auto-fit,minmax(140px"]{
+    grid-template-columns:repeat(2,1fr) !important;
+  }
+  /* 퀵스타트 STEP 카드 — 패딩 줄이기 */
+  div[style*="padding:24px 28px"]{
+    padding:16px 16px !important;
+  }
+}
+
 /* ── 세련된 디자인 오버라이드 ── */
 /* 본문 타이포 */
 .content-h1{letter-spacing:-.04em;}
