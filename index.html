@@ -2534,10 +2534,25 @@ async function submitEbookRequest() {
 <!-- 잠긴 챕터 구매 팝업 -->
 <div id="buy-popup">
   <div id="buy-popup-box">
-    <h3>🔒 이 챕터는 구매 후 열립니다</h3>
-    <p>제4장~제21장 + 부록 전체가 포함된<br><strong>바이브 코딩 실전 바이블</strong>을 지금 바로 받아보세요.</p>
-    <a class="buy-popup-btn" href="https://vibecodingbible.jbooking.kr/" target="_blank">⚡ 지금 구매하기 (베타 특가)</a>
-    <button class="buy-popup-close" onclick="document.getElementById('buy-popup').classList.remove('show')">닫기</button>
+    <div style="font-size:1.6rem;margin-bottom:12px;">⚠️</div>
+    <div style="font-size:.75rem;font-weight:700;letter-spacing:.15em;color:#9D4EDD;text-transform:uppercase;margin-bottom:10px;">AI 시대 생존 경고</div>
+    <h3 style="font-size:1.35rem;line-height:1.5;margin-bottom:14px;">지금 이 순간에도<br>AI가 당신의 자리를<br><span style="color:#f59e0b;">조용히 채우고 있습니다.</span></h3>
+    <div style="background:linear-gradient(135deg,rgba(124,58,237,.1),rgba(245,158,11,.08));border:1px solid rgba(124,58,237,.25);border-radius:10px;padding:16px 18px;margin-bottom:18px;text-align:left;">
+      <p style="font-size:.88rem;line-height:1.75;margin:0;word-break:keep-all;">
+        ChatGPT가 기획서를 쓰고,<br>
+        Cursor가 개발자를 대체하고,<br>
+        자동화 봇이 직원을 밀어내고 있습니다.<br><br>
+        <strong>살아남는 사람은 단 하나입니다.</strong><br>
+        AI를 <em>당하는</em> 사람이 아니라,<br>
+        AI를 <em>부리는</em> 사람.
+      </p>
+    </div>
+    <div style="font-size:.8rem;opacity:.6;margin-bottom:18px;word-break:keep-all;">
+      이 책은 전자책이 아닙니다.<br>
+      <strong style="opacity:1;color:var(--accent)">대체 불가능한 1%로 올라서는 실전 무기입니다.</strong>
+    </div>
+    <a class="buy-popup-btn" href="https://vibecodingbible.jbooking.kr/" target="_blank">⚡ 지금 바로 무기 장착하기</a>
+    <button class="buy-popup-close" onclick="document.getElementById('buy-popup').classList.remove('show')">괜찮아요, 저는 대체될게요</button>
   </div>
 </div>
 </body>
