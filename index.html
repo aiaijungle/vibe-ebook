@@ -47,8 +47,8 @@ main{flex:1;overflow-y:auto;padding:50px 60px;position:relative;}
 .content-wrap{max-width:860px;margin:0 auto;padding-bottom:160px}
 .content-h1{font-size:2.4rem;margin:50px 0 25px;border-bottom:3px solid var(--accent);padding-bottom:12px;font-weight:900;letter-spacing:-.03em}
 .content-h1:first-child{margin-top:0}
-.content-h2{font-size:1.7rem;color:var(--accent);margin:50px 0 18px;font-weight:800}
-.content-h3{font-size:1.28rem;margin:35px 0 12px;font-weight:700;border-left:4px solid var(--accent2);padding-left:12px}
+.content-h2{font-size:1.7rem;color:var(--text);margin:50px 0 18px;font-weight:900;letter-spacing:-.03em;border-bottom:2px solid var(--border);padding-bottom:8px;}
+.content-h3{font-size:1.28rem;margin:35px 0 12px;font-weight:700;border-left:3px solid var(--border);padding-left:12px;color:var(--text);}
 .para{font-size:1.1rem;margin-bottom:22px;word-break:keep-all;opacity:.9;line-height:1.9}
 .quote{background:var(--quote-bg);padding:22px 28px;border-left:5px solid var(--accent);margin:28px 0;font-style:italic;border-radius:0 10px 10px 0;font-size:1.05rem}
 .divider{border:0;border-bottom:1px solid var(--border);margin:50px 0}
@@ -64,7 +64,7 @@ p code,li code,td code{background:rgba(124,58,237,.12);padding:2px 7px;border-ra
 .md-table tr:hover td{background:rgba(124,58,237,.06)}
 .md-ul,.md-ol{margin:0 0 22px 28px;font-size:1.1rem;opacity:.9}
 .md-ul li,.md-ol li{margin-bottom:8px;line-height:1.8}
-strong{color:var(--accent);font-weight:700}
+strong{font-weight:700}
 em{font-style:italic;opacity:.9}
 a{color:var(--accent);text-decoration:none}
 a:hover{text-decoration:underline}
@@ -1767,23 +1767,42 @@ ANTHROPIC_API_KEY=sk-ant-어쩌고</code></pre>
   <div style="margin-top:12px;font-size:.72rem;color:var(--muted);text-align:center;">핵심 : <strong style="color:var(--text);">당신은 입을 열지 않았습니다.</strong> 봇끼리 파일로 대화했습니다.</div>
 </div>
 
-<blockquote class='quote'><p class='para'>💬 철학자의 한마디 — 소크라테스<br><br>"나는 내가 아무것도 모른다는 것을 안다."<br><br>모른다고 인정하는 순간 AI에게 제대로 물어볼 수 있습니다. 소크라테스가 이미 바이브 코딩의 핵심을 말했습니다.<br><br>📌 [3장 지금 당장 할 것 1가지]<br>Claude Code를 쓴다면 <code>CLAUDE.md</code>, Cursor를 쓴다면 <code>.cursorrules</code> 파일을 프로젝트 폴더 최상단에 만드십시오. 그리고 이렇게 한 줄만 쓰십시오: <em>"너는 내 회사의 AI 수석 개발자다. 항상 한국어 주석을 달고, 코드는 초보자도 이해할 수 있게 단순하게 짜라."</em> 지금 이 순간부터 AI가 당신 회사의 문화를 기억하기 시작합니다.</p></blockquote>
+<div style="margin:40px 0;padding:32px 28px;background:var(--quote-bg);border-left:4px solid var(--accent);border-radius:0 14px 14px 0;">
+  <div style="font-size:.72rem;font-weight:700;letter-spacing:.15em;color:var(--accent);margin-bottom:14px;">── 3장을 마치며 ──</div>
+  <p style="font-size:1.05rem;line-height:1.9;word-break:keep-all;margin-bottom:16px;">
+    이제 당신은 G-Stack이 <strong>무엇인지</strong> 압니다.<br>
+    봇이 봇에게 파일을 건네는 구조가 <strong>왜 강력한지</strong>도 압니다.
+  </p>
+  <p style="font-size:1.05rem;line-height:1.9;word-break:keep-all;margin-bottom:16px;">
+    그런데 문제가 하나 있습니다.
+  </p>
+  <p style="font-size:1.15rem;font-weight:800;line-height:1.85;word-break:keep-all;margin-bottom:16px;">
+    개념을 아는 것과,<br>
+    실제로 <em style="color:var(--accent);">"내 랜딩페이지 URL"</em>이 카카오톡에 붙여넣기 되는 순간 사이에는<br>
+    99%가 넘지 못하는 장벽이 있습니다.
+  </p>
+  <p style="font-size:1rem;line-height:1.9;word-break:keep-all;opacity:.8;">
+    그 장벽이 뭔지, 어디서 막히는지,<br>
+    그리고 어떻게 30분 안에 넘는지 —<br>
+    <strong>4장에서 실시간으로 보여드립니다.</strong>
+  </p>
+</div>
 <hr class='divider'>
 <!-- 인라인 CTA #2 -->
 <div style="margin:28px 0;padding:24px;background:rgba(15,10,30,.8);border:1px solid rgba(167,139,250,.35);border-radius:14px;text-align:center;">
-  <div style="font-size:.72rem;letter-spacing:.18em;color:#a78bfa;font-weight:700;margin-bottom:8px;">── 여기서 멈추지 마십시오 ──</div>
-  <div style="font-size:1.05rem;font-weight:900;color:#fff;margin-bottom:6px;word-break:keep-all;">3장까지 읽으셨다면, <span style="color:#fbbf24;">당신은 이미 준비됐습니다.</span></div>
-  <div style="font-size:.8rem;color:rgba(255,255,255,.55);margin-bottom:18px;line-height:1.7;word-break:keep-all;">4장부터 실제 랜딩페이지 배포, 에러 멱살잡기, B2B 수익화 파이프라인이 펼쳐집니다.<br>읽기만 한 것과 직접 만든 것은 하늘과 땅 차이입니다.</div>
-  <a href="https://vibecodingbible.jbooking.kr/" target="_blank" style="display:inline-block;background:linear-gradient(135deg,#7c3aed,#f59e0b);color:#fff;font-weight:800;font-size:.9rem;padding:13px 28px;border-radius:10px;text-decoration:none;transition:opacity .2s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">⚡ 4장부터 잠금 해제하기 →</a>
+  <div style="font-size:.72rem;letter-spacing:.18em;color:#a78bfa;font-weight:700;margin-bottom:8px;">── 지금까지는 개념입니다 ──</div>
+  <div style="font-size:1.05rem;font-weight:900;color:#fff;margin-bottom:6px;word-break:keep-all;">4장부터 <span style="color:#fbbf24;">실제로 만듭니다.</span></div>
+  <div style="font-size:.8rem;color:rgba(255,255,255,.65);margin-bottom:18px;line-height:1.8;word-break:keep-all;">랜딩페이지를 배포하고, 에러를 직접 잡고, B2B 계약까지 이어지는 실전 과정.<br>읽은 것을 <strong style="color:#fff;">직접 만드는 순간</strong> — 삶이 달라집니다.</div>
+  <a href="https://vibecodingbible.jbooking.kr/" target="_blank" style="display:inline-block;background:linear-gradient(135deg,#7c3aed,#f59e0b);color:#fff;font-weight:800;font-size:.9rem;padding:13px 28px;border-radius:10px;text-decoration:none;transition:opacity .2s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">⚡ 장벽을 넘으러 갑니다 →</a>
   <div style="margin-top:10px;font-size:.72rem;color:rgba(255,255,255,.3);">베타 특가 진행 중 · 평생 열람 · 업데이트 무료</div>
 </div>
 
 <div class="tip-box">💡 <strong>배포하는 날, 저는 화장실에서 새로고침만 20번 눌렀습니다.</strong><br><br>처음으로 내가 만든 페이지가 인터넷에 올라간 날이었습니다. 링크를 카카오톡에 붙여넣고, 친구한테 보냈습니다. "들어가져?" 2초 뒤 "어 됨." 그 두 글자를 보고 저는 어른이 됐는데 울었습니다.<br><br>이 챕터를 읽고 나면 당신도 그 두 글자를 받게 됩니다.</div>
 
 <div style="background:linear-gradient(135deg,#1a0533,#2d1060);border-radius:16px;padding:32px 28px;margin:40px 0;text-align:center;border:1px solid rgba(167,139,250,.3);">
-  <div style="font-size:.75rem;letter-spacing:.2em;color:#a78bfa;font-weight:700;margin-bottom:12px;">── 여기까지 무료 미리보기 ──</div>
-  <div style="font-size:1.4rem;font-weight:900;color:#fff;line-height:1.5;margin-bottom:8px;word-break:keep-all;">지금까지 읽은 건 <span style="color:#fbbf24;">서론</span>입니다.<br>진짜 무기는 4장부터 시작됩니다.</div>
-  <div style="font-size:.88rem;color:rgba(255,255,255,.65);margin-bottom:20px;line-height:1.7;word-break:keep-all;">랜딩페이지 배포 · 디버깅 포렌식 · 실무 프롬프트 5선<br>KISA 보안 · 텔레그램 에이전트 · n8n 파이프라인 · 무인 제국 선언<br><strong style="color:#fff;">제4장~제21장 + 부록 전체</strong>가 기다립니다.</div>
+  <div style="font-size:.75rem;letter-spacing:.2em;color:#a78bfa;font-weight:700;margin-bottom:12px;">── 99%가 여기서 멈춥니다 ──</div>
+  <div style="font-size:1.4rem;font-weight:900;color:#fff;line-height:1.5;margin-bottom:8px;word-break:keep-all;">당신은 <span style="color:#fbbf24;">나머지 1%</span>입니까?</div>
+  <div style="font-size:.88rem;color:rgba(255,255,255,.65);margin-bottom:20px;line-height:1.7;word-break:keep-all;">읽기만 하는 사람과 실제로 만드는 사람의 차이는<br>딱 하나 — <strong style="color:#fff;">4장을 펼쳤느냐, 안 펼쳤느냐</strong>입니다.<br><br>랜딩페이지 배포 · 에러 포렌식 · B2B 계약 · 무인 수익화 —<br>제4장~제21장이 기다립니다.</div>
   <a href="https://vibecodingbible.jbooking.kr/" target="_blank" style="display:inline-block;background:linear-gradient(135deg,#7c3aed,#f59e0b);color:#fff;font-weight:800;font-size:1rem;padding:14px 32px;border-radius:10px;text-decoration:none;transition:opacity .2s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">⚡ 지금 무기 장착하기 →</a>
   <div style="margin-top:12px;font-size:.75rem;color:rgba(255,255,255,.4);">베타 특가 290,000원 · 평생 열람</div>
 </div>
