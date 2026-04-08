@@ -282,12 +282,12 @@ a:hover{text-decoration:underline}
     <script>
       (function() {
         var OFFSET = 97;
-        // countapi.xyz: CORS 허용, 매 호출마다 +1 카운트
-        fetch('https://api.countapi.xyz/hit/aiaijungle-vibe-ebook/visits')
+        // counterapi.dev: CORS 허용, 매 호출마다 +1 카운트
+        fetch('https://api.counterapi.dev/v1/aiaijungle-vibe-ebook/visits/up')
           .then(function(r){ return r.json(); })
           .then(function(data){
-            if(data && data.value){
-              var count = data.value + OFFSET;
+            if(data && data.count){
+              var count = data.count + OFFSET;
               var el = document.getElementById('visit-num');
               if(el) el.textContent = count.toLocaleString();
               var mob = document.getElementById('visit-num-mobile');
