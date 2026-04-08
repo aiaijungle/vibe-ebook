@@ -366,6 +366,31 @@ main::-webkit-scrollbar-thumb{background:var(--accent);border-radius:99px;opacit
   letter-spacing:-.01em;
   box-shadow:0 4px 20px rgba(124,58,237,.35);
 }
+
+/* ── 복사 방지 ── */
+.content-wrap{
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
+}
+/* 코드 블록은 복사 허용 */
+.content-wrap pre,
+.content-wrap code{
+  -webkit-user-select:text;
+  -moz-user-select:text;
+  user-select:text;
+}
+
+/* 인쇄 방지 */
+@media print{
+  body::before{
+    content:"⛔ 바이브 코딩 실전 바이블 — 무단 복제 및 인쇄 금지 (저작권법 위반)";
+    display:block;font-size:1.5rem;font-weight:900;text-align:center;
+    padding:60px 40px;color:#7c3aed;
+  }
+  #ebook,main,aside,.mobile-topbar{display:none!important;}
+}
 </style>
 </head>
 <body>
@@ -3554,6 +3579,72 @@ async function submitEbookRequest() {
     btn.textContent = '다시 시도';
   }
 }
+
+// ── 복사·저장 보안 ──
+(function() {
+  // 1. 우클릭 차단
+  document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+    showCopyAlert();
+    return false;
+  });
+
+  // 2. 키보드 단축키 차단 (Ctrl+C, Ctrl+A, Ctrl+S, Ctrl+U, F12, Ctrl+Shift+I/J/C)
+  document.addEventListener('keydown', function(e) {
+    var key = e.key ? e.key.toLowerCase() : '';
+    // F12
+    if (e.keyCode === 123) { e.preventDefault(); showCopyAlert(); return false; }
+    if (e.ctrlKey || e.metaKey) {
+      // Ctrl+U (소스 보기), Ctrl+S (저장), Ctrl+A (전체선택), Ctrl+C (복사)
+      if (['u','s','a','c','p'].indexOf(key) !== -1) {
+        e.preventDefault(); showCopyAlert(); return false;
+      }
+      // Ctrl+Shift+I / J / C (개발자 도구)
+      if (e.shiftKey && ['i','j','c'].indexOf(key) !== -1) {
+        e.preventDefault(); showCopyAlert(); return false;
+      }
+    }
+  });
+
+  // 3. 드래그로 텍스트 끌어내기 차단
+  document.addEventListener('dragstart', function(e) {
+    if (e.target.tagName !== 'A') {
+      e.preventDefault(); return false;
+    }
+  });
+
+  // 4. 복사 이벤트 차단 (코드블록 제외)
+  document.addEventListener('copy', function(e) {
+    var target = e.target;
+    while (target && target !== document) {
+      if (target.tagName === 'PRE' || target.tagName === 'CODE') return; // 코드는 허용
+      target = target.parentElement;
+    }
+    e.preventDefault();
+    showCopyAlert();
+    return false;
+  });
+
+  // 5. 경고 토스트
+  var alertTimer = null;
+  function showCopyAlert() {
+    var existing = document.getElementById('copy-guard-toast');
+    if (existing) { clearTimeout(alertTimer); existing.style.opacity='1'; }
+    else {
+      var toast = document.createElement('div');
+      toast.id = 'copy-guard-toast';
+      toast.style.cssText = 'position:fixed;bottom:80px;left:50%;transform:translateX(-50%);'+
+        'background:rgba(239,68,68,.95);color:#fff;padding:12px 24px;border-radius:10px;'+
+        'font-size:.85rem;font-weight:700;z-index:9999;pointer-events:none;'+
+        'box-shadow:0 4px 20px rgba(0,0,0,.3);transition:opacity .4s;white-space:nowrap;';
+      toast.textContent = '⛔ 저작권 보호 — 무단 복제 금지 (저작권법 제136조)';
+      document.body.appendChild(toast);
+    }
+    var t = document.getElementById('copy-guard-toast');
+    t.style.opacity = '1';
+    alertTimer = setTimeout(function(){ if(t) t.style.opacity='0'; }, 2500);
+  }
+})();
 
 
 </script>
