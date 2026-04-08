@@ -282,18 +282,22 @@ a:hover{text-decoration:underline}
     <script>
       (function() {
         var OFFSET = 97;
-        fetch('https://hits.seeyoufarm.com/api/count/keep/badge.svg?url=https%3A%2F%2Faiaijungle.github.io%2Fvibe-ebook%2F')
-          .then(function(r){ return r.text(); })
-          .then(function(svg){
-            var nums = svg.match(/>(\d+)</g);
-            if(nums && nums.length){
-              var n = nums[nums.length-1].replace(/[><]/g,'');
-              var count = parseInt(n) + OFFSET;
-              document.getElementById('visit-num').textContent = count;
+        // countapi.xyz: CORS 허용, 매 호출마다 +1 카운트
+        fetch('https://api.countapi.xyz/hit/aiaijungle-vibe-ebook/visits')
+          .then(function(r){ return r.json(); })
+          .then(function(data){
+            if(data && data.value){
+              var count = data.value + OFFSET;
+              var el = document.getElementById('visit-num');
+              if(el) el.textContent = count.toLocaleString();
               var mob = document.getElementById('visit-num-mobile');
-              if(mob) mob.textContent = count;
+              if(mob) mob.textContent = count.toLocaleString();
             }
-          }).catch(function(){});
+          }).catch(function(){
+            // API 실패 시 기본값 표시
+            var el = document.getElementById('visit-num');
+            if(el) el.textContent = '98+';
+          });
       })();
     </script>
     <div class="header">
@@ -302,8 +306,7 @@ a:hover{text-decoration:underline}
         <div class="subtitle">리미트리스맨 저 · 2026</div>
         <div style="display:flex;align-items:center;gap:4px;margin-top:5px;font-size:10px;opacity:0.6;">
           <span>👁</span><span>누적 방문자</span>
-          <span id="visit-num" style="background:#9D4EDD;color:#fff;font-weight:700;padding:0 5px;border-radius:3px;line-height:15px;">98</span>
-          <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Faiaijungle.github.io%2Fvibe-ebook%2F&edge_flat=true" style="display:none;" alt="">
+          <span id="visit-num" style="background:#9D4EDD;color:#fff;font-weight:700;padding:0 5px;border-radius:3px;line-height:15px;">—</span>
         </div>
       </div>
       <button class="theme-btn" onclick="document.documentElement.toggleAttribute('data-theme')" title="다크모드">🌓</button>
