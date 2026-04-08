@@ -278,6 +278,67 @@ a:hover{text-decoration:underline}
   .para{font-size:.95rem}
   .lock-card{padding:28px 18px}
 }
+
+/* ── 세련된 디자인 오버라이드 ── */
+/* 본문 타이포 */
+.content-h1{letter-spacing:-.04em;}
+.content-h2{letter-spacing:-.02em;}
+.para{letter-spacing:-.01em;word-spacing:.02em;}
+
+/* 인용구 — 좌측 선 제거, 카드형 */
+.quote{
+  border-left:none;
+  border-radius:12px;
+  background:var(--quote-bg);
+  box-shadow:0 2px 16px rgba(124,58,237,.07);
+  padding:24px 28px;
+  position:relative;
+}
+.quote::before{
+  content:'"';
+  position:absolute;top:-8px;left:18px;
+  font-size:4rem;line-height:1;color:var(--accent);opacity:.18;
+  font-family:Georgia,serif;
+}
+
+/* tip/trigger/law 박스 */
+.tip-box,.trigger-box,.law-box,.ver-box{
+  border-radius:12px;
+  border-left-width:4px;
+  box-shadow:0 2px 12px rgba(0,0,0,.06);
+  line-height:1.85;
+}
+
+/* 구분선 */
+hr.divider{
+  border:none;
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--border),transparent);
+  margin:40px 0;
+}
+
+/* 사이드바 */
+aside{backdrop-filter:blur(12px);}
+
+/* 코드 */
+code{
+  border-radius:5px;
+  font-size:.88em;
+  padding:2px 7px;
+}
+
+/* 스크롤바 */
+main::-webkit-scrollbar{width:5px;}
+main::-webkit-scrollbar-track{background:transparent;}
+main::-webkit-scrollbar-thumb{background:var(--accent);border-radius:99px;opacity:.5;}
+
+/* 페이월 버튼 */
+.paywall-btn{
+  border-radius:10px;
+  font-weight:800;
+  letter-spacing:-.01em;
+  box-shadow:0 4px 20px rgba(124,58,237,.35);
+}
 </style>
 </head>
 <body>
