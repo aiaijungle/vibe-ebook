@@ -2376,18 +2376,30 @@ function submitEbookRequest() {
   }
 
   const tierLabel = {A:'STARTER 750,000원', B:'BUILDER 1,500,000원', C:'COMMANDER 2,990,000원'}[tier] || tier;
-  const subject = encodeURIComponent('[전자책 구매 문의] ' + tierLabel);
-  const body = encodeURIComponent(
-    '■ 선택 패키지: ' + tierLabel + '\n' +
-    '■ 수신 이메일: ' + email + '\n' +
-    '■ 연락처/카톡ID: ' + contact + '\n' +
-    '■ 메시지: ' + (msg || '없음')
-  );
 
-  window.location.href = 'mailto:housepeoplekorea@gmail.com?subject=' + subject + '&body=' + body;
+  result.style.color = '#a0aec0';
+  result.textContent = '전송 중...';
 
-  result.style.color = '#68d391';
-  result.textContent = '✅ 이메일 앱이 열립니다. 전송 후 24시간 이내 안내드립니다.';
+  fetch('https://formsubmit.co/ajax/ceo@stayjanda.com', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({
+      _subject: '[전자책 구매 문의] ' + tierLabel,
+      패키지: tierLabel,
+      수신이메일: email,
+      연락처: contact,
+      메시지: msg || '없음'
+    })
+  })
+  .then(function(res) { return res.json(); })
+  .then(function(data) {
+    result.style.color = '#68d391';
+    result.textContent = '✅ 문의가 접수됐습니다. 24시간 이내 안내드립니다.';
+  })
+  .catch(function() {
+    result.style.color = '#fc8181';
+    result.textContent = '전송 실패. ceo@stayjanda.com 으로 직접 문의해 주세요.';
+  });
 }
 
 // ── 복사·저장 보안 ──
