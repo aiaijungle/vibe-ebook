@@ -2354,15 +2354,15 @@ function copyLink() {
   });
 })();
 
-// 구매 문의 API 전송
+// 구매 문의 — formsubmit.co 직접 전송 (백엔드 불필요)
 async function submitEbookRequest() {
   const email   = document.getElementById('pw-email').value.trim();
   const contact = document.getElementById('pw-contact').value.trim();
   const msg     = document.getElementById('pw-msg').value.trim();
   const result  = document.getElementById('modal-result');
   const btn     = document.getElementById('modal-submit-btn');
+  const tier    = document.getElementById('pw-tier') ? document.getElementById('pw-tier').value : '';
 
-  const tier = document.getElementById('pw-tier') ? document.getElementById('pw-tier').value : '';
   if (!tier) {
     result.style.color = '#fc8181';
     result.textContent = '패키지를 선택해 주세요 (A / B / C).';
@@ -2378,19 +2378,33 @@ async function submitEbookRequest() {
   btn.textContent = '전송 중...';
   result.textContent = '';
 
+  const tierLabel = {A:'STARTER 750,000원', B:'BUILDER 1,500,000원', C:'COMMANDER 2,990,000원'}[tier] || tier;
+
   try {
-    const res = await fetch('https://aitf-api.onrender.com/ebook/request', {
+    const res = await fetch('https://formsubmit.co/ajax/housepeoplekorea@gmail.com', {
       method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({ email, contact, message: msg })
+      headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+      body: JSON.stringify({
+        '선택_패키지': tierLabel,
+        '이메일': email,
+        '연락처_카톡ID': contact,
+        '메시지': msg || '없음',
+        '_subject': '[전자책 구매 문의] ' + tierLabel + ' — ' + email,
+        '_captcha': 'false',
+        '_template': 'table'
+      })
     });
     const data = await res.json();
-    result.style.color = '#68d391';
-    result.textContent = '✅ ' + data.message;
-    btn.textContent = '전송 완료';
+    if (data.success === 'true' || data.success === true) {
+      result.style.color = '#68d391';
+      result.textContent = '✅ 문의가 접수되었습니다! 입금 안내 후 24시간 이내 연락드립니다.';
+      btn.textContent = '전송 완료';
+    } else {
+      throw new Error('formsubmit 실패');
+    }
   } catch(e) {
     result.style.color = '#fc8181';
-    result.textContent = '전송 실패. 직접 연락 부탁드립니다.';
+    result.textContent = '전송 실패. 카카오톡 채널 AITF로 직접 문의해 주세요.';
     btn.disabled = false;
     btn.textContent = '다시 시도';
   }
