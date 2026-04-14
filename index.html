@@ -2380,15 +2380,15 @@ function submitEbookRequest() {
   result.style.color = '#a0aec0';
   result.textContent = '전송 중...';
 
-  fetch('https://formsubmit.co/ajax/ceo@stayjanda.com', {
+  fetch('https://aitf-api.onrender.com/contact', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      _subject: '[전자책 구매 문의] ' + tierLabel,
-      패키지: tierLabel,
-      수신이메일: email,
-      연락처: contact,
-      메시지: msg || '없음'
+      name: contact,
+      email: email,
+      subject: '[전자책 구매 문의] ' + tierLabel,
+      source: 'vibe-ebook',
+      extra: { 패키지: tierLabel, 연락처: contact, 메시지: msg || '없음' }
     })
   })
   .then(function(res) { return res.json(); })
@@ -2398,7 +2398,7 @@ function submitEbookRequest() {
   })
   .catch(function() {
     result.style.color = '#fc8181';
-    result.textContent = '전송 실패. ceo@stayjanda.com 으로 직접 문의해 주세요.';
+    result.textContent = '전송 실패. 잠시 후 다시 시도해 주세요.';
   });
 }
 
