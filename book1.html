@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>바이브코딩 1권 — 마케팅 자동화 입문</title>
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" media="print" onload="this.media='all'">
+<style>
+:root {
+  --bg:#ffffff; --text:#1a202c; --side-bg:#f5f7f9; --border:#e6ecf1;
+  --accent:#7c3aed; --accent2:#f59e0b;
+  --quote-bg:#f3f0ff;
+  --trigger-bg:rgba(124,58,237,.08); --trigger-border:#7c3aed;
+  --law-bg:rgba(245,158,11,.1);      --law-border:#f59e0b;
+  --tip-bg:rgba(56,189,248,.08);     --tip-border:#38bdf8;
+  --cta-bg:linear-gradient(135deg,#7c3aed,#4f46e5);
+}
+[data-theme="dark"] {
+  --bg:#0f111a; --text:#e2e8f0; --side-bg:#1a1d27; --border:#2d3748;
+  --accent:#a78bfa; --accent2:#fbbf24; --quote-bg:#1a1d2e;
+  --trigger-bg:rgba(167,139,250,.12); --trigger-border:#a78bfa;
+  --law-bg:rgba(251,191,36,.1);       --law-border:#fbbf24;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Pretendard',sans-serif;background:var(--bg);color:var(--text);line-height:1.85;font-size:1.05rem}
+#progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#7c3aed,#f59e0b);width:0%;z-index:9999;transition:width 0.1s}
+.wrap{max-width:720px;margin:0 auto;padding:60px 24px 120px}
+
+/* 헤더 */
+.book-header{text-align:center;margin-bottom:56px;padding-bottom:40px;border-bottom:2px solid var(--border)}
+.book-badge{display:inline-block;background:var(--trigger-bg);border:1px solid var(--trigger-border);color:var(--accent);font-size:.78rem;font-weight:700;padding:4px 14px;border-radius:20px;margin-bottom:16px;letter-spacing:.05em}
+.book-title{font-size:2.2rem;font-weight:900;letter-spacing:-.04em;line-height:1.3;margin-bottom:12px;word-break:keep-all}
+.book-sub{font-size:1rem;opacity:.6;margin-bottom:20px}
+.free-tag{display:inline-block;background:#dcfce7;color:#166534;font-size:.8rem;font-weight:700;padding:4px 12px;border-radius:20px}
+
+/* 본문 타이포 */
+.content-h1{font-size:1.9rem;font-weight:900;margin:56px 0 18px;letter-spacing:-.03em;border-left:4px solid var(--accent);padding-left:16px;word-break:keep-all}
+.content-h2{font-size:1.35rem;font-weight:700;margin:40px 0 14px;letter-spacing:-.02em;color:var(--text);opacity:.9}
+.para{font-size:1.05rem;margin-bottom:20px;word-break:keep-all;line-height:1.9;opacity:.9}
+.quote{background:var(--quote-bg);padding:20px 26px;border-left:5px solid var(--accent);margin:28px 0;font-style:italic;border-radius:0 10px 10px 0;font-size:1rem;line-height:1.8}
+.divider{border:0;border-bottom:1px solid var(--border);margin:48px 0}
+
+/* 박스 (2권 모듈 재사용) */
+.trigger-box{background:var(--trigger-bg);border:1.5px solid var(--trigger-border);border-radius:12px;padding:18px 22px;margin:28px 0;font-size:1rem;line-height:1.85;word-break:keep-all}
+.trigger-box .label{font-size:.72rem;font-weight:800;color:var(--accent);letter-spacing:.08em;margin-bottom:6px}
+.law-box{background:var(--law-bg);border:1.5px solid var(--law-border);border-radius:12px;padding:18px 22px;margin:28px 0;font-size:1rem;line-height:1.85;word-break:keep-all}
+.law-box .label{font-size:.72rem;font-weight:800;color:var(--accent2);letter-spacing:.08em;margin-bottom:6px}
+.tip-box{background:var(--tip-bg);border:1.5px solid var(--tip-border);border-radius:12px;padding:18px 22px;margin:28px 0;font-size:1rem;line-height:1.85;word-break:keep-all}
+pre.code{background:#1e1e2e;color:#cdd6f4;padding:18px 22px;border-radius:12px;overflow-x:auto;margin:20px 0;font-size:.88rem;line-height:1.7;font-family:'Consolas','Courier New',monospace;word-break:normal}
+
+/* CTA */
+.cta-box{background:var(--cta-bg);color:#fff;border-radius:16px;padding:36px 32px;margin:56px 0;text-align:center}
+.cta-box h3{font-size:1.5rem;font-weight:900;margin-bottom:10px;letter-spacing:-.03em}
+.cta-box p{font-size:.95rem;opacity:.85;margin-bottom:24px;line-height:1.75;word-break:keep-all}
+.cta-btn{display:inline-block;background:#fff;color:#7c3aed;font-weight:800;font-size:1rem;padding:13px 36px;border-radius:12px;text-decoration:none;transition:transform .15s,box-shadow .15s}
+.cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.18)}
+.cta-price{font-size:.82rem;opacity:.7;margin-top:10px}
+
+/* 테마 버튼 */
+.top-bar{display:flex;justify-content:flex-end;margin-bottom:32px}
+.theme-btn{background:none;border:1px solid var(--border);border-radius:8px;padding:6px 12px;cursor:pointer;color:var(--text);font-size:.85rem;font-family:'Pretendard',sans-serif}
+
+/* 복사 방지 */
+body{
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
+}
+pre.code{
+  -webkit-user-select:text;
+  user-select:text; /* 코드블록은 선택 허용 */
+}
+
+/* 모바일 */
+@media(max-width:768px){
+  .wrap{padding:32px 16px 100px}
+  .book-title{font-size:1.6rem;line-height:1.35}
+  .content-h1{font-size:1.4rem}
+  .content-h2{font-size:1.15rem}
+  .para{font-size:1rem}
+  .cta-box{padding:28px 18px}
+  .cta-box h3{font-size:1.3rem}
+  .cta-btn{padding:12px 28px;font-size:.95rem}
+  pre.code{font-size:.8rem;padding:14px 16px}
+  .trigger-box,.law-box,.tip-box{padding:14px 16px;font-size:.95rem}
+  .quote{padding:16px 18px}
+  .top-bar{margin-bottom:20px}
+}
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div class="wrap">
+
+  <div class="top-bar">
+    <button class="theme-btn" onclick="toggleTheme()">🌓 다크모드</button>
+  </div>
+
+  <!-- 표지 -->
+  <header class="book-header">
+    <div class="book-badge">VIBECODING MASTERY · 1권</div>
+    <h1 class="book-title">코딩 없이 블로그와 유튜브를<br>자동으로 운영하는 법</h1>
+    <p class="book-sub">마케팅 자동화 입문 — 바이브코딩 실전 시리즈</p>
+    <span class="free-tag">✓ 무료 공개</span>
+  </header>
+
+  <!-- 들어가며 -->
+  <p class="para">혼자 사업을 하면 마케팅이 제일 무겁다. 블로그도 써야 하고, 유튜브도 올려야 하고, 고객도 관리해야 한다. 직원이 없으면 내가 다 해야 한다.</p>
+
+  <div class="trigger-box">
+    <div class="label">📌 이 책에서 다루는 것</div>
+    블로그 자동화 — 글을 직접 쓰지 않아도 매일 포스트가 올라가는 구조<br>
+    유튜브 자동화 — 영상을 직접 찍지 않아도 채널이 돌아가는 구조
+  </div>
+
+  <p class="para">이론 최소. 실전 최대. 오늘 바로 써먹을 수 있는 것만 담았다.</p>
+
+  <hr class="divider">
+
+  <!-- 1장 블로그 -->
+  <h2 class="content-h1">1장. 블로그 자동화</h2>
+
+  <p class="para">검색에서 들어온 사람이 가장 구매 확률이 높다. 광고는 내가 먼저 찾아가지만, 블로그는 고객이 먼저 찾아온다. 이미 그 문제에 관심이 있는 사람이다. 설득이 반쯤 된 상태다.</p>
+
+  <p class="para">문제는 직접 쓰면 지친다는 거다. 주 3편, 3개월. 그러다 멈춘다. 안 올라온 블로그는 검색에 잡히지 않는다.</p>
+
+  <div class="law-box">
+    <div class="label">🔥 핵심 원리</div>
+    블로그는 꾸준함이 아니라 <strong>시스템</strong>이 답이다.<br>
+    사람이 꾸준한 게 아니라, 봇이 꾸준하게 만들어야 한다.
+  </div>
+
+  <h3 class="content-h2">구조</h3>
+  <pre class="code">트렌드 키워드 수집 → AI 글 생성 → 자동 발행
+      ↓                   ↓              ↓
+  매일 오전           Claude API     GitHub Pages</pre>
+
+  <p class="para">매일 아침, 봇이 오늘의 키워드를 가져온다. AI가 글을 쓴다. 자동으로 올라간다. 당신은 아무것도 안 해도 된다.</p>
+
+  <h3 class="content-h2">지금 당장 해볼 것</h3>
+  <p class="para">코드가 없어도 된다. Claude 웹 버전에 이렇게 입력해라.</p>
+
+  <div class="quote">
+    "내 블로그 주제는 [본인 분야]. 오늘 쓸 블로그 제목 5개 추천해줘. SEO에 유리한 키워드 포함해서."<br><br>
+    마음에 드는 제목 고르고:<br><br>
+    "이 제목으로 800자 블로그 포스트 써줘. 소제목 2개 넣어줘."
+  </div>
+
+  <p class="para">하루 10분. 포스트 하나. 자동화는 이걸 사람 없이 돌리는 거다.</p>
+
+  <div class="tip-box">
+    💡 <strong>주의:</strong> AI 글은 꼭 첫 단락 읽어보고 올려라. 사실 오류가 있을 수 있다. 방향만 잡아주면 된다.
+  </div>
+
+  <hr class="divider">
+
+  <!-- 2장 유튜브 -->
+  <h2 class="content-h1">2장. 유튜브 자동화</h2>
+
+  <p class="para">유튜브는 얼굴을 비춰야 한다고 생각한다. 아니다. 얼굴 없이 수십만 구독자를 가진 채널들이 있다. AI 음성과 배경 영상만으로 운영한다.</p>
+
+  <h3 class="content-h2">쇼츠 자동 제작</h3>
+  <p class="para">쇼츠(60초 이내 세로 영상)는 알고리즘이 새 채널을 밀어주는 포맷이다. 구독자가 없어도 조회수가 나온다. 이걸 자동화한다.</p>
+
+  <pre class="code">주제 입력
+  → Claude가 대본 작성
+  → ElevenLabs가 음성 변환 (무료 플랜: 월 10분)
+  → Pexels에서 배경 영상 다운로드 (무료)
+  → 편집앱으로 합성
+  → 유튜브 업로드</pre>
+
+  <div class="trigger-box">
+    <div class="label">📌 비용 합계</div>
+    Claude 웹: 무료 | ElevenLabs 기본: 무료 | Pexels: 무료<br>
+    <strong>총 비용 0원. 시간 30분. 영상 1편 완성.</strong>
+  </div>
+
+  <h3 class="content-h2">지금 당장 해볼 것</h3>
+
+  <div class="quote">
+    Claude에 입력:<br><br>
+    "60초 유튜브 쇼츠 대본 써줘. 주제: [오늘 알게 된 것 하나]. 첫 3초가 훅이 되게. 말하듯이 써줘."
+  </div>
+
+  <p class="para">대본 복사 → ElevenLabs에 붙여넣기 → 음성 다운로드 → 배경 영상 합치기 → 업로드. 오늘 안에 첫 쇼츠가 올라간다.</p>
+
+  <hr class="divider">
+
+  <!-- 연결 -->
+  <h2 class="content-h1">3장. 연결하면 달라진다</h2>
+
+  <p class="para">블로그와 유튜브를 따로 돌리는 것보다 연결하면 효과가 커진다.</p>
+
+  <div class="law-box">
+    <div class="label">🔥 자동화 루프</div>
+    블로그 포스트 작성 → 같은 내용으로 쇼츠 대본 생성 → 쇼츠 업로드<br>
+    → 영상 설명란에 블로그 링크 → 블로그에 유튜브 영상 삽입<br><br>
+    <strong>하나의 콘텐츠가 두 채널을 동시에 채운다.</strong>
+  </div>
+
+  <p class="para">블로그로 검색 유입. 유튜브로 알고리즘 유입. 두 채널이 서로를 밀어준다. 이게 1인 기업가가 마케팅팀 없이 할 수 있는 가장 효율적인 구조다.</p>
+
+  <hr class="divider">
+
+  <!-- CTA -->
+  <div class="cta-box">
+    <h3>이건 시작일 뿐이다</h3>
+    <p>
+      블로그와 유튜브에서 들어온 사람을 이메일로 전환하고,<br>
+      이메일 시퀀스로 자동 판매하고,<br>
+      고객 DB가 자는 동안 쌓이는 구조.<br><br>
+      그게 2권의 내용이다.<br>
+      실제 코드, 실제 봇, 실제 파이프라인을 전부 공개한다.
+    </p>
+    <a href="https://vibecodingbible.jbooking.kr/" class="cta-btn" target="_blank">2권 보러 가기 →</a>
+    <p class="cta-price">얼리버드 특별가 290,000원 | 한정 수량</p>
+  </div>
+
+  <!-- 푸터 -->
+  <p style="text-align:center;font-size:.78rem;opacity:.4;margin-top:40px">
+    VibeCoding Mastery · 이 책은 자유롭게 공유하셔도 됩니다 · dev.janda@gmail.com
+  </p>
+
+</div>
+
+<script>
+// ── 진행 바
+window.addEventListener('scroll', () => {
+  const el = document.documentElement;
+  const pct = el.scrollTop / (el.scrollHeight - el.clientHeight) * 100;
+  document.getElementById('progress-bar').style.width = pct + '%';
+});
+
+// ── 다크모드
+function toggleTheme() {
+  const d = document.documentElement;
+  const isDark = d.getAttribute('data-theme') === 'dark';
+  d.setAttribute('data-theme', isDark ? '' : 'dark');
+  localStorage.setItem('theme', isDark ? '' : 'dark');
+}
+const saved = localStorage.getItem('theme');
+if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+
+// ── 보안: 우클릭 차단
+document.addEventListener('contextmenu', e => e.preventDefault());
+
+// ── 보안: F12 / Ctrl+Shift+I / Ctrl+U 차단
+document.addEventListener('keydown', e => {
+  if (
+    e.key === 'F12' ||
+    (e.ctrlKey && e.shiftKey && ['I','J','C'].includes(e.key)) ||
+    (e.ctrlKey && e.key === 'U') ||
+    (e.ctrlKey && e.key === 'S') ||
+    (e.ctrlKey && e.key === 'A')
+  ) {
+    e.preventDefault();
+    return false;
+  }
+});
+
+// ── 보안: 드래그 선택 방지 (이미지 드래그 포함)
+document.addEventListener('dragstart', e => e.preventDefault());
+document.addEventListener('selectstart', e => {
+  // pre.code 안은 허용
+  if (e.target.closest('pre.code')) return true;
+  e.preventDefault();
+});
+
+// ── 보안: 개발자도구 감지 (콘솔 열림 시 경고)
+(function() {
+  const threshold = 160;
+  setInterval(() => {
+    if (
+      window.outerWidth - window.innerWidth > threshold ||
+      window.outerHeight - window.innerHeight > threshold
+    ) {
+      document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:sans-serif;font-size:1.2rem;color:#7c3aed;">⚠️ 이 콘텐츠는 보호되어 있습니다.</div>';
+    }
+  }, 1000);
+})();
+
+// ── 인쇄 차단
+window.addEventListener('beforeprint', e => {
+  document.body.style.display = 'none';
+  setTimeout(() => document.body.style.display = '', 100);
+});
+</script>
+</body>
+</html>
