@@ -2231,17 +2231,48 @@ function unlockPaywall() {
   }
 }
 
-// 활성 TOC 하이라이트
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      document.querySelectorAll('.toc a').forEach(a => a.classList.remove('active'));
-      const a = document.querySelector(`.toc a[href="#${e.target.id}"]`);
-      if (a) { a.classList.add('active'); a.scrollIntoView({block:'nearest'}); }
+// 활성 TOC 하이라이트 — main 스크롤 기반
+(function() {
+  const mainEl2   = document.querySelector('main');
+  const asideEl2  = document.getElementById('sidebar') || document.querySelector('aside');
+  const heads     = Array.from(document.querySelectorAll('h1[id],h2[id],h3[id]'));
+  const tocAs     = document.querySelectorAll('.toc a');
+
+  function syncToc() {
+    if (!mainEl2) return;
+    const threshold = mainEl2.scrollTop + mainEl2.clientHeight * 0.15;
+    let cur = heads[0];
+    for (const h of heads) {
+      if (h.offsetTop <= threshold) cur = h; else break;
     }
-  });
-}, {rootMargin:'-10% 0px -80% 0px'});
-document.querySelectorAll('h1[id],h2[id],h3[id]').forEach(h => obs.observe(h));
+    tocAs.forEach(a => a.classList.remove('active'));
+    if (cur) {
+      const link = document.querySelector(`.toc a[href="#${cur.id}"]`);
+      if (link) {
+        link.classList.add('active');
+        if (asideEl2) {
+          const lt = link.offsetTop;
+          const vh = asideEl2.clientHeight;
+          const st = asideEl2.scrollTop;
+          if (lt < st + 80 || lt > st + vh - 80) {
+            asideEl2.scrollTop = lt - vh / 2;
+          }
+        }
+      }
+    }
+  }
+
+  let raf2 = false;
+  if (mainEl2) {
+    mainEl2.addEventListener('scroll', () => {
+      if (!raf2) {
+        requestAnimationFrame(() => { syncToc(); raf2 = false; });
+        raf2 = true;
+      }
+    }, { passive: true });
+  }
+  syncToc();
+})();
 
 // 모바일 진행률 + 현재 챕터 추적
 (function() {
