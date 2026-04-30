@@ -85,39 +85,42 @@
     body.sidebar-collapsed #main { margin-left: 0; }
 
     .sidebar-logo {
-      padding: 24px 20px 16px;
+      padding: 14px 16px 10px;
       border-bottom: 1px solid var(--border)
     }
 
     .sidebar-logo h2 {
-      font-size: .95rem;
+      font-size: .85rem;
       font-weight: 800;
       color: var(--red);
       letter-spacing: .05em
     }
 
     .sidebar-logo p {
-      font-size: .75rem;
+      font-size: .7rem;
       color: var(--muted);
-      margin-top: 4px
+      margin-top: 2px
     }
 
     .toc-nav {
       flex: 1;
-      padding: 12px 0
+      padding: 4px 0;
+      overflow-y: auto
     }
 
     .toc-item {
       display: flex;
       align-items: center;
-      gap: 10px;
-      padding: 10px 20px;
-      font-size: .85rem;
+      gap: 8px;
+      padding: 7px 14px;
+      font-size: .78rem;
       color: var(--muted);
       text-decoration: none;
       border-left: 3px solid transparent;
       transition: all .2s;
-      cursor: pointer
+      cursor: pointer;
+      white-space: nowrap;
+      overflow: hidden
     }
 
     .toc-item:hover {
@@ -132,19 +135,25 @@
     }
 
     .toc-icon {
-      font-size: 1rem;
+      font-size: .85rem;
       flex-shrink: 0
     }
 
+    .toc-label {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap
+    }
+
     .progress-wrap {
-      padding: 16px 20px;
+      padding: 10px 14px;
       border-top: 1px solid var(--border)
     }
 
     .progress-label {
-      font-size: .75rem;
+      font-size: .68rem;
       color: var(--muted);
-      margin-bottom: 8px;
+      margin-bottom: 5px;
       display: flex;
       justify-content: space-between
     }
