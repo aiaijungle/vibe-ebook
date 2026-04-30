@@ -106,7 +106,7 @@ pre,code{-webkit-user-select:text;user-select:text}
 .roadmap-table{margin:24px 0}
 .roadmap-row{display:flex;align-items:center;gap:20px;padding:14px 0;border-bottom:1px solid var(--border)}
 .roadmap-row:last-child{border-bottom:none}
-.day{background:rgba(220,38,38,.08);color:var(--red);padding:6px 14px;border-radius:6px;font-size:.85rem;font-weight:700;white-space:nowrap}
+.day{background:rgba(220,38,38,.08);color:var(--red);padding:6px 14px;border-radius:6px;font-size:.85rem;font-weight:700;white-space:nowrap;flex-shrink:0;min-width:fit-content}
 
 .cta-box{margin-top:40px;padding:32px;border-radius:16px;background:#fef2f2;border:1.5px solid rgba(220,38,38,.3);text-align:center}
 .cta-box p{font-size:1.1rem;margin-bottom:12px;color:var(--text)!important}
@@ -145,6 +145,20 @@ pre,code{-webkit-user-select:text;user-select:text}
 .yt-cta-btn{display:inline-block;padding:9px 18px;background:#fff;color:#b83200;border-radius:50px;font-weight:800;font-size:.85rem;text-decoration:none;white-space:nowrap;transition:transform .2s}
 .yt-cta-btn:hover{transform:scale(1.05)}
 .yt-cta-badge{font-size:.74rem;background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.3);padding:3px 9px;border-radius:20px;white-space:nowrap;color:#fff}
+
+/* ── 스크롤 상단 버튼 ── */
+#scrollTopBtn{position:fixed;bottom:32px;right:28px;width:48px;height:48px;border-radius:50%;background:var(--red);color:#fff;border:none;font-size:1.4rem;font-weight:700;cursor:pointer;z-index:900;opacity:0;transform:translateY(20px);transition:all .3s;box-shadow:0 4px 20px rgba(220,38,38,.35);line-height:1}
+#scrollTopBtn.visible{opacity:1;transform:translateY(0)}
+#scrollTopBtn:hover{background:#b91c1c;transform:translateY(-3px)}
+
+/* ── 완독 배너 ── */
+#completeBanner{display:none;position:fixed;bottom:0;left:0;right:0;background:linear-gradient(135deg,#150c00,#2a1500);border-top:2px solid #FF8C00;color:#fff;padding:14px 24px;z-index:950;text-align:center;animation:slideUp .4s ease}
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+#completeBanner .cb-inner{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap}
+#completeBanner .cb-text{font-size:.97rem;font-weight:700;color:#FF8C00}
+#completeBanner .cb-sub{font-size:.82rem;color:rgba(255,255,255,.7)}
+#completeBanner .cb-link{display:inline-block;padding:8px 20px;background:#FF8C00;color:#fff;border-radius:50px;font-weight:800;font-size:.85rem;text-decoration:none;white-space:nowrap}
+#completeBanner .cb-close{background:none;border:none;color:rgba(255,255,255,.5);font-size:1.2rem;cursor:pointer;padding:4px 8px;margin-left:8px}
 
 /* ── 복사방지 ── */
 @media print{
@@ -3366,6 +3380,19 @@ class CompetitorMonitor:
 </section>
 </div>
 
+<!-- 스크롤 상단 버튼 -->
+<button id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="처음으로">↑</button>
+
+<!-- 완독 배너 -->
+<div id="completeBanner">
+  <div class="cb-inner">
+    <span class="cb-text">🎉 완독 달성!</span>
+    <span class="cb-sub">AI 에이전트 마스터가 되셨습니다</span>
+    <a class="cb-link" href="https://www.youtube.com/channel/UCCqi9m0XPHLPxvReWfJhJig" target="_blank">▶ AI사냥꾼 구독하기</a>
+    <button class="cb-close" onclick="document.getElementById('completeBanner').style.display='none'">✕</button>
+  </div>
+</div>
+
 <script>
 const chapters = document.querySelectorAll('.chapter');
 const tocItems = document.querySelectorAll('.toc-item');
@@ -3386,12 +3413,23 @@ const obs = new IntersectionObserver((entries)=>{
 },{threshold:0.3});
 chapters.forEach(c=>obs.observe(c));
 
-// 진행도
+// 진행도 + 스크롤 상단 버튼 + 완독 감지
+const scrollTopBtn = document.getElementById('scrollTopBtn');
+const completeBanner = document.getElementById('completeBanner');
+let completedShown = false;
 window.addEventListener('scroll',()=>{
   const total = document.body.scrollHeight - window.innerHeight;
   const p = Math.round((window.scrollY/total)*100);
   pbar.style.width = p+'%';
   pct.textContent = p+'%';
+  // 스크롤 상단 버튼 (300px 이상 내려가면 표시)
+  if(window.scrollY > 300) scrollTopBtn.classList.add('visible');
+  else scrollTopBtn.classList.remove('visible');
+  // 완독 배너 (95% 이상 도달 시 1회만 표시)
+  if(!completedShown && p >= 95){
+    completeBanner.style.display='block';
+    completedShown = true;
+  }
 });
 
 // TOC 클릭 스크롤
