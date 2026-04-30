@@ -1297,31 +1297,51 @@ pip install requests beautifulsoup4 anthropic schedule python-telegram-bot
 
 <p>이제 뉴스를 수집하는 함수를 만듭니다. Google News RSS를 사용해서 AI 관련 뉴스 헤드라인을 가져옵니다.</p>
 
-<div class="file-name">news_agent.py</div>
-<div class="code-block">
-<span class="keyword">import</span> requests
-<span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup
-<span class="keyword">from</span> datetime <span class="keyword">import</span> datetime
+<div class="file-name">news_agent.py — 완성본 (복사 후 바로 실행 가능)</div>
+<div class="code-block"><pre>import os
+import anthropic
+import requests
+from bs4 import BeautifulSoup
 
-<span class="keyword">def</span> <span class="function">fetch_news_headlines</span>(query=<span class="string">"AI 인공지능"</span>, num_headlines=<span class="number">10</span>):
-    <span class="string">"""Google News RSS에서 뉴스 헤드라인을 수집합니다."""</span>
-    
-    <span class="comment"># Google News RSS URL (한국어 뉴스)</span>
-    url = <span class="string">f"https://news.google.com/rss/search?q={query}&hl=ko&gl=KR&ceid=KR:ko"</span>
-    
-    <span class="keyword">try</span>:
-        response = requests.get(url, timeout=<span class="number">10</span>)
-        response.raise_for_status()
-        
-        soup = BeautifulSoup(response.content, <span class="string">'xml'</span>)
-        items = soup.find_all(<span class="string">'item'</span>)[:num_headlines]
-        
+def fetch_news_headlines(query="AI 인공지능", num_headlines=10):
+    """Google News RSS에서 뉴스 헤드라인 수집"""
+    url = f"https://news.google.com/rss/search?q={query}&hl=ko&gl=KR&ceid=KR:ko"
+    try:
+        response = requests.get(url, timeout=10)
+        soup = BeautifulSoup(response.content, 'xml')
+        items = soup.find_all('item')[:num_headlines]
         headlines = []
-        <span class="keyword">for</span> item <span class="keyword">in</span> items:
-            title = item.title.text <span class="keyword">if</span> item.title <span class="keyword">else</span> <span class="string">""</span>
-            link = item.link.text <span class="keyword">if</span> item.link <span class="keyword">else</span> <span class="string">""</span>
-            pub_date = item.pubDate.text <span class="keyword">if
-  </div>
+        for item in items:
+            title = item.title.text   if item.title   else ""
+            link  = item.link.text    if item.link    else ""
+            pub   = item.pubDate.text if item.pubDate else ""
+            headlines.append({"title": title, "link": link, "date": pub})
+        return headlines
+    except Exception as e:
+        print(f"수집 오류: {e}")
+        return []
+
+def summarize_with_claude(headlines: list) -> str:
+    """Claude Haiku로 뉴스 3줄 요약 — 빠르고 저렴"""
+    client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+    headline_text = "\n".join([f"- {h['title']}" for h in headlines])
+    response = client.messages.create(
+        model="claude-haiku-4-5-20251001",
+        max_tokens=500,
+        messages=[{"role": "user",
+                   "content": f"다음 AI 뉴스 헤드라인을 3줄로 핵심 요약해줘:\n{headline_text}"}]
+    )
+    return response.content[0].text
+
+if __name__ == "__main__":
+    print("AI 뉴스 수집 중...")
+    headlines = fetch_news_headlines("AI 인공지능", 10)
+    if headlines:
+        print(f"{len(headlines)}개 헤드라인 수집 완료\n")
+        print("Claude 요약:\n", summarize_with_claude(headlines))
+    else:
+        print("뉴스 수집 실패")
+# 실행: python news_agent.py</pre></div>
 
 <div class="analogy-box" style="margin:0 40px 0">
 <strong>STEP 3 완료 체크포인트</strong><br>
@@ -1414,30 +1434,55 @@ mail = claude("이메일 도입부: " + sns)</pre></div>
 <li>SNS 요약 → 이메일 뉴스레터 도입부</li>
 </ol>
 
-<pre><code>import os
-from openai import OpenAI
+<div class="file-name">chaining.py — Claude SDK 완성본</div>
+<div class="code-block"><pre>import os
+import anthropic
 
-# 환경변수에서 API 키 로드 (보안 권장)
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 
-def call_llm(prompt: str, max_tokens: int = 2000) -> str:
-    """LLM 호출 헬퍼 함수"""
-    response = client.chat.completions.create(
-        model="gpt-4o-mini",
-        messages=[
-            {"role": "system", "content": "당신은 전문 콘텐츠 작가입니다."},
-            {"role": "user", "content": prompt}
-        ],
+def call_claude(prompt: str, max_tokens: int = 2000) -> str:
+    """Claude API 호출 헬퍼"""
+    response = client.messages.create(
+        model="claude-sonnet-4-6",
         max_tokens=max_tokens,
-        temperature=0.7
+        system="당신은 전문 콘텐츠 작가입니다.",
+        messages=[{"role": "user", "content": prompt}]
     )
-    return response.choices[0].message.content
+    return response.content[0].text
 
-# ===== STEP 1: 블로그 글 생성 (1500자) =====
+# STEP 1: 블로그 글 생성 (1500자)
 def generate_blog(topic: str) -> str:
-    prompt = f"""
-    다음 주제에 대해 1
-  </div>
+    return call_claude(
+        f"다음 주제로 1500자 블로그 글 작성\n주제: {topic}\n구조: 도입부→본론 3포인트→결론"
+    )
+
+# STEP 2: 블로그 → SNS 3줄 요약
+def blog_to_sns(blog: str) -> str:
+    return call_claude(
+        f"다음 블로그를 SNS 3줄 요약으로 변환 (각 줄 50자, 마지막 줄 해시태그 3개):\n{blog[:400]}",
+        max_tokens=200
+    )
+
+# STEP 3: SNS → 이메일 뉴스레터 도입부
+def sns_to_email(sns: str) -> str:
+    return call_claude(
+        f"다음 SNS를 이메일 뉴스레터 도입부(200자)로 변환 (독자 클릭 유도):\n{sns}",
+        max_tokens=300
+    )
+
+# 파이프라인 실행
+if __name__ == "__main__":
+    topic = "AI 에이전트가 바꾸는 업무 자동화"
+
+    blog  = generate_blog(topic)
+    print(f"[블로그] {len(blog)}자 완성\n")
+
+    sns   = blog_to_sns(blog)
+    print(f"[SNS]\n{sns}\n")
+
+    email = sns_to_email(sns)
+    print(f"[이메일 도입부]\n{email}")
+# 실행: python chaining.py</pre></div>
 
 <div class="analogy-box" style="margin:0 40px 0">
 <strong>STEP 4 완료 체크포인트</strong><br>
@@ -1586,7 +1631,136 @@ def chat_with_management(user_message: str) -> str:
     
     return assistant_message</code></pre>
 
-<h3>컨텍스트 기억의 장단점</h
+<h3>컨텍스트 기억의 장단점</h3>
+<table style="width:100%;border-collapse:collapse;margin:16px 0;font-size:.9rem">
+<tr style="background:#f1f5f9"><th style="border:1px solid #e2e8f0;padding:10px;text-align:left">항목</th><th style="border:1px solid #e2e8f0;padding:10px;text-align:left">내용</th></tr>
+<tr><td style="border:1px solid #e2e8f0;padding:10px">✅ 장점</td><td style="border:1px solid #e2e8f0;padding:10px">구현 0줄 추가 / API 기본 지원 / 가장 빠름</td></tr>
+<tr><td style="border:1px solid #e2e8f0;padding:10px">❌ 단점</td><td style="border:1px solid #e2e8f0;padding:10px">대화 종료 시 완전 소멸 / 턴이 쌓일수록 토큰 비용 폭증</td></tr>
+<tr><td style="border:1px solid #e2e8f0;padding:10px">🎯 적합</td><td style="border:1px solid #e2e8f0;padding:10px">1회성 챗봇 / 단기 Q&A / 세션 내 작업</td></tr>
+</table>
+
+<h2>2. 파일 기억 — 재시작 후에도 기억하는 법 (JSON)</h2>
+<p>대화가 끝나도 기억을 유지하려면 <strong>파일에 저장</strong>해야 한다. JSON 한 파일로 충분하다. 단골 이름 종이 메모장에 적어두는 것과 같다.</p>
+<div class="code-block"><pre>import json, os, anthropic
+from datetime import datetime
+
+MEMORY_FILE = "user_memory.json"
+
+def load_memory(user_id: str) -> dict:
+    if os.path.exists(MEMORY_FILE):
+        data = json.load(open(MEMORY_FILE, encoding="utf-8"))
+        return data.get(user_id, {"name": "", "history": []})
+    return {"name": "", "history": []}
+
+def save_memory(user_id: str, memory: dict):
+    data = {}
+    if os.path.exists(MEMORY_FILE):
+        data = json.load(open(MEMORY_FILE, encoding="utf-8"))
+    data[user_id] = memory
+    json.dump(data, open(MEMORY_FILE, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
+
+def chat(user_id: str, message: str) -> str:
+    memory = load_memory(user_id)
+    client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+    system = f"사용자 이름: {memory['name'] or '미등록'}. 최근 기록: {memory['history'][-3:]}"
+    response = client.messages.create(
+        model="claude-haiku-4-5-20251001", max_tokens=300,
+        system=system, messages=[{"role": "user", "content": message}]
+    )
+    reply = response.content[0].text
+    memory["history"].append({"time": datetime.now().isoformat(), "user": message, "bot": reply})
+    memory["history"] = memory["history"][-20:]  # 최근 20개만 보존
+    save_memory(user_id, memory)
+    return reply
+
+if __name__ == "__main__":
+    uid = "user_001"
+    print(chat(uid, "내 이름은 김철수야"))
+    print(chat(uid, "내 이름이 뭐라고?"))  # ← 기억함!
+# 실행: python file_memory_bot.py</pre></div>
+
+<h2>3. DB 기억 — 수천 명 사용자 데이터 체계적 관리 (SQLite)</h2>
+<p>파일은 사용자가 많아지면 느려진다. <strong>SQLite</strong>는 Python 내장 DB로 설치 불필요. 1만 명 이하 서비스에 완벽하다.</p>
+<div class="code-block"><pre>import sqlite3, os
+
+DB_FILE = "agent_memory.db"
+
+def init_db():
+    conn = sqlite3.connect(DB_FILE)
+    conn.execute("""CREATE TABLE IF NOT EXISTS memory (
+        user_id TEXT, key TEXT, value TEXT,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        PRIMARY KEY (user_id, key)
+    )""")
+    conn.commit(); conn.close()
+
+def set_memory(user_id: str, key: str, value: str):
+    conn = sqlite3.connect(DB_FILE)
+    conn.execute("INSERT OR REPLACE INTO memory(user_id,key,value) VALUES(?,?,?)",
+                 (user_id, key, value))
+    conn.commit(); conn.close()
+
+def get_memory(user_id: str, key: str) -> str:
+    conn = sqlite3.connect(DB_FILE)
+    row = conn.execute("SELECT value FROM memory WHERE user_id=? AND key=?",
+                       (user_id, key)).fetchone()
+    conn.close()
+    return row[0] if row else ""
+
+if __name__ == "__main__":
+    init_db()
+    set_memory("user_001", "name", "김철수")
+    set_memory("user_001", "preference", "아메리카노 선호")
+    print(get_memory("user_001", "name"))        # 김철수
+    print(get_memory("user_001", "preference"))  # 아메리카노 선호
+# 실행: python db_memory_bot.py</pre></div>
+
+<h2>4. 벡터DB 기억 — "비슷한 내용"을 의미 검색 (ChromaDB)</h2>
+<p>파일·DB는 정확한 키워드만 검색한다. 벡터DB는 <strong>의미 유사도로 검색</strong>한다. "커피 추천해줘" 입력 시 "아메리카노 선호" 기억을 찾아주는 게 벡터DB다. RAG의 핵심이다.</p>
+<div class="tip-box"><strong>벡터DB 선택 가이드 (2026년):</strong><br>
+• <strong>ChromaDB</strong> — 로컬 즉시 사용, 소규모 프로젝트 <code>pip install chromadb</code><br>
+• <strong>Pinecone</strong> — 클라우드 SaaS, 대규모 프로덕션<br>
+• <strong>FAISS</strong> — Meta 오픈소스, 초고속 로컬 검색<br>
+• <strong>pgvector</strong> — PostgreSQL 확장, 기존 DB와 통합</div>
+<div class="code-block"><pre>import os, chromadb  # pip install chromadb
+import anthropic
+
+chroma = chromadb.Client()
+col = chroma.get_or_create_collection("user_memories")
+
+def add_memory(user_id: str, content: str, doc_id: str):
+    col.add(documents=[content], ids=[f"{user_id}_{doc_id}"],
+            metadatas=[{"user_id": user_id}])
+
+def recall(user_id: str, query: str, n=3) -> list:
+    """의미 유사도 기반 기억 검색"""
+    results = col.query(query_texts=[query], n_results=n,
+                        where={"user_id": user_id})
+    return results["documents"][0] if results["documents"] else []
+
+if __name__ == "__main__":
+    add_memory("u1", "사용자는 아메리카노를 좋아함", "pref_coffee")
+    add_memory("u1", "지난주 AI 에이전트 프로젝트 완료", "proj_001")
+    add_memory("u1", "Python 개발자 경력 5년", "profile")
+
+    print(recall("u1", "커피 취향이 어때?"))
+    # → ['사용자는 아메리카노를 좋아함']  ← 키워드 없이 의미로 검색!
+# 실행: python vector_memory_bot.py</pre></div>
+
+<h2>4가지 기억 방식 비교 — 언제 무엇을 쓸까</h2>
+<table style="width:100%;border-collapse:collapse;margin:20px 0;font-size:.9rem">
+<tr style="background:#f1f5f9">
+<th style="border:1px solid #e2e8f0;padding:10px">방식</th>
+<th style="border:1px solid #e2e8f0;padding:10px">지속성</th>
+<th style="border:1px solid #e2e8f0;padding:10px">검색</th>
+<th style="border:1px solid #e2e8f0;padding:10px">비용</th>
+<th style="border:1px solid #e2e8f0;padding:10px">적합 규모</th>
+</tr>
+<tr><td style="border:1px solid #e2e8f0;padding:10px"><strong>컨텍스트</strong></td><td style="border:1px solid #e2e8f0;padding:10px">세션 내 소멸</td><td style="border:1px solid #e2e8f0;padding:10px">자동</td><td style="border:1px solid #e2e8f0;padding:10px">토큰 비용</td><td style="border:1px solid #e2e8f0;padding:10px">1회성 챗봇</td></tr>
+<tr><td style="border:1px solid #e2e8f0;padding:10px"><strong>파일 (JSON)</strong></td><td style="border:1px solid #e2e8f0;padding:10px">영구</td><td style="border:1px solid #e2e8f0;padding:10px">키 기반</td><td style="border:1px solid #e2e8f0;padding:10px">무료</td><td style="border:1px solid #e2e8f0;padding:10px">~100명</td></tr>
+<tr><td style="border:1px solid #e2e8f0;padding:10px"><strong>DB (SQLite)</strong></td><td style="border:1px solid #e2e8f0;padding:10px">영구</td><td style="border:1px solid #e2e8f0;padding:10px">SQL 쿼리</td><td style="border:1px solid #e2e8f0;padding:10px">무료</td><td style="border:1px solid #e2e8f0;padding:10px">~10만 명</td></tr>
+<tr><td style="border:1px solid #e2e8f0;padding:10px"><strong>벡터DB</strong></td><td style="border:1px solid #e2e8f0;padding:10px">영구</td><td style="border:1px solid #e2e8f0;padding:10px">의미 유사도</td><td style="border:1px solid #e2e8f0;padding:10px">임베딩 비용</td><td style="border:1px solid #e2e8f0;padding:10px">무제한</td></tr>
+</table>
 
 <div class="analogy-box" style="margin:0 40px 0">
 <strong>STEP 5 완료 체크포인트</strong><br>
