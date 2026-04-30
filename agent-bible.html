@@ -3400,14 +3400,25 @@ const pbar = document.getElementById('pbar');
 const pct = document.getElementById('pct');
 const topChapter = document.getElementById('topChapter');
 
-// 스크롤 감지
+// 스크롤 감지 + 사이드바 자동 스크롤
+const sidebar = document.getElementById('sidebar');
 const obs = new IntersectionObserver((entries)=>{
   entries.forEach(e=>{
     if(e.isIntersecting){
       const id = e.target.id;
       tocItems.forEach(t=>t.classList.toggle('active', t.dataset.id===id));
-      const a = document.querySelector(`.toc-item[data-id="${id}"] .toc-label`);
-      if(a) topChapter.textContent = a.textContent;
+      const activeItem = document.querySelector(`.toc-item[data-id="${id}"]`);
+      if(activeItem){
+        // 사이드바 내에서 활성 항목이 보이도록 스크롤
+        const itemTop = activeItem.offsetTop;
+        const itemBottom = itemTop + activeItem.offsetHeight;
+        const visTop = sidebar.scrollTop + 70;
+        const visBottom = sidebar.scrollTop + sidebar.clientHeight - 20;
+        if(itemTop < visTop) sidebar.scrollTop = itemTop - 70;
+        else if(itemBottom > visBottom) sidebar.scrollTop = itemBottom - sidebar.clientHeight + 20;
+        const lbl = activeItem.querySelector('.toc-label');
+        if(lbl) topChapter.textContent = lbl.textContent;
+      }
     }
   });
 },{threshold:0.3});
