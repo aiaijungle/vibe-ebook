@@ -847,6 +847,62 @@
         display: none !important;
       }
     }
+    #main { -webkit-user-select: none; -ms-user-select: none; user-select: none; }
+
+    /* ── 비밀번호 게이트 ── */
+    #pw-gate {
+      display: none;
+      position: relative;
+      z-index: 100;
+      text-align: center;
+      padding: 0 0 48px;
+      margin: 0 auto;
+    }
+    #pw-gate.active { display: block; }
+    #pw-gate::before {
+      content: '';
+      display: block;
+      height: 80px;
+      background: linear-gradient(180deg, transparent 0%, #0f0a05 100%);
+      margin-bottom: -1px;
+    }
+    .pw-card {
+      display: inline-block;
+      background: rgba(255,255,255,.05);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,140,0,.3);
+      border-radius: 16px;
+      padding: 36px 44px;
+      max-width: 420px;
+      width: 90%;
+    }
+    .pw-icon { font-size: 2.5rem; margin-bottom: 8px; }
+    .pw-title { font-size: 1.25rem; font-weight: 800; color: #FF8C00; margin-bottom: 6px; }
+    .pw-sub { font-size: .85rem; color: rgba(255,255,255,.55); margin-bottom: 28px; line-height: 1.6; }
+    .pw-input {
+      width: 100%; padding: 14px 16px; font-size: 1.6rem; letter-spacing: .5em;
+      text-align: center; background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.2); border-radius: 8px;
+      color: #fff; margin-bottom: 12px; outline: none; box-sizing: border-box;
+    }
+    .pw-input:focus { border-color: #FF8C00; }
+    .pw-btn {
+      width: 100%; padding: 14px; background: #FF8C00; border: none;
+      border-radius: 8px; color: #fff; font-weight: 700; font-size: 1rem;
+      cursor: pointer; transition: all .2s;
+    }
+    .pw-btn:hover { background: #e07b00; transform: translateY(-2px); }
+    .pw-error { color: #f87171; font-size: .85rem; margin-top: 10px; opacity: 0; transition: opacity .3s; }
+    .pw-error.show { opacity: 1; }
+    .pw-hint { font-size: .76rem; color: rgba(255,255,255,.3); margin-top: 18px; }
+    .locked-section { filter: blur(6px); pointer-events: none; user-select: none; position: relative; }
+    .locked-section::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(15,10,5,.3);
+      pointer-events: none;
+    }
   </style>
 </head>
 
@@ -921,7 +977,7 @@
             style="background:linear-gradient(135deg,#fff3e0,#fff7ed);border:1.5px solid #FF8C00;color:#b83200;font-weight:800">▶
             구독자 선착순 300명 PDF 무료</span>
         </div>
-        <p class="cover-sub">저자: AITF Director | aitf-api.onrender.com | 2026</p>
+        <p class="cover-sub">저자: 김화현 (AITF Director) &nbsp;|&nbsp; 공동저자: 로드(Claude) · 안티(Antigravity) &nbsp;|&nbsp; 2026</p>
       </div>
       <div class="ch-body">
         <p><strong>"AI가 내 일자리를 대체할까요?"</strong></p>
@@ -2265,6 +2321,21 @@ if __name__ == "__main__":
         </div>
       </div>
     </section>
+    <!-- ── 비밀번호 게이트 (STEP 4 이후 잠금) ── -->
+    <div id="pw-gate">
+      <div class="pw-card">
+        <div class="pw-icon">🔐</div>
+        <div class="pw-title">AI 에이전트 바이블</div>
+        <div class="pw-sub">STEP 4 이후는 구매자 전용 콘텐츠입니다.<br>제공된 6자리 비밀번호를 입력하세요.</div>
+        <input class="pw-input" id="pw-input" type="password"
+               placeholder="●●●●●●" maxlength="6" autocomplete="off"
+               onkeydown="if(event.key==='Enter')agentUnlock()">
+        <button class="pw-btn" onclick="agentUnlock()">전자책 열기 →</button>
+        <div class="pw-error" id="pw-error">비밀번호가 올바르지 않습니다.</div>
+        <div class="pw-hint">구매 후 제공된 비밀번호를 입력하세요.<br>문의: dev@stayjanda.com</div>
+      </div>
+    </div>
+
     <section class="chapter" id="level1b" data-level="1">
       <div class="ch-header" style="--c1:#818cf8;--c2:#6366f1">
         <h1 class="ch-title">⛓️ STEP 4 — 프롬프트 체이닝</h1>
@@ -5587,6 +5658,49 @@ if __name__ == "__main__":
         document.getElementById(t.dataset.id)?.scrollIntoView({ behavior: 'smooth' });
       });
     });
+
+    // ── 비밀번호 잠금 ──
+    const _AGENT_PW = '380700';
+    const _LOCKED = ['level1b','level2a','level2b','level3','nocode','level4','roadmap','epilogue'];
+
+    function agentInitLock() {
+      if (localStorage.getItem('agentBibleUnlocked') === '1') return;
+      _LOCKED.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.classList.add('locked-section');
+      });
+      document.getElementById('pw-gate').classList.add('active');
+    }
+
+    function agentUnlock() {
+      const val = (document.getElementById('pw-input').value || '').trim();
+      if (val === _AGENT_PW) {
+        localStorage.setItem('agentBibleUnlocked', '1');
+        _LOCKED.forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.classList.remove('locked-section');
+        });
+        document.getElementById('pw-gate').classList.remove('active');
+      } else {
+        const err = document.getElementById('pw-error');
+        err.classList.add('show');
+        document.getElementById('pw-input').value = '';
+        document.getElementById('pw-input').focus();
+        setTimeout(() => err.classList.remove('show'), 2500);
+      }
+    }
+
+    // 복사 방지
+    document.addEventListener('copy', e => e.preventDefault());
+    document.addEventListener('cut', e => e.preventDefault());
+    document.addEventListener('contextmenu', e => { e.preventDefault(); return false; });
+    document.addEventListener('keydown', e => {
+      if ((e.ctrlKey || e.metaKey) && ['c','x','u','s','p'].includes(e.key.toLowerCase())) {
+        e.preventDefault();
+      }
+    });
+
+    agentInitLock();
 
     // 사이드바 토글
     const sidebarEl = document.getElementById('sidebar');
