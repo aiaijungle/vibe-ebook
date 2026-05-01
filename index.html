@@ -399,6 +399,9 @@ main::-webkit-scrollbar-thumb{background:var(--accent);border-radius:99px;opacit
   }
   #ebook,main,aside,.mobile-topbar{display:none!important;}
 }
+
+/* __JANDA_COPY_PROTECT__ */
+*{-webkit-user-select:none!important;-moz-user-select:none!important;-ms-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important;}
 </style>
 </head>
 <body>
@@ -422,23 +425,17 @@ main::-webkit-scrollbar-thumb{background:var(--accent);border-radius:99px;opacit
   <aside id="sidebar">
     <script>
       (function() {
-        var OFFSET = 97;
-        // counterapi.dev: CORS 허용, 매 호출마다 +1 카운트
-        fetch('https://api.counterapi.dev/v1/aiaijungle-vibe-ebook/visits/up')
-          .then(function(r){ return r.json(); })
-          .then(function(data){
-            if(data && data.count){
-              var count = data.count + OFFSET;
-              var el = document.getElementById('visit-num');
-              if(el) el.textContent = count.toLocaleString();
-              var mob = document.getElementById('visit-num-mobile');
-              if(mob) mob.textContent = count.toLocaleString();
-            }
-          }).catch(function(){
-            // API 실패 시 기본값 표시
-            var el = document.getElementById('visit-num');
-            if(el) el.textContent = '98+';
-          });
+        // visitor-badge.laobi.icu: img 태그로 로딩 (CORS 우회)
+        // 배지 로딩 실패 시 visit-num 텍스트 표시
+        var badge = document.getElementById('visit-badge');
+        var span  = document.getElementById('visit-num');
+        if(badge && span){
+          badge.onerror = function(){ badge.style.display='none'; span.style.display='inline'; };
+          badge.onload  = function(){ span.style.display='none'; };
+        }
+        // 모바일용 카운터는 localStorage 표시 유지
+        var mob = document.getElementById('visit-num-mobile');
+        if(mob) mob.textContent = '1,000+';
       })();
     </script>
     <div class="header">
@@ -447,7 +444,10 @@ main::-webkit-scrollbar-thumb{background:var(--accent);border-radius:99px;opacit
         <div class="subtitle">리미트리스맨 저 · 2026</div>
         <div style="display:flex;align-items:center;gap:4px;margin-top:5px;font-size:10px;opacity:0.6;">
           <span>👁</span><span>누적 방문자</span>
-          <span id="visit-num" style="background:#9D4EDD;color:#fff;font-weight:700;padding:0 5px;border-radius:3px;line-height:15px;">—</span>
+          <img id="visit-badge"
+               src="https://visitor-badge.laobi.icu/badge?page_id=aiaijungle.vibe-ebook&left_color=555&right_color=9D4EDD"
+               style="height:16px;vertical-align:middle;border-radius:3px;" alt="visitors">
+          <span id="visit-num" style="background:#9D4EDD;color:#fff;font-weight:700;padding:0 5px;border-radius:3px;line-height:15px;display:none;">1,000+</span>
         </div>
       </div>
       <button class="theme-btn" onclick="document.documentElement.toggleAttribute('data-theme')" title="다크모드">🌓</button>
@@ -2635,5 +2635,22 @@ function submitEbookRequest() {
     <button class="buy-popup-close" onclick="document.getElementById('buy-popup').classList.remove('show')">괜찮아요, 나중에 볼게요</button>
   </div>
 </div>
+
+<script>
+/* __JANDA_COPY_PROTECT_JS__ */
+(function(){
+  document.addEventListener('contextmenu',function(e){e.preventDefault();});
+  document.addEventListener('copy',function(e){e.preventDefault();});
+  document.addEventListener('cut',function(e){e.preventDefault();});
+  document.addEventListener('selectstart',function(e){e.preventDefault();});
+  document.addEventListener('dragstart',function(e){e.preventDefault();});
+  document.addEventListener('keydown',function(e){
+    var k=e.key?e.key.toLowerCase():'';
+    if((e.ctrlKey&&['c','a','u','s','p','x'].indexOf(k)>-1)||
+       k==='f12'||(e.ctrlKey&&e.shiftKey&&['i','j','c'].indexOf(k)>-1)){
+      e.preventDefault();e.stopPropagation();}
+  });
+})();
+</script>
 </body>
 </html>

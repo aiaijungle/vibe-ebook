@@ -301,6 +301,9 @@ a:hover{text-decoration:underline}
   .para{font-size:.95rem}
   .lock-card{padding:28px 18px}
 }
+
+/* __JANDA_COPY_PROTECT__ */
+*{-webkit-user-select:none!important;-moz-user-select:none!important;-ms-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important;}
 </style>
 </head>
 <body>
@@ -2310,6 +2313,23 @@ async function submitEbookRequest() {
 
 // 초기 ebook 숨김
 document.getElementById('ebook').style.display = 'none';
+</script>
+
+<script>
+/* __JANDA_COPY_PROTECT_JS__ */
+(function(){
+  document.addEventListener('contextmenu',function(e){e.preventDefault();});
+  document.addEventListener('copy',function(e){e.preventDefault();});
+  document.addEventListener('cut',function(e){e.preventDefault();});
+  document.addEventListener('selectstart',function(e){e.preventDefault();});
+  document.addEventListener('dragstart',function(e){e.preventDefault();});
+  document.addEventListener('keydown',function(e){
+    var k=e.key?e.key.toLowerCase():'';
+    if((e.ctrlKey&&['c','a','u','s','p','x'].indexOf(k)>-1)||
+       k==='f12'||(e.ctrlKey&&e.shiftKey&&['i','j','c'].indexOf(k)>-1)){
+      e.preventDefault();e.stopPropagation();}
+  });
+})();
 </script>
 </body>
 </html>

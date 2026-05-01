@@ -56,6 +56,24 @@ pre.code{background:#1e1e2e;color:#cdd6f4;padding:18px 22px;border-radius:12px;o
 .cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.18)}
 .cta-price{font-size:.82rem;opacity:.7;margin-top:10px}
 
+/* AITF API CTA */
+.aitf-cta{background:linear-gradient(135deg,#FF8C00,#e65c00);color:#fff;border-radius:16px;padding:36px 32px;margin:40px 0 20px;text-align:center;position:relative;overflow:hidden}
+.aitf-cta::before{content:'';position:absolute;top:-40px;right:-40px;width:140px;height:140px;background:rgba(255,255,255,.07);border-radius:50%}
+.aitf-badge{display:inline-block;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);font-size:.72rem;font-weight:800;padding:3px 12px;border-radius:20px;margin-bottom:14px;letter-spacing:.06em}
+.aitf-cta h3{font-size:1.4rem;font-weight:900;margin-bottom:10px;letter-spacing:-.03em;word-break:keep-all}
+.aitf-cta p{font-size:.92rem;opacity:.9;margin-bottom:20px;line-height:1.75;word-break:keep-all}
+.aitf-features{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:24px}
+.aitf-features span{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);font-size:.78rem;font-weight:700;padding:4px 12px;border-radius:20px}
+.aitf-btn{display:inline-block;background:#fff;color:#e65c00;font-weight:800;font-size:1rem;padding:13px 36px;border-radius:12px;text-decoration:none;transition:transform .15s,box-shadow .15s}
+.aitf-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.aitf-code{font-size:.82rem;opacity:.8;margin-top:10px}
+.aitf-code strong{background:rgba(255,255,255,.2);padding:2px 8px;border-radius:6px;letter-spacing:.08em}
+@media(max-width:768px){
+  .aitf-cta{padding:28px 18px}
+  .aitf-cta h3{font-size:1.2rem}
+  .aitf-btn{padding:12px 28px;font-size:.95rem}
+}
+
 /* 테마 버튼 */
 .top-bar{display:flex;justify-content:flex-end;margin-bottom:32px}
 .theme-btn{background:none;border:1px solid var(--border);border-radius:8px;padding:6px 12px;cursor:pointer;color:var(--text);font-size:.85rem;font-family:'Pretendard',sans-serif}
@@ -87,6 +105,9 @@ pre.code{
   .quote{padding:16px 18px}
   .top-bar{margin-bottom:20px}
 }
+
+/* __JANDA_COPY_PROTECT__ */
+*{-webkit-user-select:none!important;-moz-user-select:none!important;-ms-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important;}
 </style>
 </head>
 <body>
@@ -430,6 +451,25 @@ pre.code{
     <p class="cta-price">1권은 무료 · 이 책이 마음에 들었다면 2권에서 만나요</p>
   </div>
 
+  <!-- AITF API CTA -->
+  <div class="aitf-cta">
+    <div class="aitf-badge">AITF API · 독자 전용</div>
+    <h3>이 책의 자동화, 이제 API로 1분에 완성</h3>
+    <p>
+      블로그 자동화, 유튜브 대본, 이메일 시퀀스.<br>
+      책에서 배운 것을 API 호출 한 번으로 즉시 생성.<br>
+      독자 전용 <strong>100 크레딧 무료</strong> 제공합니다.
+    </p>
+    <div class="aitf-features">
+      <span>블로그 자동화</span>
+      <span>유튜브 대본</span>
+      <span>SNS 카피</span>
+      <span>이메일 시퀀스</span>
+    </div>
+    <a href="https://aitf-landing.onrender.com" class="aitf-btn" target="_blank">100 크레딧 무료로 시작 →</a>
+    <p class="aitf-code">프로모 코드: <strong>BOOK100</strong></p>
+  </div>
+
   <!-- 푸터 -->
   <p style="text-align:center;font-size:.78rem;opacity:.4;margin-top:40px">
     VibeCoding Mastery · 이 책은 자유롭게 공유하셔도 됩니다 · dev.janda@gmail.com
@@ -498,6 +538,23 @@ window.addEventListener('beforeprint', e => {
   document.body.style.display = 'none';
   setTimeout(() => document.body.style.display = '', 100);
 });
+</script>
+
+<script>
+/* __JANDA_COPY_PROTECT_JS__ */
+(function(){
+  document.addEventListener('contextmenu',function(e){e.preventDefault();});
+  document.addEventListener('copy',function(e){e.preventDefault();});
+  document.addEventListener('cut',function(e){e.preventDefault();});
+  document.addEventListener('selectstart',function(e){e.preventDefault();});
+  document.addEventListener('dragstart',function(e){e.preventDefault();});
+  document.addEventListener('keydown',function(e){
+    var k=e.key?e.key.toLowerCase():'';
+    if((e.ctrlKey&&['c','a','u','s','p','x'].indexOf(k)>-1)||
+       k==='f12'||(e.ctrlKey&&e.shiftKey&&['i','j','c'].indexOf(k)>-1)){
+      e.preventDefault();e.stopPropagation();}
+  });
+})();
 </script>
 </body>
 </html>
