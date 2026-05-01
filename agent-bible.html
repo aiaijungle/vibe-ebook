@@ -34,6 +34,7 @@
       --sidebar: 260px;
     }
 
+    html { scroll-behavior: smooth }
     body {
       font-family: 'Pretendard', system-ui, sans-serif;
       background: var(--bg);
@@ -41,7 +42,8 @@
       min-height: 100vh;
       -webkit-user-select: none;
       user-select: none;
-      overflow-x: hidden
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased
     }
 
     pre,
@@ -197,7 +199,8 @@
       margin-left: var(--sidebar);
       padding: 0;
       overflow-x: hidden;
-      min-height: 100vh
+      min-height: 100vh;
+      -webkit-overflow-scrolling: touch
     }
 
     .top-bar {
@@ -308,7 +311,8 @@
       font-size: 1.15rem;
       line-height: 1.9;
       color: #374151;
-      margin-bottom: 20px
+      margin-bottom: 20px;
+      word-break: keep-all
     }
 
     .ch-body strong {
@@ -332,14 +336,16 @@
       font-size: 1.6rem;
       color: var(--text);
       margin: 40px 0 16px;
-      font-weight: 800
+      font-weight: 800;
+      word-break: keep-all
     }
 
     .ch-body h3 {
       font-size: 1.2rem;
       color: var(--text);
       margin: 28px 0 10px;
-      font-weight: 700
+      font-weight: 700;
+      word-break: keep-all
     }
 
     .ch-body h4 {
@@ -369,7 +375,8 @@
       font-size: 1.1rem;
       line-height: 1.8;
       color: #374151;
-      margin-bottom: 6px
+      margin-bottom: 6px;
+      word-break: keep-all
     }
 
     .ch-body pre {
@@ -661,9 +668,31 @@
       }
       #sidebar.mobile-open { transform: translateX(0) }
       #main { margin-left: 0 }
-      .ch-header, .ch-body { padding: 32px 20px }
-      .cover-title { font-size: 2rem }
+      .ch-header, .ch-body { padding: 28px 18px }
+      .cover-title { font-size: 1.9rem }
+      .ch-title { font-size: 1.6rem !important }
+      .ch-body h2 { font-size: 1.25rem !important; margin: 28px 0 12px }
+      .ch-body h3 { font-size: 1.08rem !important; margin: 20px 0 8px }
+      .ch-body p, .ch-body li { font-size: 1.02rem; line-height: 1.85 }
+      .top-bar { padding: 10px 16px }
+      .top-bar-title { font-size: .78rem }
+      .top-bar-chapter { font-size: .78rem }
+      .cta-box { padding: 20px 16px }
+      .cta-btn { padding: 12px 22px; font-size: .92rem; word-break: keep-all }
+      .step-item { min-width: calc(50% - 20px); padding: 14px 10px }
+      .roadmap-row { flex-wrap: wrap; gap: 8px }
+      .badge { padding: 6px 12px; font-size: .82rem }
+      .highlight-box, .analogy-box, .warning-box, .tip-box, .success-box {
+        padding: 14px 16px; font-size: 1rem
+      }
+      .yt-cta { padding: 16px 14px; gap: 10px }
       #sidebar-toggle { display: none }
+    }
+    @media(max-width:390px) {
+      .ch-header, .ch-body { padding: 22px 14px }
+      .cover-title { font-size: 1.65rem }
+      .ch-title { font-size: 1.4rem !important }
+      .step-item { min-width: 100%; margin: 4px 0 }
     }
     #mobile-toc-btn {
       display: none; position: fixed; bottom: 20px; right: 20px; z-index: 150;
