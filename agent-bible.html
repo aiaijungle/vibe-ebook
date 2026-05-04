@@ -5908,21 +5908,16 @@ if __name__ == "__main__":
       emailEl.disabled = true;
       btn.disabled = true;
       btn.textContent = '전송 중...';
-      const text = '📬 AITF API 출시 알림 신청\n이메일: ' + email + '\n시각: ' + new Date().toLocaleString('ko-KR');
-      fetch('https://api.telegram.org/bot8762938154:AAFIMVWSc32dJrIfVyBMlz0UGrR-JdIwCwc/sendMessage', {
+      fetch('https://aitf-api.onrender.com/leads', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({chat_id: '8758762385', text: text})
+        body: JSON.stringify({email: email, source: 'agent-bible'})
       })
       .then(function(r) { return r.json(); })
       .then(function(d) {
-        if (d.ok) {
-          emailEl.style.display = 'none';
-          btn.style.display = 'none';
-          msgEl.style.display = 'block';
-        } else {
-          throw new Error('fail');
-        }
+        emailEl.style.display = 'none';
+        btn.style.display = 'none';
+        msgEl.style.display = 'block';
       })
       .catch(function() {
         emailEl.disabled = false;
