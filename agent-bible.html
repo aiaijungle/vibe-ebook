@@ -5904,12 +5904,34 @@ if __name__ == "__main__":
         emailEl.focus();
         return;
       }
-      const saved = JSON.parse(localStorage.getItem('aitf_leads') || '[]');
-      if (!saved.includes(email)) { saved.push(email); localStorage.setItem('aitf_leads', JSON.stringify(saved)); }
-      window.open('mailto:dev@stayjanda.com?subject=AITF+API+출시+알림+신청&body=신청+이메일:+' + encodeURIComponent(email), '_blank');
-      emailEl.style.display = 'none';
-      emailEl.closest('div').querySelector('button').style.display = 'none';
-      msgEl.style.display = 'block';
+      const btn = emailEl.closest('div').querySelector('button');
+      emailEl.disabled = true;
+      btn.disabled = true;
+      btn.textContent = '전송 중...';
+      const text = '📬 AITF API 출시 알림 신청\n이메일: ' + email + '\n시각: ' + new Date().toLocaleString('ko-KR');
+      fetch('https://api.telegram.org/bot8762938154:AAFIMVWSc32dJrIfVyBMlz0UGrR-JdIwCwc/sendMessage', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({chat_id: '8758762385', text: text})
+      })
+      .then(function(r) { return r.json(); })
+      .then(function(d) {
+        if (d.ok) {
+          emailEl.style.display = 'none';
+          btn.style.display = 'none';
+          msgEl.style.display = 'block';
+        } else {
+          throw new Error('fail');
+        }
+      })
+      .catch(function() {
+        emailEl.disabled = false;
+        btn.disabled = false;
+        btn.textContent = '출시 알림 신청';
+        msgEl.textContent = '❌ 전송 실패. 다시 시도해주세요.';
+        msgEl.style.color = '#dc2626';
+        msgEl.style.display = 'block';
+      });
     }
 
     const chapters = document.querySelectorAll('.chapter');
