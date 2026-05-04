@@ -5687,9 +5687,13 @@ if __name__ == "__main__":
       <div class="ch-header" style="--c1:#38bdf8;--c2:#0ea5e9">
         <h1 class="ch-title">✨ 에필로그 & 미래 전망</h1>
         <div class="cta-box">
-          <p>🌐 <strong>aitf-api.onrender.com</strong></p>
-          <p>API 키 발급 → 오늘 첫 봇 완성까지 <strong>30분</strong></p>
-          <a href="https://aitf-api.onrender.com/portal/simulator.html" class="cta-btn">지금 시작하기 →</a>
+          <p>🌐 <strong>AITF API</strong> — 17개 AI 자동화 상품 출시 예정</p>
+          <p>출시 시 이메일로 먼저 알려드립니다. <strong>지금 신청하세요.</strong></p>
+          <div style="display:flex;gap:8px;max-width:400px;margin:16px auto 0">
+            <input id="lead-email-0" type="email" placeholder="이메일 입력" style="flex:1;padding:12px 16px;border:1.5px solid rgba(220,38,38,.3);border-radius:8px;font-size:.95rem;outline:none;font-family:inherit">
+            <button onclick="submitLead('lead-email-0','lead-msg-0')" style="padding:12px 20px;background:#dc2626;color:#fff;border:none;border-radius:8px;font-weight:700;cursor:pointer;font-size:.95rem">알림 신청</button>
+          </div>
+          <div id="lead-msg-0" style="display:none;margin-top:10px;font-size:.9rem;color:#15803d;font-weight:600">✅ 등록 완료! 출시 시 바로 연락드립니다.</div>
         </div>
       </div>
       <div class="ch-body">
@@ -5805,12 +5809,13 @@ if __name__ == "__main__":
           <div style="background:#f8fafc;border:2px solid #e2e8f0;border-radius:14px;padding:24px">
             <h3 style="margin-top:0;color:#1e293b">🛠️ 직접 개발</h3>
             <p style="color:#374151;font-size:.95rem">이 책의 코드를 복사해서 직접 구축한다.</p>
-            <p style="color:#374151;font-size:.95rem"><strong>AITF API</strong>는 17개 상품·48개 엔드포인트를 준비해뒀다. 대본 생성, TTS,
-              블로그, 이메일, 분석 — 당신이 만들 봇에 필요한 건 거의 다 있다.</p>
+            <p style="color:#374151;font-size:.95rem"><strong>AITF API</strong>는 17개 상품·48개 엔드포인트를 준비 중이다. 출시 시 이메일로 먼저 알려드립니다.</p>
             <p style="font-size:.9rem;color:#64748b">예상 소요: 1~2주<br>비용: API 사용량만 (월 $5~50)</p>
-            <a href="https://aitf-api.onrender.com/portal/simulator.html"
-              style="display:block;margin-top:16px;padding:12px;background:var(--red);color:#fff;text-align:center;border-radius:8px;font-weight:700;text-decoration:none">API
-              시뮬레이터 체험 →</a>
+            <div style="margin-top:16px;display:flex;gap:8px">
+              <input id="lead-email-1" type="email" placeholder="이메일 입력" style="flex:1;padding:11px 14px;border:1.5px solid #e2e8f0;border-radius:8px;font-size:.9rem;outline:none;font-family:inherit">
+              <button onclick="submitLead('lead-email-1','lead-msg-1')" style="padding:11px 16px;background:var(--red);color:#fff;border:none;border-radius:8px;font-weight:700;cursor:pointer;white-space:nowrap;font-size:.9rem">출시 알림 신청</button>
+            </div>
+            <div id="lead-msg-1" style="display:none;margin-top:8px;font-size:.85rem;color:#15803d;font-weight:600">✅ 등록 완료! 출시 시 바로 연락드립니다.</div>
           </div>
 
           <div style="background:#fef2f2;border:2px solid rgba(220,38,38,.25);border-radius:14px;padding:24px">
@@ -5859,17 +5864,16 @@ if __name__ == "__main__":
           </div>
         </div>
 
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:20px 0">
-          <a href="https://aitf-api.onrender.com/portal/simulator.html" target="_blank"
-            style="display:block;padding:16px;background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:12px;text-align:center;text-decoration:none;color:var(--text)">
-            <div style="font-weight:700;margin-bottom:4px;font-size:.95rem">🛠️ AITF API 직접 체험</div>
-            <div style="font-size:.82rem;color:#64748b">17개 상품 시뮬레이터 →</div>
-          </a>
-          <a href="https://aitf-landing.onrender.com/proposal.html" target="_blank"
-            style="display:block;padding:16px;background:#fef2f2;border:1.5px solid rgba(220,38,38,.2);border-radius:12px;text-align:center;text-decoration:none;color:var(--text)">
-            <div style="font-weight:700;margin-bottom:4px;font-size:.95rem">🤝 리미트리스에 맡기기</div>
-            <div style="font-size:.82rem;color:#64748b">도입 제안서 보기 →</div>
-          </a>
+        <div style="background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:12px;padding:20px;margin:20px 0">
+          <div style="font-weight:700;margin-bottom:6px;font-size:.95rem">📬 AITF API 출시 알림 받기</div>
+          <div style="font-size:.85rem;color:#64748b;margin-bottom:12px">17개 AI 자동화 API — 출시 즉시 이메일로 먼저 알려드립니다</div>
+          <div style="display:flex;gap:8px">
+            <input id="lead-email-2" type="email" placeholder="이메일 입력" style="flex:1;padding:10px 14px;border:1.5px solid #e2e8f0;border-radius:8px;font-size:.9rem;outline:none;font-family:inherit">
+            <button onclick="submitLead('lead-email-2','lead-msg-2')" style="padding:10px 16px;background:#dc2626;color:#fff;border:none;border-radius:8px;font-weight:700;cursor:pointer;white-space:nowrap;font-size:.9rem">신청</button>
+          </div>
+          <div id="lead-msg-2" style="display:none;margin-top:8px;font-size:.85rem;color:#15803d;font-weight:600">✅ 등록 완료! 출시 시 바로 연락드립니다.</div>
+        </div>
+        <div style="display:none">
         </div>
       </div>
   </div>
@@ -5891,6 +5895,23 @@ if __name__ == "__main__":
   </div>
 
   <script>
+    function submitLead(inputId, msgId) {
+      const emailEl = document.getElementById(inputId);
+      const msgEl = document.getElementById(msgId);
+      const email = emailEl.value.trim();
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        emailEl.style.borderColor = '#dc2626';
+        emailEl.focus();
+        return;
+      }
+      const saved = JSON.parse(localStorage.getItem('aitf_leads') || '[]');
+      if (!saved.includes(email)) { saved.push(email); localStorage.setItem('aitf_leads', JSON.stringify(saved)); }
+      window.open('mailto:dev@stayjanda.com?subject=AITF+API+출시+알림+신청&body=신청+이메일:+' + encodeURIComponent(email), '_blank');
+      emailEl.style.display = 'none';
+      emailEl.closest('div').querySelector('button').style.display = 'none';
+      msgEl.style.display = 'block';
+    }
+
     const chapters = document.querySelectorAll('.chapter');
     const tocItems = document.querySelectorAll('.toc-item');
     const pbar = document.getElementById('pbar');
