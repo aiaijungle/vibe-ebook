@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <meta name="description" content="AI 에이전트 바이블 — 봇부터 오케스트레이터까지 직접 만드는 실전 가이드 2026">
   <meta property="og:title" content="AI 에이전트 바이블 2026 — AITF">
-  <meta property="og:description" content="봇부터 오케스트레이터까지 직접 만드는 AI 에이전트 실전 가이드. 코딩 없이도 21개 AI 직원을 만드는 법.">
+  <meta property="og:description" content="봇부터 오케스트레이터까지 직접 만드는 AI 에이전트 실전 가이드. 코딩 없이도 26개 AI 직원을 만드는 법.">
   <meta property="og:type" content="book">
   <meta property="og:url" content="https://aiaijungle.github.io/vibe-ebook/ai-agent-bible/">
   <meta property="og:image" content="https://aiaijungle.github.io/vibe-ebook/img/agent_bible_og.png">
@@ -395,10 +395,16 @@
       font-family: 'Courier New', monospace
     }
 
+    .ch-body .table-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 24px 0;
+    }
     .ch-body table {
       width: 100%;
+      min-width: 480px;
       border-collapse: collapse;
-      margin: 24px 0;
+      margin: 0;
       font-size: 1rem
     }
 
@@ -1099,8 +1105,8 @@
           <strong style="color:#38bdf8">직접 만들고 운용하는 실전 가이드</strong>
         </p>
         <div class="cover-badges">
-          <span class="badge blue">봇 21개 운용 중</span>
-          <span class="badge purple">에이전트 2개</span>
+          <span class="badge blue">봇 26개 운용 중</span>
+          <span class="badge purple">에이전트 4개</span>
           <span class="badge orange">오케스트레이터 1개</span>
           <span class="badge"
             style="background:linear-gradient(135deg,#fff3e0,#fff7ed);border:1.5px solid #FF8C00;color:#b83200;font-weight:800">▶
@@ -1130,11 +1136,11 @@
         <p>가능하다. 내가 직접 증명했다.</p>
 
         <p>나는 현재 <strong>AITF(AI Task Force) Director</strong>로서 <a href="https://aitf-api.onrender.com"
-            target="_blank">aitf-api.onrender.com</a>을 운영 중이다. 이 시스템 하나로 <strong>21개의 AI 봇을 동시에 운용</strong>하고 있다.</p>
+            target="_blank">aitf-api.onrender.com</a>을 운영 중이다. 이 시스템 하나로 <strong>26개의 AI 봇을 동시에 운용</strong>하고 있다.</p>
 
-        <p>각 봇이 하는 일 — 21개 전체 목록:</p>
+        <p>각 봇이 하는 일 — 26개 전체 목록:</p>
 
-        <table style="width:100%;border-collapse:collapse;font-size:.85rem;margin:12px 0">
+        <div class="table-wrap"><table style="width:100%;border-collapse:collapse;font-size:.85rem;margin:12px 0">
           <thead>
             <tr style="background:rgba(56,189,248,.08);border-bottom:2px solid var(--border)">
               <th style="padding:8px 12px;text-align:left">#</th>
@@ -1271,7 +1277,7 @@
               <td style="padding:6px 12px;color:#f59e0b">🔧 고도화중</td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
 
         <p>이게 전부 한 사람의 작업이다.<br>
           아니, 정확히는 <strong>한 사람이 만든 에이전트들의 작업</strong>이다.</p>
@@ -1668,7 +1674,7 @@
 
         <div class="analogy-box">
           <strong>🧮 직원 5~50명 규모별 추정 절감 (월 기준)</strong>
-          <table style="width:100%;border-collapse:collapse;margin-top:12px;font-size:.9rem">
+          <div class="table-wrap"><table style="width:100%;border-collapse:collapse;margin-top:12px;font-size:.9rem">
             <thead>
               <tr style="background:#f1f5f9">
                 <th style="padding:8px 12px;text-align:left;border:1px solid #e2e8f0">팀 규모</th>
@@ -1703,7 +1709,7 @@
                 <td style="padding:8px 12px;border:1px solid #e2e8f0"><strong>1,125~1,875만원</strong></td>
               </tr>
             </tbody>
-          </table>
+          </table></div>
           <p style="font-size:.8rem;color:#64748b;margin-top:8px">※ 시간당 인건비 18,750원, 자동화율 80% 기준. AI API 비용(월 5~50달러) 제외
             순절감 추정.</p>
         </div>
@@ -2888,7 +2894,7 @@ def chat_with_management(user_message: str) -> str:
     return assistant_message</code></pre>
 
         <h3>컨텍스트 기억의 장단점</h3>
-        <table style="width:100%;border-collapse:collapse;margin:16px 0;font-size:.9rem">
+        <div class="table-wrap"><table style="width:100%;border-collapse:collapse;margin:16px 0;font-size:.9rem">
           <tr style="background:#f1f5f9">
             <th style="border:1px solid #e2e8f0;padding:10px;text-align:left">항목</th>
             <th style="border:1px solid #e2e8f0;padding:10px;text-align:left">내용</th>
@@ -2905,7 +2911,7 @@ def chat_with_management(user_message: str) -> str:
             <td style="border:1px solid #e2e8f0;padding:10px">🎯 적합</td>
             <td style="border:1px solid #e2e8f0;padding:10px">1회성 챗봇 / 단기 Q&A / 세션 내 작업</td>
           </tr>
-        </table>
+        </table></div>
 
         <h2>2. 파일 기억 — 재시작 후에도 기억하는 법 (JSON)</h2>
         <p>대화가 끝나도 기억을 유지하려면 <strong>파일에 저장</strong>해야 한다. JSON 한 파일로 충분하다. 단골 이름 종이 메모장에 적어두는 것과 같다.</p>
@@ -3023,7 +3029,7 @@ if __name__ == "__main__":
         </div>
 
         <h2>4가지 기억 방식 비교 — 언제 무엇을 쓸까</h2>
-        <table style="width:100%;border-collapse:collapse;margin:20px 0;font-size:.9rem">
+        <div class="table-wrap"><table style="width:100%;border-collapse:collapse;margin:20px 0;font-size:.9rem">
           <tr style="background:#f1f5f9">
             <th style="border:1px solid #e2e8f0;padding:10px">방식</th>
             <th style="border:1px solid #e2e8f0;padding:10px">지속성</th>
@@ -3059,7 +3065,7 @@ if __name__ == "__main__":
             <td style="border:1px solid #e2e8f0;padding:10px">임베딩 비용</td>
             <td style="border:1px solid #e2e8f0;padding:10px">무제한</td>
           </tr>
-        </table>
+        </table></div>
 
         <div class="analogy-box" style="margin:0 40px 0">
           <strong>STEP 5 완료 체크포인트</strong><br>
@@ -3328,7 +3334,7 @@ class BaseAgent:
 
         <h3>Tool 9개 전체 목록 — 리미트리스 경영지원 에이전트</h3>
 
-        <table>
+        <div class="table-wrap"><table>
           <tr>
             <th>#</th>
             <th>Tool 이름</th>
@@ -3389,7 +3395,7 @@ class BaseAgent:
             <td>노션 DB 하이브리드 검색 (RAG)</td>
             <td>사내 문서 15,723건 즉시 조회</td>
           </tr>
-        </table>
+        </table></div>
 
         <h3>자율 실행 루프 — run_agent() 핵심 코드</h3>
 
@@ -3477,7 +3483,7 @@ send_email(
 
         <p>멀티에이전트 시스템이 커질수록 "처음부터 직접 짜는 것"보다 전용 프레임워크를 쓰는 게 효율적이다. 2026년 기준 3대 프레임워크 비교:</p>
 
-        <table style="width:100%;border-collapse:collapse;font-size:.88rem;margin:12px 0">
+        <div class="table-wrap"><table style="width:100%;border-collapse:collapse;font-size:.88rem;margin:12px 0">
           <thead>
             <tr style="background:#f1f5f9">
               <th style="padding:10px 12px;text-align:left;border:1px solid #e2e8f0">프레임워크</th>
@@ -3512,7 +3518,7 @@ send_email(
               <td style="padding:10px 12px;border:1px solid #e2e8f0">단순 파이프라인, 비용 최적화, 처음 시작할 때</td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
 
         <div class="tip-box">
           <strong>어디서 시작할지 모르겠다면?</strong> 이 책의 방식(Claude Native)으로 먼저 동작하는 에이전트 1개를 만들어라. 그 다음 팀이 커지고 상태 관리가 복잡해지면
@@ -3602,7 +3608,7 @@ response = client.messages.create(messages=[{"role":"user","content":safe_prompt
 
         <h3>2. 사내망 격리 — 온프레미스 or VPC 배포</h3>
 
-        <table>
+        <div class="table-wrap"><table>
           <tr>
             <th>방식</th>
             <th>설명</th>
@@ -3633,7 +3639,7 @@ response = client.messages.create(messages=[{"role":"user","content":safe_prompt
             <td>국방·금융 최고 등급</td>
             <td>초기 구축비 높음</td>
           </tr>
-        </table>
+        </table></div>
 
         <h3>3. 감사 로그 — "에이전트가 뭘 했는지" 반드시 기록</h3>
 
@@ -3760,7 +3766,7 @@ def safe_query(user_input: str) -> str:
 
           <h3>주요 모델 토큰 가격 (2026년 기준)</h3>
 
-          <table style="width:100%; border-collapse:collapse; margin:20px 0;">
+          <div class="table-wrap"><table style="width:100%; border-collapse:collapse; margin:20px 0;">
             <tr style="background:#f0f0f0;">
               <th style="border:1px solid #ddd; padding:12px;">모델</th>
               <th style="border:1px solid #ddd; padding:12px;">Input (1M토큰)</th>
@@ -3809,14 +3815,14 @@ def safe_query(user_input: str) -> str:
               <td style="border:1px solid #ddd; padding:12px;">$1.10</td>
               <td style="border:1px solid #ddd; padding:12px;">오픈웨이트 가성비</td>
             </tr>
-          </table>
+          </table></div>
 
           <div class="highlight-box" style="margin:20px 0">
             <strong>🧠 모델 라우팅 전략 — 작업에 따라 다른 모델을 써라</strong><br><br>
             모든 작업에 Opus를 쓰면 비용이 19배 폭등한다. 반대로 모든 작업에 Haiku를 쓰면 품질이 무너진다.<br>
             정답은 <strong>작업 복잡도에 따른 모델 라우팅</strong>이다.<br><br>
 
-            <table style="width:100%;border-collapse:collapse;font-size:.9rem">
+            <div class="table-wrap"><table style="width:100%;border-collapse:collapse;font-size:.9rem">
               <tr style="background:rgba(220,38,38,.08)">
                 <th style="padding:10px;text-align:left">작업 유형</th>
                 <th style="padding:10px">추천 모델</th>
@@ -3845,7 +3851,7 @@ def safe_query(user_input: str) -> str:
                 <td style="padding:10px;text-align:center"><strong>GPT-4o-mini / Flash</strong></td>
                 <td style="padding:10px">건당 비용 극소화</td>
               </tr>
-            </table><br>
+            </table></div><br>
             <code style="font-size:.85rem">
 # 모델 라우팅 예시<br>
 ROUTING = {<br>
@@ -3914,7 +3920,7 @@ model = ROUTING["complex"] if scene_count > 30 else ROUTING["standard"]
 
         <h3>🆚 Zapier, Make와 뭐가 다른가요?</h3>
 
-        <table class="comparison-table">
+        <div class="table-wrap"><table class="comparison-table">
           <tr>
             <th>비교 항목</th>
             <th>n8n</th>
@@ -3957,7 +3963,7 @@ model = ROUTING["complex"] if scene_count > 30 else ROUTING["standard"]
             <td>❌ No</td>
             <td>❌ No</td>
           </tr>
-        </table>
+        </table></div>
 
         <div class="tip-box">
           <strong>💡 왜 n8n을 추천하나요?</strong>
@@ -4231,7 +4237,7 @@ model = ROUTING["complex"] if scene_count > 30 else ROUTING["standard"]
 
         <h3>조건부 실행 STEP (요일별)</h3>
 
-        <table>
+        <div class="table-wrap"><table>
           <tr>
             <th>요일</th>
             <th>STEP</th>
@@ -4268,7 +4274,7 @@ model = ROUTING["complex"] if scene_count > 30 else ROUTING["standard"]
             <td>AITF Knowledge RAG</td>
             <td>사내 지식베이스 상태 확인</td>
           </tr>
-        </table>
+        </table></div>
 
         <h3>핵심 함수 — run_bot() : 오케스트레이터가 모든 봇을 실행하는 단일 인터페이스</h3>
 
@@ -4581,7 +4587,7 @@ app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))</code></pre>
 
         <p>로드맵을 시작하기 전에, 30일 후의 모습을 명확히 그려봅시다:</p>
 
-        <table border="1" cellpadding="10" cellspacing="0">
+        <div class="table-wrap"><table border="1" cellpadding="10" cellspacing="0">
           <thead>
             <tr>
               <th>영역</th>
@@ -4621,7 +4627,7 @@ app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))</code></pre>
               <td>24/7 무중단 운영</td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
 
         <p><strong>총 21개 봇 + 완전한 운영 시스템 = 월 40시간 이상 절약 + 비용 절감</strong></p>
 
