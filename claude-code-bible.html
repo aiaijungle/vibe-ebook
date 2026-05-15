@@ -223,6 +223,17 @@
       .cert-banner{padding:36px 20px}
     }
 
+    /* ── 서비스 카드 ── */
+    .service-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 36px 0 0 }
+    .service-card { background: #fff; border: 1.5px solid #e5e7eb; border-radius: 14px; padding: 22px 20px; transition: all .2s }
+    .service-card:hover { border-color: var(--accent); box-shadow: 0 4px 20px rgba(234,108,0,.1); transform: translateY(-2px) }
+    .service-card-icon { font-size: 1.6rem; margin-bottom: 8px }
+    .service-card h4 { font-size: .97rem; font-weight: 800; color: var(--ink); margin-bottom: 6px; letter-spacing: -.02em }
+    .service-card p { font-size: .82rem; color: var(--muted); line-height: 1.65; margin-bottom: 12px; word-break: keep-all }
+    .service-card a { font-size: .82rem; font-weight: 700; color: var(--accent); text-decoration: none }
+    .service-card a:hover { text-decoration: underline }
+    @media(max-width:600px) { .service-cards { grid-template-columns: 1fr } }
+
     /* ── 복사 방지 ── */
     *{-webkit-user-select:none!important;-moz-user-select:none!important;-ms-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important}
     pre.code,.ic{-webkit-user-select:text!important;user-select:text!important}
@@ -1302,7 +1313,23 @@ for block in response.content:
 
       <hr class="divider">
 
-      <div class="cert-banner">
+      <p style="font-size:.82rem;color:var(--muted);font-weight:700;margin-bottom:12px;letter-spacing:.03em">저자가 Claude Code로 직접 만든 서비스</p>
+      <div class="service-cards">
+        <div class="service-card">
+          <div class="service-card-icon">🤖</div>
+          <h4>AITF — AI 에이전트 구축 & 교육</h4>
+          <p>AI 에이전트 도입이 필요한 기업을 위한 구축·운영·교육 서비스. 이 책에서 소개한 시스템들이 실제로 돌아가고 있는 곳이다.</p>
+          <a href="https://aitf-landing.onrender.com/" target="_blank" rel="noopener">aitf-landing.onrender.com →</a>
+        </div>
+        <div class="service-card">
+          <div class="service-card-icon">📅</div>
+          <h4>정글부킹 — AI 통합예약 시스템</h4>
+          <p>스터디카페·필라테스·코워킹 등 버티컬 업종을 위한 예약 자동화. 예약부터 마케팅까지. Claude Code로 처음부터 끝까지 만들었다.</p>
+          <a href="https://www.ai-jungle.kr" target="_blank" rel="noopener">ai-jungle.kr →</a>
+        </div>
+      </div>
+
+      <div class="cert-banner" style="margin-top:48px">
         <div class="cert-icon">⚡</div>
         <h3>Claude Code 마스터 완성</h3>
         <p>10강을 완주한 당신은 국내에서 Claude Code를 제대로 이해하는 소수에 속한다.<br>다음 단계는 하나다 — 오늘 밤 터미널 열고 첫 번째 프로젝트를 시작하는 것.</p>
