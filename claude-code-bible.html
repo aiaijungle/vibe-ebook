@@ -261,6 +261,11 @@
     <div class="toc-section-label">Level 4 · 실전</div>
     <a class="toc-item" onclick="goChapter('ch9')"><span class="toc-icon">🏗️</span><span class="toc-label">9강. JANDA AGI 구축기</span></a>
     <a class="toc-item" onclick="goChapter('ch10')"><span class="toc-icon">🚀</span><span class="toc-label">10강. 다음 단계 & AI사냥꾼</span></a>
+
+    <div class="toc-section-label">보너스 · 실전 도구</div>
+    <a class="toc-item" onclick="goChapter('ch11')"><span class="toc-icon">📋</span><span class="toc-label">보너스1. 프롬프트 치트시트</span></a>
+    <a class="toc-item" onclick="goChapter('ch12')"><span class="toc-icon">💀</span><span class="toc-label">보너스2. 흔한 실수 TOP 10</span></a>
+    <a class="toc-item" onclick="goChapter('ch13')"><span class="toc-icon">💰</span><span class="toc-label">보너스3. 비용·VS Code·Git</span></a>
   </nav>
   <div class="progress-wrap">
     <div class="progress-label">
@@ -1315,11 +1320,661 @@ for block in response.content:
     </div>
   </section>
 
+
+  <!-- ━━━━ BONUS 1: 프롬프트 치트시트 ━━━━ -->
+  <section class="chapter" id="ch11">
+    <div class="ch-header">
+      <div class="ch-num">보너스 1 · 실전 도구</div>
+      <h2 class="ch-title">프롬프트 치트시트<br>복붙해서 바로 쓰는 30개 패턴</h2>
+      <p class="ch-desc">[괄호] 안만 바꿔라. 나머지는 그대로 써도 된다. 상황별로 검증된 프롬프트들이다.</p>
+      <div class="ch-badges">
+        <span class="badge badge-o">즉시 활용</span>
+        <span class="badge badge-g">30개 패턴</span>
+        <span class="badge badge-d">실전 검증</span>
+      </div>
+    </div>
+    <div class="ch-body">
+
+      <div class="tip-box">
+        <div class="label">💡 사용법</div>
+        [대괄호] 안만 내 상황에 맞게 바꿔라. 나머지 문장은 Claude가 더 잘 이해하도록 최적화된 표현이다.
+        <strong>Shift+Enter</strong>로 줄바꿈, <strong>Enter</strong>로 전송.
+      </div>
+
+      <h2>🐛 버그 수정 패턴</h2>
+
+      <div class="code-label">패턴 1 — 에러 메시지 그대로 던지기</div>
+      <pre class="code">아래 에러가 나. 원인 찾아서 고쳐줘.
+코드 건드리기 전에 원인 먼저 설명해.
+
+[에러 메시지 전체 붙여넣기]
+
+파일: [파일명]</pre>
+
+      <div class="story-box" data-tag="실전 팁">
+        에러 메시지는 절대 요약하지 마라. "뭔가 안 된다"가 아니라 빨간 글씨 전체를 복사해서 붙여넣어야 한다. Claude는 스택 트레이스 한 줄 한 줄을 다 읽는다.
+      </div>
+
+      <div class="code-label">패턴 2 — 특정 함수 버그</div>
+      <pre class="code">[함수명] 함수에서 [증상]이 발생해.
+입력값: [예시 입력]
+기대 결과: [기대하는 출력]
+실제 결과: [실제 나오는 출력]
+
+관련 코드 읽고 원인 찾아줘. 수정 전에 가설 말해줘.</pre>
+
+      <div class="code-label">패턴 3 — 간헐적 버그 (재현 어려운 것)</div>
+      <pre class="code">[기능명]이 가끔 안 된다. 매번은 아니고 [빈도/조건].
+로그 보면 이렇게 나와:
+[로그 내용]
+
+race condition이나 타이밍 문제인지 확인해줘.
+관련 코드 전체 읽어보고 의심 포인트 찾아줘.</pre>
+
+      <h2>🔨 새 기능 추가 패턴</h2>
+
+      <div class="code-label">패턴 4 — 신규 기능 (탐색 먼저)</div>
+      <pre class="code">현재 [모듈명] 코드 읽어봐.
+[기능 설명]을 추가하려는데
+기존 구조에서 어디에 어떻게 붙이면 자연스러울지 말해줘.
+계획만 먼저. 코드 수정은 내가 OK 하면 시작해.</pre>
+
+      <div class="code-label">패턴 5 — API 엔드포인트 추가</div>
+      <pre class="code">FastAPI에 [엔드포인트 경로] 엔드포인트 추가해줘.
+- 메서드: [GET/POST/PUT]
+- 입력: [파라미터 설명]
+- 출력: [반환값 설명]
+- 인증: [있음/없음]
+
+기존 라우터 파일 [파일명] 읽고 같은 스타일로 만들어줘.</pre>
+
+      <div class="code-label">패턴 6 — DB 쿼리 추가</div>
+      <pre class="code">[테이블명] 테이블에서 [조건] 데이터를 가져오는 쿼리 짜줘.
+현재 DB 접속 방식은 [파일명] 참고해.
+기존 쿼리 함수들이랑 스타일 맞춰줘.</pre>
+
+      <h2>♻️ 리팩터링 패턴</h2>
+
+      <div class="code-label">패턴 7 — 함수 분리</div>
+      <pre class="code">[파일명]의 [함수명] 함수가 너무 길어.
+읽어보고 어떻게 나누면 좋을지 제안해줘.
+나누기 전후로 기존 기능 동일하게 유지해야 해.</pre>
+
+      <div class="code-label">패턴 8 — 중복 코드 제거</div>
+      <pre class="code">[파일명A]랑 [파일명B]에 비슷한 코드가 있어.
+둘 다 읽어보고 공통 함수로 뽑아낼 수 있는 부분 찾아줘.
+변경 최소화로.</pre>
+
+      <div class="code-label">패턴 9 — 가독성 개선 (수술적)</div>
+      <pre class="code">[파일명] 읽어봐. 기능은 바꾸지 말고
+변수명, 함수명만 더 명확하게 바꿔줘.
+바꿀 이름들 목록 먼저 보여주고 내가 확인하면 적용해줘.</pre>
+
+      <h2>✅ 테스트 작성 패턴</h2>
+
+      <div class="code-label">패턴 10 — 유닛 테스트 작성</div>
+      <pre class="code">[파일명]의 [함수명] 함수에 대한 pytest 테스트 작성해줘.
+- 정상 케이스 3개
+- 엣지 케이스 2개 (None 입력, 빈 값 등)
+- 예외 케이스 1개
+
+기존 테스트 파일 [tests/파일명] 읽고 같은 스타일로.</pre>
+
+      <div class="code-label">패턴 11 — 기존 코드 테스트 없을 때</div>
+      <pre class="code">[파일명] 전체 읽어봐.
+이 파일에서 가장 중요한 함수 3개 골라서
+각각 최소 테스트 케이스 2개씩 작성해줘.
+테스트 먼저 작성하고, 통과되는지 실행해봐.</pre>
+
+      <h2>🔍 코드 이해 패턴</h2>
+
+      <div class="code-label">패턴 12 — 전체 구조 파악</div>
+      <pre class="code">이 프로젝트의 [기능명] 부분이 어떻게 동작하는지 모르겠어.
+[관련 폴더/파일명] 읽어보고
+데이터 흐름을 순서대로 설명해줘. 코드는 건드리지 마.</pre>
+
+      <div class="code-label">패턴 13 — 특정 코드 설명</div>
+      <pre class="code">[파일명] [라인번호]~[라인번호] 이 부분이 뭐 하는 건지 모르겠어.
+왜 이렇게 짰는지 이유까지 설명해줘.
+비개발자도 이해할 수 있게.</pre>
+
+      <div class="code-label">패턴 14 — 의존성 파악</div>
+      <pre class="code">[파일명/함수명]을 수정하면 어디에 영향 가?
+이 파일을 import하거나 호출하는 파일들 찾아줘.
+영향 범위 파악 후에 수정 들어갈게.</pre>
+
+      <h2>🚀 성능 최적화 패턴</h2>
+
+      <div class="code-label">패턴 15 — 느린 쿼리 최적화</div>
+      <pre class="code">[파일명]의 [함수명]이 느려. 평균 [시간]ms 걸림.
+코드 읽어보고 병목 원인 찾아줘.
+인덱스, N+1 쿼리, 불필요한 루프 위주로 봐줘.</pre>
+
+      <div class="code-label">패턴 16 — 병렬 처리 도입</div>
+      <pre class="code">[파일명]의 [함수명]이 순차 처리라 느려.
+비동기/병렬로 바꿀 수 있는지 봐줘.
+현재 코드 읽고 asyncio 또는 ThreadPoolExecutor로 개선안 제시해줘.</pre>
+
+      <h2>📝 문서화 패턴</h2>
+
+      <div class="code-label">패턴 17 — README 작성</div>
+      <pre class="code">이 프로젝트 전체 읽어봐.
+GitHub README.md 작성해줘.
+- 프로젝트 설명 (1~2줄)
+- 설치 방법
+- 사용법 (예시 포함)
+- 환경변수 목록
+개발자가 아닌 사람도 읽을 수 있게.</pre>
+
+      <div class="code-label">패턴 18 — 함수 docstring 일괄 추가</div>
+      <pre class="code">[파일명] 읽어봐.
+docstring 없는 public 함수들 찾아서
+Args/Returns/Raises 형식으로 docstring 추가해줘.
+함수 로직은 건드리지 마.</pre>
+
+      <h2>🔐 보안 패턴</h2>
+
+      <div class="code-label">패턴 19 — 보안 취약점 점검</div>
+      <pre class="code">[파일명] 읽어봐.
+SQL injection, XSS, 인증 우회, 민감정보 노출
+이 4가지 관점에서 취약점 있는지 점검해줘.
+발견하면 심각도(상/중/하)랑 수정 방법 같이 알려줘.</pre>
+
+      <div class="code-label">패턴 20 — .env 체크</div>
+      <pre class="code">이 프로젝트에서 하드코딩된 API 키나 비밀번호가 있는지 찾아줘.
+os.getenv()로 대체 가능한 것들 목록 만들어줘.
+실제 값은 출력하지 마.</pre>
+
+      <h2>🤝 협업 패턴</h2>
+
+      <div class="code-label">패턴 21 — PR 설명 작성</div>
+      <pre class="code">git diff [브랜치명]..HEAD 결과야:
+[diff 내용]
+
+이 변경사항으로 GitHub PR 설명 작성해줘.
+- Summary (무엇을 왜 바꿨나)
+- 테스트 방법
+- 주의사항
+마크다운 형식으로.</pre>
+
+      <div class="code-label">패턴 22 — 커밋 메시지 정리</div>
+      <pre class="code">git diff --staged 결과야:
+[diff 내용]
+
+Conventional Commits 형식으로 커밋 메시지 써줘.
+feat/fix/refactor/docs 중 맞는 타입 골라서.</pre>
+
+      <h2>🐍 Python 특화 패턴</h2>
+
+      <div class="code-label">패턴 23 — 타입 힌트 추가</div>
+      <pre class="code">[파일명] 읽어봐.
+타입 힌트 없는 함수들에 Python typing 모듈로 타입 추가해줘.
+함수 동작은 바꾸지 말고 타입만.</pre>
+
+      <div class="code-label">패턴 24 — 에러 핸들링 추가</div>
+      <pre class="code">[파일명]의 [함수명]에 에러 핸들링이 부족해.
+어떤 예외가 발생할 수 있는지 분석하고
+try/except + 로깅 추가해줘. silent fail은 금지.</pre>
+
+      <h2>⚡ 자동화 패턴</h2>
+
+      <div class="code-label">패턴 25 — 반복 작업 스크립트화</div>
+      <pre class="code">매일 [작업 설명]을 수동으로 하고 있어.
+이걸 자동화하는 Python 스크립트 만들어줘.
+- 입력: [데이터 소스]
+- 처리: [로직]
+- 출력: [결과물]
+MASTER.env에서 키 읽는 방식으로.</pre>
+
+      <div class="code-label">패턴 26 — 크론잡 설정</div>
+      <pre class="code">[스크립트 경로]를 매일 [시간]에 자동 실행하고 싶어.
+Windows 작업 스케줄러 또는 Linux cron 설정 방법 알려줘.
+실패 시 텔레그램 알림 오게 하려면 어떻게 해?</pre>
+
+      <h2>🔧 디버깅 패턴</h2>
+
+      <div class="code-label">패턴 27 — 로그 분석</div>
+      <pre class="code">아래 로그야. 뭐가 문제인지 찾아줘.
+[로그 내용]
+
+타임스탬프 패턴, 에러 패턴, 이상한 값 위주로 봐줘.</pre>
+
+      <div class="code-label">패턴 28 — 환경 문제 진단</div>
+      <pre class="code">[명령어]를 실행하면 이렇게 나와:
+[실행 결과]
+
+로컬에서는 되는데 서버에서 안 돼.
+환경 차이 원인 찾아줘. OS, 파이썬 버전, 패키지 버전 차이 위주로.</pre>
+
+      <h2>📊 데이터 패턴</h2>
+
+      <div class="code-label">패턴 29 — JSON/CSV 처리</div>
+      <pre class="code">이 JSON 구조야:
+[JSON 샘플]
+
+[원하는 데이터]만 뽑아서 [출력 형식]으로 변환하는 코드 짜줘.</pre>
+
+      <div class="code-label">패턴 30 — 데이터 검증</div>
+      <pre class="code">[파일명]에서 받아오는 데이터가 가끔 이상해.
+[예상 스키마]대로 오는지 검증하는 코드 추가해줘.
+이상한 값 들어오면 로그 찍고 건너뛰도록.</pre>
+
+    </div>
+  </section>
+
+  <!-- ━━━━ BONUS 2: 흔한 실수 TOP 10 ━━━━ -->
+  <section class="chapter" id="ch12">
+    <div class="ch-header">
+      <div class="ch-num">보너스 2 · 실전 도구</div>
+      <h2 class="ch-title">흔한 실수 TOP 10<br>경험자만 아는 함정들</h2>
+      <p class="ch-desc">직접 저지른 실수들이다. 이걸 읽고 나면 똑같은 삽질을 피할 수 있다.</p>
+      <div class="ch-badges">
+        <span class="badge badge-o">실패 경험 기반</span>
+        <span class="badge badge-g">해결법 포함</span>
+      </div>
+    </div>
+    <div class="ch-body">
+
+      <blockquote>
+        "내가 저지른 실수를 당신이 반복할 필요 없다. 이미 충분히 비쌌다."
+      </blockquote>
+
+      <!-- 실수 1 -->
+      <h2>실수 #1 — 탐색 없이 바로 "고쳐줘"</h2>
+
+      <div class="story-box" data-tag="실제 사례">
+        "auth.py 버그 고쳐줘"라고 했다. Claude가 고쳤다. 근데 관련 없는 파일까지 건드렸다. 멀쩡하던 기능이 망가졌다. 복구에 1시간 걸렸다.
+      </div>
+
+      <div class="warn-box">
+        <div class="label">❌ 잘못된 방법</div>
+        "auth.py 로그인 버그 고쳐줘"
+      </div>
+
+      <div class="tip-box">
+        <div class="label">✅ 올바른 방법</div>
+        "auth.py 읽어봐. 로그인 실패하는 원인 찾아줘. 코드는 건드리지 마, 원인 파악 먼저."<br>
+        → 분석 확인 후 "이 부분만 수정해줘"
+      </div>
+
+      <!-- 실수 2 -->
+      <h2>실수 #2 — /clear 안 하고 새 작업 시작</h2>
+
+      <div class="story-box" data-tag="실제 사례">
+        A 기능 개발하다가 B 기능으로 넘어갔다. /clear를 안 했다. Claude가 A 기능 컨텍스트를 들고 B를 작업했다. A 기능 스타일로 B를 만들었다. 코드가 뒤섞였다.
+      </div>
+
+      <div class="law-box">
+        <div class="label">🔑 원칙</div>
+        <strong>새로운 독립 작업을 시작할 때는 반드시 /clear 먼저.</strong><br>
+        같은 작업의 연속이면 /clear 불필요. 판단 기준: "이전 대화가 이번 작업에 도움이 되나?"<br>
+        → No면 /clear
+      </div>
+
+      <!-- 실수 3 -->
+      <h2>실수 #3 — 너무 큰 작업을 한 번에 던지기</h2>
+
+      <div class="story-box" data-tag="실제 사례">
+        "이 프로젝트를 FastAPI로 마이그레이션해줘"라고 했다. 파일 30개가 한꺼번에 바뀌었다. 뭐가 바뀐지 파악도 못 한 채 커밋했다. 나중에 버그 찾을 때 어디서 났는지 알 수가 없었다.
+      </div>
+
+      <div class="tip-box">
+        <div class="label">✅ 큰 작업은 쪼개라</div>
+        X: "전체 마이그레이션해줘"<br>
+        O: "1단계: models.py만 먼저 마이그레이션해줘. 완료되면 테스트 확인 후 2단계 할게."<br><br>
+        한 번에 바뀌는 파일은 최대 3~5개. 그 이상이면 범위가 너무 크다.
+      </div>
+
+      <!-- 실수 4 -->
+      <h2>실수 #4 — .env 파일 git에 커밋</h2>
+
+      <div class="warn-box">
+        <div class="label">⚠️ 이건 진짜 심각한 실수</div>
+        .env 파일이 GitHub에 올라가면 API 키가 노출된다. 봇들이 24시간 안에 키를 스캔해서 악용한다. AWS 키 노출 시 수백만 원 청구된 사례 실제로 있다.
+      </div>
+
+      <div class="code-label">.gitignore — 반드시 있어야 할 항목들</div>
+      <pre class="code">.env
+*.env
+MASTER.env
+.env.local
+.env.production
+secrets.json
+*_credentials.json
+token*.pickle</pre>
+
+      <div class="tip-box">
+        <div class="label">✅ Claude Code에게 시킬 것</div>
+        "이 프로젝트 전체 읽어봐. 하드코딩된 API 키나 토큰 있는지 찾아줘. 실제 값은 출력하지 마."
+      </div>
+
+      <!-- 실수 5 -->
+      <h2>실수 #5 — CLAUDE.md 없이 개발 시작</h2>
+
+      <div class="story-box" data-tag="실제 사례">
+        프로젝트 시작하고 나서 CLAUDE.md를 안 만들었다. 3주 후 새 세션에서 Claude가 "이 프로젝트가 뭔지"를 모르는 채 작업했다. 포트를 8766이 아닌 8000으로 설정했다. 기존 설정이랑 충돌났다.
+      </div>
+
+      <div class="law-box">
+        <div class="label">🔑 원칙</div>
+        새 프로젝트 첫 날 CLAUDE.md 먼저 만들어라. 나중에 만드는 건 두 배 힘들다.<br>
+        최소 내용: 프로젝트 목적, 주요 포트/경로, 절대 건드리면 안 되는 것.
+      </div>
+
+      <!-- 실수 6 -->
+      <h2>실수 #6 — 성공 기준 없이 "잘 만들어줘"</h2>
+
+      <div class="story-box" data-tag="실제 사례">
+        "이 API 잘 만들어줘"라고 했다. Claude가 자기 기준으로 만들었다. 내가 원한 건 빠른 응답이었는데, Claude는 기능을 더 추가했다. 서로 다른 걸 생각하고 있었다.
+      </div>
+
+      <div class="tip-box">
+        <div class="label">✅ 성공 기준을 명시하라</div>
+        X: "이 함수 잘 만들어줘"<br>
+        O: "이 함수 만들어줘. 성공 기준: ① 응답 100ms 이하 ② 기존 테스트 전부 통과 ③ 변경 파일 2개 이하"
+      </div>
+
+      <!-- 실수 7 -->
+      <h2>실수 #7 — 실패 기록 안 하기</h2>
+
+      <div class="story-box" data-tag="실제 사례">
+        한국어 경로 인코딩 문제를 고쳤다. 기록 안 했다. 3주 후 다른 스크립트에서 똑같은 문제가 났다. 또 1시간 디버깅했다. 기록했으면 30초면 됐을 일이다.
+      </div>
+
+      <div class="law-box">
+        <div class="label">🔑 원칙</div>
+        버그를 고쳤으면 CLAUDE.md의 "과거 실수" 섹션에 한 줄 적어라.<br>
+        포맷: [날짜] 증상 → 원인 → 해결법<br>
+        Claude가 다음 세션에서 같은 실수를 안 한다.
+      </div>
+
+      <!-- 실수 8 -->
+      <h2>실수 #8 — 검증 없이 바로 배포</h2>
+
+      <div class="warn-box">
+        <div class="label">⚠️ "일단 올려보자"의 결과</div>
+        Claude가 수정한 코드를 테스트 없이 Render에 배포했다. 10분 후 고객 에러 리포트 왔다. Claude가 함수 시그니처를 바꿨는데 호출부를 못 찾아서 미반영한 것이었다.
+      </div>
+
+      <div class="step-box">
+        <div class="step-header">배포 전 필수 체크리스트</div>
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">변경된 파일 목록 확인</div>
+            <div class="step-desc"><span class="ic">git diff --stat</span> 로 뭐가 바뀌었는지 직접 눈으로 확인</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">테스트 실행</div>
+            <div class="step-desc"><span class="ic">pytest tests/ -v</span> — 실패 0개 확인</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">로컬 서버 실행 테스트</div>
+            <div class="step-desc">배포 전 로컬에서 핵심 기능 직접 실행 확인</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <div class="step-title">보안 체크</div>
+            <div class="step-desc"><span class="ic">python git_security_check.py</span> — .env 파일 미포함 확인</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 실수 9 -->
+      <h2>실수 #9 — 토큰 낭비</h2>
+
+      <div class="story-box" data-tag="실제 사례">
+        "뭔가 안 되는데 고쳐줘"라고 50번 대화하면서 고쳤다. 나중에 보니 컨텍스트가 100만 토큰 넘어있었다. 같은 작업을 /clear하고 새 세션으로 했으면 10번이면 됐다.
+      </div>
+
+      <div class="tip-box">
+        <div class="label">💰 토큰 절약 3원칙</div>
+        <strong>1. 컨텍스트가 길어지면 /clear하고 재시작</strong> — 오래된 컨텍스트는 품질 떨어진다<br>
+        <strong>2. Haiku로 될 것에 Sonnet 쓰지 마라</strong> — 스코어링·분류는 Haiku로 충분<br>
+        <strong>3. 탐색 프롬프트는 짧게</strong> — "이 폴더 전체 읽어봐" 대신 "auth.py만 읽어봐"
+      </div>
+
+      <!-- 실수 10 -->
+      <h2>실수 #10 — Claude 말을 100% 믿기</h2>
+
+      <div class="story-box" data-tag="실제 사례">
+        Claude가 "이 방법이 최적입니다"라고 해서 그대로 적용했다. 나중에 알고 보니 더 간단한 방법이 있었다. Claude도 틀린다. 특히 최신 라이브러리 버전, 특정 환경 설정에서는.
+      </div>
+
+      <div class="law-box">
+        <div class="label">🔑 원칙</div>
+        Claude는 <strong>도구</strong>다. 판단은 내가 한다.<br>
+        의심스러우면 "다른 방법은 없어? 더 단순한 방법 있으면 알려줘"라고 물어라.<br>
+        중요한 결정은 공식 문서와 대조해라. Context7 MCP가 최신 문서 실시간으로 가져온다.
+      </div>
+
+      <div class="quiz-box">
+        <div class="quiz-label">🧪 실수 방지 퀴즈</div>
+        <div class="quiz-q">새로운 독립적인 작업을 시작하기 전에 해야 할 것은?</div>
+        <div class="quiz-opts">
+          <div class="quiz-opt" onclick="checkQ(this,'wrong')">A. 이전 대화 내용을 전부 복사해둔다</div>
+          <div class="quiz-opt" onclick="checkQ(this,'correct')">B. /clear로 컨텍스트를 초기화한다</div>
+          <div class="quiz-opt" onclick="checkQ(this,'wrong')">C. Claude를 재설치한다</div>
+          <div class="quiz-opt" onclick="checkQ(this,'wrong')">D. 아무것도 안 해도 된다</div>
+        </div>
+        <div class="quiz-feedback" id="qfb2"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ━━━━ BONUS 3: 비용·VS Code·Git ━━━━ -->
+  <section class="chapter" id="ch13">
+    <div class="ch-header">
+      <div class="ch-num">보너스 3 · 실전 도구</div>
+      <h2 class="ch-title">비용 절약 · VS Code · Git<br>실전 설정 완전 가이드</h2>
+      <p class="ch-desc">돈 아끼는 법, VS Code에서 더 편하게 쓰는 법, git과 Claude를 연결하는 법.</p>
+      <div class="ch-badges">
+        <span class="badge badge-o">비용 최적화</span>
+        <span class="badge badge-g">VS Code 통합</span>
+        <span class="badge badge-d">Git 자동화</span>
+      </div>
+    </div>
+    <div class="ch-body">
+
+      <h2>💰 Part A — 비용 절약 실전 가이드</h2>
+
+      <p>Claude Code는 claude.ai Pro 플랜($20/월)으로 CLI를 쓰면 별도 API 비용이 없다. 하지만 API를 직접 호출하는 봇을 만들면 토큰 비용이 쌓인다. 이걸 관리하는 법이다.</p>
+
+      <h3>모델별 비용 & 적합한 용도</h3>
+
+      <table class="compare-table">
+        <thead><tr><th>모델</th><th>상대 비용</th><th>쓸 때</th><th>쓰지 말 때</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Haiku 4.5</td>
+            <td class="acc">★☆☆ 저렴</td>
+            <td>스코어링, 분류, 짧은 응답, 반복 루프</td>
+            <td>긴 코드 생성, 복잡한 추론</td>
+          </tr>
+          <tr>
+            <td>Sonnet 4.6</td>
+            <td>★★☆ 중간</td>
+            <td>일반 개발, 분석, 코드 생성 <em>(기본값)</em></td>
+            <td>단순 분류, 짧은 요약</td>
+          </tr>
+          <tr>
+            <td>Opus 4.7</td>
+            <td>★★★ 비쌈</td>
+            <td>전략 판단, 아키텍처 설계</td>
+            <td>일상적인 코딩 작업</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="story-box" data-tag="절약 사례">
+        정글부킹 리드 수집기에서 업체 스코어링을 Sonnet으로 했더니 300건에 1만원 넘게 나왔다. Haiku로 바꿨다. 품질 차이 거의 없는데 비용은 1/5로 줄었다. "짧고 반복적인 판단"은 항상 Haiku가 답이다.
+      </div>
+
+      <h3>컨텍스트 관리로 비용 줄이기</h3>
+
+      <div class="tip-box">
+        <div class="label">💡 컨텍스트 비용 절약 3가지</div>
+        <strong>① /clear 적극 사용</strong> — 작업 완료마다 초기화. 불필요한 이전 대화가 토큰 낭비.<br><br>
+        <strong>② system 프롬프트 간결하게</strong> — API 직접 사용 시 system 프롬프트가 매 호출마다 포함됨. 핵심만 남겨라.<br><br>
+        <strong>③ max_tokens 적절히 제한</strong> — 짧은 응답이면 max_tokens=256으로도 충분. 4096 기본값 그대로 두지 마라.
+      </div>
+
+      <div class="code-label">Python — 비용 효율적인 API 호출 패턴</div>
+      <pre class="code">import anthropic
+
+client = anthropic.Anthropic()
+
+# ✅ 스코어링: Haiku + max_tokens 제한
+def score_lead(item: dict) -> int:
+    resp = client.messages.create(
+        model="claude-haiku-4-5-20251001",  # 저렴한 모델
+        max_tokens=50,                        # 숫자만 반환하면 됨
+        system="숫자만 반환. 0~100.",
+        messages=[{"role": "user", "content": f"이 업체 구독 가능성: {item}"}]
+    )
+    return int(resp.content[0].text.strip())
+
+# ✅ 코드 생성: Sonnet + 적절한 토큰
+def generate_code(spec: str) -> str:
+    resp = client.messages.create(
+        model="claude-sonnet-4-6",
+        max_tokens=2048,          # 코드 생성은 넉넉하게
+        messages=[{"role": "user", "content": spec}]
+    )
+    return resp.content[0].text</pre>
+
+      <hr class="divider">
+
+      <h2>🖥️ Part B — VS Code 통합 완전 가이드</h2>
+
+      <p>터미널에서만 쓰는 것보다 VS Code에서 함께 쓰면 훨씬 빠르다.</p>
+
+      <h3>설치 & 실행</h3>
+
+      <div class="step-box">
+        <div class="step-header">VS Code에서 Claude Code 시작하기</div>
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">VS Code Extensions에서 Claude Code 설치</div>
+            <div class="step-desc">Cmd/Ctrl+Shift+X → "Claude Code" 검색 → Install</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">내장 터미널 열기</div>
+            <div class="step-desc">Ctrl+` (백틱) → 터미널 패널 → <span class="ic">claude</span> 입력</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">파일 열고 @mention으로 컨텍스트 추가</div>
+            <div class="step-desc">에디터에서 파일 열기 → Claude 창에 <span class="ic">@파일명</span> 입력하면 해당 파일 컨텍스트 추가</div>
+          </div>
+        </div>
+      </div>
+
+      <h3>VS Code에서만 되는 것들</h3>
+
+      <div class="tip-box">
+        <div class="label">⚡ VS Code 통합 특화 기능</div>
+        <strong>선택 영역 @mention</strong> — 코드 일부 드래그 → Claude에게 "이 부분만" 설명 또는 수정 요청<br>
+        <strong>에러 바로 질문</strong> — 빨간 밑줄 → 우클릭 → "Claude에게 질문" (확장 설치 시)<br>
+        <strong>분할 뷰</strong> — 에디터 좌측 + Claude 우측으로 동시에 보며 작업<br>
+        <strong>diff 바로 확인</strong> — Claude가 파일 수정하면 VS Code가 diff 뷰로 변경사항 표시
+      </div>
+
+      <h3>추천 VS Code 설정</h3>
+
+      <div class="code-label">settings.json에 추가 권장</div>
+      <pre class="code">{
+  "editor.formatOnSave": true,
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000,
+  "git.autofetch": true,
+  "editor.minimap.enabled": false  // 화면 넓게 쓰기
+}</pre>
+
+      <hr class="divider">
+
+      <h2>🌿 Part C — Claude Code + Git 실전</h2>
+
+      <h3>Claude가 직접 git 작업하게 하는 법</h3>
+
+      <div class="code-label">Claude Code 입력 — 브랜치 생성부터 PR까지</div>
+      <pre class="code">새 기능 [기능명] 개발 시작할게.
+git checkout -b feature/[기능명] 브랜치 만들어줘.
+개발 완료 후에는 커밋 메시지 Conventional Commits 형식으로 작성해줘.</pre>
+
+      <div class="code-label">Claude Code 입력 — 변경사항 요약 커밋</div>
+      <pre class="code">지금까지 바꾼 내용 git diff로 확인하고
+의미 있는 단위로 나눠서 커밋해줘.
+각 커밋 메시지는 feat/fix/refactor 중 맞는 걸로.</pre>
+
+      <h3>자동 보안 체크 → 커밋 연결</h3>
+
+      <div class="code-label">pre-commit hook으로 자동화 (.git/hooks/pre-commit)</div>
+      <pre class="code">#!/bin/bash
+# 커밋 전 .env 파일 포함 여부 자동 체크
+if git diff --cached --name-only | grep -E "\.env$|MASTER\.env|secrets\."; then
+  echo "❌ 보안 파일이 staged 되어 있습니다. git reset HEAD <파일> 로 제외하세요."
+  exit 1
+fi
+echo "✅ 보안 체크 통과"</pre>
+
+      <div class="story-box" data-tag="실전 팁">
+        이 pre-commit hook을 CLAUDE.md에 적어두면 Claude Code가 커밋 전에 항상 확인한다. "git commit 전에 보안 체크 스크립트 실행해줘"라고 매번 말할 필요가 없다.
+      </div>
+
+      <h3>GitHub Actions + Claude (고급)</h3>
+
+      <div class="code-label">.github/workflows/ai-review.yml</div>
+      <pre class="code">name: AI Code Review
+on: [pull_request]
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Claude Code Review
+        run: |
+          # PR diff를 Claude API로 보내서 리뷰 코멘트 자동 생성
+          # anthropic SDK + GitHub API 조합
+          python scripts/ai_review.py</pre>
+
+      <div class="quiz-box">
+        <div class="quiz-label">🧪 보너스 최종 퀴즈</div>
+        <div class="quiz-q">단순 분류·스코어링 작업에 가장 적합한 Claude 모델은?</div>
+        <div class="quiz-opts">
+          <div class="quiz-opt" onclick="checkQ(this,'correct')">A. claude-haiku-4-5-20251001 (빠르고 저렴)</div>
+          <div class="quiz-opt" onclick="checkQ(this,'wrong')">B. claude-opus-4-7 (가장 똑똑하니까)</div>
+          <div class="quiz-opt" onclick="checkQ(this,'wrong')">C. claude-sonnet-4-6 (기본값이니까)</div>
+          <div class="quiz-opt" onclick="checkQ(this,'wrong')">D. 모델 상관없이 다 똑같다</div>
+        </div>
+        <div class="quiz-feedback" id="qfb3"></div>
+      </div>
+
+    </div>
+  </section>
+
 </main>
 
 <script>
   // ── 퀴즈 ──
-  const qAnswers = { qf1:'정답!', qf2:'맞아요!', qf3:'정확해요!', qf4:'정답! API 키는 os.getenv()로. 절대 CLAUDE.md에 쓰면 안 됩니다.', qff:'완벽해요! 황금 워크플로우를 잊지 마세요.' };
+  const qAnswers = { qf1:'정답!', qf2:'맞아요!', qf3:'정확해요!', qf4:'정답! API 키는 os.getenv()로. 절대 CLAUDE.md에 쓰면 안 됩니다.', qff:'완벽해요! 황금 워크플로우를 잊지 마세요.', qfb2:'/clear는 새 작업 시작 전 필수 습관입니다!', qfb3:'단순 반복 작업은 Haiku. 비용이 1/5로 줄어요.' };
   function checkQ(el, type) {
     const box = el.parentElement;
     box.querySelectorAll('.quiz-opt').forEach(o => o.classList.remove('correct','wrong'));
@@ -1343,8 +1998,8 @@ for block in response.content:
   }
 
   // ── 챕터 이동 ──
-  const CHAPTERS = ['ch0','ch1','ch2','ch3','ch4','ch5','ch6','ch7','ch8','ch9','ch10'];
-  const LABELS   = ['표지','1강. Claude Code가 뭔데?','2강. 설치 & 첫 대화','3강. 황금 워크플로우','4강. CLAUDE.md — AI의 뇌','5강. MCP — 슈퍼파워 장착','6강. Hooks — 자동화의 끝','7강. Subagents — AI 팀 구성','8강. API로 직접 연동','9강. JANDA AGI 구축기','10강. 수료 & 다음 단계'];
+  const CHAPTERS = ['ch0','ch1','ch2','ch3','ch4','ch5','ch6','ch7','ch8','ch9','ch10','ch11','ch12','ch13'];
+  const LABELS   = ['표지','1강. Claude Code가 뭔데?','2강. 설치 & 첫 대화','3강. 황금 워크플로우','4강. CLAUDE.md — AI의 뇌','5강. MCP — 슈퍼파워 장착','6강. Hooks — 자동화의 끝','7강. Subagents — AI 팀 구성','8강. API로 직접 연동','9강. JANDA AGI 구축기','10강. 다음 단계 & AI사냥꾼','보너스1. 프롬프트 치트시트','보너스2. 흔한 실수 TOP 10','보너스3. 비용·VS Code·Git'];
 
   function goChapter(id) {
     document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
