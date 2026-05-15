@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="description" content="Claude Code 바이블 — CLI AI 코딩의 모든 것. 설치부터 멀티에이전트까지 실전 완전 가이드 2026">
+  <meta property="og:title" content="Claude Code 바이블 2026 — AITF">
+  <meta property="og:description" content="좌청 스타일로 쉽게 배우는 Claude Code 완전 정복. 설치·CLAUDE.md·MCP·Hooks·Subagents 실전 가이드.">
+  <meta property="og:type" content="book">
+  <title>Claude Code 바이블 2026 — AITF</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.css" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0 }
+    :root {
+      --bg: #ffffff;
+      --bg2: #fafaf9;
+      --bg3: #f5f0eb;
+      --text: #1c1917;
+      --muted: #78716c;
+      --border: #e7e5e4;
+      --accent: #ea6c00;
+      --sidebar: 272px;
+    }
+    html { scroll-behavior: smooth }
+    body {
+      font-family: 'Pretendard', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      -webkit-user-select: none;
+      user-select: none;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased
+    }
+    pre, code { -webkit-user-select: text; user-select: text }
+
+    /* ── 상단 진행바 ── */
+    #top-progress {
+      position: fixed; top: 0; left: var(--sidebar); right: 0;
+      height: 3px; background: linear-gradient(90deg, #ea6c00, #f59e0b);
+      width: 0%; z-index: 9999; transition: width .1s
+    }
+
+    /* ── 사이드바 ── */
+    #sidebar {
+      width: var(--sidebar); min-height: 100vh;
+      background: var(--bg2); border-right: 1px solid var(--border);
+      position: fixed; top: 0; left: 0;
+      display: flex; flex-direction: column;
+      z-index: 100; overflow-y: auto;
+      transition: transform .3s ease
+    }
+    #sidebar.collapsed { transform: translateX(-272px) }
+    #sidebar-toggle {
+      position: fixed; top: 50%; left: var(--sidebar);
+      transform: translateY(-50%); z-index: 101;
+      width: 20px; height: 56px;
+      background: var(--accent); border: none;
+      border-radius: 0 8px 8px 0; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-size: .75rem;
+      transition: left .3s ease, background .2s;
+      box-shadow: 2px 0 8px rgba(0,0,0,.15)
+    }
+    #sidebar-toggle:hover { background: #c45500 }
+    #sidebar-toggle.collapsed { left: 0 }
+    body.sidebar-collapsed #main { margin-left: 0 }
+    body.sidebar-collapsed #top-progress { left: 0 }
+
+    .sidebar-logo { padding: 18px 16px 12px; border-bottom: 1px solid var(--border) }
+    .sidebar-logo .logo-em { font-size: 1.5rem; margin-bottom: 6px; display: block }
+    .sidebar-logo h2 { font-size: .82rem; font-weight: 800; color: var(--accent); letter-spacing: .04em }
+    .sidebar-logo p { font-size: .67rem; color: var(--muted); margin-top: 2px }
+    .sidebar-edition { display: inline-block; background: rgba(234,108,0,.1); border: 1px solid rgba(234,108,0,.3); color: var(--accent); font-size: .62rem; font-weight: 700; padding: 2px 8px; border-radius: 10px; margin-top: 6px; letter-spacing: .06em }
+
+    .toc-section-label { padding: 10px 14px 4px; font-size: .6rem; font-weight: 800; color: var(--muted); letter-spacing: .1em; text-transform: uppercase }
+    .toc-item { display: flex; align-items: center; gap: 8px; padding: 7px 14px; font-size: .76rem; color: var(--muted); text-decoration: none; border-left: 3px solid transparent; transition: all .2s; cursor: pointer; white-space: nowrap; overflow: hidden }
+    .toc-item:hover { color: var(--text); background: rgba(0,0,0,.03) }
+    .toc-item.active { color: var(--accent); border-left-color: var(--accent); background: rgba(234,108,0,.06) }
+    .toc-icon { font-size: .85rem; flex-shrink: 0 }
+    .toc-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
+
+    .progress-wrap { padding: 10px 14px; border-top: 1px solid var(--border) }
+    .progress-label { font-size: .66rem; color: var(--muted); margin-bottom: 5px; display: flex; justify-content: space-between }
+    .progress-bar { height: 4px; background: #e5e7eb; border-radius: 4px; overflow: hidden }
+    .progress-fill { height: 100%; background: var(--accent); width: 0%; transition: width .4s ease; border-radius: 4px }
+    .sidebar-footer { padding: 12px 14px; border-top: 1px solid var(--border); font-size: .65rem; color: var(--muted); line-height: 1.6 }
+
+    /* ── 메인 ── */
+    #main { margin-left: var(--sidebar); overflow-x: hidden; min-height: 100vh }
+    .top-bar { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,.95); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); padding: 13px 48px; display: flex; align-items: center; gap: 12px }
+    .top-bar-title { font-size: .86rem; color: var(--muted); font-weight: 600 }
+    .top-bar-chapter { font-size: .86rem; color: var(--text); font-weight: 700 }
+
+    /* ── 챕터 공통 ── */
+    .chapter { min-height: 100vh; display: block; width: 100% }
+    .ch-header { padding: 60px 52px 40px; background: var(--bg2); border-bottom: 1px solid var(--border) }
+    .ch-num { font-size: .72rem; font-weight: 800; color: var(--accent); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 10px }
+    .ch-title { font-size: 2.1rem; font-weight: 900; color: var(--text); line-height: 1.25; letter-spacing: -.03em; word-break: keep-all }
+    .ch-desc { font-size: .98rem; color: var(--muted); margin-top: 12px; line-height: 1.75; word-break: keep-all; max-width: 600px }
+    .ch-badges { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px }
+    .badge { padding: 5px 13px; border-radius: 20px; font-size: .78rem; font-weight: 600 }
+    .badge-o { background: rgba(234,108,0,.1); border: 1px solid var(--accent); color: var(--accent) }
+    .badge-g { background: #f1f5f9; border: 1px solid #cbd5e1; color: #475569 }
+    .badge-d { background: #1c1917; border: 1px solid #44403c; color: #e7e5e4 }
+
+    .ch-body { padding: 44px 52px; max-width: 840px }
+    .ch-body p { font-size: 1.08rem; line-height: 1.98; color: #374151; margin-bottom: 22px; word-break: keep-all }
+    .ch-body strong { color: var(--accent); background: rgba(234,108,0,.08); padding: 1px 5px; border-radius: 4px }
+    .ch-body em { color: #1c1917; font-style: normal; font-weight: 700 }
+    .ch-body h2 { font-size: 1.5rem; color: var(--text); margin: 44px 0 16px; font-weight: 800; word-break: keep-all; border-left: 4px solid var(--accent); padding-left: 14px }
+    .ch-body h3 { font-size: 1.1rem; color: var(--text); margin: 32px 0 12px; font-weight: 700; word-break: keep-all }
+    .ch-body blockquote { border-left: 4px solid var(--accent); padding: 16px 22px; background: rgba(234,108,0,.05); border-radius: 0 10px 10px 0; margin: 28px 0; font-style: italic; color: #374151; font-size: 1.05rem; line-height: 1.8 }
+    .ch-body ul { padding-left: 24px; margin-bottom: 22px }
+    .ch-body li { font-size: 1.05rem; line-height: 1.95; color: #374151; word-break: keep-all; margin-bottom: 4px }
+    .divider { border: 0; border-bottom: 1px solid var(--border); margin: 52px 0 }
+
+    /* ── 커버 ── */
+    .cover-hero { min-height: 100vh; padding: 80px 52px; background: linear-gradient(160deg, #1c1917 0%, #27211b 55%, #1c1917 100%); display: flex; flex-direction: column; justify-content: center }
+    .cover-eyebrow { font-size: .73rem; font-weight: 800; color: var(--accent); letter-spacing: .16em; text-transform: uppercase; margin-bottom: 18px }
+    .cover-main-title { font-size: 3.8rem; font-weight: 900; color: #fafaf9; line-height: 1.1; letter-spacing: -.05em; word-break: keep-all; margin-bottom: 6px }
+    .cover-main-title span { color: var(--accent) }
+    .cover-sub-title { font-size: 1.25rem; color: #a8a29e; margin-bottom: 28px; line-height: 1.6; word-break: keep-all }
+    .cover-badges-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 36px }
+    .cover-desc { font-size: 1.02rem; color: #d6d3d1; line-height: 1.95; max-width: 560px; word-break: keep-all; margin-bottom: 28px }
+    .cover-quote { border-left: 3px solid var(--accent); padding: 12px 20px; color: #a8a29e; font-size: .95rem; font-style: italic; margin-bottom: 48px; max-width: 500px }
+    .cover-toc { margin-top: 40px; padding-top: 28px; border-top: 1px solid #3c3835 }
+    .cover-toc h4 { font-size: .72rem; font-weight: 800; color: #78716c; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 16px }
+    .cover-toc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px }
+    .cover-toc-item { font-size: .87rem; color: #a8a29e; padding: 7px 12px; border-left: 2px solid #3c3835 }
+    .cover-toc-item strong { color: var(--accent); background: none; font-size: .7rem; display: block; margin-bottom: 1px }
+
+    /* ── 박스 컴포넌트 ── */
+    .tip-box { background: rgba(234,108,0,.07); border: 1.5px solid var(--accent); border-radius: 12px; padding: 18px 22px; margin: 28px 0; font-size: .98rem; line-height: 1.85; word-break: keep-all }
+    .tip-box .label { font-size: .68rem; font-weight: 800; color: var(--accent); letter-spacing: .08em; margin-bottom: 8px }
+    .law-box { background: rgba(15,23,42,.05); border: 1.5px solid #94a3b8; border-radius: 12px; padding: 18px 22px; margin: 28px 0; font-size: .98rem; line-height: 1.85; word-break: keep-all }
+    .law-box .label { font-size: .68rem; font-weight: 800; color: #475569; letter-spacing: .08em; margin-bottom: 8px }
+    .warn-box { background: rgba(245,158,11,.08); border: 1.5px solid #f59e0b; border-radius: 12px; padding: 18px 22px; margin: 28px 0; font-size: .98rem; line-height: 1.85; word-break: keep-all }
+    .warn-box .label { font-size: .68rem; font-weight: 800; color: #b45309; letter-spacing: .08em; margin-bottom: 8px }
+    .story-box { background: #fafaf9; border: 1px solid var(--border); border-radius: 12px; padding: 20px 24px; margin: 28px 0; font-size: .98rem; line-height: 1.9; word-break: keep-all; position: relative }
+    .story-box::before { content: attr(data-tag); position: absolute; top: -11px; left: 20px; background: var(--accent); color: #fff; font-size: .65rem; font-weight: 800; padding: 2px 10px; border-radius: 20px; letter-spacing: .06em }
+
+    /* ── 스텝 박스 ── */
+    .step-box { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin: 28px 0 }
+    .step-header { background: var(--bg2); padding: 11px 20px; font-size: .75rem; font-weight: 800; color: var(--muted); letter-spacing: .06em; border-bottom: 1px solid var(--border); text-transform: uppercase }
+    .step-item { display: flex; gap: 16px; padding: 16px 20px; border-bottom: 1px solid var(--border); align-items: flex-start }
+    .step-item:last-child { border-bottom: none }
+    .step-num { width: 28px; height: 28px; background: var(--accent); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: .82rem; font-weight: 800; flex-shrink: 0; margin-top: 1px }
+    .step-content { flex: 1 }
+    .step-title { font-size: .95rem; font-weight: 700; color: var(--text); margin-bottom: 4px }
+    .step-desc { font-size: .88rem; color: var(--muted); line-height: 1.65; word-break: keep-all }
+
+    /* ── 퀴즈 ── */
+    .quiz-box { background: rgba(234,108,0,.06); border: 2px solid var(--accent); border-radius: 14px; padding: 24px 26px; margin: 36px 0 }
+    .quiz-box .quiz-label { font-size: .68rem; font-weight: 800; color: var(--accent); letter-spacing: .1em; margin-bottom: 12px }
+    .quiz-box .quiz-q { font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 14px; word-break: keep-all }
+    .quiz-opts { display: flex; flex-direction: column; gap: 8px }
+    .quiz-opt { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 10px 16px; font-size: .92rem; cursor: pointer; transition: all .2s; word-break: keep-all }
+    .quiz-opt:hover { border-color: var(--accent); background: rgba(234,108,0,.04) }
+    .quiz-opt.correct { border-color: #16a34a; background: rgba(22,163,74,.08); color: #15803d; font-weight: 700 }
+    .quiz-opt.wrong { border-color: #dc2626; background: rgba(220,38,38,.06); color: #dc2626 }
+    .quiz-feedback { display: none; margin-top: 14px; font-size: .9rem; font-weight: 700; padding: 10px 14px; border-radius: 8px }
+    .quiz-feedback.show { display: block }
+    .quiz-feedback.ok { background: rgba(22,163,74,.1); color: #15803d }
+    .quiz-feedback.no { background: rgba(220,38,38,.08); color: #dc2626 }
+
+    /* ── 코드 ── */
+    pre.code { background: #1c1917; color: #e7e5e4; padding: 20px 24px; border-radius: 12px; overflow-x: auto; margin: 20px 0; font-size: .86rem; line-height: 1.75; font-family: 'Consolas','Courier New',monospace; word-break: normal; -webkit-user-select: text; user-select: text }
+    .code-label { font-size: .63rem; font-weight: 700; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 5px; margin-top: 20px }
+    .ic { font-family: 'Consolas','Courier New',monospace; background: rgba(234,108,0,.1); color: var(--accent); padding: 2px 7px; border-radius: 5px; font-size: .88em; -webkit-user-select: text; user-select: text }
+
+    /* ── 비교표 ── */
+    .compare-table { width: 100%; border-collapse: collapse; margin: 28px 0; border-radius: 12px; overflow: hidden }
+    .compare-table th { background: var(--bg2); padding: 12px 16px; font-size: .82rem; font-weight: 700; color: var(--text); border-bottom: 2px solid var(--border); text-align: left }
+    .compare-table td { padding: 12px 16px; font-size: .9rem; color: #374151; border-bottom: 1px solid var(--border); word-break: keep-all }
+    .compare-table tr:last-child td { border-bottom: none }
+    .compare-table tr:hover td { background: rgba(234,108,0,.03) }
+    td.acc { color: var(--accent); font-weight: 700 }
+
+    /* ── CTA ── */
+    .cta-box { background: linear-gradient(135deg, #ea6c00, #b45309); color: #fff; border-radius: 16px; padding: 40px 36px; margin: 56px 0; position: relative; overflow: hidden }
+    .cta-box::before { content: ''; position: absolute; top: -50px; right: -50px; width: 180px; height: 180px; background: rgba(255,255,255,.05); border-radius: 50% }
+    .cta-badge { display: inline-block; background: rgba(255,255,255,.2); border: 1px solid rgba(255,255,255,.4); font-size: .68rem; font-weight: 800; padding: 3px 12px; border-radius: 20px; margin-bottom: 14px; letter-spacing: .06em }
+    .cta-box h3 { font-size: 1.5rem; font-weight: 900; margin-bottom: 10px; letter-spacing: -.03em; word-break: keep-all }
+    .cta-box p { font-size: .93rem; opacity: .9; margin-bottom: 22px; line-height: 1.75; word-break: keep-all }
+    .cta-features { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px }
+    .cta-features span { background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.3); font-size: .76rem; font-weight: 700; padding: 4px 12px; border-radius: 20px }
+    .cta-btn { display: inline-block; background: #fff; color: #ea6c00; font-weight: 800; font-size: 1rem; padding: 13px 36px; border-radius: 12px; text-decoration: none; transition: transform .15s, box-shadow .15s }
+    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.2) }
+
+    /* ── 수료 배너 ── */
+    .cert-banner { background: linear-gradient(135deg, #1c1917, #292524); color: #fafaf9; border-radius: 16px; padding: 48px 40px; margin: 48px 0; text-align: center }
+    .cert-icon { font-size: 2.8rem; margin-bottom: 16px }
+    .cert-banner h3 { font-size: 1.65rem; font-weight: 900; margin-bottom: 10px; letter-spacing: -.03em }
+    .cert-banner p { font-size: .98rem; opacity: .7; margin-bottom: 28px; line-height: 1.8; word-break: keep-all }
+    .cert-steps { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 28px }
+    .cert-step { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15); border-radius: 10px; padding: 14px 18px; font-size: .85rem; text-align: center; min-width: 120px }
+    .cert-step strong { display: block; font-size: 1.15rem; color: var(--accent); margin-bottom: 4px }
+    .cert-btn { display: inline-block; background: var(--accent); color: #fff; font-weight: 800; font-size: 1rem; padding: 14px 40px; border-radius: 12px; text-decoration: none; transition: transform .15s, box-shadow .15s }
+    .cert-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(234,108,0,.4) }
+
+    /* ── 모바일 ── */
+    @media(max-width:768px){
+      :root{--sidebar:0px}
+      #sidebar{transform:translateX(-272px)}
+      #sidebar.mobile-open{transform:translateX(0);width:272px}
+      #main{margin-left:0}
+      #top-progress{left:0}
+      #sidebar-toggle{left:0}
+      #sidebar-toggle.collapsed{left:0}
+      .cover-hero{padding:48px 24px;min-height:auto}
+      .cover-main-title{font-size:2.4rem}
+      .cover-toc-grid{grid-template-columns:1fr}
+      .ch-header{padding:40px 24px 28px}
+      .ch-title{font-size:1.6rem}
+      .ch-body{padding:30px 24px}
+      .ch-body p{font-size:1rem}
+      .top-bar{padding:12px 20px}
+      pre.code{font-size:.79rem;padding:14px 16px}
+      .compare-table{font-size:.82rem}
+      .cta-box{padding:28px 20px}
+      .cert-banner{padding:36px 20px}
+    }
+
+    /* ── 복사 방지 ── */
+    *{-webkit-user-select:none!important;-moz-user-select:none!important;-ms-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important}
+    pre.code,.ic{-webkit-user-select:text!important;user-select:text!important}
+  </style>
+</head>
+<body>
+
+<div id="top-progress"></div>
+
+<!-- ── 사이드바 ── -->
+<nav id="sidebar">
+  <div class="sidebar-logo">
+    <span class="logo-em">⚡</span>
+    <h2>CLAUDE CODE BIBLE</h2>
+    <p>Skilljar 커리큘럼 기반 실전 가이드</p>
+    <span class="sidebar-edition">2026 EDITION · AITF</span>
+  </div>
+  <nav class="toc-nav">
+    <div class="toc-section-label">표지</div>
+    <a class="toc-item active" onclick="goChapter('ch0')"><span class="toc-icon">🏠</span><span class="toc-label">표지 / 이 책을 읽기 전에</span></a>
+
+    <div class="toc-section-label">Level 1 · 입문</div>
+    <a class="toc-item" onclick="goChapter('ch1')"><span class="toc-icon">🤔</span><span class="toc-label">1강. Claude Code가 뭔데?</span></a>
+    <a class="toc-item" onclick="goChapter('ch2')"><span class="toc-icon">🔧</span><span class="toc-label">2강. 설치 & 첫 대화</span></a>
+    <a class="toc-item" onclick="goChapter('ch3')"><span class="toc-icon">🔄</span><span class="toc-label">3강. 황금 워크플로우</span></a>
+
+    <div class="toc-section-label">Level 2 · 핵심</div>
+    <a class="toc-item" onclick="goChapter('ch4')"><span class="toc-icon">📋</span><span class="toc-label">4강. CLAUDE.md — AI의 뇌</span></a>
+    <a class="toc-item" onclick="goChapter('ch5')"><span class="toc-icon">🔌</span><span class="toc-label">5강. MCP — 슈퍼파워 장착</span></a>
+    <a class="toc-item" onclick="goChapter('ch6')"><span class="toc-icon">🪝</span><span class="toc-label">6강. Hooks — 자동화의 끝</span></a>
+
+    <div class="toc-section-label">Level 3 · 고급</div>
+    <a class="toc-item" onclick="goChapter('ch7')"><span class="toc-icon">🤖</span><span class="toc-label">7강. Subagents — 팀 구성</span></a>
+    <a class="toc-item" onclick="goChapter('ch8')"><span class="toc-icon">🔗</span><span class="toc-label">8강. API로 직접 연동하기</span></a>
+
+    <div class="toc-section-label">Level 4 · 실전</div>
+    <a class="toc-item" onclick="goChapter('ch9')"><span class="toc-icon">🏗️</span><span class="toc-label">9강. JANDA AGI 구축기</span></a>
+    <a class="toc-item" onclick="goChapter('ch10')"><span class="toc-icon">🎓</span><span class="toc-label">10강. 수료 & 다음 단계</span></a>
+  </nav>
+  <div class="progress-wrap">
+    <div class="progress-label">
+      <span>읽기 진행률</span>
+      <span id="progress-pct">0%</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+  </div>
+  <div class="sidebar-footer">
+    ⚡ Claude Code Bible 2026<br>
+    AITF · dev@stayjanda.com<br>
+    무단 복제 금지
+  </div>
+</nav>
+
+<button id="sidebar-toggle" onclick="toggleSidebar()">❮</button>
+
+<!-- ── 메인 ── -->
+<main id="main">
+  <div class="top-bar">
+    <span class="top-bar-title">Claude Code 바이블</span>
+    <span style="color:var(--border)">›</span>
+    <span class="top-bar-chapter" id="current-chapter-label">표지</span>
+  </div>
+
+  <!-- ━━━━ COVER ━━━━ -->
+  <section class="chapter" id="ch0">
+    <div class="cover-hero">
+      <div class="cover-eyebrow">AITF · Skilljar 커리큘럼 기반 · 2026 EDITION</div>
+      <h1 class="cover-main-title">Claude Code<br><span>바이블</span></h1>
+      <p class="cover-sub-title">터미널 한 줄로 개발팀 한 명을 고용하는 법</p>
+      <div class="cover-badges-row">
+        <span class="badge badge-o">실전 경험 기반</span>
+        <span class="badge badge-d">Skilljar 공식 커리큘럼</span>
+        <span class="badge badge-g">퀴즈 & 코드 포함</span>
+      </div>
+      <div class="cover-quote">
+        "솔직히 말할게. 나도 처음엔 그냥 ChatGPT랑 뭐가 다른가 했다.<br>
+        써보고 나서야 알았다. 차원이 다르다는 걸."<br>
+        <span style="font-size:.88rem;opacity:.8">— JANDA 대표, Claude Code 사용 6개월 후</span>
+      </div>
+      <div class="cover-toc">
+        <h4>전체 커리큘럼</h4>
+        <div class="cover-toc-grid">
+          <div class="cover-toc-item"><strong>1강</strong>Claude Code가 뭔데? (ChatGPT와 뭐가 달라)</div>
+          <div class="cover-toc-item"><strong>2강</strong>설치 & 첫 대화 (10분 완성)</div>
+          <div class="cover-toc-item"><strong>3강</strong>황금 워크플로우 (Explore→Plan→Code→Commit)</div>
+          <div class="cover-toc-item"><strong>4강</strong>CLAUDE.md — AI에게 뇌를 심어라</div>
+          <div class="cover-toc-item"><strong>5강</strong>MCP 서버 — 슈퍼파워 장착</div>
+          <div class="cover-toc-item"><strong>6강</strong>Hooks — 자동화의 끝판왕</div>
+          <div class="cover-toc-item"><strong>7강</strong>Subagents — AI 팀 구성</div>
+          <div class="cover-toc-item"><strong>8강</strong>API 직접 연동 — 봇 만들기</div>
+          <div class="cover-toc-item"><strong>9강</strong>JANDA AGI 구축 실제 사례</div>
+          <div class="cover-toc-item"><strong>10강</strong>Skilljar 수료 & 다음 단계</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ━━━━ CHAPTER 1 ━━━━ -->
+  <section class="chapter" id="ch1">
+    <div class="ch-header">
+      <div class="ch-num">Level 1 · 입문 — 1강</div>
+      <h2 class="ch-title">Claude Code가 뭔데?<br>ChatGPT랑 뭐가 달라</h2>
+      <p class="ch-desc">제일 많이 받는 질문이다. 이 강에서 단번에 정리한다. 비유 하나면 충분하다.</p>
+      <div class="ch-badges">
+        <span class="badge badge-o">개념 이해</span>
+        <span class="badge badge-g">학습 목표 포함</span>
+      </div>
+    </div>
+    <div class="ch-body">
+
+      <div class="tip-box">
+        <div class="label">🎯 이 강의 학습 목표</div>
+        ① Claude Code가 기존 AI 채팅과 <em>근본적으로</em> 다른 이유를 설명할 수 있다<br>
+        ② "에이전트"의 의미를 비개발자에게도 쉽게 설명할 수 있다<br>
+        ③ Claude Code로 할 수 있는 것과 할 수 없는 것을 구분한다
+      </div>
+
+      <h2>비유 하나로 전부 설명한다</h2>
+
+      <p>ChatGPT에게 코드를 물어보는 건 <em>요리 레시피 검색</em>이다. 레시피를 알려주면 내가 직접 재료 사고, 요리하고, 설거지까지 해야 한다.</p>
+
+      <p>Claude Code는 다르다. 이건 <em>셰프를 고용한 것</em>이다. "오늘 저녁 파스타 만들어줘"라고 하면 셰프가 냉장고 열어보고, 재료 파악하고, 요리하고, 상까지 차려준다. 내가 할 일은 "맛있네, 조금 짜다"라고 피드백하는 것뿐이다.</p>
+
+      <div class="story-box" data-tag="실제 경험">
+        처음 Claude Code를 접했을 때 반신반의했다. "ChatGPT도 코드 잘 짜는데, 뭐가 달라?" 그래서 테스트했다. 파이썬 파일 50개짜리 프로젝트를 주고 "버그 찾아줘"라고 했다.<br><br>
+        ChatGPT: "어떤 파일인지 붙여넣어 주세요."<br>
+        Claude Code: (실제로 폴더 뒤지고 30초 뒤) "app.py 127번째 줄에서 None 타입 오류 날 것 같아요. 고칠까요?"<br><br>
+        그냥 고쳤다. 진짜로.
+      </div>
+
+      <h2>핵심 차이 — 4가지</h2>
+
+      <table class="compare-table">
+        <thead>
+          <tr><th>구분</th><th>ChatGPT / Claude.ai 웹</th><th class="acc">Claude Code CLI</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>파일 접근</td><td>붙여넣기만 가능</td><td class="acc">직접 읽고 쓰고 실행</td></tr>
+          <tr><td>기억</td><td>대화 끝나면 리셋</td><td class="acc">CLAUDE.md로 영구 기억</td></tr>
+          <tr><td>행동</td><td>답변 생성</td><td class="acc">계획 → 실행 → 검증</td></tr>
+          <tr><td>확장</td><td>없음</td><td class="acc">MCP로 DB·GitHub 직접 제어</td></tr>
+        </tbody>
+      </table>
+
+      <p>결정적인 차이는 <strong>파일 시스템 직접 접근</strong>이다. Claude Code는 당신 컴퓨터의 폴더를 직접 열고, 파일을 읽고, 수정하고, 터미널 명령어를 실행한다. AI가 개발자처럼 일하는 게 아니라, AI가 실제로 개발자처럼 일한다.</p>
+
+      <h2>에이전트가 뭔가요</h2>
+
+      <p>요즘 "AI 에이전트"라는 말이 많이 나온다. 쉽게 말하면 이렇다.</p>
+
+      <div class="law-box">
+        <div class="label">🔑 에이전트 정의</div>
+        <strong>일반 AI:</strong> 질문 → 답변. 끝.<br>
+        <strong>에이전트:</strong> 목표 → 계획 → 도구 사용 → 결과 확인 → 수정 → 완료<br><br>
+        에이전트는 <em>결과가 나올 때까지 스스로 루프를 돈다.</em> 한 번 지시하면 알아서 한다.
+      </div>
+
+      <p>Claude Code는 코딩 에이전트다. "이 API에 유닛 테스트 추가해줘"라고 하면, 코드 읽고, 테스트 작성하고, 실행해서 통과하는지 확인하고, 실패하면 고치는 과정을 알아서 반복한다.</p>
+
+      <h2>할 수 있는 것 vs 못 하는 것</h2>
+
+      <div class="tip-box">
+        <div class="label">✅ Claude Code가 잘하는 것</div>
+        코드 버그 찾기 & 수정 / 새 기능 구현 / 리팩터링 / 문서화 / 테스트 작성<br>
+        기존 코드 구조 파악 / 에러 원인 분석 / SQL 쿼리 최적화<br>
+        git commit 메시지 작성 / PR 설명 초안 생성
+      </div>
+
+      <div class="warn-box">
+        <div class="label">❌ Claude Code가 못 하는 것</div>
+        실시간 인터넷 정보 조회 (MCP 없이) / 비공개 내부 DB 접근 (MCP 없이)<br>
+        GUI 앱 직접 조작 (Playwright MCP 없이) / 무한정 자율 실행 (확인 요청함)
+      </div>
+
+      <!-- 퀴즈 -->
+      <div class="quiz-box">
+        <div class="quiz-label">🧪 강의 확인 퀴즈 1</div>
+        <div class="quiz-q">Claude Code와 ChatGPT의 가장 핵심적인 차이는 무엇인가요?</div>
+        <div class="quiz-opts">
+          <div class="quiz-opt" onclick="checkQ(this,'wrong')">A. Claude Code가 더 영리한 AI다</div>
+          <div class="quiz-opt" onclick="checkQ(this,'wrong')">B. Claude Code는 한국어를 더 잘한다</div>
+          <div class="quiz-opt" onclick="checkQ(this,'correct')">C. Claude Code는 파일 시스템에 직접 접근해서 실행까지 한다</div>
+          <div class="quiz-opt" onclick="checkQ(this,'wrong')">D. Claude Code는 무료다</div>
+        </div>
+        <div class="quiz-feedback" id="qf1"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ━━━━ CHAPTER 2 ━━━━ -->
+  <section class="chapter" id="ch2">
+    <div class="ch-header">
+      <div class="ch-num">Level 1 · 입문 — 2강</div>
+      <h2 class="ch-title">설치 & 첫 대화<br>10분 완성 가이드</h2>
+      <p class="ch-desc">복잡하게 생각하지 마라. Node.js 설치하고 명령어 하나 치면 끝이다.</p>
+      <div class="ch-badges">
+        <span class="badge badge-o">직접 따라하기</span>
+        <span class="badge badge-g">Windows · Mac 모두 OK</span>
+      </div>
+    </div>
+    <div class="ch-body">
+
+      <div class="tip-box">
+        <div class="label">🎯 이 강의 학습 목표</div>
+        ① Claude Code를 내 컴퓨터에 설치하고 로그인한다<br>
+        ② 실제 프로젝트 폴더에서 첫 번째 대화를 완성한다<br>
+        ③ 기본 명령어 5개를 외운다
+      </div>
+
+      <h2>사전 준비 (5분)</h2>
+
+      <div class="step-box">
+        <div class="step-header">필요한 것 3가지</div>
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">Node.js 18 이상 설치</div>
+            <div class="step-desc">nodejs.org → LTS 버전 다운로드 → 설치. 이미 있으면 <span class="ic">node --version</span> 으로 버전 확인.</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">Anthropic 계정</div>
+            <div class="step-desc">claude.ai 가입. Pro 플랜($20/월) 추천. 무료 플랜은 사용량 제한 있음.</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">터미널 준비</div>
+            <div class="step-desc">Windows: PowerShell 또는 Windows Terminal. Mac: Terminal 또는 iTerm2.</div>
+          </div>
+        </div>
+      </div>
+
+      <h2>설치 (1분)</h2>
+
+      <div class="code-label">터미널에 그대로 붙여넣기</div>
+      <pre class="code">npm install -g @anthropic-ai/claude-code</pre>
+
+      <h2>로그인 (2분)</h2>
+
+      <div class="code-label">터미널</div>
+      <pre class="code">claude</pre>
+
+      <p>처음 실행하면 브라우저가 열린다. Anthropic 계정으로 로그인하고 "허용" 버튼 누르면 끝. 토큰이 내 컴퓨터에 저장된다.</p>
+
+      <div class="story-box" data-tag="내 실수">
+        처음에 API 키를 환경변수로 설정하고 삽질했다. 알고 보니 claude.ai Pro 계정이 있으면 그냥 OAuth 로그인으로 쓸 수 있었다. API 키는 직접 API를 코드에서 호출할 때만 필요한 거였다.
+      </div>
+
+      <h2>첫 대화 (2분)</h2>
+
+      <div class="code-label">내 프로젝트 폴더로 이동 후</div>
+      <pre class="code">cd 내-프로젝트-폴더
+claude</pre>
+
+      <p>이게 전부다. Claude Code가 현재 폴더를 자동으로 읽고 대화 모드로 진입한다.</p>
+
+      <div class="code-label">첫 번째 해볼 것</div>
+      <pre class="code">이 폴더 구조를 파악하고 어떤 프로젝트인지 설명해줘.</pre>
+
+      <p>Claude가 실제로 파일들을 열어보고 설명한다. 마법처럼 느껴지는 첫 순간이다.</p>
+
+      <h2>꼭 외울 명령어 5개</h2>
+
+      <table class="compare-table">
+        <thead><tr><th>명령어</th><th>역할</th></tr></thead>
+        <tbody>
+          <tr><td><span class="ic">/clear</span></td><td>대화 컨텍스트 초기화 (새 작업 시작 전)</td></tr>
+          <tr><td><span class="ic">/help</span></td><td>사용 가능한 명령어 전체 목록</td></tr>
+          <tr><td><span class="ic">/status</span></td><td>현재 토큰 사용량 확인</td></tr>
+          <tr><td><span class="ic">Ctrl+C</span></td><td>Claude 응답 즉시 중단</td></tr>
+          <tr><td><span class="ic">Shift+Enter</span></td><td>줄바꿈 (Enter는 전송)</td></tr>
+        </tbody>
+      </table>
+
+      <!-- 퀴즈 -->
+      <div class="quiz-box">
+        <div class="quiz-label">🧪 강의 확인 퀴즈 2</div>
+        <div class="quiz-q">Claude Code를 특정 프로젝트에서 실행하려면 어떻게 해야 하나요?</div>
+        <div class="quiz-opts">
+          <div class="quiz-opt" onclick="checkQ(this,'wrong')">A. claude 뒤에 폴더 경로를 인자로 준다</div>
+          <div class="quiz-opt" onclick="checkQ(this,'correct')">B. 해당 폴더로 cd한 다음 claude를 실행한다</div>
+          <div class="quiz-opt" onclick="checkQ(this,'wrong')">C. Claude.ai 웹사이트에서 폴더를 업로드한다</div>
+          <div class="quiz-opt" onclick="checkQ(this,'wrong')">D. VS Code를 반드시 먼저 설치해야 한다</div>
+        </div>
+        <div class="quiz-feedback" id="qf2"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ━━━━ CHAPTER 3 ━━━━ -->
+  <section class="chapter" id="ch3">
+    <div class="ch-header">
+      <div class="ch-num">Level 1 · 입문 — 3강</div>
+      <h2 class="ch-title">황금 워크플로우<br>Explore → Plan → Code → Commit</h2>
+      <p class="ch-desc">Claude Code를 쓰는 올바른 순서. 이 순서를 무시하면 90%가 실패한다. 우리가 직접 증명했다.</p>
+      <div class="ch-badges">
+        <span class="badge badge-o">핵심 패턴</span>
+        <span class="badge badge-g">실전 예제</span>
+      </div>
+    </div>
+    <div class="ch-body">
+
+      <div class="tip-box">
+        <div class="label">🎯 이 강의 학습 목표</div>
+        ① 4단계 워크플로우를 외우고 순서대로 실행한다<br>
+        ② "탐색 → 계획 확인 → 구현 → 검증"의 이유를 설명한다<br>
+        ③ Plan 모드를 언제 쓰는지 안다
+      </div>
+
+      <blockquote>
+        "Claude Code한테 바로 코딩 시키면 왜 이상한 게 나오냐고? 셰프한테 뭘 원하는지도 말 안 하고 '요리해'라고 하는 거랑 같다."
+      </blockquote>
+
+      <h2>왜 순서가 중요한가</h2>
+
+      <p>처음 Claude Code를 쓸 때 저지르는 실수 1위: "버그 고쳐줘"라고 바로 시킨다. 그러면 Claude가 코드를 뜯어보지도 않고 추측으로 고친다. 틀린다. 다시 고친다. 더 망가진다.</p>
+
+      <div class="story-box" data-tag="실패 경험">
+        시황 AGI 초기 개발 때 이런 일이 있었다. Claude Code에게 "데이터 파이프라인 최적화해줘"라고 했더니, 코드를 제대로 파악하지 않은 채 그냥 수정했다. 관련 없는 파일까지 건드려서 멀쩡했던 모듈이 고장 났다. 1시간 복구했다.<br><br>
+        그 후로 절대로 바로 수정 안 시킨다. <strong>반드시 탐색 먼저.</strong>
+      </div>
+
+      <h2>4단계 황금 워크플로우</h2>
+
+      <div class="step-box">
+        <div class="step-header">올바른 Claude Code 워크플로우</div>
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">Explore — 탐색 (코드 건드리지 마)</div>
+            <div class="step-desc">관련 파일들을 읽고, 구조를 파악하고, 현재 상태를 설명하게 한다. 이 단계에서 Claude는 파일을 수정하면 안 된다.</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">Plan — 계획 확인 (내가 승인해야 다음 단계)</div>
+            <div class="step-desc">"어떤 파일을 어떻게 바꿀 거야?"를 먼저 묻는다. Claude가 계획을 설명하면 내가 확인 후 진행 지시.</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">Code — 구현 (각 변경 후 즉시 검증)</div>
+            <div class="step-desc">계획대로 파일을 수정. 각 주요 변경 후에 테스트 또는 실행으로 즉시 확인.</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <div class="step-title">Commit — 완료 (git commit까지 Claude가)</div>
+            <div class="step-desc">테스트 통과 확인 후 git commit. 커밋 메시지도 Claude가 Conventional Commits 형식으로 작성.</div>
+          </div>
+        </div>
+      </div>
+
+      <h2>실제 프롬프트 — 복붙해서 써라</h2>
+
+      <h3>Step 1: 탐색 프롬프트</h3>
+      <div class="code-label">이걸 먼저 쳐라</div>
+      <pre class="code">[파일명 또는 기능명]이 어떻게 동작하는지 파악해줘.
+관련 파일들 읽어보고 현재 구조 설명해줘.
+지금은 코드 건드리지 마, 분석만.</pre>
+
+      <h3>Step 2: 계획 확인 프롬프트</h3>
+      <div class="code-label">탐색 끝나면</div>
+      <pre class="code">[원하는 변경사항] 구현하려면 어떻게 할 거야?
+어떤 파일을 어떻게 바꿀 건지 계획 먼저 알려줘.
+코드 수정은 내가 OK 하면 시작해.</pre>
+
+      <h3>Step 3: 구현 프롬프트</h3>
+      <div class="code-label">계획 확인 후</div>
+      <pre class="code">OK, 진행해. [파일명]부터 시작해.
+각 파일 수정 후에 잘 돌아가는지 확인하면서 해줘.</pre>
+
+      <h2>/plan 모드 — 더 안전하게</h2>
+
+      <p>복잡한 작업에는 <span class="ic">/plan</span> 모드를 쓴다. 이 모드에서 Claude는 파일을 수정할 수 없다. 계획만 세울 수 있다.</p>
+
+      <div class="code-label">터미널</div>
+      <pre class="code">/plan
+# 이제 Claude는 읽기만 가능, 수정 불가
+# "좋아, 시작해" 하면 일반 모드로 전환</pre>
+
+      <!-- 퀴즈 -->
+      <div class="quiz-box">
+        <div class="quiz-label">🧪 강의 확인 퀴즈 3</div>
+        <div class="quiz-q">새로운 기능을 Claude Code로 구현할 때 첫 번째로 해야 할 것은?</div>
+        <div class="quiz-opts">
+          <div class="quiz-opt" onclick="checkQ(this,'wrong')">A. 바로 "구현해줘"라고 지시한다</div>
+          <div class="quiz-opt" onclick="checkQ(this,'wrong')">B. 기존 코드를 전부 복사해서 붙여넣는다</div>
+          <div class="quiz-opt" onclick="checkQ(this,'correct')">C. 관련 코드 탐색을 시키고 현재 구조를 파악한다</div>
+          <div class="quiz-opt" onclick="checkQ(this,'wrong')">D. git commit을 먼저 한다</div>
+        </div>
+        <div class="quiz-feedback" id="qf3"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ━━━━ CHAPTER 4 ━━━━ -->
+  <section class="chapter" id="ch4">
+    <div class="ch-header">
+      <div class="ch-num">Level 2 · 핵심 — 4강</div>
+      <h2 class="ch-title">CLAUDE.md — AI에게 뇌를 심어라</h2>
+      <p class="ch-desc">Claude는 기본적으로 기억이 없다. 매 세션마다 처음 만나는 사람이다. CLAUDE.md가 그 기억을 만든다.</p>
+      <div class="ch-badges">
+        <span class="badge badge-o">영구 컨텍스트</span>
+        <span class="badge badge-g">실전 템플릿 제공</span>
+      </div>
+    </div>
+    <div class="ch-body">
+
+      <div class="tip-box">
+        <div class="label">🎯 이 강의 학습 목표</div>
+        ① CLAUDE.md의 역할과 위치를 이해한다<br>
+        ② 내 프로젝트에 맞는 CLAUDE.md를 직접 작성한다<br>
+        ③ 다중 CLAUDE.md 배치 전략을 이해한다
+      </div>
+
+      <blockquote>
+        "CLAUDE.md 없이 Claude Code 쓰는 건, 직원을 고용했는데 회사 설명은 안 해주는 것과 같다. 매번 처음부터 설명해야 한다."
+      </blockquote>
+
+      <h2>CLAUDE.md가 뭔가</h2>
+
+      <p>Claude Code가 시작할 때 가장 먼저 찾는 파일이 CLAUDE.md다. 여기에 쓰인 내용은 매 세션마다 자동으로 읽힌다. 한 번 써두면 다시 설명할 필요가 없다.</p>
+
+      <div class="story-box" data-tag="WHY — 실제 불편함">
+        CLAUDE.md 없이 개발하던 초기. 매 세션마다 "이 프로젝트는 FastAPI고, 포트는 8766이고, MASTER.env에 키가 있고, 한국어 경로 때문에 인코딩 주의해야 하고..."를 반복했다. 어느 날 세어보니 매 세션 준비에 5분씩 썼다. 한 달이면 2시간 반이다. CLAUDE.md 쓰는 데 30분 투자해서 2시간 반을 아꼈다.
+      </div>
+
+      <h2>CLAUDE.md 황금 템플릿</h2>
+
+      <div class="code-label">내 프로젝트 루트에 이 파일 만들기</div>
+      <pre class="code"># 프로젝트명 — Claude 행동 지침
+
+## 프로젝트 개요
+- **목적**: [한 줄로 설명]
+- **스택**: Python 3.11 / FastAPI / PostgreSQL
+- **포트**: 8766 (로컬), Render 배포
+
+## 폴더 구조 핵심
+- `api_server/` — 백엔드
+- `frontend/` — React SPA
+- `MASTER.env` — 환경변수 (절대 커밋 금지!)
+
+## 코딩 규칙
+- 주석보다 명확한 함수명 우선
+- try/except 있으면 반드시 로깅
+- 새 기능 전에 기존 테스트 먼저 통과 확인
+
+## ⛔ 금지 사항 (Claude 필독)
+- git push --force 절대 금지
+- .env 파일 내용 출력 금지
+- rm -rf 실행 전 반드시 확인 요청
+
+## 자주 쓰는 명령어
+- 서버 시작: `python local_agent_server.py`
+- 테스트: `pytest tests/ -v`
+- 보안 체크: `python git_security_check.py`
+
+## 과거 실수 — 똑같은 실수 금지
+- [2026-05] 한국어 경로 subprocess 인코딩 오류
+  → 해결: PYTHONUTF8=1 항상 설정
+- [2026-05] MCP 204 빈 응답 파싱 오류
+  → 해결: content 길이 먼저 체크</pre>
+
+      <h2>CLAUDE.md 배치 전략</h2>
+
+      <div class="law-box">
+        <div class="label">📁 어디에 둘까</div>
+        <strong>루트 CLAUDE.md</strong> — 프로젝트 전체 규칙. 항상 로드됨.<br>
+        <strong>하위 폴더 CLAUDE.md</strong> — 해당 폴더 특화 규칙. 그 폴더 작업할 때 추가 로드.<br>
+        예: <span class="ic">api_server/CLAUDE.md</span>에 "이 폴더는 FastAPI 전용" 규칙 따로 관리<br><br>
+        <strong>~/.claude/CLAUDE.md</strong> — 내 모든 프로젝트에 공통 적용. 개인 스타일 정의.
+      </div>
+
+      <div class="warn-box">
+        <div class="label">⚠️ CLAUDE.md에 절대 쓰면 안 되는 것</div>
+        실제 API 키, 비밀번호, OAuth 토큰.<br>
+        CLAUDE.md는 git에 올라가는 파일이다. 키가 노출되면 답 없다.<br>
+        키는 항상 <span class="ic">os.getenv("API_KEY")</span> 로 환경변수에서 가져와라.
+      </div>
+
+      <!-- 퀴즈 -->
+      <div class="quiz-box">
+        <div class="quiz-label">🧪 강의 확인 퀴즈 4</div>
+        <div class="quiz-q">CLAUDE.md에 대한 설명 중 틀린 것은?</div>
+        <div class="quiz-opts">
+          <div class="quiz-opt" onclick="checkQ(this,'wrong')">A. Claude Code 시작 시 자동으로 읽힌다</div>
+          <div class="quiz-opt" onclick="checkQ(this,'wrong')">B. 하위 폴더에도 별도 CLAUDE.md를 둘 수 있다</div>
+          <div class="quiz-opt" onclick="checkQ(this,'correct')">C. API 키를 여기에 저장해두면 Claude가 자동으로 쓴다</div>
+          <div class="quiz-opt" onclick="checkQ(this,'wrong')">D. 코딩 규칙, 금지 사항, 자주 쓰는 명령어를 적는다</div>
+        </div>
+        <div class="quiz-feedback" id="qf4"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ━━━━ CHAPTER 5 ━━━━ -->
+  <section class="chapter" id="ch5">
+    <div class="ch-header">
+      <div class="ch-num">Level 2 · 핵심 — 5강</div>
+      <h2 class="ch-title">MCP — 슈퍼파워 장착</h2>
+      <p class="ch-desc">MCP가 없으면 Claude Code는 코드 폴더 안에만 갇혀 있다. MCP를 달면 DB, GitHub, 브라우저까지 Claude의 손이 된다.</p>
+      <div class="ch-badges">
+        <span class="badge badge-o">MCP 완전 이해</span>
+        <span class="badge badge-g">Supabase · GitHub · Playwright</span>
+      </div>
+    </div>
+    <div class="ch-body">
+
+      <div class="tip-box">
+        <div class="label">🎯 이 강의 학습 목표</div>
+        ① MCP가 뭔지, 어떻게 작동하는지 설명한다<br>
+        ② Supabase, GitHub MCP 중 1개를 직접 연결한다<br>
+        ③ MCP로 가능해지는 것들을 3가지 이상 말한다
+      </div>
+
+      <h2>MCP란 뭐냐</h2>
+
+      <p>Model Context Protocol. 복잡하게 생각할 것 없다. 한 줄 요약:</p>
+
+      <div class="law-box">
+        <div class="label">🔌 MCP 한 줄 정의</div>
+        <strong>Claude에게 외부 서비스를 도구로 연결하는 표준 방법이다.</strong><br><br>
+        MCP 없이: Claude는 내 코드 폴더 안에서만 일한다<br>
+        MCP 있으면: Claude가 직접 DB 쿼리하고, GitHub에 PR 올리고, 브라우저 조작한다
+      </div>
+
+      <div class="story-box" data-tag="실제 경험">
+        Supabase MCP 달고 처음으로 "지난 7일 신규 가입자 수 알려줘"라고 했다. Claude가 직접 SQL 짜서 Supabase에 날리고 결과 가져왔다. 내가 한 건 질문 하나뿐이다. 그 순간 진짜 무서워졌다. 좋은 의미로.
+      </div>
+
+      <h2>MCP 설치 — 명령어 하나로</h2>
+
+      <div class="code-label">터미널 — Supabase MCP 추가</div>
+      <pre class="code">claude mcp add supabase -- npx @supabase/mcp-server-supabase \
+  --access-token 내_Supabase_토큰 \
+  --project-ref 내_프로젝트_ref</pre>
+
+      <div class="code-label">터미널 — GitHub MCP 추가</div>
+      <pre class="code">claude mcp add github -- npx @modelcontextprotocol/server-github \
+  --token 내_GitHub_토큰</pre>
+
+      <div class="code-label">설치된 MCP 확인</div>
+      <pre class="code">claude mcp list</pre>
+
+      <h2>주요 MCP 서버 목록</h2>
+
+      <table class="compare-table">
+        <thead><tr><th>서버</th><th>주요 기능</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Supabase</strong></td><td class="acc">PostgreSQL 쿼리, 마이그레이션, Edge Function 배포</td></tr>
+          <tr><td><strong>GitHub</strong></td><td class="acc">PR 생성, 이슈 조회, 코드 검색, 브랜치 관리</td></tr>
+          <tr><td><strong>Playwright</strong></td><td class="acc">실제 브라우저 조작, 스크린샷, 스크래핑</td></tr>
+          <tr><td><strong>Figma</strong></td><td class="acc">디자인 읽기, Code Connect, 목업 자동 생성</td></tr>
+          <tr><td><strong>Context7</strong></td><td class="acc">최신 라이브러리 공식 문서 실시간 조회</td></tr>
+          <tr><td><strong>Linear</strong></td><td class="acc">이슈 생성, 스프린트 관리, 작업 추적</td></tr>
+        </tbody>
+      </table>
+
+      <h2>설정 파일로 관리하는 법</h2>
+
+      <div class="code-label">~/.claude/settings.json</div>
+      <pre class="code">{
+  "mcpServers": {
+    "supabase": {
+      "command": "npx",
+      "args": [
+        "@supabase/mcp-server-supabase",
+        "--access-token", "sbp_XXXXXXXXXX",
+        "--project-ref", "XXXXXXXXXX"
+      ]
+    },
+    "playwright": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-playwright"]
+    }
+  }
+}</pre>
+
+      <div class="warn-box">
+        <div class="label">⚠️ 주의 — 토큰 보안</div>
+        settings.json에 실제 토큰 값이 들어간다. 이 파일을 git에 올리지 마라.<br>
+        환경변수로 대체하는 방법도 있다 — Anthropic 공식 문서 참고.
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ━━━━ CHAPTER 6 ━━━━ -->
+  <section class="chapter" id="ch6">
+    <div class="ch-header">
+      <div class="ch-num">Level 2 · 핵심 — 6강</div>
+      <h2 class="ch-title">Hooks — 자동화의 끝판왕</h2>
+      <p class="ch-desc">Claude가 뭔가를 할 때마다 자동으로 실행되는 셸 명령어. 이걸 쓰면 진짜 자동화가 된다.</p>
+      <div class="ch-badges">
+        <span class="badge badge-o">자동화 심화</span>
+        <span class="badge badge-g">복붙 레시피 5개</span>
+      </div>
+    </div>
+    <div class="ch-body">
+
+      <div class="tip-box">
+        <div class="label">🎯 이 강의 학습 목표</div>
+        ① Hooks의 5가지 이벤트 타입을 안다<br>
+        ② settings.json에서 Hook을 직접 설정한다<br>
+        ③ 실전에서 쓸 수 있는 Hook 레시피 2개 이상 적용한다
+      </div>
+
+      <h2>Hooks가 뭔가</h2>
+
+      <p>Claude가 파일을 수정할 때, Bash 명령어를 실행할 때, 응답을 완료할 때 — 이 시점에 내가 원하는 셸 명령어를 자동으로 실행할 수 있다. 이게 Hooks다.</p>
+
+      <div class="story-box" data-tag="사용 사례">
+        파일 수정 후 자동으로 테스트가 돌아가게 했다. Claude가 뭔가 고치면 1초 뒤에 테스트 결과가 터미널에 뜬다. 깨진 게 있으면 Claude가 바로 안다. 내가 "테스트 돌려봐" 안 해도 된다. 이게 진짜 자동화다.
+      </div>
+
+      <h2>Hook 이벤트 5가지</h2>
+
+      <table class="compare-table">
+        <thead><tr><th>이벤트</th><th>언제 실행되나</th><th>활용</th></tr></thead>
+        <tbody>
+          <tr><td><span class="ic">PreToolUse</span></td><td>도구 실행 직전</td><td class="acc">위험 명령어 차단, 로그 기록</td></tr>
+          <tr><td><span class="ic">PostToolUse</span></td><td>도구 실행 직후</td><td class="acc">테스트 자동 실행, 린트 체크</td></tr>
+          <tr><td><span class="ic">Notification</span></td><td>알림 발생 시</td><td class="acc">Slack/텔레그램 전송</td></tr>
+          <tr><td><span class="ic">Stop</span></td><td>Claude 응답 완료</td><td class="acc">소리 알림, 자동 커밋</td></tr>
+          <tr><td><span class="ic">SubagentStop</span></td><td>하위 에이전트 완료</td><td class="acc">파이프라인 다음 단계 트리거</td></tr>
+        </tbody>
+      </table>
+
+      <h2>설정 방법</h2>
+
+      <div class="code-label">~/.claude/settings.json</div>
+      <pre class="code">{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "pytest tests/ -x -q 2>&1 | tail -8"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell -c \"[console]::beep(880, 400)\""
+          }
+        ]
+      }
+    ]
+  }
+}</pre>
+
+      <h2>복붙 레시피 5개</h2>
+
+      <h3>① 파일 수정 후 자동 테스트</h3>
+      <div class="code-label">PostToolUse → Edit</div>
+      <pre class="code">"command": "python -m pytest tests/ -x -q 2>&1 | tail -5"</pre>
+
+      <h3>② 작업 완료 시 소리 알림 (Windows)</h3>
+      <div class="code-label">Stop</div>
+      <pre class="code">"command": "powershell -c \"[console]::beep(800,300)\""</pre>
+
+      <h3>③ 텔레그램 알림 전송</h3>
+      <div class="code-label">Stop</div>
+      <pre class="code">"command": "python /tools/telegram_notify.py \"Claude 작업 완료!\""</pre>
+
+      <h3>④ rm -rf 차단 (PreToolUse)</h3>
+      <div class="code-label">PreToolUse → Bash, 보안 스크립트가 종료코드 2 반환 시 차단</div>
+      <pre class="code">"command": "python /tools/bash_safety_check.py"</pre>
+
+      <h3>⑤ 파일 수정 후 git auto-stage</h3>
+      <div class="code-label">PostToolUse → Edit</div>
+      <pre class="code">"command": "git add -u"</pre>
+
+      <div class="tip-box">
+        <div class="label">💡 Hook 실전 원칙</div>
+        Hook 명령어는 <strong>10초 이내</strong>에 끝나야 한다.<br>
+        오래 걸리는 작업은 백그라운드(&amp;)로 빼거나 별도 파이프라인에서 처리.<br>
+        PreToolUse에서 종료코드 2를 반환하면 해당 Claude 동작이 차단된다.
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ━━━━ CHAPTER 7 ━━━━ -->
+  <section class="chapter" id="ch7">
+    <div class="ch-header">
+      <div class="ch-num">Level 3 · 고급 — 7강</div>
+      <h2 class="ch-title">Subagents — AI 팀 구성</h2>
+      <p class="ch-desc">Claude 혼자보다 Claude 여럿이 훨씬 강하다. 오케스트레이터가 팀을 지휘하면 작업이 병렬로 돌아간다.</p>
+      <div class="ch-badges">
+        <span class="badge badge-o">멀티에이전트</span>
+        <span class="badge badge-g">병렬 처리 패턴</span>
+        <span class="badge badge-d">Agent SDK</span>
+      </div>
+    </div>
+    <div class="ch-body">
+
+      <div class="tip-box">
+        <div class="label">🎯 이 강의 학습 목표</div>
+        ① 오케스트레이터 - 서브에이전트 관계를 이해한다<br>
+        ② Claude Code에서 병렬 처리 프롬프트를 쓸 수 있다<br>
+        ③ Agent SDK의 존재와 기본 패턴을 안다
+      </div>
+
+      <blockquote>
+        "시황 AGI의 26라운드 루프를 Claude 하나가 처리하면 몇 시간이 걸린다. 멀티에이전트로 병렬화하니까 1시간 안에 끝난다."
+      </blockquote>
+
+      <h2>오케스트레이터 패턴</h2>
+
+      <p>Claude A (오케스트레이터)가 전체 목표를 이해하고 작업을 나눠서 여러 Claude B, C, D에게 위임한다. 각 서브에이전트는 독립된 컨텍스트에서 자기 일만 한다. 다 끝나면 오케스트레이터가 결과를 종합한다.</p>
+
+      <div class="tip-box">
+        <div class="label">🤖 에이전트 계층 구조</div>
+        <strong>오케스트레이터</strong> — 목표 이해 → 작업 분해 → 위임 → 결과 종합<br>
+        <strong>서브에이전트 A</strong> — 프론트엔드 코드 리뷰<br>
+        <strong>서브에이전트 B</strong> — 백엔드 보안 검토<br>
+        <strong>서브에이전트 C</strong> — DB 쿼리 최적화<br><br>
+        각 에이전트는 <em>격리된 컨텍스트</em>에서 실행 → 메인 컨텍스트 오염 없음
+      </div>
+
+      <h2>Claude Code에서 병렬 작업 시키는 법</h2>
+
+      <div class="code-label">오케스트레이터 프롬프트 예시</div>
+      <pre class="code">다음 3가지를 병렬로 처리해줘:
+1. api_server/ 보안 취약점 검토 (에이전트 1)
+2. frontend/ 성능 최적화 포인트 분석 (에이전트 2)
+3. tests/ 커버리지 분석 (에이전트 3)
+
+각각 독립적으로 분석하고, 끝나면 종합 보고서 만들어줘.</pre>
+
+      <h2>Agent SDK — 코드로 팀 구성</h2>
+
+      <p>Anthropic Agent SDK를 쓰면 멀티에이전트 시스템을 코드로 만들 수 있다. 이게 JANDA 시황 AGI의 핵심이다.</p>
+
+      <div class="code-label">Python — Agent SDK 기본 패턴</div>
+      <pre class="code">import anthropic
+
+client = anthropic.Anthropic()
+
+# 오케스트레이터: 두 서브에이전트에게 병렬 위임
+def run_agents(task: str):
+    # 서브에이전트 1: 코드 리뷰
+    review = client.messages.create(
+        model="claude-haiku-4-5-20251001",  # 빠르고 저렴한 모델
+        max_tokens=1024,
+        system="코드 리뷰 전문가. 버그와 보안 취약점만 찾아.",
+        messages=[{"role": "user", "content": task}]
+    )
+
+    # 서브에이전트 2: 개선안 작성
+    solution = client.messages.create(
+        model="claude-sonnet-4-6",
+        max_tokens=2048,
+        system="개선안 작성 전문가. 구체적 코드 제시.",
+        messages=[
+            {"role": "user", "content": task},
+            {"role": "assistant", "content": review.content[0].text},
+            {"role": "user", "content": "위 리뷰를 바탕으로 개선된 코드를 작성해줘"}
+        ]
+    )
+    return solution.content[0].text</pre>
+
+      <div class="story-box" data-tag="JANDA 실전">
+        시황 AGI에서 자가코딩 루프를 만들 때 이 패턴을 썼다. "진단 에이전트 → 패치 에이전트 → 검증 에이전트"로 파이프라인을 구성했다. 진단이 끝나야 패치가 시작되고, 패치 후 반드시 검증이 돌아간다. 검증 실패하면 자동 롤백. 이게 매일 밤 혼자 돌아간다.
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ━━━━ CHAPTER 8 ━━━━ -->
+  <section class="chapter" id="ch8">
+    <div class="ch-header">
+      <div class="ch-num">Level 3 · 고급 — 8강</div>
+      <h2 class="ch-title">API로 직접 연동하기<br>봇과 SaaS 만들기</h2>
+      <p class="ch-desc">CLI를 넘어서, 내 앱 안에 Claude를 넣는 법. 텔레그램 봇부터 SaaS 제품까지.</p>
+      <div class="ch-badges">
+        <span class="badge badge-o">API 개발</span>
+        <span class="badge badge-g">Python 예제</span>
+      </div>
+    </div>
+    <div class="ch-body">
+
+      <div class="tip-box">
+        <div class="label">🎯 이 강의 학습 목표</div>
+        ① Anthropic Python SDK로 메시지를 보내고 받는다<br>
+        ② 모델별 용도와 비용 차이를 이해한다<br>
+        ③ Tool Use (함수 호출) 패턴의 구조를 안다
+      </div>
+
+      <h2>SDK 설치</h2>
+
+      <div class="code-label">터미널</div>
+      <pre class="code">pip install anthropic python-dotenv</pre>
+
+      <h2>기본 메시지 전송</h2>
+
+      <div class="code-label">Python</div>
+      <pre class="code">import anthropic
+import os
+from dotenv import load_dotenv
+
+load_dotenv("MASTER.env")
+
+client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+
+response = client.messages.create(
+    model="claude-sonnet-4-6",     # 기본 모델
+    max_tokens=1024,
+    system="한국어로만 답해.",
+    messages=[
+        {"role": "user", "content": "오늘 블로그 제목 3개 만들어줘. JSON 배열로."}
+    ]
+)
+
+print(response.content[0].text)</pre>
+
+      <h2>모델 선택 — 언제 뭘 쓸까</h2>
+
+      <table class="compare-table">
+        <thead><tr><th>모델</th><th>언제 쓰나</th><th>비용</th></tr></thead>
+        <tbody>
+          <tr><td>claude-haiku-4-5-20251001</td><td class="acc">분류, 스코어링, 짧은 응답, 고속 처리</td><td>가장 저렴</td></tr>
+          <tr><td>claude-sonnet-4-6</td><td class="acc">일반 개발, 분석, 긴 응답 (기본값)</td><td>중간</td></tr>
+          <tr><td>claude-opus-4-7</td><td>전략적 판단, 복잡한 추론</td><td>가장 비쌈</td></tr>
+        </tbody>
+      </table>
+
+      <div class="warn-box">
+        <div class="label">💰 토큰 절약 원칙 (JANDA 운영 기준)</div>
+        대부분 Sonnet 4.6 고정. Haiku는 스코어링·분류·짧은 응답 전용.<br>
+        Opus 4.7은 월 예산 고려해서 꼭 필요할 때만. "더 좋은 답변"을 위해 쓰면 안 됨.
+      </div>
+
+      <h2>스트리밍 응답</h2>
+
+      <div class="code-label">Python — 글자가 실시간으로 출력됨</div>
+      <pre class="code">with client.messages.stream(
+    model="claude-sonnet-4-6",
+    max_tokens=2048,
+    messages=[{"role": "user", "content": "긴 보고서 작성해줘"}]
+) as stream:
+    for text in stream.text_stream:
+        print(text, end="", flush=True)</pre>
+
+      <h2>Tool Use — Claude에게 함수 주기</h2>
+
+      <div class="code-label">Python — 외부 API 호출 도구 등록</div>
+      <pre class="code">tools = [{
+    "name": "search_naver_local",
+    "description": "네이버 지역 검색 API로 업체 정보 검색",
+    "input_schema": {
+        "type": "object",
+        "properties": {
+            "query": {"type": "string", "description": "검색어 (예: 강남 스터디카페)"}
+        },
+        "required": ["query"]
+    }
+}]
+
+response = client.messages.create(
+    model="claude-sonnet-4-6",
+    max_tokens=512,
+    tools=tools,
+    messages=[{"role": "user", "content": "강남 필라테스 업체 찾아줘"}]
+)
+
+# Claude가 tool_use 블록 반환하면 실제 함수 실행
+for block in response.content:
+    if block.type == "tool_use":
+        result = search_naver_local(block.input["query"])
+        # 결과를 다시 Claude에게 전달해서 요약시킴</pre>
+
+      <div class="story-box" data-tag="실전 활용">
+        정글부킹 리드 수집기(jungle_lead_collector.py)가 딱 이 패턴이다. Claude Haiku가 네이버 API 검색 결과를 받아서 "이 업체가 예약 SaaS 구독할 가능성"을 0~100으로 스코어링한다. 전 세그먼트 300개 업체를 한 번에 평가. 사람이 하면 며칠 걸릴 일이다.
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ━━━━ CHAPTER 9 ━━━━ -->
+  <section class="chapter" id="ch9">
+    <div class="ch-header">
+      <div class="ch-num">Level 4 · 실전 — 9강</div>
+      <h2 class="ch-title">JANDA AGI 구축기<br>진짜로 만들어본 사람의 이야기</h2>
+      <p class="ch-desc">Claude Code를 실제로 6개월 쓴 결과. 구체적인 숫자와 구체적인 코드로 이야기한다.</p>
+      <div class="ch-badges">
+        <span class="badge badge-o">실제 케이스</span>
+        <span class="badge badge-g">숫자로 증명</span>
+        <span class="badge badge-d">자가코딩 AGI</span>
+      </div>
+    </div>
+    <div class="ch-body">
+
+      <blockquote>
+        "외주 개발비로 월 300만 원 썼다. Claude Code 도입 후 API 비용은 월 5만 원. 생산량은 3배다."
+      </blockquote>
+
+      <h2>우리가 만든 것들</h2>
+
+      <div class="law-box">
+        <div class="label">📊 Claude Code로 만든 시스템 목록</div>
+        <strong>봇 11개:</strong> 유튜브 자동댓글봇 / 이메일 마케팅봇 / 글쓰기봇 / 인사이트헌터 / KISA 보안봇 / 쇼츠 파이프라인 봇 / 전자책봇 / 텔레그램 에이전트봇 / 롱폼영상봇 / API 비용모니터봇 / 정글부킹 리드수집봇<br><br>
+        <strong>에이전트 시스템:</strong> 시황 AGI (26라운드 자가코딩 루프) / 멀티에이전트 오케스트레이터 / Knowledge RAG 봇<br><br>
+        <strong>SaaS 제품:</strong> AITF API (17개 상품, 48 엔드포인트) / 정글부킹 예약 시스템<br><br>
+        <strong>코드베이스:</strong> 50,000줄+ (개발자 1명이 6개월에)
+      </div>
+
+      <h2>시황 AGI — 자가코딩의 구현</h2>
+
+      <p>시황 AGI는 매일 밤 00:30에 혼자 시작해서 스스로 코드를 개선하고 07:00에 끝난다. 사람은 아무것도 안 해도 된다.</p>
+
+      <div class="step-box">
+        <div class="step-header">26라운드 자가코딩 루프 (매일 밤)</div>
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">자가 진단 (sihwang_self_director.py)</div>
+            <div class="step-desc">현재 코드 상태 분석 → 개선 포인트 3개 도출 → LLM-as-Judge로 자기 평가 → Learnings.json에 교훈 저장</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">코드 패치 생성 (sihwang_code_patcher.py)</div>
+            <div class="step-desc">Confidence 65점 이상 패치만 선별 → 전체 파일 읽기 → import 의존성 확인 → 패치 코드 생성</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">subprocess 검증</div>
+            <div class="step-desc">실제 Python으로 패치된 코드 실행 → 에러 없으면 적용 → 에러 있으면 .bak 파일로 롤백</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <div class="step-title">git 체크포인트</div>
+            <div class="step-desc">성공 패치마다 git commit 자동 생성 → 7라운드마다 git push → _code_patcher_log.json에 히스토리</div>
+          </div>
+        </div>
+      </div>
+
+      <h2>CLAUDE.md가 전부를 가능케 했다</h2>
+
+      <div class="code-label">02_AI_에이전트_연구소/에이전트_개발/CLAUDE.md 핵심</div>
+      <pre class="code">## 시황 AGI 파일 안전 규칙 (v3.3 — 2026-05-14)
+
+| 규칙 | 내용 |
+|------|------|
+| confidence < 55 | 스킵 — 스코프 축소 재시도 1회 |
+| 쿨다운 기준 | 마지막 시도 기준 1시간 (반복 방지) |
+| import 검증 | subprocess 실행 후 반영 |
+| overnight 수정 | code_patcher 통해서만, 직접 수정 금지 |
+| 목표 성공률 | 100% — 모든 유효 시도는 patched=True</pre>
+
+      <p>이 규칙들이 CLAUDE.md에 있어서 매 세션마다 Claude에게 주입된다. AI가 AI 코드를 수정할 때 지켜야 할 안전 프로토콜이다.</p>
+
+      <h2>핵심 교훈 — 6개월 후 돌아보며</h2>
+
+      <div class="tip-box">
+        <div class="label">💡 실전에서 얻은 교훈</div>
+        <strong>1. CLAUDE.md 먼저 써라.</strong> 개발 시작 전에 30분 투자하면 수십 시간을 아낀다.<br><br>
+        <strong>2. 검증 없이 적용하지 마라.</strong> subprocess로 실제 실행해보는 검증 단계가 없으면 자동화가 화근이 된다.<br><br>
+        <strong>3. 롤백 먼저 설계해라.</strong> .bak 파일 자동 생성, git commit 단위 체크포인트가 없으면 야간 루프는 못 믿는다.<br><br>
+        <strong>4. 작게 시작해라.</strong> 봇 1개부터 시작했다. 11개는 6개월 동안 하나씩 쌓인 것이다.
+      </div>
+
+      <div class="cta-box">
+        <span class="cta-badge">AITF API · 17개 AI 상품</span>
+        <h3>Claude Code로 만든 AI API를 지금 바로 써보세요</h3>
+        <p>JANDA가 Claude Code로 직접 구축한 17개 AI API 상품. 콘텐츠 자동화부터 보안 가드까지. $10,000 크레딧 제공 중.</p>
+        <div class="cta-features">
+          <span>콘텐츠 엔진</span>
+          <span>이메일 시퀀스</span>
+          <span>영상 대본</span>
+          <span>트렌드 레이더</span>
+          <span>보안 가드</span>
+        </div>
+        <a href="https://aitf-api.onrender.com" class="cta-btn">AITF API 시작하기 →</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ━━━━ CHAPTER 10 ━━━━ -->
+  <section class="chapter" id="ch10">
+    <div class="ch-header">
+      <div class="ch-num">Level 4 · 실전 — 10강</div>
+      <h2 class="ch-title">수료 & 다음 단계<br>이제 뭘 하면 되는가</h2>
+      <p class="ch-desc">이 책을 완주한 당신. Anthropic 공식 Skilljar 수료 인증을 받고, 첫 프로젝트를 시작할 차례다.</p>
+      <div class="ch-badges">
+        <span class="badge badge-o">수료 가이드</span>
+        <span class="badge badge-g">Skilljar 18개 코스</span>
+      </div>
+    </div>
+    <div class="ch-body">
+
+      <p>이 책을 읽었다면 이미 준비는 됐다. 이제 실제로 해보는 것만 남았다. 아는 것과 해본 것 사이의 간격을 채우는 데는 첫 번째 프로젝트가 제일 빠르다.</p>
+
+      <h2>Anthropic Skilljar 공식 수료 과정</h2>
+
+      <p>Anthropic은 <strong>anthropic.skilljar.com</strong>에서 공식 AI 학습 과정을 운영한다. 18개 코스, 전부 무료. 코스를 완료하면 수료 인증서가 발급된다.</p>
+
+      <div class="step-box">
+        <div class="step-header">Skilljar 수료 단계</div>
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">accounts.skilljar.com 가입</div>
+            <div class="step-desc">이메일 계정으로 가입 → anthropic.skilljar.com에서 코스 탐색</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">Claude Code 코스 순서대로 수강</div>
+            <div class="step-desc">Claude Code 101 → 기본 기능 → 고급 활용 → Agent Development 순서 권장</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">각 코스 완료 → 수료증 다운로드</div>
+            <div class="step-desc">코스 영상 완시청 + 퀴즈 통과 → PDF 수료증 발급 → LinkedIn 자격증 섹션에 추가</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <div class="step-title">포트폴리오 프로젝트 1개 완성</div>
+            <div class="step-desc">Claude Code로 실제 돌아가는 무언가를 하나 만들어라. GitHub에 올리면 더 좋다.</div>
+          </div>
+        </div>
+      </div>
+
+      <h2>지금 당장 시작할 3가지 프로젝트</h2>
+
+      <div class="tip-box">
+        <div class="label">🚀 레벨별 첫 프로젝트 추천</div>
+        <strong>Lv.1 (입문):</strong> CLAUDE.md를 내 현재 프로젝트에 추가하고, Claude Code로 버그 1개 고치기<br><br>
+        <strong>Lv.2 (중급):</strong> GitHub MCP 연결 → 매일 아침 자동으로 이슈 목록 정리하는 스크립트 만들기<br><br>
+        <strong>Lv.3 (고급):</strong> Hooks 설정 → 파일 수정 후 자동 테스트 실행 + 텔레그램 알림까지 연결
+      </div>
+
+      <h2>Claude Code 생태계 — 앞으로</h2>
+
+      <div class="law-box">
+        <div class="label">🔮 2026~2027 트렌드 전망</div>
+        • <strong>MCP 표준화:</strong> GitHub, Slack, Notion 등 주요 서비스들이 공식 MCP 서버 제공 예정<br>
+        • <strong>자율 에이전트 확산:</strong> SWE-bench 90% 이상 달성 모델 등장 예고<br>
+        • <strong>AI 숙련도 = 취업 핵심 역량:</strong> Claude Code 경험자 채용 수요 급증 중<br>
+        • <strong>1인 팀의 시대:</strong> Claude Code + 적절한 인프라 = 5인 팀 생산성
+      </div>
+
+      <hr class="divider">
+
+      <div class="cert-banner">
+        <div class="cert-icon">🎓</div>
+        <h3>Claude Code 마스터 수료</h3>
+        <p>10강을 완주한 당신은 국내에서 Claude Code를 제대로 이해하는 소수에 속한다.<br>지금 Anthropic Skilljar에서 공식 인증을 받으세요. 무료다.</p>
+        <div class="cert-steps">
+          <div class="cert-step"><strong>10강</strong>완독 완료</div>
+          <div class="cert-step"><strong>Skilljar</strong>공식 코스</div>
+          <div class="cert-step"><strong>수료증</strong>LinkedIn 게시</div>
+          <div class="cert-step"><strong>첫 프로젝트</strong>실전 시작</div>
+        </div>
+        <a href="https://anthropic.skilljar.com" class="cert-btn">Skilljar 수료 시작하기 →</a>
+      </div>
+
+      <!-- 최종 퀴즈 -->
+      <div class="quiz-box" style="margin-top:48px">
+        <div class="quiz-label">🏆 최종 확인 퀴즈</div>
+        <div class="quiz-q">Claude Code를 제대로 쓰는 순서로 맞는 것은?</div>
+        <div class="quiz-opts">
+          <div class="quiz-opt" onclick="checkQ(this,'wrong')">A. 바로 코딩 → 테스트 → 커밋</div>
+          <div class="quiz-opt" onclick="checkQ(this,'correct')">B. 탐색(Explore) → 계획(Plan) → 코딩(Code) → 커밋(Commit)</div>
+          <div class="quiz-opt" onclick="checkQ(this,'wrong')">C. CLAUDE.md 작성 → 바로 커밋 → 탐색</div>
+          <div class="quiz-opt" onclick="checkQ(this,'wrong')">D. MCP 설치 → Hooks → 바로 코딩</div>
+        </div>
+        <div class="quiz-feedback" id="qff"></div>
+      </div>
+
+      <p style="text-align:center;color:var(--muted);font-size:.9rem;margin-top:48px;line-height:1.8">
+        Claude Code 바이블 2026 — AITF 발행<br>
+        Anthropic Skilljar 공식 커리큘럼 기반<br>
+        문의: dev@stayjanda.com
+      </p>
+
+    </div>
+  </section>
+
+</main>
+
+<script>
+  // ── 퀴즈 ──
+  const qAnswers = { qf1:'정답!', qf2:'맞아요!', qf3:'정확해요!', qf4:'정답! API 키는 os.getenv()로. 절대 CLAUDE.md에 쓰면 안 됩니다.', qff:'완벽해요! 황금 워크플로우를 잊지 마세요.' };
+  function checkQ(el, type) {
+    const box = el.parentElement;
+    box.querySelectorAll('.quiz-opt').forEach(o => o.classList.remove('correct','wrong'));
+    el.classList.add(type);
+    const fb = box.nextElementSibling;
+    fb.classList.add('show', type === 'correct' ? 'ok' : 'no');
+    const id = fb.id;
+    fb.textContent = type === 'correct' ? '✅ ' + (qAnswers[id] || '정답입니다!') : '❌ 다시 생각해보세요. 정답은 C입니다.';
+  }
+
+  // ── 사이드바 토글 ──
+  function toggleSidebar() {
+    const sb = document.getElementById('sidebar');
+    const tg = document.getElementById('sidebar-toggle');
+    sb.classList.toggle('collapsed');
+    tg.classList.toggle('collapsed');
+    document.body.classList.toggle('sidebar-collapsed');
+    tg.textContent = sb.classList.contains('collapsed') ? '❯' : '❮';
+    document.getElementById('top-progress').style.left = sb.classList.contains('collapsed') ? '0' : 'var(--sidebar)';
+    localStorage.setItem('sb', sb.classList.contains('collapsed') ? '0' : '1');
+  }
+
+  // ── 챕터 이동 ──
+  const CHAPTERS = ['ch0','ch1','ch2','ch3','ch4','ch5','ch6','ch7','ch8','ch9','ch10'];
+  const LABELS   = ['표지','1강. Claude Code가 뭔데?','2강. 설치 & 첫 대화','3강. 황금 워크플로우','4강. CLAUDE.md — AI의 뇌','5강. MCP — 슈퍼파워 장착','6강. Hooks — 자동화의 끝','7강. Subagents — AI 팀 구성','8강. API로 직접 연동','9강. JANDA AGI 구축기','10강. 수료 & 다음 단계'];
+
+  function goChapter(id) {
+    document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    updateActive(id);
+    if (window.innerWidth <= 768) document.getElementById('sidebar').classList.remove('mobile-open');
+  }
+
+  function updateActive(id) {
+    document.querySelectorAll('.toc-item').forEach(el => el.classList.remove('active'));
+    const idx = CHAPTERS.indexOf(id);
+    document.querySelectorAll('.toc-item')[idx]?.classList.add('active');
+    document.getElementById('current-chapter-label').textContent = LABELS[idx] || '';
+  }
+
+  // ── 스크롤 ──
+  window.addEventListener('scroll', () => {
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = total > 0 ? Math.round(window.scrollY / total * 100) : 0;
+    document.getElementById('top-progress').style.width = pct + '%';
+    document.getElementById('progress-fill').style.width = pct + '%';
+    document.getElementById('progress-pct').textContent = pct + '%';
+    let cur = CHAPTERS[0];
+    for (const id of CHAPTERS) {
+      const el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top <= 80) cur = id;
+    }
+    updateActive(cur);
+  }, { passive: true });
+
+  // ── 초기화 ──
+  (function(){
+    if (localStorage.getItem('sb') === '0') {
+      document.getElementById('sidebar').classList.add('collapsed');
+      document.getElementById('sidebar-toggle').classList.add('collapsed');
+      document.getElementById('sidebar-toggle').textContent = '❯';
+      document.body.classList.add('sidebar-collapsed');
+      document.getElementById('top-progress').style.left = '0';
+    }
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    document.addEventListener('keydown', e => {
+      if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && ['I','J','C'].includes(e.key)) || (e.ctrlKey && e.key === 'U')) e.preventDefault();
+    });
+  })();
+</script>
+</body>
+</html>
