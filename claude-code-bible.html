@@ -1603,6 +1603,32 @@ Windows 작업 스케줄러 또는 Linux cron 설정 방법 알려줘.
 [예상 스키마]대로 오는지 검증하는 코드 추가해줘.
 이상한 값 들어오면 로그 찍고 건너뛰도록.</pre>
 
+      <hr class="divider">
+
+      <h2>⌨️ 슬래시 명령어 전체 목록</h2>
+
+      <p>Claude Code 대화 중 언제든 입력할 수 있는 명령어들이다. 이 표 하나면 다 된다.</p>
+
+      <table class="compare-table">
+        <thead><tr><th>명령어</th><th>언제 쓰나</th><th>설명</th></tr></thead>
+        <tbody>
+          <tr><td>/help</td><td>처음 쓸 때</td><td>사용 가능한 명령어 전체 목록 보기</td></tr>
+          <tr><td>/clear</td><td>새 작업 시작 전</td><td>대화 컨텍스트 완전 초기화 (비용·품질 리셋)</td></tr>
+          <tr><td>/compact</td><td>대화가 길어질 때</td><td>대화를 요약본으로 압축. 흐름 유지하면서 토큰 절약</td></tr>
+          <tr><td>/context</td><td>컨텍스트 확인</td><td>현재 남은 컨텍스트 윈도우 사용량 확인</td></tr>
+          <tr><td>/model</td><td>모델 바꿀 때</td><td>Opus / Sonnet / Haiku 전환</td></tr>
+          <tr><td>/config</td><td>설정 확인</td><td>현재 설정 상태 표시</td></tr>
+          <tr><td>/cost</td><td>비용 확인</td><td>현재 세션 토큰 사용량 및 비용 확인</td></tr>
+          <tr><td>/quit · /exit</td><td>종료</td><td>Claude Code 종료</td></tr>
+        </tbody>
+      </table>
+
+      <div class="tip-box">
+        <div class="label">💡 /compact vs /clear — 헷갈리면 이 기준만 기억해라</div>
+        <strong>/clear</strong> — 작업이 바뀔 때. 이전 내용이 새 작업에 방해가 될 때.<br>
+        <strong>/compact</strong> — 같은 작업인데 대화가 너무 길어졌을 때. 흐름은 유지하고 싶을 때.
+      </div>
+
     </div>
   </section>
 
@@ -1784,6 +1810,41 @@ token*.pickle</pre>
         <strong>1. 컨텍스트가 길어지면 /clear하고 재시작</strong> — 오래된 컨텍스트는 품질 떨어진다<br>
         <strong>2. Haiku로 될 것에 Sonnet 쓰지 마라</strong> — 스코어링·분류는 Haiku로 충분<br>
         <strong>3. 탐색 프롬프트는 짧게</strong> — "이 폴더 전체 읽어봐" 대신 "auth.py만 읽어봐"
+      </div>
+
+      <!-- 실수 11 -->
+      <h2>실수 #11 — Claude가 루프에 빠졌을 때 방치하기</h2>
+
+      <div class="story-box" data-tag="실제 사례">
+        "이 버그 고쳐줘" → Claude가 고쳤다 → "아직도 안 돼" → 또 고쳤다 → "아직도 안 돼" → 10번 반복. 전부 시간과 토큰 낭비였다. 3번 이상 같은 패턴이 반복된다면 접근법이 잘못된 거다.
+      </div>
+
+      <div class="tip-box">
+        <div class="label">✅ 루프 탈출 3단계</div>
+        <strong>1단계 —</strong> /clear로 컨텍스트 초기화. 오염된 대화 흐름 끊기.<br>
+        <strong>2단계 —</strong> 문제를 다시 정의. "뭐가 안 되는지" → "어떤 상태를 원하는지"로.<br>
+        <strong>3단계 —</strong> 단위를 쪼개라. "전체 고쳐줘" → "이 한 줄이 왜 이렇게 동작하는지 설명해줘"로.
+      </div>
+
+      <div class="warn-box">
+        <div class="label">⚠️ 루프 진입 신호 3가지</div>
+        ① Claude가 같은 코드 수정을 계속 반복한다<br>
+        ② 이미 시도한 방법을 다시 제안한다<br>
+        ③ 대화가 30턴을 넘었는데 같은 문제가 계속된다
+      </div>
+
+      <!-- 실수 12 -->
+      <h2>실수 #12 — 컨텍스트 창 고갈 모르고 계속하기</h2>
+
+      <div class="story-box" data-tag="실제 사례">
+        대화가 한참 이어졌다. Claude 답변이 점점 이상해졌다. 초반에 정한 규칙이랑 다르게 동작했다. 컨텍스트가 꽉 차서 초반 내용이 잘려 나간 것이었다. /clear 한 번으로 바로 해결됐다.
+      </div>
+
+      <div class="tip-box">
+        <div class="label">💡 컨텍스트 관리 원칙</div>
+        <strong>/context</strong> — 현재 사용량 확인. 80% 넘으면 /compact 또는 /clear.<br>
+        <strong>CLAUDE.md</strong> — 핵심 규칙 적어두면 컨텍스트가 잘려도 다시 읽어서 복구됨.<br>
+        <strong>긴 작업은 세션을 쪼개라</strong> — "1단계 완료, 커밋" → 새 세션 시작이 오히려 품질이 더 높다.
       </div>
 
       <!-- 실수 10 -->
@@ -1998,6 +2059,108 @@ jobs:
           # PR diff를 Claude API로 보내서 리뷰 코멘트 자동 생성
           # anthropic SDK + GitHub API 조합
           python scripts/ai_review.py</pre>
+
+      <hr class="divider">
+
+      <h2>🔒 Part D — 보안 실전 가이드</h2>
+
+      <p>Claude Code를 많이 쓸수록 보안 실수 확률도 올라간다. .env를 조심하는 건 기본이고, 이것들도 챙겨라.</p>
+
+      <div class="warn-box">
+        <div class="label">⚠️ CLAUDE.md에 절대 쓰면 안 되는 것들</div>
+        CLAUDE.md는 git에 올라간다. 아래 항목은 절대 넣지 마라:<br><br>
+        ❌ API 키 실제 값 (예: sk-ant-xxxxx)<br>
+        ❌ 데이터베이스 비밀번호, OAuth 토큰<br>
+        ❌ 내부 서버 IP, 도메인<br><br>
+        ✅ 대신: "API 키는 MASTER.env에서 로드. 절대 하드코딩 금지."
+      </div>
+
+      <div class="code-label">Claude Code에게 보안 스캔 시키기</div>
+      <pre class="code">이 프로젝트 전체 스캔해줘.
+하드코딩된 API 키, 비밀번호, 토큰 있는지 찾아줘.
+실제 값은 출력하지 마, 파일명과 라인 번호만 알려줘.</pre>
+
+      <div class="law-box">
+        <div class="label">🔑 Claude Code 보안 체크리스트</div>
+        □ .gitignore에 .env, MASTER.env, *.pickle 포함 여부 확인<br>
+        □ git add 전 git status로 민감 파일 없는지 확인<br>
+        □ pre-commit hook으로 자동 차단 설정 (Part C 참고)<br>
+        □ CLAUDE.md에 실제 키 값이 없는지 확인
+      </div>
+
+      <hr class="divider">
+
+      <h2>👥 Part E — 팀 협업 가이드</h2>
+
+      <p>혼자 쓸 때랑 팀에서 쓸 때는 다르다. CLAUDE.md를 공유하면 팀 전체가 같은 컨텍스트로 작업할 수 있다.</p>
+
+      <div class="tip-box">
+        <div class="label">📋 팀용 CLAUDE.md 필수 항목</div>
+        <strong>프로젝트 목적</strong> — 새 팀원이 바로 이해할 수 있게<br>
+        <strong>코딩 컨벤션</strong> — 변수명, 파일 구조, 임포트 순서<br>
+        <strong>금지 사항</strong> — "이 파일 건드리지 마", "이 API 직접 호출 금지"<br>
+        <strong>공통 패턴</strong> — 팀이 자주 쓰는 스니펫, 설계 패턴
+      </div>
+
+      <div class="code-label">팀용 CLAUDE.md 예시</div>
+      <pre class="code"># 팀 프로젝트 CLAUDE.md
+
+## 코딩 원칙
+- Python 함수는 snake_case
+- API 응답은 항상 TypedDict로 타입 명시
+- 에러는 반드시 로깅 후 raise
+
+## 절대 건드리지 말 것
+- db/migrations/ — DBA만 수정
+- auth/jwt.py — 보안팀 승인 후 수정
+
+## PR 규칙
+커밋 메시지: feat/fix/refactor/docs 중 선택
+PR 단위: 기능 1개, 파일 변경 5개 이하
+
+## 환경변수
+모든 키는 .env.example 참고. 실제 값은 팀 노션에서 발급.</pre>
+
+      <div class="story-box" data-tag="팀 협업 팁">
+        PR 리뷰 때도 CLAUDE.md가 힘을 발휘한다. "이 코드가 우리 팀 컨벤션에 맞는지 CLAUDE.md 보고 확인해줘"라고 하면 Claude가 팀 기준으로 리뷰한다. 리뷰어 부담이 절반으로 줄어든다.
+      </div>
+
+      <hr class="divider">
+
+      <h2>🪟 Part F — Windows 특화 팁</h2>
+
+      <p>Claude Code 튜토리얼 대부분이 Mac/Linux 기준이다. Windows에서 쓰다 보면 예상치 못한 곳에서 막힌다. 국내 사용자라면 반드시 알아야 할 것들이다.</p>
+
+      <div class="warn-box">
+        <div class="label">⚠️ Windows에서 자주 막히는 것들</div>
+        <strong>경로 구분자</strong> — Windows는 \, Linux·Mac은 /. Python에서는 <code>Path()</code> 쓰면 자동 처리.<br>
+        <strong>한글 인코딩</strong> — 터미널이 CP949면 한글이 깨진다. PowerShell 실행 후:<br>
+        <code>$OutputEncoding = [Console]::OutputEncoding = [System.Text.Encoding]::UTF8</code><br>
+        <strong>줄바꿈 문자</strong> — Windows는 CRLF, Linux는 LF. git diff에서 이상하게 보일 때 .gitattributes로 해결.
+      </div>
+
+      <div class="code-label">Windows PowerShell — claude 실행 전 필수 설정</div>
+      <pre class="code"># 한글 깨짐 방지
+$OutputEncoding = [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+
+# Node.js 버전 확인 (v18 이상 필요)
+node --version
+
+# Claude Code 실행
+claude</pre>
+
+      <div class="code-label">.gitattributes — 줄바꿈 통일 (팀 협업 시 필수)</div>
+      <pre class="code">* text=auto
+*.py text eol=lf
+*.js text eol=lf
+*.json text eol=lf</pre>
+
+      <div class="tip-box">
+        <div class="label">💡 Windows 사용자 추천 설정</div>
+        <strong>WSL2</strong> — Windows 안에 Linux 환경 설치. Claude Code가 Linux 기준이라 WSL2에서 훨씬 안정적으로 돌아간다.<br>
+        <strong>Windows Terminal</strong> — 기본 PowerShell 대신 사용. 탭, 폰트, 색상 모두 개선됨.<br>
+        <strong>Python 실행</strong> — python이 안 되면 py 또는 python3 시도.
+      </div>
 
       <div class="quiz-box">
         <div class="quiz-label">🧪 보너스 최종 퀴즈</div>
