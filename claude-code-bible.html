@@ -237,7 +237,7 @@
   <div class="sidebar-logo">
     <span class="logo-em">⚡</span>
     <h2>CLAUDE CODE BIBLE</h2>
-    <p>Skilljar 커리큘럼 기반 실전 가이드</p>
+    <p>Claude Code 실전 가이드</p>
     <span class="sidebar-edition">2026 EDITION · AITF</span>
   </div>
   <nav class="toc-nav">
@@ -294,12 +294,12 @@
   <!-- ━━━━ COVER ━━━━ -->
   <section class="chapter" id="ch0">
     <div class="cover-hero">
-      <div class="cover-eyebrow">AITF · Skilljar 커리큘럼 기반 · 2026 EDITION</div>
+      <div class="cover-eyebrow">AITF · 2026 EDITION</div>
       <h1 class="cover-main-title">Claude Code<br><span>바이블</span></h1>
       <p class="cover-sub-title">터미널 한 줄로 개발팀 한 명을 고용하는 법</p>
       <div class="cover-badges-row">
         <span class="badge badge-o">실전 경험 기반</span>
-        <span class="badge badge-d">Skilljar 공식 커리큘럼</span>
+        <span class="badge badge-d">JANDA 실전 경험</span>
         <span class="badge badge-g">퀴즈 & 코드 포함</span>
       </div>
       <div style="margin-bottom:20px;display:flex;align-items:center;gap:20px;flex-wrap:wrap">
@@ -512,7 +512,7 @@ claude</pre>
         <tbody>
           <tr><td><span class="ic">/clear</span></td><td>대화 컨텍스트 초기화 (새 작업 시작 전)</td></tr>
           <tr><td><span class="ic">/help</span></td><td>사용 가능한 명령어 전체 목록</td></tr>
-          <tr><td><span class="ic">/status</span></td><td>현재 토큰 사용량 확인</td></tr>
+          <tr><td><span class="ic">/context</span></td><td>현재 컨텍스트 윈도우 사용량 확인</td></tr>
           <tr><td><span class="ic">Ctrl+C</span></td><td>Claude 응답 즉시 중단</td></tr>
           <tr><td><span class="ic">Shift+Enter</span></td><td>줄바꿈 (Enter는 전송)</td></tr>
         </tbody>
@@ -784,7 +784,7 @@ claude</pre>
       <h2>MCP 설치 — 명령어 하나로</h2>
 
       <div class="code-label">터미널 — Supabase MCP 추가</div>
-      <pre class="code">claude mcp add supabase -- npx @supabase/mcp-server-supabase \
+      <pre class="code">claude mcp add supabase -- npx -y @supabase/mcp-server-supabase@latest \
   --access-token 내_Supabase_토큰 \
   --project-ref 내_프로젝트_ref</pre>
 
@@ -817,21 +817,24 @@ claude</pre>
     "supabase": {
       "command": "npx",
       "args": [
-        "@supabase/mcp-server-supabase",
+        "-y",
+        "@supabase/mcp-server-supabase@latest",
         "--access-token", "sbp_XXXXXXXXXX",
         "--project-ref", "XXXXXXXXXX"
       ]
     },
     "playwright": {
       "command": "npx",
-      "args": ["@modelcontextprotocol/server-playwright"]
+      "args": ["-y", "@modelcontextprotocol/server-playwright"]
     }
   }
 }</pre>
 
       <div class="warn-box">
-        <div class="label">⚠️ 주의 — 토큰 보안</div>
-        settings.json에 실제 토큰 값이 들어간다. 이 파일을 git에 올리지 마라.<br>
+        <div class="label">⚠️ 주의 — 설정 파일 위치 & 토큰 보안</div>
+        MCP 서버 설정은 <span class="ic">~/.claude.json</span> 파일의 <span class="ic">mcpServers</span> 키에 저장한다 (프로젝트 레벨은 <span class="ic">.mcp.json</span>).<br>
+        Hooks 설정은 <span class="ic">~/.claude/settings.json</span>에 저장한다. 두 파일이 다르니 주의.<br>
+        토큰 값이 들어가는 파일은 절대 git에 올리지 마라.<br>
         환경변수로 대체하는 방법도 있다 — Anthropic 공식 문서 참고.
       </div>
 
@@ -993,22 +996,22 @@ claude</pre>
 
       <p>Anthropic Agent SDK를 쓰면 멀티에이전트 시스템을 코드로 만들 수 있다. 이게 JANDA 시황 AGI의 핵심이다.</p>
 
-      <div class="code-label">Python — Agent SDK 기본 패턴</div>
+      <div class="code-label">Python — Agent SDK 순차 파이프라인 패턴 (진단 → 개선)</div>
       <pre class="code">import anthropic
 
 client = anthropic.Anthropic()
 
-# 오케스트레이터: 두 서브에이전트에게 병렬 위임
-def run_agents(task: str):
-    # 서브에이전트 1: 코드 리뷰
+# 순차 파이프라인: 진단 결과를 다음 에이전트에 넘긴다
+def run_pipeline(task: str):
+    # 에이전트 1: 코드 리뷰 (Haiku — 빠르고 저렴)
     review = client.messages.create(
-        model="claude-haiku-4-5-20251001",  # 빠르고 저렴한 모델
+        model="claude-haiku-4-5-20251001",
         max_tokens=1024,
         system="코드 리뷰 전문가. 버그와 보안 취약점만 찾아.",
         messages=[{"role": "user", "content": task}]
     )
 
-    # 서브에이전트 2: 개선안 작성
+    # 에이전트 2: 리뷰 결과 받아서 개선안 작성 (Sonnet)
     solution = client.messages.create(
         model="claude-sonnet-4-6",
         max_tokens=2048,
@@ -1019,7 +1022,20 @@ def run_agents(task: str):
             {"role": "user", "content": "위 리뷰를 바탕으로 개선된 코드를 작성해줘"}
         ]
     )
-    return solution.content[0].text</pre>
+    return solution.content[0].text
+
+# ── 독립 작업을 실제로 병렬 실행하려면 asyncio 사용 ──
+import asyncio, anthropic
+
+async def run_parallel(tasks: list[str]):
+    client = anthropic.AsyncAnthropic()
+    async def call(t):
+        r = await client.messages.create(
+            model="claude-haiku-4-5-20251001", max_tokens=512,
+            messages=[{"role": "user", "content": t}]
+        )
+        return r.content[0].text
+    return await asyncio.gather(*[call(t) for t in tasks])</pre>
 
       <div class="story-box" data-tag="JANDA 실전">
         시황 AGI에서 자가코딩 루프를 만들 때 이 패턴을 썼다. "진단 에이전트 → 패치 에이전트 → 검증 에이전트"로 파이프라인을 구성했다. 진단이 끝나야 패치가 시작되고, 패치 후 반드시 검증이 돌아간다. 검증 실패하면 자동 롤백. 이게 매일 밤 혼자 돌아간다.
@@ -1242,7 +1258,7 @@ for block in response.content:
           <span>실패담 포함</span>
           <span>매주 업로드</span>
         </div>
-        <a href="https://www.youtube.com/@AI사냥꾼" class="cta-btn">AI사냥꾼 채널 보러 가기 →</a>
+        <a href="https://www.youtube.com/channel/UCCqi9m0XPHLPxvReWfJhJig" class="cta-btn">AI사냥꾼 채널 보러 가기 →</a>
       </div>
 
     </div>
@@ -1296,7 +1312,7 @@ for block in response.content:
           <div class="cert-step"><strong>첫 봇</strong>실제로 돌리기</div>
           <div class="cert-step"><strong>AI사냥꾼</strong>실전 영상 보기</div>
         </div>
-        <a href="https://www.youtube.com/@AI사냥꾼" class="cert-btn">AI사냥꾼 채널 보러 가기 →</a>
+        <a href="https://www.youtube.com/channel/UCCqi9m0XPHLPxvReWfJhJig" class="cert-btn">AI사냥꾼 채널 보러 가기 →</a>
       </div>
 
       <!-- 최종 퀴즈 -->
@@ -1975,6 +1991,7 @@ jobs:
 <script>
   // ── 퀴즈 ──
   const qAnswers = { qf1:'정답!', qf2:'맞아요!', qf3:'정확해요!', qf4:'정답! API 키는 os.getenv()로. 절대 CLAUDE.md에 쓰면 안 됩니다.', qff:'완벽해요! 황금 워크플로우를 잊지 마세요.', qfb2:'/clear는 새 작업 시작 전 필수 습관입니다!', qfb3:'단순 반복 작업은 Haiku. 비용이 1/5로 줄어요.' };
+  const qCorrect  = { qf1:'C', qf2:'B', qf3:'C', qf4:'C', qff:'B', qfb2:'B', qfb3:'A' };
   function checkQ(el, type) {
     const box = el.parentElement;
     box.querySelectorAll('.quiz-opt').forEach(o => o.classList.remove('correct','wrong'));
@@ -1982,7 +1999,7 @@ jobs:
     const fb = box.nextElementSibling;
     fb.classList.add('show', type === 'correct' ? 'ok' : 'no');
     const id = fb.id;
-    fb.textContent = type === 'correct' ? '✅ ' + (qAnswers[id] || '정답입니다!') : '❌ 다시 생각해보세요. 정답은 C입니다.';
+    fb.textContent = type === 'correct' ? '✅ ' + (qAnswers[id] || '정답입니다!') : '❌ 다시 생각해보세요. 정답은 ' + (qCorrect[id] || '?') + '입니다.';
   }
 
   // ── 사이드바 토글 ──
