@@ -1,3 +1,4 @@
+병렬 병렬로
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -34,7 +35,10 @@
       --sidebar: 260px;
     }
 
-    html { scroll-behavior: smooth }
+    html {
+      scroll-behavior: smooth
+    }
+
     body {
       font-family: 'Pretendard', system-ui, sans-serif;
       background: var(--bg);
@@ -400,6 +404,7 @@
       -webkit-overflow-scrolling: touch;
       margin: 24px 0;
     }
+
     .ch-body table {
       width: 100%;
       min-width: 480px;
@@ -666,52 +671,172 @@
 
     /* ── 반응형 ── */
     @media(max-width:768px) {
-      :root { --sidebar: 0px }
+      :root {
+        --sidebar: 0px
+      }
+
       #sidebar {
-        position: fixed; top: 0; left: 0; bottom: 0; z-index: 200;
-        transform: translateX(-100%); transition: transform .3s ease;
-        width: 280px !important; display: flex !important;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        z-index: 200;
+        transform: translateX(-100%);
+        transition: transform .3s ease;
+        width: 280px !important;
+        display: flex !important;
       }
-      #sidebar.mobile-open { transform: translateX(0) }
-      #main { margin-left: 0 }
-      .ch-header, .ch-body { padding: 28px 18px }
-      .cover-title { font-size: 1.9rem }
-      .ch-title { font-size: 1.6rem !important }
-      .ch-body h2 { font-size: 1.25rem !important; margin: 28px 0 12px }
-      .ch-body h3 { font-size: 1.08rem !important; margin: 20px 0 8px }
-      .ch-body p, .ch-body li { font-size: 1.02rem; line-height: 1.85 }
-      .top-bar { padding: 10px 16px }
-      .top-bar-title { font-size: .78rem }
-      .top-bar-chapter { font-size: .78rem }
-      .cta-box { padding: 20px 16px }
-      .cta-btn { padding: 12px 22px; font-size: .92rem; word-break: keep-all }
-      .step-item { min-width: calc(50% - 20px); padding: 14px 10px }
-      .roadmap-row { flex-wrap: wrap; gap: 8px }
-      .badge { padding: 6px 12px; font-size: .82rem }
-      .highlight-box, .analogy-box, .warning-box, .tip-box, .success-box {
-        padding: 14px 16px; font-size: 1rem
+
+      #sidebar.mobile-open {
+        transform: translateX(0)
       }
-      .yt-cta { padding: 16px 14px; gap: 10px }
-      #sidebar-toggle { display: none }
+
+      #main {
+        margin-left: 0
+      }
+
+      .ch-header,
+      .ch-body {
+        padding: 28px 18px
+      }
+
+      .cover-title {
+        font-size: 1.9rem
+      }
+
+      .ch-title {
+        font-size: 1.6rem !important
+      }
+
+      .ch-body h2 {
+        font-size: 1.25rem !important;
+        margin: 28px 0 12px
+      }
+
+      .ch-body h3 {
+        font-size: 1.08rem !important;
+        margin: 20px 0 8px
+      }
+
+      .ch-body p,
+      .ch-body li {
+        font-size: 1.02rem;
+        line-height: 1.85
+      }
+
+      .top-bar {
+        padding: 10px 16px
+      }
+
+      .top-bar-title {
+        font-size: .78rem
+      }
+
+      .top-bar-chapter {
+        font-size: .78rem
+      }
+
+      .cta-box {
+        padding: 20px 16px
+      }
+
+      .cta-btn {
+        padding: 12px 22px;
+        font-size: .92rem;
+        word-break: keep-all
+      }
+
+      .step-item {
+        min-width: calc(50% - 20px);
+        padding: 14px 10px
+      }
+
+      .roadmap-row {
+        flex-wrap: wrap;
+        gap: 8px
+      }
+
+      .badge {
+        padding: 6px 12px;
+        font-size: .82rem
+      }
+
+      .highlight-box,
+      .analogy-box,
+      .warning-box,
+      .tip-box,
+      .success-box {
+        padding: 14px 16px;
+        font-size: 1rem
+      }
+
+      .yt-cta {
+        padding: 16px 14px;
+        gap: 10px
+      }
+
+      #sidebar-toggle {
+        display: none
+      }
     }
+
     @media(max-width:390px) {
-      .ch-header, .ch-body { padding: 22px 14px }
-      .cover-title { font-size: 1.65rem }
-      .ch-title { font-size: 1.4rem !important }
-      .step-item { min-width: 100%; margin: 4px 0 }
+
+      .ch-header,
+      .ch-body {
+        padding: 22px 14px
+      }
+
+      .cover-title {
+        font-size: 1.65rem
+      }
+
+      .ch-title {
+        font-size: 1.4rem !important
+      }
+
+      .step-item {
+        min-width: 100%;
+        margin: 4px 0
+      }
     }
+
     #mobile-toc-btn {
-      display: none; position: fixed; bottom: 20px; right: 20px; z-index: 150;
-      width: 48px; height: 48px; border-radius: 50%;
-      background: #dc2626; color: #fff; border: none;
-      font-size: 20px; cursor: pointer; box-shadow: 0 4px 16px rgba(0,0,0,.4);
-      align-items: center; justify-content: center;
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 150;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #dc2626;
+      color: #fff;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, .4);
+      align-items: center;
+      justify-content: center;
     }
-    @media(max-width:768px) { #mobile-toc-btn { display: flex } }
+
+    @media(max-width:768px) {
+      #mobile-toc-btn {
+        display: flex
+      }
+    }
+
     #mobile-overlay {
-      display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 199;
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .5);
+      z-index: 199;
     }
-    #mobile-overlay.open { display: block }
+
+    #mobile-overlay.open {
+      display: block
+    }
 
     /* ── YouTube CTA ── */
     .yt-cta {
@@ -1140,144 +1265,146 @@
 
         <p>각 봇이 하는 일 — 26개 전체 목록:</p>
 
-        <div class="table-wrap"><table style="width:100%;border-collapse:collapse;font-size:.85rem;margin:12px 0">
-          <thead>
-            <tr style="background:rgba(56,189,248,.08);border-bottom:2px solid var(--border)">
-              <th style="padding:8px 12px;text-align:left">#</th>
-              <th style="padding:8px 12px;text-align:left">봇 이름</th>
-              <th style="padding:8px 12px;text-align:left">하는 일</th>
-              <th style="padding:8px 12px;text-align:left">상태</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr style="border-bottom:1px solid var(--border)">
-              <td style="padding:6px 12px">1</td>
-              <td style="padding:6px 12px"><strong>뉴스 수집봇</strong></td>
-              <td style="padding:6px 12px">매일 100개 이상 AI 뉴스 수집·요약</td>
-              <td style="padding:6px 12px;color:#22c55e">✅ 운영중</td>
-            </tr>
-            <tr style="border-bottom:1px solid var(--border)">
-              <td style="padding:6px 12px">2</td>
-              <td style="padding:6px 12px"><strong>블로그 생성봇</strong></td>
-              <td style="padding:6px 12px">SEO 블로그 초안 자동 생성 (하루 3~5개)</td>
-              <td style="padding:6px 12px;color:#22c55e">✅ 운영중</td>
-            </tr>
-            <tr style="border-bottom:1px solid var(--border)">
-              <td style="padding:6px 12px">3</td>
-              <td style="padding:6px 12px"><strong>SNS 콘텐츠봇</strong></td>
-              <td style="padding:6px 12px">블로그→트위터·인스타 자동 변환</td>
-              <td style="padding:6px 12px;color:#22c55e">✅ 운영중</td>
-            </tr>
-            <tr style="border-bottom:1px solid var(--border)">
-              <td style="padding:6px 12px">4</td>
-              <td style="padding:6px 12px"><strong>이메일 시퀀스봇</strong></td>
-              <td style="padding:6px 12px">신규 구독자 7일 자동 이메일 발송</td>
-              <td style="padding:6px 12px;color:#22c55e">✅ 운영중</td>
-            </tr>
-            <tr style="border-bottom:1px solid var(--border)">
-              <td style="padding:6px 12px">5</td>
-              <td style="padding:6px 12px"><strong>유튜브 대본봇</strong></td>
-              <td style="padding:6px 12px">주제 → 45씬 롱폼 대본 자동 생성</td>
-              <td style="padding:6px 12px;color:#22c55e">✅ 운영중</td>
-            </tr>
-            <tr style="border-bottom:1px solid var(--border)">
-              <td style="padding:6px 12px">6</td>
-              <td style="padding:6px 12px"><strong>썸네일 생성봇</strong></td>
-              <td style="padding:6px 12px">MEGA 스타일 유튜브 썸네일 자동 제작</td>
-              <td style="padding:6px 12px;color:#22c55e">✅ 운영중</td>
-            </tr>
-            <tr style="border-bottom:1px solid var(--border)">
-              <td style="padding:6px 12px">7</td>
-              <td style="padding:6px 12px"><strong>TTS 나레이션봇</strong></td>
-              <td style="padding:6px 12px">ElevenLabs API로 음성 자동 생성</td>
-              <td style="padding:6px 12px;color:#22c55e">✅ 운영중</td>
-            </tr>
-            <tr style="border-bottom:1px solid var(--border)">
-              <td style="padding:6px 12px">8</td>
-              <td style="padding:6px 12px"><strong>쇼츠 자동화봇</strong></td>
-              <td style="padding:6px 12px">대본+TTS+영상합성→유튜브 비공개 업로드</td>
-              <td style="padding:6px 12px;color:#22c55e">✅ 운영중</td>
-            </tr>
-            <tr style="border-bottom:1px solid var(--border)">
-              <td style="padding:6px 12px">9</td>
-              <td style="padding:6px 12px"><strong>댓글 응대봇</strong></td>
-              <td style="padding:6px 12px">유튜브 새 댓글 감지→Claude 자동 답글</td>
-              <td style="padding:6px 12px;color:#22c55e">✅ 운영중</td>
-            </tr>
-            <tr style="border-bottom:1px solid var(--border)">
-              <td style="padding:6px 12px">10</td>
-              <td style="padding:6px 12px"><strong>CS 응대봇</strong></td>
-              <td style="padding:6px 12px">카카오 채널 고객 문의 24시간 자동 처리</td>
-              <td style="padding:6px 12px;color:#22c55e">✅ 운영중</td>
-            </tr>
-            <tr style="border-bottom:1px solid var(--border)">
-              <td style="padding:6px 12px">11</td>
-              <td style="padding:6px 12px"><strong>인사이트 헌터봇</strong></td>
-              <td style="padding:6px 12px">유튜브+기업 리서치 자동화</td>
-              <td style="padding:6px 12px;color:#22c55e">✅ 운영중</td>
-            </tr>
-            <tr style="border-bottom:1px solid var(--border)">
-              <td style="padding:6px 12px">12</td>
-              <td style="padding:6px 12px"><strong>KISA 보안봇</strong></td>
-              <td style="padding:6px 12px">보안 가이드라인 자동 점검 및 보고</td>
-              <td style="padding:6px 12px;color:#22c55e">✅ 운영중</td>
-            </tr>
-            <tr style="border-bottom:1px solid var(--border)">
-              <td style="padding:6px 12px">13</td>
-              <td style="padding:6px 12px"><strong>경영지원 에이전트</strong></td>
-              <td style="padding:6px 12px">Tool Use 7개 + 노션 KB + 텔레그램 허브</td>
-              <td style="padding:6px 12px;color:#22c55e">✅ 운영중</td>
-            </tr>
-            <tr style="border-bottom:1px solid var(--border)">
-              <td style="padding:6px 12px">14</td>
-              <td style="padding:6px 12px"><strong>매출 리포트봇</strong></td>
-              <td style="padding:6px 12px">매일 오전 KPI 자동 수집·보고</td>
-              <td style="padding:6px 12px;color:#22c55e">✅ 운영중</td>
-            </tr>
-            <tr style="border-bottom:1px solid var(--border)">
-              <td style="padding:6px 12px">15</td>
-              <td style="padding:6px 12px"><strong>글로벌 리스팅봇</strong></td>
-              <td style="padding:6px 12px">한국 상품→영어/일어 글로벌 리스팅 자동 변환</td>
-              <td style="padding:6px 12px;color:#22c55e">✅ 운영중</td>
-            </tr>
-            <tr style="border-bottom:1px solid var(--border)">
-              <td style="padding:6px 12px">16</td>
-              <td style="padding:6px 12px"><strong>광고 카피봇</strong></td>
-              <td style="padding:6px 12px">TikTok 훅+숏폼 광고 대본 자동 생성</td>
-              <td style="padding:6px 12px;color:#22c55e">✅ 운영중</td>
-            </tr>
-            <tr style="border-bottom:1px solid var(--border)">
-              <td style="padding:6px 12px">17</td>
-              <td style="padding:6px 12px"><strong>트렌드 레이더봇</strong></td>
-              <td style="padding:6px 12px">키워드 트렌드 자동 모니터링</td>
-              <td style="padding:6px 12px;color:#22c55e">✅ 운영중</td>
-            </tr>
-            <tr style="border-bottom:1px solid var(--border)">
-              <td style="padding:6px 12px">18</td>
-              <td style="padding:6px 12px"><strong>심리 분석봇</strong></td>
-              <td style="padding:6px 12px">세일즈 카피 심리 트리거 분석</td>
-              <td style="padding:6px 12px;color:#22c55e">✅ 운영중</td>
-            </tr>
-            <tr style="border-bottom:1px solid var(--border)">
-              <td style="padding:6px 12px">19</td>
-              <td style="padding:6px 12px"><strong>비용 모니터봇</strong></td>
-              <td style="padding:6px 12px">Claude API 일일 비용 자동 추적·알림</td>
-              <td style="padding:6px 12px;color:#22c55e">✅ 운영중</td>
-            </tr>
-            <tr style="border-bottom:1px solid var(--border)">
-              <td style="padding:6px 12px">20</td>
-              <td style="padding:6px 12px"><strong>오케스트레이터</strong></td>
-              <td style="padding:6px 12px">매일 07:00 전체 파이프라인 총지휘</td>
-              <td style="padding:6px 12px;color:#22c55e">✅ 운영중</td>
-            </tr>
-            <tr>
-              <td style="padding:6px 12px">21</td>
-              <td style="padding:6px 12px"><strong>개발팀 에이전트</strong></td>
-              <td style="padding:6px 12px">n8n 웹훅 연동 + 코드 리뷰 자동화</td>
-              <td style="padding:6px 12px;color:#f59e0b">🔧 고도화중</td>
-            </tr>
-          </tbody>
-        </table></div>
+        <div class="table-wrap">
+          <table style="width:100%;border-collapse:collapse;font-size:.85rem;margin:12px 0">
+            <thead>
+              <tr style="background:rgba(56,189,248,.08);border-bottom:2px solid var(--border)">
+                <th style="padding:8px 12px;text-align:left">#</th>
+                <th style="padding:8px 12px;text-align:left">봇 이름</th>
+                <th style="padding:8px 12px;text-align:left">하는 일</th>
+                <th style="padding:8px 12px;text-align:left">상태</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid var(--border)">
+                <td style="padding:6px 12px">1</td>
+                <td style="padding:6px 12px"><strong>뉴스 수집봇</strong></td>
+                <td style="padding:6px 12px">매일 100개 이상 AI 뉴스 수집·요약</td>
+                <td style="padding:6px 12px;color:#22c55e">✅ 운영중</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border)">
+                <td style="padding:6px 12px">2</td>
+                <td style="padding:6px 12px"><strong>블로그 생성봇</strong></td>
+                <td style="padding:6px 12px">SEO 블로그 초안 자동 생성 (하루 3~5개)</td>
+                <td style="padding:6px 12px;color:#22c55e">✅ 운영중</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border)">
+                <td style="padding:6px 12px">3</td>
+                <td style="padding:6px 12px"><strong>SNS 콘텐츠봇</strong></td>
+                <td style="padding:6px 12px">블로그→트위터·인스타 자동 변환</td>
+                <td style="padding:6px 12px;color:#22c55e">✅ 운영중</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border)">
+                <td style="padding:6px 12px">4</td>
+                <td style="padding:6px 12px"><strong>이메일 시퀀스봇</strong></td>
+                <td style="padding:6px 12px">신규 구독자 7일 자동 이메일 발송</td>
+                <td style="padding:6px 12px;color:#22c55e">✅ 운영중</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border)">
+                <td style="padding:6px 12px">5</td>
+                <td style="padding:6px 12px"><strong>유튜브 대본봇</strong></td>
+                <td style="padding:6px 12px">주제 → 45씬 롱폼 대본 자동 생성</td>
+                <td style="padding:6px 12px;color:#22c55e">✅ 운영중</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border)">
+                <td style="padding:6px 12px">6</td>
+                <td style="padding:6px 12px"><strong>썸네일 생성봇</strong></td>
+                <td style="padding:6px 12px">MEGA 스타일 유튜브 썸네일 자동 제작</td>
+                <td style="padding:6px 12px;color:#22c55e">✅ 운영중</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border)">
+                <td style="padding:6px 12px">7</td>
+                <td style="padding:6px 12px"><strong>TTS 나레이션봇</strong></td>
+                <td style="padding:6px 12px">ElevenLabs API로 음성 자동 생성</td>
+                <td style="padding:6px 12px;color:#22c55e">✅ 운영중</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border)">
+                <td style="padding:6px 12px">8</td>
+                <td style="padding:6px 12px"><strong>쇼츠 자동화봇</strong></td>
+                <td style="padding:6px 12px">대본+TTS+영상합성→유튜브 비공개 업로드</td>
+                <td style="padding:6px 12px;color:#22c55e">✅ 운영중</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border)">
+                <td style="padding:6px 12px">9</td>
+                <td style="padding:6px 12px"><strong>댓글 응대봇</strong></td>
+                <td style="padding:6px 12px">유튜브 새 댓글 감지→Claude 자동 답글</td>
+                <td style="padding:6px 12px;color:#22c55e">✅ 운영중</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border)">
+                <td style="padding:6px 12px">10</td>
+                <td style="padding:6px 12px"><strong>CS 응대봇</strong></td>
+                <td style="padding:6px 12px">카카오 채널 고객 문의 24시간 자동 처리</td>
+                <td style="padding:6px 12px;color:#22c55e">✅ 운영중</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border)">
+                <td style="padding:6px 12px">11</td>
+                <td style="padding:6px 12px"><strong>인사이트 헌터봇</strong></td>
+                <td style="padding:6px 12px">유튜브+기업 리서치 자동화</td>
+                <td style="padding:6px 12px;color:#22c55e">✅ 운영중</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border)">
+                <td style="padding:6px 12px">12</td>
+                <td style="padding:6px 12px"><strong>KISA 보안봇</strong></td>
+                <td style="padding:6px 12px">보안 가이드라인 자동 점검 및 보고</td>
+                <td style="padding:6px 12px;color:#22c55e">✅ 운영중</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border)">
+                <td style="padding:6px 12px">13</td>
+                <td style="padding:6px 12px"><strong>경영지원 에이전트</strong></td>
+                <td style="padding:6px 12px">Tool Use 7개 + 노션 KB + 텔레그램 허브</td>
+                <td style="padding:6px 12px;color:#22c55e">✅ 운영중</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border)">
+                <td style="padding:6px 12px">14</td>
+                <td style="padding:6px 12px"><strong>매출 리포트봇</strong></td>
+                <td style="padding:6px 12px">매일 오전 KPI 자동 수집·보고</td>
+                <td style="padding:6px 12px;color:#22c55e">✅ 운영중</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border)">
+                <td style="padding:6px 12px">15</td>
+                <td style="padding:6px 12px"><strong>글로벌 리스팅봇</strong></td>
+                <td style="padding:6px 12px">한국 상품→영어/일어 글로벌 리스팅 자동 변환</td>
+                <td style="padding:6px 12px;color:#22c55e">✅ 운영중</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border)">
+                <td style="padding:6px 12px">16</td>
+                <td style="padding:6px 12px"><strong>광고 카피봇</strong></td>
+                <td style="padding:6px 12px">TikTok 훅+숏폼 광고 대본 자동 생성</td>
+                <td style="padding:6px 12px;color:#22c55e">✅ 운영중</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border)">
+                <td style="padding:6px 12px">17</td>
+                <td style="padding:6px 12px"><strong>트렌드 레이더봇</strong></td>
+                <td style="padding:6px 12px">키워드 트렌드 자동 모니터링</td>
+                <td style="padding:6px 12px;color:#22c55e">✅ 운영중</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border)">
+                <td style="padding:6px 12px">18</td>
+                <td style="padding:6px 12px"><strong>심리 분석봇</strong></td>
+                <td style="padding:6px 12px">세일즈 카피 심리 트리거 분석</td>
+                <td style="padding:6px 12px;color:#22c55e">✅ 운영중</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border)">
+                <td style="padding:6px 12px">19</td>
+                <td style="padding:6px 12px"><strong>비용 모니터봇</strong></td>
+                <td style="padding:6px 12px">Claude API 일일 비용 자동 추적·알림</td>
+                <td style="padding:6px 12px;color:#22c55e">✅ 운영중</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--border)">
+                <td style="padding:6px 12px">20</td>
+                <td style="padding:6px 12px"><strong>오케스트레이터</strong></td>
+                <td style="padding:6px 12px">매일 07:00 전체 파이프라인 총지휘</td>
+                <td style="padding:6px 12px;color:#22c55e">✅ 운영중</td>
+              </tr>
+              <tr>
+                <td style="padding:6px 12px">21</td>
+                <td style="padding:6px 12px"><strong>개발팀 에이전트</strong></td>
+                <td style="padding:6px 12px">n8n 웹훅 연동 + 코드 리뷰 자동화</td>
+                <td style="padding:6px 12px;color:#f59e0b">🔧 고도화중</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
         <p>이게 전부 한 사람의 작업이다.<br>
           아니, 정확히는 <strong>한 사람이 만든 에이전트들의 작업</strong>이다.</p>
@@ -1674,42 +1801,44 @@
 
         <div class="analogy-box">
           <strong>🧮 직원 5~50명 규모별 추정 절감 (월 기준)</strong>
-          <div class="table-wrap"><table style="width:100%;border-collapse:collapse;margin-top:12px;font-size:.9rem">
-            <thead>
-              <tr style="background:#f1f5f9">
-                <th style="padding:8px 12px;text-align:left;border:1px solid #e2e8f0">팀 규모</th>
-                <th style="padding:8px 12px;text-align:left;border:1px solid #e2e8f0">자동화 대상 업무</th>
-                <th style="padding:8px 12px;text-align:left;border:1px solid #e2e8f0">절감 시간/월</th>
-                <th style="padding:8px 12px;text-align:left;border:1px solid #e2e8f0">월 절감액(추정)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td style="padding:8px 12px;border:1px solid #e2e8f0">1인 사업자</td>
-                <td style="padding:8px 12px;border:1px solid #e2e8f0">SNS 포스팅, 이메일 응대</td>
-                <td style="padding:8px 12px;border:1px solid #e2e8f0">20~40시간</td>
-                <td style="padding:8px 12px;border:1px solid #e2e8f0"><strong>37~75만원 상당</strong></td>
-              </tr>
-              <tr style="background:#f8fafc">
-                <td style="padding:8px 12px;border:1px solid #e2e8f0">5~10명</td>
-                <td style="padding:8px 12px;border:1px solid #e2e8f0">CS 응대, 주간 리포트, 일정 조율</td>
-                <td style="padding:8px 12px;border:1px solid #e2e8f0">80~120시간</td>
-                <td style="padding:8px 12px;border:1px solid #e2e8f0"><strong>150~225만원</strong></td>
-              </tr>
-              <tr>
-                <td style="padding:8px 12px;border:1px solid #e2e8f0">10~30명</td>
-                <td style="padding:8px 12px;border:1px solid #e2e8f0">영업 후속, 데이터 수집, 콘텐츠</td>
-                <td style="padding:8px 12px;border:1px solid #e2e8f0">200~400시간</td>
-                <td style="padding:8px 12px;border:1px solid #e2e8f0"><strong>375~750만원</strong></td>
-              </tr>
-              <tr style="background:#f8fafc">
-                <td style="padding:8px 12px;border:1px solid #e2e8f0">30~50명</td>
-                <td style="padding:8px 12px;border:1px solid #e2e8f0">전 부서 반복업무 통합</td>
-                <td style="padding:8px 12px;border:1px solid #e2e8f0">600~1,000시간</td>
-                <td style="padding:8px 12px;border:1px solid #e2e8f0"><strong>1,125~1,875만원</strong></td>
-              </tr>
-            </tbody>
-          </table></div>
+          <div class="table-wrap">
+            <table style="width:100%;border-collapse:collapse;margin-top:12px;font-size:.9rem">
+              <thead>
+                <tr style="background:#f1f5f9">
+                  <th style="padding:8px 12px;text-align:left;border:1px solid #e2e8f0">팀 규모</th>
+                  <th style="padding:8px 12px;text-align:left;border:1px solid #e2e8f0">자동화 대상 업무</th>
+                  <th style="padding:8px 12px;text-align:left;border:1px solid #e2e8f0">절감 시간/월</th>
+                  <th style="padding:8px 12px;text-align:left;border:1px solid #e2e8f0">월 절감액(추정)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="padding:8px 12px;border:1px solid #e2e8f0">1인 사업자</td>
+                  <td style="padding:8px 12px;border:1px solid #e2e8f0">SNS 포스팅, 이메일 응대</td>
+                  <td style="padding:8px 12px;border:1px solid #e2e8f0">20~40시간</td>
+                  <td style="padding:8px 12px;border:1px solid #e2e8f0"><strong>37~75만원 상당</strong></td>
+                </tr>
+                <tr style="background:#f8fafc">
+                  <td style="padding:8px 12px;border:1px solid #e2e8f0">5~10명</td>
+                  <td style="padding:8px 12px;border:1px solid #e2e8f0">CS 응대, 주간 리포트, 일정 조율</td>
+                  <td style="padding:8px 12px;border:1px solid #e2e8f0">80~120시간</td>
+                  <td style="padding:8px 12px;border:1px solid #e2e8f0"><strong>150~225만원</strong></td>
+                </tr>
+                <tr>
+                  <td style="padding:8px 12px;border:1px solid #e2e8f0">10~30명</td>
+                  <td style="padding:8px 12px;border:1px solid #e2e8f0">영업 후속, 데이터 수집, 콘텐츠</td>
+                  <td style="padding:8px 12px;border:1px solid #e2e8f0">200~400시간</td>
+                  <td style="padding:8px 12px;border:1px solid #e2e8f0"><strong>375~750만원</strong></td>
+                </tr>
+                <tr style="background:#f8fafc">
+                  <td style="padding:8px 12px;border:1px solid #e2e8f0">30~50명</td>
+                  <td style="padding:8px 12px;border:1px solid #e2e8f0">전 부서 반복업무 통합</td>
+                  <td style="padding:8px 12px;border:1px solid #e2e8f0">600~1,000시간</td>
+                  <td style="padding:8px 12px;border:1px solid #e2e8f0"><strong>1,125~1,875만원</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
           <p style="font-size:.8rem;color:#64748b;margin-top:8px">※ 시간당 인건비 18,750원, 자동화율 80% 기준. AI API 비용(월 5~50달러) 제외
             순절감 추정.</p>
         </div>
@@ -1943,7 +2072,8 @@ cd ai-agent-project</code></pre>
           ☐ &nbsp;<code>ai-agent-project/</code> 폴더 생성 완료<br>
           ☐ &nbsp;<code>.env</code> 파일에 <code>ANTHROPIC_API_KEY=sk-ant-...</code> 입력<br>
           ☐ &nbsp;첫 테스트 코드 실행 → Claude 응답 수신 확인<br><br>
-          <span style="font-size:.85em;opacity:.8">막히는 항목이 있다면 Claude에게 "파이썬 설치 오류 해결해줘"라고 물어보세요. 그게 이 책을 읽는 이유입니다.</span>
+          <span style="font-size:.85em;opacity:.8">막히는 항목이 있다면 Claude에게 "파이썬 설치 오류 해결해줘"라고 물어보세요. 그게 이 책을 읽는
+            이유입니다.</span>
         </div>
 
         <div class="yt-cta">
@@ -2147,7 +2277,8 @@ if __name__ == "__main__":
           ☐ &nbsp;<strong>수집봇 / 생성봇 / 실행봇</strong> 역할 분리 원칙을 이해했다<br>
           ☐ &nbsp;내 업무에서 <strong>봇화 가능한 반복 작업</strong> 3가지를 메모했다<br>
           ☐ &nbsp;<code>CollectorBot</code> 예시 코드를 읽고 흐름을 이해했다<br><br>
-          <span style="font-size:.85em;opacity:.8">5개 모두 체크했으면 STEP 2로. 아직 하나라도 애매하면 이 챕터를 한 번 더 읽어라. 기초가 흔들리면 뒤에서 무너진다.</span>
+          <span style="font-size:.85em;opacity:.8">5개 모두 체크했으면 STEP 2로. 아직 하나라도 애매하면 이 챕터를 한 번 더 읽어라. 기초가 흔들리면 뒤에서
+            무너진다.</span>
         </div>
 
         <div class="yt-cta">
@@ -2894,24 +3025,26 @@ def chat_with_management(user_message: str) -> str:
     return assistant_message</code></pre>
 
         <h3>컨텍스트 기억의 장단점</h3>
-        <div class="table-wrap"><table style="width:100%;border-collapse:collapse;margin:16px 0;font-size:.9rem">
-          <tr style="background:#f1f5f9">
-            <th style="border:1px solid #e2e8f0;padding:10px;text-align:left">항목</th>
-            <th style="border:1px solid #e2e8f0;padding:10px;text-align:left">내용</th>
-          </tr>
-          <tr>
-            <td style="border:1px solid #e2e8f0;padding:10px">✅ 장점</td>
-            <td style="border:1px solid #e2e8f0;padding:10px">구현 0줄 추가 / API 기본 지원 / 가장 빠름</td>
-          </tr>
-          <tr>
-            <td style="border:1px solid #e2e8f0;padding:10px">❌ 단점</td>
-            <td style="border:1px solid #e2e8f0;padding:10px">대화 종료 시 완전 소멸 / 턴이 쌓일수록 토큰 비용 폭증</td>
-          </tr>
-          <tr>
-            <td style="border:1px solid #e2e8f0;padding:10px">🎯 적합</td>
-            <td style="border:1px solid #e2e8f0;padding:10px">1회성 챗봇 / 단기 Q&A / 세션 내 작업</td>
-          </tr>
-        </table></div>
+        <div class="table-wrap">
+          <table style="width:100%;border-collapse:collapse;margin:16px 0;font-size:.9rem">
+            <tr style="background:#f1f5f9">
+              <th style="border:1px solid #e2e8f0;padding:10px;text-align:left">항목</th>
+              <th style="border:1px solid #e2e8f0;padding:10px;text-align:left">내용</th>
+            </tr>
+            <tr>
+              <td style="border:1px solid #e2e8f0;padding:10px">✅ 장점</td>
+              <td style="border:1px solid #e2e8f0;padding:10px">구현 0줄 추가 / API 기본 지원 / 가장 빠름</td>
+            </tr>
+            <tr>
+              <td style="border:1px solid #e2e8f0;padding:10px">❌ 단점</td>
+              <td style="border:1px solid #e2e8f0;padding:10px">대화 종료 시 완전 소멸 / 턴이 쌓일수록 토큰 비용 폭증</td>
+            </tr>
+            <tr>
+              <td style="border:1px solid #e2e8f0;padding:10px">🎯 적합</td>
+              <td style="border:1px solid #e2e8f0;padding:10px">1회성 챗봇 / 단기 Q&A / 세션 내 작업</td>
+            </tr>
+          </table>
+        </div>
 
         <h2>2. 파일 기억 — 재시작 후에도 기억하는 법 (JSON)</h2>
         <p>대화가 끝나도 기억을 유지하려면 <strong>파일에 저장</strong>해야 한다. JSON 한 파일로 충분하다. 단골 이름 종이 메모장에 적어두는 것과 같다.</p>
@@ -3029,43 +3162,45 @@ if __name__ == "__main__":
         </div>
 
         <h2>4가지 기억 방식 비교 — 언제 무엇을 쓸까</h2>
-        <div class="table-wrap"><table style="width:100%;border-collapse:collapse;margin:20px 0;font-size:.9rem">
-          <tr style="background:#f1f5f9">
-            <th style="border:1px solid #e2e8f0;padding:10px">방식</th>
-            <th style="border:1px solid #e2e8f0;padding:10px">지속성</th>
-            <th style="border:1px solid #e2e8f0;padding:10px">검색</th>
-            <th style="border:1px solid #e2e8f0;padding:10px">비용</th>
-            <th style="border:1px solid #e2e8f0;padding:10px">적합 규모</th>
-          </tr>
-          <tr>
-            <td style="border:1px solid #e2e8f0;padding:10px"><strong>컨텍스트</strong></td>
-            <td style="border:1px solid #e2e8f0;padding:10px">세션 내 소멸</td>
-            <td style="border:1px solid #e2e8f0;padding:10px">자동</td>
-            <td style="border:1px solid #e2e8f0;padding:10px">토큰 비용</td>
-            <td style="border:1px solid #e2e8f0;padding:10px">1회성 챗봇</td>
-          </tr>
-          <tr>
-            <td style="border:1px solid #e2e8f0;padding:10px"><strong>파일 (JSON)</strong></td>
-            <td style="border:1px solid #e2e8f0;padding:10px">영구</td>
-            <td style="border:1px solid #e2e8f0;padding:10px">키 기반</td>
-            <td style="border:1px solid #e2e8f0;padding:10px">무료</td>
-            <td style="border:1px solid #e2e8f0;padding:10px">~100명</td>
-          </tr>
-          <tr>
-            <td style="border:1px solid #e2e8f0;padding:10px"><strong>DB (SQLite)</strong></td>
-            <td style="border:1px solid #e2e8f0;padding:10px">영구</td>
-            <td style="border:1px solid #e2e8f0;padding:10px">SQL 쿼리</td>
-            <td style="border:1px solid #e2e8f0;padding:10px">무료</td>
-            <td style="border:1px solid #e2e8f0;padding:10px">~10만 명</td>
-          </tr>
-          <tr>
-            <td style="border:1px solid #e2e8f0;padding:10px"><strong>벡터DB</strong></td>
-            <td style="border:1px solid #e2e8f0;padding:10px">영구</td>
-            <td style="border:1px solid #e2e8f0;padding:10px">의미 유사도</td>
-            <td style="border:1px solid #e2e8f0;padding:10px">임베딩 비용</td>
-            <td style="border:1px solid #e2e8f0;padding:10px">무제한</td>
-          </tr>
-        </table></div>
+        <div class="table-wrap">
+          <table style="width:100%;border-collapse:collapse;margin:20px 0;font-size:.9rem">
+            <tr style="background:#f1f5f9">
+              <th style="border:1px solid #e2e8f0;padding:10px">방식</th>
+              <th style="border:1px solid #e2e8f0;padding:10px">지속성</th>
+              <th style="border:1px solid #e2e8f0;padding:10px">검색</th>
+              <th style="border:1px solid #e2e8f0;padding:10px">비용</th>
+              <th style="border:1px solid #e2e8f0;padding:10px">적합 규모</th>
+            </tr>
+            <tr>
+              <td style="border:1px solid #e2e8f0;padding:10px"><strong>컨텍스트</strong></td>
+              <td style="border:1px solid #e2e8f0;padding:10px">세션 내 소멸</td>
+              <td style="border:1px solid #e2e8f0;padding:10px">자동</td>
+              <td style="border:1px solid #e2e8f0;padding:10px">토큰 비용</td>
+              <td style="border:1px solid #e2e8f0;padding:10px">1회성 챗봇</td>
+            </tr>
+            <tr>
+              <td style="border:1px solid #e2e8f0;padding:10px"><strong>파일 (JSON)</strong></td>
+              <td style="border:1px solid #e2e8f0;padding:10px">영구</td>
+              <td style="border:1px solid #e2e8f0;padding:10px">키 기반</td>
+              <td style="border:1px solid #e2e8f0;padding:10px">무료</td>
+              <td style="border:1px solid #e2e8f0;padding:10px">~100명</td>
+            </tr>
+            <tr>
+              <td style="border:1px solid #e2e8f0;padding:10px"><strong>DB (SQLite)</strong></td>
+              <td style="border:1px solid #e2e8f0;padding:10px">영구</td>
+              <td style="border:1px solid #e2e8f0;padding:10px">SQL 쿼리</td>
+              <td style="border:1px solid #e2e8f0;padding:10px">무료</td>
+              <td style="border:1px solid #e2e8f0;padding:10px">~10만 명</td>
+            </tr>
+            <tr>
+              <td style="border:1px solid #e2e8f0;padding:10px"><strong>벡터DB</strong></td>
+              <td style="border:1px solid #e2e8f0;padding:10px">영구</td>
+              <td style="border:1px solid #e2e8f0;padding:10px">의미 유사도</td>
+              <td style="border:1px solid #e2e8f0;padding:10px">임베딩 비용</td>
+              <td style="border:1px solid #e2e8f0;padding:10px">무제한</td>
+            </tr>
+          </table>
+        </div>
 
         <div class="analogy-box" style="margin:0 40px 0">
           <strong>STEP 5 완료 체크포인트</strong><br>
@@ -3334,68 +3469,70 @@ class BaseAgent:
 
         <h3>Tool 9개 전체 목록 — 리미트리스 경영지원 에이전트</h3>
 
-        <div class="table-wrap"><table>
-          <tr>
-            <th>#</th>
-            <th>Tool 이름</th>
-            <th>설명</th>
-            <th>실전 활용 예</th>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td><span class="inline-code">read_file</span></td>
-            <td>파일 읽기</td>
-            <td>계약서, 기획서, 보고서 분석</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td><span class="inline-code">write_file</span></td>
-            <td>파일 저장</td>
-            <td>분석 결과, 요약본 자동 생성</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td><span class="inline-code">send_email</span></td>
-            <td>Gmail SMTP 발송</td>
-            <td>자동 이메일 답장, 보고서 전송</td>
-          </tr>
-          <tr>
-            <td>4</td>
-            <td><span class="inline-code">run_bash</span></td>
-            <td>터미널 명령 실행 (위험 명령 자동 차단)</td>
-            <td>Python 스크립트 실행, 파일 조작</td>
-          </tr>
-          <tr>
-            <td>5</td>
-            <td><span class="inline-code">web_search</span></td>
-            <td>DuckDuckGo 웹 검색</td>
-            <td>최신 트렌드, 경쟁사 리서치</td>
-          </tr>
-          <tr>
-            <td>6</td>
-            <td><span class="inline-code">list_files</span></td>
-            <td>폴더 파일 목록 조회</td>
-            <td>프로젝트 파일 탐색</td>
-          </tr>
-          <tr>
-            <td>7</td>
-            <td><span class="inline-code">read_memo</span></td>
-            <td>에이전트 공유 메모 읽기</td>
-            <td>개발팀·보안 에이전트 결과 수신</td>
-          </tr>
-          <tr>
-            <td>8</td>
-            <td><span class="inline-code">write_memo</span></td>
-            <td>에이전트 공유 메모 쓰기</td>
-            <td>중요 결정·발견사항 타 에이전트에 전달</td>
-          </tr>
-          <tr>
-            <td>9</td>
-            <td><span class="inline-code">search_knowledge_base</span></td>
-            <td>노션 DB 하이브리드 검색 (RAG)</td>
-            <td>사내 문서 15,723건 즉시 조회</td>
-          </tr>
-        </table></div>
+        <div class="table-wrap">
+          <table>
+            <tr>
+              <th>#</th>
+              <th>Tool 이름</th>
+              <th>설명</th>
+              <th>실전 활용 예</th>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td><span class="inline-code">read_file</span></td>
+              <td>파일 읽기</td>
+              <td>계약서, 기획서, 보고서 분석</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td><span class="inline-code">write_file</span></td>
+              <td>파일 저장</td>
+              <td>분석 결과, 요약본 자동 생성</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td><span class="inline-code">send_email</span></td>
+              <td>Gmail SMTP 발송</td>
+              <td>자동 이메일 답장, 보고서 전송</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td><span class="inline-code">run_bash</span></td>
+              <td>터미널 명령 실행 (위험 명령 자동 차단)</td>
+              <td>Python 스크립트 실행, 파일 조작</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td><span class="inline-code">web_search</span></td>
+              <td>DuckDuckGo 웹 검색</td>
+              <td>최신 트렌드, 경쟁사 리서치</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td><span class="inline-code">list_files</span></td>
+              <td>폴더 파일 목록 조회</td>
+              <td>프로젝트 파일 탐색</td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td><span class="inline-code">read_memo</span></td>
+              <td>에이전트 공유 메모 읽기</td>
+              <td>개발팀·보안 에이전트 결과 수신</td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td><span class="inline-code">write_memo</span></td>
+              <td>에이전트 공유 메모 쓰기</td>
+              <td>중요 결정·발견사항 타 에이전트에 전달</td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td><span class="inline-code">search_knowledge_base</span></td>
+              <td>노션 DB 하이브리드 검색 (RAG)</td>
+              <td>사내 문서 15,723건 즉시 조회</td>
+            </tr>
+          </table>
+        </div>
 
         <h3>자율 실행 루프 — run_agent() 핵심 코드</h3>
 
@@ -3483,42 +3620,44 @@ send_email(
 
         <p>멀티에이전트 시스템이 커질수록 "처음부터 직접 짜는 것"보다 전용 프레임워크를 쓰는 게 효율적이다. 2026년 기준 3대 프레임워크 비교:</p>
 
-        <div class="table-wrap"><table style="width:100%;border-collapse:collapse;font-size:.88rem;margin:12px 0">
-          <thead>
-            <tr style="background:#f1f5f9">
-              <th style="padding:10px 12px;text-align:left;border:1px solid #e2e8f0">프레임워크</th>
-              <th style="padding:10px 12px;text-align:left;border:1px solid #e2e8f0">핵심 특징</th>
-              <th style="padding:10px 12px;text-align:left;border:1px solid #e2e8f0">진입 난이도</th>
-              <th style="padding:10px 12px;text-align:left;border:1px solid #e2e8f0">추천 대상</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td style="padding:10px 12px;border:1px solid #e2e8f0"><strong>CrewAI</strong></td>
-              <td style="padding:10px 12px;border:1px solid #e2e8f0">역할 기반, 20줄로 팀 구성</td>
-              <td style="padding:10px 12px;border:1px solid #e2e8f0">⭐ 쉬움</td>
-              <td style="padding:10px 12px;border:1px solid #e2e8f0">빠른 MVP, 비개발자 팀</td>
-            </tr>
-            <tr style="background:#f8fafc">
-              <td style="padding:10px 12px;border:1px solid #e2e8f0"><strong>LangGraph</strong></td>
-              <td style="padding:10px 12px;border:1px solid #e2e8f0">그래프 기반, 체크포인팅, 복잡한 상태관리</td>
-              <td style="padding:10px 12px;border:1px solid #e2e8f0">⭐⭐⭐ 중간</td>
-              <td style="padding:10px 12px;border:1px solid #e2e8f0">프로덕션 배포, 엔터프라이즈 (2026년 점유율 1위)</td>
-            </tr>
-            <tr>
-              <td style="padding:10px 12px;border:1px solid #e2e8f0"><strong>AutoGen</strong></td>
-              <td style="padding:10px 12px;border:1px solid #e2e8f0">대화형, 그룹 토론·심의 가능</td>
-              <td style="padding:10px 12px;border:1px solid #e2e8f0">⭐⭐ 중간</td>
-              <td style="padding:10px 12px;border:1px solid #e2e8f0">의사결정 에이전트, 리서치 팀</td>
-            </tr>
-            <tr style="background:#f8fafc">
-              <td style="padding:10px 12px;border:1px solid #e2e8f0"><strong>Claude Native SDK</strong></td>
-              <td style="padding:10px 12px;border:1px solid #e2e8f0">이 책의 방식 — 직접 Anthropic SDK 사용</td>
-              <td style="padding:10px 12px;border:1px solid #e2e8f0">⭐ 쉬움 (배운 그대로)</td>
-              <td style="padding:10px 12px;border:1px solid #e2e8f0">단순 파이프라인, 비용 최적화, 처음 시작할 때</td>
-            </tr>
-          </tbody>
-        </table></div>
+        <div class="table-wrap">
+          <table style="width:100%;border-collapse:collapse;font-size:.88rem;margin:12px 0">
+            <thead>
+              <tr style="background:#f1f5f9">
+                <th style="padding:10px 12px;text-align:left;border:1px solid #e2e8f0">프레임워크</th>
+                <th style="padding:10px 12px;text-align:left;border:1px solid #e2e8f0">핵심 특징</th>
+                <th style="padding:10px 12px;text-align:left;border:1px solid #e2e8f0">진입 난이도</th>
+                <th style="padding:10px 12px;text-align:left;border:1px solid #e2e8f0">추천 대상</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="padding:10px 12px;border:1px solid #e2e8f0"><strong>CrewAI</strong></td>
+                <td style="padding:10px 12px;border:1px solid #e2e8f0">역할 기반, 20줄로 팀 구성</td>
+                <td style="padding:10px 12px;border:1px solid #e2e8f0">⭐ 쉬움</td>
+                <td style="padding:10px 12px;border:1px solid #e2e8f0">빠른 MVP, 비개발자 팀</td>
+              </tr>
+              <tr style="background:#f8fafc">
+                <td style="padding:10px 12px;border:1px solid #e2e8f0"><strong>LangGraph</strong></td>
+                <td style="padding:10px 12px;border:1px solid #e2e8f0">그래프 기반, 체크포인팅, 복잡한 상태관리</td>
+                <td style="padding:10px 12px;border:1px solid #e2e8f0">⭐⭐⭐ 중간</td>
+                <td style="padding:10px 12px;border:1px solid #e2e8f0">프로덕션 배포, 엔터프라이즈 (2026년 점유율 1위)</td>
+              </tr>
+              <tr>
+                <td style="padding:10px 12px;border:1px solid #e2e8f0"><strong>AutoGen</strong></td>
+                <td style="padding:10px 12px;border:1px solid #e2e8f0">대화형, 그룹 토론·심의 가능</td>
+                <td style="padding:10px 12px;border:1px solid #e2e8f0">⭐⭐ 중간</td>
+                <td style="padding:10px 12px;border:1px solid #e2e8f0">의사결정 에이전트, 리서치 팀</td>
+              </tr>
+              <tr style="background:#f8fafc">
+                <td style="padding:10px 12px;border:1px solid #e2e8f0"><strong>Claude Native SDK</strong></td>
+                <td style="padding:10px 12px;border:1px solid #e2e8f0">이 책의 방식 — 직접 Anthropic SDK 사용</td>
+                <td style="padding:10px 12px;border:1px solid #e2e8f0">⭐ 쉬움 (배운 그대로)</td>
+                <td style="padding:10px 12px;border:1px solid #e2e8f0">단순 파이프라인, 비용 최적화, 처음 시작할 때</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
         <div class="tip-box">
           <strong>어디서 시작할지 모르겠다면?</strong> 이 책의 방식(Claude Native)으로 먼저 동작하는 에이전트 1개를 만들어라. 그 다음 팀이 커지고 상태 관리가 복잡해지면
@@ -3608,38 +3747,40 @@ response = client.messages.create(messages=[{"role":"user","content":safe_prompt
 
         <h3>2. 사내망 격리 — 온프레미스 or VPC 배포</h3>
 
-        <div class="table-wrap"><table>
-          <tr>
-            <th>방식</th>
-            <th>설명</th>
-            <th>적합 대상</th>
-            <th>비용</th>
-          </tr>
-          <tr>
-            <td><strong>클라우드 API</strong></td>
-            <td>Anthropic/OpenAI 직접 호출</td>
-            <td>스타트업, SMB</td>
-            <td>사용량 기반</td>
-          </tr>
-          <tr>
-            <td><strong>AWS Bedrock</strong></td>
-            <td>VPC 내 Claude 모델 호출 (데이터 AWS 내 처리)</td>
-            <td>금융·의료·공공</td>
-            <td>클라우드 요금</td>
-          </tr>
-          <tr>
-            <td><strong>Azure OpenAI</strong></td>
-            <td>MS Azure 내 격리 환경</td>
-            <td>MS 계약 기업</td>
-            <td>클라우드 요금</td>
-          </tr>
-          <tr>
-            <td><strong>On-premise LLM</strong></td>
-            <td>Llama 3.1, EXAONE 등 자체 서버</td>
-            <td>국방·금융 최고 등급</td>
-            <td>초기 구축비 높음</td>
-          </tr>
-        </table></div>
+        <div class="table-wrap">
+          <table>
+            <tr>
+              <th>방식</th>
+              <th>설명</th>
+              <th>적합 대상</th>
+              <th>비용</th>
+            </tr>
+            <tr>
+              <td><strong>클라우드 API</strong></td>
+              <td>Anthropic/OpenAI 직접 호출</td>
+              <td>스타트업, SMB</td>
+              <td>사용량 기반</td>
+            </tr>
+            <tr>
+              <td><strong>AWS Bedrock</strong></td>
+              <td>VPC 내 Claude 모델 호출 (데이터 AWS 내 처리)</td>
+              <td>금융·의료·공공</td>
+              <td>클라우드 요금</td>
+            </tr>
+            <tr>
+              <td><strong>Azure OpenAI</strong></td>
+              <td>MS Azure 내 격리 환경</td>
+              <td>MS 계약 기업</td>
+              <td>클라우드 요금</td>
+            </tr>
+            <tr>
+              <td><strong>On-premise LLM</strong></td>
+              <td>Llama 3.1, EXAONE 등 자체 서버</td>
+              <td>국방·금융 최고 등급</td>
+              <td>초기 구축비 높음</td>
+            </tr>
+          </table>
+        </div>
 
         <h3>3. 감사 로그 — "에이전트가 뭘 했는지" 반드시 기록</h3>
 
@@ -3766,92 +3907,96 @@ def safe_query(user_input: str) -> str:
 
           <h3>주요 모델 토큰 가격 (2026년 기준)</h3>
 
-          <div class="table-wrap"><table style="width:100%; border-collapse:collapse; margin:20px 0;">
-            <tr style="background:#f0f0f0;">
-              <th style="border:1px solid #ddd; padding:12px;">모델</th>
-              <th style="border:1px solid #ddd; padding:12px;">Input (1M토큰)</th>
-              <th style="border:1px solid #ddd; padding:12px;">Output (1M토큰)</th>
-              <th style="border:1px solid #ddd; padding:12px;">적합 용도</th>
-            </tr>
-            <tr style="background:#fff7ed;">
-              <td style="border:1px solid #ddd; padding:12px;"><strong>Claude Opus 4.7</strong> ★</td>
-              <td style="border:1px solid #ddd; padding:12px;"><strong>$15.00</strong></td>
-              <td style="border:1px solid #ddd; padding:12px;"><strong>$75.00</strong></td>
-              <td style="border:1px solid #ddd; padding:12px;">롱폼 대본·복잡한 설계·전략 분석</td>
-            </tr>
-            <tr>
-              <td style="border:1px solid #ddd; padding:12px;"><strong>Claude Sonnet 4.6</strong></td>
-              <td style="border:1px solid #ddd; padding:12px;">$3.00</td>
-              <td style="border:1px solid #ddd; padding:12px;">$15.00</td>
-              <td style="border:1px solid #ddd; padding:12px;">코딩·분석·일반 에이전트 작업</td>
-            </tr>
-            <tr>
-              <td style="border:1px solid #ddd; padding:12px;"><strong>Claude Haiku 4.5</strong></td>
-              <td style="border:1px solid #ddd; padding:12px;">$0.80</td>
-              <td style="border:1px solid #ddd; padding:12px;">$4.00</td>
-              <td style="border:1px solid #ddd; padding:12px;">분류·요약·빠른 응답 봇</td>
-            </tr>
-            <tr>
-              <td style="border:1px solid #ddd; padding:12px;"><strong>GPT-4o</strong></td>
-              <td style="border:1px solid #ddd; padding:12px;">$2.50</td>
-              <td style="border:1px solid #ddd; padding:12px;">$10.00</td>
-              <td style="border:1px solid #ddd; padding:12px;">OpenAI 생태계 연동</td>
-            </tr>
-            <tr>
-              <td style="border:1px solid #ddd; padding:12px;"><strong>GPT-4o-mini</strong></td>
-              <td style="border:1px solid #ddd; padding:12px;">$0.15</td>
-              <td style="border:1px solid #ddd; padding:12px;">$0.60</td>
-              <td style="border:1px solid #ddd; padding:12px;">대량 처리 파이프라인</td>
-            </tr>
-            <tr>
-              <td style="border:1px solid #ddd; padding:12px;"><strong>Gemini 2.0 Flash</strong></td>
-              <td style="border:1px solid #ddd; padding:12px;">$0.10</td>
-              <td style="border:1px solid #ddd; padding:12px;">$0.40</td>
-              <td style="border:1px solid #ddd; padding:12px;">초저가 대용량·멀티모달</td>
-            </tr>
-            <tr>
-              <td style="border:1px solid #ddd; padding:12px;"><strong>DeepSeek V3</strong></td>
-              <td style="border:1px solid #ddd; padding:12px;">$0.27</td>
-              <td style="border:1px solid #ddd; padding:12px;">$1.10</td>
-              <td style="border:1px solid #ddd; padding:12px;">오픈웨이트 가성비</td>
-            </tr>
-          </table></div>
+          <div class="table-wrap">
+            <table style="width:100%; border-collapse:collapse; margin:20px 0;">
+              <tr style="background:#f0f0f0;">
+                <th style="border:1px solid #ddd; padding:12px;">모델</th>
+                <th style="border:1px solid #ddd; padding:12px;">Input (1M토큰)</th>
+                <th style="border:1px solid #ddd; padding:12px;">Output (1M토큰)</th>
+                <th style="border:1px solid #ddd; padding:12px;">적합 용도</th>
+              </tr>
+              <tr style="background:#fff7ed;">
+                <td style="border:1px solid #ddd; padding:12px;"><strong>Claude Opus 4.7</strong> ★</td>
+                <td style="border:1px solid #ddd; padding:12px;"><strong>$15.00</strong></td>
+                <td style="border:1px solid #ddd; padding:12px;"><strong>$75.00</strong></td>
+                <td style="border:1px solid #ddd; padding:12px;">롱폼 대본·복잡한 설계·전략 분석</td>
+              </tr>
+              <tr>
+                <td style="border:1px solid #ddd; padding:12px;"><strong>Claude Sonnet 4.6</strong></td>
+                <td style="border:1px solid #ddd; padding:12px;">$3.00</td>
+                <td style="border:1px solid #ddd; padding:12px;">$15.00</td>
+                <td style="border:1px solid #ddd; padding:12px;">코딩·분석·일반 에이전트 작업</td>
+              </tr>
+              <tr>
+                <td style="border:1px solid #ddd; padding:12px;"><strong>Claude Haiku 4.5</strong></td>
+                <td style="border:1px solid #ddd; padding:12px;">$0.80</td>
+                <td style="border:1px solid #ddd; padding:12px;">$4.00</td>
+                <td style="border:1px solid #ddd; padding:12px;">분류·요약·빠른 응답 봇</td>
+              </tr>
+              <tr>
+                <td style="border:1px solid #ddd; padding:12px;"><strong>GPT-4o</strong></td>
+                <td style="border:1px solid #ddd; padding:12px;">$2.50</td>
+                <td style="border:1px solid #ddd; padding:12px;">$10.00</td>
+                <td style="border:1px solid #ddd; padding:12px;">OpenAI 생태계 연동</td>
+              </tr>
+              <tr>
+                <td style="border:1px solid #ddd; padding:12px;"><strong>GPT-4o-mini</strong></td>
+                <td style="border:1px solid #ddd; padding:12px;">$0.15</td>
+                <td style="border:1px solid #ddd; padding:12px;">$0.60</td>
+                <td style="border:1px solid #ddd; padding:12px;">대량 처리 파이프라인</td>
+              </tr>
+              <tr>
+                <td style="border:1px solid #ddd; padding:12px;"><strong>Gemini 2.0 Flash</strong></td>
+                <td style="border:1px solid #ddd; padding:12px;">$0.10</td>
+                <td style="border:1px solid #ddd; padding:12px;">$0.40</td>
+                <td style="border:1px solid #ddd; padding:12px;">초저가 대용량·멀티모달</td>
+              </tr>
+              <tr>
+                <td style="border:1px solid #ddd; padding:12px;"><strong>DeepSeek V3</strong></td>
+                <td style="border:1px solid #ddd; padding:12px;">$0.27</td>
+                <td style="border:1px solid #ddd; padding:12px;">$1.10</td>
+                <td style="border:1px solid #ddd; padding:12px;">오픈웨이트 가성비</td>
+              </tr>
+            </table>
+          </div>
 
           <div class="highlight-box" style="margin:20px 0">
             <strong>🧠 모델 라우팅 전략 — 작업에 따라 다른 모델을 써라</strong><br><br>
             모든 작업에 Opus를 쓰면 비용이 19배 폭등한다. 반대로 모든 작업에 Haiku를 쓰면 품질이 무너진다.<br>
             정답은 <strong>작업 복잡도에 따른 모델 라우팅</strong>이다.<br><br>
 
-            <div class="table-wrap"><table style="width:100%;border-collapse:collapse;font-size:.9rem">
-              <tr style="background:rgba(220,38,38,.08)">
-                <th style="padding:10px;text-align:left">작업 유형</th>
-                <th style="padding:10px">추천 모델</th>
-                <th style="padding:10px">이유</th>
-              </tr>
-              <tr>
-                <td style="padding:10px;border-bottom:1px solid #f1f5f9">롱폼 대본 (40씬+) / 복잡한 전략 설계</td>
-                <td style="padding:10px;border-bottom:1px solid #f1f5f9;text-align:center"><strong>Opus 4.7</strong>
-                </td>
-                <td style="padding:10px;border-bottom:1px solid #f1f5f9">32K 출력 토큰, 최고 품질</td>
-              </tr>
-              <tr>
-                <td style="padding:10px;border-bottom:1px solid #f1f5f9">에이전트 개발 / 코드 수정 / 분석</td>
-                <td style="padding:10px;border-bottom:1px solid #f1f5f9;text-align:center"><strong>Sonnet 4.6</strong>
-                </td>
-                <td style="padding:10px;border-bottom:1px solid #f1f5f9">성능/비용 최적 균형점</td>
-              </tr>
-              <tr>
-                <td style="padding:10px;border-bottom:1px solid #f1f5f9">분류 · 요약 · 단순 응답 봇</td>
-                <td style="padding:10px;border-bottom:1px solid #f1f5f9;text-align:center"><strong>Haiku 4.5</strong>
-                </td>
-                <td style="padding:10px;border-bottom:1px solid #f1f5f9">Sonnet 대비 1/5 비용</td>
-              </tr>
-              <tr>
-                <td style="padding:10px">대량 배치 처리 (1000건+)</td>
-                <td style="padding:10px;text-align:center"><strong>GPT-4o-mini / Flash</strong></td>
-                <td style="padding:10px">건당 비용 극소화</td>
-              </tr>
-            </table></div><br>
+            <div class="table-wrap">
+              <table style="width:100%;border-collapse:collapse;font-size:.9rem">
+                <tr style="background:rgba(220,38,38,.08)">
+                  <th style="padding:10px;text-align:left">작업 유형</th>
+                  <th style="padding:10px">추천 모델</th>
+                  <th style="padding:10px">이유</th>
+                </tr>
+                <tr>
+                  <td style="padding:10px;border-bottom:1px solid #f1f5f9">롱폼 대본 (40씬+) / 복잡한 전략 설계</td>
+                  <td style="padding:10px;border-bottom:1px solid #f1f5f9;text-align:center"><strong>Opus 4.7</strong>
+                  </td>
+                  <td style="padding:10px;border-bottom:1px solid #f1f5f9">32K 출력 토큰, 최고 품질</td>
+                </tr>
+                <tr>
+                  <td style="padding:10px;border-bottom:1px solid #f1f5f9">에이전트 개발 / 코드 수정 / 분석</td>
+                  <td style="padding:10px;border-bottom:1px solid #f1f5f9;text-align:center"><strong>Sonnet 4.6</strong>
+                  </td>
+                  <td style="padding:10px;border-bottom:1px solid #f1f5f9">성능/비용 최적 균형점</td>
+                </tr>
+                <tr>
+                  <td style="padding:10px;border-bottom:1px solid #f1f5f9">분류 · 요약 · 단순 응답 봇</td>
+                  <td style="padding:10px;border-bottom:1px solid #f1f5f9;text-align:center"><strong>Haiku 4.5</strong>
+                  </td>
+                  <td style="padding:10px;border-bottom:1px solid #f1f5f9">Sonnet 대비 1/5 비용</td>
+                </tr>
+                <tr>
+                  <td style="padding:10px">대량 배치 처리 (1000건+)</td>
+                  <td style="padding:10px;text-align:center"><strong>GPT-4o-mini / Flash</strong></td>
+                  <td style="padding:10px">건당 비용 극소화</td>
+                </tr>
+              </table>
+            </div><br>
             <code style="font-size:.85rem">
 # 모델 라우팅 예시<br>
 ROUTING = {<br>
@@ -3920,50 +4065,52 @@ model = ROUTING["complex"] if scene_count > 30 else ROUTING["standard"]
 
         <h3>🆚 Zapier, Make와 뭐가 다른가요?</h3>
 
-        <div class="table-wrap"><table class="comparison-table">
-          <tr>
-            <th>비교 항목</th>
-            <th>n8n</th>
-            <th>Zapier</th>
-            <th>Make (Integromat)</th>
-          </tr>
-          <tr>
-            <td><strong>가격</strong></td>
-            <td>✅ 셀프호스팅 무료<br>클라우드 월 $20~</td>
-            <td>월 $29.99~<br>(무료 제한적)</td>
-            <td>월 $10.59~<br>(무료 제한적)</td>
-          </tr>
-          <tr>
-            <td><strong>실행 횟수 제한</strong></td>
-            <td>✅ 무제한 (셀프호스팅)</td>
-            <td>월 750회 (무료)</td>
-            <td>월 1,000회 (무료)</td>
-          </tr>
-          <tr>
-            <td><strong>AI 연동</strong></td>
-            <td>✅ 네이티브 AI 노드<br>Claude, GPT, 로컬 LLM</td>
-            <td>별도 앱 연결 필요</td>
-            <td>HTTP 모듈로 연결</td>
-          </tr>
-          <tr>
-            <td><strong>복잡한 로직</strong></td>
-            <td>✅ 조건분기, 루프,<br>에러처리 자유자재</td>
-            <td>Path로 제한적</td>
-            <td>Router로 가능</td>
-          </tr>
-          <tr>
-            <td><strong>데이터 소유권</strong></td>
-            <td>✅ 내 서버에 저장</td>
-            <td>Zapier 서버</td>
-            <td>Make 서버</td>
-          </tr>
-          <tr>
-            <td><strong>오픈소스</strong></td>
-            <td>✅ Yes (Fair-code)</td>
-            <td>❌ No</td>
-            <td>❌ No</td>
-          </tr>
-        </table></div>
+        <div class="table-wrap">
+          <table class="comparison-table">
+            <tr>
+              <th>비교 항목</th>
+              <th>n8n</th>
+              <th>Zapier</th>
+              <th>Make (Integromat)</th>
+            </tr>
+            <tr>
+              <td><strong>가격</strong></td>
+              <td>✅ 셀프호스팅 무료<br>클라우드 월 $20~</td>
+              <td>월 $29.99~<br>(무료 제한적)</td>
+              <td>월 $10.59~<br>(무료 제한적)</td>
+            </tr>
+            <tr>
+              <td><strong>실행 횟수 제한</strong></td>
+              <td>✅ 무제한 (셀프호스팅)</td>
+              <td>월 750회 (무료)</td>
+              <td>월 1,000회 (무료)</td>
+            </tr>
+            <tr>
+              <td><strong>AI 연동</strong></td>
+              <td>✅ 네이티브 AI 노드<br>Claude, GPT, 로컬 LLM</td>
+              <td>별도 앱 연결 필요</td>
+              <td>HTTP 모듈로 연결</td>
+            </tr>
+            <tr>
+              <td><strong>복잡한 로직</strong></td>
+              <td>✅ 조건분기, 루프,<br>에러처리 자유자재</td>
+              <td>Path로 제한적</td>
+              <td>Router로 가능</td>
+            </tr>
+            <tr>
+              <td><strong>데이터 소유권</strong></td>
+              <td>✅ 내 서버에 저장</td>
+              <td>Zapier 서버</td>
+              <td>Make 서버</td>
+            </tr>
+            <tr>
+              <td><strong>오픈소스</strong></td>
+              <td>✅ Yes (Fair-code)</td>
+              <td>❌ No</td>
+              <td>❌ No</td>
+            </tr>
+          </table>
+        </div>
 
         <div class="tip-box">
           <strong>💡 왜 n8n을 추천하나요?</strong>
@@ -4237,44 +4384,46 @@ model = ROUTING["complex"] if scene_count > 30 else ROUTING["standard"]
 
         <h3>조건부 실행 STEP (요일별)</h3>
 
-        <div class="table-wrap"><table>
-          <tr>
-            <th>요일</th>
-            <th>STEP</th>
-            <th>봇</th>
-            <th>처리 내용</th>
-          </tr>
-          <tr>
-            <td><strong>화/목</strong></td>
-            <td>STEP 9</td>
-            <td>롱폼 영상봇</td>
-            <td>Claude 대본 → AI 음성 → Pexels 영상 → MoviePy 합성 → YouTube 비공개 업로드 (약 45분)</td>
-          </tr>
-          <tr>
-            <td><strong>월요일</strong></td>
-            <td>STEP 10</td>
-            <td>인사이트헌터</td>
-            <td>YouTube + 웹 리서치 자동 수집, 주간 트렌드 요약</td>
-          </tr>
-          <tr>
-            <td><strong>월요일</strong></td>
-            <td>STEP 11</td>
-            <td>API 비용봇</td>
-            <td>Anthropic 청구액 자동 모니터링, 이상 과금 감지</td>
-          </tr>
-          <tr>
-            <td><strong>매일</strong></td>
-            <td>STEP 13</td>
-            <td>경영지원 에이전트</td>
-            <td>일일 업무 요약 → 텔레그램 CEO 보고</td>
-          </tr>
-          <tr>
-            <td><strong>매일</strong></td>
-            <td>STEP 14</td>
-            <td>AITF Knowledge RAG</td>
-            <td>사내 지식베이스 상태 확인</td>
-          </tr>
-        </table></div>
+        <div class="table-wrap">
+          <table>
+            <tr>
+              <th>요일</th>
+              <th>STEP</th>
+              <th>봇</th>
+              <th>처리 내용</th>
+            </tr>
+            <tr>
+              <td><strong>화/목</strong></td>
+              <td>STEP 9</td>
+              <td>롱폼 영상봇</td>
+              <td>Claude 대본 → AI 음성 → Pexels 영상 → MoviePy 합성 → YouTube 비공개 업로드 (약 45분)</td>
+            </tr>
+            <tr>
+              <td><strong>월요일</strong></td>
+              <td>STEP 10</td>
+              <td>인사이트헌터</td>
+              <td>YouTube + 웹 리서치 자동 수집, 주간 트렌드 요약</td>
+            </tr>
+            <tr>
+              <td><strong>월요일</strong></td>
+              <td>STEP 11</td>
+              <td>API 비용봇</td>
+              <td>Anthropic 청구액 자동 모니터링, 이상 과금 감지</td>
+            </tr>
+            <tr>
+              <td><strong>매일</strong></td>
+              <td>STEP 13</td>
+              <td>경영지원 에이전트</td>
+              <td>일일 업무 요약 → 텔레그램 CEO 보고</td>
+            </tr>
+            <tr>
+              <td><strong>매일</strong></td>
+              <td>STEP 14</td>
+              <td>AITF Knowledge RAG</td>
+              <td>사내 지식베이스 상태 확인</td>
+            </tr>
+          </table>
+        </div>
 
         <h3>핵심 함수 — run_bot() : 오케스트레이터가 모든 봇을 실행하는 단일 인터페이스</h3>
 
@@ -4587,47 +4736,49 @@ app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))</code></pre>
 
         <p>로드맵을 시작하기 전에, 30일 후의 모습을 명확히 그려봅시다:</p>
 
-        <div class="table-wrap"><table border="1" cellpadding="10" cellspacing="0">
-          <thead>
-            <tr>
-              <th>영역</th>
-              <th>구축되는 것</th>
-              <th>기대 효과</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>수집 자동화</strong></td>
-              <td>뉴스/경쟁사/커뮤니티 모니터링 봇 3종</td>
-              <td>주 5시간 → 0시간</td>
-            </tr>
-            <tr>
-              <td><strong>콘텐츠 생성</strong></td>
-              <td>블로그/SNS/뉴스레터 초안 봇 5종</td>
-              <td>월 20시간 → 2시간</td>
-            </tr>
-            <tr>
-              <td><strong>분석 시스템</strong></td>
-              <td>트렌드/감정/경쟁 분석 봇 4종</td>
-              <td>컨설팅 비용 월 100만원 절감</td>
-            </tr>
-            <tr>
-              <td><strong>운영 자동화</strong></td>
-              <td>보고서/요약/알림 봇 5종</td>
-              <td>주 3시간 → 0시간</td>
-            </tr>
-            <tr>
-              <td><strong>의사결정 지원</strong></td>
-              <td>리서치/비교/추천 봇 4종</td>
-              <td>의사결정 속도 3배 향상</td>
-            </tr>
-            <tr>
-              <td><strong>인프라</strong></td>
-              <td>클라우드 배포 + 모니터링 + HITL</td>
-              <td>24/7 무중단 운영</td>
-            </tr>
-          </tbody>
-        </table></div>
+        <div class="table-wrap">
+          <table border="1" cellpadding="10" cellspacing="0">
+            <thead>
+              <tr>
+                <th>영역</th>
+                <th>구축되는 것</th>
+                <th>기대 효과</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>수집 자동화</strong></td>
+                <td>뉴스/경쟁사/커뮤니티 모니터링 봇 3종</td>
+                <td>주 5시간 → 0시간</td>
+              </tr>
+              <tr>
+                <td><strong>콘텐츠 생성</strong></td>
+                <td>블로그/SNS/뉴스레터 초안 봇 5종</td>
+                <td>월 20시간 → 2시간</td>
+              </tr>
+              <tr>
+                <td><strong>분석 시스템</strong></td>
+                <td>트렌드/감정/경쟁 분석 봇 4종</td>
+                <td>컨설팅 비용 월 100만원 절감</td>
+              </tr>
+              <tr>
+                <td><strong>운영 자동화</strong></td>
+                <td>보고서/요약/알림 봇 5종</td>
+                <td>주 3시간 → 0시간</td>
+              </tr>
+              <tr>
+                <td><strong>의사결정 지원</strong></td>
+                <td>리서치/비교/추천 봇 4종</td>
+                <td>의사결정 속도 3배 향상</td>
+              </tr>
+              <tr>
+                <td><strong>인프라</strong></td>
+                <td>클라우드 배포 + 모니터링 + HITL</td>
+                <td>24/7 무중단 운영</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
         <p><strong>총 21개 봇 + 완전한 운영 시스템 = 월 40시간 이상 절약 + 비용 절감</strong></p>
 
@@ -5696,10 +5847,14 @@ if __name__ == "__main__":
           <p>🌐 <strong>AITF API</strong> — 17개 AI 자동화 상품 출시 예정</p>
           <p>출시 시 이메일로 먼저 알려드립니다. <strong>지금 신청하세요.</strong></p>
           <div style="display:flex;gap:8px;max-width:400px;margin:16px auto 0">
-            <input id="lead-email-0" type="email" placeholder="이메일 입력" style="flex:1;padding:12px 16px;border:1.5px solid rgba(220,38,38,.3);border-radius:8px;font-size:.95rem;outline:none;font-family:inherit">
-            <button onclick="submitLead('lead-email-0','lead-msg-0')" style="padding:12px 20px;background:#dc2626;color:#fff;border:none;border-radius:8px;font-weight:700;cursor:pointer;font-size:.95rem">알림 신청</button>
+            <input id="lead-email-0" type="email" placeholder="이메일 입력"
+              style="flex:1;padding:12px 16px;border:1.5px solid rgba(220,38,38,.3);border-radius:8px;font-size:.95rem;outline:none;font-family:inherit">
+            <button onclick="submitLead('lead-email-0','lead-msg-0')"
+              style="padding:12px 20px;background:#dc2626;color:#fff;border:none;border-radius:8px;font-weight:700;cursor:pointer;font-size:.95rem">알림
+              신청</button>
           </div>
-          <div id="lead-msg-0" style="display:none;margin-top:10px;font-size:.9rem;color:#15803d;font-weight:600">✅ 등록 완료! 출시 시 바로 연락드립니다.</div>
+          <div id="lead-msg-0" style="display:none;margin-top:10px;font-size:.9rem;color:#15803d;font-weight:600">✅ 등록
+            완료! 출시 시 바로 연락드립니다.</div>
         </div>
       </div>
       <div class="ch-body">
@@ -5815,13 +5970,18 @@ if __name__ == "__main__":
           <div style="background:#f8fafc;border:2px solid #e2e8f0;border-radius:14px;padding:24px">
             <h3 style="margin-top:0;color:#1e293b">🛠️ 직접 개발</h3>
             <p style="color:#374151;font-size:.95rem">이 책의 코드를 복사해서 직접 구축한다.</p>
-            <p style="color:#374151;font-size:.95rem"><strong>AITF API</strong>는 17개 상품·48개 엔드포인트를 준비 중이다. 출시 시 이메일로 먼저 알려드립니다.</p>
+            <p style="color:#374151;font-size:.95rem"><strong>AITF API</strong>는 17개 상품·48개 엔드포인트를 준비 중이다. 출시 시 이메일로 먼저
+              알려드립니다.</p>
             <p style="font-size:.9rem;color:#64748b">예상 소요: 1~2주<br>비용: API 사용량만 (월 $5~50)</p>
             <div style="margin-top:16px;display:flex;gap:8px">
-              <input id="lead-email-1" type="email" placeholder="이메일 입력" style="flex:1;padding:11px 14px;border:1.5px solid #e2e8f0;border-radius:8px;font-size:.9rem;outline:none;font-family:inherit">
-              <button onclick="submitLead('lead-email-1','lead-msg-1')" style="padding:11px 16px;background:var(--red);color:#fff;border:none;border-radius:8px;font-weight:700;cursor:pointer;white-space:nowrap;font-size:.9rem">출시 알림 신청</button>
+              <input id="lead-email-1" type="email" placeholder="이메일 입력"
+                style="flex:1;padding:11px 14px;border:1.5px solid #e2e8f0;border-radius:8px;font-size:.9rem;outline:none;font-family:inherit">
+              <button onclick="submitLead('lead-email-1','lead-msg-1')"
+                style="padding:11px 16px;background:var(--red);color:#fff;border:none;border-radius:8px;font-weight:700;cursor:pointer;white-space:nowrap;font-size:.9rem">출시
+                알림 신청</button>
             </div>
-            <div id="lead-msg-1" style="display:none;margin-top:8px;font-size:.85rem;color:#15803d;font-weight:600">✅ 등록 완료! 출시 시 바로 연락드립니다.</div>
+            <div id="lead-msg-1" style="display:none;margin-top:8px;font-size:.85rem;color:#15803d;font-weight:600">✅ 등록
+              완료! 출시 시 바로 연락드립니다.</div>
           </div>
 
           <div style="background:#fef2f2;border:2px solid rgba(220,38,38,.25);border-radius:14px;padding:24px">
@@ -5874,12 +6034,38 @@ if __name__ == "__main__":
           <div style="font-weight:700;margin-bottom:6px;font-size:.95rem">📬 AITF API 출시 알림 받기</div>
           <div style="font-size:.85rem;color:#64748b;margin-bottom:12px">17개 AI 자동화 API — 출시 즉시 이메일로 먼저 알려드립니다</div>
           <div style="display:flex;gap:8px">
-            <input id="lead-email-2" type="email" placeholder="이메일 입력" style="flex:1;padding:10px 14px;border:1.5px solid #e2e8f0;border-radius:8px;font-size:.9rem;outline:none;font-family:inherit">
-            <button onclick="submitLead('lead-email-2','lead-msg-2')" style="padding:10px 16px;background:#dc2626;color:#fff;border:none;border-radius:8px;font-weight:700;cursor:pointer;white-space:nowrap;font-size:.9rem">신청</button>
+            <input id="lead-email-2" type="email" placeholder="이메일 입력"
+              style="flex:1;padding:10px 14px;border:1.5px solid #e2e8f0;border-radius:8px;font-size:.9rem;outline:none;font-family:inherit">
+            <button onclick="submitLead('lead-email-2','lead-msg-2')"
+              style="padding:10px 16px;background:#dc2626;color:#fff;border:none;border-radius:8px;font-weight:700;cursor:pointer;white-space:nowrap;font-size:.9rem">신청</button>
           </div>
-          <div id="lead-msg-2" style="display:none;margin-top:8px;font-size:.85rem;color:#15803d;font-weight:600">✅ 등록 완료! 출시 시 바로 연락드립니다.</div>
+          <div id="lead-msg-2" style="display:none;margin-top:8px;font-size:.85rem;color:#15803d;font-weight:600">✅ 등록
+            완료! 출시 시 바로 연락드립니다.</div>
         </div>
-        <div style="display:none">
+        <div style="margin-top:32px">
+          <p style="font-size:.8rem;color:#94a3b8;font-weight:700;letter-spacing:.04em;margin-bottom:12px">저자가 직접 구축·운영 중인 서비스</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+            <div style="background:#fff;border:1.5px solid #e5e7eb;border-radius:14px;padding:22px 20px;transition:all .2s"
+              onmouseover="this.style.borderColor='#dc2626';this.style.boxShadow='0 4px 20px rgba(220,38,38,.1)'"
+              onmouseout="this.style.borderColor='#e5e7eb';this.style.boxShadow='none'">
+              <div style="font-size:1.5rem;margin-bottom:8px">🤖</div>
+              <h4 style="font-size:.96rem;font-weight:800;color:#111827;margin:0 0 6px;letter-spacing:-.02em">AITF — AI 에이전트 구축 & 교육</h4>
+              <p style="font-size:.81rem;color:#64748b;line-height:1.65;margin:0 0 12px;word-break:keep-all">이 책에 나온 시스템을 실제로 운영 중이다. AI 에이전트 도입이 필요한 기업을 위한 구축·운영·교육 서비스.</p>
+              <a href="https://aitf-landing.onrender.com/" target="_blank" rel="noopener" style="font-size:.81rem;font-weight:700;color:#dc2626;text-decoration:none">aitf-landing.onrender.com →</a>
+            </div>
+            <div style="background:#fff;border:1.5px solid #e5e7eb;border-radius:14px;padding:22px 20px;transition:all .2s"
+              onmouseover="this.style.borderColor='#dc2626';this.style.boxShadow='0 4px 20px rgba(220,38,38,.1)'"
+              onmouseout="this.style.borderColor='#e5e7eb';this.style.boxShadow='none'">
+              <div style="font-size:1.5rem;margin-bottom:8px">📅</div>
+              <h4 style="font-size:.96rem;font-weight:800;color:#111827;margin:0 0 6px;letter-spacing:-.02em">정글부킹 — AI 통합예약 시스템</h4>
+              <p style="font-size:.81rem;color:#64748b;line-height:1.65;margin:0 0 12px;word-break:keep-all">버티컬 데이터 기반 AI 올인원 예약 자동화. 스터디카페·필라테스·코워킹부터 예약·마케팅까지 한번에.</p>
+              <a href="https://www.ai-jungle.kr" target="_blank" rel="noopener" style="font-size:.81rem;font-weight:700;color:#dc2626;text-decoration:none">ai-jungle.kr →</a>
+            </div>
+          </div>
+          <p style="text-align:center;font-size:.8rem;color:#94a3b8;margin-top:20px;line-height:1.8">
+            AI 에이전트 바이블 2026 — 저자 김화현 · 공동저자 로드(Claude) · 안티(Antigravity)<br>
+            <a href="mailto:ceo@stayjanda.com" style="color:#dc2626;text-decoration:none;font-weight:600">협업 및 제안 · ceo@stayjanda.com</a>
+          </p>
         </div>
       </div>
   </div>
@@ -5916,23 +6102,23 @@ if __name__ == "__main__":
       btn.textContent = '전송 중...';
       fetch('https://aitf-api.onrender.com/leads', {
         method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({email: email, source: 'agent-bible'})
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email, source: 'agent-bible' })
       })
-      .then(function(r) { return r.json(); })
-      .then(function(d) {
-        emailEl.style.display = 'none';
-        btn.style.display = 'none';
-        msgEl.style.display = 'block';
-      })
-      .catch(function() {
-        emailEl.disabled = false;
-        btn.disabled = false;
-        btn.textContent = '출시 알림 신청';
-        msgEl.textContent = '❌ 전송 실패. 다시 시도해주세요.';
-        msgEl.style.color = '#dc2626';
-        msgEl.style.display = 'block';
-      });
+        .then(function (r) { return r.json(); })
+        .then(function (d) {
+          emailEl.style.display = 'none';
+          btn.style.display = 'none';
+          msgEl.style.display = 'block';
+        })
+        .catch(function () {
+          emailEl.disabled = false;
+          btn.disabled = false;
+          btn.textContent = '출시 알림 신청';
+          msgEl.textContent = '❌ 전송 실패. 다시 시도해주세요.';
+          msgEl.style.color = '#dc2626';
+          msgEl.style.display = 'block';
+        });
     }
 
     const chapters = document.querySelectorAll('.chapter');
@@ -5989,8 +6175,8 @@ if __name__ == "__main__":
       t.addEventListener('click', e => {
         e.preventDefault();
         const id = t.dataset.id;
-        const isLocked = ['level1b','level2a','level2b','level6b','level3','nocode','level4','roadmap','epilogue'].includes(id)
-                         && localStorage.getItem('agentBibleUnlocked') !== '1';
+        const isLocked = ['level1b', 'level2a', 'level2b', 'level6b', 'level3', 'nocode', 'level4', 'roadmap', 'epilogue'].includes(id)
+          && localStorage.getItem('agentBibleUnlocked') !== '1';
         if (isLocked) {
           document.getElementById('pw-gate').classList.add('active');
           setTimeout(() => document.getElementById('pw-input')?.focus(), 100);
@@ -6042,7 +6228,7 @@ if __name__ == "__main__":
       }
       // 개발자 도구 차단: F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C
       if (e.key === 'F12') { e.preventDefault(); return; }
-      if ((e.ctrlKey || e.metaKey) && e.shiftKey && ['i','j','c'].includes(e.key.toLowerCase())) {
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && ['i', 'j', 'c'].includes(e.key.toLowerCase())) {
         e.preventDefault();
       }
     });
