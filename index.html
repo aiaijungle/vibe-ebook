@@ -2514,12 +2514,8 @@ document.querySelectorAll('.toc-locked').forEach(function(a) {
       document.getElementById('popup-chapter-title').textContent = clean.length > 40 ? clean.slice(0, 40) + '…' : clean;
       document.getElementById('popup-chapter-desc').textContent = '이 챕터의 전체 내용은 구매 후 즉시 열람 가능합니다.';
     }
-    document.getElementById('buy-popup').classList.add('show');
+    // buy-popup 비활성화 (무료 공개 중)
   });
-});
-var _bp = document.getElementById('buy-popup');
-if (_bp) _bp.addEventListener('click', function(e) {
-  if (e.target === this) this.classList.remove('show');
 });
 
 // ── 목차 검색 ──
