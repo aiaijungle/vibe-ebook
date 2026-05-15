@@ -108,6 +108,8 @@ pre.code{
 
 /* __JANDA_COPY_PROTECT__ */
 *{-webkit-user-select:none!important;-moz-user-select:none!important;-ms-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important;}
+/* 링크·버튼은 모바일 long-press 공유 허용 */
+a,button{-webkit-touch-callout:default!important;-webkit-user-select:auto!important;}
 </style>
 </head>
 <body>
@@ -115,7 +117,7 @@ pre.code{
 <nav style="position:sticky;top:0;z-index:9999;background:rgba(15,17,26,.96);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.08);padding:10px 20px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:.78rem;font-weight:700;font-family:'Pretendard',sans-serif;">
   <span style="color:rgba(255,255,255,.35);margin-right:4px;">AI사냥꾼 시리즈</span>
   <a href="book1.html" style="text-decoration:none;background:rgba(124,58,237,.25);border:1px solid rgba(124,58,237,.6);color:#a78bfa;padding:4px 12px;border-radius:20px;">📘 1권 바이브코딩 입문 ✓</a>
-  <a href="index.html" style="text-decoration:none;color:rgba(255,255,255,.45);padding:4px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.1);">📗 2권 바이브코딩 실전</a>
+  <a href="index.html" style="text-decoration:none;color:rgba(255,255,255,.45);padding:4px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.1);">📗 2권 바이브코딩바이블</a>
   <a href="agent-bible.html" style="text-decoration:none;color:rgba(255,255,255,.45);padding:4px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.1);">🤖 3권 에이전트 바이블</a>
   <a href="claude-code-bible.html" style="text-decoration:none;color:rgba(255,255,255,.45);padding:4px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.1);">⚡ 4권 Claude Code 바이블</a>
 </nav>
@@ -130,7 +132,7 @@ pre.code{
   <header class="book-header">
     <div class="book-badge">VIBECODING MASTERY · 1권</div>
     <h1 class="book-title">코딩 없이 블로그와 유튜브를<br>자동으로 운영하는 법</h1>
-    <p class="book-sub">마케팅 자동화 입문 — 바이브코딩 실전 시리즈</p>
+    <p class="book-sub">마케팅 자동화 입문 — 바이브코딩바이블 시리즈</p>
     <span class="free-tag">✓ 무료 공개</span>
   </header>
 
@@ -612,7 +614,7 @@ pre.code{
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;">
       <a href="index.html" style="text-decoration:none;display:block;background:rgba(255,255,255,.5);border:1px solid var(--border);border-radius:12px;padding:18px 16px;transition:border-color .2s;" onmouseover="this.style.borderColor='rgba(16,185,129,.5)'" onmouseout="this.style.borderColor=''">
         <div style="font-size:1.4rem;margin-bottom:8px;">📗</div>
-        <div style="font-size:.88rem;font-weight:800;color:var(--text);margin-bottom:5px;">바이브코딩 실전 바이블</div>
+        <div style="font-size:.88rem;font-weight:800;color:var(--text);margin-bottom:5px;">바이브코딩바이블 바이블</div>
         <div style="font-size:.75rem;color:var(--text);opacity:.55;line-height:1.6;word-break:keep-all;">실제 봇 11개, 파이프라인 전체 공개. 마케팅 자동화 실전.</div>
         <div style="margin-top:10px;font-size:.72rem;color:#10b981;font-weight:700;">읽어보기 →</div>
       </a>
@@ -681,18 +683,6 @@ document.addEventListener('selectstart', e => {
   e.preventDefault();
 });
 
-// ── 보안: 개발자도구 감지 (콘솔 열림 시 경고)
-(function() {
-  const threshold = 160;
-  setInterval(() => {
-    if (
-      window.outerWidth - window.innerWidth > threshold ||
-      window.outerHeight - window.innerHeight > threshold
-    ) {
-      document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:sans-serif;font-size:1.2rem;color:#7c3aed;">⚠️ 이 콘텐츠는 보호되어 있습니다.</div>';
-    }
-  }, 1000);
-})();
 
 // ── 인쇄 차단
 window.addEventListener('beforeprint', e => {
