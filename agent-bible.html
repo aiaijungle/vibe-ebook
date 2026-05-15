@@ -1162,6 +1162,19 @@
 
 <body>
 
+<!-- 4권 시리즈 네비게이션 -->
+<div style="background:#0d0d0d;border-bottom:1px solid rgba(255,255,255,.1);padding:8px 16px;display:flex;gap:6px;align-items:center;flex-wrap:wrap;justify-content:center;font-size:.73rem;position:sticky;top:0;z-index:9999;">
+  <span style="color:rgba(255,255,255,.35);margin-right:4px;white-space:nowrap;">📚 AI사냥꾼 시리즈</span>
+  <a href="index.html" style="color:rgba(255,255,255,.6);padding:3px 11px;border:1px solid rgba(255,255,255,.15);border-radius:20px;text-decoration:none;white-space:nowrap;transition:all .2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,.6)'">📗 2권 바이브코딩</a>
+  <span style="background:linear-gradient(135deg,#f59e0b,#ef4444);color:#fff;font-weight:800;padding:3px 11px;border-radius:20px;white-space:nowrap;">🤖 3권 에이전트 바이블 ✓</span>
+  <a href="claude-code-bible.html" style="color:rgba(255,255,255,.6);padding:3px 11px;border:1px solid rgba(255,255,255,.15);border-radius:20px;text-decoration:none;white-space:nowrap;transition:all .2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,.6)'">⚡ 4권 Claude Code 바이블</a>
+  <span style="color:rgba(239,68,68,.7);font-size:.68rem;white-space:nowrap;margin-left:2px;">· 곧 19,900원 유료화</span>
+</div>
+<!-- 유료화 예정 안내 -->
+<div style="background:linear-gradient(90deg,#1a0a00,#2d1200,#1a0a00);border-bottom:1px solid rgba(251,191,36,.25);padding:9px 20px;text-align:center;font-size:.8rem;color:rgba(255,255,255,.7);letter-spacing:.01em;word-break:keep-all;">
+  현재 <strong style="color:#fbbf24;">무료</strong> 공개 중 &nbsp;·&nbsp; 곧 <strong style="color:#fbbf24;">19,900원</strong>으로 유료화 예정입니다. 지금 바로 읽어두세요.
+</div>
+
   <!-- 사이드바 -->
   <nav id="sidebar">
     <div class="sidebar-logo">
@@ -3125,6 +3138,77 @@ if __name__ == "__main__":
     print(get_memory("user_001", "preference"))  # 아메리카노 선호
 # 실행: python db_memory_bot.py</pre>
         </div>
+
+<!-- ★ 독자 후기 위젯 -->
+<style>
+#review-widget input,#review-widget textarea{font-family:inherit;box-sizing:border-box;width:100%;}
+#review-widget #rv-submit-btn:active{opacity:.65!important;}
+#review-widget #review-next-btn:active{background:rgba(124,58,237,.5)!important;}
+@media(max-width:480px){
+  #review-widget{padding:22px 16px!important;}
+  #review-cards{grid-template-columns:1fr!important;}
+}
+</style>
+<div id="review-widget" style="margin:48px 0;padding:32px 28px;background:linear-gradient(135deg,#0f0f1a,#1a1a2e);border:1px solid rgba(124,58,237,.25);border-radius:18px;">
+  <div style="font-size:.7rem;font-weight:700;letter-spacing:.18em;color:#a78bfa;margin-bottom:6px;">READERS SAY</div>
+  <div style="font-size:1.1rem;font-weight:900;color:#fff;margin-bottom:4px;">독자 후기</div>
+  <div style="font-size:.8rem;color:rgba(255,255,255,.45);margin-bottom:20px;">실제로 읽은 분들이 남긴 솔직한 경험입니다.</div>
+  <div id="review-cards" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:16px;">
+    <div style="background:rgba(255,255,255,.04);border-radius:12px;padding:16px;text-align:center;color:rgba(255,255,255,.4);font-size:.85rem;">불러오는 중...</div>
+  </div>
+  <div style="text-align:center;margin-bottom:28px;">
+    <button id="review-next-btn" onclick="nextReviews()" style="background:rgba(124,58,237,.2);border:1px solid rgba(124,58,237,.4);color:#a78bfa;font-size:.8rem;font-weight:700;padding:7px 20px;border-radius:20px;cursor:pointer;transition:all .2s;" onmouseover="this.style.background='rgba(124,58,237,.4)'" onmouseout="this.style.background='rgba(124,58,237,.2)'">다음 3개 →</button>
+  </div>
+  <div style="border-top:1px solid rgba(255,255,255,.08);padding-top:22px;">
+    <div style="font-size:.95rem;font-weight:800;color:#fff;margin-bottom:4px;">당신의 경험을 남겨주세요</div>
+    <div style="font-size:.78rem;color:rgba(255,255,255,.4);margin-bottom:14px;line-height:1.7;">당신의 후기 한 줄이 다음 독자의 결정을 바꿉니다.<br>구체적일수록 더 많은 사람에게 도움이 됩니다.</div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <input id="rv-name" type="text" maxlength="30" placeholder="이름 또는 닉네임" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);border-radius:9px;padding:10px 14px;color:#fff;font-size:.85rem;outline:none;transition:border .2s;" onfocus="this.style.borderColor='rgba(124,58,237,.6)'" onblur="this.style.borderColor='rgba(255,255,255,.15)'" />
+      <textarea id="rv-content" maxlength="500" rows="4" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);border-radius:9px;padding:10px 14px;color:#fff;font-size:.85rem;outline:none;resize:none;transition:border .2s;" onfocus="this.style.borderColor='rgba(124,58,237,.6)'" onblur="this.style.borderColor='rgba(255,255,255,.15)'"
+        placeholder="예시) &quot;에이전트를 처음 만들어봤는데 챕터 3 이후부터 머릿속에서 연결이 됐어요. 실제로 텔레그램 봇 하나 만들었고 지금 매일 씁니다.&quot;&#10;&#10;읽기 전 상황 → 읽고 나서 달라진 것 → 실제 써봤다면 어떻게?"></textarea>
+      <div style="font-size:.72rem;color:rgba(255,255,255,.3);padding-left:2px;">💡 &quot;어떤 상황이었나요?&quot; &quot;어디서 막혔다가 풀렸나요?&quot; &quot;실제로 만든 게 있나요?&quot; — 이 3가지만 담으면 됩니다.</div>
+      <button id="rv-submit-btn" onclick="submitReview('에이전트')" style="background:linear-gradient(135deg,#7c3aed,#a78bfa);border:none;color:#fff;font-weight:800;font-size:.88rem;padding:11px;border-radius:9px;cursor:pointer;transition:opacity .2s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">등록하기</button>
+      <div id="rv-msg" style="font-size:.78rem;text-align:center;min-height:18px;"></div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var SUPA_URL='https://hzobwciaqtbfaxxvcots.supabase.co';
+  var SUPA_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh6b2J3Y2lhcXRiZmF4eHZjb3RzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg2NTMxMTYsImV4cCI6MjA5NDIyOTExNn0.9VatQ5UxJrAKEE9gOcknvVvd_9I0j9GgQWe_UvtcfCg';
+  var allReviews=[];var pageIdx=0;
+  function hdrs(e){return Object.assign({'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY},e||{});}
+  function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+  function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+  function renderCards(){
+    var el=document.getElementById('review-cards');
+    if(!allReviews.length){el.innerHTML='<div style="text-align:center;color:rgba(255,255,255,.35);font-size:.85rem;padding:20px;">아직 후기가 없습니다. 첫 후기의 주인공이 되어주세요!</div>';document.getElementById('review-next-btn').style.display='none';return;}
+    var start=(pageIdx*3)%allReviews.length;var count=Math.min(3,allReviews.length);var cards='';
+    for(var i=0;i<count;i++){var r=allReviews[(start+i)%allReviews.length];var d=new Date(r.created_at);var dt=(d.getMonth()+1)+'.'+(d.getDate());
+      cards+='<div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:16px;"><div style="font-size:.92rem;color:rgba(255,255,255,.85);line-height:1.7;margin-bottom:12px;word-break:keep-all;">&#8220;'+esc(r.content)+'&#8221;</div><div style="font-size:.75rem;color:rgba(255,255,255,.4);">'+esc(r.name)+' &nbsp;·&nbsp; '+dt+'</div></div>';}
+    el.innerHTML=cards;document.getElementById('review-next-btn').style.display=allReviews.length<=3?'none':'inline-block';
+  }
+  window.nextReviews=function(){pageIdx++;renderCards();};
+  window.submitReview=function(book){
+    var name=(document.getElementById('rv-name').value||'').trim();
+    var content=(document.getElementById('rv-content').value||'').trim();
+    var msg=document.getElementById('rv-msg');
+    if(!name){msg.style.color='#f87171';msg.textContent='이름을 입력해주세요.';return;}
+    if(content.length<5){msg.style.color='#f87171';msg.textContent='후기를 5자 이상 입력해주세요.';return;}
+    var btn=document.getElementById('rv-submit-btn');btn.disabled=true;btn.textContent='등록 중...';
+    fetch(SUPA_URL+'/rest/v1/ebook_reviews',{method:'POST',headers:hdrs({'Content-Type':'application/json','Prefer':'return=minimal'}),body:JSON.stringify({book:book,name:name,content:content})})
+    .then(function(r){if(r.ok||r.status===201){msg.style.color='#86efac';msg.textContent='후기가 등록됐습니다. 진심으로 감사합니다!';document.getElementById('rv-name').value='';document.getElementById('rv-content').value='';setTimeout(function(){loadReviews(book);},800);}else{return r.text().then(function(t){throw new Error(t);});}})
+    .catch(function(){msg.style.color='#f87171';msg.textContent='오류가 발생했습니다. 잠시 후 다시 시도해주세요.';})
+    .finally(function(){btn.disabled=false;btn.textContent='등록하기';});
+  };
+  function loadReviews(book){
+    fetch(SUPA_URL+'/rest/v1/ebook_reviews?book=eq.'+encodeURIComponent(book)+'&select=id,name,content,created_at&order=created_at.desc&limit=50',{headers:hdrs()})
+    .then(function(r){return r.json();}).then(function(d){if(Array.isArray(d)){allReviews=shuffle(d);pageIdx=0;renderCards();}})
+    .catch(function(){document.getElementById('review-cards').innerHTML='<div style="color:rgba(255,255,255,.3);font-size:.8rem;text-align:center;">후기를 불러올 수 없습니다.</div>';});
+  }
+  loadReviews('에이전트');
+})();
+</script>
 
         <h2>4. 벡터DB 기억 — "비슷한 내용"을 의미 검색 (ChromaDB)</h2>
         <p>파일·DB는 정확한 키워드만 검색한다. 벡터DB는 <strong>의미 유사도로 검색</strong>한다. "커피 추천해줘" 입력 시 "아메리카노 선호" 기억을 찾아주는 게 벡터DB다. RAG의
@@ -6275,6 +6359,25 @@ if __name__ == "__main__":
       });
     }
   </script>
+  <!-- 시리즈 상호 소개 -->
+  <div style="margin:48px 24px;padding:28px 24px;border:1px solid rgba(255,255,255,.1);border-radius:16px;background:rgba(255,255,255,.03);">
+    <div style="font-size:.7rem;font-weight:700;letter-spacing:.18em;color:rgba(255,255,255,.35);margin-bottom:16px;">AI사냥꾼 시리즈 · 함께 읽으면 더 강해집니다</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;">
+      <a href="index.html" style="text-decoration:none;display:block;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:18px 16px;transition:border-color .2s;" onmouseover="this.style.borderColor='rgba(124,58,237,.5)'" onmouseout="this.style.borderColor='rgba(255,255,255,.1)'">
+        <div style="font-size:1.4rem;margin-bottom:8px;">📗</div>
+        <div style="font-size:.88rem;font-weight:800;color:#fff;margin-bottom:5px;">바이브코딩 실전 바이블</div>
+        <div style="font-size:.75rem;color:rgba(255,255,255,.45);line-height:1.6;word-break:keep-all;">비개발자가 96시간 만에 B2B 플랫폼을 세운 실화. 바이브코딩의 시작점.</div>
+        <div style="margin-top:10px;font-size:.72rem;color:#a78bfa;font-weight:700;">읽어보기 →</div>
+      </a>
+      <a href="claude-code-bible.html" style="text-decoration:none;display:block;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:18px 16px;transition:border-color .2s;" onmouseover="this.style.borderColor='rgba(139,92,246,.5)'" onmouseout="this.style.borderColor='rgba(255,255,255,.1)'">
+        <div style="font-size:1.4rem;margin-bottom:8px;">⚡</div>
+        <div style="font-size:.88rem;font-weight:800;color:#fff;margin-bottom:5px;">Claude Code 바이블</div>
+        <div style="font-size:.75rem;color:rgba(255,255,255,.45);line-height:1.6;word-break:keep-all;">터미널 한 줄로 시작하는 Claude Code 실전 완전 정복.</div>
+        <div style="margin-top:10px;font-size:.72rem;color:#a78bfa;font-weight:700;">읽어보기 →</div>
+      </a>
+    </div>
+  </div>
+
   </div><!-- /#main -->
 </body>
 
