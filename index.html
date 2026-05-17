@@ -2916,5 +2916,137 @@ if (localStorage.getItem('sib_dismissed')) {
   document.getElementById('series-intro-banner').style.display = 'none';
 }
 </script>
+
+<!-- ============================================================
+     AITF 전자책 보안 레이어 v1.0 (2026-05-17)
+     - 워터마크 / 캡처방지 / 우클릭·devtools 차단 / 복사경고 / IP로깅
+     ============================================================ -->
+<style>
+@media print {
+  body { display:none !important; visibility:hidden !important; }
+  html::before {
+    content: "© AITF 2026 · 인쇄 차단됨 · 무단복제 시 법적 책임";
+    display:block; padding:40px; font-size:20px; color:#900; text-align:center;
+  }
+}
+#aitf-watermark-layer {
+  position:fixed; inset:0; pointer-events:none; opacity:0.08;
+  z-index:99999; overflow:hidden; user-select:none;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+#aitf-watermark-layer .wm-row {
+  display:flex; gap:60px; white-space:nowrap;
+  font-size:14px; font-weight:700; color:#000;
+  transform: rotate(-30deg); transform-origin: 0 0;
+  padding:30px 0;
+}
+#aitf-toast {
+  position:fixed; left:50%; bottom:40px; transform:translateX(-50%);
+  background:#1a1a1a; color:#fff; padding:14px 22px; border-radius:8px;
+  font-size:14px; font-weight:600; z-index:100000;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  opacity:0; transition: opacity 0.25s; pointer-events:none;
+  max-width:90vw; text-align:center;
+}
+#aitf-toast.show { opacity:1; }
+</style>
+<div id="aitf-watermark-layer" aria-hidden="true"></div>
+<div id="aitf-toast" role="status" aria-live="polite"></div>
+<script>
+(function(){
+  'use strict';
+  var TODAY = new Date().toISOString().slice(0,10);
+  var WM_TEXT = '© AITF 2026 · aiaijungle.github.io · ' + TODAY;
+
+  // 1. 워터마크 레이어 채우기
+  try {
+    var layer = document.getElementById('aitf-watermark-layer');
+    if (layer) {
+      var rows = '';
+      for (var r=0; r<14; r++) {
+        var cells = '';
+        for (var c=0; c<8; c++) cells += '<span>' + WM_TEXT + '</span>';
+        rows += '<div class="wm-row">' + cells + '</div>';
+      }
+      layer.innerHTML = rows;
+    }
+  } catch(e){}
+
+  // Toast helper
+  function toast(msg, ms){
+    var t = document.getElementById('aitf-toast');
+    if (!t) return;
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(t._timer);
+    t._timer = setTimeout(function(){ t.classList.remove('show'); }, ms || 3000);
+  }
+
+  // 2. 우클릭 / 단축키 차단
+  document.addEventListener('contextmenu', function(e){
+    e.preventDefault();
+    toast('⚠️ 우클릭이 차단되었습니다. 콘텐츠는 저작권 보호를 받습니다.');
+    return false;
+  });
+  document.addEventListener('keydown', function(e){
+    var k = e.key;
+    var blocked =
+      k === 'F12' ||
+      (e.ctrlKey && e.shiftKey && (k === 'I' || k === 'i' || k === 'J' || k === 'j' || k === 'C' || k === 'c')) ||
+      (e.ctrlKey && (k === 'U' || k === 'u' || k === 'S' || k === 's' || k === 'P' || k === 'p'));
+    if (blocked) {
+      e.preventDefault();
+      toast('⚠️ 개발자 도구·소스보기·인쇄가 차단되었습니다.');
+      return false;
+    }
+  });
+
+  // 3. 복사 시 경고 + 클립보드 텍스트 교체
+  var COPY_WARN = '⚠️ 이 콘텐츠는 저작권 보호를 받습니다. 무단 복사 시 법적 책임이 있습니다. (© AITF 2026)';
+  document.addEventListener('copy', function(e){
+    try {
+      if (e.clipboardData) {
+        e.clipboardData.setData('text/plain', COPY_WARN);
+        e.preventDefault();
+      }
+    } catch(err){}
+    toast('⚠️ 이 콘텐츠는 저작권 보호를 받습니다. 무단 복사 시 법적 책임이 있습니다.');
+  });
+
+  // devtools 감지 (창 크기 휴리스틱)
+  var devtoolsWarned = false;
+  setInterval(function(){
+    var threshold = 160;
+    var widthGap = window.outerWidth - window.innerWidth;
+    var heightGap = window.outerHeight - window.innerHeight;
+    if ((widthGap > threshold || heightGap > threshold) && !devtoolsWarned) {
+      devtoolsWarned = true;
+      toast('⚠️ 개발자 도구가 감지되었습니다. 접속이 기록됩니다.');
+    }
+  }, 1500);
+
+  // 4. IP / 접속 로깅 (1일 1회)
+  try {
+    var LAST_KEY = 'aitf_iplog_last';
+    var last = parseInt(localStorage.getItem(LAST_KEY) || '0', 10);
+    var now = Date.now();
+    if (now - last > 24*60*60*1000) {
+      fetch('https://ipapi.co/json/').then(function(r){ return r.json(); }).then(function(d){
+        var info = {
+          ip: d.ip, country: d.country_name, city: d.city,
+          ua: navigator.userAgent, page: location.pathname, ts: new Date().toISOString()
+        };
+        console.log('[AITF 접속로그]', info);
+        localStorage.setItem('aitf_iplog_data', JSON.stringify(info));
+        localStorage.setItem(LAST_KEY, String(now));
+        // AITF API 전송 (현재는 콘솔 모의 — 서버 엔드포인트 준비 후 활성화)
+        console.log('[AITF API] POST /v1/ebook/access-log (모의)', info);
+      }).catch(function(err){
+        console.warn('[AITF 접속로그] ipapi 호출 실패:', err && err.message);
+      });
+    }
+  } catch(e){}
+})();
+</script>
 </body>
 </html>
