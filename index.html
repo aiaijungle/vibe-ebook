@@ -185,8 +185,13 @@ a:hover{text-decoration:underline}
   max-width:calc(100vw - 140px);
 }
 .mobile-progress-wrap{
-  flex:1;height:4px;background:var(--border);border-radius:2px;margin-left:auto;min-width:60px;
+  flex:1;height:4px;background:var(--border);border-radius:2px;margin-left:auto;min-width:40px;
 }
+.topbar-share-btn{
+  background:none;border:none;cursor:pointer;font-size:1.05rem;padding:4px 6px;
+  color:var(--accent);opacity:0.85;line-height:1;flex-shrink:0;
+}
+.topbar-share-btn:active{opacity:1;transform:scale(1.15);}
 .mobile-progress-bar{
   height:100%;background:var(--accent);border-radius:2px;
   transition:width .3s ease;width:0%;
@@ -216,8 +221,10 @@ a:hover{text-decoration:underline}
 
 /* ── 모바일 (768px 이하) ── */
 @media(max-width:768px){
+  /* 카운트다운 — 모바일에서 완전 숨김 (ebook fixed view가 전체 화면 차지) */
+  #may-countdown{display:none!important}
   /* 레이아웃 — #ebook을 viewport 전체에 고정 (앞쪽 배너/카운트다운에 밀리지 않게) */
-  #ebook{flex-direction:column;position:fixed;inset:0;overflow:hidden;z-index:10500}
+  #ebook{flex-direction:column;position:fixed!important;top:0!important;left:0!important;right:0!important;bottom:0!important;width:100%!important;height:100%!important;overflow:hidden;z-index:10500;background:var(--bg)}
   body{overflow:hidden}
 
   /* 사이드바 — 슬라이드 드로어 방식 */
@@ -414,6 +421,110 @@ main::-webkit-scrollbar-thumb{background:var(--accent);border-radius:99px;opacit
 /* __JANDA_COPY_PROTECT__ */
 *{-webkit-user-select:none!important;-moz-user-select:none!important;-ms-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important;}
 a,button{-webkit-touch-callout:default!important;-webkit-user-select:auto!important;}
+
+/* ── Feature 1: 공감 버튼 ── */
+.reaction-bar{display:flex;align-items:center;gap:10px;padding:18px 20px;margin-top:32px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);word-break:keep-all}
+.reaction-bar__label{font-size:13px;color:rgba(255,255,255,.45);white-space:nowrap;flex-shrink:0}
+.reaction-bar__buttons{display:flex;gap:8px}
+.reaction-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:44px;min-width:80px;padding:8px 14px;border-radius:10px;border:1.5px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);color:rgba(255,255,255,.7);cursor:pointer;font-size:13px;font-family:inherit;transition:transform .18s,background .18s,border-color .18s,color .18s;-webkit-tap-highlight-color:transparent;user-select:none}
+.reaction-btn:hover{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.22);color:#fff}
+.reaction-btn:active{transform:scale(.96)}
+.reaction-btn--active{border-color:transparent;color:#fff}
+.reaction-btn--active[data-reaction="helpful"]{background:rgba(59,185,100,.22);border-color:rgba(59,185,100,.55);color:#6be5a0}
+.reaction-btn--active[data-reaction="fire"]{background:rgba(255,120,50,.22);border-color:rgba(255,120,50,.55);color:#ff9a60}
+.reaction-btn--active[data-reaction="curious"]{background:rgba(100,160,255,.22);border-color:rgba(100,160,255,.55);color:#88b8ff}
+.reaction-btn__emoji{font-size:20px;line-height:1;display:block;transition:transform .22s cubic-bezier(.34,1.56,.64,1)}
+.reaction-btn__text{font-size:11px;opacity:.8}
+.reaction-btn__count{font-size:12px;font-weight:600;min-width:16px;text-align:center}
+@keyframes rb-bump{0%{transform:scale(1)}40%{transform:scale(1.15)}100%{transform:scale(1)}}
+.reaction-btn--bumping .reaction-btn__emoji{animation:rb-bump .32s ease forwards}
+
+/* ── Feature 2: 메시지 월 ── */
+.msg-wall{margin-top:28px;padding:20px 16px;background:#1a1a2e;border-radius:12px;border:1px solid rgba(255,140,0,.18);font-family:inherit;word-break:keep-all;overflow-wrap:break-word}
+.msg-wall__header{display:flex;align-items:center;gap:8px;margin-bottom:14px}
+.msg-wall__title{font-size:.92rem;font-weight:700;color:#e8d5b0}
+.msg-wall__count{font-size:.8rem;color:rgba(232,213,176,.55)}
+.msg-wall__list{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+.msg-wall__card{display:flex;align-items:flex-start;gap:10px;background:rgba(255,255,255,.04);border-radius:8px;padding:10px 12px;border:1px solid rgba(255,140,0,.08);animation:msg-slidein .22s ease}
+.msg-wall__card--removing{opacity:0;transform:translateY(-4px);transition:opacity .25s,transform .25s}
+@keyframes msg-slidein{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.msg-wall__avatar{flex-shrink:0;font-size:1.15rem;line-height:1;margin-top:1px;user-select:none}
+.msg-wall__card-body{flex:1;min-width:0}
+.msg-wall__nickname{font-size:.8rem;font-weight:700;color:#ffae42;margin-bottom:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.msg-wall__text{font-size:.85rem;color:rgba(232,213,176,.88);line-height:1.45;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.msg-wall__empty{text-align:center;padding:18px 0 10px;font-size:.83rem;color:rgba(232,213,176,.38)}
+.msg-wall__form{display:flex;gap:6px;align-items:stretch}
+.msg-wall__input-nick{flex:0 0 35%;min-width:0}
+.msg-wall__input-msg{flex:1 1 0;min-width:0}
+.msg-wall__input-nick,.msg-wall__input-msg{background:rgba(255,255,255,.06);border:1px solid rgba(255,140,0,.22);border-radius:8px;padding:10px 12px;font-size:.83rem;color:#e8d5b0;font-family:inherit;outline:none;transition:border-color .18s;-webkit-appearance:none;appearance:none}
+.msg-wall__input-nick:focus,.msg-wall__input-msg:focus{border-color:rgba(255,140,0,.55)}
+.msg-wall__input-msg--over{border-color:#e55353!important}
+.msg-wall__submit{flex:0 0 auto;min-width:52px;min-height:44px;background:#ff8c00;color:#150c00;border:none;border-radius:8px;font-size:.83rem;font-weight:700;cursor:pointer;padding:0 12px;transition:background .18s,opacity .18s;font-family:inherit;-webkit-tap-highlight-color:transparent}
+.msg-wall__submit:hover:not(:disabled){background:#ffa030}
+.msg-wall__submit:disabled{opacity:.4;cursor:not-allowed}
+.msg-wall__char-count{font-size:.72rem;color:rgba(232,213,176,.38);margin-top:5px;text-align:right}
+.msg-wall__char-count--over{color:#e55353;font-weight:700}
+.msg-wall-toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#2d1a1a;color:#f8a0a0;border:1px solid #7a2020;border-radius:8px;padding:10px 20px;font-size:.83rem;font-family:inherit;z-index:9999;pointer-events:none;white-space:nowrap;word-break:keep-all;animation:msg-toast-in .2s ease,msg-toast-out .3s ease 2.2s forwards}
+@keyframes msg-toast-in{from{opacity:0;transform:translateX(-50%) translateY(12px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+@keyframes msg-toast-out{from{opacity:1}to{opacity:0}}
+.msg-wall__skeleton{height:44px;background:linear-gradient(90deg,rgba(255,255,255,.04) 25%,rgba(255,255,255,.09) 50%,rgba(255,255,255,.04) 75%);background-size:200% 100%;border-radius:8px;animation:msg-shimmer 1.3s infinite linear}
+@keyframes msg-shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+/* ── Feature 3: 완독 인증 ── */
+#completion-overlay{display:none;position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.85);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);overflow-y:auto}
+#completion-overlay.is-open{display:flex;align-items:center;justify-content:center;padding:24px 16px}
+.cp-popup{position:relative;background:#1a1a2e;border-radius:20px;padding:36px 28px 28px;max-width:360px;width:90%;box-shadow:0 24px 64px rgba(0,0,0,.7);word-break:keep-all;color:#f0f0f0}
+.cp-close{position:absolute;top:14px;right:16px;background:none;border:none;color:#888;font-size:24px;line-height:1;cursor:pointer;padding:4px 8px;transition:color .2s;min-height:44px;display:flex;align-items:center}
+.cp-close:hover{color:#fff}
+.cp-emoji{font-size:48px;text-align:center;margin-bottom:8px}
+.cp-title{font-size:20px;font-weight:700;text-align:center;margin:0 0 4px;color:#fff}
+.cp-subtitle{font-size:13px;text-align:center;color:#aaa;margin:0 0 24px}
+.cp-counter{font-size:12px;text-align:center;color:#a78bfa;margin:-16px 0 20px;min-height:18px}
+.cp-label{display:block;font-size:12px;color:#aaa;margin-bottom:6px;margin-top:12px}
+.cp-input{width:100%;box-sizing:border-box;background:#0f0f1a;border:1px solid #333;border-radius:10px;padding:12px 14px;font-size:16px;color:#f0f0f0;outline:none;transition:border-color .2s;font-family:inherit}
+.cp-input:focus{border-color:#a78bfa}
+.cp-input::placeholder{color:#555}
+.cp-char-count{font-size:11px;color:#666;text-align:right;margin-top:4px}
+.cp-btn-primary{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;min-height:48px;margin-top:20px;background:linear-gradient(135deg,#7c3aed,#a78bfa);color:#fff;border:none;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;transition:all .2s;font-family:inherit}
+.cp-btn-primary:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(124,58,237,.4)}
+.cp-btn-primary:disabled{opacity:.6;cursor:not-allowed;transform:none}
+.cp-btn-skip{display:block;width:100%;min-height:44px;margin-top:10px;background:none;border:none;color:#666;font-size:14px;cursor:pointer;transition:color .2s;font-family:inherit}
+.cp-btn-skip:hover{color:#aaa}
+#cp-step-card{display:none}
+.cp-cert-card{background:linear-gradient(145deg,#0d0d1a,#1a1a3e);border:2px solid #a78bfa;border-radius:16px;padding:24px 22px;position:relative;overflow:hidden}
+.cp-cert-card::before{content:'🏆';position:absolute;right:-8px;top:-8px;font-size:72px;opacity:.08;pointer-events:none}
+.cp-cert-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(167,139,250,.12);border:1px solid rgba(167,139,250,.4);border-radius:20px;padding:4px 12px;font-size:12px;font-weight:600;color:#a78bfa;margin-bottom:12px}
+.cp-cert-book{font-size:15px;font-weight:700;color:#fff;margin:0 0 6px;line-height:1.4}
+.cp-cert-divider{border:none;border-top:1px solid rgba(167,139,250,.25);margin:14px 0}
+.cp-cert-name{font-size:18px;font-weight:700;color:#a78bfa;margin:0 0 8px}
+.cp-cert-quote{font-size:14px;color:#ddd;line-height:1.6;font-style:italic;margin:0 0 14px;min-height:22px}
+.cp-cert-quote::before{content:'"'}
+.cp-cert-quote::after{content:'"'}
+.cp-cert-meta{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:4px}
+.cp-cert-date,.cp-cert-series{font-size:12px;color:#888}
+.cp-card-actions{display:flex;gap:10px;margin-top:18px}
+.cp-btn-share{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;min-height:48px;background:linear-gradient(135deg,#7c3aed,#a78bfa);color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;transition:all .2s;font-family:inherit}
+.cp-btn-share:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(124,58,237,.35)}
+.cp-btn-next{flex:1;display:flex;align-items:center;justify-content:center;gap:4px;min-height:48px;background:rgba(255,255,255,.07);color:#ccc;border:1px solid #333;border-radius:12px;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;text-decoration:none;font-family:inherit}
+.cp-btn-next:hover{background:rgba(255,255,255,.12);color:#fff;border-color:#555}
+#cp-toast{position:fixed;bottom:32px;left:50%;transform:translateX(-50%) translateY(20px);background:#333;color:#fff;padding:10px 20px;border-radius:24px;font-size:14px;opacity:0;pointer-events:none;transition:all .3s;z-index:100000;white-space:nowrap}
+#cp-toast.cp-toast-show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+@media(max-width:480px){
+  .reaction-bar{flex-direction:column;align-items:flex-start;gap:12px;padding:14px 16px}
+  .reaction-bar__buttons{width:100%;gap:6px}
+  .reaction-btn{flex:1;min-width:0;padding:10px 6px;min-height:56px;font-size:12px;border-radius:10px}
+  .reaction-btn__emoji{font-size:22px}
+  .reaction-btn__text{font-size:10px}
+  .msg-wall__form{flex-direction:column}
+  .msg-wall__input-nick,.msg-wall__input-msg{flex:unset;width:100%;box-sizing:border-box}
+  .msg-wall__submit{width:100%;min-height:44px}
+  .msg-wall__text{white-space:normal}
+  .cp-popup{padding:32px 20px 24px;border-radius:16px}
+  .cp-title{font-size:18px}
+  .cp-card-actions{flex-direction:column}
+  .cp-btn-share,.cp-btn-next{flex:none;width:100%}
+}
 </style>
 </head>
 <body>
@@ -482,6 +593,22 @@ a,button{-webkit-touch-callout:default!important;-webkit-user-select:auto!import
     당신이 <strong style="color:#ffaa00;">자신에게 AI를 선물하는 순간</strong>입니다.
   </div>
 
+  <!-- 6월 1일 업데이트 예고 -->
+  <div style="max-width:440px;margin:0 auto 20px;border:1px solid rgba(255,149,0,0.28);border-radius:12px;overflow:hidden;text-align:left;">
+    <div style="background:rgba(255,149,0,0.1);padding:9px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(255,149,0,0.18);">
+      <span style="font-size:0.7rem;font-weight:800;color:#ff9500;letter-spacing:0.07em;">🚀 6월 1일 업데이트 예고</span>
+      <span style="margin-left:auto;font-size:0.62rem;color:rgba(255,255,255,0.3);font-weight:700;">곧 공개</span>
+    </div>
+    <div style="padding:12px 16px 10px;display:flex;flex-direction:column;gap:9px;">
+      <div style="font-size:0.81rem;color:rgba(255,255,255,0.72);display:flex;align-items:flex-start;gap:8px;word-break:keep-all;"><span style="color:#ff9500;flex-shrink:0;margin-top:1px;">✦</span>바이브코딩 <strong style="color:#ffaa00;">독자 Q&amp;A 200선</strong> — 가장 많이 막힌 질문 전부 답변</div>
+      <div style="font-size:0.81rem;color:rgba(255,255,255,0.72);display:flex;align-items:flex-start;gap:8px;word-break:keep-all;"><span style="color:#ff9500;flex-shrink:0;margin-top:1px;">✦</span>96시간 챌린지 실전 후기 + 보완 가이드 — <span style="color:rgba(255,255,255,0.35);">[비공개]</span></div>
+      <div style="font-size:0.81rem;color:rgba(255,255,255,0.72);display:flex;align-items:flex-start;gap:8px;word-break:keep-all;"><span style="color:#ff9500;flex-shrink:0;margin-top:1px;">✦</span>신규 심화 챕터 추가 — 구독자 <strong style="color:#ffaa00;">먼저</strong> 공개</div>
+    </div>
+    <div style="padding:0 16px 14px;">
+      <a href="https://www.youtube.com/channel/UCCqi9m0XPHLPxvReWfJhJig?sub_confirmation=1" target="_blank" rel="noopener" style="display:block;background:linear-gradient(90deg,#ff6b00,#ff9d00);color:#fff;text-align:center;padding:9px;border-radius:8px;font-size:0.81rem;font-weight:800;text-decoration:none;">🔔 AI사냥꾼 채널 구독하고 먼저 받기</a>
+    </div>
+  </div>
+
   <div style="font-size:0.72rem;color:rgba(255,255,255,0.28);letter-spacing:0.02em;word-break:keep-all;">
     6월 1일부터 &nbsp;·&nbsp; 각 권당 <strong style="color:rgba(255,255,255,0.45);">19,900원</strong> 판매 예정 &nbsp;·&nbsp; 지금은 완전 무료
   </div>
@@ -515,6 +642,7 @@ a,button{-webkit-touch-callout:default!important;-webkit-user-select:auto!import
     <div class="mobile-progress-bar" id="mobile-progress-bar"></div>
   </div>
   <span style="font-size:9px; color:var(--text); opacity:0.55; white-space:nowrap;">👁 <span id="visit-num-mobile">98</span></span>
+  <button class="topbar-share-btn" onclick="shareKakao()" title="선물하기">🎁</button>
   <span class="mobile-pct" id="mobile-pct">0%</span>
 </div>
 
@@ -555,6 +683,7 @@ a,button{-webkit-touch-callout:default!important;-webkit-user-select:auto!import
       <input class="toc-search" id="toc-search" type="text" placeholder="🔍 챕터 검색..." oninput="filterToc(this.value)">
     </div>
     <div class="share-bar">
+      <button class="share-btn copy" onclick="shareKakao()">🎁 선물하기</button>
       <button class="share-btn copy" id="copy-btn" onclick="copyLink()">🔗 링크 복사</button>
     </div>
     <div class="toc-no-result" id="toc-no-result">검색 결과 없음</div>
@@ -2192,6 +2321,19 @@ ANTHROPIC_API_KEY=sk-ant-어쩌고</code></pre>
   <div style="margin-top:14px;font-size:.72rem;color:rgba(255,255,255,.3);">에이전트 바이블 · Claude Code 바이블 · 곧 19,900원 유료화 예정</div>
 </div>
 
+<!-- ★ 최종 퀴즈 -->
+<div id="quiz-container-vol2" style="margin:48px 0;"></div>
+
+<!-- ★ 인터렉티브 피처: 공감 버튼 + 독자 메시지 -->
+<div id="interactive-section" data-chapter-id="free-end" style="margin:40px 0;">
+  <div style="font-size:.7rem;font-weight:700;letter-spacing:.15em;color:rgba(255,255,255,.4);margin-bottom:12px;">READER FEEDBACK</div>
+  <!-- 공감 버튼 (EbookReactions.init() 이후 자동 렌더) -->
+  <div id="reaction-free-end"></div>
+  <!-- 독자 메시지 월 (EbookMessages.init() 이후 attachToChapter) -->
+  <div id="msg-free-end-anchor"></div>
+</div>
+<div id="section-last" style="height:1px;"></div>
+
 <div id="paywall-wall">
   <div class="paywall-gradient"></div>
   <div class="paywall-box">
@@ -2640,16 +2782,19 @@ function filterToc(q) {
 // ── 공유 ──
 function shareKakao() {
   var shareData = {
-    title: '바이브 코딩 실전 바이블',
-    text: '코딩 0점이 96시간 만에 B2B 플랫폼을 세운 실화 — 리미트리스맨 저',
+    title: '🎁 바이브 코딩 실전 바이블 — 무료 선물',
+    text: '코딩 0점이 96시간 만에 B2B 플랫폼을 세운 실화. 지인에게 무료로 선물하세요!',
     url: location.href
   };
   if (navigator.share) {
     navigator.share(shareData);
   } else {
-    // 데스크탑 fallback: 링크 복사 후 안내
     navigator.clipboard.writeText(location.href).then(function() {
-      alert('링크가 복사됐습니다!\n카카오톡에 붙여넣기 해주세요 😊');
+      alert('링크가 복사됐습니다!\n카카오톡에 붙여넣기 해서 선물하세요 🎁');
+    }).catch(function() {
+      var ta = document.createElement('textarea'); ta.value = location.href;
+      document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+      alert('링크가 복사됐습니다!\n카카오톡에 붙여넣기 해서 선물하세요 🎁');
     });
   }
 }
@@ -3046,6 +3191,433 @@ if (localStorage.getItem('sib_dismissed')) {
       });
     }
   } catch(e){}
+})();
+</script>
+
+<!-- ★ Feature 3: 완독 인증 카드 팝업 -->
+<div id="completion-overlay" role="dialog" aria-modal="true" aria-label="완독 축하 팝업">
+  <div class="cp-popup">
+    <button class="cp-close" id="cp-close-btn" aria-label="닫기">×</button>
+    <div id="cp-step-form">
+      <div class="cp-emoji">🎉</div>
+      <h2 class="cp-title">완독을 축하합니다!</h2>
+      <p class="cp-subtitle">바이브 코딩 실전 바이블 2권</p>
+      <p class="cp-counter" id="cp-counter-text">불러오는 중...</p>
+      <label class="cp-label" for="cp-nickname">닉네임</label>
+      <input class="cp-input" id="cp-nickname" type="text" maxlength="20" placeholder="홍길동" autocomplete="nickname" enterkeyhint="next" />
+      <label class="cp-label" for="cp-quote">한마디 <span style="color:#555;">(선택, 60자 이내)</span></label>
+      <textarea class="cp-input" id="cp-quote" maxlength="60" rows="2" placeholder="AI로 월 1000만원 도전 시작!" style="resize:none;line-height:1.5;" enterkeyhint="done"></textarea>
+      <p class="cp-char-count"><span id="cp-char-count">0</span> / 60</p>
+      <button class="cp-btn-primary" id="cp-submit-btn">🏆 인증 카드 받기</button>
+      <button class="cp-btn-skip" id="cp-skip-btn">나중에</button>
+    </div>
+    <div id="cp-step-card">
+      <div class="cp-cert-card">
+        <div class="cp-cert-badge">🏆 완독 인증</div>
+        <p class="cp-cert-book">바이브 코딩 실전 바이블 2권</p>
+        <hr class="cp-cert-divider" />
+        <p class="cp-cert-name" id="cp-card-name">독자</p>
+        <p class="cp-cert-quote" id="cp-card-quote">완독!</p>
+        <div class="cp-cert-meta">
+          <span class="cp-cert-date" id="cp-card-date">2026.05.17</span>
+          <span class="cp-cert-series">AI사냥꾼 시리즈</span>
+        </div>
+      </div>
+      <p class="cp-counter" id="cp-counter-text-card" style="margin-top:14px;margin-bottom:0;text-align:center;"></p>
+      <div class="cp-card-actions">
+        <button class="cp-btn-share" id="cp-share-btn">📤 공유하기</button>
+        <a class="cp-btn-next" href="agent-bible.html" target="_blank" rel="noopener">3권 읽기 →</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="cp-toast"></div>
+
+<!-- ★ Feature 1: 공감 버튼 JS -->
+<script>
+(function(global){'use strict';
+var SB_URL='https://hzobwciaqtbfaxxvcots.supabase.co';
+var SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh6b2J3Y2lhcXRiZmF4eHZjb3RzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcxMjIxNTcsImV4cCI6MjA2MjY5ODE1N30.YXKC3Rv1jqMb-rr8NQ5Hm5wFcFWlKuNZ5F2bStUK_Ro';
+var REACTIONS=[{type:'helpful',emoji:'👍',label:'도움됐어요'},{type:'fire',emoji:'🔥',label:'인상적이었어요'},{type:'curious',emoji:'🤔',label:'더 알고 싶어요'}];
+var _bookId='',_counts={},_debounceMap={};
+function lsGet(k){try{return localStorage.getItem(k)}catch(e){return null}}
+function lsSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+function lsRemove(k){try{localStorage.removeItem(k)}catch(e){}}
+function lsKey(c,t){return'reaction_'+_bookId+'_'+c+'_'+t}
+function isClicked(c,t){return lsGet(lsKey(c,t))==='1'}
+async function fetchAllCounts(bookId){
+  try{var res=await fetch(SB_URL+'/rest/v1/reactions?book_id=eq.'+encodeURIComponent(bookId)+'&select=chapter_id,reaction',{headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY}});
+  if(!res.ok)throw new Error();var rows=await res.json();var agg={};
+  rows.forEach(function(r){if(!r.chapter_id||!r.reaction)return;if(!agg[r.chapter_id])agg[r.chapter_id]={helpful:0,fire:0,curious:0};if(typeof agg[r.chapter_id][r.reaction]==='number')agg[r.chapter_id][r.reaction]++;});return agg;
+  }catch(e){return{}}}
+async function insertReaction(chapterId,reactionType){
+  try{await fetch(SB_URL+'/rest/v1/reactions',{method:'POST',headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify({book_id:_bookId,chapter_id:chapterId,reaction:reactionType})});}catch(e){}}
+function updateCountDOM(c,t,n){var el=document.querySelector('.reaction-bar[data-chapter="'+c+'"] [data-reaction="'+t+'"] .reaction-btn__count');if(el)el.textContent=(!isNaN(n)?n:0)}
+function setActiveDOM(c,t,active){var btn=document.querySelector('.reaction-bar[data-chapter="'+c+'"] [data-reaction="'+t+'"]');if(!btn)return;btn.classList.toggle('reaction-btn--active',active);btn.setAttribute('aria-pressed',active?'true':'false')}
+function bumpEmoji(c,t){var btn=document.querySelector('.reaction-bar[data-chapter="'+c+'"] [data-reaction="'+t+'"]');if(!btn)return;btn.classList.add('reaction-btn--bumping');setTimeout(function(){btn.classList.remove('reaction-btn--bumping')},350)}
+function renderBar(chapterId){var chC=_counts[chapterId]||{helpful:0,fire:0,curious:0};
+  var btns=REACTIONS.map(function(r){var cnt=parseInt(chC[r.type],10)||0;var active=isClicked(chapterId,r.type);
+    return'<button class="reaction-btn'+(active?' reaction-btn--active':'')+'" data-reaction="'+r.type+'" aria-label="'+r.label+'" aria-pressed="'+(active?'true':'false')+'">'
+      +'<span class="reaction-btn__emoji">'+r.emoji+'</span>'
+      +'<span class="reaction-btn__text">'+r.label+'</span>'
+      +'<span class="reaction-btn__count">'+cnt+'</span></button>';}).join('');
+  return'<div class="reaction-bar" data-chapter="'+chapterId+'" role="group" aria-label="챕터 공감"><span class="reaction-bar__label">이 챕터가 어땠나요?</span><div class="reaction-bar__buttons">'+btns+'</div></div>';}
+function handleClick(chapterId,reactionType){var dk=chapterId+'_'+reactionType;if(_debounceMap[dk])return;_debounceMap[dk]=true;setTimeout(function(){delete _debounceMap[dk]},300);
+  if(!_counts[chapterId])_counts[chapterId]={helpful:0,fire:0,curious:0};
+  var clicked=isClicked(chapterId,reactionType);
+  if(clicked){lsRemove(lsKey(chapterId,reactionType));_counts[chapterId][reactionType]=Math.max(0,(_counts[chapterId][reactionType]||1)-1);setActiveDOM(chapterId,reactionType,false);updateCountDOM(chapterId,reactionType,_counts[chapterId][reactionType]);}
+  else{lsSet(lsKey(chapterId,reactionType),'1');_counts[chapterId][reactionType]=(_counts[chapterId][reactionType]||0)+1;setActiveDOM(chapterId,reactionType,true);updateCountDOM(chapterId,reactionType,_counts[chapterId][reactionType]);bumpEmoji(chapterId,reactionType);insertReaction(chapterId,reactionType);}}
+function attachDelegation(){document.addEventListener('click',function(e){var btn=e.target.closest('.reaction-btn');if(!btn)return;var bar=btn.closest('.reaction-bar');if(!bar)return;handleClick(bar.getAttribute('data-chapter'),btn.getAttribute('data-reaction'))});}
+async function init(bookId){_bookId=bookId||'vibe-ebook-vol2';_counts={};_debounceMap={};_counts=await fetchAllCounts(_bookId);attachDelegation();}
+global.EbookReactions={init:init,renderBar:renderBar,handleClick:handleClick};
+}(window));
+</script>
+
+<!-- ★ Feature 2: 메시지 월 JS -->
+<script>
+(function(){'use strict';
+var SUPABASE_URL='https://hzobwciaqtbfaxxvcots.supabase.co';
+var SUPABASE_ANON_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh6b2J3Y2lhcXRiZmF4eHZjb3RzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcxMjIxNTcsImV4cCI6MjA2MjY5ODE1N30.YXKC3Rv1jqMb-rr8NQ5Hm5wFcFWlKuNZ5F2bStUK_Ro';
+var TABLE='messages',MAX_MSG=30,FETCH_LIMIT=5,_bookId=null,_loaded={};
+function hdrs(){return{'apikey':SUPABASE_ANON_KEY,'Authorization':'Bearer '+SUPABASE_ANON_KEY,'Content-Type':'application/json','Prefer':'return=minimal'}}
+function fetchMessages(bookId,chapterId){return fetch(SUPABASE_URL+'/rest/v1/'+TABLE+'?book_id=eq.'+encodeURIComponent(bookId)+'&chapter_id=eq.'+encodeURIComponent(chapterId)+'&order=created_at.desc&limit='+FETCH_LIMIT,{headers:hdrs()}).then(function(r){if(!r.ok)throw new Error();return r.json()})}
+function insertMessage(bookId,chapterId,nickname,message){return fetch(SUPABASE_URL+'/rest/v1/'+TABLE,{method:'POST',headers:hdrs(),body:JSON.stringify({book_id:bookId,chapter_id:chapterId,nickname:nickname,message:message})}).then(function(r){if(!r.ok)throw new Error()})}
+function buildWall(chapterId){
+  var wall=document.createElement('div');wall.className='msg-wall';wall.setAttribute('data-wall-id',chapterId);
+  var hdr=document.createElement('div');hdr.className='msg-wall__header';
+  var t=document.createElement('span');t.className='msg-wall__title';t.textContent='💬 이 챕터를 읽은 독자들';
+  var c=document.createElement('span');c.className='msg-wall__count';
+  hdr.appendChild(t);hdr.appendChild(c);
+  var list=document.createElement('div');list.className='msg-wall__list';
+  var sk=document.createElement('div');sk.className='msg-wall__skeleton';list.appendChild(sk);
+  var form=document.createElement('div');form.className='msg-wall__form';
+  var ni=document.createElement('input');ni.type='text';ni.className='msg-wall__input-nick';ni.placeholder='닉네임 (선택)';ni.maxLength=50;ni.autocomplete='off';
+  var mi=document.createElement('input');mi.type='text';mi.className='msg-wall__input-msg';mi.placeholder='한 줄 메시지 (30자)';mi.maxLength=40;mi.autocomplete='off';
+  var btn=document.createElement('button');btn.type='button';btn.className='msg-wall__submit';btn.textContent='등록';btn.disabled=true;
+  form.appendChild(ni);form.appendChild(mi);form.appendChild(btn);
+  var cc=document.createElement('div');cc.className='msg-wall__char-count';cc.textContent='0 / '+MAX_MSG;
+  wall.appendChild(hdr);wall.appendChild(list);wall.appendChild(form);wall.appendChild(cc);
+  function sync(){var len=mi.value.length,over=len>MAX_MSG;cc.textContent=len+' / '+MAX_MSG;cc.className='msg-wall__char-count'+(over?' msg-wall__char-count--over':'');mi.className='msg-wall__input-msg'+(over?' msg-wall__input-msg--over':'');btn.disabled=(len===0||over)}
+  mi.addEventListener('input',sync);
+  mi.addEventListener('keydown',function(e){if(e.key==='Enter'&&!btn.disabled)btn.click()});
+  btn.addEventListener('click',function(){var nick=ni.value.trim()||'익명';var msg=mi.value.trim();if(!msg||msg.length>MAX_MSG)return;ni.value='';mi.value='';sync();EbookMessages.submit(chapterId,nick,msg,wall)});
+  return wall}
+function buildCard(nickname,message){var card=document.createElement('div');card.className='msg-wall__card';var av=document.createElement('span');av.className='msg-wall__avatar';av.textContent='🙋';var body=document.createElement('div');body.className='msg-wall__card-body';var n=document.createElement('div');n.className='msg-wall__nickname';n.textContent=nickname;var tx=document.createElement('div');tx.className='msg-wall__text';tx.textContent='“'+message+'”';body.appendChild(n);body.appendChild(tx);card.appendChild(av);card.appendChild(body);return card}
+function renderMessages(wall,rows){var list=wall.querySelector('.msg-wall__list');var countEl=wall.querySelector('.msg-wall__count');while(list.firstChild)list.removeChild(list.firstChild);if(!rows||!rows.length){var em=document.createElement('div');em.className='msg-wall__empty';em.textContent='아직 메시지가 없어요. 첫 번째로 남겨보세요!';list.appendChild(em);countEl.textContent='';return}countEl.textContent='('+rows.length+'명)';rows.forEach(function(r){list.appendChild(buildCard(r.nickname,r.message))})}
+function showToast(msg){var old=document.querySelector('.msg-wall-toast');if(old&&old.parentNode)old.parentNode.removeChild(old);var t=document.createElement('div');t.className='msg-wall-toast';t.textContent=msg;document.body.appendChild(t);setTimeout(function(){if(t.parentNode)t.parentNode.removeChild(t)},2600)}
+var EbookMessages={
+  init:function(bookId){_bookId=bookId},
+  attachToChapter:function(chapterId,containerEl){if(!containerEl)return;var wall=buildWall(chapterId);containerEl.appendChild(wall);
+    if('IntersectionObserver' in window){var obs=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting&&!_loaded[chapterId]){_loaded[chapterId]=true;EbookMessages._load(chapterId,wall);obs.disconnect()}})},{rootMargin:'0px 0px 200px 0px',threshold:0});obs.observe(wall);}
+    else EbookMessages._load(chapterId,wall)},
+  submit:function(chapterId,nickname,message,wallEl){if(!_bookId)return;var wall=wallEl||document.querySelector('[data-wall-id="'+chapterId+'"]');if(!wall)return;
+    var list=wall.querySelector('.msg-wall__list'),countEl=wall.querySelector('.msg-wall__count'),btn=wall.querySelector('.msg-wall__submit');
+    btn.disabled=true;var em=list.querySelector('.msg-wall__empty');if(em)list.removeChild(em);
+    var card=buildCard(nickname,message);list.insertBefore(card,list.firstChild);
+    var currentCount=list.querySelectorAll('.msg-wall__card').length;countEl.textContent='('+currentCount+'명)';
+    var cards=list.querySelectorAll('.msg-wall__card');if(cards.length>FETCH_LIMIT)list.removeChild(cards[cards.length-1]);
+    insertMessage(_bookId,chapterId,nickname,message).then(function(){btn.disabled=false}).catch(function(){
+      card.classList.add('msg-wall__card--removing');
+      setTimeout(function(){if(card.parentNode)card.parentNode.removeChild(card);var rem=list.querySelectorAll('.msg-wall__card').length;countEl.textContent=rem>0?'('+rem+'명)':'';if(!rem){var e=document.createElement('div');e.className='msg-wall__empty';e.textContent='아직 메시지가 없어요.';list.appendChild(e)}},270);
+      showToast('⚠️ 메시지 등록에 실패했습니다.');btn.disabled=false})},
+  _load:function(c,w){fetchMessages(_bookId,c).then(function(r){renderMessages(w,r)}).catch(function(){renderMessages(w,[])})}};
+window.EbookMessages=EbookMessages;
+})();
+</script>
+
+<!-- ★ Feature 3: 완독 인증 JS -->
+<script>
+(function(){'use strict';
+var SB_URL='https://hzobwciaqtbfaxxvcots.supabase.co';
+var SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh6b2J3Y2lhcXRiZmF4eHZjb3RzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcxMjIxNTcsImV4cCI6MjA2MjY5ODE1N30.YXKC3Rv1jqMb-rr8NQ5Hm5wFcFWlKuNZ5F2bStUK_Ro';
+var TABLE='completions',_bookId='vibe-bible-2',_submitted=false;
+function lsGet(k){try{return localStorage.getItem(k)}catch(e){return null}}
+function lsSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+function formatDate(d){return d.getFullYear()+'.'+String(d.getMonth()+1).padStart(2,'0')+'.'+String(d.getDate()).padStart(2,'0')}
+function fetchCount(cb){fetch(SB_URL+'/rest/v1/'+TABLE+'?book_id=eq.'+encodeURIComponent(_bookId)+'&select=id',{headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Prefer':'count=exact'}}).then(function(r){var raw=r.headers.get('content-range');if(raw){var t=parseInt(raw.split('/')[1],10);if(!isNaN(t)){cb(t);return}}cb(null)}).catch(function(){cb(null)})}
+function insertRecord(nickname,quote,cb){fetch(SB_URL+'/rest/v1/'+TABLE,{method:'POST',headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify({book_id:_bookId,nickname:nickname,quote:quote})}).then(function(r){cb(r.ok)}).catch(function(){cb(false)})}
+function showToast(msg){var el=document.getElementById('cp-toast');if(!el)return;el.textContent=msg;el.classList.add('cp-toast-show');setTimeout(function(){el.classList.remove('cp-toast-show')},2500)}
+function renderCounterText(count){var text=count!==null?'지금까지 '+count.toLocaleString()+'명이 완독했어요 🎉':'';['cp-counter-text','cp-counter-text-card'].forEach(function(id){var el=document.getElementById(id);if(el)el.textContent=text})}
+function showCard(nickname,quote){var nameEl=document.getElementById('cp-card-name'),quoteEl=document.getElementById('cp-card-quote'),dateEl=document.getElementById('cp-card-date');if(nameEl)nameEl.textContent=nickname;if(quoteEl)quoteEl.textContent=quote;if(dateEl)dateEl.textContent=formatDate(new Date());var f=document.getElementById('cp-step-form'),c=document.getElementById('cp-step-card');if(f)f.style.display='none';if(c)c.style.display='block';fetchCount(function(cnt){renderCounterText(cnt)})}
+function handleShare(nickname,quote){var text='바이브 코딩 실전 바이블 2권 완독! 🏆\n"'+quote+'"\n\nhttps://aiaijungle.github.io/vibe-ebook/index.html\n\n#AI사냥꾼 #바이브코딩';if(navigator.share){navigator.share({title:'바이브 코딩 실전 바이블 2권 완독!',text:text}).catch(function(){})}else if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){showToast('공유 텍스트가 복사됐어요! 📋')}).catch(function(){showToast('복사 실패.')})}else{var ta=document.createElement('textarea');ta.value=text;ta.style.cssText='position:fixed;opacity:0;top:-9999px;';document.body.appendChild(ta);ta.focus();ta.select();try{document.execCommand('copy');showToast('공유 텍스트가 복사됐어요! 📋')}catch(e){}document.body.removeChild(ta)}}
+function openOverlay(){var o=document.getElementById('completion-overlay');if(!o)return;o.classList.add('is-open');document.body.style.overflow='hidden';var f=document.getElementById('cp-step-form'),c=document.getElementById('cp-step-card');if(f)f.style.display='';if(c)c.style.display='none';_submitted=false;fetchCount(function(cnt){renderCounterText(cnt)})}
+function closeOverlay(){var o=document.getElementById('completion-overlay');if(!o)return;o.classList.remove('is-open');document.body.style.overflow=''}
+function bindEvents(){
+  var closeBtn=document.getElementById('cp-close-btn'),skipBtn=document.getElementById('cp-skip-btn'),overlay=document.getElementById('completion-overlay'),quoteInput=document.getElementById('cp-quote'),charCount=document.getElementById('cp-char-count'),submitBtn=document.getElementById('cp-submit-btn'),shareBtn=document.getElementById('cp-share-btn');
+  if(closeBtn)closeBtn.addEventListener('click',closeOverlay);
+  if(skipBtn)skipBtn.addEventListener('click',closeOverlay);
+  if(overlay)overlay.addEventListener('click',function(e){if(e.target===overlay)closeOverlay()});
+  if(quoteInput&&charCount)quoteInput.addEventListener('input',function(){charCount.textContent=quoteInput.value.length});
+  if(submitBtn)submitBtn.addEventListener('click',function(){if(_submitted)return;_submitted=true;var nickEl=document.getElementById('cp-nickname'),qEl=document.getElementById('cp-quote');var nickname=(nickEl&&nickEl.value.trim())||'익명';var quote=(qEl&&qEl.value.trim())||'완독!';submitBtn.disabled=true;submitBtn.textContent='저장 중...';insertRecord(nickname,quote,function(){lsSet('cp_done_'+_bookId,'1');lsSet('cp_nick_'+_bookId,nickname);lsSet('cp_quote_'+_bookId,quote);showCard(nickname,quote)})});
+  if(shareBtn)shareBtn.addEventListener('click',function(){handleShare(lsGet('cp_nick_'+_bookId)||'익명',lsGet('cp_quote_'+_bookId)||'완독!')});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeOverlay()})}
+function setupObserver(){if(lsGet('cp_done_'+_bookId))return;var target=document.getElementById('section-last');
+  if(target&&'IntersectionObserver' in window){var obs=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){obs.disconnect();openOverlay()}})},{threshold:0.5});obs.observe(target);}
+  else{function onScroll(){if(window.scrollY+window.innerHeight>=document.documentElement.scrollHeight*0.92){window.removeEventListener('scroll',onScroll,{passive:true});openOverlay()}}window.addEventListener('scroll',onScroll,{passive:true})}}
+window.EbookCompletion={show:openOverlay,hide:closeOverlay,reset:function(){try{localStorage.removeItem('cp_done_'+_bookId);localStorage.removeItem('cp_nick_'+_bookId);localStorage.removeItem('cp_quote_'+_bookId)}catch(e){}}};
+if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',function(){bindEvents();setupObserver()})}else{bindEvents();setupObserver()}
+})();
+</script>
+
+<!-- ★ 인터렉티브 피처 초기화 -->
+<script>
+(async function(){
+  try{
+    await EbookReactions.init('vibe-ebook-vol2');
+    var reactionEl=document.getElementById('reaction-free-end');
+    if(reactionEl)reactionEl.innerHTML=EbookReactions.renderBar('free-end');
+    EbookMessages.init('vibe-ebook-vol2');
+    var msgAnchor=document.getElementById('msg-free-end-anchor');
+    if(msgAnchor)EbookMessages.attachToChapter('free-end',msgAnchor.parentElement);
+  }catch(e){console.warn('[피처 초기화 실패]',e)}
+})();
+</script>
+<!-- ── 최종 퀴즈 + 수료증 시스템 ── -->
+<style>
+.eq-wrap{margin:48px 0;padding:32px 28px;background:linear-gradient(135deg,#0d0d1a,#1a1a2e);border:1px solid rgba(167,139,250,.28);border-radius:18px;word-break:keep-all;font-family:inherit}
+.eq-badge{font-size:.68rem;font-weight:700;letter-spacing:.15em;color:#a78bfa;margin-bottom:6px}
+.eq-title{font-size:1.1rem;font-weight:900;color:#fff;margin:0 0 6px}
+.eq-desc{font-size:.82rem;color:rgba(255,255,255,.5);margin:0 0 28px;line-height:1.6}
+.eq-question{margin-bottom:22px;padding:18px 20px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;transition:border-color .2s}
+.eq-question.eq-correct{border-color:rgba(52,211,153,.5);background:rgba(52,211,153,.06)}
+.eq-question.eq-wrong{border-color:rgba(248,113,113,.5);background:rgba(248,113,113,.06)}
+.eq-qnum{font-size:.7rem;font-weight:700;color:#a78bfa;letter-spacing:.1em;margin-bottom:8px}
+.eq-qtext{font-size:.92rem;font-weight:700;color:#f0f0f0;margin:0 0 14px;line-height:1.6}
+.eq-opts{display:flex;flex-direction:column;gap:8px}
+.eq-opt{display:flex;align-items:flex-start;gap:10px;padding:10px 14px;background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.1);border-radius:9px;cursor:pointer;font-size:.86rem;color:rgba(255,255,255,.8);transition:all .18s;line-height:1.45;-webkit-tap-highlight-color:transparent;min-height:44px;user-select:none;font-family:inherit;text-align:left;width:100%}
+.eq-opt:hover{background:rgba(255,255,255,.09);border-color:rgba(167,139,250,.4);color:#fff}
+.eq-opt.eq-selected{border-color:#a78bfa;background:rgba(167,139,250,.12);color:#fff}
+.eq-opt.eq-opt-correct{border-color:#34d399;background:rgba(52,211,153,.12);color:#6ee7b7}
+.eq-opt.eq-opt-wrong{border-color:#f87171;background:rgba(248,113,113,.1);color:#fca5a5}
+.eq-opt-marker{flex-shrink:0;width:22px;height:22px;border-radius:50%;border:1.5px solid rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;margin-top:1px;transition:all .18s}
+.eq-opt.eq-selected .eq-opt-marker{border-color:#a78bfa;color:#a78bfa}
+.eq-opt.eq-opt-correct .eq-opt-marker{border-color:#34d399;background:#34d399;color:#000}
+.eq-opt.eq-opt-wrong .eq-opt-marker{border-color:#f87171;background:#f87171;color:#fff}
+.eq-explain{margin-top:8px;font-size:.78rem;color:rgba(255,255,255,.55);display:none;padding:6px 10px;background:rgba(255,255,255,.04);border-radius:6px;line-height:1.55}
+.eq-question.eq-correct .eq-explain,.eq-question.eq-wrong .eq-explain{display:block}
+.eq-submit{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:52px;margin-top:8px;background:linear-gradient(135deg,#7c3aed,#a78bfa);color:#fff;border:none;border-radius:13px;font-size:1rem;font-weight:800;cursor:pointer;transition:all .2s;font-family:inherit}
+.eq-submit:hover{transform:translateY(-1px);box-shadow:0 6px 24px rgba(124,58,237,.4)}
+.eq-submit:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.eq-result{display:none;margin-top:24px;padding:22px 20px;border-radius:12px;text-align:center;word-break:keep-all}
+.eq-result.eq-pass{background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.35)}
+.eq-result.eq-fail{background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.25)}
+.eq-result-emoji{font-size:40px;margin-bottom:8px}
+.eq-result-title{font-size:1.1rem;font-weight:800;color:#fff;margin:0 0 6px}
+.eq-result-score{font-size:.88rem;color:rgba(255,255,255,.65);margin:0 0 18px}
+.eq-name-input{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:10px 14px;font-size:.9rem;color:#fff;font-family:inherit;outline:none;width:100%;box-sizing:border-box;-webkit-appearance:none;appearance:none;margin-bottom:10px}
+.eq-name-input:focus{border-color:#a78bfa}
+.eq-cert-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:12px 28px;min-height:48px;width:100%;background:linear-gradient(135deg,#7c3aed,#a78bfa);color:#fff;border:none;border-radius:12px;font-size:.95rem;font-weight:800;cursor:pointer;transition:all .2s;font-family:inherit}
+.eq-cert-btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(124,58,237,.4)}
+.eq-retry-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:12px 24px;min-height:48px;background:rgba(255,255,255,.07);color:#ccc;border:1px solid rgba(255,255,255,.18);border-radius:12px;font-size:.9rem;font-weight:700;cursor:pointer;transition:all .2s;font-family:inherit}
+.eq-retry-btn:hover{background:rgba(255,255,255,.12);color:#fff}
+#eq-cert-overlay{display:none;position:fixed;inset:0;z-index:99998;background:rgba(0,0,0,.88);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);overflow-y:auto}
+#eq-cert-overlay.is-open{display:flex;align-items:center;justify-content:center;padding:24px 16px}
+.eq-cert-popup{position:relative;background:#1a1a2e;border-radius:20px;padding:36px 28px 28px;max-width:400px;width:92%;box-shadow:0 24px 64px rgba(0,0,0,.7);word-break:keep-all;color:#f0f0f0}
+.eq-cert-close{position:absolute;top:14px;right:16px;background:none;border:none;color:#888;font-size:24px;line-height:1;cursor:pointer;padding:4px 8px;transition:color .2s;min-height:44px;display:flex;align-items:center}
+.eq-cert-close:hover{color:#fff}
+.eq-cert-card{background:linear-gradient(145deg,#0d0d1a,#1a1a3e);border:2px solid #a78bfa;border-radius:16px;padding:24px 22px;position:relative;overflow:hidden}
+.eq-cert-card::before{content:'🎓';position:absolute;right:-8px;top:-8px;font-size:72px;opacity:.07;pointer-events:none}
+.eq-cert-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(167,139,250,.12);border:1px solid rgba(167,139,250,.4);border-radius:20px;padding:4px 12px;font-size:11px;font-weight:700;color:#a78bfa;margin-bottom:10px;letter-spacing:.05em}
+.eq-cert-book{font-size:14px;font-weight:700;color:#fff;margin:0 0 4px;line-height:1.4}
+.eq-cert-divider{border:none;border-top:1px solid rgba(167,139,250,.25);margin:12px 0}
+.eq-cert-name{font-size:22px;font-weight:900;color:#a78bfa;margin:0 0 4px}
+.eq-cert-score{font-size:12px;color:rgba(255,255,255,.55);margin:0 0 8px}
+.eq-cert-meta{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:4px;margin-top:10px}
+.eq-cert-date{font-size:11px;color:#888}
+.eq-cert-aitf{display:flex;align-items:center;gap:5px}
+.eq-cert-aitf-text{font-size:10px;color:#888}
+.eq-cert-aitf-link{font-size:10px;color:#a78bfa;text-decoration:none;border-bottom:1px solid rgba(167,139,250,.3)}
+.eq-cert-aitf-link:hover{color:#c4b5fd}
+.eq-cert-actions{margin-top:18px}
+.eq-share-row{display:flex;gap:8px;margin-bottom:8px}
+.eq-share-kakao{flex:1;display:flex;align-items:center;justify-content:center;gap:5px;min-height:44px;background:#FEE500;color:#191919;border:none;border-radius:10px;font-size:.83rem;font-weight:800;cursor:pointer;transition:all .2s;font-family:inherit;-webkit-tap-highlight-color:transparent}
+.eq-share-kakao:hover{background:#fdd835}
+.eq-share-x{flex:1;display:flex;align-items:center;justify-content:center;gap:5px;min-height:44px;background:#000;color:#fff;border:1px solid #333;border-radius:10px;font-size:.83rem;font-weight:800;cursor:pointer;transition:all .2s;font-family:inherit;-webkit-tap-highlight-color:transparent;text-decoration:none}
+.eq-share-x:hover{background:#111}
+.eq-pdf-btn{width:100%;min-height:44px;display:flex;align-items:center;justify-content:center;gap:6px;background:rgba(255,255,255,.07);color:#e0e0e0;border:1px solid rgba(255,255,255,.15);border-radius:10px;font-size:.83rem;font-weight:700;cursor:pointer;transition:all .2s;font-family:inherit;margin-bottom:8px}
+.eq-pdf-btn:hover{background:rgba(255,255,255,.12);color:#fff}
+.eq-cert-next-btn{width:100%;min-height:44px;display:flex;align-items:center;justify-content:center;gap:4px;background:linear-gradient(135deg,#7c3aed,#a78bfa);color:#fff;border:none;border-radius:10px;font-size:.83rem;font-weight:700;cursor:pointer;transition:all .2s;text-decoration:none;font-family:inherit}
+.eq-cert-next-btn:hover{box-shadow:0 4px 16px rgba(124,58,237,.4)}
+#eq-toast{position:fixed;bottom:32px;left:50%;transform:translateX(-50%) translateY(20px);background:#333;color:#fff;padding:10px 22px;border-radius:24px;font-size:14px;opacity:0;pointer-events:none;transition:all .3s;z-index:100001;white-space:nowrap}
+#eq-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+#eq-print-cert{display:none}
+@media print{
+  html,body{display:block!important;visibility:visible!important;}
+  body>*{display:none!important}
+  #eq-print-cert{display:block!important;position:fixed;inset:0;z-index:999999;background:#fff;padding:40px;font-family:'Apple SD Gothic Neo','Noto Sans KR',sans-serif;text-align:center;}
+  #eq-print-cert .pc-logo{font-size:13px;font-weight:700;color:#7c3aed;letter-spacing:.1em;margin-bottom:8px;text-transform:uppercase}
+  #eq-print-cert .pc-border{border:3px solid #a78bfa;border-radius:16px;padding:40px 36px;max-width:520px;margin:0 auto;position:relative}
+  #eq-print-cert .pc-trophy{font-size:56px;margin-bottom:12px}
+  #eq-print-cert .pc-cert-label{font-size:11px;font-weight:700;letter-spacing:.2em;color:#7c3aed;text-transform:uppercase;margin-bottom:6px}
+  #eq-print-cert .pc-title{font-size:22px;font-weight:900;color:#1a1a2e;margin:0 0 8px}
+  #eq-print-cert .pc-hr{border:1px solid #e0d6ff;margin:16px 0}
+  #eq-print-cert .pc-name{font-size:32px;font-weight:900;color:#7c3aed;margin:12px 0 6px}
+  #eq-print-cert .pc-score{font-size:14px;color:#888;margin:0 0 8px}
+  #eq-print-cert .pc-date{font-size:13px;color:#aaa;margin:0 0 16px}
+  #eq-print-cert .pc-footer{font-size:11px;color:#999;border-top:1px solid #eee;padding-top:12px;margin-top:16px}
+  #eq-print-cert .pc-footer a{color:#7c3aed}
+  #eq-cert-overlay,#eq-toast{display:none!important}
+}
+@media(max-width:480px){.eq-wrap{padding:20px 14px}.eq-question{padding:14px 12px}.eq-cert-popup{padding:30px 16px 22px}.eq-share-row{flex-direction:column}}
+</style>
+<div id="eq-cert-overlay" role="dialog" aria-modal="true" aria-label="수료증">
+  <div class="eq-cert-popup">
+    <button class="eq-cert-close" id="eq-cert-close" aria-label="닫기">×</button>
+    <div class="eq-cert-card">
+      <div class="eq-cert-badge">🎓 수료 인증 · AI사냥꾼 시리즈</div>
+      <p class="eq-cert-book" id="eq-cert-book-title">책 제목</p>
+      <hr class="eq-cert-divider" />
+      <p class="eq-cert-name" id="eq-cert-reader-name">독자</p>
+      <p class="eq-cert-score" id="eq-cert-score-text">5문항 중 5개 정답</p>
+      <div class="eq-cert-meta">
+        <span class="eq-cert-date" id="eq-cert-date">2026.05.17</span>
+        <span class="eq-cert-aitf"><span class="eq-cert-aitf-text">by</span><a class="eq-cert-aitf-link" href="https://aitf-landing.onrender.com" target="_blank" rel="noopener">AITF API</a></span>
+      </div>
+    </div>
+    <div class="eq-cert-actions">
+      <div class="eq-share-row">
+        <button class="eq-share-kakao" id="eq-share-kakao"><span style="font-size:1.1rem;">💬</span> 카카오톡</button>
+        <a class="eq-share-x" id="eq-share-x" href="#" target="_blank" rel="noopener"><span style="font-size:1rem;font-weight:900;">✕</span> X(트위터)</a>
+      </div>
+      <button class="eq-pdf-btn" id="eq-pdf-btn">📄 PDF 수료증 다운로드</button>
+      <a class="eq-cert-next-btn" id="eq-cert-next" href="#" target="_blank" rel="noopener">다음 권 읽기 →</a>
+    </div>
+  </div>
+</div>
+<div id="eq-toast"></div>
+<div id="eq-print-cert">
+  <div class="pc-logo">AITF · AI사냥꾼 시리즈</div>
+  <div class="pc-border">
+    <div class="pc-trophy">🎓</div>
+    <div class="pc-cert-label">Certificate of Completion</div>
+    <div class="pc-title" id="pc-title">책 제목</div>
+    <div class="pc-hr"></div>
+    <div class="pc-name" id="pc-name">독자 이름</div>
+    <div class="pc-score" id="pc-score">5문항 중 5개 정답 (100%)</div>
+    <div class="pc-date" id="pc-date">2026년 5월 17일</div>
+    <div class="pc-footer">AI사냥꾼 바이브코딩 전자책 시리즈 · <a href="https://aitf-landing.onrender.com">aitf-landing.onrender.com</a><br>이 수료증은 학습 완료를 인증합니다.</div>
+  </div>
+</div>
+<script>
+(function(){
+'use strict';
+var SB_URL='https://hzobwciaqtbfaxxvcots.supabase.co';
+var SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh6b2J3Y2lhcXRiZmF4eHZjb3RzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcxMjIxNTcsImV4cCI6MjA2MjY5ODE1N30.YXKC3Rv1jqMb-rr8NQ5Hm5wFcFWlKuNZ5F2bStUK_Ro';
+var OPTS=['A','B','C','D'];
+var _bookId='',_bookTitle='',_nextUrl='',_score=0,_total=0,_readerName='';
+function lsGet(k){try{return localStorage.getItem(k)}catch(e){return null}}
+function lsSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+function formatDate(d){return d.getFullYear()+'.'+String(d.getMonth()+1).padStart(2,'0')+'.'+String(d.getDate()).padStart(2,'0')}
+function formatDateKo(d){return d.getFullYear()+'년 '+(d.getMonth()+1)+'월 '+d.getDate()+'일'}
+function showToast(msg){var t=document.getElementById('eq-toast');if(!t)return;t.textContent=msg;t.classList.add('show');setTimeout(function(){t.classList.remove('show')},2500)}
+function closeCert(){var o=document.getElementById('eq-cert-overlay');if(o){o.classList.remove('is-open');document.body.style.overflow=''}}
+function populateCert(bookTitle,score,total,name,nextUrl){
+  var d=new Date();var pct=Math.round(score/total*100);var el;
+  el=document.getElementById('eq-cert-book-title');if(el)el.textContent=bookTitle;
+  el=document.getElementById('eq-cert-reader-name');if(el)el.textContent=name;
+  el=document.getElementById('eq-cert-score-text');if(el)el.textContent=total+'문항 중 '+score+'개 정답 ('+pct+'%)';
+  el=document.getElementById('eq-cert-date');if(el)el.textContent=formatDate(d);
+  el=document.getElementById('eq-cert-next');if(el){el.href=nextUrl||'https://aiaijungle.github.io/vibe-ebook/index.html';el.textContent='다음 권 읽기 →'}
+  el=document.getElementById('pc-title');if(el)el.textContent=bookTitle;
+  el=document.getElementById('pc-name');if(el)el.textContent=name;
+  el=document.getElementById('pc-score');if(el)el.textContent=total+'문항 중 '+score+'개 정답 ('+pct+'%)';
+  el=document.getElementById('pc-date');if(el)el.textContent=formatDateKo(d);
+  var xBtn=document.getElementById('eq-share-x');
+  if(xBtn){var xText='['+bookTitle+'] 수료! 🎓\n'+score+'/'+total+' 정답 ('+pct+'%)\n\n#AI사냥꾼 #바이브코딩 #AITF';xBtn.href='https://twitter.com/intent/tweet?text='+encodeURIComponent(xText)+'&url='+encodeURIComponent('https://aiaijungle.github.io/vibe-ebook/')}
+}
+function openCert(bookTitle,bookId,score,total,name,nextUrl){
+  _readerName=name;_score=score;_total=total;_bookTitle=bookTitle;_bookId=bookId;_nextUrl=nextUrl||'';
+  populateCert(bookTitle,score,total,name,nextUrl);
+  var o=document.getElementById('eq-cert-overlay');
+  if(o){o.classList.add('is-open');document.body.style.overflow='hidden'}
+  try{fetch(SB_URL+'/rest/v1/completions',{method:'POST',headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify({book_id:bookId,nickname:name,quote:'퀴즈 수료 ('+score+'/'+total+')'})}).catch(function(){})}catch(e){}
+  lsSet('eq_cert_'+bookId,'1');
+}
+document.addEventListener('DOMContentLoaded',function(){
+  var closeBtn=document.getElementById('eq-cert-close');
+  var overlay=document.getElementById('eq-cert-overlay');
+  var kakaoBtn=document.getElementById('eq-share-kakao');
+  var pdfBtn=document.getElementById('eq-pdf-btn');
+  if(closeBtn)closeBtn.addEventListener('click',closeCert);
+  if(overlay)overlay.addEventListener('click',function(e){if(e.target===overlay)closeCert()});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeCert()});
+  if(kakaoBtn)kakaoBtn.addEventListener('click',function(){
+    var pct=Math.round(_score/_total*100);
+    var text='['+_bookTitle+'] 수료! 🎓\n'+_score+'/'+_total+' 정답 ('+pct+'%)\n지금 무료로 읽기 → https://aiaijungle.github.io/vibe-ebook/\n\n#AI사냥꾼 #바이브코딩';
+    if(navigator.share){navigator.share({title:_bookTitle+' 수료 인증',text:text}).catch(function(){});}
+    else if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){showToast('카카오톡에 붙여넣기 해서 공유하세요! 📋')}).catch(function(){showToast('복사 실패')});}
+    else{var ta=document.createElement('textarea');ta.value=text;ta.style.cssText='position:fixed;opacity:0;top:-9999px;';document.body.appendChild(ta);ta.focus();ta.select();try{document.execCommand('copy');showToast('카카오톡에 붙여넣기 해서 공유하세요! 📋')}catch(ex){showToast('복사 실패')}document.body.removeChild(ta);}
+  });
+  if(pdfBtn)pdfBtn.addEventListener('click',function(){showToast('인쇄 창에서 "PDF로 저장"을 선택하세요');setTimeout(function(){window.print()},400);});
+});
+window.EbookQuiz={
+  render:function(containerId,questions,bookTitle,bookId,nextUrl){
+    _bookId=bookId;_bookTitle=bookTitle;_nextUrl=nextUrl||'';_total=questions.length;
+    var PASS_MIN=Math.ceil(_total*0.8);
+    var container=document.getElementById(containerId);
+    if(!container)return;
+    var html='<div class="eq-wrap"><div class="eq-badge">FINAL QUIZ · '+bookTitle+'</div><div class="eq-title">📝 최종 퀴즈</div><div class="eq-desc">'+_total+'문항 중 <strong style="color:#a78bfa;">'+PASS_MIN+'개 이상</strong> 맞히면 수료증을 받습니다.</div>';
+    questions.forEach(function(q,qi){
+      html+='<div class="eq-question" id="eq-q'+qi+'"><div class="eq-qnum">Q'+(qi+1)+' / '+_total+'</div><div class="eq-qtext">'+q.q+'</div><div class="eq-opts">';
+      q.opts.forEach(function(opt,oi){html+='<button class="eq-opt" data-qi="'+qi+'" data-oi="'+oi+'" type="button"><span class="eq-opt-marker">'+OPTS[oi]+'</span><span>'+opt+'</span></button>';});
+      html+='</div><div class="eq-explain">'+q.explain+'</div></div>';
+    });
+    html+='<button class="eq-submit" id="eq-submit-btn" disabled>✅ 제출하기</button><div class="eq-result" id="eq-result"></div></div>';
+    container.innerHTML=html;
+    var selected={};
+    container.addEventListener('click',function(e){
+      var opt=e.target.closest('.eq-opt');if(!opt)return;
+      var qi=parseInt(opt.getAttribute('data-qi'),10);
+      var oi=parseInt(opt.getAttribute('data-oi'),10);
+      var qEl=document.getElementById('eq-q'+qi);
+      if(qEl.classList.contains('eq-correct')||qEl.classList.contains('eq-wrong'))return;
+      qEl.querySelectorAll('.eq-opt').forEach(function(o){o.classList.remove('eq-selected')});
+      opt.classList.add('eq-selected');selected[qi]=oi;
+      var sb=document.getElementById('eq-submit-btn');
+      if(sb)sb.disabled=Object.keys(selected).length<questions.length;
+    });
+    var sb=document.getElementById('eq-submit-btn');
+    if(sb)sb.addEventListener('click',function(){
+      sb.disabled=true;var score=0;
+      questions.forEach(function(q,qi){
+        var qEl=document.getElementById('eq-q'+qi);var ua=selected[qi];
+        var opts=qEl.querySelectorAll('.eq-opt');
+        if(ua===q.correct){score++;qEl.classList.add('eq-correct');opts[ua].classList.add('eq-opt-correct');}
+        else{qEl.classList.add('eq-wrong');if(ua!==undefined)opts[ua].classList.add('eq-opt-wrong');opts[q.correct].classList.add('eq-opt-correct');}
+      });
+      _score=score;var pass=score>=PASS_MIN;
+      var re=document.getElementById('eq-result');
+      if(re){
+        re.className='eq-result '+(pass?'eq-pass':'eq-fail');re.style.display='block';
+        var pct=Math.round(score/_total*100);
+        if(pass){
+          re.innerHTML='<div class="eq-result-emoji">🎉</div><div class="eq-result-title">합격! 수료증을 받으세요</div><div class="eq-result-score">'+_total+'문항 중 <strong>'+score+'개</strong> 정답 ('+pct+'%)</div><input id="eq-name-input" class="eq-name-input" type="text" maxlength="20" placeholder="수료증에 넣을 이름을 입력하세요" /><button class="eq-cert-btn" id="eq-get-cert-btn">🎓 수료증 받기</button>';
+          document.getElementById('eq-get-cert-btn').addEventListener('click',function(){
+            var ni=document.getElementById('eq-name-input');
+            openCert(bookTitle,bookId,score,_total,(ni&&ni.value.trim())||'독자',nextUrl);
+          });
+        }else{
+          re.innerHTML='<div class="eq-result-emoji">😅</div><div class="eq-result-title">아쉬워요! 다시 도전해보세요</div><div class="eq-result-score">'+_total+'문항 중 <strong>'+score+'개</strong> 정답 — 수료 기준: '+PASS_MIN+'개 이상</div><button class="eq-retry-btn" id="eq-retry-btn">🔄 다시 풀기</button>';
+          document.getElementById('eq-retry-btn').addEventListener('click',function(){EbookQuiz.render(containerId,questions,bookTitle,bookId,nextUrl);});
+        }
+        re.scrollIntoView({behavior:'smooth',block:'nearest'});
+      }
+    });
+  }
+};
+})();
+</script>
+<script>
+var Q_VOL2=[
+  {q:"G-Stack에서 '28인 가상 부서'의 의미는?",opts:['실제 직원 28명으로 구성된 팀','AI가 역할별로 나뉜 가상의 팀 워크플로우','28개의 개발 도구 스택','28개의 API 연결'],correct:1,explain:'G-Stack은 AI에게 각기 다른 부서 역할을 부여해 1명이 팀처럼 일하는 워크플로우입니다.'},
+  {q:'MASTER.env 파일의 핵심 역할은?',opts:['환경 테마를 설정한다','API 키를 한 곳에 모아 관리하고 비용 폭탄을 방지한다','데이터베이스를 초기화한다','백업 서버를 연결한다'],correct:1,explain:'여러 API 키를 분산 관리하면 누락이나 중복 사용으로 비용이 증가합니다. MASTER.env가 해결책입니다.'},
+  {q:'AI가 잘못된 정보(환각)를 생성할 때 가장 효과적인 대처법은?',opts:['다른 AI로 바꾼다','질문을 영어로 바꾼다','공식 문서나 참고 자료를 직접 주입한다','더 자세하게 다시 질문한다'],correct:2,explain:'AI 환각의 90%는 컨텍스트 부족에서 발생합니다. 정확한 문서를 주입하면 대부분 해결됩니다.'},
+  {q:'CLAUDE.md 파일은 왜 중요한가?',opts:['Claude를 설치하는 설정 파일이다','AI에게 프로젝트 규칙과 맥락을 영구 기억시킨다','결제 정보를 저장한다','코드를 자동으로 백업한다'],correct:1,explain:'CLAUDE.md는 매 세션마다 AI가 읽는 지침서로, 한 번 잘 써두면 반복 설명이 필요 없습니다.'},
+  {q:"멀티봇 시스템에서 '마크다운 바통 터치'란?",opts:['마크다운을 HTML로 변환하는 것','AI 봇 간에 마크다운 파일로 작업 결과를 전달하는 것','코드를 마크다운으로 문서화하는 것','노션에 자동으로 저장하는 것'],correct:1,explain:'봇A의 출력 결과를 .md 파일로 저장하면 봇B가 이를 읽어 이어서 작업할 수 있습니다.'}
+];
+(function(){
+  function r(){if(typeof EbookQuiz!=='undefined')EbookQuiz.render('quiz-container-vol2',Q_VOL2,'2권 바이브코딩바이블','vibe-bible-2','agent-bible.html');else setTimeout(r,100);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',r);else r();
 })();
 </script>
 </body>

@@ -75,8 +75,10 @@ pre.code{background:#1e1e2e;color:#cdd6f4;padding:18px 22px;border-radius:12px;o
 }
 
 /* 테마 버튼 */
-.top-bar{display:flex;justify-content:flex-end;margin-bottom:32px}
+.top-bar{display:flex;justify-content:flex-end;align-items:center;gap:8px;margin-bottom:32px}
 .theme-btn{background:none;border:1px solid var(--border);border-radius:8px;padding:6px 12px;cursor:pointer;color:var(--text);font-size:.85rem;font-family:'Pretendard',sans-serif}
+.gift-btn{background:var(--accent,#7C3AED);color:#fff;border:none;border-radius:8px;padding:6px 14px;cursor:pointer;font-size:.85rem;font-weight:700;font-family:'Pretendard',sans-serif;transition:opacity .2s}
+.gift-btn:hover{opacity:.85}
 
 /* 복사 방지 */
 body{
@@ -182,6 +184,22 @@ a,button{-webkit-touch-callout:default!important;-webkit-user-select:auto!import
     당신이 <strong style="color:#ffaa00;">자신에게 AI를 선물하는 순간</strong>입니다.
   </div>
 
+  <!-- 6월 1일 업데이트 예고 -->
+  <div style="max-width:440px;margin:0 auto 20px;border:1px solid rgba(255,149,0,0.28);border-radius:12px;overflow:hidden;text-align:left;">
+    <div style="background:rgba(255,149,0,0.1);padding:9px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(255,149,0,0.18);">
+      <span style="font-size:0.7rem;font-weight:800;color:#ff9500;letter-spacing:0.07em;">🚀 6월 1일 업데이트 예고</span>
+      <span style="margin-left:auto;font-size:0.62rem;color:rgba(255,255,255,0.3);font-weight:700;">곧 공개</span>
+    </div>
+    <div style="padding:12px 16px 10px;display:flex;flex-direction:column;gap:9px;">
+      <div style="font-size:0.81rem;color:rgba(255,255,255,0.72);display:flex;align-items:flex-start;gap:8px;word-break:keep-all;"><span style="color:#ff9500;flex-shrink:0;margin-top:1px;">✦</span>AI 프롬프트 <strong style="color:#ffaa00;">실전 표현 50선</strong> — 바로 복붙해서 쓰는 공식집</div>
+      <div style="font-size:0.81rem;color:rgba(255,255,255,0.72);display:flex;align-items:flex-start;gap:8px;word-break:keep-all;"><span style="color:#ff9500;flex-shrink:0;margin-top:1px;">✦</span>마케팅 자동화 실패 사례 + 해결법 — <span style="color:rgba(255,255,255,0.35);">[챕터 비공개]</span></div>
+      <div style="font-size:0.81rem;color:rgba(255,255,255,0.72);display:flex;align-items:flex-start;gap:8px;word-break:keep-all;"><span style="color:#ff9500;flex-shrink:0;margin-top:1px;">✦</span>독자 Q&amp;A 심화 답변 모음 — 구독자 <strong style="color:#ffaa00;">먼저</strong> 공개</div>
+    </div>
+    <div style="padding:0 16px 14px;">
+      <a href="https://www.youtube.com/channel/UCCqi9m0XPHLPxvReWfJhJig?sub_confirmation=1" target="_blank" rel="noopener" style="display:block;background:linear-gradient(90deg,#ff6b00,#ff9d00);color:#fff;text-align:center;padding:9px;border-radius:8px;font-size:0.81rem;font-weight:800;text-decoration:none;">🔔 AI사냥꾼 채널 구독하고 먼저 받기</a>
+    </div>
+  </div>
+
   <div style="font-size:0.72rem;color:rgba(255,255,255,0.28);letter-spacing:0.02em;word-break:keep-all;">
     6월 1일부터 &nbsp;·&nbsp; 각 권당 <strong style="color:rgba(255,255,255,0.45);">19,900원</strong> 판매 예정 &nbsp;·&nbsp; 지금은 완전 무료
   </div>
@@ -209,6 +227,7 @@ a,button{-webkit-touch-callout:default!important;-webkit-user-select:auto!import
 <div class="wrap">
 
   <div class="top-bar">
+    <button class="gift-btn" id="share-btn-1" onclick="shareBook()">🎁 선물하기</button>
     <button class="theme-btn" onclick="toggleTheme()">🌓 다크모드</button>
   </div>
 
@@ -220,7 +239,7 @@ a,button{-webkit-touch-callout:default!important;-webkit-user-select:auto!import
     <span class="free-tag">✓ 무료 공개</span>
     <div style="display:inline-flex;align-items:center;gap:4px;margin-top:10px;font-size:11px;opacity:0.55;">
       <span>👁</span><span>누적 방문자</span>
-      <img id="visit-badge" src="https://visitor-badge.laobi.icu/badge?page_id=aiaijungle.vibe-ebook-1&left_color=555&right_color=a78bfa" style="height:16px;vertical-align:middle;border-radius:3px;" alt="visitors" onerror="this.style.display='none';document.getElementById('visit-num').style.display='inline'">
+      <img id="visit-badge" src="https://visitor-badge.laobi.icu/badge?page_id=aiaijungle.vibe-ebook&left_color=555&right_color=a78bfa" style="height:16px;vertical-align:middle;border-radius:3px;" alt="visitors" onerror="this.style.display='none';document.getElementById('visit-num').style.display='inline'">
       <span id="visit-num" style="background:#a78bfa;color:#fff;font-weight:700;padding:0 5px;border-radius:3px;line-height:15px;display:none;">1,000+</span>
     </div>
   </header>
@@ -561,6 +580,9 @@ a,button{-webkit-touch-callout:default!important;-webkit-user-select:auto!import
 
   <p class="para">지금 당장 Claude 웹버전을 열어라. CIF 공식으로 말해라. 에러가 나면 던져라. 오늘 첫 번째 성공을 만들어라.</p>
 
+<!-- ★ 최종 퀴즈 -->
+<div id="quiz-container-vol1" style="margin:48px 0;"></div>
+
   <!-- ★ 독자 후기 위젯 -->
   <style>
   #review-widget input,#review-widget textarea{font-family:inherit;box-sizing:border-box;width:100%;}
@@ -770,6 +792,22 @@ function toggleTheme() {
   const isDark = d.getAttribute('data-theme') === 'dark';
   d.setAttribute('data-theme', isDark ? '' : 'dark');
   localStorage.setItem('theme', isDark ? '' : 'dark');
+}
+function shareBook() {
+  var data = { title: '🎁 바이브코딩 바이블 1권 — 무료 선물', text: '코딩 없이 블로그와 유튜브를 자동으로 운영하는 법. 지인에게 무료로 선물하세요!', url: location.href };
+  if (navigator.share) {
+    navigator.share(data);
+  } else {
+    navigator.clipboard.writeText(location.href).then(function() {
+      var btn = document.getElementById('share-btn-1');
+      if (btn) { btn.textContent = '✅ 복사됨!'; setTimeout(function(){ btn.textContent = '🎁 선물하기'; }, 2000); }
+    }).catch(function() {
+      var ta = document.createElement('textarea'); ta.value = location.href;
+      document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+      var btn = document.getElementById('share-btn-1');
+      if (btn) { btn.textContent = '✅ 복사됨!'; setTimeout(function(){ btn.textContent = '🎁 선물하기'; }, 2000); }
+    });
+  }
 }
 const saved = localStorage.getItem('theme');
 if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
@@ -1004,6 +1042,260 @@ if (localStorage.getItem('sib_dismissed')) {
       });
     }
   } catch(e){}
+})();
+</script>
+<!-- ── 최종 퀴즈 + 수료증 시스템 ── -->
+<style>
+.eq-wrap{margin:48px 0;padding:32px 28px;background:linear-gradient(135deg,#0d0d1a,#1a1a2e);border:1px solid rgba(167,139,250,.28);border-radius:18px;word-break:keep-all;font-family:inherit}
+.eq-badge{font-size:.68rem;font-weight:700;letter-spacing:.15em;color:#a78bfa;margin-bottom:6px}
+.eq-title{font-size:1.1rem;font-weight:900;color:#fff;margin:0 0 6px}
+.eq-desc{font-size:.82rem;color:rgba(255,255,255,.5);margin:0 0 28px;line-height:1.6}
+.eq-question{margin-bottom:22px;padding:18px 20px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;transition:border-color .2s}
+.eq-question.eq-correct{border-color:rgba(52,211,153,.5);background:rgba(52,211,153,.06)}
+.eq-question.eq-wrong{border-color:rgba(248,113,113,.5);background:rgba(248,113,113,.06)}
+.eq-qnum{font-size:.7rem;font-weight:700;color:#a78bfa;letter-spacing:.1em;margin-bottom:8px}
+.eq-qtext{font-size:.92rem;font-weight:700;color:#f0f0f0;margin:0 0 14px;line-height:1.6}
+.eq-opts{display:flex;flex-direction:column;gap:8px}
+.eq-opt{display:flex;align-items:flex-start;gap:10px;padding:10px 14px;background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.1);border-radius:9px;cursor:pointer;font-size:.86rem;color:rgba(255,255,255,.8);transition:all .18s;line-height:1.45;-webkit-tap-highlight-color:transparent;min-height:44px;user-select:none;font-family:inherit;text-align:left;width:100%}
+.eq-opt:hover{background:rgba(255,255,255,.09);border-color:rgba(167,139,250,.4);color:#fff}
+.eq-opt.eq-selected{border-color:#a78bfa;background:rgba(167,139,250,.12);color:#fff}
+.eq-opt.eq-opt-correct{border-color:#34d399;background:rgba(52,211,153,.12);color:#6ee7b7}
+.eq-opt.eq-opt-wrong{border-color:#f87171;background:rgba(248,113,113,.1);color:#fca5a5}
+.eq-opt-marker{flex-shrink:0;width:22px;height:22px;border-radius:50%;border:1.5px solid rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;margin-top:1px;transition:all .18s}
+.eq-opt.eq-selected .eq-opt-marker{border-color:#a78bfa;color:#a78bfa}
+.eq-opt.eq-opt-correct .eq-opt-marker{border-color:#34d399;background:#34d399;color:#000}
+.eq-opt.eq-opt-wrong .eq-opt-marker{border-color:#f87171;background:#f87171;color:#fff}
+.eq-explain{margin-top:8px;font-size:.78rem;color:rgba(255,255,255,.55);display:none;padding:6px 10px;background:rgba(255,255,255,.04);border-radius:6px;line-height:1.55}
+.eq-question.eq-correct .eq-explain,.eq-question.eq-wrong .eq-explain{display:block}
+.eq-submit{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:52px;margin-top:8px;background:linear-gradient(135deg,#7c3aed,#a78bfa);color:#fff;border:none;border-radius:13px;font-size:1rem;font-weight:800;cursor:pointer;transition:all .2s;font-family:inherit}
+.eq-submit:hover{transform:translateY(-1px);box-shadow:0 6px 24px rgba(124,58,237,.4)}
+.eq-submit:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.eq-result{display:none;margin-top:24px;padding:22px 20px;border-radius:12px;text-align:center;word-break:keep-all}
+.eq-result.eq-pass{background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.35)}
+.eq-result.eq-fail{background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.25)}
+.eq-result-emoji{font-size:40px;margin-bottom:8px}
+.eq-result-title{font-size:1.1rem;font-weight:800;color:#fff;margin:0 0 6px}
+.eq-result-score{font-size:.88rem;color:rgba(255,255,255,.65);margin:0 0 18px}
+.eq-name-input{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:10px 14px;font-size:.9rem;color:#fff;font-family:inherit;outline:none;width:100%;box-sizing:border-box;-webkit-appearance:none;appearance:none;margin-bottom:10px}
+.eq-name-input:focus{border-color:#a78bfa}
+.eq-cert-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:12px 28px;min-height:48px;width:100%;background:linear-gradient(135deg,#7c3aed,#a78bfa);color:#fff;border:none;border-radius:12px;font-size:.95rem;font-weight:800;cursor:pointer;transition:all .2s;font-family:inherit}
+.eq-cert-btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(124,58,237,.4)}
+.eq-retry-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:12px 24px;min-height:48px;background:rgba(255,255,255,.07);color:#ccc;border:1px solid rgba(255,255,255,.18);border-radius:12px;font-size:.9rem;font-weight:700;cursor:pointer;transition:all .2s;font-family:inherit}
+.eq-retry-btn:hover{background:rgba(255,255,255,.12);color:#fff}
+#eq-cert-overlay{display:none;position:fixed;inset:0;z-index:99998;background:rgba(0,0,0,.88);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);overflow-y:auto}
+#eq-cert-overlay.is-open{display:flex;align-items:center;justify-content:center;padding:24px 16px}
+.eq-cert-popup{position:relative;background:#1a1a2e;border-radius:20px;padding:36px 28px 28px;max-width:400px;width:92%;box-shadow:0 24px 64px rgba(0,0,0,.7);word-break:keep-all;color:#f0f0f0}
+.eq-cert-close{position:absolute;top:14px;right:16px;background:none;border:none;color:#888;font-size:24px;line-height:1;cursor:pointer;padding:4px 8px;transition:color .2s;min-height:44px;display:flex;align-items:center}
+.eq-cert-close:hover{color:#fff}
+.eq-cert-card{background:linear-gradient(145deg,#0d0d1a,#1a1a3e);border:2px solid #a78bfa;border-radius:16px;padding:24px 22px;position:relative;overflow:hidden}
+.eq-cert-card::before{content:'🎓';position:absolute;right:-8px;top:-8px;font-size:72px;opacity:.07;pointer-events:none}
+.eq-cert-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(167,139,250,.12);border:1px solid rgba(167,139,250,.4);border-radius:20px;padding:4px 12px;font-size:11px;font-weight:700;color:#a78bfa;margin-bottom:10px;letter-spacing:.05em}
+.eq-cert-book{font-size:14px;font-weight:700;color:#fff;margin:0 0 4px;line-height:1.4}
+.eq-cert-divider{border:none;border-top:1px solid rgba(167,139,250,.25);margin:12px 0}
+.eq-cert-name{font-size:22px;font-weight:900;color:#a78bfa;margin:0 0 4px}
+.eq-cert-score{font-size:12px;color:rgba(255,255,255,.55);margin:0 0 8px}
+.eq-cert-meta{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:4px;margin-top:10px}
+.eq-cert-date{font-size:11px;color:#888}
+.eq-cert-aitf{display:flex;align-items:center;gap:5px}
+.eq-cert-aitf-text{font-size:10px;color:#888}
+.eq-cert-aitf-link{font-size:10px;color:#a78bfa;text-decoration:none;border-bottom:1px solid rgba(167,139,250,.3)}
+.eq-cert-aitf-link:hover{color:#c4b5fd}
+.eq-cert-actions{margin-top:18px}
+.eq-share-row{display:flex;gap:8px;margin-bottom:8px}
+.eq-share-kakao{flex:1;display:flex;align-items:center;justify-content:center;gap:5px;min-height:44px;background:#FEE500;color:#191919;border:none;border-radius:10px;font-size:.83rem;font-weight:800;cursor:pointer;transition:all .2s;font-family:inherit;-webkit-tap-highlight-color:transparent}
+.eq-share-kakao:hover{background:#fdd835}
+.eq-share-x{flex:1;display:flex;align-items:center;justify-content:center;gap:5px;min-height:44px;background:#000;color:#fff;border:1px solid #333;border-radius:10px;font-size:.83rem;font-weight:800;cursor:pointer;transition:all .2s;font-family:inherit;-webkit-tap-highlight-color:transparent;text-decoration:none}
+.eq-share-x:hover{background:#111}
+.eq-pdf-btn{width:100%;min-height:44px;display:flex;align-items:center;justify-content:center;gap:6px;background:rgba(255,255,255,.07);color:#e0e0e0;border:1px solid rgba(255,255,255,.15);border-radius:10px;font-size:.83rem;font-weight:700;cursor:pointer;transition:all .2s;font-family:inherit;margin-bottom:8px}
+.eq-pdf-btn:hover{background:rgba(255,255,255,.12);color:#fff}
+.eq-cert-next-btn{width:100%;min-height:44px;display:flex;align-items:center;justify-content:center;gap:4px;background:linear-gradient(135deg,#7c3aed,#a78bfa);color:#fff;border:none;border-radius:10px;font-size:.83rem;font-weight:700;cursor:pointer;transition:all .2s;text-decoration:none;font-family:inherit}
+.eq-cert-next-btn:hover{box-shadow:0 4px 16px rgba(124,58,237,.4)}
+#eq-toast{position:fixed;bottom:32px;left:50%;transform:translateX(-50%) translateY(20px);background:#333;color:#fff;padding:10px 22px;border-radius:24px;font-size:14px;opacity:0;pointer-events:none;transition:all .3s;z-index:100001;white-space:nowrap}
+#eq-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+#eq-print-cert{display:none}
+@media print{
+  html,body{display:block!important;visibility:visible!important;}
+  body>*{display:none!important}
+  #eq-print-cert{display:block!important;position:fixed;inset:0;z-index:999999;background:#fff;padding:40px;font-family:'Apple SD Gothic Neo','Noto Sans KR',sans-serif;text-align:center;}
+  #eq-print-cert .pc-logo{font-size:13px;font-weight:700;color:#7c3aed;letter-spacing:.1em;margin-bottom:8px;text-transform:uppercase}
+  #eq-print-cert .pc-border{border:3px solid #a78bfa;border-radius:16px;padding:40px 36px;max-width:520px;margin:0 auto;position:relative}
+  #eq-print-cert .pc-trophy{font-size:56px;margin-bottom:12px}
+  #eq-print-cert .pc-cert-label{font-size:11px;font-weight:700;letter-spacing:.2em;color:#7c3aed;text-transform:uppercase;margin-bottom:6px}
+  #eq-print-cert .pc-title{font-size:22px;font-weight:900;color:#1a1a2e;margin:0 0 8px}
+  #eq-print-cert .pc-hr{border:1px solid #e0d6ff;margin:16px 0}
+  #eq-print-cert .pc-name{font-size:32px;font-weight:900;color:#7c3aed;margin:12px 0 6px}
+  #eq-print-cert .pc-score{font-size:14px;color:#888;margin:0 0 8px}
+  #eq-print-cert .pc-date{font-size:13px;color:#aaa;margin:0 0 16px}
+  #eq-print-cert .pc-footer{font-size:11px;color:#999;border-top:1px solid #eee;padding-top:12px;margin-top:16px}
+  #eq-print-cert .pc-footer a{color:#7c3aed}
+  #eq-cert-overlay,#eq-toast{display:none!important}
+}
+@media(max-width:480px){
+  .eq-wrap{padding:20px 14px}
+  .eq-question{padding:14px 12px}
+  .eq-cert-popup{padding:30px 16px 22px}
+  .eq-share-row{flex-direction:column}
+}
+</style>
+<div id="eq-cert-overlay" role="dialog" aria-modal="true" aria-label="수료증">
+  <div class="eq-cert-popup">
+    <button class="eq-cert-close" id="eq-cert-close" aria-label="닫기">×</button>
+    <div class="eq-cert-card">
+      <div class="eq-cert-badge">🎓 수료 인증 · AI사냥꾼 시리즈</div>
+      <p class="eq-cert-book" id="eq-cert-book-title">책 제목</p>
+      <hr class="eq-cert-divider" />
+      <p class="eq-cert-name" id="eq-cert-reader-name">독자</p>
+      <p class="eq-cert-score" id="eq-cert-score-text">5문항 중 5개 정답</p>
+      <div class="eq-cert-meta">
+        <span class="eq-cert-date" id="eq-cert-date">2026.05.17</span>
+        <span class="eq-cert-aitf"><span class="eq-cert-aitf-text">by</span><a class="eq-cert-aitf-link" href="https://aitf-landing.onrender.com" target="_blank" rel="noopener">AITF API</a></span>
+      </div>
+    </div>
+    <div class="eq-cert-actions">
+      <div class="eq-share-row">
+        <button class="eq-share-kakao" id="eq-share-kakao"><span style="font-size:1.1rem;">💬</span> 카카오톡</button>
+        <a class="eq-share-x" id="eq-share-x" href="#" target="_blank" rel="noopener"><span style="font-size:1rem;font-weight:900;">✕</span> X(트위터)</a>
+      </div>
+      <button class="eq-pdf-btn" id="eq-pdf-btn">📄 PDF 수료증 다운로드</button>
+      <a class="eq-cert-next-btn" id="eq-cert-next" href="#" target="_blank" rel="noopener">다음 권 읽기 →</a>
+    </div>
+  </div>
+</div>
+<div id="eq-toast"></div>
+<div id="eq-print-cert">
+  <div class="pc-logo">AITF · AI사냥꾼 시리즈</div>
+  <div class="pc-border">
+    <div class="pc-trophy">🎓</div>
+    <div class="pc-cert-label">Certificate of Completion</div>
+    <div class="pc-title" id="pc-title">책 제목</div>
+    <div class="pc-hr"></div>
+    <div class="pc-name" id="pc-name">독자 이름</div>
+    <div class="pc-score" id="pc-score">5문항 중 5개 정답 (100%)</div>
+    <div class="pc-date" id="pc-date">2026년 5월 17일</div>
+    <div class="pc-footer">AI사냥꾼 바이브코딩 전자책 시리즈 · <a href="https://aitf-landing.onrender.com">aitf-landing.onrender.com</a><br>이 수료증은 학습 완료를 인증합니다.</div>
+  </div>
+</div>
+<script>
+(function(){
+'use strict';
+var SB_URL='https://hzobwciaqtbfaxxvcots.supabase.co';
+var SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh6b2J3Y2lhcXRiZmF4eHZjb3RzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcxMjIxNTcsImV4cCI6MjA2MjY5ODE1N30.YXKC3Rv1jqMb-rr8NQ5Hm5wFcFWlKuNZ5F2bStUK_Ro';
+var OPTS=['A','B','C','D'];
+var _bookId='',_bookTitle='',_nextUrl='',_score=0,_total=0,_readerName='';
+function lsGet(k){try{return localStorage.getItem(k)}catch(e){return null}}
+function lsSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+function formatDate(d){return d.getFullYear()+'.'+String(d.getMonth()+1).padStart(2,'0')+'.'+String(d.getDate()).padStart(2,'0')}
+function formatDateKo(d){return d.getFullYear()+'년 '+(d.getMonth()+1)+'월 '+d.getDate()+'일'}
+function showToast(msg){var t=document.getElementById('eq-toast');if(!t)return;t.textContent=msg;t.classList.add('show');setTimeout(function(){t.classList.remove('show')},2500)}
+function closeCert(){var o=document.getElementById('eq-cert-overlay');if(o){o.classList.remove('is-open');document.body.style.overflow=''}}
+function populateCert(bookTitle,score,total,name,nextUrl){
+  var d=new Date();var pct=Math.round(score/total*100);
+  var el;
+  el=document.getElementById('eq-cert-book-title');if(el)el.textContent=bookTitle;
+  el=document.getElementById('eq-cert-reader-name');if(el)el.textContent=name;
+  el=document.getElementById('eq-cert-score-text');if(el)el.textContent=total+'문항 중 '+score+'개 정답 ('+pct+'%)';
+  el=document.getElementById('eq-cert-date');if(el)el.textContent=formatDate(d);
+  el=document.getElementById('eq-cert-next');if(el){el.href=nextUrl||'https://aiaijungle.github.io/vibe-ebook/index.html';el.textContent='다음 권 읽기 →'}
+  el=document.getElementById('pc-title');if(el)el.textContent=bookTitle;
+  el=document.getElementById('pc-name');if(el)el.textContent=name;
+  el=document.getElementById('pc-score');if(el)el.textContent=total+'문항 중 '+score+'개 정답 ('+pct+'%)';
+  el=document.getElementById('pc-date');if(el)el.textContent=formatDateKo(d);
+  var xBtn=document.getElementById('eq-share-x');
+  if(xBtn){var xText='['+bookTitle+'] 수료! 🎓\n'+score+'/'+total+' 정답 ('+pct+'%)\n\n#AI사냥꾼 #바이브코딩 #AITF';xBtn.href='https://twitter.com/intent/tweet?text='+encodeURIComponent(xText)+'&url='+encodeURIComponent('https://aiaijungle.github.io/vibe-ebook/')}
+}
+function openCert(bookTitle,bookId,score,total,name,nextUrl){
+  _readerName=name;_score=score;_total=total;_bookTitle=bookTitle;_bookId=bookId;_nextUrl=nextUrl||'';
+  populateCert(bookTitle,score,total,name,nextUrl);
+  var o=document.getElementById('eq-cert-overlay');
+  if(o){o.classList.add('is-open');document.body.style.overflow='hidden'}
+  try{fetch(SB_URL+'/rest/v1/completions',{method:'POST',headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify({book_id:bookId,nickname:name,quote:'퀴즈 수료 ('+score+'/'+total+')'})}).catch(function(){})}catch(e){}
+  lsSet('eq_cert_'+bookId,'1');
+}
+document.addEventListener('DOMContentLoaded',function(){
+  var closeBtn=document.getElementById('eq-cert-close');
+  var overlay=document.getElementById('eq-cert-overlay');
+  var kakaoBtn=document.getElementById('eq-share-kakao');
+  var pdfBtn=document.getElementById('eq-pdf-btn');
+  if(closeBtn)closeBtn.addEventListener('click',closeCert);
+  if(overlay)overlay.addEventListener('click',function(e){if(e.target===overlay)closeCert()});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeCert()});
+  if(kakaoBtn)kakaoBtn.addEventListener('click',function(){
+    var pct=Math.round(_score/_total*100);
+    var text='['+_bookTitle+'] 수료! 🎓\n'+_score+'/'+_total+' 정답 ('+pct+'%)\n지금 무료로 읽기 → https://aiaijungle.github.io/vibe-ebook/\n\n#AI사냥꾼 #바이브코딩';
+    if(navigator.share){navigator.share({title:_bookTitle+' 수료 인증',text:text}).catch(function(){});}
+    else if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){showToast('카카오톡에 붙여넣기 해서 공유하세요! 📋')}).catch(function(){showToast('복사 실패')});}
+    else{var ta=document.createElement('textarea');ta.value=text;ta.style.cssText='position:fixed;opacity:0;top:-9999px;';document.body.appendChild(ta);ta.focus();ta.select();try{document.execCommand('copy');showToast('카카오톡에 붙여넣기 해서 공유하세요! 📋')}catch(ex){showToast('복사 실패')}document.body.removeChild(ta);}
+  });
+  if(pdfBtn)pdfBtn.addEventListener('click',function(){showToast('인쇄 창에서 "PDF로 저장"을 선택하세요');setTimeout(function(){window.print()},400);});
+});
+window.EbookQuiz={
+  render:function(containerId,questions,bookTitle,bookId,nextUrl){
+    _bookId=bookId;_bookTitle=bookTitle;_nextUrl=nextUrl||'';_total=questions.length;
+    var PASS_MIN=Math.ceil(_total*0.8);
+    var container=document.getElementById(containerId);
+    if(!container)return;
+    var html='<div class="eq-wrap"><div class="eq-badge">FINAL QUIZ · '+bookTitle+'</div><div class="eq-title">📝 최종 퀴즈</div><div class="eq-desc">'+_total+'문항 중 <strong style="color:#a78bfa;">'+PASS_MIN+'개 이상</strong> 맞히면 수료증을 받습니다.</div>';
+    questions.forEach(function(q,qi){
+      html+='<div class="eq-question" id="eq-q'+qi+'"><div class="eq-qnum">Q'+(qi+1)+' / '+_total+'</div><div class="eq-qtext">'+q.q+'</div><div class="eq-opts">';
+      q.opts.forEach(function(opt,oi){html+='<button class="eq-opt" data-qi="'+qi+'" data-oi="'+oi+'" type="button"><span class="eq-opt-marker">'+OPTS[oi]+'</span><span>'+opt+'</span></button>';});
+      html+='</div><div class="eq-explain">'+q.explain+'</div></div>';
+    });
+    html+='<button class="eq-submit" id="eq-submit-btn" disabled>✅ 제출하기</button><div class="eq-result" id="eq-result"></div></div>';
+    container.innerHTML=html;
+    var selected={};
+    container.addEventListener('click',function(e){
+      var opt=e.target.closest('.eq-opt');if(!opt)return;
+      var qi=parseInt(opt.getAttribute('data-qi'),10);
+      var oi=parseInt(opt.getAttribute('data-oi'),10);
+      var qEl=document.getElementById('eq-q'+qi);
+      if(qEl.classList.contains('eq-correct')||qEl.classList.contains('eq-wrong'))return;
+      qEl.querySelectorAll('.eq-opt').forEach(function(o){o.classList.remove('eq-selected')});
+      opt.classList.add('eq-selected');selected[qi]=oi;
+      var sb=document.getElementById('eq-submit-btn');
+      if(sb)sb.disabled=Object.keys(selected).length<questions.length;
+    });
+    var sb=document.getElementById('eq-submit-btn');
+    if(sb)sb.addEventListener('click',function(){
+      sb.disabled=true;var score=0;
+      questions.forEach(function(q,qi){
+        var qEl=document.getElementById('eq-q'+qi);var ua=selected[qi];
+        var opts=qEl.querySelectorAll('.eq-opt');
+        if(ua===q.correct){score++;qEl.classList.add('eq-correct');opts[ua].classList.add('eq-opt-correct');}
+        else{qEl.classList.add('eq-wrong');if(ua!==undefined)opts[ua].classList.add('eq-opt-wrong');opts[q.correct].classList.add('eq-opt-correct');}
+      });
+      _score=score;var pass=score>=PASS_MIN;
+      var re=document.getElementById('eq-result');
+      if(re){
+        re.className='eq-result '+(pass?'eq-pass':'eq-fail');re.style.display='block';
+        var pct=Math.round(score/_total*100);
+        if(pass){
+          re.innerHTML='<div class="eq-result-emoji">🎉</div><div class="eq-result-title">합격! 수료증을 받으세요</div><div class="eq-result-score">'+_total+'문항 중 <strong>'+score+'개</strong> 정답 ('+pct+'%)</div><input id="eq-name-input" class="eq-name-input" type="text" maxlength="20" placeholder="수료증에 넣을 이름을 입력하세요" /><button class="eq-cert-btn" id="eq-get-cert-btn">🎓 수료증 받기</button>';
+          document.getElementById('eq-get-cert-btn').addEventListener('click',function(){
+            var ni=document.getElementById('eq-name-input');
+            openCert(bookTitle,bookId,score,_total,(ni&&ni.value.trim())||'독자',nextUrl);
+          });
+        }else{
+          re.innerHTML='<div class="eq-result-emoji">😅</div><div class="eq-result-title">아쉬워요! 다시 도전해보세요</div><div class="eq-result-score">'+_total+'문항 중 <strong>'+score+'개</strong> 정답 — 수료 기준: '+PASS_MIN+'개 이상</div><button class="eq-retry-btn" id="eq-retry-btn">🔄 다시 풀기</button>';
+          document.getElementById('eq-retry-btn').addEventListener('click',function(){EbookQuiz.render(containerId,questions,bookTitle,bookId,nextUrl);});
+        }
+        re.scrollIntoView({behavior:'smooth',block:'nearest'});
+      }
+    });
+  }
+};
+})();
+</script>
+<script>
+var Q_VOL1=[
+  {q:'바이브코딩에서 AI에게 에러를 전달할 때 가장 효과적인 방법은?',opts:['에러 줄 번호만 알려준다','에러 내용을 통째로 복사해서 붙여넣는다','구글에서 찾은 해결책을 먼저 시도한 후 전달한다','에러를 무시하고 다음 기능을 구현한다'],correct:1,explain:'AI는 에러 전체 컨텍스트를 봐야 정확한 해결책을 줍니다. 에러를 통째로 던지는 것이 가장 빠른 해결법입니다.'},
+  {q:"CIF 공식에서 'C'가 의미하는 것은?",opts:['코드(Code)','맥락(Context)','명령(Command)','클로드(Claude)'],correct:1,explain:'CIF = Context(맥락) + Instruction(지시) + Format(형식). 맥락을 먼저 주면 AI 답변의 품질이 달라집니다.'},
+  {q:'블로그 자동화 봇을 만들기 위해 가장 먼저 해야 할 일은?',opts:['파이썬을 먼저 공부한다','API 키를 발급받는다','서버를 구매한다','디자인을 먼저 완성한다'],correct:1,explain:'자동화 봇은 외부 서비스(Claude API, 블로그 플랫폼 등)와 연결이 필요합니다. API 키 발급이 첫 단계입니다.'},
+  {q:'AI 자동화를 처음 시작할 때 가장 좋은 접근법은?',opts:['모든 업무를 한 번에 자동화한다','가장 반복적인 1가지 작업부터 먼저 자동화한다','가장 복잡한 작업부터 시작한다','자동화보다 직접 하는 게 더 빠르다'],correct:1,explain:'완벽한 시스템보다 1가지 반복 작업을 먼저 자동화하면 빠른 성과와 동기부여를 얻을 수 있습니다.'},
+  {q:'AI에게 복잡한 작업을 시킬 때 가장 효과적인 방법은?',opts:['한 번에 모든 요구사항을 길게 설명한다','작업을 단계로 나눠서 순서대로 지시한다','영어로만 질문한다','여러 AI를 동시에 사용한다'],correct:1,explain:'AI는 단계별로 명확한 지시를 받을 때 가장 정확한 결과를 냅니다. 작업을 나눠서 순서대로 진행하세요.'}
+];
+(function(){
+  function r(){if(typeof EbookQuiz!=='undefined')EbookQuiz.render('quiz-container-vol1',Q_VOL1,'1권 바이브코딩 입문','vibe-bible-1','index.html');else setTimeout(r,100);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',r);else r();
 })();
 </script>
 </body>

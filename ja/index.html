@@ -519,7 +519,7 @@ a:hover{text-decoration:underline}
 <li><a href='#section-167' class='toc-h2'>📚 1. 不治病「Hallucination（幻覚）」の治療剤：Docs</a></li>
 <li><a href='#section-168' class='toc-h2'>🧠 2. クロードとアンチグラビティにDocsを与える2つの実践方法</a></li>
 <li><a href='#section-169' class='toc-h3'>1）マークダウン（.md）文書を直接投げる（最も原始的で確実な方法）</a></li>
-<li><a href='#section-170' class='toc-h3'>2) @Docs呼び出し機能を利用する(Cursorエディタ)</a></li>
+<li><a href='#section-170' class='toc-h3'>2) ドキュメント自動参照機能 (Claude Code MCP)</a></li>
 <li><a href='#section-171' class='toc-h2'>👑 3. 0.1%専門家のシステムプロンプト(System Prompt)設計秘法</a></li></ul>
   </aside>
   <main id="main-content">
@@ -1679,7 +1679,7 @@ git push origin master</code></pre>
 <p class='para'>最初のクラス — 90% の人々:</p>
 <p class='para'>「ああ、本当にすごい。私も一度やるべきだ」そして本を覆います。 3日後、本のどこかに差し込まれています。 3ヶ月後に本の存在を忘れます。 1年後、依然として外注開発会社の見積書を比較しています。</p>
 <p class='para'>2番目のクラス - 10％の人々：</p>
-<p class='para'>このエピローグを読んで今すぐ2枚を再び広げます。 Cursorをインストールします。空のフォルダを作成します。最初の命令を打ちます。明日の朝、彼らの画面には初めて見るインタラクティブアプリが浮かんでいます。</p>
+<p class='para'>このエピローグを読んで今すぐ2枚を再び広げます。 Claude Codeをインストールします。空のフォルダを作成します。最初の命令を打ちます。明日の朝、彼らの画面には初めて見るインタラクティブアプリが浮かんでいます。</p>
 <p class='para'>あなたはどのクラスですか？</p>
 <p class='para'>この質問を不快に感じた場合は、すでに10％に属する可能性が高くなります。不快感に直面するのがリミットレスマン（限界のない人）の最初の資格条件です。</p>
 <hr class='divider'>
@@ -2150,8 +2150,8 @@ AIはあなたの判断を実行に移す最強のエンジンです。エンジ
 <h3 id='section-169' class='content-h3'>1）マークダウン（.md）文書を直接投げる（最も原始的で確実な方法）</h3>
 <p class='para'>開発したいライブラリの公式文書をドラッグしてメモ帳にコピーし、 <code>library_docs.md</code>ファイルに保存してください。そして、クロードやアンチグラビティに命令するときに、そのファイルをさっと投げながら、こう言います。</p>
 <blockquote class='quote'><p class='para'><em>「クロード、あなたは2021年の知識しかないから、あなたの知識は全部消してしまいます。私が添付したこの <code>library_docs.md</code>ファイル(最新公式文書)を100%読んで、ただこの文書の文法だけに合わせてカカオ決済コードを組みます。」</em></p></blockquote>
-<h3 id='section-170' class='content-h3'>2) @Docs呼び出し機能を利用する(Cursorエディタ)</h3>
-<p class='para'>提督がCursor AIのようなエディタを使っているなら、コピーペーストする必要もありません。チャットウィンドウに<strong><code>@Docs</code></strong>と言うと、インターネット上の最新の公式文書を丸ごと読み込むことができます。</p>
+<h3 id='section-170' class='content-h3'>2) ドキュメント自動参照機能 (Claude Code MCP)</h3>
+<p class='para'>Claude Code MCP（Model Context Protocol）を使えば、公式ドキュメントをコピーペーストなしで自動参照できます。ライブラリ名を入力するだけで、Claude Codeが最新の公式ドキュメントを直接取得し、正確なコードを生成します。</p>
 <blockquote class='quote'><p class='para'>"@FastAPI公式文書👈これを読んで、ユーザーログインルーターを新しく絞ってください。"*</p></blockquote>
 <p class='para'>この短い特殊文字ゴルバンイ（<code>@</code>）1つが数十時間の'エラーキャッチ'の挿し木を防止してくれます。</p>
 <hr class='divider'>

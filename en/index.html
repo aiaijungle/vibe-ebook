@@ -519,7 +519,7 @@ a:hover{text-decoration:underline}
 <li><a href='#section-167' class='toc-h2'>📚 1. Cure for the incurable disease ‘Hallucination’: Docs</a></li>
 <li><a href='#section-168' class='toc-h2'>🧠 2. Two practical ways to feed Docs to Claude and Anti-Gravity</a></li>
 <li><a href='#section-169' class='toc-h3'>1) Directly throwing a Markdown (.md) document (the most primitive and reliable method)</a></li>
-<li><a href='#section-170' class='toc-h3'>2) Utilize @Docs call function (Cursor editor)</a></li>
+<li><a href='#section-170' class='toc-h3'>2) Auto document reference (Claude Code MCP)</a></li>
 <li><a href='#section-171' class='toc-h2'>👑 3. 0.1% Experts’ System Prompt Design Secrets</a></li></ul>
   </aside>
   <main id="main-content">
@@ -955,7 +955,7 @@ ANTHROPIC_API_KEY=sk-ant-어쩌고</code></pre>
 <p class='para'>If you type in text, “Please make it luxurious and has the feel of an Apple homepage,” the AI is likely to spit out poor code like a 90’s calendar.</p>
 <p class='para'>The most intuitive and intimidating prompt is Capture a photo (Image). Take a screenshot of the coolest section on Pinterest or the Tesla website that you find inspiring and paste it into the chat window. Then bundle it with the plan file (<code>plan.md</code>) and throw it with <em>"Keep the margins, font ratio, and dark theme of the attached image creepy, but change the content to plan.md and code it."</em> AI's visual cognitive intelligence forcibly replicates your aesthetic sense.</p>
 <p class='para'>Step 2. Advent the Composer window and accept one shot.</p>
-<p class='para'>If you are using the Cursor editor, press the shortcut key (<code>Ctrl + I</code>) to pop up the Composer window in the center of the screen. When you type a prompt here, the AI ​​types the Pababak source code on your screen as you give instructions, splitting and coloring the file in real time. After watching this amazing scene, if the entire code has been created safely, press the ‘Accept (shortcut key Ctrl+Enter)’ button in the upper right corner to physically save the file.</p>
+<p class='para'>Claude Code runs directly from the terminal with a single <code>claude</code> command. When you enter a prompt, the AI opens your files and types code in real time, splitting and modifying them as instructed. After the code is generated, you can review the changes and accept them or give further instructions.</p>
 <p class='para'>Step 3. GitHub - Free, eternal cloud vault</p>
 <p class='para'>Once the codes are all designed, you need to safely launch them into the air. Copy and paste the 4 commands below in order like a machine in the bottom terminal (black window).</p>
 <pre><code class="language-bash">git init
@@ -1679,7 +1679,7 @@ The enemy's name is 'Token Waste'. Just because you can't see it doesn't mean it
 <p class='para'>Category 1 — 90% of people:</p>
 <p class='para'>“Oh, that’s really amazing. I guess I should try it too.” And close the book. Three days later, it's stuck in a book somewhere. After three months, I forget the book exists. A year later, we are still comparing quotes from outsourced developers.</p>
 <p class='para'>Second group — 10% of people:</p>
-<p class='para'>As you read this epilogue, turn to Chapter 2 again right now. Install Cursor. Create an empty folder. Enter the first command. Tomorrow morning, their screens will feature an interactive app they've never seen before.</p>
+<p class='para'>As you read this epilogue, turn to Chapter 2 again right now. Install Claude Code. Create an empty folder. Enter the first command. Tomorrow morning, their screens will feature an interactive app they've never seen before.</p>
 <p class='para'>Which category are you?</p>
 <p class='para'>If you find this question uncomfortable, you are likely already one of the 10%. Facing discomfort is the first qualification of a limitless man.</p>
 <hr class='divider'>
@@ -2158,8 +2158,8 @@ This book will teach you how to take that driver's seat.</div>
 <h3 id='section-169' class='content-h3'>1) Directly throwing a Markdown (.md) document (the most primitive and reliable method)</h3>
 <p class='para'>Drag and copy the official documentation of the library you want to develop into Notepad and save it as a <code>library_docs.md</code> file. And when giving orders to Claude or Anti-Gravity, throw the file and say this.</p>
 <blockquote class='quote'><p class='para'><em>"Claude, you only have knowledge of 2021, so erase all your knowledge. Read this <code>library_docs.md</code> file (the latest official document) I attached 100%, and write the Kakao payment code based only on the grammar of this document."</em></p></blockquote>
-<h3 id='section-170' class='content-h3'>2) Utilize @Docs call function (Cursor editor)</h3>
-<p class='para'>If you are using an editor like Cursor AI, there is no need to copy and paste. If you type <strong><code>@Docs</code></strong> in the chat window, you can load all the latest official documents on the Internet.</p>
+<h3 id='section-170' class='content-h3'>2) Auto document reference (Claude Code MCP)</h3>
+<p class='para'>With Claude Code MCP (Model Context Protocol), official documentation is automatically referenced without any copy-paste. Simply mention the library name and Claude Code fetches the latest official docs directly to write accurate code.</p>
 <blockquote class='quote'><p class='para'><em>"@FastAPI official document 👈 Read this and create a new user login router."</em></p></blockquote>
 <p class='para'>This short special character, <code>@</code>, can save you dozens of hours of 'error-catching'.</p>
 <hr class='divider'>

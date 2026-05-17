@@ -1,0 +1,374 @@
+<!--
+  _feature3_completion.html
+  완독 인증 카드 — 바이브 코딩 실전 바이블
+
+  사용법:
+    1. 이 파일 전체 내용을 </body> 바로 앞에 붙여넣는다
+    2. 초기화: EbookCompletion.init('vibe-bible-2', '#section-last');
+    3. 마지막 섹션에 id="section-last" 부여
+    4. 테스트: EbookCompletion.reset(); EbookCompletion.show();
+-->
+
+<style>
+#completion-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: rgba(0, 0, 0, 0.85);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  overflow-y: auto;
+}
+#completion-overlay.is-open {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+}
+.cp-popup {
+  position: relative;
+  background: #1a1a2e;
+  border-radius: 20px;
+  padding: 36px 28px 28px;
+  max-width: 360px;
+  width: 90%;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.7);
+  word-break: keep-all;
+  color: #f0f0f0;
+  font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+}
+.cp-close {
+  position: absolute; top: 14px; right: 16px;
+  background: none; border: none; color: #888; font-size: 24px;
+  line-height: 1; cursor: pointer; padding: 4px 8px;
+  transition: color 0.2s; min-height: 44px;
+  display: flex; align-items: center;
+}
+.cp-close:hover { color: #fff; }
+.cp-emoji { font-size: 48px; text-align: center; margin-bottom: 8px; }
+.cp-title { font-size: 20px; font-weight: 700; text-align: center; margin: 0 0 4px; color: #fff; }
+.cp-subtitle { font-size: 13px; text-align: center; color: #aaa; margin: 0 0 24px; }
+.cp-counter { font-size: 12px; text-align: center; color: #ffd700; margin: -16px 0 20px; min-height: 18px; }
+.cp-label { display: block; font-size: 12px; color: #aaa; margin-bottom: 6px; margin-top: 12px; }
+.cp-input {
+  width: 100%; box-sizing: border-box;
+  background: #0f0f1a; border: 1px solid #333; border-radius: 10px;
+  padding: 12px 14px; font-size: 16px; color: #f0f0f0;
+  outline: none; transition: border-color 0.2s; font-family: inherit;
+}
+.cp-input:focus { border-color: #ffd700; }
+.cp-input::placeholder { color: #555; }
+.cp-char-count { font-size: 11px; color: #666; text-align: right; margin-top: 4px; }
+.cp-btn-primary {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  width: 100%; min-height: 48px; margin-top: 20px;
+  background: linear-gradient(135deg, #ffd700, #ffaa00);
+  color: #111; border: none; border-radius: 12px;
+  font-size: 16px; font-weight: 700; cursor: pointer;
+  transition: all 0.2s; font-family: inherit;
+}
+.cp-btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(255,215,0,.4); }
+.cp-btn-primary:active { transform: translateY(0); }
+.cp-btn-primary:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+.cp-btn-skip {
+  display: block; width: 100%; min-height: 44px; margin-top: 10px;
+  background: none; border: none; color: #666; font-size: 14px;
+  cursor: pointer; transition: color 0.2s; font-family: inherit;
+}
+.cp-btn-skip:hover { color: #aaa; }
+#cp-step-card { display: none; }
+.cp-cert-card {
+  background: linear-gradient(145deg, #0d0d1a, #1a1a3e);
+  border: 2px solid #ffd700;
+  border-radius: 16px; padding: 24px 22px;
+  position: relative; overflow: hidden;
+}
+.cp-cert-card::before {
+  content: '🏆'; position: absolute; right: -8px; top: -8px;
+  font-size: 72px; opacity: 0.08; pointer-events: none;
+}
+.cp-cert-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(255,215,0,.12); border: 1px solid rgba(255,215,0,.4);
+  border-radius: 20px; padding: 4px 12px;
+  font-size: 12px; font-weight: 600; color: #ffd700; margin-bottom: 12px;
+}
+.cp-cert-book { font-size: 15px; font-weight: 700; color: #fff; margin: 0 0 6px; line-height: 1.4; }
+.cp-cert-divider { border: none; border-top: 1px solid rgba(255,215,0,.25); margin: 14px 0; }
+.cp-cert-name { font-size: 18px; font-weight: 700; color: #ffd700; margin: 0 0 8px; }
+.cp-cert-quote { font-size: 14px; color: #ddd; line-height: 1.6; font-style: italic; margin: 0 0 14px; min-height: 22px; }
+.cp-cert-quote::before { content: '"'; }
+.cp-cert-quote::after  { content: '"'; }
+.cp-cert-meta { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 4px; }
+.cp-cert-date  { font-size: 12px; color: #888; }
+.cp-cert-series { font-size: 12px; color: #888; }
+.cp-card-actions { display: flex; gap: 10px; margin-top: 18px; }
+.cp-btn-share {
+  flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px;
+  min-height: 48px; background: linear-gradient(135deg, #ffd700, #ffaa00);
+  color: #111; border: none; border-radius: 12px;
+  font-size: 15px; font-weight: 700; cursor: pointer;
+  transition: all 0.2s; font-family: inherit;
+}
+.cp-btn-share:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(255,215,0,.35); }
+.cp-btn-next {
+  flex: 1; display: flex; align-items: center; justify-content: center; gap: 4px;
+  min-height: 48px; background: rgba(255,255,255,.07);
+  color: #ccc; border: 1px solid #333; border-radius: 12px;
+  font-size: 14px; font-weight: 600; cursor: pointer;
+  transition: all 0.2s; text-decoration: none; font-family: inherit;
+}
+.cp-btn-next:hover { background: rgba(255,255,255,.12); color: #fff; border-color: #555; }
+#cp-toast {
+  position: fixed; bottom: 32px; left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: #333; color: #fff;
+  padding: 10px 20px; border-radius: 24px; font-size: 14px;
+  opacity: 0; pointer-events: none; transition: all 0.3s;
+  z-index: 100000; white-space: nowrap;
+  font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+}
+#cp-toast.cp-toast-show { opacity: 1; transform: translateX(-50%) translateY(0); }
+@media (max-width: 480px) {
+  .cp-popup { padding: 32px 20px 24px; border-radius: 16px; }
+  .cp-title { font-size: 18px; }
+  .cp-card-actions { flex-direction: column; }
+  .cp-btn-share, .cp-btn-next { flex: none; width: 100%; }
+}
+</style>
+
+<div id="completion-overlay" role="dialog" aria-modal="true" aria-label="완독 축하 팝업">
+  <div class="cp-popup">
+    <button class="cp-close" id="cp-close-btn" aria-label="닫기">×</button>
+
+    <!-- Step 1: 입력 폼 -->
+    <div id="cp-step-form">
+      <div class="cp-emoji">🎉</div>
+      <h2 class="cp-title">완독을 축하합니다!</h2>
+      <p class="cp-subtitle">바이브 코딩 실전 바이블</p>
+      <p class="cp-counter" id="cp-counter-text">불러오는 중...</p>
+
+      <label class="cp-label" for="cp-nickname">닉네임</label>
+      <input class="cp-input" id="cp-nickname" type="text" maxlength="20"
+        placeholder="홍길동" autocomplete="nickname" enterkeyhint="next" />
+
+      <label class="cp-label" for="cp-quote">한마디 <span style="color:#555">(선택, 60자 이내)</span></label>
+      <textarea class="cp-input" id="cp-quote" maxlength="60" rows="2"
+        placeholder="AI로 월 1000만원 도전 시작!"
+        style="resize:none;line-height:1.5;" enterkeyhint="done"></textarea>
+      <p class="cp-char-count"><span id="cp-char-count">0</span> / 60</p>
+
+      <button class="cp-btn-primary" id="cp-submit-btn">🏆 인증 카드 받기</button>
+      <button class="cp-btn-skip" id="cp-skip-btn">나중에</button>
+    </div>
+
+    <!-- Step 2: 인증 카드 -->
+    <div id="cp-step-card">
+      <div class="cp-cert-card">
+        <div class="cp-cert-badge">🏆 완독 인증</div>
+        <p class="cp-cert-book">바이브 코딩 실전 바이블</p>
+        <hr class="cp-cert-divider" />
+        <p class="cp-cert-name" id="cp-card-name">홍길동</p>
+        <p class="cp-cert-quote" id="cp-card-quote">AI로 월 1000만원 도전 시작!</p>
+        <div class="cp-cert-meta">
+          <span class="cp-cert-date" id="cp-card-date">2026.05.17</span>
+          <span class="cp-cert-series">AI사냥꾼 시리즈</span>
+        </div>
+      </div>
+      <p class="cp-counter" id="cp-counter-text-card" style="margin-top:14px;margin-bottom:0;text-align:center;"></p>
+      <div class="cp-card-actions">
+        <button class="cp-btn-share" id="cp-share-btn">📤 공유하기</button>
+        <a class="cp-btn-next" href="https://aiaijungle.github.io/vibe-ebook/agent-bible.html"
+           target="_blank" rel="noopener">다음 권 읽기 →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="cp-toast"></div>
+
+<script>
+(function () {
+  'use strict';
+  var SUPABASE_URL = 'https://hzobwciaqtbfaxxvcots.supabase.co';
+  var SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh6b2J3Y2lhcXRiZmF4eHZjb3RzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcxMjIxNTcsImV4cCI6MjA2MjY5ODE1N30.YXKC3Rv1jqMb-rr8NQ5Hm5wFcFWlKuNZ5F2bStUK_Ro';
+  var TABLE = 'completions';
+  var _bookId = 'vibe-bible-2';
+  var _submitted = false;
+
+  function lsGet(k) { try { return localStorage.getItem(k); } catch(e) { return null; } }
+  function lsSet(k, v) { try { localStorage.setItem(k, v); } catch(e) {} }
+
+  function formatDate(d) {
+    return d.getFullYear() + '.' + String(d.getMonth()+1).padStart(2,'0') + '.' + String(d.getDate()).padStart(2,'0');
+  }
+
+  function fetchCount(bookId, callback) {
+    var url = SUPABASE_URL + '/rest/v1/' + TABLE + '?book_id=eq.' + encodeURIComponent(bookId) + '&select=id';
+    fetch(url, {
+      headers: { 'apikey': SUPABASE_ANON, 'Authorization': 'Bearer ' + SUPABASE_ANON, 'Prefer': 'count=exact' }
+    }).then(function(res) {
+      var raw = res.headers.get('content-range');
+      if (raw) { var total = parseInt(raw.split('/')[1], 10); if (!isNaN(total)) { callback(total); return; } }
+      callback(null);
+    }).catch(function() { callback(null); });
+  }
+
+  function insertRecord(bookId, nickname, quote, callback) {
+    fetch(SUPABASE_URL + '/rest/v1/' + TABLE, {
+      method: 'POST',
+      headers: { 'apikey': SUPABASE_ANON, 'Authorization': 'Bearer ' + SUPABASE_ANON, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
+      body: JSON.stringify({ book_id: bookId, nickname: nickname, quote: quote })
+    }).then(function(res) { callback(res.ok); }).catch(function() { callback(false); });
+  }
+
+  function showToast(msg) {
+    var el = document.getElementById('cp-toast');
+    if (!el) return;
+    el.textContent = msg;
+    el.classList.add('cp-toast-show');
+    setTimeout(function() { el.classList.remove('cp-toast-show'); }, 2500);
+  }
+
+  function lockScroll()   { document.body.style.overflow = 'hidden'; }
+  function unlockScroll() { document.body.style.overflow = ''; }
+
+  function renderCounterText(count) {
+    var text = count !== null ? '지금까지 ' + count.toLocaleString() + '명이 완독했어요 🎉' : '';
+    ['cp-counter-text', 'cp-counter-text-card'].forEach(function(id) {
+      var el = document.getElementById(id); if (el) el.textContent = text;
+    });
+  }
+
+  function showCard(nickname, quote) {
+    var nameEl  = document.getElementById('cp-card-name');
+    var quoteEl = document.getElementById('cp-card-quote');
+    var dateEl  = document.getElementById('cp-card-date');
+    if (nameEl)  nameEl.textContent  = nickname;
+    if (quoteEl) quoteEl.textContent = quote;
+    if (dateEl)  dateEl.textContent  = formatDate(new Date());
+    var formEl = document.getElementById('cp-step-form');
+    var cardEl = document.getElementById('cp-step-card');
+    if (formEl) formEl.style.display = 'none';
+    if (cardEl) cardEl.style.display = 'block';
+    fetchCount(_bookId, function(cnt) { renderCounterText(cnt); });
+  }
+
+  function handleShare(nickname, quote) {
+    var text = '바이브 코딩 실전 바이블 완독! 🏆\n"' + quote + '"\n\nhttps://aiaijungle.github.io/vibe-ebook/index.html\n\n#AI사냥꾼 #바이브코딩';
+    if (navigator.share) {
+      navigator.share({ title: '바이브 코딩 실전 바이블 완독!', text: text }).catch(function(){});
+    } else if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function() { showToast('공유 텍스트가 복사됐어요! 📋'); }).catch(function() { showToast('복사 실패. 직접 복사해 주세요.'); });
+    } else {
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.style.cssText = 'position:fixed;opacity:0;top:-9999px;';
+      document.body.appendChild(ta); ta.focus(); ta.select();
+      try { document.execCommand('copy'); showToast('공유 텍스트가 복사됐어요! 📋'); } catch(e) { showToast('복사 실패.'); }
+      document.body.removeChild(ta);
+    }
+  }
+
+  function openOverlay() {
+    var overlay = document.getElementById('completion-overlay');
+    if (!overlay) return;
+    overlay.classList.add('is-open'); lockScroll();
+    var formEl = document.getElementById('cp-step-form');
+    var cardEl = document.getElementById('cp-step-card');
+    if (formEl) formEl.style.display = '';
+    if (cardEl) cardEl.style.display = 'none';
+    _submitted = false;
+    fetchCount(_bookId, function(cnt) { renderCounterText(cnt); });
+  }
+
+  function closeOverlay() {
+    var overlay = document.getElementById('completion-overlay');
+    if (!overlay) return;
+    overlay.classList.remove('is-open'); unlockScroll();
+  }
+
+  function bindEvents() {
+    var closeBtn = document.getElementById('cp-close-btn');
+    var skipBtn  = document.getElementById('cp-skip-btn');
+    var overlay  = document.getElementById('completion-overlay');
+    var quoteInput = document.getElementById('cp-quote');
+    var charCount  = document.getElementById('cp-char-count');
+    var submitBtn  = document.getElementById('cp-submit-btn');
+    var shareBtn   = document.getElementById('cp-share-btn');
+
+    if (closeBtn) closeBtn.addEventListener('click', closeOverlay);
+    if (skipBtn)  skipBtn.addEventListener('click', closeOverlay);
+    if (overlay)  overlay.addEventListener('click', function(e) { if (e.target === overlay) closeOverlay(); });
+    if (quoteInput && charCount) {
+      quoteInput.addEventListener('input', function() { charCount.textContent = quoteInput.value.length; });
+    }
+    if (submitBtn) {
+      submitBtn.addEventListener('click', function() {
+        if (_submitted) return;
+        _submitted = true;
+        var nickEl = document.getElementById('cp-nickname');
+        var qEl    = document.getElementById('cp-quote');
+        var nickname = (nickEl && nickEl.value.trim()) || '익명';
+        var quote    = (qEl   && qEl.value.trim())    || '완독!';
+        submitBtn.disabled = true; submitBtn.textContent = '저장 중...';
+        insertRecord(_bookId, nickname, quote, function() {
+          lsSet('cp_done_'  + _bookId, '1');
+          lsSet('cp_nick_'  + _bookId, nickname);
+          lsSet('cp_quote_' + _bookId, quote);
+          showCard(nickname, quote);
+        });
+      });
+    }
+    if (shareBtn) {
+      shareBtn.addEventListener('click', function() {
+        var nickname = lsGet('cp_nick_'  + _bookId) || '익명';
+        var quote    = lsGet('cp_quote_' + _bookId) || '완독!';
+        handleShare(nickname, quote);
+      });
+    }
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeOverlay(); });
+  }
+
+  function setupObserver(lastSelector) {
+    if (lsGet('cp_done_' + _bookId)) return;
+    var target = lastSelector ? document.querySelector(lastSelector) : null;
+    if (target) {
+      var obs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) { if (entry.isIntersecting) { obs.disconnect(); openOverlay(); } });
+      }, { threshold: 0.3 });
+      obs.observe(target);
+    } else {
+      function onScroll() {
+        var scrolled = window.scrollY + window.innerHeight;
+        var total = document.documentElement.scrollHeight;
+        if (scrolled / total >= 0.9) {
+          window.removeEventListener('scroll', onScroll, { passive: true });
+          openOverlay();
+        }
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+    }
+  }
+
+  window.EbookCompletion = {
+    init: function(bookId, lastSelector) {
+      _bookId = bookId || _bookId;
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() { bindEvents(); setupObserver(lastSelector); });
+      } else {
+        bindEvents(); setupObserver(lastSelector);
+      }
+    },
+    show:  function() { openOverlay(); },
+    hide:  function() { closeOverlay(); },
+    reset: function() {
+      try {
+        localStorage.removeItem('cp_done_'  + _bookId);
+        localStorage.removeItem('cp_nick_'  + _bookId);
+        localStorage.removeItem('cp_quote_' + _bookId);
+      } catch(e) {}
+    }
+  };
+})();
+</script>

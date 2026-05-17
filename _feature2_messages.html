@@ -1,0 +1,286 @@
+<!--
+  _feature2_messages.html
+  독자 메시지 월(Message Wall) — 바이브코딩 전자책
+
+  사용법:
+    1. <style> 블록 → index.html <head> 안에 삽입
+    2. <script> 블록 → index.html </body> 바로 위에 삽입
+    3. 초기화:
+         EbookMessages.init('vibe-ebook-vol2');
+         document.querySelectorAll('[data-chapter-id]').forEach(function(s) {
+           EbookMessages.attachToChapter(s.getAttribute('data-chapter-id'), s);
+         });
+-->
+
+<style>
+.msg-wall {
+  margin-top: 28px;
+  padding: 20px 16px;
+  background: #1a1a2e;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 140, 0, 0.18);
+  font-family: inherit;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+.msg-wall__header { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; }
+.msg-wall__title { font-size: .92rem; font-weight: 700; color: #e8d5b0; letter-spacing: -.01em; }
+.msg-wall__count { font-size: .8rem; color: rgba(232,213,176,.55); font-weight: 400; }
+.msg-wall__list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+.msg-wall__card {
+  display: flex; align-items: flex-start; gap: 10px;
+  background: rgba(255,255,255,.04); border-radius: 8px; padding: 10px 12px;
+  border: 1px solid rgba(255,140,0,.08);
+  transition: opacity .25s, transform .25s;
+  animation: msg-slidein .22s ease;
+}
+.msg-wall__card--removing { opacity: 0; transform: translateY(-4px); }
+@keyframes msg-slidein { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
+.msg-wall__avatar { flex-shrink: 0; font-size: 1.15rem; line-height: 1; margin-top: 1px; user-select: none; }
+.msg-wall__card-body { flex: 1; min-width: 0; }
+.msg-wall__nickname { font-size: .8rem; font-weight: 700; color: #ffae42; margin-bottom: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.msg-wall__text { font-size: .85rem; color: rgba(232,213,176,.88); line-height: 1.45; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.msg-wall__empty { text-align: center; padding: 18px 0 10px; font-size: .83rem; color: rgba(232,213,176,.38); }
+.msg-wall__form { display: flex; gap: 6px; align-items: stretch; }
+.msg-wall__input-nick { flex: 0 0 35%; min-width: 0; }
+.msg-wall__input-msg  { flex: 1 1 0; min-width: 0; }
+.msg-wall__input-nick, .msg-wall__input-msg {
+  background: rgba(255,255,255,.06); border: 1px solid rgba(255,140,0,.22);
+  border-radius: 8px; padding: 10px 12px; font-size: .83rem; color: #e8d5b0;
+  font-family: inherit; outline: none; transition: border-color .18s;
+  -webkit-appearance: none; appearance: none;
+}
+.msg-wall__input-nick::placeholder, .msg-wall__input-msg::placeholder { color: rgba(232,213,176,.35); }
+.msg-wall__input-nick:focus, .msg-wall__input-msg:focus { border-color: rgba(255,140,0,.55); }
+.msg-wall__input-msg--over { border-color: #e55353 !important; }
+.msg-wall__submit {
+  flex: 0 0 auto; min-width: 52px; min-height: 44px;
+  background: #ff8c00; color: #150c00; border: none; border-radius: 8px;
+  font-size: .83rem; font-weight: 700; cursor: pointer; padding: 0 12px;
+  transition: background .18s, opacity .18s; font-family: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+.msg-wall__submit:hover:not(:disabled) { background: #ffa030; }
+.msg-wall__submit:disabled { opacity: .4; cursor: not-allowed; }
+.msg-wall__char-count { font-size: .72rem; color: rgba(232,213,176,.38); margin-top: 5px; text-align: right; }
+.msg-wall__char-count--over { color: #e55353; font-weight: 700; }
+.msg-wall-toast {
+  position: fixed; bottom: 24px; left: 50%;
+  transform: translateX(-50%) translateY(0);
+  background: #2d1a1a; color: #f8a0a0; border: 1px solid #7a2020;
+  border-radius: 8px; padding: 10px 20px; font-size: .83rem;
+  font-family: inherit; z-index: 9999; pointer-events: none;
+  white-space: nowrap; word-break: keep-all;
+  animation: msg-toast-in .2s ease, msg-toast-out .3s ease 2.2s forwards;
+}
+@keyframes msg-toast-in { from { opacity:0; transform:translateX(-50%) translateY(12px); } to { opacity:1; transform:translateX(-50%) translateY(0); } }
+@keyframes msg-toast-out { from { opacity:1; } to { opacity:0; pointer-events:none; } }
+.msg-wall__skeleton {
+  height: 44px;
+  background: linear-gradient(90deg, rgba(255,255,255,.04) 25%, rgba(255,255,255,.09) 50%, rgba(255,255,255,.04) 75%);
+  background-size: 200% 100%; border-radius: 8px;
+  animation: msg-shimmer 1.3s infinite linear;
+}
+@keyframes msg-shimmer { 0% { background-position:200% 0; } 100% { background-position:-200% 0; } }
+@media (max-width: 480px) {
+  .msg-wall__form { flex-direction: column; }
+  .msg-wall__input-nick, .msg-wall__input-msg { flex: unset; width: 100%; box-sizing: border-box; }
+  .msg-wall__submit { width: 100%; min-height: 44px; }
+  .msg-wall__text { white-space: normal; }
+}
+</style>
+
+<script>
+(function () {
+  'use strict';
+  var SUPABASE_URL = 'https://hzobwciaqtbfaxxvcots.supabase.co';
+  var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh6b2J3Y2lhcXRiZmF4eHZjb3RzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcxMjIxNTcsImV4cCI6MjA2MjY5ODE1N30.YXKC3Rv1jqMb-rr8NQ5Hm5wFcFWlKuNZ5F2bStUK_Ro';
+  var TABLE = 'messages';
+  var MAX_MSG = 30, MAX_NICK = 50, FETCH_LIMIT = 5;
+  var _bookId = null, _loaded = {};
+
+  function headers() {
+    return {
+      'apikey': SUPABASE_ANON_KEY,
+      'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+      'Content-Type': 'application/json',
+      'Prefer': 'return=minimal'
+    };
+  }
+
+  function fetchMessages(bookId, chapterId) {
+    var url = SUPABASE_URL + '/rest/v1/' + TABLE
+      + '?book_id=eq.' + encodeURIComponent(bookId)
+      + '&chapter_id=eq.' + encodeURIComponent(chapterId)
+      + '&order=created_at.desc&limit=' + FETCH_LIMIT;
+    return fetch(url, { headers: headers() }).then(function (res) {
+      if (!res.ok) throw new Error('fetch ' + res.status);
+      return res.json();
+    });
+  }
+
+  function insertMessage(bookId, chapterId, nickname, message) {
+    return fetch(SUPABASE_URL + '/rest/v1/' + TABLE, {
+      method: 'POST',
+      headers: headers(),
+      body: JSON.stringify({ book_id: bookId, chapter_id: chapterId, nickname: nickname, message: message })
+    }).then(function (res) {
+      if (!res.ok) throw new Error('insert ' + res.status);
+    });
+  }
+
+  function buildWall(chapterId) {
+    var wall = document.createElement('div');
+    wall.className = 'msg-wall';
+    wall.setAttribute('data-wall-id', chapterId);
+
+    var header = document.createElement('div'); header.className = 'msg-wall__header';
+    var title = document.createElement('span'); title.className = 'msg-wall__title'; title.textContent = '💬 이 챕터를 읽은 독자들';
+    var count = document.createElement('span'); count.className = 'msg-wall__count';
+    header.appendChild(title); header.appendChild(count);
+
+    var list = document.createElement('div'); list.className = 'msg-wall__list';
+    var skel = document.createElement('div'); skel.className = 'msg-wall__skeleton';
+    list.appendChild(skel);
+
+    var form = document.createElement('div'); form.className = 'msg-wall__form';
+    var nickIn = document.createElement('input');
+    nickIn.type = 'text'; nickIn.className = 'msg-wall__input-nick';
+    nickIn.placeholder = '닉네임 (선택)'; nickIn.maxLength = MAX_NICK;
+    nickIn.setAttribute('aria-label', '닉네임'); nickIn.autocomplete = 'off';
+
+    var msgIn = document.createElement('input');
+    msgIn.type = 'text'; msgIn.className = 'msg-wall__input-msg';
+    msgIn.placeholder = '한 줄 메시지 (30자)'; msgIn.maxLength = MAX_MSG + 10;
+    msgIn.setAttribute('aria-label', '메시지'); msgIn.autocomplete = 'off';
+
+    var btn = document.createElement('button');
+    btn.type = 'button'; btn.className = 'msg-wall__submit';
+    btn.textContent = '등록'; btn.disabled = true;
+    form.appendChild(nickIn); form.appendChild(msgIn); form.appendChild(btn);
+
+    var charCount = document.createElement('div');
+    charCount.className = 'msg-wall__char-count';
+    charCount.textContent = '0 / ' + MAX_MSG;
+
+    wall.appendChild(header); wall.appendChild(list);
+    wall.appendChild(form); wall.appendChild(charCount);
+
+    function syncState() {
+      var len = msgIn.value.length, over = len > MAX_MSG;
+      charCount.textContent = len + ' / ' + MAX_MSG;
+      charCount.className = 'msg-wall__char-count' + (over ? ' msg-wall__char-count--over' : '');
+      msgIn.className = 'msg-wall__input-msg' + (over ? ' msg-wall__input-msg--over' : '');
+      btn.disabled = (len === 0 || over);
+    }
+    msgIn.addEventListener('input', syncState);
+    msgIn.addEventListener('keydown', function (e) { if (e.key === 'Enter' && !btn.disabled) btn.click(); });
+    btn.addEventListener('click', function () {
+      var nick = nickIn.value.trim() || '익명';
+      var msg = msgIn.value.trim();
+      if (!msg || msg.length > MAX_MSG) return;
+      nickIn.value = ''; msgIn.value = ''; syncState();
+      EbookMessages.submit(chapterId, nick, msg, wall);
+    });
+    return wall;
+  }
+
+  function buildCard(nickname, message) {
+    var card = document.createElement('div'); card.className = 'msg-wall__card';
+    var avatar = document.createElement('span'); avatar.className = 'msg-wall__avatar'; avatar.textContent = '🙋';
+    var body = document.createElement('div'); body.className = 'msg-wall__card-body';
+    var nick = document.createElement('div'); nick.className = 'msg-wall__nickname'; nick.textContent = nickname;
+    var txt = document.createElement('div'); txt.className = 'msg-wall__text'; txt.textContent = '“' + message + '”';
+    body.appendChild(nick); body.appendChild(txt);
+    card.appendChild(avatar); card.appendChild(body);
+    return card;
+  }
+
+  function renderMessages(wall, rows) {
+    var list = wall.querySelector('.msg-wall__list');
+    var countEl = wall.querySelector('.msg-wall__count');
+    while (list.firstChild) list.removeChild(list.firstChild);
+    if (!rows || rows.length === 0) {
+      var empty = document.createElement('div');
+      empty.className = 'msg-wall__empty';
+      empty.textContent = '아직 메시지가 없어요. 첫 번째로 남겨보세요!';
+      list.appendChild(empty); countEl.textContent = ''; return;
+    }
+    countEl.textContent = '(' + rows.length + '명)';
+    rows.forEach(function (row) { list.appendChild(buildCard(row.nickname, row.message)); });
+  }
+
+  function showToast(msg) {
+    var old = document.querySelector('.msg-wall-toast');
+    if (old && old.parentNode) old.parentNode.removeChild(old);
+    var toast = document.createElement('div');
+    toast.className = 'msg-wall-toast'; toast.textContent = msg;
+    document.body.appendChild(toast);
+    setTimeout(function () { if (toast.parentNode) toast.parentNode.removeChild(toast); }, 2600);
+  }
+
+  var EbookMessages = {
+    init: function (bookId) { _bookId = bookId; },
+    attachToChapter: function (chapterId, containerEl) {
+      if (!containerEl) return;
+      var wall = buildWall(chapterId);
+      containerEl.appendChild(wall);
+      if ('IntersectionObserver' in window) {
+        var obs = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting && !_loaded[chapterId]) {
+              _loaded[chapterId] = true;
+              EbookMessages._load(chapterId, wall);
+              obs.disconnect();
+            }
+          });
+        }, { rootMargin: '0px 0px 200px 0px', threshold: 0 });
+        obs.observe(wall);
+      } else {
+        EbookMessages._load(chapterId, wall);
+      }
+    },
+    submit: function (chapterId, nickname, message, wallEl) {
+      if (!_bookId) { console.error('[EbookMessages] init() 먼저 호출'); return; }
+      var wall = wallEl || document.querySelector('[data-wall-id="' + chapterId + '"]');
+      if (!wall) return;
+      var list = wall.querySelector('.msg-wall__list');
+      var countEl = wall.querySelector('.msg-wall__count');
+      var btn = wall.querySelector('.msg-wall__submit');
+      btn.disabled = true;
+      var empty = list.querySelector('.msg-wall__empty');
+      if (empty) list.removeChild(empty);
+      var card = buildCard(nickname, message);
+      list.insertBefore(card, list.firstChild);
+      var currentCount = list.querySelectorAll('.msg-wall__card').length;
+      countEl.textContent = '(' + currentCount + '명)';
+      var cards = list.querySelectorAll('.msg-wall__card');
+      if (cards.length > FETCH_LIMIT) list.removeChild(cards[cards.length - 1]);
+      insertMessage(_bookId, chapterId, nickname, message)
+        .then(function () { btn.disabled = false; })
+        .catch(function (err) {
+          console.error('[EbookMessages] insert 실패:', err);
+          card.classList.add('msg-wall__card--removing');
+          setTimeout(function () {
+            if (card.parentNode) card.parentNode.removeChild(card);
+            var remaining = list.querySelectorAll('.msg-wall__card').length;
+            countEl.textContent = remaining > 0 ? '(' + remaining + '명)' : '';
+            if (remaining === 0) {
+              var em = document.createElement('div'); em.className = 'msg-wall__empty';
+              em.textContent = '아직 메시지가 없어요. 첫 번째로 남겨보세요!';
+              list.appendChild(em);
+            }
+          }, 270);
+          showToast('⚠️ 메시지 등록에 실패했습니다. 잠시 후 다시 시도해주세요.');
+          btn.disabled = false;
+        });
+    },
+    _load: function (chapterId, wall) {
+      fetchMessages(_bookId, chapterId)
+        .then(function (rows) { renderMessages(wall, rows); })
+        .catch(function () { renderMessages(wall, []); });
+    }
+  };
+  window.EbookMessages = EbookMessages;
+})();
+</script>

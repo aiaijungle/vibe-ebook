@@ -1,0 +1,307 @@
+<!--
+  _feature1_reactions.html
+  챕터 공감 버튼 컴포넌트 (EbookReactions)
+  ===========================================
+  사용법:
+    1. index.html의 <head> 끝에 이 파일 <style> 내용을 붙여넣습니다.
+    2. </body> 바로 위에 <script> 내용을 붙여넣습니다.
+    3. 페이지 로드 시: await EbookReactions.init('vibe-ebook-vol2');
+    4. 챕터 섹션 끝에: section.insertAdjacentHTML('beforeend', EbookReactions.renderBar('ch01'));
+    5. 버튼 이벤트는 이벤트 위임으로 자동 등록됩니다.
+-->
+
+<style>
+/* ─────────────────────────────────────────────
+   EbookReactions — 공감 버튼 스타일
+   ───────────────────────────────────────────── */
+
+.reaction-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 20px;
+  margin-top: 32px;
+  border-radius: 14px;
+  background: var(--side-bg, rgba(255, 255, 255, 0.04));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  word-break: keep-all;
+}
+
+.reaction-bar__label {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.45);
+  white-space: nowrap;
+  flex-shrink: 0;
+  letter-spacing: -0.01em;
+}
+
+.reaction-bar__buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: nowrap;
+}
+
+.reaction-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-height: 44px;
+  min-width: 80px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: 1.5px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  font-size: 13px;
+  font-family: inherit;
+  line-height: 1.3;
+  word-break: keep-all;
+  transition: transform 0.18s ease, background 0.18s ease,
+              border-color 0.18s ease, color 0.18s ease;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+.reaction-btn:hover {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(255, 255, 255, 0.22);
+  color: #fff;
+}
+
+.reaction-btn:active {
+  transform: scale(0.96);
+}
+
+.reaction-btn--active { border-color: transparent; color: #fff; }
+
+.reaction-btn--active[data-reaction="helpful"] {
+  background: rgba(59, 185, 100, 0.22);
+  border-color: rgba(59, 185, 100, 0.55);
+  color: #6be5a0;
+}
+.reaction-btn--active[data-reaction="fire"] {
+  background: rgba(255, 120, 50, 0.22);
+  border-color: rgba(255, 120, 50, 0.55);
+  color: #ff9a60;
+}
+.reaction-btn--active[data-reaction="curious"] {
+  background: rgba(100, 160, 255, 0.22);
+  border-color: rgba(100, 160, 255, 0.55);
+  color: #88b8ff;
+}
+
+.reaction-btn__emoji {
+  font-size: 20px;
+  line-height: 1;
+  display: block;
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.reaction-btn__text  { font-size: 11px; opacity: 0.8; }
+.reaction-btn__count { font-size: 12px; font-weight: 600; min-width: 16px; text-align: center; }
+
+@keyframes rb-bump {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+.reaction-btn--bumping .reaction-btn__emoji {
+  animation: rb-bump 0.32s ease forwards;
+}
+
+@media (max-width: 480px) {
+  .reaction-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 16px;
+  }
+  .reaction-bar__buttons { width: 100%; gap: 6px; }
+  .reaction-btn {
+    flex: 1;
+    min-width: 0;
+    padding: 10px 6px;
+    min-height: 56px;
+    font-size: 12px;
+    border-radius: 10px;
+  }
+  .reaction-btn__emoji { font-size: 22px; }
+  .reaction-btn__text  { font-size: 10px; }
+}
+</style>
+
+<script>
+(function (global) {
+  'use strict';
+
+  const SB_URL = 'https://hzobwciaqtbfaxxvcots.supabase.co';
+  const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh6b2J3Y2lhcXRiZmF4eHZjb3RzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcxMjIxNTcsImV4cCI6MjA2MjY5ODE1N30.YXKC3Rv1jqMb-rr8NQ5Hm5wFcFWlKuNZ5F2bStUK_Ro';
+
+  const REACTIONS = [
+    { type: 'helpful', emoji: '👍', label: '도움됐어요'    },
+    { type: 'fire',    emoji: '🔥', label: '인상적이었어요' },
+    { type: 'curious', emoji: '🤔', label: '더 알고 싶어요' }
+  ];
+
+  let _bookId = '', _counts = {}, _debounceMap = {};
+
+  function lsGet(k)    { try { return localStorage.getItem(k); }    catch(_) { return null; } }
+  function lsSet(k, v) { try { localStorage.setItem(k, v); }        catch(_) {} }
+  function lsRemove(k) { try { localStorage.removeItem(k); }        catch(_) {} }
+  function lsKey(chapterId, type) { return 'reaction_' + _bookId + '_' + chapterId + '_' + type; }
+  function isClicked(chapterId, type) { return lsGet(lsKey(chapterId, type)) === '1'; }
+
+  async function fetchAllCounts(bookId) {
+    const url = SB_URL + '/rest/v1/reactions?book_id=eq.' + encodeURIComponent(bookId) + '&select=chapter_id,reaction';
+    try {
+      const res = await fetch(url, {
+        headers: { 'apikey': SB_KEY, 'Authorization': 'Bearer ' + SB_KEY }
+      });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const rows = await res.json();
+      const agg = {};
+      rows.forEach(function (row) {
+        if (!row.chapter_id || !row.reaction) return;
+        if (!agg[row.chapter_id]) agg[row.chapter_id] = { helpful: 0, fire: 0, curious: 0 };
+        if (typeof agg[row.chapter_id][row.reaction] === 'number') agg[row.chapter_id][row.reaction]++;
+      });
+      return agg;
+    } catch (err) {
+      console.warn('[EbookReactions] fetch 실패 — 0으로 fallback:', err);
+      return {};
+    }
+  }
+
+  async function insertReaction(chapterId, reactionType) {
+    try {
+      const res = await fetch(SB_URL + '/rest/v1/reactions', {
+        method: 'POST',
+        headers: {
+          'apikey': SB_KEY, 'Authorization': 'Bearer ' + SB_KEY,
+          'Content-Type': 'application/json', 'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify({ book_id: _bookId, chapter_id: chapterId, reaction: reactionType })
+      });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+    } catch (err) {
+      console.warn('[EbookReactions] insert 실패:', err);
+    }
+  }
+
+  function updateCountDOM(chapterId, type, n) {
+    const count = (typeof n === 'number' && !isNaN(n)) ? n : 0;
+    const el = document.querySelector(
+      '.reaction-bar[data-chapter="' + chapterId + '"] [data-reaction="' + type + '"] .reaction-btn__count'
+    );
+    if (el) el.textContent = count;
+  }
+
+  function setActiveDOM(chapterId, type, active) {
+    const btn = document.querySelector(
+      '.reaction-bar[data-chapter="' + chapterId + '"] [data-reaction="' + type + '"]'
+    );
+    if (!btn) return;
+    btn.classList.toggle('reaction-btn--active', active);
+    btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+  }
+
+  function bumpEmoji(chapterId, type) {
+    const btn = document.querySelector(
+      '.reaction-bar[data-chapter="' + chapterId + '"] [data-reaction="' + type + '"]'
+    );
+    if (!btn) return;
+    btn.classList.add('reaction-btn--bumping');
+    setTimeout(function () { btn.classList.remove('reaction-btn--bumping'); }, 350);
+  }
+
+  function renderBar(chapterId) {
+    const chC = _counts[chapterId] || { helpful: 0, fire: 0, curious: 0 };
+    const btns = REACTIONS.map(function (r) {
+      const count  = parseInt(chC[r.type], 10) || 0;
+      const active = isClicked(chapterId, r.type);
+      return (
+        '<button class="reaction-btn' + (active ? ' reaction-btn--active' : '') + '" ' +
+          'data-reaction="' + r.type + '" ' +
+          'aria-label="' + r.label + '" ' +
+          'aria-pressed="' + (active ? 'true' : 'false') + '">' +
+          '<span class="reaction-btn__emoji">' + r.emoji + '</span>' +
+          '<span class="reaction-btn__text">' + r.label + '</span>' +
+          '<span class="reaction-btn__count">' + count + '</span>' +
+        '</button>'
+      );
+    }).join('');
+    return (
+      '<div class="reaction-bar" data-chapter="' + chapterId + '" role="group" aria-label="챕터 공감">' +
+        '<span class="reaction-bar__label">이 챕터가 어땠나요?</span>' +
+        '<div class="reaction-bar__buttons">' + btns + '</div>' +
+      '</div>'
+    );
+  }
+
+  function handleClick(chapterId, reactionType) {
+    const dk = chapterId + '_' + reactionType;
+    if (_debounceMap[dk]) return;
+    _debounceMap[dk] = true;
+    setTimeout(function () { delete _debounceMap[dk]; }, 300);
+
+    if (!_counts[chapterId]) _counts[chapterId] = { helpful: 0, fire: 0, curious: 0 };
+
+    const clicked = isClicked(chapterId, reactionType);
+    if (clicked) {
+      lsRemove(lsKey(chapterId, reactionType));
+      _counts[chapterId][reactionType] = Math.max(0, (_counts[chapterId][reactionType] || 1) - 1);
+      setActiveDOM(chapterId, reactionType, false);
+      updateCountDOM(chapterId, reactionType, _counts[chapterId][reactionType]);
+    } else {
+      lsSet(lsKey(chapterId, reactionType), '1');
+      _counts[chapterId][reactionType] = (_counts[chapterId][reactionType] || 0) + 1;
+      setActiveDOM(chapterId, reactionType, true);
+      updateCountDOM(chapterId, reactionType, _counts[chapterId][reactionType]);
+      bumpEmoji(chapterId, reactionType);
+      insertReaction(chapterId, reactionType);
+    }
+  }
+
+  function attachDelegation() {
+    document.addEventListener('click', function (e) {
+      const btn = e.target.closest('.reaction-btn');
+      if (!btn) return;
+      const bar = btn.closest('.reaction-bar');
+      if (!bar) return;
+      handleClick(bar.getAttribute('data-chapter'), btn.getAttribute('data-reaction'));
+    });
+  }
+
+  async function init(bookId) {
+    _bookId = bookId || 'vibe-ebook-vol2';
+    _counts = {};
+    _debounceMap = {};
+    _counts = await fetchAllCounts(_bookId);
+    attachDelegation();
+  }
+
+  global.EbookReactions = { init: init, renderBar: renderBar, handleClick: handleClick };
+
+}(window));
+</script>
+
+<!--
+  index.html 사용 예시 (</body> 바로 위):
+
+  <script>
+  document.addEventListener('DOMContentLoaded', async function () {
+    await EbookReactions.init('vibe-ebook-vol2');
+    var chapters = document.querySelectorAll('[data-chapter-id]');
+    chapters.forEach(function(sec) {
+      var cid = sec.getAttribute('data-chapter-id');
+      sec.insertAdjacentHTML('beforeend', EbookReactions.renderBar(cid));
+    });
+  });
+  </script>
+
+  챕터 섹션에 data-chapter-id 속성 추가:
+  <section class="chapter" data-chapter-id="ch01">...</section>
+-->
