@@ -216,8 +216,8 @@ a:hover{text-decoration:underline}
 
 /* ── 모바일 (768px 이하) ── */
 @media(max-width:768px){
-  /* 레이아웃 */
-  #ebook{flex-direction:column;height:100vh;overflow:hidden}
+  /* 레이아웃 — #ebook을 viewport 전체에 고정 (앞쪽 배너/카운트다운에 밀리지 않게) */
+  #ebook{flex-direction:column;position:fixed;inset:0;overflow:hidden;z-index:10500}
   body{overflow:hidden}
 
   /* 사이드바 — 슬라이드 드로어 방식 */
