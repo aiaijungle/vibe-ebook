@@ -1085,7 +1085,7 @@
     스크롤을 내리세요. 그것만으로도 오늘의 당신은 달라집니다.
   </div>
   <div style="font-size:0.72rem;color:rgba(255,255,255,0.28);letter-spacing:0.02em;word-break:keep-all;">
-    6월 1일부터 &nbsp;·&nbsp; 전 4권 각 <strong style="color:rgba(255,255,255,0.45);">19,900원</strong> 판매 예정 &nbsp;·&nbsp; 지금은 완전 무료
+    6월 1일부터 &nbsp;·&nbsp; 각 권당 <strong style="color:rgba(255,255,255,0.45);">19,900원</strong> 판매 예정 &nbsp;·&nbsp; 지금은 완전 무료
   </div>
 </div>
 <script>
@@ -1094,7 +1094,7 @@
   function p(n){return String(n).padStart(2,'0');}
   function tick(){
     var now=new Date(),diff=dl-now;
-    if(diff<=0){var b=document.getElementById('may-countdown');if(b)b.innerHTML='<div style="padding:16px;color:#f87171;font-size:.85rem;font-weight:700;text-align:center;">⚠️ 무료 공개 기간이 종료되었습니다. 각 권 19,900원에 구매하세요.</div>';return;}
+    if(diff<=0){var b=document.getElementById('may-countdown');if(b)b.innerHTML='<div style="padding:16px;color:#f87171;font-size:.85rem;font-weight:700;text-align:center;">⚠️ 무료 공개 기간이 종료되었습니다. 각 권당 19,900원에 구매하세요.</div>';return;}
     var d=Math.floor(diff/86400000),h=Math.floor((diff%86400000)/3600000),m=Math.floor((diff%3600000)/60000),s=Math.floor((diff%60000)/1000);
     document.getElementById('cd-days').textContent=p(d);
     document.getElementById('cd-hours').textContent=p(h);
