@@ -1074,16 +1074,36 @@
     <div style="color:rgba(255,90,0,0.5);font-size:1.8rem;font-weight:900;margin-bottom:20px;">:</div>
     <div style="text-align:center;"><div style="background:rgba(255,90,0,0.12);border:1.5px solid rgba(255,90,0,0.45);border-radius:10px;padding:12px 14px;min-width:62px;"><div id="cd-secs" style="font-size:2.4rem;font-weight:900;color:#ff7200;line-height:1;">00</div></div><div style="font-size:0.62rem;color:rgba(255,255,255,0.4);margin-top:5px;font-weight:600;">초</div></div>
   </div>
-  <div style="font-size:1.2rem;font-weight:900;color:#fff;line-height:1.55;margin-bottom:18px;word-break:keep-all;">
-    지금 이 순간,<br><span style="color:#ff7200;background:linear-gradient(135deg,#ff7200,#ff4444);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">무료로 읽는 마지막 기회</span>입니다
+  <!-- 시간 대비 카드 -->
+  <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin:0 auto 22px;max-width:340px;flex-wrap:wrap;">
+    <div style="background:rgba(255,90,0,0.1);border:1.5px solid rgba(255,90,0,0.35);border-radius:12px;padding:14px 18px;text-align:center;min-width:120px;">
+      <div id="cd-total-hours" style="font-size:2rem;font-weight:900;color:#ff7200;line-height:1;">336</div>
+      <div style="font-size:0.62rem;color:rgba(255,255,255,0.4);margin-top:5px;">남은 총 시간</div>
+    </div>
+    <div style="font-size:0.9rem;color:rgba(255,255,255,0.22);font-weight:700;">VS</div>
+    <div style="background:rgba(16,185,129,0.1);border:1.5px solid rgba(16,185,129,0.35);border-radius:12px;padding:14px 18px;text-align:center;min-width:120px;">
+      <div style="font-size:2rem;font-weight:900;color:#10b981;line-height:1;">20</div>
+      <div style="font-size:0.62rem;color:rgba(255,255,255,0.4);margin-top:5px;">배움에 필요한 시간</div>
+    </div>
   </div>
-  <div style="max-width:480px;margin:0 auto 20px;font-size:0.88rem;color:rgba(255,255,255,0.62);line-height:1.9;word-break:keep-all;text-align:left;border-left:3px solid rgba(255,114,0,0.5);padding:16px 20px;border-radius:0 10px 10px 0;background:rgba(255,255,255,0.025);">
-    5월이 끝날 때, 두 종류의 사람이 남습니다.<br>
-    <strong style="color:rgba(255,255,255,0.9);">AI를 손에 익힌 사람</strong>과,
-    <em style="color:rgba(255,255,255,0.45);">배우려고 했던 사람</em>.<br><br>
-    지금 이 책을 읽느냐 닫느냐가 3년 뒤 연봉의 갈림길입니다.<br>
-    스크롤을 내리세요. 그것만으로도 오늘의 당신은 달라집니다.
+
+  <div style="font-size:1.15rem;font-weight:900;color:#fff;line-height:1.6;margin-bottom:18px;word-break:keep-all;">
+    누구나, 어떤 분야든 —<br><span style="color:#ff7200;">단 20시간</span>이면 완전히 새로운 사람이 됩니다
   </div>
+
+  <div style="max-width:480px;margin:0 auto 16px;font-size:0.88rem;color:rgba(255,255,255,0.62);line-height:1.9;word-break:keep-all;text-align:left;border-left:3px solid rgba(255,114,0,0.5);padding:16px 20px;border-radius:0 10px 10px 0;background:rgba(255,255,255,0.025);">
+    연구에 따르면, 어떤 분야든 <strong style="color:rgba(255,255,255,0.9);">처음 20시간의 몰입</strong>으로 핵심을 익힐 수 있습니다.<br>
+    하루 <strong style="color:rgba(255,255,255,0.9);">1.5시간</strong>씩만 투자하면 — 남은 14일이면 충분합니다.<br><br>
+    당신에게는 지금 <span style="color:#ff7200;font-weight:700;" id="cd-total-hours-txt">336</span>시간이 있습니다.<br>
+    그 중 20시간을 AI에 투자하는 것 —<br>
+    그것이 당신이 자신에게 줄 수 있는 <strong style="color:rgba(255,255,255,0.9);">가장 값진 선물</strong>입니다.
+  </div>
+
+  <div style="max-width:480px;margin:0 auto 18px;background:linear-gradient(135deg,rgba(255,149,0,0.1),rgba(255,68,68,0.06));border:1px solid rgba(255,149,0,0.25);border-radius:10px;padding:14px 18px;font-size:0.85rem;color:rgba(255,255,255,0.75);line-height:1.75;word-break:keep-all;text-align:center;">
+    🎁 지금 이 페이지를 스크롤 내리는 것이,<br>
+    당신이 <strong style="color:#ffaa00;">자신에게 AI를 선물하는 순간</strong>입니다.
+  </div>
+
   <div style="font-size:0.72rem;color:rgba(255,255,255,0.28);letter-spacing:0.02em;word-break:keep-all;">
     6월 1일부터 &nbsp;·&nbsp; 각 권당 <strong style="color:rgba(255,255,255,0.45);">19,900원</strong> 판매 예정 &nbsp;·&nbsp; 지금은 완전 무료
   </div>
@@ -1096,6 +1116,8 @@
     var now=new Date(),diff=dl-now;
     if(diff<=0){var b=document.getElementById('may-countdown');if(b)b.innerHTML='<div style="padding:16px;color:#f87171;font-size:.85rem;font-weight:700;text-align:center;">⚠️ 무료 공개 기간이 종료되었습니다. 각 권당 19,900원에 구매하세요.</div>';return;}
     var d=Math.floor(diff/86400000),h=Math.floor((diff%86400000)/3600000),m=Math.floor((diff%3600000)/60000),s=Math.floor((diff%60000)/1000);
+    var th=document.getElementById('cd-total-hours');if(th)th.textContent=Math.floor(diff/3600000).toLocaleString('ko-KR');
+    var th2=document.getElementById('cd-total-hours-txt');if(th2)th2.textContent=Math.floor(diff/3600000).toLocaleString('ko-KR');
     document.getElementById('cd-days').textContent=p(d);
     document.getElementById('cd-hours').textContent=p(h);
     document.getElementById('cd-mins').textContent=p(m);
