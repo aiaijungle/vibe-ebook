@@ -218,6 +218,11 @@ a,button{-webkit-touch-callout:default!important;-webkit-user-select:auto!import
     <h1 class="book-title">코딩 없이 블로그와 유튜브를<br>자동으로 운영하는 법</h1>
     <p class="book-sub">마케팅 자동화 입문 — 바이브코딩바이블 시리즈</p>
     <span class="free-tag">✓ 무료 공개</span>
+    <div style="display:inline-flex;align-items:center;gap:4px;margin-top:10px;font-size:11px;opacity:0.55;">
+      <span>👁</span><span>누적 방문자</span>
+      <img id="visit-badge" src="https://visitor-badge.laobi.icu/badge?page_id=aiaijungle.vibe-ebook-1&left_color=555&right_color=a78bfa" style="height:16px;vertical-align:middle;border-radius:3px;" alt="visitors" onerror="this.style.display='none';document.getElementById('visit-num').style.display='inline'">
+      <span id="visit-num" style="background:#a78bfa;color:#fff;font-weight:700;padding:0 5px;border-radius:3px;line-height:15px;display:none;">1,000+</span>
+    </div>
   </header>
 
   <!-- 들어가며 -->
@@ -575,7 +580,7 @@ a,button{-webkit-touch-callout:default!important;-webkit-user-select:auto!import
       <div style="background:rgba(255,255,255,.04);border-radius:12px;padding:16px;text-align:center;color:rgba(255,255,255,.4);font-size:.85rem;">불러오는 중...</div>
     </div>
     <div style="text-align:center;margin-bottom:28px;">
-      <button id="review-next-btn" onclick="nextReviews()" style="background:rgba(124,58,237,.2);border:1px solid rgba(124,58,237,.4);color:#a78bfa;font-size:.8rem;font-weight:700;padding:7px 20px;border-radius:20px;cursor:pointer;transition:all .2s;" onmouseover="this.style.background='rgba(124,58,237,.4)'" onmouseout="this.style.background='rgba(124,58,237,.2)'">다음 3개 →</button>
+      <button id="review-next-btn" onclick="nextReviews()" style="background:rgba(124,58,237,.2);border:1px solid rgba(124,58,237,.4);color:#a78bfa;font-size:.8rem;font-weight:700;padding:7px 20px;border-radius:20px;cursor:pointer;transition:all .2s;" onmouseover="this.style.background='rgba(124,58,237,.4)'" onmouseout="this.style.background='rgba(124,58,237,.2)'">다음 4개 →</button>
     </div>
 
     <!-- 후기 작성 폼 -->
@@ -616,8 +621,8 @@ a,button{-webkit-touch-callout:default!important;-webkit-user-select:auto!import
         document.getElementById('review-next-btn').style.display='none';
         return;
       }
-      var start=(pageIdx*3)%allReviews.length;
-      var count=Math.min(3,allReviews.length);
+      var start=(pageIdx*4)%allReviews.length;
+      var count=Math.min(4,allReviews.length);
       var cards='';
       for(var i=0;i<count;i++){
         var r=allReviews[(start+i)%allReviews.length];
@@ -625,11 +630,11 @@ a,button{-webkit-touch-callout:default!important;-webkit-user-select:auto!import
         var date=(d.getMonth()+1)+'.'+(d.getDate());
         cards+='<div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:16px;">'
           +'<div style="font-size:.92rem;color:rgba(255,255,255,.85);line-height:1.7;margin-bottom:12px;word-break:keep-all;">&#8220;'+escHtml(r.content)+'&#8221;</div>'
-          +'<div style="font-size:.75rem;color:rgba(255,255,255,.4);">'+escHtml(r.name)+' &nbsp;·&nbsp; '+date+'</div>'
+          +'<div style="font-size:.75rem;color:rgba(255,255,255,.4);">'+escHtml(r.name)+' &nbsp;·&nbsp; '+date+(r.book?' &nbsp;·&nbsp; <span style="font-size:.62rem;background:rgba(124,58,237,.25);padding:1px 6px;border-radius:4px;">'+escHtml(r.book)+'</span>':'')+' </div>'
           +'</div>';
       }
       el.innerHTML=cards;
-      document.getElementById('review-next-btn').style.display=allReviews.length<=3?'none':'inline-block';
+      document.getElementById('review-next-btn').style.display=allReviews.length<=4?'none':'inline-block';
     }
 
     function escHtml(s){
@@ -671,7 +676,7 @@ a,button{-webkit-touch-callout:default!important;-webkit-user-select:auto!import
     };
 
     function loadReviews(book){
-      fetch(SUPA_URL+'/rest/v1/ebook_reviews?book=eq.'+encodeURIComponent(book)+'&select=id,name,content,created_at&order=created_at.desc&limit=50',{
+      fetch(SUPA_URL+'/rest/v1/ebook_reviews?select=id,name,content,book,created_at&order=created_at.desc&limit=100',{
         headers:hdrs()
       }).then(function(r){return r.json();}).then(function(data){
         if(Array.isArray(data)){allReviews=shuffle(data);pageIdx=0;renderCards();}
@@ -680,7 +685,7 @@ a,button{-webkit-touch-callout:default!important;-webkit-user-select:auto!import
       });
     }
 
-    loadReviews('1권');
+    loadReviews();
   })();
   </script>
 

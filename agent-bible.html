@@ -1136,6 +1136,11 @@
     <div class="sidebar-logo">
       <h2>AI 에이전트 바이블</h2>
       <p>AITF 2026 — 실전 가이드</p>
+      <div style="display:flex;align-items:center;gap:4px;margin-top:5px;font-size:10px;opacity:0.6;">
+        <span>👁</span><span>누적 방문자</span>
+        <img id="visit-badge" src="https://visitor-badge.laobi.icu/badge?page_id=aiaijungle.vibe-ebook-3&left_color=555&right_color=dc2626" style="height:16px;vertical-align:middle;border-radius:3px;" alt="visitors" onerror="this.style.display='none';document.getElementById('visit-num').style.display='inline'">
+        <span id="visit-num" style="background:#dc2626;color:#fff;font-weight:700;padding:0 5px;border-radius:3px;line-height:15px;display:none;">1,000+</span>
+      </div>
     </div>
     <div class="toc-nav">
       <a class="toc-item" href="#cover" data-id="cover"><span class="toc-icon">📖</span><span class="toc-label">표지 &
@@ -3100,7 +3105,7 @@ if __name__ == "__main__":
     <div style="background:rgba(255,255,255,.04);border-radius:12px;padding:16px;text-align:center;color:rgba(255,255,255,.4);font-size:.85rem;">불러오는 중...</div>
   </div>
   <div style="text-align:center;margin-bottom:28px;">
-    <button id="review-next-btn" onclick="nextReviews()" style="background:rgba(124,58,237,.2);border:1px solid rgba(124,58,237,.4);color:#a78bfa;font-size:.8rem;font-weight:700;padding:7px 20px;border-radius:20px;cursor:pointer;transition:all .2s;" onmouseover="this.style.background='rgba(124,58,237,.4)'" onmouseout="this.style.background='rgba(124,58,237,.2)'">다음 3개 →</button>
+    <button id="review-next-btn" onclick="nextReviews()" style="background:rgba(124,58,237,.2);border:1px solid rgba(124,58,237,.4);color:#a78bfa;font-size:.8rem;font-weight:700;padding:7px 20px;border-radius:20px;cursor:pointer;transition:all .2s;" onmouseover="this.style.background='rgba(124,58,237,.4)'" onmouseout="this.style.background='rgba(124,58,237,.2)'">다음 4개 →</button>
   </div>
   <div style="border-top:1px solid rgba(255,255,255,.08);padding-top:22px;">
     <div style="font-size:.95rem;font-weight:800;color:#fff;margin-bottom:4px;">당신의 경험을 남겨주세요</div>
@@ -3126,10 +3131,10 @@ if __name__ == "__main__":
   function renderCards(){
     var el=document.getElementById('review-cards');
     if(!allReviews.length){el.innerHTML='<div style="text-align:center;color:rgba(255,255,255,.35);font-size:.85rem;padding:20px;">아직 후기가 없습니다. 첫 후기의 주인공이 되어주세요!</div>';document.getElementById('review-next-btn').style.display='none';return;}
-    var start=(pageIdx*3)%allReviews.length;var count=Math.min(3,allReviews.length);var cards='';
+    var start=(pageIdx*4)%allReviews.length;var count=Math.min(4,allReviews.length);var cards='';
     for(var i=0;i<count;i++){var r=allReviews[(start+i)%allReviews.length];var d=new Date(r.created_at);var dt=(d.getMonth()+1)+'.'+(d.getDate());
-      cards+='<div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:16px;"><div style="font-size:.92rem;color:rgba(255,255,255,.85);line-height:1.7;margin-bottom:12px;word-break:keep-all;">&#8220;'+esc(r.content)+'&#8221;</div><div style="font-size:.75rem;color:rgba(255,255,255,.4);">'+esc(r.name)+' &nbsp;·&nbsp; '+dt+'</div></div>';}
-    el.innerHTML=cards;document.getElementById('review-next-btn').style.display=allReviews.length<=3?'none':'inline-block';
+      cards+='<div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:16px;"><div style="font-size:.92rem;color:rgba(255,255,255,.85);line-height:1.7;margin-bottom:12px;word-break:keep-all;">&#8220;'+esc(r.content)+'&#8221;</div><div style="font-size:.75rem;color:rgba(255,255,255,.4);">'+esc(r.name)+' &nbsp;·&nbsp; '+dt+(r.book?' &nbsp;·&nbsp; <span style="font-size:.62rem;background:rgba(124,58,237,.25);padding:1px 6px;border-radius:4px;">'+esc(r.book)+'</span>':'')+' </div></div>';}
+    el.innerHTML=cards;document.getElementById('review-next-btn').style.display=allReviews.length<=4?'none':'inline-block';
   }
   window.nextReviews=function(){pageIdx++;renderCards();};
   window.submitReview=function(book){
@@ -3145,11 +3150,11 @@ if __name__ == "__main__":
     .finally(function(){btn.disabled=false;btn.textContent='등록하기';});
   };
   function loadReviews(book){
-    fetch(SUPA_URL+'/rest/v1/ebook_reviews?book=eq.'+encodeURIComponent(book)+'&select=id,name,content,created_at&order=created_at.desc&limit=50',{headers:hdrs()})
+    fetch(SUPA_URL+'/rest/v1/ebook_reviews?select=id,name,content,book,created_at&order=created_at.desc&limit=100',{headers:hdrs()})
     .then(function(r){return r.json();}).then(function(d){if(Array.isArray(d)){allReviews=shuffle(d);pageIdx=0;renderCards();}})
     .catch(function(){document.getElementById('review-cards').innerHTML='<div style="color:rgba(255,255,255,.3);font-size:.8rem;text-align:center;">후기를 불러올 수 없습니다.</div>';});
   }
-  loadReviews('에이전트');
+  loadReviews();
 })();
 </script>
 
