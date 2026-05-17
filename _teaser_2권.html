@@ -229,6 +229,84 @@ body {
 .tool-name { font-size: 10px; font-weight: 700; color: #5b21b6; }
 .tool-desc { font-size: 9.5px; color: #777; margin-top: 2px; line-height: 1.4; }
 
+/* ── 페이지 4: 96시간 로드맵 + 채널 홍보 ── */
+.roadmap-row {
+  display: grid; grid-template-columns: 70px 1fr;
+  gap: 0; margin-bottom: 0;
+}
+.roadmap-time {
+  display: flex; flex-direction: column; align-items: center;
+  padding-top: 4px;
+}
+.roadmap-badge {
+  background: linear-gradient(135deg, #7c3aed, #a78bfa);
+  color: #fff; font-size: 9px; font-weight: 900;
+  padding: 4px 8px; border-radius: 20px; white-space: nowrap;
+  letter-spacing: .05em; text-align: center;
+}
+.roadmap-line {
+  width: 2px; flex: 1; background: linear-gradient(180deg, #a78bfa 0%, #e9d5ff 100%);
+  margin: 4px 0; min-height: 20px;
+}
+.roadmap-content {
+  padding: 4px 0 16px 14px;
+  border-left: none;
+}
+.roadmap-day {
+  font-size: 11px; font-weight: 800; color: #5b21b6; margin-bottom: 4px;
+}
+.roadmap-items { display: flex; flex-direction: column; gap: 3px; }
+.roadmap-item {
+  display: flex; align-items: flex-start; gap: 6px;
+  font-size: 11.5px; color: #333; line-height: 1.55;
+}
+.roadmap-item .dot { color: #a78bfa; flex-shrink: 0; font-size: 13px; line-height: 1.4; }
+.roadmap-result {
+  display: inline-block; margin-top: 5px;
+  background: #f4f0ff; border: 1px solid #d4b8ff;
+  border-radius: 6px; padding: 4px 10px;
+  font-size: 10.5px; font-weight: 700; color: #5b21b6;
+}
+.channel-box {
+  background: linear-gradient(135deg, #150c00 0%, #2d1500 100%);
+  border-radius: 14px; padding: 20px 22px;
+  display: flex; gap: 18px; align-items: center;
+  margin-top: 18px;
+}
+.channel-logo {
+  width: 56px; height: 56px; flex-shrink: 0;
+  background: linear-gradient(135deg, #FF8C00, #ffb347);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 26px;
+}
+.channel-info { flex: 1; }
+.channel-name { font-size: 17px; font-weight: 900; color: #fff; margin-bottom: 3px; }
+.channel-sub { font-size: 10.5px; color: rgba(255,255,255,.55); margin-bottom: 8px; line-height: 1.6; word-break: keep-all; }
+.channel-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px; }
+.channel-tag {
+  background: rgba(255,140,0,.2); border: 1px solid rgba(255,140,0,.4);
+  color: #ffb347; font-size: 9.5px; font-weight: 700;
+  padding: 3px 8px; border-radius: 12px;
+}
+.channel-cta {
+  background: linear-gradient(135deg, #FF8C00, #e07000);
+  color: #fff; font-size: 11px; font-weight: 900;
+  padding: 8px 16px; border-radius: 8px; display: inline-block;
+  letter-spacing: .03em;
+}
+.build-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 7px; margin: 14px 0;
+}
+.build-item {
+  background: #faf5ff; border: 1px solid #e9d5ff;
+  border-radius: 8px; padding: 9px 10px;
+}
+.build-item .bi { font-size: 16px; margin-bottom: 3px; }
+.build-item .bn { font-size: 10.5px; font-weight: 800; color: #5b21b6; margin-bottom: 2px; }
+.build-item .bd { font-size: 9.5px; color: #777; line-height: 1.4; }
+
 @page { size: A4; margin: 0; }
 @media print {
   .page { width: 210mm; min-height: 297mm; }
@@ -458,6 +536,112 @@ body {
     <div class="flow-result-sub">코드 한 줄도 직접 쓰지 않았다. 앞으로 모든 봇이 이 방식으로 만들어진다.</div>
     <div class="cta-url" style="margin-top:12px;font-size:11px;">👉 전체 25챕터 무료 읽기: vibecodingbible.jbooking.kr</div>
   </div>
+</div>
+
+
+<!-- ═══════════════════ PAGE 4 : 로드맵 + 채널 홍보 ═══════════════════ -->
+<div class="page diagram-page">
+  <div class="preview-header">
+    <div class="preview-header-title">🗓️ 96시간 완성 로드맵 — 지금 시작하면 4일 후 배포된다</div>
+    <div class="preview-header-page">Road Map</div>
+  </div>
+
+  <!-- 타임라인 -->
+  <div style="margin-bottom:4px;">
+
+    <div class="roadmap-row">
+      <div class="roadmap-time">
+        <div class="roadmap-badge">0~24h<br>Day 1</div>
+        <div class="roadmap-line"></div>
+      </div>
+      <div class="roadmap-content">
+        <div class="roadmap-day">🛠️ 환경 세팅 + 첫 봇 구동</div>
+        <div class="roadmap-items">
+          <div class="roadmap-item"><span class="dot">▸</span><span>Python · VS Code · Claude API 키 세팅 (30분)</span></div>
+          <div class="roadmap-item"><span class="dot">▸</span><span>CIF 공식 익히기 — 말로 시키는 연습 3회</span></div>
+          <div class="roadmap-item"><span class="dot">▸</span><span>첫 수집봇 실행 성공 (코드 0줄 작성)</span></div>
+        </div>
+        <span class="roadmap-result">✅ 첫 봇이 내 컴퓨터에서 돌아간다</span>
+      </div>
+    </div>
+
+    <div class="roadmap-row">
+      <div class="roadmap-time">
+        <div class="roadmap-badge">24~48h<br>Day 2</div>
+        <div class="roadmap-line"></div>
+      </div>
+      <div class="roadmap-content">
+        <div class="roadmap-day">⚙️ 자동화 파이프라인 연결</div>
+        <div class="roadmap-items">
+          <div class="roadmap-item"><span class="dot">▸</span><span>봇 → 슬랙/카카오 알림 연결 (프롬프트 체이닝)</span></div>
+          <div class="roadmap-item"><span class="dot">▸</span><span>CSV/Excel 자동 저장 + 매일 스케줄 실행</span></div>
+          <div class="roadmap-item"><span class="dot">▸</span><span>에러 자가 복구 로직 추가</span></div>
+        </div>
+        <span class="roadmap-result">✅ 자는 동안 봇이 혼자 돌아간다</span>
+      </div>
+    </div>
+
+    <div class="roadmap-row">
+      <div class="roadmap-time">
+        <div class="roadmap-badge">48~72h<br>Day 3</div>
+        <div class="roadmap-line"></div>
+      </div>
+      <div class="roadmap-content">
+        <div class="roadmap-day">🌐 서비스 배포 — 인터넷에 올린다</div>
+        <div class="roadmap-items">
+          <div class="roadmap-item"><span class="dot">▸</span><span>GitHub Pages로 랜딩페이지 10분 배포</span></div>
+          <div class="roadmap-item"><span class="dot">▸</span><span>Vercel로 백엔드 API 서버 무료 배포</span></div>
+          <div class="roadmap-item"><span class="dot">▸</span><span>도메인 연결 + HTTPS 보안 설정</span></div>
+        </div>
+        <span class="roadmap-result">✅ 링크 하나로 누구에게나 보낼 수 있다</span>
+      </div>
+    </div>
+
+    <div class="roadmap-row">
+      <div class="roadmap-time">
+        <div class="roadmap-badge">72~96h<br>Day 4</div>
+        <div class="roadmap-line" style="display:none;"></div>
+      </div>
+      <div class="roadmap-content">
+        <div class="roadmap-day">💰 첫 수익 구조 만들기</div>
+        <div class="roadmap-items">
+          <div class="roadmap-item"><span class="dot">▸</span><span>B2B 클라이언트 DM 영입 메시지 템플릿</span></div>
+          <div class="roadmap-item"><span class="dot">▸</span><span>결제 연동 (토스페이먼츠/카카오페이) 봇 추가</span></div>
+          <div class="roadmap-item"><span class="dot">▸</span><span>첫 클라이언트 또는 구독자 확보 실전</span></div>
+        </div>
+        <span class="roadmap-result">✅ 96시간 후 — 서비스가 인터넷에 떠 있다</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 이 책으로 만들 수 있는 것 -->
+  <div class="preview-section-label" style="margin-top:4px;">이 책 한 권으로 실제 만드는 것들</div>
+  <div class="build-grid">
+    <div class="build-item"><div class="bi">🤖</div><div class="bn">유튜브 댓글봇</div><div class="bd">채널 자동 운영·홍보 댓글</div></div>
+    <div class="build-item"><div class="bi">📰</div><div class="bn">뉴스 수집봇</div><div class="bd">키워드 기사 → 슬랙 자동 발송</div></div>
+    <div class="build-item"><div class="bi">🏠</div><div class="bn">랜딩페이지</div><div class="bd">외주 300만원 → 직접 0원</div></div>
+    <div class="build-item"><div class="bi">💬</div><div class="bn">카카오 CS봇</div><div class="bd">24시간 자동 고객 응대</div></div>
+    <div class="build-item"><div class="bi">📊</div><div class="bn">가격 모니터링봇</div><div class="bd">경쟁사 가격 변동 실시간 추적</div></div>
+    <div class="build-item"><div class="bi">📧</div><div class="bn">이메일 자동화</div><div class="bd">리드 수집 → 시퀀스 발송</div></div>
+  </div>
+
+  <!-- AI 사냥꾼 채널 홍보 -->
+  <div class="channel-box">
+    <div class="channel-logo">🎯</div>
+    <div class="channel-info">
+      <div class="channel-name">AI 사냥꾼 유튜브</div>
+      <div class="channel-tags">
+        <span class="channel-tag">#바이브코딩 실습</span>
+        <span class="channel-tag">#AI 도구 리뷰</span>
+        <span class="channel-tag">#자동화 실전</span>
+        <span class="channel-tag">#쇼츠 매일 업로드</span>
+      </div>
+      <div class="channel-sub">수집봇·댓글봇·랜딩페이지를 화면 녹화로 직접 만드는 과정 공개.<br>구독 + 댓글 <strong style="color:#ffb347;">"받고싶다"</strong> → 고정 댓글에서 PDF 무료 수령 · 선착순 300명</div>
+      <div class="channel-cta">📺 채널 구독하러 가기 → youtube.com/@aiaijungle</div>
+    </div>
+  </div>
+
 </div>
 
 </body>
