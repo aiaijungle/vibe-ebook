@@ -642,7 +642,7 @@ a,button{-webkit-touch-callout:default!important;-webkit-user-select:auto!import
     }
 
     window.nextReviews=function(){
-      pageIdx++;
+      var pages=Math.ceil(allReviews.length/4)||1;pageIdx=(pageIdx+1)%pages;
       renderCards();
     };
 

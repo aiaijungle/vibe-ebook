@@ -1301,7 +1301,7 @@ print(response.content[0].text)</pre>
       cards+='<div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:16px;"><div style="font-size:.92rem;color:rgba(255,255,255,.85);line-height:1.7;margin-bottom:12px;word-break:keep-all;">&#8220;'+esc(r.content)+'&#8221;</div><div style="font-size:.75rem;color:rgba(255,255,255,.4);">'+esc(r.name)+' &nbsp;·&nbsp; '+dt+(r.book?' &nbsp;·&nbsp; <span style="font-size:.62rem;background:rgba(124,58,237,.25);padding:1px 6px;border-radius:4px;">'+esc(r.book)+'</span>':'')+' </div></div>';}
     el.innerHTML=cards;document.getElementById('review-next-btn').style.display=allReviews.length<=4?'none':'inline-block';
   }
-  window.nextReviews=function(){pageIdx++;renderCards();};
+  window.nextReviews=function(){var pages=Math.ceil(allReviews.length/4)||1;pageIdx=(pageIdx+1)%pages;renderCards();};
   window.submitReview=function(book){
     var name=(document.getElementById('rv-name').value||'').trim();
     var content=(document.getElementById('rv-content').value||'').trim();

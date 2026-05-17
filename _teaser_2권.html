@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>바이브코딩 실전 바이블 2권 — 미리보기</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+  background: #fff; color: #111;
+  font-size: 13px; line-height: 1.75;
+}
+.page {
+  width: 210mm; min-height: 297mm;
+  padding: 22mm 20mm;
+  page-break-after: always;
+  position: relative;
+  overflow: hidden;
+}
+.page:last-child { page-break-after: avoid; }
+
+/* ── 페이지 1: 표지 ── */
+.cover {
+  background: linear-gradient(160deg, #0d0020 0%, #1a0040 55%, #0d0020 100%);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.cover-badge {
+  font-size: 10px; font-weight: 700; letter-spacing: .2em;
+  color: #a78bfa; text-transform: uppercase; margin-bottom: 18px;
+}
+.cover-vol {
+  font-size: 11px; font-weight: 700; letter-spacing: .15em;
+  color: rgba(167,139,250,.6); margin-bottom: 8px; text-transform: uppercase;
+}
+.cover-title {
+  font-size: 34px; font-weight: 900; line-height: 1.25;
+  color: #fff; margin-bottom: 10px; word-break: keep-all;
+}
+.cover-title span { color: #a78bfa; }
+.cover-sub {
+  font-size: 14px; color: rgba(255,255,255,.55);
+  margin-bottom: 36px; word-break: keep-all;
+}
+.cover-divider {
+  width: 48px; height: 3px;
+  background: linear-gradient(90deg, #7c3aed, #a78bfa);
+  border-radius: 2px; margin-bottom: 36px;
+}
+.cover-promise {
+  background: rgba(124,58,237,.15);
+  border: 1px solid rgba(124,58,237,.35);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 36px;
+}
+.cover-promise-label {
+  font-size: 9px; font-weight: 800; letter-spacing: .2em;
+  color: #a78bfa; text-transform: uppercase; margin-bottom: 10px;
+}
+.cover-promise-items {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+}
+.cover-promise-item {
+  font-size: 12px; color: rgba(255,255,255,.85);
+  display: flex; align-items: flex-start; gap: 6px;
+}
+.cover-promise-item .icon { color: #a78bfa; flex-shrink: 0; }
+.cover-testimonial {
+  border-left: 3px solid rgba(167,139,250,.4);
+  padding: 12px 16px;
+  margin-bottom: 36px;
+}
+.cover-testimonial-text {
+  font-size: 13px; color: rgba(255,255,255,.75);
+  font-style: italic; line-height: 1.8; margin-bottom: 6px; word-break: keep-all;
+}
+.cover-testimonial-author {
+  font-size: 10px; color: rgba(255,255,255,.4);
+}
+.cover-footer {
+  display: flex; align-items: center; justify-content: space-between;
+  border-top: 1px solid rgba(255,255,255,.1);
+  padding-top: 18px;
+}
+.cover-author { font-size: 12px; color: rgba(255,255,255,.5); }
+.cover-author strong { color: rgba(255,255,255,.8); }
+.cover-cta-pill {
+  background: linear-gradient(135deg, #7c3aed, #a78bfa);
+  color: #fff; font-size: 10px; font-weight: 800;
+  padding: 6px 14px; border-radius: 20px;
+  letter-spacing: .05em;
+}
+/* 배경 장식 */
+.cover-deco {
+  position: absolute; right: -30mm; top: 20mm;
+  font-size: 200px; opacity: .025; font-weight: 900;
+  color: #fff; pointer-events: none; line-height: 1;
+  user-select: none;
+}
+
+/* ── 페이지 2: 내용 미리보기 ── */
+.preview {
+  background: #fff; color: #111;
+}
+.preview-header {
+  border-bottom: 2px solid #7c3aed;
+  padding-bottom: 14px; margin-bottom: 24px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.preview-header-title {
+  font-size: 11px; font-weight: 700; color: #7c3aed; letter-spacing: .12em; text-transform: uppercase;
+}
+.preview-header-page {
+  font-size: 10px; color: #999;
+}
+.preview-section-label {
+  font-size: 9px; font-weight: 800; letter-spacing: .18em;
+  color: #7c3aed; text-transform: uppercase; margin-bottom: 8px;
+}
+.preview-section-title {
+  font-size: 18px; font-weight: 900; color: #111;
+  margin-bottom: 14px; word-break: keep-all;
+}
+.preview-text {
+  font-size: 12.5px; color: #333; line-height: 1.85;
+  margin-bottom: 10px; word-break: keep-all;
+}
+.preview-text strong { color: #111; }
+.law-box {
+  background: #f4f0ff;
+  border: 1px solid #d4b8ff;
+  border-left: 4px solid #7c3aed;
+  border-radius: 0 8px 8px 0;
+  padding: 16px 20px; margin: 16px 0;
+  font-size: 12px; line-height: 1.9; word-break: keep-all;
+}
+.law-box strong { color: #5b21b6; }
+.reader-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 8px; margin: 16px 0;
+}
+.reader-item {
+  background: #faf5ff;
+  border: 1px solid #e9d5ff;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 11.5px; color: #333; word-break: keep-all;
+}
+.reader-item .tag {
+  font-size: 9px; font-weight: 800; letter-spacing: .1em;
+  color: #7c3aed; text-transform: uppercase;
+  display: block; margin-bottom: 4px;
+}
+.cta-box {
+  margin-top: 24px;
+  background: linear-gradient(135deg, #1a0040, #2d006e);
+  border-radius: 12px;
+  padding: 20px 24px;
+  color: #fff;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+}
+.cta-left { flex: 1; }
+.cta-title {
+  font-size: 15px; font-weight: 900; color: #fff;
+  margin-bottom: 5px; word-break: keep-all;
+}
+.cta-sub {
+  font-size: 11px; color: rgba(255,255,255,.6); word-break: keep-all;
+}
+.cta-right { flex-shrink: 0; text-align: center; }
+.cta-price {
+  font-size: 22px; font-weight: 900; color: #a78bfa; line-height: 1.1;
+}
+.cta-price-label { font-size: 9px; color: rgba(255,255,255,.5); }
+.cta-url {
+  font-size: 10px; color: rgba(167,139,250,.8);
+  margin-top: 10px; font-weight: 700; letter-spacing: .03em;
+}
+
+@page { size: A4; margin: 0; }
+@media print {
+  .page { width: 210mm; min-height: 297mm; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════ PAGE 1 : COVER ═══════════════════ -->
+<div class="page cover">
+  <div class="cover-deco">∞</div>
+
+  <div class="cover-badge">📚 VIBECODING MASTERY · FREE PREVIEW</div>
+  <div class="cover-vol">바이브코딩 실전 바이블 · 2권</div>
+  <h1 class="cover-title">코딩 몰라도<br><span>96시간</span> 안에<br>첫 서비스가 뜬다</h1>
+  <p class="cover-sub">Claude와 대화 한 줄로 랜딩페이지 · 봇 · 자동화를 직접 만드는 법<br>비개발자를 위한 바이브코딩 완전 정복 가이드</p>
+  <div class="cover-divider"></div>
+
+  <div class="cover-promise">
+    <div class="cover-promise-label">📌 이 책 한 권으로 할 수 있는 것</div>
+    <div class="cover-promise-items">
+      <div class="cover-promise-item"><span class="icon">✅</span><span>Claude에게 정확히 시키는 CIF 공식</span></div>
+      <div class="cover-promise-item"><span class="icon">✅</span><span>에러 해결을 AI에게 통째로 위임</span></div>
+      <div class="cover-promise-item"><span class="icon">✅</span><span>랜딩페이지 외주비 300만원 → 0원</span></div>
+      <div class="cover-promise-item"><span class="icon">✅</span><span>24시간 무인 운영 봇 파이프라인</span></div>
+      <div class="cover-promise-item"><span class="icon">✅</span><span>Git · Vercel · GitHub Pages 배포</span></div>
+      <div class="cover-promise-item"><span class="icon">✅</span><span>클라이언트 영입 B2B 파이프라인</span></div>
+    </div>
+  </div>
+
+  <div class="cover-testimonial">
+    <div class="cover-testimonial-text">"비개발자인데 96시간 만에 첫 서버를 배포했습니다. 챕터 4가 터닝포인트였어요."</div>
+    <div class="cover-testimonial-author">— 실제 독자 후기</div>
+  </div>
+
+  <div class="cover-footer">
+    <div class="cover-author"><strong>리미트리스맨</strong> 저 · 2026 · AITF</div>
+    <div class="cover-cta-pill">무료 공개 에디션</div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════ PAGE 2 : PREVIEW ═══════════════════ -->
+<div class="page preview">
+  <div class="preview-header">
+    <div class="preview-header-title">📖 바이브코딩 원론 — 2권 핵심 공식 미리보기</div>
+    <div class="preview-header-page">Chapter Preview</div>
+  </div>
+
+  <div class="preview-section-label">핵심 공식</div>
+  <div class="preview-section-title">CIF — 이 공식 하나로 다 된다</div>
+  <p class="preview-text">AI에게 "좋은 웹사이트 만들어줘"라고 하면 쓰레기가 나온다. 이건 AI 탓이 아니다. 지시가 멍청한 거다. AI는 지시 품질에 비례해서 결과를 뱉는다. 나는 이걸 반복하다가 공식을 만들었다. <strong>CIF</strong>다.</p>
+
+  <div class="law-box">
+    <strong>C (Context) — 지금 상황이 뭐야?</strong><br>
+    "나는 호텔 예약 앱을 만들고 있어. Python이야. 파일은 payment.py."<br><br>
+    <strong>I (Intent) — 뭘 하고 싶어?</strong><br>
+    "카카오톡으로 예약 확인 메시지를 자동으로 보내고 싶어."<br><br>
+    <strong>F (Format) — 결과물은 어떤 형태?</strong><br>
+    "send_kakao() 함수 하나만 만들어줘. 다른 코드는 건드리지 마."
+  </div>
+
+  <p class="preview-text">이 세 줄이면 AI가 정확히 뭘 해야 하는지 안다. 헤매지 않는다. 되묻지 않는다. 바로 뽑아낸다. CIF는 편리함을 위한 공식이 아니라 <strong>시간을 지키기 위한 공식</strong>이다.</p>
+
+  <div class="preview-section-label" style="margin-top:18px;">이 책의 독자</div>
+  <div class="reader-grid">
+    <div class="reader-item"><span class="tag">✅ 독자 유형 1</span>아이디어는 있는데 돈이 없는 1인 창업자</div>
+    <div class="reader-item"><span class="tag">✅ 독자 유형 2</span>매일 반복하는 귀찮은 일이 있는 직장인</div>
+    <div class="reader-item"><span class="tag">✅ 독자 유형 3</span>외주 비용이 감당 안 되는 소기업 대표</div>
+    <div class="reader-item"><span class="tag">✅ 독자 유형 4</span>"뭐라도 만들어보고 싶다"는 생각이 있는 사람</div>
+  </div>
+
+  <div class="cta-box">
+    <div class="cta-left">
+      <div class="cta-title">지금 전체 내용 무료로 읽기</div>
+      <div class="cta-sub">25챕터 전문 · 코드 예제 · 실전 봇 15종 패키지 포함<br>6월 1일부터 19,900원 — 지금은 무료 공개 중</div>
+      <div class="cta-url">👉 vibecodingbible.jbooking.kr</div>
+    </div>
+    <div class="cta-right">
+      <div class="cta-price">FREE</div>
+      <div class="cta-price-label">무료 공개</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
