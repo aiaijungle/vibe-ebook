@@ -1035,127 +1035,6 @@
       user-select: none;
     }
 
-    /* ── 비밀번호 게이트 ── */
-    #pw-gate {
-      display: none;
-      position: relative;
-      z-index: 100;
-      text-align: center;
-      padding: 0 0 48px;
-      margin: 0 auto;
-    }
-
-    #pw-gate.active {
-      display: block;
-    }
-
-    #pw-gate::before {
-      content: '';
-      display: block;
-      height: 80px;
-      background: linear-gradient(180deg, transparent 0%, #0f0a05 100%);
-      margin-bottom: -1px;
-    }
-
-    .pw-card {
-      display: inline-block;
-      background: rgba(255, 255, 255, .05);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 140, 0, .3);
-      border-radius: 16px;
-      padding: 36px 44px;
-      max-width: 420px;
-      width: 90%;
-    }
-
-    .pw-icon {
-      font-size: 2.5rem;
-      margin-bottom: 8px;
-    }
-
-    .pw-title {
-      font-size: 1.25rem;
-      font-weight: 800;
-      color: #FF8C00;
-      margin-bottom: 6px;
-    }
-
-    .pw-sub {
-      font-size: .85rem;
-      color: rgba(255, 255, 255, .55);
-      margin-bottom: 28px;
-      line-height: 1.6;
-    }
-
-    .pw-input {
-      width: 100%;
-      padding: 14px 16px;
-      font-size: 1.6rem;
-      letter-spacing: .5em;
-      text-align: center;
-      background: rgba(255, 255, 255, .08);
-      border: 1px solid rgba(255, 255, 255, .2);
-      border-radius: 8px;
-      color: #fff;
-      margin-bottom: 12px;
-      outline: none;
-      box-sizing: border-box;
-    }
-
-    .pw-input:focus {
-      border-color: #FF8C00;
-    }
-
-    .pw-btn {
-      width: 100%;
-      padding: 14px;
-      background: #FF8C00;
-      border: none;
-      border-radius: 8px;
-      color: #fff;
-      font-weight: 700;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: all .2s;
-    }
-
-    .pw-btn:hover {
-      background: #e07b00;
-      transform: translateY(-2px);
-    }
-
-    .pw-error {
-      color: #f87171;
-      font-size: .85rem;
-      margin-top: 10px;
-      opacity: 0;
-      transition: opacity .3s;
-    }
-
-    .pw-error.show {
-      opacity: 1;
-    }
-
-    .pw-hint {
-      font-size: .76rem;
-      color: rgba(255, 255, 255, .3);
-      margin-top: 18px;
-    }
-
-    .locked-section {
-      filter: blur(6px);
-      pointer-events: none;
-      user-select: none;
-      position: relative;
-    }
-
-    .locked-section::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(15, 10, 5, .3);
-      pointer-events: none;
-    }
   </style>
 </head>
 
@@ -1165,6 +1044,11 @@
   <span style="color:#fbbf24;font-weight:800;font-size:0.82rem;">AI 시대의 격차는 지금 이 순간에도 벌어지고 있습니다.</span>
   <span style="color:#FFD700;font-weight:700;font-size:0.82rem;">— 바이블 4권 전부, 지금 무료로 드립니다</span>
   <a href="https://aiaijungle.github.io/vibe-ebook/book1.html" style="background:#F59E0B;color:white;padding:5px 16px;border-radius:20px;text-decoration:none;font-weight:800;font-size:0.78rem;white-space:nowrap;">1권부터 읽기 →</a>
+</div>
+
+<!-- 실시간 업데이트 공지 -->
+<div style="background:rgba(16,185,129,0.1);border-bottom:1px solid rgba(16,185,129,0.25);padding:7px 16px;text-align:center;font-family:'Pretendard','Apple SD Gothic Neo',sans-serif;font-size:0.75rem;color:rgba(255,255,255,0.75);">
+  🔄 <strong style="color:#10b981;">이 책은 실시간으로 업데이트됩니다.</strong> AI 기술 변화에 맞춰 내용이 지속적으로 개선됩니다. 북마크 후 주기적으로 다시 확인하세요.
 </div>
 
 <!-- 4권 시리즈 네비게이션 -->
@@ -2743,19 +2627,6 @@ if __name__ == "__main__":
           </div>
         </div>
     </section>
-    <!-- ── 비밀번호 게이트 (STEP 4 이후 잠금) ── -->
-    <div id="pw-gate">
-      <div class="pw-card">
-        <div class="pw-icon">🔐</div>
-        <div class="pw-title">AI 에이전트 바이블</div>
-        <div class="pw-sub">STEP 4 이후는 구매자 전용 콘텐츠입니다.<br>제공된 6자리 비밀번호를 입력하세요.</div>
-        <input class="pw-input" id="pw-input" type="password" placeholder="●●●●●●" maxlength="6" autocomplete="off"
-          onkeydown="if(event.key==='Enter')agentUnlock()">
-        <button class="pw-btn" onclick="agentUnlock()">전자책 열기 →</button>
-        <div class="pw-error" id="pw-error">비밀번호가 올바르지 않습니다.</div>
-        <div class="pw-hint">구매 후 제공된 비밀번호를 입력하세요.<br>문의: dev@stayjanda.com</div>
-      </div>
-    </div>
 
     <section class="chapter" id="level1b" data-level="1">
       <div class="ch-header" style="--c1:#818cf8;--c2:#6366f1">
@@ -5838,72 +5709,25 @@ if __name__ == "__main__":
 
         <h4>Day 28-30: 자동 KPI 보고 + 최종 배포</h4>
 
-        <pre><code class="language-python"># ai-agents/weekly_report.py
-"""매주 월요일 09:00 자동 실행 — 주간 KPI 텔레그램 보고"""
-import os, requests
-from kpi_dashboard import load_runs, calc_kpi
-from datetime import datetime
-
-def send_weekly_kpi():
-    runs = load_runs()
-    kpi  = calc_kpi(runs)
-    token = os.getenv("TELEGRAM_BOT_TOKEN")
-    chat  = os.getenv("TELEGRAM_CHAT_ID")
-    if not token:
-        print("텔레그램 미설정")
-        return
-
-    lines = [
-        "📈 <b>주간 AI 에이전트 KPI 보고</b>",
-        f"기간: {datetime.now().strftime('%Y-%m-%d')} 기준 최근 7일",
-        "━━━━━━━━━━━━━━",
-        f"총 실행: <b>{kpi['total_runs']}회</b>",
-        f"성공률: <b>{kpi['success_rate']:.1f}%</b>",
-        f"활성 에이전트: <b>{len(kpi['agents'])}개</b>",
-        "━━━━━━━━━━━━━━",
-    ]
-    for agent, data in kpi["agents"].items():
-        rate = data["success"] / max(data["total"], 1) * 100
-        lines.append(f"• {agent}: {data['total']}회 / {rate:.0f}% 성공")
-    lines.append("\n🔗 KPI 대시보드: kpi_dashboard.html")
-
-    requests.post(
-        f"https://api.telegram.org/bot{token}/sendMessage",
-        json={"chat_id": chat, "text": "\n".join(lines), "parse_mode": "HTML"}
-    )
-    print("✅ 주간 KPI 보고 전송 완료")
-
-# Windows 작업 스케줄러 등록 (1회 실행)
-def register_scheduler():
-    import subprocess
-    # 매일 07:00 — 오케스트레이터
-    subprocess.run([
-        "schtasks", "/create", "/tn", "AI_Orchestrator_Daily",
-        "/tr", f"python {os.path.abspath('daily_orchestrator.py')}",
-        "/sc", "daily", "/st", "07:00", "/f"
-    ], check=True)
-    # 매주 월요일 09:00 — 주간 KPI
-    subprocess.run([
-        "schtasks", "/create", "/tn", "AI_Weekly_KPI",
-        "/tr", f"python {os.path.abspath('weekly_report.py')}",
-        "/sc", "weekly", "/d", "MON", "/st", "09:00", "/f"
-    ], check=True)
-    print("✅ 스케줄러 등록 완료")
-    print("   - 매일 07:00: daily_orchestrator.py")
-    print("   - 매주 월요일 09:00: weekly_report.py")
-
-if __name__ == "__main__":
-    import sys
-    if "--register" in sys.argv:
-        register_scheduler()
-    else:
-        send_weekly_kpi()</code></pre>
+        <div class="info-box">
+          <strong>📅 자동화 스케줄 설계 원칙</strong><br><br>
+          Day 28-30의 핵심은 <strong>"언제, 무엇을, 어떻게 자동 실행할지"</strong> 결정하는 것입니다.<br><br>
+          <strong>추천 스케줄 구조:</strong><br>
+          • 매일 07:00 — 수집봇 + 생성봇 + 오케스트레이터 순차 실행<br>
+          • 매주 월요일 09:00 — 주간 KPI 텔레그램 보고<br>
+          • 매월 1일 — 비용 결산 + 다음 달 목표 설정<br><br>
+          <strong>스케줄러 선택 기준:</strong><br>
+          • <strong>Windows</strong>: 작업 스케줄러(Task Scheduler) — GUI로 등록하거나 <code>schtasks</code> 명령 활용<br>
+          • <strong>Mac/Linux</strong>: <code>cron</code> — <code>crontab -e</code>로 편집<br>
+          • <strong>클라우드 배포 시</strong>: GitHub Actions schedule, Railway cron, n8n Schedule trigger 권장<br><br>
+          KPI 보고는 kpi_dashboard.py가 <code>agent_runs.jsonl</code>을 읽어 성공률·토큰 사용량·에이전트별 통계를 계산하고, 텔레그램 Bot API(<code>sendMessage</code>)로 전송하는 구조입니다.
+        </div>
 
         <div class="warning-box">
           <strong>Day 30 최종 점검 — 1인 AI 운영팀 완성 확인:</strong><br>
-          <code>python utils/deployment_harness.py</code> → 20/20 통과 확인<br>
-          <code>schtasks /query /tn "AI_Orchestrator_Daily"</code> → 스케줄러 등록 확인<br>
-          <code>python weekly_report.py</code> → 텔레그램에 KPI 보고 수신 확인
+          ☐ deployment_harness.py 실행 → 20항목 전체 통과<br>
+          ☐ 스케줄러 등록 확인 (매일 07:00 오케스트레이터 자동 시작)<br>
+          ☐ 텔레그램에서 KPI 보고 수신 확인
         </div>
 
         <div class="success-box">
@@ -6276,37 +6100,6 @@ if __name__ == "__main__":
       });
     });
 
-    // ── 비밀번호 잠금 ──
-    const _AGENT_PW = '380700';
-    const _LOCKED = ['level1b', 'level2a', 'level2b', 'level6b', 'level3', 'nocode', 'level4', 'roadmap', 'epilogue'];
-
-    function agentInitLock() {
-      if (localStorage.getItem('agentBibleUnlocked') === '1') return;
-      _LOCKED.forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.classList.add('locked-section');
-      });
-      document.getElementById('pw-gate').classList.add('active');
-    }
-
-    function agentUnlock() {
-      const val = (document.getElementById('pw-input').value || '').trim();
-      if (val === _AGENT_PW) {
-        localStorage.setItem('agentBibleUnlocked', '1');
-        _LOCKED.forEach(id => {
-          const el = document.getElementById(id);
-          if (el) el.classList.remove('locked-section');
-        });
-        document.getElementById('pw-gate').classList.remove('active');
-      } else {
-        const err = document.getElementById('pw-error');
-        err.classList.add('show');
-        document.getElementById('pw-input').value = '';
-        document.getElementById('pw-input').focus();
-        setTimeout(() => err.classList.remove('show'), 2500);
-      }
-    }
-
     // 복사 방지 + 개발자 도구 차단
     document.addEventListener('copy', e => e.preventDefault());
     document.addEventListener('cut', e => e.preventDefault());
@@ -6324,8 +6117,6 @@ if __name__ == "__main__":
         e.preventDefault();
       }
     });
-
-    agentInitLock();
 
     // 읽기 위치 저장/복원
     const SCROLL_KEY = 'agentBibleScrollY';
