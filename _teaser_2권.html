@@ -180,6 +180,55 @@ body {
   margin-top: 10px; font-weight: 700; letter-spacing: .03em;
 }
 
+/* ── 페이지 3: 도식화 ── */
+.diagram-page { background: #fff; color: #111; }
+.flow-step {
+  display: flex; align-items: flex-start; gap: 14px;
+  margin-bottom: 6px;
+}
+.flow-num {
+  width: 28px; height: 28px; flex-shrink: 0;
+  background: linear-gradient(135deg, #7c3aed, #a78bfa);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 900; color: #fff;
+}
+.flow-body { flex: 1; padding-top: 4px; }
+.flow-title { font-size: 13px; font-weight: 800; color: #111; margin-bottom: 2px; }
+.flow-desc { font-size: 11px; color: #555; line-height: 1.65; word-break: keep-all; }
+.flow-arrow {
+  text-align: center; color: #a78bfa; font-size: 18px;
+  margin: 2px 0 2px 14px; line-height: 1;
+}
+.flow-branch {
+  margin-left: 42px; margin-bottom: 8px;
+  display: flex; gap: 8px;
+}
+.flow-branch-item {
+  flex: 1; border-radius: 8px; padding: 8px 10px;
+  font-size: 10.5px; line-height: 1.6; word-break: keep-all;
+}
+.flow-branch-yes { background: #fef9c3; border: 1px solid #fde047; }
+.flow-branch-no  { background: #f0fdf4; border: 1px solid #86efac; }
+.flow-result {
+  background: linear-gradient(135deg, #1a0040, #2d006e);
+  border-radius: 12px; padding: 18px 22px; color: #fff;
+  text-align: center; margin-top: 14px;
+}
+.flow-result-title { font-size: 18px; font-weight: 900; margin-bottom: 6px; }
+.flow-result-sub { font-size: 11px; color: rgba(255,255,255,.65); word-break: keep-all; }
+.tool-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 8px; margin: 14px 0;
+}
+.tool-item {
+  background: #faf5ff; border: 1px solid #e9d5ff;
+  border-radius: 8px; padding: 10px 8px; text-align: center;
+}
+.tool-icon { font-size: 20px; margin-bottom: 4px; }
+.tool-name { font-size: 10px; font-weight: 700; color: #5b21b6; }
+.tool-desc { font-size: 9.5px; color: #777; margin-top: 2px; line-height: 1.4; }
+
 @page { size: A4; margin: 0; }
 @media print {
   .page { width: 210mm; min-height: 297mm; }
@@ -244,7 +293,45 @@ body {
 
   <p class="preview-text">이 세 줄이면 AI가 정확히 뭘 해야 하는지 안다. 헤매지 않는다. 되묻지 않는다. 바로 뽑아낸다. CIF는 편리함을 위한 공식이 아니라 <strong>시간을 지키기 위한 공식</strong>이다.</p>
 
-  <div class="preview-section-label" style="margin-top:18px;">이 책의 독자</div>
+  <div class="preview-section-label" style="margin-top:18px;">4장 실습 미리보기</div>
+  <div class="preview-section-title" style="font-size:15px;">10분 만에 수집봇 실제 구동 — 코드 0줄로 시작</div>
+  <p class="preview-text" style="margin-bottom:10px;">코드를 <strong>한 줄도 안 쓴다</strong>. Claude한테 말로 시키면 끝이다. 4장에서 실제로 하는 과정이다.</p>
+
+  <div style="border:1px solid #e2e8f0;border-radius:8px;overflow:hidden;margin:0 0 10px;">
+    <!-- STEP 1 -->
+    <div style="background:#f8f7ff;padding:10px 14px;border-bottom:1px solid #e2e8f0;">
+      <div style="font-size:9px;font-weight:800;color:#7c3aed;letter-spacing:.12em;margin-bottom:4px;">STEP 1 — Claude에게 말로 시킨다</div>
+      <div style="background:#fff;border:1px solid #ddd6fe;border-radius:6px;padding:8px 12px;font-size:11.5px;color:#333;line-height:1.7;font-style:italic;">
+        "파이썬으로 네이버 뉴스에서 '바이브코딩' 키워드 기사 제목 10개를<br>
+        수집해서 news.txt 파일에 저장하는 봇 만들어줘."
+      </div>
+    </div>
+    <!-- STEP 2 -->
+    <div style="background:#fafafa;padding:10px 14px;border-bottom:1px solid #e2e8f0;">
+      <div style="font-size:9px;font-weight:800;color:#7c3aed;letter-spacing:.12em;margin-bottom:4px;">STEP 2 — Claude가 코드를 통째로 뽑아준다</div>
+      <div style="background:#0d1117;border-radius:6px;padding:8px 12px;font-family:'Consolas',monospace;font-size:10.5px;line-height:1.75;color:#e6edf3;">
+        <span style="color:#8b949e;"># Claude가 만들어준 코드 — 복붙만 하면 된다</span><br>
+        <span style="color:#ff7b72;">import</span> <span style="color:#79c0ff;">requests</span><br>
+        <span style="color:#ff7b72;">from</span> <span style="color:#79c0ff;">bs4</span> <span style="color:#ff7b72;">import</span> BeautifulSoup<br>
+        <br>
+        url = <span style="color:#a5d6ff;">"https://search.naver.com/search.naver?query=바이브코딩&where=news"</span><br>
+        soup = BeautifulSoup(requests.get(url).text, <span style="color:#a5d6ff;">'html.parser'</span>)<br>
+        titles = [a.text <span style="color:#ff7b72;">for</span> a <span style="color:#ff7b72;">in</span> soup.select(<span style="color:#a5d6ff;">'.news_tit'</span>)[:<span style="color:#79c0ff;">10</span>]]<br>
+        open(<span style="color:#a5d6ff;">'news.txt'</span>,<span style="color:#a5d6ff;">'w'</span>).write(<span style="color:#a5d6ff;">'\n'</span>.join(titles))
+      </div>
+    </div>
+    <!-- STEP 3 -->
+    <div style="background:#f0fdf4;padding:10px 14px;">
+      <div style="font-size:9px;font-weight:800;color:#166534;letter-spacing:.12em;margin-bottom:3px;">STEP 3 — 실행 결과 (약 4초)</div>
+      <div style="font-size:11px;color:#166534;line-height:1.7;">
+        ✅ news.txt 생성 완료 · 기사 제목 10개 수집<br>
+        <span style="color:#555;font-size:10.5px;">→ 에러 나면? Claude에 붙여넣기 → 수정본 즉시 받기</span>
+      </div>
+    </div>
+  </div>
+  <p class="preview-text" style="font-size:11px;color:#555;margin-bottom:14px;">4장에서 이 봇을 <strong>슬랙 알림 → 엑셀 저장 → 매일 자동 실행</strong>까지 확장한다. 모두 Claude에게 말로 시킨다. 직접 코드 한 줄도 안 쓴다.</p>
+
+  <div class="preview-section-label" style="margin-top:12px;">이 책의 독자</div>
   <div class="reader-grid">
     <div class="reader-item"><span class="tag">✅ 독자 유형 1</span>아이디어는 있는데 돈이 없는 1인 창업자</div>
     <div class="reader-item"><span class="tag">✅ 독자 유형 2</span>매일 반복하는 귀찮은 일이 있는 직장인</div>
@@ -262,6 +349,114 @@ body {
       <div class="cta-price">FREE</div>
       <div class="cta-price-label">무료 공개</div>
     </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════ PAGE 3 : 도식화 ═══════════════════ -->
+<div class="page diagram-page">
+  <div class="preview-header">
+    <div class="preview-header-title">🗺️ 수집봇 만드는 법 — 전체 흐름도</div>
+    <div class="preview-header-page">How It Works</div>
+  </div>
+
+  <div class="preview-section-label">코드 0줄 · 10분 완성 프로세스</div>
+  <div class="preview-section-title" style="font-size:16px;margin-bottom:18px;">아이디어 → 봇 구동까지 5단계</div>
+
+  <!-- STEP 1 -->
+  <div class="flow-step">
+    <div class="flow-num">1</div>
+    <div class="flow-body">
+      <div class="flow-title">무엇을 수집할지 정한다</div>
+      <div class="flow-desc">뉴스 기사 · 유튜브 제목 · 상품 가격 · SNS 트렌드 — 뭐든 된다.<br>중요한 건 <strong>"어디서" "무엇을" "어떤 형태로"</strong> 딱 세 가지다.</div>
+    </div>
+  </div>
+  <div class="flow-arrow">↓</div>
+
+  <!-- STEP 2 -->
+  <div class="flow-step">
+    <div class="flow-num">2</div>
+    <div class="flow-body">
+      <div class="flow-title">Claude에게 CIF 공식으로 요청한다</div>
+      <div class="flow-desc" style="background:#f4f0ff;border-radius:6px;padding:7px 10px;margin-top:4px;font-style:italic;color:#333;">
+        "Python으로 [사이트명]에서 [키워드] 관련 [항목] [개수]개를<br>
+        수집해서 [파일명].csv에 저장하는 봇 만들어줘."
+      </div>
+    </div>
+  </div>
+  <div class="flow-arrow">↓</div>
+
+  <!-- STEP 3 -->
+  <div class="flow-step">
+    <div class="flow-num">3</div>
+    <div class="flow-body">
+      <div class="flow-title">Claude가 완성된 코드를 준다</div>
+      <div class="flow-desc">보통 10~30초 안에 실행 가능한 코드가 나온다. 복사 → VS Code에 붙여넣기 → 저장. 끝.</div>
+    </div>
+  </div>
+  <div class="flow-arrow">↓</div>
+
+  <!-- STEP 4 분기 -->
+  <div class="flow-step">
+    <div class="flow-num">4</div>
+    <div class="flow-body">
+      <div class="flow-title">실행한다 — 에러가 나면?</div>
+    </div>
+  </div>
+  <div class="flow-branch">
+    <div class="flow-branch-item flow-branch-yes">
+      <strong>❌ 에러 발생</strong><br>
+      터미널의 빨간 글씨를<br>통째로 복사 → Claude에 붙여넣기<br>
+      → 수정 코드 즉시 받기<br>
+      → 3번으로 돌아간다
+    </div>
+    <div class="flow-branch-item flow-branch-no">
+      <strong>✅ 정상 실행</strong><br>
+      수집 결과가 파일로 저장됨<br>
+      → 데이터 확인<br>
+      → 5단계로 이동
+    </div>
+  </div>
+  <div class="flow-arrow">↓</div>
+
+  <!-- STEP 5 -->
+  <div class="flow-step">
+    <div class="flow-num">5</div>
+    <div class="flow-body">
+      <div class="flow-title">확장한다 — Claude에게 계속 말로 시킨다</div>
+      <div class="flow-desc">수집 완료 후 Claude에게: <em>"이걸 매일 오전 9시에 자동 실행하게 해줘"</em> → 스케줄러 코드 추가. <em>"슬랙으로 결과 알림 보내줘"</em> → 알림 코드 추가.</div>
+    </div>
+  </div>
+
+  <!-- 도구 그리드 -->
+  <div class="preview-section-label" style="margin-top:20px;">4장에서 쓰는 도구 4가지</div>
+  <div class="tool-grid">
+    <div class="tool-item">
+      <div class="tool-icon">🤖</div>
+      <div class="tool-name">Claude</div>
+      <div class="tool-desc">코드 생성·수정·에러 해결</div>
+    </div>
+    <div class="tool-item">
+      <div class="tool-icon">🐍</div>
+      <div class="tool-name">Python</div>
+      <div class="tool-desc">봇 실행 환경 (설치만 하면 됨)</div>
+    </div>
+    <div class="tool-item">
+      <div class="tool-icon">📁</div>
+      <div class="tool-name">VS Code</div>
+      <div class="tool-desc">코드 붙여넣고 실행하는 곳</div>
+    </div>
+    <div class="tool-item">
+      <div class="tool-icon">⏰</div>
+      <div class="tool-name">스케줄러</div>
+      <div class="tool-desc">자동 반복 실행 (코드 5줄)</div>
+    </div>
+  </div>
+
+  <div class="flow-result">
+    <div class="flow-result-title">🎉 수집봇 완성 — 총 소요 시간 10분</div>
+    <div class="flow-result-sub">코드 한 줄도 직접 쓰지 않았다. 앞으로 모든 봇이 이 방식으로 만들어진다.</div>
+    <div class="cta-url" style="margin-top:12px;font-size:11px;">👉 전체 25챕터 무료 읽기: vibecodingbible.jbooking.kr</div>
   </div>
 </div>
 
