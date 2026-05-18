@@ -3011,7 +3011,7 @@ Run #8 — 성공. <code>openai-gpt-5-2-latest-news-20260328.html</code> 발행 
 </table>
 <h3 id='section-93' class='content-h3'>텔레그램 허브 — 스마트폰 하나로 20명을 지휘하다</h3>
 <p class='para'>이 20명의 AI 직원들을 따로따로 터미널에서 관리하는 건 불가능합니다. 그래서 만든 것이 텔레그램 단일 지휘 허브입니다.</p>
-<p class='para'><img alt="Telegram AI Command Hub" src="file:///C:/Users/user/.gemini/antigravity/brain/072da9c0-b11c-4dba-bf7c-dee8500fa2f3/telegram_ai_hub_1775468802808.png" />
+<p class='para'><img alt="Telegram AI Command Hub" src="telegram_ai_hub.png" style="max-width:100%;border-radius:10px;margin:8px 0;" />
 <br><br></p>
 <p class='para'><code>@aitf_assisant_bot</code> 하나로 모든 에이전트에 접근합니다. 출근길 지하철에서 <code>/biz 오늘 미팅 자료 요약해줘</code>라고 치면, 경영지원 에이전트가 노션 지식 베이스 15,723개 문서를 검색해 자료를 뽑아줍니다. 비서를 고용할 필요가 없습니다.</p>
 <p class='para'>핵심 설계 원칙은 단 하나입니다: 사람이 앱을 여는 횟수를 줄여야 합니다. 경영자는 여러 앱을 열 시간이 없습니다. 텔레그램 하나에 모든 것이 모여야 합니다.</p>
@@ -4588,7 +4588,7 @@ if (localStorage.getItem('sib_dismissed')) {
 <script>
 (function(global){'use strict';
 var SB_URL='https://hzobwciaqtbfaxxvcots.supabase.co';
-var SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh6b2J3Y2lhcXRiZmF4eHZjb3RzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcxMjIxNTcsImV4cCI6MjA2MjY5ODE1N30.YXKC3Rv1jqMb-rr8NQ5Hm5wFcFWlKuNZ5F2bStUK_Ro';
+var SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh6b2J3Y2lhcXRiZmF4eHZjb3RzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg2NTMxMTYsImV4cCI6MjA5NDIyOTExNn0.9VatQ5UxJrAKEE9gOcknvVvd_9I0j9GgQWe_UvtcfCg';
 var REACTIONS=[{type:'helpful',emoji:'👍',label:'도움됐어요'},{type:'fire',emoji:'🔥',label:'인상적이었어요'},{type:'curious',emoji:'🤔',label:'더 알고 싶어요'}];
 var _bookId='',_counts={},_debounceMap={};
 function lsGet(k){try{return localStorage.getItem(k)}catch(e){return null}}
@@ -4628,7 +4628,7 @@ global.EbookReactions={init:init,renderBar:renderBar,handleClick:handleClick};
 <script>
 (function(){'use strict';
 var SUPABASE_URL='https://hzobwciaqtbfaxxvcots.supabase.co';
-var SUPABASE_ANON_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh6b2J3Y2lhcXRiZmF4eHZjb3RzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcxMjIxNTcsImV4cCI6MjA2MjY5ODE1N30.YXKC3Rv1jqMb-rr8NQ5Hm5wFcFWlKuNZ5F2bStUK_Ro';
+var SUPABASE_ANON_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh6b2J3Y2lhcXRiZmF4eHZjb3RzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg2NTMxMTYsImV4cCI6MjA5NDIyOTExNn0.9VatQ5UxJrAKEE9gOcknvVvd_9I0j9GgQWe_UvtcfCg';
 var TABLE='messages',MAX_MSG=30,FETCH_LIMIT=5,_bookId=null,_loaded={};
 function hdrs(){return{'apikey':SUPABASE_ANON_KEY,'Authorization':'Bearer '+SUPABASE_ANON_KEY,'Content-Type':'application/json','Prefer':'return=minimal'}}
 function fetchMessages(bookId,chapterId){return fetch(SUPABASE_URL+'/rest/v1/'+TABLE+'?book_id=eq.'+encodeURIComponent(bookId)+'&chapter_id=eq.'+encodeURIComponent(chapterId)+'&order=created_at.desc&limit='+FETCH_LIMIT,{headers:hdrs()}).then(function(r){if(!r.ok)throw new Error();return r.json()})}
@@ -4680,7 +4680,7 @@ window.EbookMessages=EbookMessages;
 <script>
 (function(){'use strict';
 var SB_URL='https://hzobwciaqtbfaxxvcots.supabase.co';
-var SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh6b2J3Y2lhcXRiZmF4eHZjb3RzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcxMjIxNTcsImV4cCI6MjA2MjY5ODE1N30.YXKC3Rv1jqMb-rr8NQ5Hm5wFcFWlKuNZ5F2bStUK_Ro';
+var SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh6b2J3Y2lhcXRiZmF4eHZjb3RzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg2NTMxMTYsImV4cCI6MjA5NDIyOTExNn0.9VatQ5UxJrAKEE9gOcknvVvd_9I0j9GgQWe_UvtcfCg';
 var TABLE='completions',_bookId='vibe-bible-2',_submitted=false;
 function lsGet(k){try{return localStorage.getItem(k)}catch(e){return null}}
 function lsSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}
@@ -4853,7 +4853,7 @@ if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded'
 (function(){
 'use strict';
 var SB_URL='https://hzobwciaqtbfaxxvcots.supabase.co';
-var SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh6b2J3Y2lhcXRiZmF4eHZjb3RzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcxMjIxNTcsImV4cCI6MjA2MjY5ODE1N30.YXKC3Rv1jqMb-rr8NQ5Hm5wFcFWlKuNZ5F2bStUK_Ro';
+var SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh6b2J3Y2lhcXRiZmF4eHZjb3RzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg2NTMxMTYsImV4cCI6MjA5NDIyOTExNn0.9VatQ5UxJrAKEE9gOcknvVvd_9I0j9GgQWe_UvtcfCg';
 var OPTS=['A','B','C','D'];
 var _bookId='',_bookTitle='',_nextUrl='',_score=0,_total=0,_readerName='';
 function lsGet(k){try{return localStorage.getItem(k)}catch(e){return null}}
