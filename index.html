@@ -58,8 +58,9 @@ main{flex:1;overflow-y:auto;padding:50px 60px;position:relative;}
 .version-box{background:var(--ver-bg);border:1.5px solid var(--ver-border);border-radius:12px;padding:16px 22px;margin:20px 0;font-size:.95rem;opacity:.9}
 pre{background:var(--code-bg);color:var(--code-text);padding:20px;border-radius:12px;overflow-x:auto;margin:25px 0;font-size:.9rem;line-height:1.6;font-family:'Consolas','Courier New',monospace}
 p code,li code,td code{background:rgba(124,58,237,.12);padding:2px 7px;border-radius:5px;color:var(--accent);font-size:.93em}
-.md-table{width:100%;border-collapse:collapse;margin:28px 0;font-size:1rem}
-.md-table th{background:var(--accent);color:#fff;padding:10px 14px;text-align:left;font-weight:700}
+.md-table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:28px 0;border-radius:10px;position:relative;}
+.md-table{width:100%;border-collapse:collapse;font-size:1rem}
+.md-table th{background:var(--accent);color:#fff;padding:10px 14px;text-align:left;font-weight:700;white-space:nowrap}
 .md-table td{padding:9px 14px;border-bottom:1px solid var(--border)}
 .md-table tr:hover td{background:rgba(124,58,237,.06)}
 .md-ul,.md-ol{margin:0 0 22px 28px;font-size:1.1rem;opacity:.9}
@@ -340,7 +341,8 @@ a:hover{text-decoration:underline}
   }
 
   /* 표 — 가로 스크롤 래퍼 */
-  .md-table{font-size:.82rem;display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .md-table-wrap{margin:20px 0;border-radius:8px;}
+  .md-table{font-size:.8rem;min-width:420px;}
   .md-table th,.md-table td{padding:8px 10px;white-space:nowrap}
 
   /* 리스트 */
@@ -5214,6 +5216,31 @@ window.copyGiftLink = function(){
     navigator.clipboard.writeText(msg).then(function(){_showToast('\uD83C\uDF81 \uC120\uBB3C \uBA54\uC2DC\uC9C0 \uBCF5\uC0AC \uC644\uB8CC!');}).catch(function(){_fbCopy(msg);_showToast('\uD83C\uDF81 \uC120\uBB3C \uBA54\uC2DC\uC9C0 \uBCF5\uC0AC \uC644\uB8CC!');});
   } else {_fbCopy(msg);_showToast('\uD83C\uDF81 \uC120\uBB3C \uBA54\uC2DC\uC9C0 \uBCF5\uC0AC \uC644\uB8CC!');}
 };
+})();
+</script>
+<script>
+/* 테이블 모바일 가로 스크롤 래퍼 자동 적용 */
+(function(){
+  function wrapTables(){
+    document.querySelectorAll('.md-table').forEach(function(t){
+      if(t.parentNode && t.parentNode.classList && t.parentNode.classList.contains('md-table-wrap')) return;
+      var w = document.createElement('div');
+      w.className = 'md-table-wrap';
+      t.parentNode.insertBefore(w, t);
+      w.appendChild(t);
+    });
+    /* inline style tables (비교표 등) */
+    document.querySelectorAll('table:not(.md-table)').forEach(function(t){
+      if(t.parentNode && t.parentNode.classList && t.parentNode.classList.contains('md-table-wrap')) return;
+      if(t.parentNode && t.parentNode.style && t.parentNode.style.overflowX === 'auto') return;
+      var w = document.createElement('div');
+      w.style.cssText = 'overflow-x:auto;-webkit-overflow-scrolling:touch;margin:16px 0;border-radius:8px;';
+      t.parentNode.insertBefore(w, t);
+      w.appendChild(t);
+    });
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', wrapTables);
+  else wrapTables();
 })();
 </script>
 </body>
