@@ -1581,6 +1581,54 @@ for block in response.content:
       <!-- ★ 최종 퀴즈 -->
       <div id="quiz-container-vol4" style="margin:48px 0;"></div>
 
+      <!-- ★ 수료 후 AI사냥꾼 심리 트리거 -->
+      <div id="after-cert-promo" style="margin:48px 0;display:none;">
+        <div style="padding:32px 28px;background:linear-gradient(135deg,#0d0d1a,#1a0a00);border:1.5px solid rgba(255,140,0,.35);border-radius:20px;text-align:center;word-break:keep-all;">
+          <div style="font-size:.7rem;font-weight:700;letter-spacing:.18em;color:#ff8c00;margin-bottom:10px;">🎓 수료 완료 · 다음 단계</div>
+          <h3 style="font-size:1.4rem;font-weight:900;color:#fff;margin:0 0 10px;letter-spacing:-.03em;">Claude Code 마스터가 된 당신,<br><span style="color:#ff8c00;">이제 실전 영상으로 격차를 벌리세요</span></h3>
+          <p style="font-size:.86rem;color:rgba(255,255,255,.65);margin:0 0 20px;line-height:1.8;">
+            이 책을 끝낸 사람은 전체 독자의 <strong style="color:#ff8c00;">17%</strong>뿐입니다.<br>
+            AI사냥꾼 채널에서 실전 코딩 영상을 보면 격차가 더 벌어집니다.
+          </p>
+          <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:22px;">
+            <div style="padding:12px 14px;background:rgba(255,140,0,.1);border:1px solid rgba(255,140,0,.3);border-radius:10px;text-align:center;min-width:90px;">
+              <div style="font-size:1.1rem;font-weight:900;color:#ff8c00;">매주</div>
+              <div style="font-size:.65rem;color:rgba(255,255,255,.45);">실전 영상 업로드</div>
+            </div>
+            <div style="padding:12px 14px;background:rgba(255,140,0,.1);border:1px solid rgba(255,140,0,.3);border-radius:10px;text-align:center;min-width:90px;">
+              <div style="font-size:1.1rem;font-weight:900;color:#ff8c00;">무료</div>
+              <div style="font-size:.65rem;color:rgba(255,255,255,.45);">구독료 0원</div>
+            </div>
+            <div style="padding:12px 14px;background:rgba(255,140,0,.1);border:1px solid rgba(255,140,0,.3);border-radius:10px;text-align:center;min-width:90px;">
+              <div style="font-size:1.1rem;font-weight:900;color:#ff8c00;">독점</div>
+              <div style="font-size:.65rem;color:rgba(255,255,255,.45);">구독자 선공개</div>
+            </div>
+          </div>
+          <a href="https://www.youtube.com/channel/UCCqi9m0XPHLPxvReWfJhJig?sub_confirmation=1" target="_blank" rel="noopener"
+            style="display:inline-block;background:linear-gradient(135deg,#ff4500,#ff8c00);color:#fff;font-weight:900;font-size:1rem;padding:14px 32px;border-radius:12px;text-decoration:none;box-shadow:0 6px 20px rgba(255,140,0,.3);"
+            onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 10px 28px rgba(255,140,0,.45)'"
+            onmouseout="this.style.transform='';this.style.boxShadow='0 6px 20px rgba(255,140,0,.3)'">
+            🔔 AI사냥꾼 구독하기 →
+          </a>
+          <div style="margin-top:10px;font-size:.72rem;color:rgba(255,255,255,.3);">구독 무료 · 알림 설정하면 새 영상 바로 받기</div>
+        </div>
+      </div>
+      <script>
+      (function(){
+        var promoEl = document.getElementById('after-cert-promo');
+        if(!promoEl) return;
+        var shown = false;
+        function tryShow(){
+          if(shown) return;
+          var certDone = localStorage.getItem('eq_cert_vibe-bible-4');
+          if(certDone){shown=true;promoEl.style.display='block';promoEl.scrollIntoView({behavior:'smooth',block:'nearest'});}
+        }
+        window.addEventListener('storage', tryShow);
+        document.addEventListener('click', function(){ setTimeout(tryShow, 800); });
+        setTimeout(tryShow, 2000);
+      })();
+      </script>
+
       <p style="text-align:center;color:var(--muted);font-size:.9rem;margin-top:48px;line-height:1.8">
         Claude Code 바이블 2026 — 저자 김화현 · 공동저자 로드<br>
         AI사냥꾼 채널 · dev@stayjanda.com<br>
