@@ -1447,7 +1447,7 @@ var Q_VOL1=[
   function _unlock(a){localStorage.setItem(_GKEY,'1');_showCode(a);}
   function _showCode(a){
     document.getElementById('cgate-methods').style.display='none';
-    document.getElementById('cgate-code-section').style.display='';
+    document.getElementById('cgate-code-section').style.display='block';
     document.getElementById('cgate-already-btn').style.display='none';
     var d=document.querySelectorAll('.cgate-digit');
     if(a){d.forEach(function(x,i){setTimeout(function(){x.classList.add('show');},i*140+300);});}else{d.forEach(function(x){x.classList.add('show');});}
