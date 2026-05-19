@@ -1167,7 +1167,7 @@ if (localStorage.getItem('sib_dismissed')) {
         <a class="eq-share-x" id="eq-share-x" href="#" target="_blank" rel="noopener"><span style="font-size:1rem;font-weight:900;">✕</span> X(트위터)</a>
       </div>
       <button class="eq-pdf-btn" id="eq-pdf-btn">📄 PDF 수료증 다운로드</button>
-      <a class="eq-cert-community" href="https://open.kakao.com/o/gs65vQmi" target="_blank" rel="noopener">💬 AI사냥꾼 오픈채팅 입장</a>
+      <button class="eq-cert-community" onclick="openCommunityGate()">💬 AI사냥꾼 1% 모임 입장하기</button>
       <a class="eq-cert-next-btn" id="eq-cert-next" href="#" target="_blank" rel="noopener">다음 권 읽기 →</a>
     </div>
   </div>
@@ -1375,5 +1375,101 @@ var Q_VOL1=[
   document.body.appendChild(bar);
 })();
 </script>
+<!-- ▼ 커뮤니티 게이트 -->
+<style>
+#cgate-overlay{display:none;position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.92);align-items:center;justify-content:center;padding:16px;box-sizing:border-box}
+#cgate-overlay.open{display:flex}
+#cgate-card{background:#fff;border-radius:20px;width:100%;max-width:400px;padding:26px 22px 20px;position:relative;text-align:center;max-height:90vh;overflow-y:auto}
+#cgate-close{position:absolute;top:12px;right:16px;background:none;border:none;font-size:1.4rem;cursor:pointer;color:#aaa;z-index:1;padding:4px 8px}
+.cgate-badge{display:inline-block;background:#111;color:#fbbf24;font-size:.68rem;font-weight:900;padding:4px 12px;border-radius:20px;margin-bottom:10px;letter-spacing:.6px}
+#cgate-title{font-size:1.1rem;font-weight:900;color:#111;margin-bottom:5px}
+#cgate-sub{font-size:.77rem;color:#666;margin-bottom:16px;line-height:1.6}
+.cgate-method{border:2px solid #eee;border-radius:14px;padding:15px;margin-bottom:10px;text-align:left}
+.cgate-method-title{font-size:.85rem;font-weight:800;color:#111;margin-bottom:4px}
+.cgate-method-desc{font-size:.76rem;color:#888;margin-bottom:10px;line-height:1.5;word-break:keep-all}
+.cgate-method-btn{width:100%;min-height:42px;border:none;border-radius:10px;font-size:.83rem;font-weight:800;cursor:pointer;font-family:inherit;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:5px}
+.cgate-share-btn{background:#09B83E;color:#fff}.cgate-share-btn:hover{background:#07a034}.cgate-share-btn.ok{background:#059669}
+#cgate-review-text{width:100%;box-sizing:border-box;border:1.5px solid #eee;border-radius:8px;padding:10px 12px;font-size:.8rem;resize:none;height:68px;font-family:inherit;outline:none;transition:border-color .2s;display:block}
+#cgate-review-text:focus{border-color:#09B83E}
+#cgate-review-text.err{border-color:#ef4444}
+.cgate-review-btn{background:#111;color:#fff;margin-top:8px}.cgate-review-btn:hover{background:#333}
+#cgate-divider{display:flex;align-items:center;gap:8px;margin:2px 0 10px;color:#ccc;font-size:.73rem}
+#cgate-divider::before,#cgate-divider::after{content:'';flex:1;border-top:1px solid #eee}
+#cgate-code-section{display:none}
+#cgate-unlock-msg{font-size:.88rem;font-weight:800;color:#09B83E;margin-bottom:4px}
+#cgate-code-label{font-size:.75rem;color:#888;margin-bottom:14px;line-height:1.5}
+#cgate-code-wrap{display:flex;justify-content:center;gap:7px;margin-bottom:20px}
+.cgate-digit{width:42px;height:52px;background:#111;color:#fbbf24;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;font-weight:900;transform:scale(0) rotate(-15deg);transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
+.cgate-digit.show{transform:scale(1) rotate(0deg)}
+#cgate-enter-btn{width:100%;min-height:50px;background:#FEE500;color:#111;border:none;border-radius:12px;font-size:.95rem;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;text-decoration:none;transition:all .2s;font-family:inherit}
+#cgate-enter-btn:hover{background:#f5d900;box-shadow:0 4px 18px rgba(254,229,0,.5)}
+#cgate-already-btn{width:100%;background:none;border:none;color:#bbb;font-size:.72rem;cursor:pointer;margin-top:10px;text-decoration:underline;font-family:inherit;display:block}
+</style>
+<div id="cgate-overlay">
+  <div id="cgate-card">
+    <button id="cgate-close" aria-label="닫기">×</button>
+    <div class="cgate-badge">🏹 AI 사냥꾼 1% 모임</div>
+    <div id="cgate-title">커뮤니티 입장 코드 받기</div>
+    <div id="cgate-sub">전국 완독자 중 AI를 가장 잘 사냥하는<br><strong>1%만 모인 공간</strong> · 활동 중 <strong>1,200명+</strong></div>
+    <div id="cgate-methods">
+      <div class="cgate-method">
+        <div class="cgate-method-title">📤 방법 1 — 책 공유하기</div>
+        <div class="cgate-method-desc">이 책 링크를 1명에게 공유하면<br>즉시 입장 코드가 공개됩니다</div>
+        <button class="cgate-method-btn cgate-share-btn" id="cgate-share-btn">📤 공유하고 코드 받기</button>
+      </div>
+      <div id="cgate-divider">또는</div>
+      <div class="cgate-method">
+        <div class="cgate-method-title">✍️ 방법 2 — 한 줄 후기 남기기</div>
+        <div class="cgate-method-desc">읽고 느낀 점 한 줄이면 충분합니다<br>후기 제출 즉시 코드가 공개됩니다</div>
+        <textarea id="cgate-review-text" placeholder="예) 바이브코딩 덕분에 처음으로 자동화 성공했어요!"></textarea>
+        <button class="cgate-method-btn cgate-review-btn" id="cgate-review-btn">✍️ 후기 남기고 코드 받기</button>
+      </div>
+    </div>
+    <div id="cgate-code-section">
+      <div id="cgate-unlock-msg">🎉 입장 코드 잠금 해제!</div>
+      <div id="cgate-code-label">카카오 오픈채팅 입장 시 비밀번호로 입력하세요</div>
+      <div id="cgate-code-wrap">
+        <div class="cgate-digit">3</div><div class="cgate-digit">8</div><div class="cgate-digit">0</div><div class="cgate-digit">7</div><div class="cgate-digit">0</div><div class="cgate-digit">0</div>
+      </div>
+      <a id="cgate-enter-btn" href="https://open.kakao.com/o/gs65vQmi" target="_blank" rel="noopener">🍊 카카오 오픈채팅 입장하기</a>
+    </div>
+    <button id="cgate-already-btn">이미 완료했어요 → 코드 보기</button>
+  </div>
+</div>
+<script>
+(function(){
+  var _BID='book1',_GKEY='community_gate_'+_BID;
+  var _SBU='https://hzobwciaqtbfaxxvcots.supabase.co';
+  var _SBK='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh6b2J3Y2lhcXRiZmF4eHZjb3RzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg2NTMxMTYsImV4cCI6MjA5NDIyOTExNn0.9VatQ5UxJrAKEE9gOcknvVvd_9I0j9GgQWe_UvtcfCg';
+  function _openGate(){document.getElementById('cgate-overlay').classList.add('open');if(localStorage.getItem(_GKEY)){_showCode(false);}else{_showMethods();}}
+  function _closeGate(){document.getElementById('cgate-overlay').classList.remove('open');}
+  function _showMethods(){document.getElementById('cgate-methods').style.display='';document.getElementById('cgate-code-section').style.display='none';document.getElementById('cgate-already-btn').style.display='';}
+  function _unlock(a){localStorage.setItem(_GKEY,'1');_showCode(a);}
+  function _showCode(a){
+    document.getElementById('cgate-methods').style.display='none';
+    document.getElementById('cgate-code-section').style.display='';
+    document.getElementById('cgate-already-btn').style.display='none';
+    var d=document.querySelectorAll('.cgate-digit');
+    if(a){d.forEach(function(x,i){setTimeout(function(){x.classList.add('show');},i*140+300);});}else{d.forEach(function(x){x.classList.add('show');});}
+  }
+  document.getElementById('cgate-share-btn').onclick=function(){
+    var url=location.origin+location.pathname,btn=this;
+    function done(){btn.textContent='✅ 복사 완료!';btn.classList.add('ok');setTimeout(function(){_unlock(true);},700);}
+    try{navigator.clipboard.writeText(url).then(done).catch(function(){_fb(url,done);});}catch(e){_fb(url,done);}
+  };
+  function _fb(t,cb){try{var x=document.createElement('textarea');x.value=t;x.style.cssText='position:fixed;top:-9999px';document.body.appendChild(x);x.select();document.execCommand('copy');document.body.removeChild(x);cb();}catch(e){_unlock(true);}}
+  document.getElementById('cgate-review-btn').onclick=function(){
+    var txt=(document.getElementById('cgate-review-text').value||'').trim();
+    if(txt.length<5){var el=document.getElementById('cgate-review-text');el.classList.add('err');setTimeout(function(){el.classList.remove('err');},800);return;}
+    var btn=this;btn.disabled=true;btn.textContent='저장 중...';
+    fetch(_SBU+'/rest/v1/ebook_reviews',{method:'POST',headers:{'apikey':_SBK,'Authorization':'Bearer '+_SBK,'Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify({book:_BID,name:'익명',content:txt})}).catch(function(){}).finally(function(){_unlock(true);});
+  };
+  document.getElementById('cgate-already-btn').onclick=function(){if(localStorage.getItem(_GKEY)){_showCode(false);}else{this.textContent='공유 또는 후기를 먼저 남겨주세요!';}};
+  document.getElementById('cgate-close').onclick=_closeGate;
+  document.getElementById('cgate-overlay').onclick=function(e){if(e.target===this)_closeGate();};
+  window.openCommunityGate=_openGate;
+})();
+</script>
+<!-- ▲ 커뮤니티 게이트 -->
 </body>
 </html>
