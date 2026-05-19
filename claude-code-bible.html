@@ -424,7 +424,7 @@
     <span class="top-bar-title">Claude Code 바이블</span>
     <span style="color:var(--border)">›</span>
     <span class="top-bar-chapter" id="current-chapter-label">표지</span>
-    <button class="gift-btn" id="share-btn-cc" onclick="shareBook()">🎁 선물하기</button>
+    <button class="gift-btn" id="share-btn-cc" onclick="openGiftModal()">🎁 선물하기</button>
   </div>
 
   <!-- ━━━━ COVER ━━━━ -->
@@ -2824,6 +2824,8 @@ function shareBook() {
 .eq-pdf-btn:hover{background:rgba(255,255,255,.12);color:#fff}
 .eq-cert-next-btn{width:100%;min-height:44px;display:flex;align-items:center;justify-content:center;gap:4px;background:linear-gradient(135deg,#7c3aed,#a78bfa);color:#fff;border:none;border-radius:10px;font-size:.83rem;font-weight:700;cursor:pointer;transition:all .2s;text-decoration:none;font-family:inherit}
 .eq-cert-next-btn:hover{box-shadow:0 4px 16px rgba(124,58,237,.4)}
+.eq-cert-community{width:100%;min-height:44px;display:flex;align-items:center;justify-content:center;gap:6px;background:#09B83E;color:#fff;border:none;border-radius:10px;font-size:.83rem;font-weight:800;cursor:pointer;transition:all .2s;text-decoration:none;font-family:inherit;margin-bottom:8px}
+.eq-cert-community:hover{background:#07a034;box-shadow:0 4px 16px rgba(9,184,62,.35)}
 #eq-toast{position:fixed;bottom:32px;left:50%;transform:translateX(-50%) translateY(20px);background:#333;color:#fff;padding:10px 22px;border-radius:24px;font-size:14px;opacity:0;pointer-events:none;transition:all .3s;z-index:100001;white-space:nowrap}
 #eq-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 #eq-print-cert{display:none}
@@ -2866,6 +2868,7 @@ function shareBook() {
         <a class="eq-share-x" id="eq-share-x" href="#" target="_blank" rel="noopener"><span style="font-size:1rem;font-weight:900;">✕</span> X(트위터)</a>
       </div>
       <button class="eq-pdf-btn" id="eq-pdf-btn">📄 PDF 수료증 다운로드</button>
+      <a class="eq-cert-community" href="https://open.kakao.com/o/gs65vQmi" target="_blank" rel="noopener">💬 AI사냥꾼 오픈채팅 입장</a>
       <a class="eq-cert-next-btn" id="eq-cert-next" href="#" target="_blank" rel="noopener">다음 권 읽기 →</a>
     </div>
   </div>
@@ -3004,6 +3007,72 @@ var Q_VOL4=[
 (function(){
   function r(){if(typeof EbookQuiz!=='undefined')EbookQuiz.render('quiz-container-vol4',Q_VOL4,'4권 Claude Code 바이블','vibe-bible-4','https://aitf-landing.onrender.com');else setTimeout(r,100);}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',r);else r();
+})();
+</script>
+<!-- 🎁 선물하기 모달 -->
+<div id="gift-modal" onclick="if(event.target===this)closeGiftModal()" style="display:none;position:fixed;inset:0;z-index:99998;background:rgba(0,0,0,.65);">
+  <div style="position:absolute;bottom:0;left:0;right:0;max-width:500px;margin:0 auto;background:var(--bg,#0d0f1a);border-radius:20px 20px 0 0;padding:26px 20px 40px;box-shadow:0 -4px 30px rgba(0,0,0,.4);">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+      <b style="font-size:1.1rem;font-weight:900;color:var(--text,#eee);">🎁 친구에게 선물하기</b>
+      <button onclick="closeGiftModal()" style="background:none;border:none;font-size:1.6rem;cursor:pointer;color:var(--text,#eee);line-height:1;padding:0 2px;">×</button>
+    </div>
+    <p style="font-size:.8rem;opacity:.6;margin:0 0 12px;word-break:keep-all;color:var(--text,#eee);">AI 시대 뒤처지는 지인에게 무료로 선물하세요 💌</p>
+    <input id="gift-name-input" type="text" maxlength="20" placeholder="받는 분 이름 (선택, 예: 홍길동)"
+      oninput="giftUpdateMsg()"
+      style="width:100%;padding:11px 13px;border:1.5px solid rgba(128,128,128,.3);border-radius:10px;font-size:.87rem;margin-bottom:10px;box-sizing:border-box;font-family:inherit;background:rgba(255,255,255,.07);color:var(--text,#eee);outline:none;">
+    <textarea id="gift-msg-area" readonly rows="5" onclick="this.select()"
+      style="width:100%;padding:11px 13px;border:1px dashed rgba(124,58,237,.5);border-radius:10px;font-size:.78rem;line-height:1.75;background:rgba(124,58,237,.06);color:var(--text,#eee);box-sizing:border-box;resize:none;font-family:inherit;margin-bottom:13px;word-break:keep-all;cursor:pointer;"></textarea>
+    <div style="display:flex;flex-direction:column;gap:9px;">
+      <button id="gift-btn-msg" onclick="giftCopyMsg()" style="padding:14px;background:linear-gradient(135deg,#7c3aed,#9d4edd);color:#fff;border:none;border-radius:12px;font-size:.9rem;font-weight:800;cursor:pointer;font-family:inherit;transition:opacity .2s;">📋 선물 메시지 복사</button>
+      <button id="gift-btn-link" onclick="giftCopyLink()" style="padding:12px;background:rgba(128,128,128,.12);border:1.5px solid rgba(128,128,128,.25);border-radius:12px;font-size:.86rem;font-weight:700;cursor:pointer;color:var(--text,#eee);font-family:inherit;transition:opacity .2s;">🔗 링크만 복사</button>
+    </div>
+    <p style="font-size:.73rem;text-align:center;opacity:.45;margin:11px 0 0;color:var(--text,#eee);">복사 후 카카오톡 · 문자 · DM에 붙여넣기하세요</p>
+  </div>
+</div>
+<script>
+(function(){
+  var _GU='https://aiaijungle.github.io/vibe-ebook/claude-code-bible.html';
+  var _GT='Claude Code 실전 바이블 4권';
+  var _GD='Claude Code로 AI와 함께 개발하는 법 💻\n바이브코딩 마스터 가이드 — 완전 무료!';
+  function _msg(n){var u=n?_GU+'?ref='+encodeURIComponent(n):_GU;return (n?n+'님에게 드리는 선물 🎁\n\n':'')+'『'+_GT+'』을 무료로 읽어보세요!\n\n'+_GD+'\n\n👉 '+u;}
+  window.openGiftModal=function(){
+    var el=document.getElementById('gift-modal');if(el)el.style.display='block';
+    document.getElementById('gift-name-input').value='';
+    document.getElementById('gift-msg-area').value=_msg('');
+  };
+  window.closeGiftModal=function(){var el=document.getElementById('gift-modal');if(el)el.style.display='none';};
+  window.giftUpdateMsg=function(){
+    var n=(document.getElementById('gift-name-input').value||'').trim();
+    document.getElementById('gift-msg-area').value=_msg(n);
+  };
+  function _fbCp(txt){var ta=document.createElement('textarea');ta.value=txt;ta.style.cssText='position:fixed;opacity:0;top:-9999px;left:0;';document.body.appendChild(ta);ta.focus();ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);}
+  function _doCopy(txt,bid,orig){
+    var b=document.getElementById(bid);
+    function _ok(){if(b){b.textContent='✅ 복사됨! 카카오·문자에 붙여넣기';setTimeout(function(){b.textContent=orig;},2800);}}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(_ok).catch(function(){_fbCp(txt);_ok();});}else{_fbCp(txt);_ok();}
+  }
+  window.giftCopyMsg=function(){var n=(document.getElementById('gift-name-input').value||'').trim();_doCopy(_msg(n),'gift-btn-msg','📋 선물 메시지 복사');};
+  window.giftCopyLink=function(){var n=(document.getElementById('gift-name-input').value||'').trim();_doCopy(n?_GU+'?ref='+encodeURIComponent(n):_GU,'gift-btn-link','🔗 링크만 복사');};
+})();
+</script>
+<script>
+(function(){
+  if(window.IntersectionObserver){var _su='https://hzobwciaqtbfaxxvcots.supabase.co',_sk='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh6b2J3Y2lhcXRiZmF4eHZjb3RzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg2NTMxMTYsImV4cCI6MjA5NDIyOTExNn0.9VatQ5UxJrAKEE9gOcknvVvd_9I0j9GgQWe_UvtcfCg',_bid=location.pathname.split('/').pop().replace('.html','')||'index',_s={},_ob=new IntersectionObserver(function(e){e.forEach(function(x){if(!x.isIntersecting)return;var c=x.target.textContent.trim().slice(0,40);if(_s[c])return;_s[c]=1;try{fetch(_su+'/rest/v1/chapter_views',{method:'POST',headers:{'apikey':_sk,'Authorization':'Bearer '+_sk,'Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify({book_id:_bid,chapter:c})}).catch(function(){});}catch(_e){}});},{threshold:0.3});document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('.content-h1').forEach(function(el){_ob.observe(el);});});}
+  var ref=new URLSearchParams(location.search).get('ref');
+  if(!ref)return;
+  var bar=document.createElement('div');
+  bar.style.cssText='position:fixed;top:0;left:0;right:0;z-index:99997;background:linear-gradient(135deg,#f59e0b,#fbbf24);color:#000;text-align:center;padding:10px 16px;font-size:.85rem;font-weight:700;word-break:keep-all;box-shadow:0 2px 8px rgba(0,0,0,.18);';
+  var nameEl=document.createElement('strong');
+  try{nameEl.textContent=decodeURIComponent(ref);}catch(e){nameEl.textContent=ref;}
+  bar.appendChild(document.createTextNode('🎁 '));
+  bar.appendChild(nameEl);
+  bar.appendChild(document.createTextNode('님이 선물한 책이에요! 반가워요 😊 '));
+  var closeBtn=document.createElement('button');
+  closeBtn.textContent='×';
+  closeBtn.style.cssText='background:none;border:none;cursor:pointer;font-size:1.1rem;font-weight:700;margin-left:4px;vertical-align:middle;';
+  closeBtn.onclick=function(){bar.remove();};
+  bar.appendChild(closeBtn);
+  document.body.appendChild(bar);
 })();
 </script>
 </body>
