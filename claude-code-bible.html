@@ -3101,6 +3101,7 @@ var Q_VOL4=[
 #cgate-code-wrap{display:flex;justify-content:center;gap:4px;margin-bottom:20px}
 .cgate-digit{width:35px;height:46px;background:#111;color:#fbbf24;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1.25rem;font-weight:900;transform:scale(0) rotate(-15deg);transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
 .cgate-digit.show{transform:scale(1) rotate(0deg)}
+@keyframes _cgate-shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-7px)}40%{transform:translateX(7px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}.cgate-shake{animation:_cgate-shake .5s ease;border-color:#f59e0b!important;transition:border-color .2s}
 #cgate-enter-btn{width:100%;min-height:50px;background:#FEE500;color:#111;border:none;border-radius:12px;font-size:.95rem;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;text-decoration:none;transition:all .2s;font-family:inherit}
 #cgate-enter-btn:hover{background:#f5d900;box-shadow:0 4px 18px rgba(254,229,0,.5)}
 #cgate-already-btn{width:100%;background:none;border:none;color:#bbb;font-size:.72rem;cursor:pointer;margin-top:10px;text-decoration:underline;font-family:inherit;display:block}
@@ -3154,7 +3155,7 @@ var Q_VOL4=[
   }
   document.getElementById('cgate-share-btn').onclick=function(){
     var url=location.origin+location.pathname,btn=this;
-    function done(){btn.textContent='✅ 복사 완료!';btn.classList.add('ok');setTimeout(function(){_unlock(true);},700);}
+    function done(){btn.textContent='✅ 복사 완료!';btn.classList.add('ok');setTimeout(function(){_unlock(true);},1000);}
     try{navigator.clipboard.writeText(url).then(done).catch(function(){_fb(url,done);});}catch(e){_fb(url,done);}
   };
   function _fb(t,cb){try{var x=document.createElement('textarea');x.value=t;x.style.cssText='position:fixed;top:-9999px';document.body.appendChild(x);x.select();document.execCommand('copy');document.body.removeChild(x);cb();}catch(e){_unlock(true);}}
@@ -3164,7 +3165,17 @@ var Q_VOL4=[
     var btn=this;btn.disabled=true;btn.textContent='저장 중...';
     fetch(_SBU+'/rest/v1/ebook_reviews',{method:'POST',headers:{'apikey':_SBK,'Authorization':'Bearer '+_SBK,'Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify({book:_BID,name:'익명',content:txt})}).catch(function(){}).finally(function(){_unlock(true);});
   };
-  document.getElementById('cgate-already-btn').onclick=function(){if(localStorage.getItem(_GKEY)){_showCode(false);}else{this.textContent='공유 또는 후기를 먼저 남겨주세요!';}};
+  document.getElementById('cgate-already-btn').onclick=function(){
+    if(localStorage.getItem(_GKEY)){_showCode(false);}
+    else{
+      var self=this,m=document.getElementById('cgate-methods');
+      m.scrollIntoView({behavior:'smooth',block:'nearest'});
+      m.classList.add('cgate-shake');
+      setTimeout(function(){m.classList.remove('cgate-shake');},550);
+      self.textContent='⬆️ 위에서 공유 또는 후기를 먼저!';
+      setTimeout(function(){self.textContent='이미 완료했어요 → 코드 보기';},2200);
+    }
+  };
   document.getElementById('cgate-close').onclick=_closeGate;
   document.getElementById('cgate-overlay').onclick=function(e){if(e.target===this)_closeGate();};
   window.openCommunityGate=_openGate;
