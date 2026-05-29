@@ -94,6 +94,11 @@
     [data-theme="dark"] .ch-body blockquote { color: #d6d3d1 }
     [data-theme="dark"] .tip-box { background: rgba(245,158,11,.08); border-color: var(--accent) }
     [data-theme="dark"] .warn-box { background: rgba(245,158,11,.06) }
+    /* 🔒 Paywall — 강.4 이후 잠금 (URL ?unlock=잔다비밀번호 또는 localStorage 해제 가능) */
+    .paywall-locked { position: relative; max-height: 480px; overflow: hidden; pointer-events: none; user-select: none; filter: blur(3px); opacity: 0.55; }
+    .paywall-locked::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 320px; background: linear-gradient(180deg, transparent 0%, var(--bg) 75%); pointer-events: none; }
+    .paywall-unlocked .paywall-locked { max-height: none; overflow: visible; pointer-events: auto; user-select: auto; filter: none; opacity: 1; }
+    .paywall-unlocked .paywall-locked::after { display: none; }
     [data-theme="dark"] .top-bar { background: rgba(10,10,15,.95) !important; border-bottom-color: var(--border) }
     [data-theme="dark"] .top-bar-title { color: var(--text) }
     [data-theme="dark"] .top-bar-chapter { color: var(--muted) }
@@ -1689,6 +1694,9 @@ text = openai.audio.transcriptions.create(
 
     </div>
   </section>
+
+  <!-- 🔒 PAYWALL WRAPPER START — 강.4부터 끝까지 잠금 (CEO 결정 2026-05-28) -->
+  <div class="paywall-locked">
 
   <!-- 강.4 -->
   <section id="ch4" class="chapter">
@@ -4067,6 +4075,39 @@ function shareBook(){
   }
 }
 </script>
+
+  </div>
+  <!-- 🔒 PAYWALL WRAPPER END (강.4부터 여기까지 .paywall-locked 안) -->
+
+  <!-- 🔓 Paywall Unlock JS — URL ?unlock=잔다비밀번호 또는 localStorage 'janda_unlock' -->
+  <script>
+  (function(){
+    try {
+      var u = new URLSearchParams(location.search).get('unlock');
+      var stored = localStorage.getItem('janda_unlock');
+      // 잔다 master unlock 패턴 — 책별 prefix 또는 master
+      var validKeys = ['JANDA-MASTER-2026', 'BD-VIP-2026'];
+      var matched = false;
+      if (u && (validKeys.indexOf(u) >= 0 || /^(B12|B34|B5|BD|CC|CE)-[A-Z0-9]{8}$/.test(u))) {
+        localStorage.setItem('janda_unlock', u);
+        matched = true;
+      } else if (stored && (validKeys.indexOf(stored) >= 0 || /^(B12|B34|B5|BD|CC|CE)-[A-Z0-9]{8}$/.test(stored))) {
+        matched = true;
+      }
+      if (matched) {
+        document.body.classList.add('paywall-unlocked');
+        // 잠금 해제 알림 (가벼운 toast)
+        setTimeout(function(){
+          var t = document.createElement('div');
+          t.style.cssText = 'position:fixed;top:80px;right:24px;background:#10b981;color:#fff;padding:12px 20px;border-radius:10px;font-size:.88rem;font-weight:700;z-index:9999;box-shadow:0 4px 16px rgba(0,0,0,.2);';
+          t.textContent = '🔓 잠금 해제 완료 — 전권 접근 가능';
+          document.body.appendChild(t);
+          setTimeout(function(){ t.remove(); }, 4000);
+        }, 500);
+      }
+    } catch(e){}
+  })();
+  </script>
 
 <!-- ============================================================
      잔다 (JANDA) 5권 전자책 보안·법적 레이어 v1.0 (2026-05-27)
