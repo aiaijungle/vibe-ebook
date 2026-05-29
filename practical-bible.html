@@ -174,6 +174,17 @@
     [data-theme="dark"] [style*="background: linear-gradient(135deg, #FAF9F5"],
     [data-theme="dark"] [style*="background:linear-gradient(135deg,#FAF9F5"],
     [data-theme="dark"] [style*="background: linear-gradient(135deg,#FAF9F5"] { background: linear-gradient(135deg, var(--bg2), var(--bg3)) !important; color: var(--text) !important }
+    /* 다크모드 — 라이트 그라데이션 박스의 자식 텍스트 강제 (인라인 다크 색 오버라이드) */
+    [data-theme="dark"] [style*="linear-gradient(135deg,#FAF9F5"] :is(strong, em, p, li, span, div):not([style*="background"]),
+    [data-theme="dark"] [style*="linear-gradient(135deg, #FAF9F5"] :is(strong, em, p, li, span, div):not([style*="background"]),
+    [data-theme="dark"] [style*="linear-gradient(135deg,#FFEAD8"] :is(strong, em, p, li, span, div):not([style*="background"]),
+    [data-theme="dark"] [style*="linear-gradient(135deg, #FFEAD8"] :is(strong, em, p, li, span, div):not([style*="background"]),
+    [data-theme="dark"] [style*="linear-gradient(135deg,#FFF1ED"] :is(strong, em, p, li, span, div):not([style*="background"]),
+    [data-theme="dark"] [style*="linear-gradient(135deg, #FFF1ED"] :is(strong, em, p, li, span, div):not([style*="background"]),
+    [data-theme="dark"] [style*="linear-gradient(180deg, #FAF9F5"] :is(strong, em, p, li, span, div):not([style*="background"]),
+    [data-theme="dark"] [style*="linear-gradient(180deg, #FFF8EC"] :is(strong, em, p, li, span, div):not([style*="background"]) { color: var(--text) !important }
+    /* 인라인 흰색 카드 (background:#fff;border) 다크모드 자식 텍스트도 강제 */
+    [data-theme="dark"] [style*="background:#fff;border"] :is(strong, em, p, li, span, div) { color: var(--text) !important }
     [data-theme="dark"] [style*="background:linear-gradient(180deg, #FAF9F5"],
     [data-theme="dark"] [style*="background: linear-gradient(180deg, #FAF9F5"],
     [data-theme="dark"] [style*="background:linear-gradient(180deg,#FAF9F5"],
@@ -622,6 +633,14 @@
     <blockquote class="cover-quote">
       "AI 시대의 사장은 일하는 사람이 아니다. 일 시키는 사람이다."
     </blockquote>
+
+    <!-- 🪧 정직성 면책 박스 — 표지 직후, 회의론자·법적 공격 회피용 (2026-05-28) -->
+    <div style="background:rgba(255,255,255,.06);border:1px solid rgba(245,158,11,.35);border-radius:12px;padding:18px 22px;margin:8px 0 24px;color:#fde68a;line-height:1.85;word-break:keep-all;max-width:760px;">
+      <div style="font-size:.7rem;font-weight:900;color:#fbbf24;letter-spacing:.15em;margin-bottom:10px;">🪧 시작 전 — 이 책에 대한 정직한 안내</div>
+      <p style="font-size:.94rem;color:#fef3c7;margin:0 0 8px;"><strong style="color:#fff;">이 책에 적힌 30 에이전트 시스템은 — 완벽하지 않다.</strong> 완성된 시스템의 매뉴얼이 아니라, <em style="color:#fbbf24;">발전 중인 시스템의 스냅샷</em>이다. 매일 모델·MCP·워크플로우 변화에 맞춰 코드가 수정되고, 새로 깨진 곳을 고치고, 새 도구를 적용하는 중이다.</p>
+      <p style="font-size:.9rem;color:#fde68a;margin:0;">잔다는 — AI 에이전트의 발전과 자동화를 위해 <strong style="color:#fff;">매일 리서치하고, 지시하고, 개선하고, 검토하고, 새 모델을 적용</strong>한다. 이 책의 모든 수치·결과는 <strong style="color:#fff;">2026-05 기준 스냅샷</strong>이며, 독자의 실제 환경·도메인·시기에 따라 결과는 달라질 수 있다. <em style="color:#fbbf24;">완벽한 결과의 보장이 아니라 — 같은 길을 가는 사람의 운영 일지로 받아들이는 것이 가장 정직한 활용법이다.</em></p>
+    </div>
+
     <a class="cta-btn" href="https://vibecodingbible.jbooking.kr" style="align-self: flex-start; background: var(--accent); color: #fff;">
       얼리버드 39,900원 · 100명 한정 →
     </a>
