@@ -94,11 +94,11 @@
     [data-theme="dark"] .ch-body blockquote { color: #d6d3d1 }
     [data-theme="dark"] .tip-box { background: rgba(245,158,11,.08); border-color: var(--accent) }
     [data-theme="dark"] .warn-box { background: rgba(245,158,11,.06) }
-    /* 🔒 Paywall — 강.4 이후 잠금 (URL ?unlock=잔다비밀번호 또는 localStorage 해제 가능) */
-    .paywall-locked { position: relative; max-height: 480px; overflow: hidden; pointer-events: none; user-select: none; filter: blur(3px); opacity: 0.55; }
-    .paywall-locked::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 320px; background: linear-gradient(180deg, transparent 0%, var(--bg) 75%); pointer-events: none; }
-    .paywall-unlocked .paywall-locked { max-height: none; overflow: visible; pointer-events: auto; user-select: auto; filter: none; opacity: 1; }
-    .paywall-unlocked .paywall-locked::after { display: none; }
+    /* 🔒 Paywall — 강.4 이후 잠금 강화 (max-height 짧게 + 진한 blur + 짙은 opacity) */
+    .paywall-locked { position: relative; max-height: 180px !important; overflow: hidden !important; pointer-events: none !important; user-select: none !important; filter: blur(6px) !important; opacity: 0.35 !important; }
+    .paywall-locked::after { content: '🔒 잠금 영역 — 결제 후 비밀번호로 해제'; position: absolute; bottom: 0; left: 0; right: 0; height: 100%; background: linear-gradient(180deg, transparent 0%, var(--bg) 60%); pointer-events: none; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 24px; color: var(--accent); font-weight: 900; font-size: 1.1rem; letter-spacing: .08em; filter: none; }
+    .paywall-unlocked .paywall-locked { max-height: none !important; overflow: visible !important; pointer-events: auto !important; user-select: auto !important; filter: none !important; opacity: 1 !important; }
+    .paywall-unlocked .paywall-locked::after { display: none !important; }
     [data-theme="dark"] .top-bar { background: rgba(10,10,15,.95) !important; border-bottom-color: var(--border) }
     [data-theme="dark"] .top-bar-title { color: var(--text) }
     [data-theme="dark"] .top-bar-chapter { color: var(--muted) }
@@ -252,8 +252,29 @@
       .ch-body h2 { font-size: 1.25rem; margin: 32px 0 12px }
       .ch-body h3 { font-size: 1rem; margin: 24px 0 10px }
       .ch-body p, .ch-body li { font-size: .96rem; line-height: 1.85 }
-      .compare-table { font-size: .76rem; display: block; overflow-x: auto; white-space: nowrap }
-      .compare-table th, .compare-table td { padding: 8px 10px; white-space: normal; min-width: 90px }
+      /* 🔧 모든 표 강제 가로 스크롤 (모바일 셀 잘림 방지) — !important */
+      .ch-body table, .compare-table, table {
+        display: block !important;
+        overflow-x: auto !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        font-size: .82rem !important;
+        -webkit-overflow-scrolling: touch;
+      }
+      .ch-body table thead, .ch-body table tbody, .compare-table thead, .compare-table tbody {
+        display: table !important;
+        width: max-content !important;
+        min-width: 100% !important;
+      }
+      .ch-body table th, .ch-body table td, .compare-table th, .compare-table td, table th, table td {
+        padding: 10px 12px !important;
+        white-space: normal !important;
+        word-break: keep-all !important;
+        line-height: 1.5 !important;
+        min-width: 140px !important;
+      }
+      .ch-body table::-webkit-scrollbar, .compare-table::-webkit-scrollbar { height: 6px; }
+      .ch-body table::-webkit-scrollbar-thumb, .compare-table::-webkit-scrollbar-thumb { background: rgba(193,95,60,.4); border-radius: 3px; }
       pre.code, pre { font-size: .75rem; padding: 12px 14px; overflow-x: auto }
       .tip-box, .warn-box, .story-box { padding: 16px 18px; font-size: .92rem }
       .cta-box { padding: 24px 20px; margin: 36px 0 }
