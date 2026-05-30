@@ -1670,8 +1670,15 @@ text = openai.audio.transcriptions.create(
           10년의 IT 사업을 AI 에이전트 활용으로 승화한 6개월 매뉴얼 — <strong style="color:#fff;">AI를 가장 잘 활용하는 상위 0.1%의 바이블</strong>
         </p>
 
-        <!-- 가격 비교 표 — 선착순 100명 + 가격 인상 예고 -->
-        <div style="background:rgba(0,0,0,.3);border:1px solid rgba(251,191,36,.4);border-radius:12px;padding:18px 22px;margin:18px 0;">
+        <!-- 🎟 가격 비교 표 + 1만원 할인권 자동 적용 (CEO 결정 2026-05-29) -->
+        <div style="background:rgba(0,0,0,.3);border:1px solid rgba(251,191,36,.4);border-radius:12px;padding:20px 22px;margin:18px 0;">
+
+          <!-- 1만원 할인권 헤더 — 강력 후킹 -->
+          <div style="background:linear-gradient(90deg,#dc2626,#9a3412);border:1px dashed #fde68a;border-radius:10px;padding:12px 16px;margin-bottom:16px;text-align:center;box-shadow:0 0 16px rgba(251,191,36,.3);">
+            <div style="font-size:.72rem;font-weight:900;color:#fde68a;letter-spacing:.15em;margin-bottom:4px;">🎟 선착순 100명 한정 — 1만원 할인권</div>
+            <div style="font-size:1rem;font-weight:900;color:#fff;">결제 시 자동 적용 (코드 입력 불필요)</div>
+          </div>
+
           <table style="width:100%;border-collapse:collapse;font-size:.88rem;color:#fef3c7;">
             <thead>
               <tr style="border-bottom:1px solid rgba(251,191,36,.3);">
@@ -1681,18 +1688,36 @@ text = openai.audio.transcriptions.create(
               </tr>
             </thead>
             <tbody>
-              <tr style="background:rgba(245,158,11,.18);">
-                <td style="padding:10px 4px;"><strong style="color:#fff;">🎟 지금 (선착순 100명)</strong></td>
-                <td style="text-align:center;padding:10px 4px;color:#fff;"><strong style="font-size:1.1rem;">29,900원</strong></td>
-                <td style="text-align:center;padding:10px 4px;color:#fff;"><strong style="font-size:1.1rem;">99,000원</strong></td>
+              <tr>
+                <td style="padding:8px 4px;color:#a8a29e;">정가 (jbooking 표시)</td>
+                <td style="text-align:center;padding:8px 4px;color:#a8a29e;text-decoration:line-through;">39,900원</td>
+                <td style="text-align:center;padding:8px 4px;color:#a8a29e;text-decoration:line-through;">109,000원</td>
               </tr>
               <tr>
-                <td style="padding:8px 4px;color:#a8a29e;">100명 후 정가 (인상)</td>
-                <td style="text-align:center;padding:8px 4px;color:#a8a29e;text-decoration:line-through;">49,900원</td>
-                <td style="text-align:center;padding:8px 4px;color:#a8a29e;text-decoration:line-through;">199,000원</td>
+                <td style="padding:8px 4px;color:#fde68a;">🎟 1만원 할인권 자동 적용</td>
+                <td style="text-align:center;padding:8px 4px;color:#fde68a;font-weight:700;">-10,000원</td>
+                <td style="text-align:center;padding:8px 4px;color:#fde68a;font-weight:700;">-10,000원</td>
+              </tr>
+              <tr style="background:rgba(245,158,11,.28);border-top:2px solid #fbbf24;">
+                <td style="padding:12px 4px;"><strong style="color:#fff;">최종 결제 (선착순 100명)</strong></td>
+                <td style="text-align:center;padding:12px 4px;color:#fff;"><strong style="font-size:1.2rem;">29,900원</strong></td>
+                <td style="text-align:center;padding:12px 4px;color:#fff;"><strong style="font-size:1.2rem;">99,000원</strong></td>
+              </tr>
+              <tr>
+                <td style="padding:8px 4px;color:#a8a29e;font-size:.82rem;">100명 후 (할인권 종료)</td>
+                <td style="text-align:center;padding:8px 4px;color:#a8a29e;font-size:.82rem;">정가 39,900원</td>
+                <td style="text-align:center;padding:8px 4px;color:#a8a29e;font-size:.82rem;">정가 109,000원</td>
               </tr>
             </tbody>
           </table>
+
+          <!-- 심리 트리거 안내 — 혼동 방지 -->
+          <div style="background:rgba(0,0,0,.35);border-left:3px solid #fbbf24;border-radius:0 8px 8px 0;padding:12px 16px;margin-top:14px;font-size:.86rem;line-height:1.8;color:#fef3c7;">
+            <strong style="color:#fbbf24;">💡 결제 페이지에서 39,900원 보고 놀라셨다면 — 다음 이유 때문입니다:</strong><br>
+            <span style="color:#fff;">정가 39,900원은 jbooking 결제 페이지의 기본 표시 금액입니다.</span><br>
+            <span style="color:#fde68a;">결제를 진행하면 — <strong>선착순 100명 1만원 할인권이 자동으로 적용되어 최종 29,900원</strong>으로 결제됩니다.</span><br>
+            <span style="color:#a8a29e;font-size:.82rem;">※ 별도 쿠폰 코드 입력 불필요. 100명 도달 시 할인권 종료 → 정가 결제 전환.</span>
+          </div>
         </div>
 
         <p style="font-size:.92rem;color:#fef3c7;margin:0 0 14px;text-align:center;line-height:1.75;">
