@@ -209,7 +209,7 @@ a,button{-webkit-touch-callout:default!important;-webkit-user-select:auto!import
   </div>
 
   <div style="font-size:0.72rem;color:rgba(255,255,255,0.28);letter-spacing:0.02em;word-break:keep-all;">
-    6월 1일부터 &nbsp;·&nbsp; 각 권당 <strong style="color:rgba(255,255,255,0.45);">19,900원</strong> 판매 예정 &nbsp;·&nbsp; 지금은 완전 무료
+    6/1 출간일 &nbsp;·&nbsp; <strong style="color:rgba(255,255,255,0.65);">1~2권 9,900 · 3~4권 29,900 · 5권 29,900 · 풀묶음 99,000원</strong> &nbsp;·&nbsp; jbooking.kr 결제
   </div>
 </div>
 <script>
@@ -218,7 +218,7 @@ a,button{-webkit-touch-callout:default!important;-webkit-user-select:auto!import
   function p(n){return String(n).padStart(2,'0');}
   function tick(){
     var now=new Date(),diff=dl-now;
-    if(diff<=0){var b=document.getElementById('may-countdown');if(b)b.innerHTML='<div style="padding:16px;color:#f87171;font-size:.85rem;font-weight:700;text-align:center;">⚠️ 무료 공개 기간이 종료되었습니다. 각 권당 19,900원에 구매하세요.</div>';return;}
+    if(diff<=0){var b=document.getElementById('may-countdown');if(b)b.innerHTML='<div style="padding:16px;color:#f87171;font-size:.85rem;font-weight:700;text-align:center;">⚠️ 무료 공개 기간이 종료되었습니다. jbooking.kr/에서 결제하세요.</div>';return;}
     var d=Math.floor(diff/86400000),h=Math.floor((diff%86400000)/3600000),m=Math.floor((diff%3600000)/60000),s=Math.floor((diff%60000)/1000);
     var th=document.getElementById('cd-total-hours');if(th)th.textContent=Math.floor(diff/3600000).toLocaleString('ko-KR');
     var th2=document.getElementById('cd-total-hours-txt');if(th2)th2.textContent=Math.floor(diff/3600000).toLocaleString('ko-KR');

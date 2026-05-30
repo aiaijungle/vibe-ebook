@@ -274,7 +274,7 @@
 </div>
 <!-- 유료화 예정 안내 -->
 <div style="background:linear-gradient(90deg,#0a0a1a,#12122d,#0a0a1a);border-bottom:1px solid rgba(139,92,246,.25);padding:9px 20px;text-align:center;font-size:.8rem;color:rgba(255,255,255,.7);letter-spacing:.01em;word-break:keep-all;">
-  현재 <strong style="color:#a78bfa;">무료</strong> 공개 중 &nbsp;·&nbsp; 6월 1일부터 <strong style="color:#a78bfa;">19,900원</strong>으로 유료 전환됩니다. 지금 바로 읽어두세요.
+  현재 <strong style="color:#a78bfa;">무료</strong> 공개 중 &nbsp;·&nbsp; 6/1 출간일 — 4 상품 가격 (1~2권 9,900 / 3~4권 29,900 / 5권 단권 29,900 / 풀묶음 99,000원) 으로 유료 전환됩니다.
 </div>
 
 <!-- ⏳ 5월 카운트다운 -->
@@ -338,7 +338,7 @@
   </div>
 
   <div style="font-size:0.72rem;color:rgba(255,255,255,0.28);letter-spacing:0.02em;word-break:keep-all;">
-    6월 1일부터 &nbsp;·&nbsp; 각 권당 <strong style="color:rgba(255,255,255,0.45);">19,900원</strong> 판매 예정 &nbsp;·&nbsp; 지금은 완전 무료
+    6/1 출간일 &nbsp;·&nbsp; <strong style="color:rgba(255,255,255,0.65);">1~2권 9,900 · 3~4권 29,900 · 5권 29,900 · 풀묶음 99,000원</strong> &nbsp;·&nbsp; jbooking.kr 결제
   </div>
 </div>
 <script>
@@ -347,7 +347,7 @@
   function p(n){return String(n).padStart(2,'0');}
   function tick(){
     var now=new Date(),diff=dl-now;
-    if(diff<=0){var b=document.getElementById('may-countdown');if(b)b.innerHTML='<div style="padding:16px;color:#f87171;font-size:.85rem;font-weight:700;text-align:center;">⚠️ 무료 공개 기간이 종료되었습니다. 각 권당 19,900원에 구매하세요.</div>';return;}
+    if(diff<=0){var b=document.getElementById('may-countdown');if(b)b.innerHTML='<div style="padding:16px;color:#f87171;font-size:.85rem;font-weight:700;text-align:center;">⚠️ 무료 공개 기간이 종료되었습니다. jbooking.kr/에서 결제하세요.</div>';return;}
     var d=Math.floor(diff/86400000),h=Math.floor((diff%86400000)/3600000),m=Math.floor((diff%3600000)/60000),s=Math.floor((diff%60000)/1000);
     var th=document.getElementById('cd-total-hours');if(th)th.textContent=Math.floor(diff/3600000).toLocaleString('ko-KR');
     var th2=document.getElementById('cd-total-hours-txt');if(th2)th2.textContent=Math.floor(diff/3600000).toLocaleString('ko-KR');
