@@ -105,6 +105,26 @@
     [data-theme="dark"] .menu-toggle { color: var(--text) }
     /* 모바일 좁은 화면 — D-Day 카운트다운 숨김 (top-bar 줄바꿈 방지) */
     @media (max-width: 520px) { #dday-countdown { display: none } }
+    /* 🔧 시황 권고 (2026-05-29): 600px 사이 폭 디바이스 (갤럭시 폴드 펼침·아이패드 미니 세로 등) */
+    @media (max-width: 600px) {
+      .cta-box { padding: 22px 16px; margin: 32px 0; }
+      .cta-box h3 { font-size: 1.15rem; line-height: 1.4; }
+      .cta-box p { font-size: .92rem; }
+      .cta-btn { padding: 12px 28px; font-size: .98rem; }
+      .ch-body { padding: 20px 14px; }
+      .ch-title { font-size: 1.3rem; line-height: 1.35; }
+      .ch-body h2 { font-size: 1.15rem; margin: 24px 0 10px; }
+      .ch-body p, .ch-body li { font-size: .92rem; line-height: 1.8; }
+      .tip-box, .warn-box, .story-box { padding: 14px 16px; font-size: .9rem; }
+      /* paywall 박스 폭 보정 */
+      #purchase-gate > div { padding: 40px 16px !important; }
+      #purchase-gate > div > div { padding: 24px 18px !important; }
+      /* 하단 fixed bar 텍스트 wrap */
+      #janda-bottom-bar { flex-wrap: wrap !important; gap: 6px !important; padding: 8px 12px !important; font-size: .78rem !important; }
+      #janda-bottom-bar a, #janda-bottom-bar button { font-size: .76rem !important; padding: 6px 12px !important; }
+      /* 시리즈 띠 모바일 */
+      [style*="📚 시리즈"] { font-size: .78rem !important; padding: 8px 14px !important; }
+    }
     [data-theme="dark"] .story-box { background: var(--bg3); border-color: var(--border); color: var(--text) }
     [data-theme="dark"] .story-box strong,
     [data-theme="dark"] .story-box em,
