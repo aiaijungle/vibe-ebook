@@ -390,16 +390,19 @@ a,button{-webkit-touch-callout:default!important;-webkit-user-select:auto!import
         <p style="margin:10px 0 0;color:#86efac;font-size:.78rem;font-weight:700;line-height:1.7;">✅ 1년 100% 환불 보장 (실행 후 가치 없으면 전액)</p>
       </div>
 
-      <!-- 📋 결제·발송 5단계 흐름 (입금 전 DB 입력 → 입금 후 비번) -->
+      <!-- 📋 결제·발송 흐름 — 수동 운영 + 노션 DB 6 항목 (2026-05-31 CEO 명시) -->
       <div style="background:rgba(0,0,0,.3);border-left:3px solid #fbbf24;border-radius:0 8px 8px 0;padding:14px 18px;margin:18px 0 0;font-size:.82rem;color:#fef3c7;line-height:1.85;">
-        <div style="font-weight:900;color:#fbbf24;margin-bottom:8px;font-size:.84rem;">🔄 결제 흐름 (5단계)</div>
+        <div style="font-weight:900;color:#fbbf24;margin-bottom:8px;font-size:.84rem;">🔄 결제 흐름 — 수동 운영 (CEO 직접)</div>
         <ol style="margin:0;padding-left:20px;color:#fff;line-height:1.8;">
           <li><strong style="color:#fde68a;">jbooking 페이지</strong>에서 5 필드 입력 (이름·이메일·전화·구매상품·금액)</li>
-          <li>입력 즉시 <strong style="color:#fde68a;">노션 DB에 주문 row 자동 기록</strong> (입금 대기)</li>
-          <li><strong style="color:#fde68a;">카드 결제 즉시 또는 무통장 입금</strong> → CEO 확인</li>
-          <li>입금 확인 후 <strong style="color:#fde68a;">2~3일 안에 비밀번호 이메일·문자 발송</strong></li>
+          <li>자동 수집 <strong style="color:#fde68a;">6 항목</strong> = 위 5 + 결제일시</li>
+          <li>CEO가 <strong style="color:#fde68a;">노션 DB(Pre-order Queue)에 직접 기록</strong> (수동, 매 1~2시간 점검)</li>
+          <li>입금 확인 → <strong style="color:#fde68a;">2~3일 안에 비밀번호 이메일·문자 발송</strong></li>
           <li>그 비번으로 <strong style="color:#fde68a;">5권 모두 잠금 해제 + 평생 업데이트</strong></li>
         </ol>
+        <div style="margin-top:8px;padding:6px 10px;background:rgba(251,191,36,.1);border-radius:6px;font-size:.74rem;color:#fde68a;">
+          📌 노션 DB 6 컬럼: <strong style="color:#fff;">결제일시 · 이름 · 이메일 · 전화 · 구매상품 · 금액</strong>
+        </div>
       </div>
 
     </div>
