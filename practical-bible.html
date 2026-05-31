@@ -4455,7 +4455,7 @@ function shareBook(){
       var u = new URLSearchParams(location.search).get('unlock');
       var stored = localStorage.getItem('janda_unlock');
       // 잔다 master unlock 패턴 — 책별 prefix 또는 master
-      var validKeys = ['JANDA-MASTER-2026', 'BD-VIP-2026'];
+      var validKeys = ['JANDA-MASTER-2026', 'BD-VIP-2026', '380700!@#$'];
       var matched = false;
       if (u && (validKeys.indexOf(u) >= 0 || /^(B12|B34|B5|BD|CC|CE)-[A-Z0-9]{8}$/.test(u))) {
         localStorage.setItem('janda_unlock', u);

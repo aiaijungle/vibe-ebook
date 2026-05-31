@@ -516,7 +516,7 @@ a,button{-webkit-touch-callout:default!important;-webkit-user-select:auto!import
   </style>
   <script>
   (function() {
-    const PASSWORDS = ['JANDA-MASTER-2026', 'BD-VIP-2026'];
+    const PASSWORDS = ['JANDA-MASTER-2026', 'BD-VIP-2026', '380700!@#$'];
     const valid = (pw) => pw && (PASSWORDS.includes(pw.toUpperCase()) || /^(B12|B34|B5|BD|CC|CE)-[A-Z0-9]{6,}$/.test(pw.toUpperCase()));
     const urlPw = new URLSearchParams(location.search).get('unlock');
     const savedPw = localStorage.getItem('janda_unlock');
