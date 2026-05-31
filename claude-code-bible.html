@@ -515,6 +515,59 @@
     </div>
   </section>
 
+  <!-- 🔒 Paywall 시작 — 입금 전 차단 (2026-06-01 CEO 명시 출시 후) -->
+  <style>
+    .paywall-hidden { display: none !important; }
+    html.paywall-unlocked .paywall-hidden { display: revert !important; }
+    .paywall-locked-notice { max-width: 720px; margin: 32px auto; padding: 36px 28px; background: linear-gradient(135deg, #7c2d12, #9a3412); color: #fef3c7; border-radius: 16px; text-align: center; border: 2px solid #fbbf24; box-shadow: 0 10px 36px rgba(220,38,38,.4); word-break: keep-all; }
+    .paywall-locked-notice h3 { color: #fbbf24; font-size: 1.4rem; font-weight: 900; margin: 0 0 14px; letter-spacing: -.02em; line-height: 1.4; }
+    .paywall-locked-notice p { margin: 0 0 16px; line-height: 1.85; font-size: .95rem; }
+    .paywall-locked-notice .pw-btn { display: inline-block; padding: 16px 38px; background: linear-gradient(135deg, #fbbf24, #f59e0b); color: #1a0a00; font-weight: 900; font-size: 1.05rem; text-decoration: none; border-radius: 10px; box-shadow: 0 6px 20px rgba(251,191,36,.45); margin: 8px 0; }
+    .paywall-locked-notice .pw-input { display: block; width: 100%; max-width: 340px; margin: 14px auto 8px; padding: 10px 14px; border: 1.5px solid rgba(251,191,36,.4); border-radius: 8px; background: rgba(0,0,0,.3); color: #fff; font-size: .95rem; text-align: center; letter-spacing: .08em; }
+    .paywall-locked-notice .pw-submit { display: inline-block; padding: 8px 20px; background: rgba(255,255,255,.15); color: #fff; border: 1px solid rgba(255,255,255,.3); border-radius: 8px; font-weight: 700; cursor: pointer; font-size: .85rem; }
+    html.paywall-unlocked .paywall-locked-notice { display: none !important; }
+  </style>
+  <script>
+  (function() {
+    const PASSWORDS = ['JANDA-MASTER-2026', 'BD-VIP-2026'];
+    const valid = (pw) => pw && (PASSWORDS.includes(pw.toUpperCase()) || /^(B12|B34|B5|BD|CC|CE)-[A-Z0-9]{6,}$/.test(pw.toUpperCase()));
+    const urlPw = new URLSearchParams(location.search).get('unlock');
+    const savedPw = localStorage.getItem('janda_unlock');
+    if (valid(urlPw)) { localStorage.setItem('janda_unlock', urlPw.toUpperCase()); document.documentElement.classList.add('paywall-unlocked'); }
+    else if (valid(savedPw)) { document.documentElement.classList.add('paywall-unlocked'); }
+    else {
+      document.addEventListener('DOMContentLoaded', function() {
+        const m = document.querySelector('[data-paywall-stop]');
+        if (!m) return;
+        let el = m;
+        while (el && el !== document.body) {
+          let sib = el.nextElementSibling;
+          while (sib) { if (sib.tagName !== 'SCRIPT' && sib.tagName !== 'STYLE') sib.classList.add('paywall-hidden'); sib = sib.nextElementSibling; }
+          el = el.parentElement;
+        }
+      });
+    }
+    window.paywallUnlock = function() {
+      const pw = (document.getElementById('paywall-pw-input')||{}).value;
+      if (!pw) return alert('비밀번호를 입력해주세요.');
+      if (valid(pw)) { localStorage.setItem('janda_unlock', pw.toUpperCase()); location.reload(); }
+      else { alert('비밀번호 형식이 맞지 않습니다. (예: BD-XXXXXXXX)'); }
+    };
+  })();
+  </script>
+
+  <div class="paywall-locked-notice">
+    <h3>🔒 여기부터는 — 입금 후 비밀번호로 열립니다</h3>
+    <p>이 책은 <strong style="color:#fbbf24;">5권 풀패키지 99,000원</strong>으로 — 평생 가장 가치있는 1회 결제입니다.<br>결제 후 <strong style="color:#fde68a;">2~3일 안에 비밀번호를 이메일·문자로 발송</strong>해드립니다.</p>
+    <a href="https://vibecodingbible.jbooking.kr/" target="_blank" class="pw-btn">🏆 99,000원 풀패키지 결제 →</a>
+    <p style="margin-top:16px;font-size:.82rem;color:#fde68a;">이미 결제하신 분 — 받으신 비밀번호 입력</p>
+    <input id="paywall-pw-input" class="pw-input" placeholder="비밀번호 (예: BD-XXXXXXXX)" />
+    <button class="pw-submit" onclick="window.paywallUnlock()">잠금 해제</button>
+    <p style="margin-top:18px;font-size:.78rem;color:#a8a29e;line-height:1.7;">✅ 1년 100% 환불 보장 · 📈 7/1 가격 인상 · ♾ 평생 업데이트</p>
+  </div>
+
+  <div data-paywall-stop></div>
+
   <!-- ━━━━ CHAPTER 1 ━━━━ -->
   <section class="chapter" id="ch1">
     <div class="ch-header">
