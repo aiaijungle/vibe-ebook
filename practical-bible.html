@@ -1820,10 +1820,17 @@ text = openai.audio.transcriptions.create(
         <div style="background:rgba(0,0,0,.3);border:1px solid rgba(251,191,36,.4);border-radius:10px;padding:16px 20px;margin:14px 0;color:#fef3c7;line-height:1.85;font-size:.88rem;">
           <div style="font-weight:900;color:#fbbf24;margin-bottom:8px;letter-spacing:.05em;">📋 결제 안내</div>
           <p style="margin:0 0 10px;color:#fff;"><strong style="color:#fde68a;">5권만 미리 결제하셔도, 전권 묶음(99,000원)을 결제하셔도 됩니다.</strong> 본인 페르소나에 맞게 선택.</p>
-          <p style="margin:0 0 10px;color:#fff;">📋 <strong>결제 방법 2가지</strong> (jbooking 페이지에서 선택):<br>
-          &nbsp;&nbsp;① <strong style="color:#fde68a;">카드 결제</strong> — 즉시 처리, 할인 가격 적용<br>
-          &nbsp;&nbsp;② <strong style="color:#fde68a;">계좌이체 (무통장 입금)</strong> — <strong style="color:#fbbf24;">동일하게 할인 가격 적용</strong> (29,900원 / 99,000원). 결제 페이지에서 계좌 자동 표시 + 영업시간 내 확인
-          </p>
+          <p style="margin:0 0 10px;color:#fff;">📋 <strong>결제 방법 — 2 채널 선택</strong>:</p>
+          <div style="background:rgba(0,0,0,.25);border-radius:8px;padding:14px 16px;margin:0 0 10px;font-size:.86rem;line-height:1.85;word-break:keep-all;">
+            <p style="margin:0 0 10px;color:#fff;"><strong style="color:#fbbf24;">① 🏦 무통장 입금 — 신한 110-271-235722 ⭐</strong><br>
+            <span style="color:#fef3c7;padding-left:14px;display:block;margin-top:2px;">예금주: <strong style="color:#fff;">김화현 (JANDA 잔다)</strong> · 동일 할인가 · 수수료 0%</span>
+            <span style="color:#fde68a;font-size:.82rem;padding-left:14px;display:block;line-height:1.7;margin-top:4px;">입금 후 → 카카오톡 "잔다 JANDA" 채널 또는 dev@stayjanda.com 에<br>
+            &nbsp;&nbsp;<strong style="color:#fff;">이름·이메일·전화·상품·금액</strong> 5 항목 전송</span></p>
+            <p style="margin:0;color:#fff;"><strong style="color:#fde68a;">② 💳 jbooking.kr 결제 페이지</strong><br>
+            <span style="color:#fef3c7;padding-left:14px;display:block;margin-top:2px;">→ 카드 결제 또는 계좌이체 (jbooking 자동 처리)</span>
+            <span style="color:#a8a29e;font-size:.8rem;padding-left:14px;display:block;">PG 수수료 발생 · 자동 영수증</span></p>
+          </div>
+          <p style="margin:0 0 10px;font-size:.84rem;color:#fde68a;">📌 두 채널 모두 — 입금 확인 후 <strong style="color:#fff;">2~3일 안에 비밀번호 이메일·문자 발송</strong>.</p>
           <!-- 🔄 결제·발송 흐름 — 수동 운영 + 노션 DB 6 항목 (2026-05-31 CEO 명시 정정) -->
           <div style="background:rgba(0,0,0,.3);border-left:3px solid #fbbf24;border-radius:0 8px 8px 0;padding:14px 18px;margin:10px 0;font-size:.85rem;color:#fef3c7;line-height:1.9;">
             <div style="font-weight:900;color:#fbbf24;margin-bottom:8px;font-size:.86rem;">🔄 결제 흐름 — 수동 운영 (CEO 직접, 자동 봇 X)</div>
