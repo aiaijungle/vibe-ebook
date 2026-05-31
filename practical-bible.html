@@ -481,9 +481,13 @@
       .cta-box{padding:30px 22px}
     }
 
-    /* 햄버거 */
-    .menu-toggle { display: none; background: none; border: none; cursor: pointer; padding: 4px; font-size: 1.4rem; color: var(--text) }
-    @media(max-width:768px){ .menu-toggle{ display: block } }
+    /* 햄버거 — 모바일 인지도 강화 (2026-05-31 CEO 피드백: 카테고리 안 보임) */
+    .menu-toggle { display: none; background: var(--accent); border: none; cursor: pointer; padding: 8px 14px; font-size: .9rem; color: #fff; border-radius: 8px; font-weight: 800; box-shadow: 0 2px 8px rgba(193,95,60,.35); align-items: center; gap: 6px; letter-spacing: -.01em }
+    .menu-toggle:hover { background: var(--accent-dark, #8a3e1f) }
+    .menu-toggle .menu-icon { font-size: 1.15rem; line-height: 1 }
+    .menu-toggle .menu-label { font-size: .82rem }
+    @media(max-width:768px){ .menu-toggle{ display: inline-flex } }
+    @media(max-width:480px){ .menu-toggle .menu-label { display: none } .menu-toggle { padding: 8px 10px } }
 
     /* 복사 방지 (코드는 가능) */
     *{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
@@ -634,7 +638,7 @@
 <!-- 메인 -->
 <main id="main">
   <div class="top-bar">
-    <button class="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('mobile-open')">☰</button>
+    <button class="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('mobile-open')" aria-label="목차 열기"><span class="menu-icon">☰</span><span class="menu-label">목차</span></button>
     <span class="top-bar-title">5권</span>
     <span class="top-bar-chapter" id="current-chapter">AI에게 일시키는 비법</span>
     <span id="dday-countdown" style="display:inline-flex;align-items:center;gap:6px;font-size:.78rem;font-weight:800;color:#dc2626;background:rgba(220,38,38,.08);padding:4px 12px;border-radius:14px;border:1px solid rgba(220,38,38,.25);"><span style="font-size:.95rem;">⏰</span><span id="dday-text">계산 중…</span></span>
