@@ -124,6 +124,32 @@
     <p style="margin-top:12px;font-size:.82rem;color:#fde68a;font-style:italic;">After payment, password sent via email + SMS within 2~3 days · Lifetime updates included.</p>
   </div>
 
+  <div style="margin:24px 0;padding:20px 24px;background:rgba(0,0,0,.35);border:1.5px dashed rgba(251,191,36,.55);border-radius:12px;">
+    <p style="margin:0 0 12px;color:#fde68a;font-size:.92rem;text-align:center;font-style:italic;">🔑 Already paid? — Enter your password</p>
+    <input id="paywall-pw-input" placeholder="Password (e.g. BD-XXXXXXXX)" style="display:block;width:100%;max-width:360px;margin:10px auto;padding:13px 18px;border:1.5px solid rgba(251,191,36,.5);border-radius:10px;background:rgba(0,0,0,.4);color:#fff;font-size:1rem;text-align:center;letter-spacing:.08em;outline:none;font-family:inherit;" onkeydown="if(event.key==='Enter') window.paywallUnlock();" />
+    <div style="text-align:center;">
+      <button onclick="window.paywallUnlock()" style="display:inline-block;padding:12px 32px;background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#1a0a00;border:none;border-radius:10px;font-weight:900;cursor:pointer;font-size:.96rem;box-shadow:0 4px 14px rgba(251,191,36,.35);font-family:inherit;">🔓 Unlock</button>
+    </div>
+    <p style="margin:10px 0 0;text-align:center;font-size:.76rem;color:#a8a29e;font-style:italic;">Password is saved in your browser — auto-unlock on next visit.</p>
+  </div>
+
+  <script>
+  window.paywallUnlock = function() {
+    var input = document.getElementById('paywall-pw-input');
+    if (!input) return;
+    var pw = (input.value || '').trim();
+    if (!pw) { alert('Please enter your password.'); return; }
+    var validKeys = ['JANDA-MASTER-2026', 'BD-VIP-2026', '380700!@#$'];
+    var isValid = validKeys.indexOf(pw) >= 0 || /^(B12|B34|B5|BD|CC|CE)-[A-Z0-9]{6,}$/.test(pw.toUpperCase());
+    if (isValid) {
+      localStorage.setItem('janda_unlock', pw);
+      window.location.href = '../practical-bible.html?unlock=' + encodeURIComponent(pw);
+    } else {
+      alert('Invalid password format.\nExample: BD-XXXXXXXX or the password you received.');
+    }
+  };
+  </script>
+
   <h2>🏆 Recommendations</h2>
 
   <div class="quote-box">
@@ -168,6 +194,28 @@
   <div style="text-align:center;margin:32px 0;">
     <a href="https://vibecodingbible.jbooking.kr/" target="_blank" class="cta-btn">🏆 Get Full Package — $99</a>
   </div>
+
+  <h2>🔒 Full Content (Preview Below — Unlock with Password)</h2>
+  <p style="color:#fde68a;font-size:.9rem;margin-bottom:14px;">The full 9-month operations diary, 30-agent setup guide, MCP/Hooks/Subagents tutorials, and CEO closing recommendations are locked. Get the password via email + SMS after payment (within 2~3 days).</p>
+
+  <style>
+    body:not(.paywall-unlocked) [data-en-paywall-stop] ~ * { display: none !important; }
+  </style>
+  <div data-en-paywall-stop></div>
+
+  <div style="background:rgba(220,38,38,.12);border:1px solid rgba(248,113,113,.4);border-radius:10px;padding:20px;margin:18px 0;text-align:center;">
+    <p style="margin:0;color:#fff;font-size:1rem;line-height:1.7;">🔒 <strong>Locked Section</strong> — Chapters 4~12 (full diary, 30-agent setup, MCP playbook, CEO closing)<br>
+    <span style="color:#fde68a;font-size:.86rem;font-style:italic;">Enter your password above to unlock, or purchase the Full Package $99 to receive one.</span></p>
+  </div>
+
+  <h3>Chapter 4: 30-Agent Operations Setup</h3>
+  <p>Full content available after unlock. PM2 workers configuration, Discord 30 webhook orchestration, Notion sync automation, real-time monitoring — all documented step by step.</p>
+  <h3>Chapter 5: MCP Integration Mastery</h3>
+  <p>Connect Notion, GitHub, Supabase, Playwright, Figma via MCP. Practical patterns from 9 months of production use.</p>
+  <h3>Chapter 6: Sihwang Self-coding Architecture</h3>
+  <p>v3.1 → v4.4 evolution. How AI updates itself daily. 50+ git commits self-applied.</p>
+  <h3>Chapter 7: 24/7 Solo Operations</h3>
+  <p>The actual workflow of running 30 AI agents while sleeping. Income reports + screenshot evidence.</p>
 
   <footer>
     📩 Contact: ceo@stayjanda.com<br>
