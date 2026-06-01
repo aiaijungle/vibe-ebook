@@ -358,12 +358,13 @@
     .sidebar-logo .subtitle { font-size: .7rem; color: var(--muted); margin-top: 4px }
     .sidebar-edition { display: inline-block; background: var(--accent); color: #fff; font-size: .62rem; font-weight: 800; padding: 3px 10px; border-radius: 12px; margin-top: 8px; letter-spacing: .06em }
 
-    .toc-section { padding: 4px 0 }
-    .toc-section-label { padding: 12px 16px 5px; font-size: .6rem; font-weight: 900; color: var(--accent); letter-spacing: .12em; text-transform: uppercase; cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; -webkit-user-select: none }
+    .toc-section { padding: 4px 0; margin-bottom: 6px; border-bottom: 1px solid rgba(193,95,60,.08) }
+    .toc-section:last-child { border-bottom: none }
+    .toc-section-label { padding: 14px 16px 8px; font-size: .62rem; font-weight: 900; color: var(--accent); letter-spacing: .14em; text-transform: uppercase; cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; -webkit-user-select: none; background: rgba(193,95,60,.04); border-left: 3px solid var(--accent); margin-bottom: 4px }
     .toc-section-label::after { content: "\25BE"; font-size: .85rem; font-weight: 700; transition: transform .25s; color: var(--accent); opacity: .7 }
     .toc-section.collapsed .toc-section-label::after { transform: rotate(-90deg) }
     .toc-section.collapsed .toc-item { display: none }
-    .toc-section-label:hover { background: rgba(193,95,60,.06) }
+    .toc-section-label:hover { background: rgba(193,95,60,.1) }
     .toc-item { display: flex; align-items: center; gap: 10px; padding: 9px 18px; font-size: .76rem; color: var(--muted); text-decoration: none; border-left: 3px solid transparent; transition: all .2s; cursor: pointer; white-space: nowrap; overflow: hidden }
     .toc-item span:last-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; flex: 1 }
     .toc-item:hover { color: var(--text); background: rgba(193,95,60,.05) }
@@ -4302,7 +4303,6 @@ async def payment(req: Request):
         </p>
         <div style="display:flex;gap:10px;flex-wrap:wrap;">
           <a href="mailto:ceo@stayjanda.com?subject=[5권%20기업%20협업]%20직원교육%2FAI신입교육%2F컨설팅%20문의&body=회사명%3A%0A직원수%3A%0A관심%20영역%20(택1%3A%20직원교육%20%2F%20AI%20신입교육%20%2F%206%20도메인%20컨설팅)%3A%0A희망%20도입%20시점%3A%0A기타%20문의%3A%0A" style="background:var(--accent);color:#fff;padding:14px 24px;border-radius:10px;font-size:.95rem;font-weight:800;text-decoration:none;">✉️ ceo@stayjanda.com 협업 제안</a>
-          <a href="mailto:management@stayjanda.com?subject=[5권%20기업%20도입]%20세금계산서%2F정산%20문의" style="background:#fff;color:var(--text);border:1px solid var(--border);padding:14px 24px;border-radius:10px;font-size:.95rem;font-weight:700;text-decoration:none;">📄 세금계산서·정산</a>
         </div>
         <p style="font-size:.82rem;color:var(--muted);font-style:italic;margin-top:14px;word-break:keep-all;">
           ⚡ 평균 회신 시간: 24시간 이내. 첫 미팅은 무료. 리미트리스맨이 6개월 운영한 시스템 라이브 데모 포함.
@@ -4564,7 +4564,6 @@ function shareBook(){
       <span><strong style="color:var(--text);">상호</strong>: 잔다 (JANDA)</span>
       <span><strong style="color:var(--text);">대표</strong>: 김화현</span>
       <span><strong style="color:var(--text);">문의</strong>: <a href="mailto:ceo@stayjanda.com" style="color:var(--accent);">ceo@stayjanda.com</a></span>
-      <span><strong style="color:var(--text);">세금계산서</strong>: <a href="mailto:management@stayjanda.com" style="color:var(--accent);">management@stayjanda.com</a></span>
     </div>
     <div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--border);font-size:.78rem;">
       ⚠️ 본 책은 일반 정보 제공 목적. 법적·세무·의료·재무 결정에 직접 사용 시 전문가 자문 필수. 책 내용에 따른 손익은 독자 본인 책임.
