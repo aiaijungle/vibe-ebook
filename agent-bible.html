@@ -1632,6 +1632,8 @@
       html:not(.paywall-unlocked) [data-paywall-stop] ~ *:not(script):not(style) { display: none !important; }
       /* 🔒 강력 차단 (ID 화이트리스트) — section.chapter 중 cover만 노출 (LEVEL 0 안 STEP 1~9 모두 차단) */
       html:not(.paywall-unlocked) section.chapter:not(#cover) { display: none !important; }
+      /* 🛡 paywall 차단 박스는 어떤 상황에서도 강제 표시 (결제 박스 가시성 보장) */
+      html:not(.paywall-unlocked) .paywall-locked-notice { display: block !important; visibility: visible !important; height: auto !important; max-height: none !important; }
       .paywall-locked-notice { max-width: 720px; margin: 32px auto; padding: 36px 28px; background: linear-gradient(135deg, #7c2d12, #9a3412); color: #fef3c7; border-radius: 16px; text-align: center; border: 2px solid #fbbf24; box-shadow: 0 10px 36px rgba(220,38,38,.4); word-break: keep-all; }
       .paywall-locked-notice h3 { color: #fbbf24; font-size: 1.4rem; font-weight: 900; margin: 0 0 14px; letter-spacing: -.02em; line-height: 1.4; }
       .paywall-locked-notice p { margin: 0 0 16px; line-height: 1.85; font-size: .95rem; }
