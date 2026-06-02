@@ -13,18 +13,18 @@
     const urlPw = new URLSearchParams(location.search).get('unlock');
     const valid = pw => pw && (PASSWORDS.includes(pw.toUpperCase()) || /^(B12|B34|B5|BD|CC|CE)-[A-Z0-9]{6,}$/.test(pw.toUpperCase()));
 
-    if (valid(urlPw)) { localStorage.setItem('janda_unlock', urlPw.toUpperCase()); document.documentElement.classList.add('paywall-unlocked'); }
-    else if (valid(saved)) { document.documentElement.classList.add('paywall-unlocked'); }
-    else {
-      // DOMContentLoaded 즉시 inline style 강제 차단 (CSS selector 호환성 우회)
+    if (valid(urlPw)) { localStorage.setItem('janda_unlock', urlPw.toUpperCase()); }
+    const isUnlocked = valid(urlPw) || valid(saved);
+    if (isUnlocked) {
+      document.documentElement.classList.add('paywall-unlocked');
+      // HTML에 박힌 inline style="display:none" 제거하여 본문 노출
       document.addEventListener('DOMContentLoaded', function(){
-        document.querySelectorAll('section.chapter').forEach(function(s){
-          if (s.id !== 'cover') {
-            s.style.cssText = 'display:none !important;visibility:hidden !important;height:0 !important;overflow:hidden !important;';
-          }
+        document.querySelectorAll('.paywall-locked').forEach(function(s){
+          s.style.display = '';
         });
       });
     }
+    // else: HTML inline style="display:none" 그대로 유지 → 본문 차단 (JS·CSS 무관 100% 작동)
 
     // 전역 unlock 함수 (head 안 정의, 어디서나 호출 가능)
     window.paywallUnlock = function() {
@@ -1777,7 +1777,7 @@
 
     <div data-paywall-stop></div>
 
-    <section class="chapter" id="level0" data-level="0">
+    <section class="chapter paywall-locked" id="level0" data-level="0" style="display:none">
       <div class="ch-header" style="--c1:#38bdf8;--c2:#0ea5e9">
         <h1 class="ch-title">🗺️ LEVEL 0 — 지금 시작해야 하는 이유</h1>
         <div class="flow-diagram">
@@ -2109,7 +2109,7 @@
         </div>
       </div>
     </section>
-    <section class="chapter" id="setup" data-level="0">
+    <section class="chapter paywall-locked" id="setup" data-level="0" style="display:none">
       <div class="ch-header" style="--c1:#38bdf8;--c2:#0ea5e9">
         <h1 class="ch-title">⚙️ STEP 0 — 개발환경 완벽 설정</h1>
 
@@ -2329,7 +2329,7 @@ cd ai-agent-project</code></pre>
         </div>
       </div>
     </section>
-    <section class="chapter" id="concept" data-level="1">
+    <section class="chapter paywall-locked" id="concept" data-level="1" style="display:none">
       <div class="ch-header" style="--c1:#818cf8;--c2:#6366f1">
         <h1 class="ch-title">🤖 STEP 1 — 봇 vs 에이전트 차이</h1>
 
@@ -2534,7 +2534,7 @@ if __name__ == "__main__":
         </div>
       </div>
     </section>
-    <section class="chapter" id="react" data-level="1">
+    <section class="chapter paywall-locked" id="react" data-level="1" style="display:none">
       <div class="ch-header" style="--c1:#818cf8;--c2:#6366f1">
         <h1 class="ch-title">🧠 STEP 2 — ReAct 루프 (에이전트의 사고법)</h1>
 
@@ -2783,7 +2783,7 @@ if __name__ == "__main__":
         </div>
       </div>
     </section>
-    <section class="chapter" id="first" data-level="1">
+    <section class="chapter paywall-locked" id="first" data-level="1" style="display:none">
       <div class="ch-header" style="--c1:#818cf8;--c2:#6366f1">
         <h1 class="ch-title">🚀 STEP 3 — 10분 만에 첫 에이전트 만들기</h1>
 
@@ -2964,7 +2964,7 @@ if __name__ == "__main__":
         </div>
     </section>
 
-    <section class="chapter" id="level1b" data-level="1">
+    <section class="chapter paywall-locked" id="level1b" data-level="1" style="display:none">
       <div class="ch-header" style="--c1:#818cf8;--c2:#6366f1">
         <h1 class="ch-title">⛓️ STEP 4 — 프롬프트 체이닝</h1>
         <div class="code-block">
@@ -3116,7 +3116,7 @@ if __name__ == "__main__":
           </div>
         </div>
     </section>
-    <section class="chapter" id="level2a" data-level="2">
+    <section class="chapter paywall-locked" id="level2a" data-level="2" style="display:none">
       <div class="ch-header" style="--c1:#a78bfa;--c2:#7c3aed">
         <h1 class="ch-title">💾 STEP 5 — 에이전트 기억 시스템</h1>
         <div class="checklist">
@@ -3520,7 +3520,7 @@ if __name__ == "__main__":
         </div>
       </div>
     </section>
-    <section class="chapter" id="level2b" data-level="2">
+    <section class="chapter paywall-locked" id="level2b" data-level="2" style="display:none">
       <div class="ch-header" style="--c1:#a78bfa;--c2:#7c3aed">
         <h1 class="ch-title">👥 STEP 6a — HITL (사람 승인 구조)</h1>
         <div class="code-block">
@@ -3624,7 +3624,7 @@ def request_email_approval(to: str, subject: str, body: str):
         </div>
       </div>
     </section>
-    <section class="chapter" id="level6b" data-level="2">
+    <section class="chapter paywall-locked" id="level6b" data-level="2" style="display:none">
       <div class="ch-header" style="--c1:#a78bfa;--c2:#7c3aed">
         <h1 class="ch-title">🤝 STEP 6b — 멀티에이전트 팀 구성</h1>
         <div class="code-block">
@@ -4001,7 +4001,7 @@ send_email(
       </div>
     </div>
 
-    <section class="chapter" id="level3" data-level="3">
+    <section class="chapter paywall-locked" id="level3" data-level="3" style="display:none">
       <div class="ch-header" style="--c1:#fb923c;--c2:#ea580c">
         <h1 class="ch-title">🛡️ STEP 7 — 비용 통제 & 하네스</h1>
         <div class="harness-grid">
@@ -4360,7 +4360,7 @@ model = ROUTING["complex"] if scene_count > 30 else ROUTING["standard"]
           </div>
       </div>
     </section>
-    <section class="chapter" id="nocode" data-level="2">
+    <section class="chapter paywall-locked" id="nocode" data-level="2" style="display:none">
       <div class="ch-header" style="--c1:#a78bfa;--c2:#7c3aed">
         <h1 class="ch-title">🔌 STEP 8 — 코딩 없이 n8n으로 구축</h1>
 
@@ -4610,7 +4610,7 @@ model = ROUTING["complex"] if scene_count > 30 else ROUTING["standard"]
         </div>
       </div>
     </section>
-    <section class="chapter" id="level4" data-level="4">
+    <section class="chapter paywall-locked" id="level4" data-level="4" style="display:none">
       <div class="ch-header" style="--c1:#34d399;--c2:#059669">
         <h1 class="ch-title">🎼 STEP 9 — 프로덕션 배포 & AITF 활용</h1>
         <div class="roadmap-table">
@@ -5036,7 +5036,7 @@ app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))</code></pre>
         </div>
       </div>
     </section>
-    <section class="chapter" id="roadmap" data-level="0">
+    <section class="chapter paywall-locked" id="roadmap" data-level="0" style="display:none">
       <div class="ch-header" style="--c1:#38bdf8;--c2:#0ea5e9">
         <h1 class="ch-title">📅 30일 완성 로드맵</h1>
 
@@ -6117,7 +6117,7 @@ if __name__ == "__main__":
         </div>
       </div>
     </section>
-    <section class="chapter" id="epilogue" data-level="0">
+    <section class="chapter paywall-locked" id="epilogue" data-level="0" style="display:none">
       <div class="ch-header" style="--c1:#38bdf8;--c2:#0ea5e9">
         <h1 class="ch-title">✨ 에필로그 & 미래 전망</h1>
         <div class="cta-box">
