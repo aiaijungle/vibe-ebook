@@ -4,6 +4,38 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>바이브 코딩 실전 바이블 — 리미트리스맨 저</title>
+
+<!-- 🔒 2권 PAYWALL 즉시 차단 — head 안 inline JS (DOMContentLoaded 전 작동, 모바일/CSS 호환 100%) -->
+<script>
+(function(){
+  const PASSWORDS = ['JANDA-MASTER-2026', 'BD-VIP-2026', '380700!@#$', '380700'];
+  const saved = localStorage.getItem('janda_unlock');
+  const urlPw = new URLSearchParams(location.search).get('unlock');
+  const valid = pw => pw && (PASSWORDS.includes(pw.toUpperCase()) || PASSWORDS.includes(pw) || /^(B12|B34|B5|BD|CC|CE)-[A-Z0-9]{6,}$/.test(pw.toUpperCase()));
+  if (valid(urlPw)) localStorage.setItem('janda_unlock', urlPw.toUpperCase());
+  if (valid(urlPw) || valid(saved)) {
+    document.documentElement.classList.add('paywall-unlocked');
+  }
+  window.paywallUnlock = function() {
+    const input = document.getElementById('paywall-pw-input');
+    if (!input) return alert('비밀번호 입력 폼을 찾을 수 없습니다.');
+    const pw = (input.value || '').trim();
+    if (!pw) return alert('비밀번호를 입력해주세요.');
+    if (valid(pw)) {
+      localStorage.setItem('janda_unlock', pw.toUpperCase());
+      location.reload();
+    } else {
+      const err = document.getElementById('paywall-pw-error-v2');
+      if (err) { err.textContent = '❌ 비밀번호가 올바르지 않습니다. (예: BD-XXXXXXXX 또는 받으신 비번)'; err.style.display = 'block'; }
+      else { alert('비밀번호가 올바르지 않습니다.'); }
+    }
+  };
+  window.paywallNoticeClose = function() {
+    const box = document.querySelector('.paywall-locked-notice');
+    if (box) box.style.display = 'none';
+  };
+})();
+</script>
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://aiaijungle.github.io/vibe-ebook/">
 <meta property="og:title" content="바이브 코딩 실전 바이블 2권 — 리미트리스맨 저">
@@ -97,11 +129,32 @@ a:hover{text-decoration:underline}
 /* ── 페이월 ── */
 .blurred{filter:blur(12px);user-select:none;pointer-events:none;opacity:.15}
 .blurred *{color:transparent!important;text-shadow:none!important}
-/* 2권 무료 공개 */
+/* 🔒 2권 paywall (5권 패턴 — blur + max-height + 잠금 안내) — 2026-06-02 활성화 */
 #paywall-wall{display:none!important}
 #buy-popup{display:none!important}
-.blurred{filter:none!important;opacity:1!important;user-select:auto!important;pointer-events:auto!important}
-.blurred *{color:inherit!important;text-shadow:none!important}
+/* .paywall-locked wrapper — section-5 (제0장) 이후 본문 차단 */
+.paywall-locked { position: relative; max-height: 180px !important; overflow: hidden !important; pointer-events: none !important; user-select: none !important; filter: blur(6px) !important; opacity: 0.35 !important; }
+.paywall-locked::after { content: '🔒 잠금 영역 — 결제 후 비밀번호로 해제'; position: absolute; bottom: 0; left: 0; right: 0; height: 100%; background: linear-gradient(180deg, transparent 0%, var(--bg) 60%); pointer-events: none; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 24px; color: var(--accent); font-weight: 900; font-size: 1.1rem; letter-spacing: .08em; filter: none; z-index: 5; }
+html.paywall-unlocked .paywall-locked { max-height: none !important; overflow: visible !important; pointer-events: auto !important; user-select: auto !important; filter: none !important; opacity: 1 !important; }
+html.paywall-unlocked .paywall-locked::after { display: none !important; }
+/* paywall-locked-notice 박스 (cover 직후 paywall 시작점) */
+.paywall-locked-notice { max-width: 720px; margin: 32px auto; padding: 36px 28px; background: linear-gradient(135deg, #7c2d12, #9a3412); color: #fef3c7; border-radius: 16px; text-align: center; border: 2px solid #fbbf24; box-shadow: 0 10px 36px rgba(220,38,38,.4); word-break: keep-all; position: relative; }
+.paywall-locked-notice .pw-close { position: absolute; top: 12px; right: 14px; width: 32px; height: 32px; border-radius: 50%; background: rgba(0,0,0,.45); color: #fef3c7; border: 1.5px solid rgba(251,191,36,.4); font-size: 1.05rem; font-weight: 900; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all .15s; line-height: 1; }
+.paywall-locked-notice .pw-close:hover { background: rgba(0,0,0,.7); border-color: #fbbf24; transform: scale(1.08); }
+.paywall-locked-notice h3 { color: #fbbf24; font-size: 1.4rem; font-weight: 900; margin: 0 0 14px; letter-spacing: -.02em; line-height: 1.4; padding-right: 32px; }
+.paywall-locked-notice p { margin: 0 0 16px; line-height: 1.85; font-size: .95rem; color: #fef3c7; }
+.paywall-locked-notice .pw-btn { display: inline-block; padding: 16px 38px; background: linear-gradient(135deg, #fbbf24, #f59e0b); color: #1a0a00; font-weight: 900; font-size: 1.05rem; text-decoration: none; border-radius: 10px; box-shadow: 0 6px 20px rgba(251,191,36,.45); margin: 8px 0; }
+.paywall-locked-notice .pw-input { display: block; width: 100%; max-width: 340px; margin: 14px auto 8px; padding: 12px 14px; border: 1.5px solid rgba(251,191,36,.4); border-radius: 8px; background: rgba(0,0,0,.3); color: #fff; font-size: .95rem; text-align: center; letter-spacing: .08em; box-sizing: border-box; }
+.paywall-locked-notice .pw-submit { display: inline-block; padding: 10px 22px; background: rgba(255,255,255,.18); color: #fff; border: 1px solid rgba(255,255,255,.35); border-radius: 8px; font-weight: 700; cursor: pointer; font-size: .9rem; margin-top: 4px; }
+.paywall-locked-notice .pw-submit:hover { background: rgba(255,255,255,.28); }
+.paywall-locked-notice .pw-error { color: #fca5a5; font-size: .82rem; margin: 8px auto 0; display: none; }
+@media (max-width:680px) {
+  .paywall-locked-notice { padding: 26px 18px 22px; margin: 20px 12px; }
+  .paywall-locked-notice h3 { font-size: 1.12rem; padding-right: 28px; }
+  .paywall-locked-notice p { font-size: .88rem; }
+  .paywall-locked-notice .pw-btn { padding: 13px 24px; font-size: .96rem; }
+}
+html.paywall-unlocked .paywall-locked-notice { display: none !important; }
 .toc-locked{color:var(--text)!important;opacity:.4!important;pointer-events:auto;cursor:pointer;}
 .toc-locked:hover{opacity:.7!important;color:var(--accent)!important;}
 #buy-popup{display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:3000;align-items:center;justify-content:center;}
@@ -1122,6 +1175,26 @@ a,button{-webkit-touch-callout:default!important;-webkit-user-select:auto!import
 <hr class='divider'>
 <!-- /바이브코딩 원론 섹션 -->
 
+<!-- 🔒 PAYWALL 시작 — 2026-06-02 (5권 패턴, 1단계 베이스캠프부터 차단) -->
+<div class="paywall-locked-notice">
+  <button class="pw-close" onclick="window.paywallNoticeClose()" aria-label="닫기">✕</button>
+  <h3>🔒 여기부터는 — 입금 후 비밀번호로 열립니다</h3>
+  <p><strong style="color:#fbbf24;">2권 단권 19,900원 · 풀패키지 99,000원</strong><br>결제 후 <strong style="color:#fde68a;">2~3일 안에 비밀번호 이메일·문자 발송</strong>.</p>
+  <div class="pay-channels" style="text-align:left;background:rgba(0,0,0,.28);border-radius:10px;padding:14px 16px;margin:16px 0;font-size:.86rem;line-height:1.75;color:#fde68a;">
+    <div style="color:#fff;font-weight:800;text-align:center;margin:0 0 10px;font-size:.9rem;">💳 결제 방법</div>
+    <div style="margin:0 0 8px;color:#fbbf24;">⭐ 추천 — jbooking.kr (카드 결제)</div>
+    <div style="font-size:.78rem;padding-left:14px;display:block;line-height:1.7;margin-top:2px;">https://jbooking.kr/buy?book=2 · 카드 결제 즉시 처리</div>
+    <div style="margin:8px 0;">계좌이체 — 신한 110-271-235722 (김화현)</div>
+    <div style="font-size:.78rem;padding-left:14px;display:block;line-height:1.7;">입금 후 ceo@stayjanda.com 메일 발송 → 비번 전달</div>
+  </div>
+  <a href="https://jbooking.kr/buy?book=2" class="pw-btn" target="_blank">🎟 2권 구매 (19,900원) →</a>
+  <p style="font-size:.85rem;margin-top:18px;">또는 — 이미 결제하신 분은 받으신 비밀번호 입력:</p>
+  <input id="paywall-pw-input" class="pw-input" placeholder="비밀번호 (예: BD-XXXXXXXX)" autocomplete="off">
+  <button class="pw-submit" onclick="window.paywallUnlock()">🔓 잠금 해제</button>
+  <div id="paywall-pw-error-v2" class="pw-error"></div>
+</div>
+<!-- 🔒 PAYWALL 본문 차단 wrapper 시작 -->
+<div class="paywall-locked">
 <hr class='divider'>
 <h2 id='section-5' class='content-h2'>💡 제0장 : AI 수석 개발자 — 안(An) & 로드(Road) 사용 설명서와 금기사항</h2>
 <p class='para'>AI는 마법 지팡이가 아닙니다. 최고급 인재지만, 당신이 그들의 습성을 모르면 구석에서 딴짓만 하는 바보로 전락합니다. 안티그래비티와 클로드를 200% 활용하기 위한 핵심 지침과, 초보자가 무심코 저지르는 '절대 금기사항'을 팩트 기반으로 정리했습니다.</p>
@@ -3916,6 +3989,8 @@ https://aitf-api.onrender.com/lounge
   </div>
 </div>
 
+</div>
+<!-- 🔒 PAYWALL 본문 차단 wrapper 끝 -->
 <div id="locked-zone"></div>
     </div>
   </main>
