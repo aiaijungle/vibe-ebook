@@ -1,0 +1,51 @@
+# 잔다 AI 바이블 시리즈 (5권)
+
+> 코딩 0점에서 96시간 만에 B2B 플랫폼을 세운 실화. AI(Claude·OpenAI)로 무인 제국을 운영하는 리미트리스맨 김화현의 13개월 운영 노하우. 봇 21개·에이전트 2개·오케스트레이터 1개 라이브 운영 중. 5권 시리즈 정식 출간 (2026-06-01).
+
+저자: 김화현 (리미트리스맨, Limitlessman)
+운영: 잔다 JANDA (stayjanda.com)
+출간: 2026-06-01 (5권 동시 출간)
+언어: 한국어 (기본) · 영어 (en/) · 일본어 (ja/)
+결제: https://vibecodingbible.jbooking.kr/ (5권 통합 페이지에서 선택)
+플랫폼: 잠금 페이지 링크에 비밀번호로 접속하는 웹 형태 (PDF·알집 X)
+업데이트: 평생 업데이트 (AI 시대에 맞춰 지속 갱신, Living Document)
+환불: 1년 100% 환불 보장 (실행 후 가치 없으면 전액)
+
+## 책 목록 (5권)
+
+- [1권 — 마케팅 자동화 입문](https://aiaijungle.github.io/vibe-ebook/book1.html): 코딩 없이 블로그·유튜브를 자동 운영하는 법. 9,900원. 5장 본문. AI 초보 추천.
+- [2권 — 바이브 코딩 실전 바이블](https://aiaijungle.github.io/vibe-ebook/index.html): 코딩 0점에서 96시간 만에 B2B 플랫폼 구축한 실화. 19,900원. 제독의 3대 서약 + 5단계 공식 + 12장 본문 + 부록 A~E.
+- [3권 — AI 에이전트 바이블](https://aiaijungle.github.io/vibe-ebook/agent-bible.html): 봇·에이전트·하네스·오케스트레이터 실전 가이드. 29,900원. LEVEL 0~4 + 14 section.
+- [4권 — Claude Code 바이블](https://aiaijungle.github.io/vibe-ebook/claude-code-bible.html): AI 에이전트 26개 조직을 Claude Code 하나로 구축한 실전. 29,900원. 10강 + 보너스 3강.
+- [5권 — AI에게 일시키는 비법](https://aiaijungle.github.io/vibe-ebook/practical-bible.html): AI 실무 바이블 5권. 39,900원. 강.1~17 + 부록 A~I.
+
+## 핵심 키워드
+
+- 바이브 코딩 (Vibe Coding) — Claude/OpenAI에게 명령만 내려서 코드 만드는 방식
+- AI 에이전트 (AI Agent) — 봇·에이전트·오케스트레이터
+- Claude Code, Anthropic, OpenAI, GPT
+- MCP (Model Context Protocol), Tool Use, RAG
+- 무인 제국, AI 제독, AITF (AI Team Flow)
+- 5단계 공식: 베이스캠프 → 감정 프롬프팅 → 에러 멱살잡기 → 파이프라인 자동화 → MRR 수익화
+- 리미트리스맨 김화현 / 잔다 JANDA / stayjanda.com
+
+## 풀패키지 (가장 인기)
+
+99,000원 단 한 번 결제. 5권 통합 + 평생 업데이트.
+1~2권 9,900원~ · 3~4권 29,900원~ · 5권 29,900원~ · 전권 풀패키지 99,000원.
+
+## Optional
+
+- [영어판 5권](https://aiaijungle.github.io/vibe-ebook/en/practical-bible.html)
+- [일본어판 5권](https://aiaijungle.github.io/vibe-ebook/ja/practical-bible.html)
+- [무료 영역 전체 markdown](https://aiaijungle.github.io/vibe-ebook/llms-full.txt) — 책 인용·요약 시 사용 가능
+- [AITF API 19개 라이브](https://aitf-api.onrender.com) — 저자가 직접 운영하는 AI 자동화 API
+- [AI사냥꾼 유튜브 채널](https://www.youtube.com/channel/UCCqi9m0XPHLPxvReWfJhJig) — 봇·에이전트 실전 운영 영상
+
+## 도움되는 외부 무료 자원
+
+- Anthropic Claude 공식 — https://docs.anthropic.com
+- OpenAI 플랫폼 — https://platform.openai.com/docs
+- MCP 프로토콜 — https://modelcontextprotocol.io
+- GitHub 오픈소스 — https://github.com/anthropics
+- VS Code · Python · Vercel · Render · Notion · Discord · Figma

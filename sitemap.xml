@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- 메인 (2권 바이브 코딩 실전 바이블) -->
+  <url>
+    <loc>https://aiaijungle.github.io/vibe-ebook/index.html</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://aiaijungle.github.io/vibe-ebook/index.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiaijungle.github.io/vibe-ebook/en/index.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://aiaijungle.github.io/vibe-ebook/ja/index.html"/>
+  </url>
+
+  <!-- 1권 마케팅 자동화 입문 -->
+  <url>
+    <loc>https://aiaijungle.github.io/vibe-ebook/book1.html</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 3권 AI 에이전트 바이블 -->
+  <url>
+    <loc>https://aiaijungle.github.io/vibe-ebook/agent-bible.html</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 4권 Claude Code 바이블 -->
+  <url>
+    <loc>https://aiaijungle.github.io/vibe-ebook/claude-code-bible.html</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 5권 AI에게 일시키는 비법 -->
+  <url>
+    <loc>https://aiaijungle.github.io/vibe-ebook/practical-bible.html</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://aiaijungle.github.io/vibe-ebook/practical-bible.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiaijungle.github.io/vibe-ebook/en/practical-bible.html"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://aiaijungle.github.io/vibe-ebook/ja/practical-bible.html"/>
+  </url>
+
+  <!-- 글로벌: 영어 5권 -->
+  <url>
+    <loc>https://aiaijungle.github.io/vibe-ebook/en/practical-bible.html</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- 글로벌: 일본어 5권 -->
+  <url>
+    <loc>https://aiaijungle.github.io/vibe-ebook/ja/practical-bible.html</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- llms.txt (LLM 안내) -->
+  <url>
+    <loc>https://aiaijungle.github.io/vibe-ebook/llms.txt</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- llms-full.txt (무료 영역 markdown) -->
+  <url>
+    <loc>https://aiaijungle.github.io/vibe-ebook/llms-full.txt</loc>
+    <lastmod>2026-06-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+</urlset>

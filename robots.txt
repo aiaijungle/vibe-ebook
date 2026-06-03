@@ -1,0 +1,67 @@
+# 잔다 AI 바이블 시리즈 — robots.txt
+# 2026-06-03 (D+2)
+# 정책: AI 크롤러 명시 허용 (마케팅 + AEO 최적화 우선)
+# 보안 우려 영역 (paywall 본문): 클라이언트 측 차단 적용 (별도)
+
+# 모든 봇 기본 허용
+User-agent: *
+Allow: /
+
+# AI 학습 데이터 + 실시간 답변 (Claude·ChatGPT·Perplexity·Gemini)
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Gemini-Deep-Research
+Allow: /
+
+User-agent: Google-NotebookLM
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: Cohere-ai
+Allow: /
+
+# Sitemap 위치
+Sitemap: https://aiaijungle.github.io/vibe-ebook/sitemap.xml
+
+# LLM 안내 (Anthropic 표준)
+# https://aiaijungle.github.io/vibe-ebook/llms.txt
+# https://aiaijungle.github.io/vibe-ebook/llms-full.txt
