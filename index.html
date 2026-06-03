@@ -1071,7 +1071,7 @@ a,button{-webkit-touch-callout:default!important;-webkit-user-select:auto!import
 
   📦 SETUP  베이스캠프 구축
   ──────────────────────────────────────────────────────
-  [1] ZIP 압축 해제 → MASTER.env + CLAUDE.md 폴더에 배치
+  [1] 본문 코드 참고 → MASTER.env + CLAUDE.md 직접 작성 후 폴더에 배치
       ↓
   [2] VS Code 설치 → Python 설치 → Claude Code 연결      ← 2장
       ↓
@@ -1280,7 +1280,7 @@ a,button{-webkit-touch-callout:default!important;-webkit-user-select:auto!import
 <ol class='md-ol'>
 <li>제2장(세팅)만 대충 빠르게 눈으로 읽고 <code>바이브코딩_시작하기.bat</code> 파일을 더블클릭하십시오.</li>
 <li>중간의 이론 파트를 싹 다 건너뛰고 <strong>곧바로 [제6장 자동화 봇 설치 편] 주변을 펼치십시오.</strong></li>
-<li>🅑 BUILDER 이상 패키지에 포함된 알집(ZIP) 안에 있는 텔레그램 봇 폴더를 열고, 책에 적힌 대로 명령어 한 줄만 따라 쳐서 봇을 기동시키십시오.<br><small style="opacity:.65;">※ 알집 파일 없이도 책의 내용을 배우는 데 전혀 문제 없습니다. 단, 300시간에 걸쳐 누적 개발된 기본 봇·에이전트·하네스 소스코드를 즉시 활용하려면 적극 추천합니다. (활용 역량 및 환경에 따라 결과가 상이할 수 있습니다)</small></li>
+<li>본문에 적힌 텔레그램 봇 코드를 그대로 따라 작성하고, 책에 적힌 대로 명령어 한 줄만 따라 쳐서 봇을 기동시키십시오.<br><small style="opacity:.65;">※ 본 책은 일반 종이책과 다르게 빠르게 변화하는 AI 시대에 맞춰 지속적으로 내용이 업데이트됩니다. 300시간에 걸쳐 누적 개발된 봇·에이전트·하네스 노하우가 본문에 모두 담겨 있어, 그대로 따라하면 직접 구축할 수 있습니다.</small></li>
 </ol>
 <p class='para'>이 작은 성공을 10분 안에 먼저 맛보고 나면, 나머지 200페이지는 도파민에 취해 스스로 밤을 새워가며 읽게 될 것입니다. 결과물을 먼저 입에 떠먹고 시작하십시오!</p>
 <hr class='divider'>
@@ -1810,7 +1810,7 @@ MY_SECRET=비밀값</code></pre>
 <div style="margin:28px 0;padding:22px 24px;background:linear-gradient(135deg,rgba(124,58,237,.12),rgba(245,158,11,.06));border:1px solid rgba(124,58,237,.3);border-radius:14px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
   <div>
     <div style="font-size:.88rem;font-weight:800;color:var(--text);margin-bottom:4px;word-break:keep-all;">📌 지금 이 시스템, 당신도 그대로 쓸 수 있습니다.</div>
-    <div style="font-size:.76rem;color:var(--text);opacity:.65;word-break:keep-all;">봇 9개 + 에이전트 2개 + 배포 서비스 2개 — 전체 소스와 가이드를 패키지로 드립니다.</div>
+    <div style="font-size:.76rem;color:var(--text);opacity:.65;word-break:keep-all;">봇 9개 + 에이전트 2개 + 배포 서비스 2개 — 본문에 전체 코드와 가이드가 모두 포함되어 있어 그대로 따라하면 됩니다.</div>
   </div>
   <a href="agent-bible.html" style="flex-shrink:0;display:inline-block;background:linear-gradient(135deg,#7c3aed,#f59e0b);color:#fff;font-weight:800;font-size:.82rem;padding:11px 22px;border-radius:9px;text-decoration:none;white-space:nowrap;transition:opacity .2s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">📧 2권 구매 →</a>
 </div>
@@ -1900,7 +1900,7 @@ MY_SECRET=비밀값</code></pre>
 <div style="text-align:center;margin:-16px 0 32px;font-size:.78rem;color:var(--muted);">* 실제 저자의 48시간 기록 기준</div>
 
 <hr class='divider'>
-<blockquote class='quote'><p class='para'>💬 철학자의 한마디 — 노자<br><br>"천 리 길도 한 걸음부터 시작된다."<br><br>지금 이 페이지를 읽고 있는 것. 그게 그 한 걸음입니다.<br><br>📌 [1장 지금 당장 할 것 3가지]<br><br><strong>Step 1 — 환경 설치 (10분)</strong><br>구매 확인 메일의 다운로드 링크에서 패키지에 포함된 알집(ZIP)을 받으십시오. 압축을 풀면 아래 파일들이 나옵니다:<br>- <code>MASTER.env.example</code> → API 키 보관 금고 (이름을 <code>MASTER.env</code>로 바꾸고 키를 입력)<br>- <code>CLAUDE.md</code> → Claude에게 먹이는 프로젝트 규칙 파일 (복사해서 내 프로젝트 폴더에 넣기)<br>- <code>봇_모음/</code> → 즉시 실행 가능한 핵심 봇 15종 (텔레그램 봇, 심리봇, 블로그 자동화, 유튜브 봇 등)<br>※ 알집 없이도 학습에 전혀 지장 없습니다. 단, 300시간을 압축한 최고의 봇·에이전트·하네스 시스템을 바로 운영하려면 🅑 BUILDER 이상 패키지를 추천합니다.<br><br><strong>Step 2 — Claude.ai 계정 만들기 (3분)</strong><br>claude.ai 에 접속해 무료 계정을 만드십시오. 이게 당신의 첫 번째 AI 요원입니다.<br><br><strong>Step 3 — 첫 명령 내리기 (1분)</strong><br>Claude에게 이렇게 치십시오: <em>"안녕. 나는 비개발자야. 오늘부터 너와 함께 내 첫 번째 자동화 봇을 만들 거야. 우선 내가 뭘 가장 먼저 해야 하는지 알려줘."</em><br>이 한 줄이 당신의 무인 제국을 여는 첫 번째 열쇠입니다.</p></blockquote>
+<blockquote class='quote'><p class='para'>💬 철학자의 한마디 — 노자<br><br>"천 리 길도 한 걸음부터 시작된다."<br><br>지금 이 페이지를 읽고 있는 것. 그게 그 한 걸음입니다.<br><br>📌 [1장 지금 당장 할 것 3가지]<br><br><strong>Step 1 — 환경 설치 (10분)</strong><br>본문 가이드를 따라 아래 파일들을 직접 작성하십시오:<br>- <code>MASTER.env.example</code> → API 키 보관 금고 (이름을 <code>MASTER.env</code>로 바꾸고 키를 입력) — 본문 9장에 전체 템플릿 수록<br>- <code>CLAUDE.md</code> → Claude에게 먹이는 프로젝트 규칙 파일 — 부록 E에 실전 템플릿 수록<br>- <code>봇_모음/</code> → 텔레그램 봇·심리봇·블로그 자동화·유튜브 봇 등 핵심 봇 15종의 전체 코드와 가이드가 본문 챕터별로 수록<br>※ 본 책은 일반 종이책과 다르게 빠르게 변화하는 AI 시대에 맞춰 지속적으로 내용이 업데이트됩니다. 300시간에 걸쳐 누적 개발된 봇·에이전트·하네스 시스템 노하우가 본문에 모두 담겨 있어, 그대로 따라하면 직접 구축할 수 있습니다.<br><br><strong>Step 2 — Claude.ai 계정 만들기 (3분)</strong><br>claude.ai 에 접속해 무료 계정을 만드십시오. 이게 당신의 첫 번째 AI 요원입니다.<br><br><strong>Step 3 — 첫 명령 내리기 (1분)</strong><br>Claude에게 이렇게 치십시오: <em>"안녕. 나는 비개발자야. 오늘부터 너와 함께 내 첫 번째 자동화 봇을 만들 거야. 우선 내가 뭘 가장 먼저 해야 하는지 알려줘."</em><br>이 한 줄이 당신의 무인 제국을 여는 첫 번째 열쇠입니다.</p></blockquote>
 <hr class='divider'>
 <blockquote class='quote'><p class='para'>### 🔥 리미트리스맨(한계없는 사람)의 법칙 #1<br><br>"코드를 읽으려 하지 마라. 에러를 복사하라."<br><br>수억 원짜리 IT 플랫폼을 단 며칠 만에 타이핑 몇 번으로 만들어낸 비결은 단 하나입니다. 코드를 직접 손가락으로 치며 수정하려 시도하지 않은 것입니다.<br><br>1) 비즈니스 목적을 감정적이고 명확한 언어로 AI에게 설명한다.  <br>2) 터미널의 에러 로그를 발견하면, 절대 코드에 손대지 않고 통째로 AI에게 던진다.<br><br>이것을 체화하는 날, 당신의 시간당 생산성은 보통 사람의 500배를 뛰어넘습니다.<br><br>📍 <strong>이 이야기를 읽고 가슴이 뛰었다면, 당신도 96시간을 시작할 수 있습니다.</strong><br>다음 챕터에서 그 96시간의 첫 30분을 함께 시작합니다. 까만 터미널 화면 — 무서워 보이지만, 사실 그것이 당신의 무기입니다.</p></blockquote>
 <hr class='divider'>
@@ -1987,17 +1987,16 @@ MY_SECRET=비밀값</code></pre>
 
   STEP 4  MASTER.env 파일 설정                  ⏱ 10분
   ─────────────────────────────────────────────
-  패키지에 포함된 알집(ZIP) → MASTER.env.example 복사
-  → MASTER.env 로 이름 변경
+  본문 STEP 가이드 참고 → MASTER.env 파일 직접 작성
   → ANTHROPIC_API_KEY= 옆에 내 API 키 입력
   → .gitignore 파일에 MASTER.env 추가 (보안 필수!)
-  ※ 알집 없이도 학습 가능 | 봇·에이전트 즉시 운영은 추천
+  ※ 일반 종이책과 다르게 빠르게 변화하는 AI 시대에 맞춰 본 책은 지속적으로 내용이 업데이트됩니다
   체크 ☐
 
 
   STEP 5  CLAUDE.md 배치                        ⏱ 2분
   ─────────────────────────────────────────────
-  패키지에 포함된 알집(ZIP) → CLAUDE.md 파일을
+  본문 CLAUDE.md 가이드 참고 → 직접 작성한 후
   내 프로젝트 폴더 최상단에 복사·붙여넣기
   (이 파일이 AI에게 내 프로젝트 규칙을 먹입니다)
   체크 ☐
@@ -4432,7 +4431,7 @@ function submitEbookRequest() {
     <!-- 전체 챕터 수 -->
     <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:18px;">
       <span style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:4px 12px;font-size:.72rem;color:rgba(255,255,255,.6);">📚 총 23개 챕터</span>
-      <span style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:4px 12px;font-size:.72rem;color:rgba(255,255,255,.6);">⚡ 소스코드 패키지 포함</span>
+      <span style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:4px 12px;font-size:.72rem;color:rgba(255,255,255,.6);">⚡ AI 시대에 맞춰 지속 업데이트</span>
       <span style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:4px 12px;font-size:.72rem;color:rgba(255,255,255,.6);">♾️ 평생 열람</span>
     </div>
 
