@@ -3,6 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+  <!-- 🔒 4권 PAYWALL 즉시 차단 — head 안 inline JS (2026-06-03) -->
+  <script>
+  (function(){
+    const PASSWORDS = ['JANDA-MASTER-2026', 'BD-VIP-2026', '380700!@#$', '380700'];
+    const saved = localStorage.getItem('janda_unlock');
+    const urlPw = new URLSearchParams(location.search).get('unlock');
+    const valid = pw => pw && (PASSWORDS.includes(pw.toUpperCase()) || PASSWORDS.includes(pw) || /^(B12|B34|B5|BD|CC|CE)-[A-Z0-9]{6,}$/.test(pw.toUpperCase()));
+    if (valid(urlPw)) localStorage.setItem('janda_unlock', urlPw.toUpperCase());
+    if (valid(urlPw) || valid(saved)) {
+      document.documentElement.classList.add('paywall-unlocked');
+      document.addEventListener('DOMContentLoaded', function(){
+        document.querySelectorAll('section.chapter.paywall-locked').forEach(function(s){ s.style.display = ''; });
+      });
+    }
+    window.paywallUnlock = function() {
+      const input = document.getElementById('paywall-pw-input');
+      if (!input) return alert('비밀번호 입력 폼을 찾을 수 없습니다.');
+      const pw = (input.value || '').trim();
+      if (!pw) return alert('비밀번호를 입력해주세요.');
+      if (valid(pw)) {
+        localStorage.setItem('janda_unlock', pw.toUpperCase());
+        location.reload();
+      } else {
+        alert('비밀번호가 올바르지 않습니다. (예: BD-XXXXXXXX 또는 받으신 비번)');
+      }
+    };
+  })();
+  </script>
   <meta name="description" content="AI 에이전트 26개 조직을 Claude Code 하나로 구축한 실전 노하우. 설치부터 멀티에이전트 운영까지 10강 + 보너스 3강. AI 바이블 시리즈 4권.">
   <meta property="og:title" content="Claude Code 바이블 2026 — AI 바이블 시리즈 4권">
   <meta property="og:description" content="AI 에이전트 26개 조직을 Claude Code 하나로 구축했다. 직접 만들고 운영한 실전 경험 그대로. 설치·CLAUDE.md·MCP·Hooks·멀티에이전트 10강 + 보너스 3강. 무료.">
@@ -685,7 +714,7 @@
   <div data-paywall-stop></div>
 
   <!-- ━━━━ CHAPTER 1 ━━━━ -->
-  <section class="chapter" id="ch1">
+  <section class="chapter paywall-locked" id="ch1" style="display:none">
     <div class="ch-header">
       <div class="ch-num">Level 1 · 입문 — 1강</div>
       <h2 class="ch-title">Claude Code가 뭔데?<br>ChatGPT랑 뭐가 달라</h2>
@@ -778,7 +807,7 @@
   </section>
 
   <!-- ━━━━ CHAPTER 2 ━━━━ -->
-  <section class="chapter" id="ch2">
+  <section class="chapter paywall-locked" id="ch2" style="display:none">
     <div class="ch-header">
       <div class="ch-num">Level 1 · 입문 — 2강</div>
       <h2 class="ch-title">설치 & 첫 대화<br>10분 완성 가이드</h2>
@@ -883,7 +912,7 @@ claude</pre>
   </section>
 
   <!-- ━━━━ CHAPTER 3 ━━━━ -->
-  <section class="chapter" id="ch3">
+  <section class="chapter paywall-locked" id="ch3" style="display:none">
     <div class="ch-header">
       <div class="ch-num">Level 1 · 입문 — 3강</div>
       <h2 class="ch-title">황금 워크플로우<br>Explore → Plan → Code → Commit</h2>
@@ -994,7 +1023,7 @@ claude</pre>
   </section>
 
   <!-- ━━━━ CHAPTER 4 ━━━━ -->
-  <section class="chapter" id="ch4">
+  <section class="chapter paywall-locked" id="ch4" style="display:none">
     <div class="ch-header">
       <div class="ch-num">Level 2 · 핵심 — 4강</div>
       <h2 class="ch-title">CLAUDE.md — AI에게 뇌를 심어라</h2>
@@ -1095,7 +1124,7 @@ claude</pre>
   </section>
 
   <!-- ━━━━ CHAPTER 5 ━━━━ -->
-  <section class="chapter" id="ch5">
+  <section class="chapter paywall-locked" id="ch5" style="display:none">
     <div class="ch-header">
       <div class="ch-num">Level 2 · 핵심 — 5강</div>
       <h2 class="ch-title">MCP — 슈퍼파워 장착</h2>
@@ -1217,7 +1246,7 @@ claude</pre>
   </div>
 
   <!-- ━━━━ CHAPTER 6 ━━━━ -->
-  <section class="chapter" id="ch6">
+  <section class="chapter paywall-locked" id="ch6" style="display:none">
     <div class="ch-header">
       <div class="ch-num">Level 2 · 핵심 — 6강</div>
       <h2 class="ch-title">Hooks — 자동화의 끝판왕</h2>
@@ -1320,7 +1349,7 @@ claude</pre>
   </section>
 
   <!-- ━━━━ CHAPTER 7 ━━━━ -->
-  <section class="chapter" id="ch7">
+  <section class="chapter paywall-locked" id="ch7" style="display:none">
     <div class="ch-header">
       <div class="ch-num">Level 3 · 고급 — 7강</div>
       <h2 class="ch-title">Subagents — AI 팀 구성</h2>
@@ -1420,7 +1449,7 @@ async def run_parallel(tasks: list[str]):
   </section>
 
   <!-- ━━━━ CHAPTER 8 ━━━━ -->
-  <section class="chapter" id="ch8">
+  <section class="chapter paywall-locked" id="ch8" style="display:none">
     <div class="ch-header">
       <div class="ch-num">Level 3 · 고급 — 8강</div>
       <h2 class="ch-title">API로 직접 연동하기<br>봇과 SaaS 만들기</h2>
@@ -1601,7 +1630,7 @@ for block in response.content:
   </section>
 
   <!-- ━━━━ CHAPTER 9 ━━━━ -->
-  <section class="chapter" id="ch9">
+  <section class="chapter paywall-locked" id="ch9" style="display:none">
     <div class="ch-header">
       <div class="ch-num">Level 4 · 실전 — 9강</div>
       <h2 class="ch-title">JANDA AGI 구축기<br>진짜로 만들어본 사람의 이야기</h2>
@@ -1711,7 +1740,7 @@ for block in response.content:
   </section>
 
   <!-- ━━━━ CHAPTER 10 ━━━━ -->
-  <section class="chapter" id="ch10">
+  <section class="chapter paywall-locked" id="ch10" style="display:none">
     <div class="ch-header">
       <div class="ch-num">Level 4 · 실전 — 10강</div>
       <h2 class="ch-title">수료 & 다음 단계<br>이제 뭘 하면 되는가</h2>
@@ -1852,7 +1881,7 @@ for block in response.content:
 
 
   <!-- ━━━━ BONUS 1: 프롬프트 치트시트 ━━━━ -->
-  <section class="chapter" id="ch11">
+  <section class="chapter paywall-locked" id="ch11" style="display:none">
     <div class="ch-header">
       <div class="ch-num">보너스 1 · 실전 도구</div>
       <h2 class="ch-title">프롬프트 치트시트<br>복붙해서 바로 쓰는 30개 패턴</h2>
@@ -2119,7 +2148,7 @@ Windows 작업 스케줄러 또는 Linux cron 설정 방법 알려줘.
   </section>
 
   <!-- ━━━━ BONUS 2: 흔한 실수 TOP 10 ━━━━ -->
-  <section class="chapter" id="ch12">
+  <section class="chapter paywall-locked" id="ch12" style="display:none">
     <div class="ch-header">
       <div class="ch-num">보너스 2 · 실전 도구</div>
       <h2 class="ch-title">흔한 실수 TOP 10<br>경험자만 아는 함정들</h2>
@@ -2363,7 +2392,7 @@ token*.pickle</pre>
   </section>
 
   <!-- ━━━━ BONUS 3: 비용·VS Code·Git ━━━━ -->
-  <section class="chapter" id="ch13">
+  <section class="chapter paywall-locked" id="ch13" style="display:none">
     <div class="ch-header">
       <div class="ch-num">보너스 3 · 실전 도구</div>
       <h2 class="ch-title">비용 절약 · VS Code · Git<br>실전 설정 완전 가이드</h2>

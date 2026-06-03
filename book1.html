@@ -4,6 +4,38 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>바이브코딩 1권 — 마케팅 자동화 입문</title>
+
+<!-- 🔒 1권 PAYWALL 즉시 차단 — head 안 inline JS (2026-06-03) -->
+<script>
+(function(){
+  const PASSWORDS = ['JANDA-MASTER-2026', 'BD-VIP-2026', '380700!@#$', '380700'];
+  const saved = localStorage.getItem('janda_unlock');
+  const urlPw = new URLSearchParams(location.search).get('unlock');
+  const valid = pw => pw && (PASSWORDS.includes(pw.toUpperCase()) || PASSWORDS.includes(pw) || /^(B12|B34|B5|BD|CC|CE)-[A-Z0-9]{6,}$/.test(pw.toUpperCase()));
+  if (valid(urlPw)) localStorage.setItem('janda_unlock', urlPw.toUpperCase());
+  if (valid(urlPw) || valid(saved)) {
+    document.documentElement.classList.add('paywall-unlocked');
+  }
+  window.paywallUnlock = function() {
+    const input = document.getElementById('paywall-pw-input');
+    if (!input) return alert('비밀번호 입력 폼을 찾을 수 없습니다.');
+    const pw = (input.value || '').trim();
+    if (!pw) return alert('비밀번호를 입력해주세요.');
+    if (valid(pw)) {
+      localStorage.setItem('janda_unlock', pw.toUpperCase());
+      location.reload();
+    } else {
+      alert('비밀번호가 올바르지 않습니다. (예: BD-XXXXXXXX 또는 받으신 비번)');
+    }
+  };
+})();
+</script>
+<style>
+  .b1-paywall-locked { position: relative; max-height: 180px !important; overflow: hidden !important; pointer-events: none !important; user-select: none !important; filter: blur(6px) !important; opacity: 0.35 !important; }
+  .b1-paywall-locked::after { content: '🔒 잠금 영역 — 결제 후 비밀번호로 해제'; position: absolute; bottom: 0; left: 0; right: 0; height: 100%; background: linear-gradient(180deg, transparent 0%, var(--bg) 60%); pointer-events: none; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 24px; color: var(--accent); font-weight: 900; font-size: 1.1rem; letter-spacing: .08em; filter: none; z-index: 5; }
+  html.paywall-unlocked .b1-paywall-locked { max-height: none !important; overflow: visible !important; pointer-events: auto !important; user-select: auto !important; filter: none !important; opacity: 1 !important; }
+  html.paywall-unlocked .b1-paywall-locked::after { display: none !important; }
+</style>
 <meta property="og:type" content="book">
 <meta property="og:url" content="https://aiaijungle.github.io/vibe-ebook/book1.html">
 <meta property="og:title" content="바이브코딩 바이블 1권 — 마케팅 자동화 입문">
@@ -614,6 +646,8 @@ a,button{-webkit-touch-callout:default!important;-webkit-user-select:auto!import
   <div data-paywall-stop></div>
 
   <!-- 1장 블로그 -->
+<!-- 🔒 PAYWALL 본문 차단 wrapper 시작 (2026-06-03) -->
+<div class="b1-paywall-locked">
   <h2 class="content-h1">1장. 블로그 자동화</h2>
 
   <p class="para">검색에서 들어온 사람이 가장 구매 확률이 높다. 광고는 내가 먼저 찾아가지만, 블로그는 고객이 먼저 찾아온다. 이미 그 문제에 관심이 있는 사람이다. 설득이 반쯤 된 상태다.</p>
@@ -1146,6 +1180,9 @@ window.addEventListener('beforeprint', e => {
   });
 })();
 </script>
+
+</div>
+<!-- 🔒 PAYWALL 본문 차단 wrapper 끝 -->
 
 <!-- 선물 심리 트리거 섹션 -->
 <div class="gift-section" style="background:linear-gradient(180deg,#0a0010 0%,#12001e 60%,#0a0010 100%);padding:36px 20px 44px;text-align:center;border-top:1px solid rgba(255,149,0,0.15);">
