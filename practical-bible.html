@@ -295,6 +295,10 @@
       }
       .ch-body table::-webkit-scrollbar, .compare-table::-webkit-scrollbar { height: 6px; }
       .ch-body table::-webkit-scrollbar-thumb, .compare-table::-webkit-scrollbar-thumb { background: rgba(193,95,60,.4); border-radius: 3px; }
+      /* 🔧 모바일 grid 셀 overflow 방지 — 자식이 grid 폭을 늘리지 못하게 */
+      .ch-body div[style*="grid-template-columns"] { grid-template-columns: 1fr !important; gap: 10px !important; }
+      .ch-body div[style*="grid"] > *, .ch-body [style*="display:flex"] > * { min-width: 0 !important; max-width: 100% !important; word-break: keep-all; overflow-wrap: anywhere; }
+      .ch-body img, .ch-body iframe, .ch-body video { max-width: 100% !important; height: auto !important; }
       pre.code, pre { font-size: .75rem; padding: 12px 14px; overflow-x: auto }
       .tip-box, .warn-box, .story-box { padding: 16px 18px; font-size: .92rem }
       .cta-box { padding: 24px 20px; margin: 36px 0 }
