@@ -641,7 +641,7 @@
         let el = m;
         while (el && el !== document.body) {
           let sib = el.nextElementSibling;
-          while (sib) { if (sib.tagName !== 'SCRIPT' && sib.tagName !== 'STYLE') sib.classList.add('paywall-hidden'); sib = sib.nextElementSibling; }
+          while (sib) { if (sib.tagName !== 'SCRIPT' && sib.tagName !== 'STYLE' && !['gift-modal','cgate-overlay','paywall-pw-input','paywall-locked-notice'].includes(sib.id) && !sib.hasAttribute('data-paywall-keep')) sib.classList.add('paywall-hidden'); sib = sib.nextElementSibling; }
           el = el.parentElement;
         }
       });

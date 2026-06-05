@@ -561,11 +561,20 @@ a,button{-webkit-touch-callout:default!important;-webkit-user-select:auto!import
       document.addEventListener('DOMContentLoaded', function() {
         const m = document.querySelector('[data-paywall-stop]');
         if (!m) return;
+        // 잠금과 무관 — 선물 모달·잠금 해제 입력 폼·고정 오버레이는 항상 노출
+        const PAYWALL_EXEMPT_IDS = new Set([
+          'gift-modal',           // 친구 선물 (구매 유도)
+          'cgate-overlay',        // 커뮤니티 게이트
+          'paywall-pw-input',     // 잠금 해제 입력 폼
+          'paywall-locked-notice' // 잠금 안내 박스
+        ]);
         let el = m;
         while (el && el !== document.body) {
           let sib = el.nextElementSibling;
           while (sib) {
-            if (sib.tagName !== 'SCRIPT' && sib.tagName !== 'STYLE') {
+            if (sib.tagName !== 'SCRIPT' && sib.tagName !== 'STYLE'
+                && !PAYWALL_EXEMPT_IDS.has(sib.id)
+                && !sib.hasAttribute('data-paywall-keep')) {
               sib.classList.add('paywall-hidden');
             }
             sib = sib.nextElementSibling;
