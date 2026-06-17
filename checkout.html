@@ -3,55 +3,68 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vibe Coding Bible — Checkout (PayPal)</title>
-<!-- ⬇️ Replace CLIENT_ID only (PayPal Developer → My Apps → Client ID). Public key, safe to expose. NEVER put the Secret here. ⬇️ -->
-<!-- Test: Sandbox Client ID / Real sales: Live Client ID -->
+<title>AI Bible - International Checkout (PayPal)</title>
+<meta name="description" content="International PayPal checkout for AI Bible. USD payment for customers outside Korea.">
 <script src="https://www.paypal.com/sdk/js?client-id=ARYadvgjGiunujqbqzACLOLGzPrs6ZeACC-GEm9gCr7JLTkcAjR5ESbuqXaAKJ2y3_mhVORlf29vvdLA&currency=USD&intent=capture&locale=en_US"></script>
 <style>
-  *{box-sizing:border-box;margin:0;padding:0;font-family:-apple-system,'Segoe UI',Roboto,'Malgun Gothic',sans-serif}
-  body{background:#0e1016;color:#f2f4f8;padding:24px 16px;max-width:680px;margin:0 auto}
-  .hd{text-align:center;margin:18px 0 8px}
-  .hd h1{font-size:1.7rem;font-weight:900}
-  .hd .sub{color:#9aa2b2;margin-top:8px;font-size:.95rem}
-  .sale{display:inline-block;background:#e5091e;color:#fff;font-weight:900;padding:6px 14px;border-radius:30px;margin-top:12px}
-  .benefits{margin:16px 0 6px;display:flex;flex-direction:column;gap:6px}
-  .benefits .b{background:#11151c;border:1px solid #2a2f3a;border-radius:10px;padding:10px 14px;font-size:.92rem}
-  .trust{background:#11151c;border:1px solid #2a2f3a;border-radius:10px;padding:12px 14px;font-size:.86rem;color:#c8cdd6;text-align:center;margin:6px 0 4px}
+  *{box-sizing:border-box;margin:0;padding:0;font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+  body{background:#0e1016;color:#f2f4f8;padding:24px 16px;max-width:760px;margin:0 auto}
+  a{color:#ffae42;font-weight:700;text-decoration:none}
+  .hd{text-align:center;margin:18px 0 14px}
+  .hd h1{font-size:1.8rem;font-weight:900;line-height:1.2}
+  .hd .sub{color:#9aa2b2;margin-top:10px;font-size:.98rem;line-height:1.55}
+  .pill{display:inline-block;background:#17351f;color:#7be08a;font-weight:900;padding:7px 14px;border:1px solid #2c7a43;border-radius:30px;margin-top:14px}
+  .notice{background:#121722;border:1px solid #2a2f3a;border-radius:12px;padding:14px 16px;margin:16px 0;color:#c8cdd6;line-height:1.65}
+  .notice b{color:#fff}
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
+  .split a,.split div{background:#11151c;border:1px solid #2a2f3a;border-radius:10px;padding:12px 14px;font-size:.92rem;color:#c8cdd6}
+  .split b{display:block;color:#fff;margin-bottom:4px}
   .gate{background:#11151c;border:1px solid #2a2f3a;border-radius:12px;padding:16px;margin:16px 0}
-  .gate label.req{font-size:.9rem;font-weight:700;display:block;margin-bottom:6px}
+  .gate label.req{font-size:.9rem;font-weight:800;display:block;margin-bottom:6px}
   .gate input[type=email]{width:100%;padding:12px 14px;border:1.5px solid #2a2f3a;border-radius:10px;background:#0e1016;color:#fff;font-size:1rem;margin-bottom:14px}
   .gate .agree{display:flex;gap:10px;align-items:flex-start;cursor:pointer;font-size:.9rem;color:#c8cdd6;line-height:1.5}
   .card{background:#181c24;border:1px solid #2a2f3a;border-radius:16px;padding:18px;margin:12px 0}
-  .card .top{display:flex;justify-content:space-between;align-items:center}
-  .card .name{font-weight:800;font-size:1.05rem}
+  .card .top{display:flex;justify-content:space-between;align-items:center;gap:14px}
+  .card .name{font-weight:850;font-size:1.04rem}
+  .card .desc{font-size:.86rem;color:#9aa2b2;margin-top:4px;line-height:1.45}
+  .card .price{text-align:right;white-space:nowrap}
   .card .price .orig{color:#6e7681;text-decoration:line-through;font-size:.9rem;margin-right:8px}
-  .card .price .now{color:#ffae42;font-weight:900;font-size:1.3rem}
+  .card .price .now{color:#ffae42;font-weight:900;font-size:1.28rem}
   .card .pp{margin-top:14px}
   .done{display:none;background:#16351a;border:1px solid #3fb950;border-radius:12px;padding:18px;margin-top:14px;line-height:1.7}
-  .contact{text-align:center;color:#9aa2b2;font-size:.88rem;margin:18px 0 4px}
-  .contact a{color:#ffae42;font-weight:700;text-decoration:none}
+  .contact{text-align:center;color:#9aa2b2;font-size:.9rem;margin:18px 0 4px}
   .ft{color:#6e7681;font-size:.8rem;text-align:center;margin:24px 0 8px}
+  @media (max-width:680px){.split{grid-template-columns:1fr}.card .top{align-items:flex-start}.card .price{text-align:left}}
 </style>
 </head>
 <body>
   <div class="hd">
-    <h1>Vibe Coding Bible — Get Instant Access</h1>
-    <div class="sub">Pay securely with PayPal (USD). Digital content, delivered by email.</div>
-    <div class="sale">🔥 50% OFF — ends July 1</div>
+    <h1>AI Bible - International Checkout</h1>
+    <div class="sub">This page is for customers outside Korea. Pay securely with PayPal in USD.</div>
+    <div class="pill">International / PayPal / USD</div>
   </div>
 
-  <div class="benefits">
-    <div class="b">✓ Instant <b>lifetime access</b></div>
-    <div class="b">✓ <b>All future updates included</b> (unlike print books)</div>
-    <div class="b">✓ Read on any device — mobile &amp; desktop</div>
+  <div class="notice">
+    <b>Domestic Korea payment is separate.</b><br>
+    If you are in Korea, please use the local KRW payment page. If you are outside Korea, use PayPal below.
   </div>
-  <div class="trust">🔒 Secure PayPal checkout · SSL encrypted · Password emailed <b>within 1 business day</b> after payment</div>
+
+  <div class="split">
+    <a href="https://vibecodingbible.jbooking.kr" target="_blank" rel="noopener">
+      <b>Korea payment</b>
+      KRW local checkout
+    </a>
+    <div>
+      <b>International payment</b>
+      PayPal checkout in USD
+    </div>
+  </div>
 
   <div class="gate">
-    <label class="req" for="buyer-email">📧 Email to receive your password *</label>
+    <label class="req" for="buyer-email">Email to receive access instructions *</label>
     <input type="email" id="buyer-email" placeholder="you@example.com" required>
     <label class="agree"><input type="checkbox" id="agree">
-      <span><b>All sales are final.</b> As digital content delivered after purchase, this product is <b>non-refundable</b>. I agree.</span>
+      <span><b>All sales are final.</b> This is digital content. After payment and delivery, the product is non-refundable. I agree.</span>
     </label>
   </div>
 
@@ -59,49 +72,53 @@
   <div class="done" id="done"></div>
 
   <div class="contact">Questions? <a href="mailto:management@stayjanda.com">management@stayjanda.com</a></div>
-  <div class="ft">© JANDA · Vibe Coding Bible · Payments processed securely by PayPal.</div>
+  <div class="ft">JANDA - AI Bible - Payments processed securely by PayPal.</div>
 
 <script>
   var PRODUCTS = [
-    { id:'b1', name:'Vol.1 — Marketing Automation Basics', price:10 },
-    { id:'b2', name:'Vol.2', price:20 },
-    { id:'b3', name:'Vol.3', price:30 },
-    { id:'b4', name:'Vol.4', price:40 },
-    { id:'b5', name:'Vol.5', price:40 },
-    { id:'pkg', name:'⭐ Full Package (all 5 volumes)', price:120 }
+    { id:'b1', name:'Vol.1 - Marketing Automation Basics', desc:'Start with AI marketing, landing pages, and execution workflows.', price:10 },
+    { id:'b2', name:'Vol.2 - Vibe Coding Practical Bible', desc:'Build and improve digital products with AI-assisted coding.', price:20 },
+    { id:'b3', name:'Vol.3 - AI Agent Bible', desc:'Understand agents, roles, orchestration, and business workflows.', price:30 },
+    { id:'b4', name:'Vol.4 - Claude Code Bible', desc:'Learn practical AI coding workflows with Claude Code-style execution.', price:40 },
+    { id:'b5', name:'Vol.5 - Practical AI Operations', desc:'Make AI work through prompts, reviews, records, and operating loops.', price:40 },
+    { id:'pkg', name:'Full Package - All 5 Volumes', desc:'Best value for international buyers who want the complete AI Bible series.', price:120 }
   ];
   var grid = document.getElementById('grid');
   var agree = document.getElementById('agree');
   var emailEl = document.getElementById('buyer-email');
-  function checkReady(reject){
+  function checkReady(){
     var em = (emailEl.value||'').trim();
-    if(!em || em.indexOf('@')<0){ alert('Please enter a valid email to receive your password.'); return false; }
-    if(!agree.checked){ alert('Please agree to the no-refund policy.'); return false; }
+    if(!em || em.indexOf('@')<0){ alert('Please enter a valid email to receive access instructions.'); return false; }
+    if(!agree.checked){ alert('Please agree to the digital product policy.'); return false; }
     return true;
   }
   PRODUCTS.forEach(function(p){
     var card = document.createElement('div'); card.className='card';
     card.innerHTML =
-      '<div class="top"><div class="name">'+p.name+'</div>'+
+      '<div class="top"><div><div class="name">'+p.name+'</div><div class="desc">'+p.desc+'</div></div>'+
       '<div class="price"><span class="orig">$'+(p.price*2)+'</span><span class="now">$'+p.price+'</span></div></div>'+
       '<div class="pp" id="pp-'+p.id+'"></div>';
     grid.appendChild(card);
     if (window.paypal) {
       paypal.Buttons({
-        style:{ layout:'horizontal', height:40 },
+        style:{ layout:'horizontal', height:40, tagline:false },
         onClick: function(data, actions){ return checkReady() ? actions.resolve() : actions.reject(); },
         createOrder: function(data, actions){
           return actions.order.create({
-            purchase_units:[{ amount:{ value:String(p.price), currency_code:'USD' }, description:'Vibe Coding Bible '+p.name,
-              custom_id: (emailEl.value||'').trim() }]
+            purchase_units:[{
+              amount:{ value:String(p.price), currency_code:'USD' },
+              description:'AI Bible '+p.name,
+              custom_id:(emailEl.value||'').trim()
+            }]
           });
         },
         onApprove: function(data, actions){
           return actions.order.capture().then(function(details){
             var d = document.getElementById('done'); d.style.display='block';
-            d.innerHTML = '✅ <b>Payment complete!</b> Thank you, '+(details.payer.name?details.payer.name.given_name:'')+'.<br>'+
-              'Order ID: <b>'+data.orderID+'</b><br>We will email your password to <b>'+(emailEl.value||'').trim()+'</b> within 1 business day.<br>'+
-              'Need help? <a href="mailto:management@stayjanda.com" style="color:#7be08a">management@stayjanda.com</a>';
+            d.innerHTML = '<b>Payment complete.</b><br>Thank you, '+(details.payer.name?details.payer.name.given_name:'')+'.<br>'+
+              'Order ID: <b>'+data.orderID+'</b><br>'+
+              'We will email access instructions to <b>'+(emailEl.value||'').trim()+'</b> within 1 business day.<br>'+
+              'Need help? <a href="mailto:management@stayjanda.com">management@stayjanda.com</a>';
             d.scrollIntoView({behavior:'smooth'});
           });
         }
@@ -109,7 +126,7 @@
     }
   });
   if(!window.paypal){
-    grid.innerHTML = '<div class="card">⚠️ PayPal SDK failed to load — replace the Client ID in the &lt;script&gt; tag.</div>';
+    grid.innerHTML = '<div class="card">PayPal SDK failed to load. Please refresh the page or contact management@stayjanda.com.</div>';
   }
 </script>
 </body>
