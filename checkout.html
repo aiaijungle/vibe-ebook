@@ -111,6 +111,30 @@
   var grid = document.getElementById('grid');
   var agree = document.getElementById('agree');
   var emailEl = document.getElementById('buyer-email');
+  var AI_BIBLE_ORCHESTRATOR_WEBHOOK_URL = '';
+
+  function sendOrchestrationEvent(payload){
+    payload = payload || {};
+    payload.sent_at = new Date().toISOString();
+    payload.page_url = window.location.href;
+    payload.referrer = document.referrer || '';
+    if(!AI_BIBLE_ORCHESTRATOR_WEBHOOK_URL){
+      console.warn('AI Bible orchestrator webhook is not configured.', payload);
+      return Promise.resolve({ ok:false, skipped:true, reason:'webhook_not_configured' });
+    }
+    return fetch(AI_BIBLE_ORCHESTRATOR_WEBHOOK_URL, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(payload),
+      keepalive:true
+    }).then(function(res){
+      return { ok:res.ok, status:res.status };
+    }).catch(function(err){
+      console.error('AI Bible orchestrator event failed.', err);
+      return { ok:false, error:String(err) };
+    });
+  }
+
   function checkReady(){
     var em = (emailEl.value||'').trim();
     if(!em || em.indexOf('@')<0){ alert('Please enter a valid email to receive access instructions.'); return false; }
@@ -140,6 +164,26 @@
         },
         onApprove: function(data, actions){
           return actions.order.capture().then(function(details){
+            sendOrchestrationEvent({
+              event:'paypal_purchase',
+              product:p.name,
+              amount:p.price,
+              currency:'USD',
+              email:(emailEl.value||'').trim(),
+              buyerEmail:(emailEl.value||'').trim(),
+              buyerName:details && details.payer && details.payer.name ? [details.payer.name.given_name, details.payer.name.surname].filter(Boolean).join(' ') : '',
+              payment_method:'paypal',
+              language:'en',
+              region:'global',
+              channel:'paypal_checkout',
+              utm_source:'checkout',
+              utm_medium:'paypal',
+              utm_campaign:'ai_bible_global',
+              order_id:data.orderID,
+              payer_id:data.payerID || '',
+              paypal_status:details.status || '',
+              url:window.location.href
+            });
             var d = document.getElementById('done'); d.style.display='block';
             d.innerHTML = '<b>Payment complete.</b><br>Thank you, '+(details.payer.name?details.payer.name.given_name:'')+'.<br>'+
               'Order ID: <b>'+data.orderID+'</b><br>'+
