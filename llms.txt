@@ -104,5 +104,9 @@ https://aiaijungle.github.io/vibe-ebook/sales.html
 
 - English sales page: https://aiaijungle.github.io/vibe-ebook/en/sales.html
 - English AI Bible Global Edition preview: https://aiaijungle.github.io/vibe-ebook/en/ai-bible-global.html
+- Learn AI for Solo Operators: https://aiaijungle.github.io/vibe-ebook/en/learn-ai-for-solo-operators.html
+- AI Automation for Solo Business: https://aiaijungle.github.io/vibe-ebook/en/ai-automation-for-solo-business.html
+- AI Agent Workflow: https://aiaijungle.github.io/vibe-ebook/en/ai-agent-workflow.html
+- Prompt to Workflow: https://aiaijungle.github.io/vibe-ebook/en/prompt-to-workflow.html
 - International PayPal checkout: https://aiaijungle.github.io/vibe-ebook/checkout.html
 - Free AI Bible 7-day PDF: https://aiaijungle.github.io/vibe-ebook/AI_Bible_Free_7Day_Checklist.pdf
