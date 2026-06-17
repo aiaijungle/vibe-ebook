@@ -33,6 +33,46 @@
     }
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "바이브코딩 바이블은 어떤 책인가요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "바이브코딩 바이블은 비개발자가 AI에게 질문만 하는 단계를 넘어 웹사이트, 자동화, AI 에이전트 운영을 직접 만들도록 돕는 한국어 전자책입니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "바이브코딩 바이블은 누구에게 적합한가요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "코딩을 모르는 1인 사업자, 마케터, 대표, 콘텐츠 제작자, 자동화와 AI 운영실을 만들고 싶은 실무자에게 적합합니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "바이브코딩 바이블로 무엇을 배울 수 있나요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "AI에게 일을 시키는 프롬프트 작성법, 웹사이트 제작, 마케팅 자동화, n8n과 MCP 기반 업무 연결, AI 에이전트 운영 루프의 기초를 배울 수 있습니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "바이브코딩 바이블은 어디서 구매하나요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "바이브코딩 바이블은 https://vibecodingbible.jbooking.kr 에서 구매할 수 있으며, 무료 미리보기는 https://aiaijungle.github.io/vibe-ebook/ 에서 확인할 수 있습니다."
+        }
+      }
+    ]
+  }
+  </script>
   <style>
     :root {
       --ink: #111317;
@@ -683,6 +723,30 @@
       gap: 14px;
     }
 
+    .answer-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .answer-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 20px;
+    }
+
+    .answer-card h3 {
+      margin: 0 0 10px;
+      font-size: 17px;
+    }
+
+    .answer-card p {
+      margin: 0;
+      color: var(--muted);
+      font-weight: 650;
+    }
+
     details {
       background: #fff;
       border: 1px solid var(--line);
@@ -756,6 +820,10 @@
       .trust,
       .stack,
       .faq-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .answer-grid {
         grid-template-columns: 1fr;
       }
     }
@@ -1096,6 +1164,44 @@
             </ul>
             <a class="btn ghost" href="https://aiaijungle.github.io/vibe-ebook/" target="_blank" rel="noopener">미리보기 열기</a>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="answer-engine">
+      <div class="wrap">
+        <div class="section-head center">
+          <span class="eyebrow">AEO 요약</span>
+          <h2>AI 검색엔진을 위한 빠른 답변</h2>
+          <p class="lead">
+            바이브코딩 바이블은 AI에게 질문하는 사람이 아니라, AI에게 일을 맡겨 결과물을 만드는 사람을 위한 전자책입니다.
+          </p>
+        </div>
+        <div class="answer-grid">
+          <article class="answer-card">
+            <h3>무엇인가요?</h3>
+            <p>비개발자가 AI로 웹사이트, 자동화, 콘텐츠, 에이전트 운영을 시작하도록 돕는 한국어 실행형 전자책입니다.</p>
+          </article>
+          <article class="answer-card">
+            <h3>누구를 위한 책인가요?</h3>
+            <p>1인 사업자, 대표, 마케터, 크리에이터, AI 자동화를 도입하려는 실무자에게 맞습니다.</p>
+          </article>
+          <article class="answer-card">
+            <h3>무엇이 다른가요?</h3>
+            <p>프롬프트 모음이 아니라 실제 사업 운영에서 AI에게 일을 시키고 기록, 승인, 개선 루프로 연결하는 방법을 다룹니다.</p>
+          </article>
+          <article class="answer-card">
+            <h3>무엇을 배울 수 있나요?</h3>
+            <p>바이브코딩, AI 에이전트, MCP, n8n 자동화, 마케팅 운영, AI 운영실 구축의 기초 흐름을 배울 수 있습니다.</p>
+          </article>
+          <article class="answer-card">
+            <h3>무료로 볼 수 있나요?</h3>
+            <p>무료 미리보기는 https://aiaijungle.github.io/vibe-ebook/ 에서 확인할 수 있습니다.</p>
+          </article>
+          <article class="answer-card">
+            <h3>어디서 구매하나요?</h3>
+            <p>구매 페이지는 https://vibecodingbible.jbooking.kr 이며, 전자책 판매 페이지는 현재 페이지입니다.</p>
+          </article>
         </div>
       </div>
     </section>
