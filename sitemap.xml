@@ -21,6 +21,54 @@
     <priority>1.0</priority>
   </url>
 
+  <!-- SEO/AEO 검색 입구: AI 바이블 -->
+  <url>
+    <loc>https://aiaijungle.github.io/vibe-ebook/ai-bible.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- SEO/AEO 검색 입구: AI배우기 -->
+  <url>
+    <loc>https://aiaijungle.github.io/vibe-ebook/learn-ai.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- SEO/AEO 검색 입구: 바이브 코딩 -->
+  <url>
+    <loc>https://aiaijungle.github.io/vibe-ebook/vibe-coding.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- SEO/AEO 검색 입구: AI에이전트 -->
+  <url>
+    <loc>https://aiaijungle.github.io/vibe-ebook/ai-agent.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- SEO/AEO 검색 입구: 클로드코드 배우기 -->
+  <url>
+    <loc>https://aiaijungle.github.io/vibe-ebook/claude-code.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- SEO/AEO 검색 입구: AI부업 -->
+  <url>
+    <loc>https://aiaijungle.github.io/vibe-ebook/ai-side-hustle.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
   <!-- 1권 마케팅 자동화 입문 -->
   <url>
     <loc>https://aiaijungle.github.io/vibe-ebook/book1.html</loc>

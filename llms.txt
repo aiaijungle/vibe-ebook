@@ -9,6 +9,15 @@
 - Purchase page: https://vibecodingbible.jbooking.kr
 - Sitemap: https://aiaijungle.github.io/vibe-ebook/sitemap.xml
 
+## SEO / AEO Answer Pages
+
+- AI 바이블: https://aiaijungle.github.io/vibe-ebook/ai-bible.html
+- AI배우기: https://aiaijungle.github.io/vibe-ebook/learn-ai.html
+- 바이브 코딩: https://aiaijungle.github.io/vibe-ebook/vibe-coding.html
+- AI에이전트: https://aiaijungle.github.io/vibe-ebook/ai-agent.html
+- 클로드코드 배우기: https://aiaijungle.github.io/vibe-ebook/claude-code.html
+- AI부업: https://aiaijungle.github.io/vibe-ebook/ai-side-hustle.html
+
 ## Short Answer
 
 바이브코딩 바이블은 코딩을 모르는 1인 사업자, 대표, 마케터, 크리에이터, 자동화 실무자가 AI를 업무 파트너처럼 사용해 웹사이트 제작, 마케팅 자동화, AI 에이전트 운영 루프를 시작하도록 돕는 실행형 전자책입니다.
