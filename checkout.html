@@ -19,6 +19,12 @@
   .split{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
   .split a,.split div{background:#11151c;border:1px solid #2a2f3a;border-radius:10px;padding:12px 14px;font-size:.92rem;color:#c8cdd6}
   .split b{display:block;color:#fff;margin-bottom:4px}
+  .ebook-links{background:#11151c;border:1px solid #2a2f3a;border-radius:12px;padding:16px;margin:16px 0}
+  .ebook-links h2{font-size:1rem;margin-bottom:8px}
+  .ebook-links p{font-size:.88rem;color:#9aa2b2;line-height:1.55;margin-bottom:10px}
+  .ebook-links .list{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .ebook-links .list a{display:block;background:#0e1016;border:1px solid #2a2f3a;border-radius:9px;padding:10px 12px;color:#c8cdd6;font-size:.88rem}
+  .ebook-links .list a b{color:#fff}
   .gate{background:#11151c;border:1px solid #2a2f3a;border-radius:12px;padding:16px;margin:16px 0}
   .gate label.req{font-size:.9rem;font-weight:800;display:block;margin-bottom:6px}
   .gate input[type=email]{width:100%;padding:12px 14px;border:1.5px solid #2a2f3a;border-radius:10px;background:#0e1016;color:#fff;font-size:1rem;margin-bottom:14px}
@@ -30,11 +36,12 @@
   .card .price{text-align:right;white-space:nowrap}
   .card .price .orig{color:#6e7681;text-decoration:line-through;font-size:.9rem;margin-right:8px}
   .card .price .now{color:#ffae42;font-weight:900;font-size:1.28rem}
+  .card .ebook-link{display:inline-block;margin-top:10px;font-size:.86rem;color:#7be08a}
   .card .pp{margin-top:14px}
   .done{display:none;background:#16351a;border:1px solid #3fb950;border-radius:12px;padding:18px;margin-top:14px;line-height:1.7}
   .contact{text-align:center;color:#9aa2b2;font-size:.9rem;margin:18px 0 4px}
   .ft{color:#6e7681;font-size:.8rem;text-align:center;margin:24px 0 8px}
-  @media (max-width:680px){.split{grid-template-columns:1fr}.card .top{align-items:flex-start}.card .price{text-align:left}}
+  @media (max-width:680px){.split,.ebook-links .list{grid-template-columns:1fr}.card .top{align-items:flex-start}.card .price{text-align:left}}
 </style>
 </head>
 <body>
@@ -60,6 +67,19 @@
     </div>
   </div>
 
+  <div class="ebook-links">
+    <h2>Ebook links</h2>
+    <p>Use these links to preview the ebook pages before payment. Final access instructions are still sent by email after purchase.</p>
+    <div class="list">
+      <a href="book1.html" target="_blank" rel="noopener"><b>Vol.1</b><br>Marketing Automation Basics</a>
+      <a href="index.html" target="_blank" rel="noopener"><b>Vol.2</b><br>Vibe Coding Practical Bible</a>
+      <a href="agent-bible.html" target="_blank" rel="noopener"><b>Vol.3</b><br>AI Agent Bible</a>
+      <a href="claude-code-bible.html" target="_blank" rel="noopener"><b>Vol.4</b><br>Claude Code Bible</a>
+      <a href="practical-bible.html" target="_blank" rel="noopener"><b>Vol.5</b><br>Practical AI Operations</a>
+      <a href="sales.html" target="_blank" rel="noopener"><b>Series</b><br>AI Bible sales page</a>
+    </div>
+  </div>
+
   <div class="gate">
     <label class="req" for="buyer-email">Email to receive access instructions *</label>
     <input type="email" id="buyer-email" placeholder="you@example.com" required>
@@ -76,12 +96,12 @@
 
 <script>
   var PRODUCTS = [
-    { id:'b1', name:'Vol.1 - Marketing Automation Basics', desc:'Start with AI marketing, landing pages, and execution workflows.', price:10 },
-    { id:'b2', name:'Vol.2 - Vibe Coding Practical Bible', desc:'Build and improve digital products with AI-assisted coding.', price:20 },
-    { id:'b3', name:'Vol.3 - AI Agent Bible', desc:'Understand agents, roles, orchestration, and business workflows.', price:30 },
-    { id:'b4', name:'Vol.4 - Claude Code Bible', desc:'Learn practical AI coding workflows with Claude Code-style execution.', price:40 },
-    { id:'b5', name:'Vol.5 - Practical AI Operations', desc:'Make AI work through prompts, reviews, records, and operating loops.', price:40 },
-    { id:'pkg', name:'Full Package - All 5 Volumes', desc:'Best value for international buyers who want the complete AI Bible series.', price:120 }
+    { id:'b1', name:'Vol.1 - Marketing Automation Basics', desc:'Start with AI marketing, landing pages, and execution workflows.', price:10, link:'book1.html' },
+    { id:'b2', name:'Vol.2 - Vibe Coding Practical Bible', desc:'Build and improve digital products with AI-assisted coding.', price:20, link:'index.html' },
+    { id:'b3', name:'Vol.3 - AI Agent Bible', desc:'Understand agents, roles, orchestration, and business workflows.', price:30, link:'agent-bible.html' },
+    { id:'b4', name:'Vol.4 - Claude Code Bible', desc:'Learn practical AI coding workflows with Claude Code-style execution.', price:40, link:'claude-code-bible.html' },
+    { id:'b5', name:'Vol.5 - Practical AI Operations', desc:'Make AI work through prompts, reviews, records, and operating loops.', price:40, link:'practical-bible.html' },
+    { id:'pkg', name:'Full Package - All 5 Volumes', desc:'Best value for international buyers who want the complete AI Bible series.', price:120, link:'sales.html' }
   ];
   var grid = document.getElementById('grid');
   var agree = document.getElementById('agree');
@@ -97,6 +117,7 @@
     card.innerHTML =
       '<div class="top"><div><div class="name">'+p.name+'</div><div class="desc">'+p.desc+'</div></div>'+
       '<div class="price"><span class="orig">$'+(p.price*2)+'</span><span class="now">$'+p.price+'</span></div></div>'+
+      '<a class="ebook-link" href="'+p.link+'" target="_blank" rel="noopener">View ebook page</a>'+
       '<div class="pp" id="pp-'+p.id+'"></div>';
     grid.appendChild(card);
     if (window.paypal) {

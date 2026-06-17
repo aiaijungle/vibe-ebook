@@ -251,6 +251,9 @@
     .price h3 { margin: 18px 0 8px; font-size: 32px; }
     .price ul { padding-left: 20px; color: var(--muted); }
     .faq { display: grid; gap: 12px; margin-top: 28px; }
+    .link-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 28px; }
+    .link-list a { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 16px; color: var(--muted); }
+    .link-list b { display: block; color: var(--ink); margin-bottom: 4px; }
     details {
       background: #fff;
       border: 1px solid var(--line);
@@ -266,7 +269,7 @@
       font-size: 14px;
     }
     @media (max-width: 820px) {
-      .hero-grid, .grid-3, .steps, .pricing, .proof { grid-template-columns: 1fr; }
+      .hero-grid, .grid-3, .steps, .pricing, .proof, .link-list { grid-template-columns: 1fr; }
       .navlinks { display: none; }
       h1 { font-size: 46px; }
       section { padding: 54px 0; }
@@ -365,6 +368,21 @@
           <article class="card"><h3>1. Learn</h3><p>Understand the workflow patterns behind AI execution.</p></article>
           <article class="card"><h3>2. Build</h3><p>Apply them to your own content, landing pages, and operations.</p></article>
           <article class="card"><h3>3. Scale</h3><p>Connect leads, payments, Notion, n8n, Discord, Telegram, and AI agents.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <h2 class="section-title">Ebook pages</h2>
+        <p class="section-copy">Preview the series pages before checkout. International buyers can use PayPal checkout after reviewing the ebook links.</p>
+        <div class="link-list">
+          <a href="../book1.html"><b>Vol.1</b>Marketing Automation Basics</a>
+          <a href="../index.html"><b>Vol.2</b>Vibe Coding Practical Bible</a>
+          <a href="../agent-bible.html"><b>Vol.3</b>AI Agent Bible</a>
+          <a href="../claude-code-bible.html"><b>Vol.4</b>Claude Code Bible</a>
+          <a href="../practical-bible.html"><b>Vol.5</b>Practical AI Operations</a>
+          <a href="../AI_Bible_Free_7Day_Checklist.pdf"><b>Free PDF</b>AI Bible 7-day execution kit</a>
         </div>
       </div>
     </section>
