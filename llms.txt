@@ -103,5 +103,6 @@ https://aiaijungle.github.io/vibe-ebook/sales.html
 ## English / International Checkout
 
 - English sales page: https://aiaijungle.github.io/vibe-ebook/en/sales.html
+- English AI Bible Global Edition preview: https://aiaijungle.github.io/vibe-ebook/en/ai-bible-global.html
 - International PayPal checkout: https://aiaijungle.github.io/vibe-ebook/checkout.html
 - Free AI Bible 7-day PDF: https://aiaijungle.github.io/vibe-ebook/AI_Bible_Free_7Day_Checklist.pdf

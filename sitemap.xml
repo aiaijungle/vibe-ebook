@@ -32,6 +32,13 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://aiaijungle.github.io/vibe-ebook/en/sales.html"/>
   </url>
 
+  <url>
+    <loc>https://aiaijungle.github.io/vibe-ebook/en/ai-bible-global.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
   <!-- 무료 PDF 리드마그넷 -->
   <url>
     <loc>https://aiaijungle.github.io/vibe-ebook/free-ai-bible-checklist.html</loc>
