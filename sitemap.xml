@@ -19,6 +19,17 @@
     <lastmod>2026-06-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://aiaijungle.github.io/vibe-ebook/sales.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiaijungle.github.io/vibe-ebook/en/sales.html"/>
+  </url>
+
+  <url>
+    <loc>https://aiaijungle.github.io/vibe-ebook/en/sales.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://aiaijungle.github.io/vibe-ebook/sales.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiaijungle.github.io/vibe-ebook/en/sales.html"/>
   </url>
 
   <!-- 무료 PDF 리드마그넷 -->
