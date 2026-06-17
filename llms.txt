@@ -6,6 +6,7 @@
 
 - Sales page: https://aiaijungle.github.io/vibe-ebook/sales.html
 - Free preview: https://aiaijungle.github.io/vibe-ebook/
+- Free PDF: https://aiaijungle.github.io/vibe-ebook/free-ai-bible-checklist.html
 - Purchase page: https://vibecodingbible.jbooking.kr
 - Sitemap: https://aiaijungle.github.io/vibe-ebook/sitemap.xml
 
