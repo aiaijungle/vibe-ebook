@@ -1,0 +1,1947 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vibe Coding Volume 1 — Introduction to Marketing Automation</title>
+
+<!-- 🔒 Volume 1 PAYWALL IMMEDIATE BLOCK — inline JS in head (2026-06-03) -->
+<script>
+window.__sha256=function(ascii){function rr(n,x){return (x>>>n)|(x<<(32-n));}var H=[0x6a09e667,0xbb67ae85,0x3c6ef372,0xa54ff53a,0x510e527f,0x9b05688c,0x1f83d9ab,0x5be0cd19];var K=[0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5,0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5,0xd807aa98,0x12835b01,0x243185be,0x550c7dc3,0x72be5d74,0x80deb1fe,0x9bdc06a7,0xc19bf174,0xe49b69c1,0xefbe4786,0x0fc19dc6,0x240ca1cc,0x2de92c6f,0x4a7484aa,0x5cb0a9dc,0x76f988da,0x983e5152,0xa831c66d,0xb00327c8,0xbf597fc7,0xc6e00bf3,0xd5a79147,0x06ca6351,0x14292967,0x27b70a85,0x2e1b2138,0x4d2c6dfc,0x53380d13,0x650a7354,0x766a0abb,0x81c2c92e,0x92722c85,0xa2bfe8a1,0xa81a664b,0xc24b8b70,0xc76c51a3,0xd192e819,0xd6990624,0xf40e3585,0x106aa070,0x19a4c116,0x1e376c08,0x2748774c,0x34b0bcb5,0x391c0cb3,0x4ed8aa4a,0x5b9cca4f,0x682e6ff3,0x748f82ee,0x78a5636f,0x84c87814,0x8cc70208,0x90befffa,0xa4506ceb,0xbef9a3f7,0xc67178f2];var bytes=[],i,j,utf8=unescape(encodeURIComponent(ascii));for(i=0;i<utf8.length;i++)bytes.push(utf8.charCodeAt(i)&0xff);var l=bytes.length,bl=l*8;bytes.push(0x80);while(bytes.length%64!=56)bytes.push(0);for(i=7;i>=0;i--)bytes.push((bl/Math.pow(2,i*8))&0xff);var w=new Array(64);for(i=0;i<bytes.length;i+=64){for(j=0;j<16;j++)w[j]=(bytes[i+j*4]<<24)|(bytes[i+j*4+1]<<16)|(bytes[i+j*4+2]<<8)|(bytes[i+j*4+3]);for(j=16;j<64;j++){var s0=rr(7,w[j-15])^rr(18,w[j-15])^(w[j-15]>>>3);var s1=rr(17,w[j-2])^rr(19,w[j-2])^(w[j-2]>>>10);w[j]=(w[j-16]+s0+w[j-7]+s1)|0;}var a=H[0],b=H[1],c=H[2],d=H[3],e=H[4],f=H[5],g=H[6],h=H[7];for(j=0;j<64;j++){var S1=rr(6,e)^rr(11,e)^rr(25,e);var ch=(e&f)^((~e)&g);var t1=(h+S1+ch+K[j]+w[j])|0;var S0=rr(2,a)^rr(13,a)^rr(22,a);var mj=(a&b)^(a&c)^(b&c);var t2=(S0+mj)|0;h=g;g=f;f=e;e=(d+t1)|0;d=c;c=b;b=a;a=(t1+t2)|0;}H[0]=(H[0]+a)|0;H[1]=(H[1]+b)|0;H[2]=(H[2]+c)|0;H[3]=(H[3]+d)|0;H[4]=(H[4]+e)|0;H[5]=(H[5]+f)|0;H[6]=(H[6]+g)|0;H[7]=(H[7]+h)|0;}var hex="";for(i=0;i<8;i++)hex+=("00000000"+(H[i]>>>0).toString(16)).slice(-8);return hex;};
+(function(){
+  const HASHES = ['fef344d48bce4ba5b8fffef44535bd1e0b29ead21aaac76d8246209865f3cc58','ff6732eb2bd5b7a209c834ff1219d61cd80ebe2113574dc6fe65b4408ced8899','8d61a711645aa98cdc5fa0c37f2e0e45af25f243e4760466b1932ce5c2d679ac','ed63da9b74a1d990891a20ee50ed8725511d8891970ce35ade827d70eb763755'];
+  const saved = localStorage.getItem('janda_unlock');
+  const urlPw = new URLSearchParams(location.search).get('unlock');
+  const valid = pw => pw && (HASHES.indexOf(window.__sha256(pw.toUpperCase()))>=0 || HASHES.indexOf(window.__sha256(pw))>=0 || /^(B12|B34|B5|BD|CC|CE)-[A-Z0-9]{6,}$/.test(pw.toUpperCase()));
+  if (valid(urlPw)) localStorage.setItem('janda_unlock', urlPw.toUpperCase());
+  if (valid(urlPw) || valid(saved)) {
+    document.documentElement.classList.add('paywall-unlocked');
+  }
+  window.paywallUnlock = function() {
+    const input = document.getElementById('paywall-pw-input');
+    if (!input) return alert('비밀번호 입력 폼을 찾을 수 없습니다.');
+    const pw = (input.value || '').trim();
+    if (!pw) return alert('비밀번호를 입력해주세요.');
+    if (valid(pw)) {
+      localStorage.setItem('janda_unlock', pw.toUpperCase());
+      location.reload();
+    } else {
+      alert('비밀번호가 올바르지 않습니다. (예: BD-XXXXXXXX 또는 받으신 비번)');
+    }
+  };
+})();
+</script>
+<style>
+  .b1-paywall-locked { position: relative; max-height: 180px !important; overflow: hidden !important; pointer-events: none !important; user-select: none !important; filter: blur(6px) !important; opacity: 0.35 !important; }
+  .b1-paywall-locked::after { content: '🔒 잠금 영역 — 결제 후 비밀번호로 해제'; position: absolute; bottom: 0; left: 0; right: 0; height: 100%; background: linear-gradient(180deg, transparent 0%, var(--bg) 60%); pointer-events: none; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 24px; color: var(--accent); font-weight: 900; font-size: 1.1rem; letter-spacing: .08em; filter: none; z-index: 5; }
+  html.paywall-unlocked .b1-paywall-locked { max-height: none !important; overflow: visible !important; pointer-events: auto !important; user-select: auto !important; filter: none !important; opacity: 1 !important; }
+  html.paywall-unlocked .b1-paywall-locked::after { display: none !important; }
+</style>
+<meta property="og:type" content="book">
+<meta property="og:url" content="https://aiaijungle.github.io/vibe-ebook/book1.html">
+<meta property="og:title" content="Vibe Coding Bible Volume 1 — Introduction to Marketing Automation">
+<meta property="og:description" content="How to automatically operate blogs and YouTube without coding. AI Bible Series Volume 1 — payment via jbooking.kr.">
+<meta property="og:image" content="https://aiaijungle.github.io/vibe-ebook/assets/bible_cover.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Vibe Coding Bible Volume 1 — Introduction to Marketing Automation">
+<meta name="twitter:description" content="How to automatically operate blogs and YouTube without coding. AI Bible Series Volume 1.">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" media="print" onload="this.media='all'">
+<style>
+:root {
+  --bg:#ffffff; --text:#1a202c; --side-bg:#f5f7f9; --border:#e6ecf1;
+  --accent:#7c3aed; --accent2:#f59e0b;
+  --quote-bg:#f3f0ff;
+  --trigger-bg:rgba(124,58,237,.08); --trigger-border:#7c3aed;
+  --law-bg:rgba(245,158,11,.1);      --law-border:#f59e0b;
+  --tip-bg:rgba(56,189,248,.08);     --tip-border:#38bdf8;
+  --cta-bg:linear-gradient(135deg,#7c3aed,#4f46e5);
+}
+[data-theme="dark"] {
+  --bg:#0f111a; --text:#e2e8f0; --side-bg:#1a1d27; --border:#2d3748;
+  --accent:#a78bfa; --accent2:#fbbf24; --quote-bg:#1a1d2e;
+  --trigger-bg:rgba(167,139,250,.12); --trigger-border:#a78bfa;
+  --law-bg:rgba(251,191,36,.1);       --law-border:#fbbf24;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Pretendard',sans-serif;background:var(--bg);color:var(--text);line-height:1.85;font-size:1.05rem}
+#progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#7c3aed,#f59e0b);width:0%;z-index:9999;transition:width 0.1s}
+.wrap{max-width:720px;margin:0 auto;padding:60px 24px 120px}
+
+/* 헤더 */
+.book-header{text-align:center;margin-bottom:56px;padding-bottom:40px;border-bottom:2px solid var(--border)}
+.book-badge{display:inline-block;background:var(--trigger-bg);border:1px solid var(--trigger-border);color:var(--accent);font-size:.78rem;font-weight:700;padding:4px 14px;border-radius:20px;margin-bottom:16px;letter-spacing:.05em}
+.book-title{font-size:2.2rem;font-weight:900;letter-spacing:-.04em;line-height:1.3;margin-bottom:12px;word-break:keep-all}
+.book-sub{font-size:1rem;opacity:.6;margin-bottom:20px}
+.free-tag{display:inline-block;background:#dcfce7;color:#166534;font-size:.8rem;font-weight:700;padding:4px 12px;border-radius:20px}
+
+/* 본문 타이포 */
+.content-h1{font-size:1.9rem;font-weight:900;margin:56px 0 18px;letter-spacing:-.03em;border-left:4px solid var(--accent);padding-left:16px;word-break:keep-all}
+.content-h2{font-size:1.35rem;font-weight:700;margin:40px 0 14px;letter-spacing:-.02em;color:var(--text);opacity:.9}
+.para{font-size:1.05rem;margin-bottom:20px;word-break:keep-all;line-height:1.9;opacity:.9}
+.quote{background:var(--quote-bg);padding:20px 26px;border-left:5px solid var(--accent);margin:28px 0;font-style:italic;border-radius:0 10px 10px 0;font-size:1rem;line-height:1.8}
+.divider{border:0;border-bottom:1px solid var(--border);margin:48px 0}
+
+/* 박스 (2권 모듈 재사용) */
+.trigger-box{background:var(--trigger-bg);border:1.5px solid var(--trigger-border);border-radius:12px;padding:18px 22px;margin:28px 0;font-size:1rem;line-height:1.85;word-break:keep-all}
+.trigger-box .label{font-size:.72rem;font-weight:800;color:var(--accent);letter-spacing:.08em;margin-bottom:6px}
+.law-box{background:var(--law-bg);border:1.5px solid var(--law-border);border-radius:12px;padding:18px 22px;margin:28px 0;font-size:1rem;line-height:1.85;word-break:keep-all}
+.law-box .label{font-size:.72rem;font-weight:800;color:var(--accent2);letter-spacing:.08em;margin-bottom:6px}
+.tip-box{background:var(--tip-bg);border:1.5px solid var(--tip-border);border-radius:12px;padding:18px 22px;margin:28px 0;font-size:1rem;line-height:1.85;word-break:keep-all}
+pre.code{background:#1e1e2e;color:#cdd6f4;padding:18px 22px;border-radius:12px;overflow-x:auto;margin:20px 0;font-size:.88rem;line-height:1.7;font-family:'Consolas','Courier New',monospace;word-break:normal}
+
+/* CTA */
+.cta-box{background:var(--cta-bg);color:#fff;border-radius:16px;padding:36px 32px;margin:56px 0;text-align:center}
+.cta-box h3{font-size:1.5rem;font-weight:900;margin-bottom:10px;letter-spacing:-.03em}
+.cta-box p{font-size:.95rem;opacity:.85;margin-bottom:24px;line-height:1.75;word-break:keep-all}
+.cta-btn{display:inline-block;background:#fff;color:#7c3aed;font-weight:800;font-size:1rem;padding:13px 36px;border-radius:12px;text-decoration:none;transition:transform .15s,box-shadow .15s}
+.cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.18)}
+.cta-price{font-size:.82rem;opacity:.7;margin-top:10px}
+
+/* AITF API CTA */
+.aitf-cta{background:linear-gradient(135deg,#FF8C00,#e65c00);color:#fff;border-radius:16px;padding:36px 32px;margin:40px 0 20px;text-align:center;position:relative;overflow:hidden}
+.aitf-cta::before{content:'';position:absolute;top:-40px;right:-40px;width:140px;height:140px;background:rgba(255,255,255,.07);border-radius:50%}
+.aitf-badge{display:inline-block;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);font-size:.72rem;font-weight:800;padding:3px 12px;border-radius:20px;margin-bottom:14px;letter-spacing:.06em}
+.aitf-cta h3{font-size:1.4rem;font-weight:900;margin-bottom:10px;letter-spacing:-.03em;word-break:keep-all}
+.aitf-cta p{font-size:.92rem;opacity:.9;margin-bottom:20px;line-height:1.75;word-break:keep-all}
+.aitf-features{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:24px}
+.aitf-features span{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);font-size:.78rem;font-weight:700;padding:4px 12px;border-radius:20px}
+.aitf-btn{display:inline-block;background:#fff;color:#e65c00;font-weight:800;font-size:1rem;padding:13px 36px;border-radius:12px;text-decoration:none;transition:transform .15s,box-shadow .15s}
+.aitf-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.aitf-code{font-size:.82rem;opacity:.8;margin-top:10px}
+.aitf-code strong{background:rgba(255,255,255,.2);padding:2px 8px;border-radius:6px;letter-spacing:.08em}
+@media(max-width:768px){
+  .aitf-cta{padding:28px 18px}
+  .aitf-cta h3{font-size:1.2rem}
+  .aitf-btn{padding:12px 28px;font-size:.95rem}
+}
+
+/* 테마 버튼 */
+.top-bar{display:flex;justify-content:flex-end;align-items:center;gap:8px;margin-bottom:32px}
+.theme-btn{background:none;border:1px solid var(--border);border-radius:8px;padding:6px 12px;cursor:pointer;color:var(--text);font-size:.85rem;font-family:'Pretendard',sans-serif}
+.gift-btn{background:var(--accent,#7C3AED);color:#fff;border:none;border-radius:8px;padding:6px 14px;cursor:pointer;font-size:.85rem;font-weight:700;font-family:'Pretendard',sans-serif;transition:opacity .2s}
+.gift-btn:hover{opacity:.85}
+
+/* 복사 방지 */
+body{
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
+}
+pre.code{
+  -webkit-user-select:text;
+  user-select:text; /* 코드블록은 선택 허용 */
+}
+
+/* 모바일 */
+@media(max-width:768px){
+  .wrap{padding:32px 16px 100px}
+  .book-title{font-size:1.6rem;line-height:1.35}
+  .content-h1{font-size:1.4rem}
+  .content-h2{font-size:1.15rem}
+  .para{font-size:1rem}
+  .cta-box{padding:28px 18px}
+  .cta-box h3{font-size:1.3rem}
+  .cta-btn{padding:12px 28px;font-size:.95rem}
+  pre.code{font-size:.8rem;padding:14px 16px}
+  .trigger-box,.law-box,.tip-box{padding:14px 16px;font-size:.95rem}
+  .quote{padding:16px 18px}
+  .top-bar{margin-bottom:20px}
+}
+
+/* ── Fold6/모바일 하단 배너 겹침 수정 ── */
+@media(max-width:900px){
+  #series-intro-banner{display:none!important;}
+  .top-cta-banner{position:relative!important;}
+}
+
+/* __JANDA_COPY_PROTECT__ */
+*{-webkit-user-select:none!important;-moz-user-select:none!important;-ms-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important;}
+/* 링크·버튼은 모바일 long-press 공유 허용 */
+a,button{-webkit-touch-callout:default!important;-webkit-user-select:auto!important;}
+</style>
+<style id="m390fix">html,body{max-width:100%;overflow-x:hidden}pre{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}pre code,code[class*="language-"]{white-space:pre}img,table,video,svg{max-width:100%;height:auto}@media(max-width:480px){pre,code{font-size:12px}}</style>
+</head>
+<body>
+<!-- AI Era Value Banner -->
+<div style="background:linear-gradient(135deg,#0d001f,#1a0040);padding:10px 16px;text-align:center;font-family:'Pretendard','Apple SD Gothic Neo',sans-serif;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;position:sticky;top:0;z-index:10001;border-bottom:1px solid rgba(167,139,250,0.3);">
+  <span style="color:#a78bfa;font-weight:800;font-size:0.82rem;">The gap in the AI era is widening at this very moment.</span>
+  <span style="color:#FFD700;font-weight:700;font-size:0.82rem;">— AI Bible Series · 5 volumes published · payment via jbooking.kr</span>
+  <a href="https://aiaijungle.github.io/vibe-ebook/book1.html" style="background:#7C3AED;color:white;padding:5px 16px;border-radius:20px;text-decoration:none;font-weight:800;font-size:0.78rem;white-space:nowrap;">Start from Volume 1 →</a>
+</div>
+<!-- Real-time Update Notice -->
+<div style="background:rgba(124,58,237,0.1);border-bottom:1px solid rgba(124,58,237,0.25);padding:7px 16px;text-align:center;font-family:'Pretendard','Apple SD Gothic Neo',sans-serif;font-size:0.75rem;color:rgba(255,255,255,0.75);">
+  🔄 <strong style="color:#a78bfa;">This book is updated in real-time.</strong> Content is continuously improved to match AI technology changes. Bookmark and check back regularly.
+</div>
+
+<!-- Series Top Navigation -->
+<nav style="position:sticky;top:0;z-index:9999;background:rgba(15,17,26,.96);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.08);padding:10px 20px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:.78rem;font-weight:700;font-family:'Pretendard',sans-serif;">
+  <span style="color:rgba(255,255,255,.35);margin-right:4px;">AI Bible Series</span>
+  <a href="book1.html" style="text-decoration:none;background:rgba(124,58,237,.25);border:1px solid rgba(124,58,237,.6);color:#a78bfa;padding:4px 12px;border-radius:20px;">📘 Volume 1 Vibe Coding Introduction ✓</a>
+  <a href="index.html" style="text-decoration:none;color:rgba(255,255,255,.45);padding:4px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.1);">📗 Volume 2 Vibe Coding Bible</a>
+  <a href="agent-bible.html" style="text-decoration:none;color:rgba(255,255,255,.45);padding:4px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.1);">🤖 Volume 3 Agent Bible</a>
+  <a href="claude-code-bible.html" style="text-decoration:none;color:rgba(255,255,255,.45);padding:4px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.1);">⚡ Volume 4 Claude Code Bible</a>
+```<a href="practical-bible.html" style="text-decoration:none;background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#1a0a00;font-weight:900;padding:4px 14px;border-radius:20px;box-shadow:0 2px 8px rgba(251,191,36,.4);">📖 Volume 5: The Secret to Making AI Work for You ⭐</a>
+</nav>
+<!-- ⏳ May countdown + Paid version coming + Growth message -->
+<div id="may-countdown" style="font-family:'Pretendard','Apple SD Gothic Neo',sans-serif;background:linear-gradient(180deg,#0d0004 0%,#180010 50%,#0d0004 100%);padding:36px 20px 28px;text-align:center;border-bottom:2px solid rgba(255,80,0,0.3);">
+  <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,60,0,0.15);border:1px solid rgba(255,80,0,0.4);border-radius:20px;padding:5px 16px;margin-bottom:20px;">
+    <span style="font-size:0.72rem;font-weight:800;color:#ff6b00;letter-spacing:0.06em;word-break:keep-all;">🚀 July 1st Price Increase Countdown · Today is the cheapest price you'll ever get</span>
+  </div>
+  <div style="display:flex;justify-content:center;align-items:flex-end;gap:4px;margin-bottom:22px;flex-wrap:nowrap;">
+    <div style="text-align:center;"><div style="background:rgba(255,90,0,0.12);border:1.5px solid rgba(255,90,0,0.45);border-radius:10px;padding:12px 14px;min-width:62px;"><div id="cd-days" style="font-size:2.4rem;font-weight:900;color:#ff7200;line-height:1;">14</div></div><div style="font-size:0.62rem;color:rgba(255,255,255,0.4);margin-top:5px;font-weight:600;">Days</div></div>
+    <div style="color:rgba(255,90,0,0.5);font-size:1.8rem;font-weight:900;margin-bottom:20px;">:</div>
+    <div style="text-align:center;"><div style="background:rgba(255,90,0,0.12);border:1.5px solid rgba(255,90,0,0.45);border-radius:10px;padding:12px 14px;min-width:62px;"><div id="cd-hours" style="font-size:2.4rem;font-weight:900;color:#ff7200;line-height:1;">00</div></div><div style="font-size:0.62rem;color:rgba(255,255,255,0.4);margin-top:5px;font-weight:600;">Hours</div></div>
+    <div style="color:rgba(255,90,0,0.5);font-size:1.8rem;font-weight:900;margin-bottom:20px;">:</div>
+    <div style="text-align:center;"><div style="background:rgba(255,90,0,0.12);border:1.5px solid rgba(255,90,0,0.45);border-radius:10px;padding:12px 14px;min-width:62px;"><div id="cd-mins" style="font-size:2.4rem;font-weight:900;color:#ff7200;line-height:1;">00</div></div><div style="font-size:0.62rem;color:rgba(255,255,255,0.4);margin-top:5px;font-weight:600;">Minutes</div></div>
+    <div style="color:rgba(255,90,0,0.5);font-size:1.8rem;font-weight:900;margin-bottom:20px;">:</div>
+    <div style="text-align:center;"><div style="background:rgba(255,90,0,0.12);border:1.5px solid rgba(255,90,0,0.45);border-radius:10px;padding:12px 14px;min-width:62px;"><div id="cd-secs" style="font-size:2.4rem;font-weight:900;color:#ff7200;line-height:1;">00</div></div><div style="font-size:0.62rem;color:rgba(255,255,255,0.4);margin-top:5px;font-weight:600;">Seconds</div></div>
+  </div>
+  <!-- Time comparison cards -->
+  <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin:0 auto 22px;max-width:340px;flex-wrap:wrap;">
+    <div style="background:rgba(255,90,0,0.1);border:1.5px solid rgba(255,90,0,0.35);border-radius:12px;padding:14px 18px;text-align:center;min-width:120px;">
+      <div id="cd-total-hours" style="font-size:2rem;font-weight:900;color:#ff7200;line-height:1;">336</div>
+      <div style="font-size:0.62rem;color:rgba(255,255,255,0.4);margin-top:5px;">Hours remaining</div>
+    </div>
+    <div style="font-size:0.9rem;color:rgba(255,255,255,0.22);font-weight:700;">VS</div>```html
+<div style="background:rgba(16,185,129,0.1);border:1.5px solid rgba(16,185,129,0.35);border-radius:12px;padding:14px 18px;text-align:center;min-width:120px;">
+      <div style="font-size:2rem;font-weight:900;color:#10b981;line-height:1;">20</div>
+      <div style="font-size:0.62rem;color:rgba(255,255,255,0.4);margin-top:5px;">Time needed to learn</div>
+    </div>
+  </div>
+
+  <div style="font-size:1.15rem;font-weight:900;color:#fff;line-height:1.6;margin-bottom:18px;word-break:keep-all;">
+    Anyone, in any field —<br><span style="color:#ff7200;">just 20 hours</span> will completely transform you
+  </div>
+
+  <div style="max-width:480px;margin:0 auto 16px;font-size:0.88rem;color:rgba(255,255,255,0.62);line-height:1.9;word-break:keep-all;text-align:left;border-left:3px solid rgba(255,114,0,0.5);padding:16px 20px;border-radius:0 10px 10px 0;background:rgba(255,255,255,0.025);">
+    Research shows that in any field, <strong style="color:rgba(255,255,255,0.9);">the first 20 hours of focused immersion</strong> will give you command of the fundamentals.<br>
+    Invest just <strong style="color:rgba(255,255,255,0.9);">1.5 hours a day</strong> — 30 days is enough before the July 1st price increase.<br><br>
+    You have <span style="color:#ff7200;font-weight:700;" id="cd-total-hours-txt">336</span> hours ahead of you right now.<br>
+    To invest 20 of those hours in AI —<br>
+    that is the <strong style="color:rgba(255,255,255,0.9);">most valuable gift</strong> you can give yourself.
+  </div>
+
+  <div style="max-width:480px;margin:0 auto 18px;background:linear-gradient(135deg,rgba(255,149,0,0.1),rgba(255,68,68,0.06));border:1px solid rgba(255,149,0,0.25);border-radius:10px;padding:14px 18px;font-size:0.85rem;color:rgba(255,255,255,0.75);line-height:1.75;word-break:keep-all;text-align:center;">
+    🎁 Right now, as you scroll down this page,<br>
+    you are <strong style="color:#ffaa00;">giving yourself AI as a gift</strong>.
+  </div>
+
+  <!-- July 1st price increase notice -->
+  <div style="max-width:440px;margin:0 auto 20px;border:1px solid rgba(255,149,0,0.28);border-radius:12px;overflow:hidden;text-align:left;">
+    <div style="background:rgba(255,149,0,0.1);padding:9px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(255,149,0,0.18);">
+      <span style="font-size:0.7rem;font-weight:800;color:#ff9500;letter-spacing:0.07em;">📈 July 1st Price Increase — Your last chance at the lowest price ever</span>
+      <span style="margin-left:auto;font-size:0.62rem;color:rgba(255,255,255,0.3);font-weight:700;">Coming soon</span>
+    </div>
+    <div style="padding:12px 16px 10px;display:flex;flex-direction:column;gap:9px;">
+      <div style="font-size:0.81rem;color:rgba(255,255,255,0.72);display:flex;align-items:flex-start;gap:8px;word-break:keep-all;"><span style="color:#ff9500;flex-shrink:0;margin-top:1px;">✦</span>AI Prompt <strong style="color:#ffaa00;">50 Real-World Expressions</strong> — Copy-and-paste formula collection</div>
+      <div style="font-size:0.81rem;color:rgba(255,255,255,0.72);display:flex;align-items:flex-start;gap:8px;word-break:keep-all;"><span style="color:#ff9500;flex-shrink:0;margin-top:1px;">✦</span>Marketing automation failures + solutions — <span style="color:rgba(255,255,255,0.35);">[chapter restricted]</span></div>
+      <div style="font-size:0.81rem;color:rgba(255,255,255,0.72);display:flex;align-items:flex-start;gap:8px;word-break:keep-all;"><span style="color:#ff9500;flex-shrink:0;margin-top:1px;">✦</span>Advanced reader Q&amp;A answers — released to subscribers <strong style="color:#ffaa00;">first</strong></div>
+    </div>
+    <div style="padding:0 16px 14px;">
+```<a href="https://www.youtube.com/channel/UCCqi9m0XPHLPxvReWfJhJig?sub_confirmation=1" target="_blank" rel="noopener" style="display:block;background:linear-gradient(90deg,#ff6b00,#ff9d00);color:#fff;text-align:center;padding:9px;border-radius:8px;font-size:0.81rem;font-weight:800;text-decoration:none;">🔔 Subscribe to the AI Hunter Channel and Get First Access</a>
+    </div>
+  </div>
+
+  <div style="font-size:0.72rem;color:rgba(255,255,255,0.28);letter-spacing:0.02em;word-break:keep-all;">
+    Released 6/1 &nbsp;·&nbsp; <strong style="color:rgba(255,255,255,0.65);">Volume 1: $9,900 · Volume 2: $19,900 · Volume 3: $29,900 · Volume 4: $29,900 · Volume 5: $39,900 · Full Package: $99,000</strong> &nbsp;·&nbsp; Payment via jbooking.kr
+  </div>
+</div>
+<script>
+(function(){
+  var dl=new Date('2026-07-01T00:00:00+09:00');
+  function p(n){return String(n).padStart(2,'0');}
+  function tick(){
+    var now=new Date(),diff=dl-now;
+    if(diff<=0){var b=document.getElementById('may-countdown');if(b)b.innerHTML='<div style="padding:18px 20px;background:linear-gradient(135deg,rgba(251,191,36,.15),rgba(220,38,38,.1));border:1px solid rgba(251,191,36,.45);border-radius:10px;color:#fef3c7;font-size:.9rem;line-height:1.85;text-align:center;word-break:keep-all;"><div style="color:#fbbf24;font-weight:900;font-size:.95rem;margin-bottom:6px;">✨ 0.1%가 되세요</div><div style="color:#fff;font-weight:700;">AI 바이블이 — <strong style="color:#fbbf24;">창조의 벽을 넘는 문</strong>입니다.</div><div style="color:#fde68a;font-size:.86rem;margin-top:4px;">AI 활용으로 <strong style="color:#fff;">10배 · 100배의 금광</strong>을 발견하세요.</div><a href="https://vibecodingbible.jbooking.kr/" target="_blank" style="display:inline-block;margin-top:10px;padding:10px 24px;background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#1a0a00;border-radius:8px;font-weight:900;font-size:.86rem;text-decoration:none;">🏆 결제 페이지로 →</a></div>';return;}
+    var d=Math.floor(diff/86400000),h=Math.floor((diff%86400000)/3600000),m=Math.floor((diff%3600000)/60000),s=Math.floor((diff%60000)/1000);
+    var th=document.getElementById('cd-total-hours');if(th)th.textContent=Math.floor(diff/3600000).toLocaleString('ko-KR');
+    var th2=document.getElementById('cd-total-hours-txt');if(th2)th2.textContent=Math.floor(diff/3600000).toLocaleString('ko-KR');
+    document.getElementById('cd-days').textContent=p(d);
+    document.getElementById('cd-hours').textContent=p(h);
+    document.getElementById('cd-mins').textContent=p(m);
+    document.getElementById('cd-secs').textContent=p(s);
+  }
+  tick();setInterval(tick,1000);
+})();
+</script>
+
+<div id="progress-bar"></div>
+<div class="wrap">
+
+  <div class="top-bar">
+    <button class="gift-btn" id="share-btn-1" onclick="openGiftModal()">🎁 Gift</button>
+    <button class="theme-btn" onclick="toggleTheme()">🌓 Dark Mode</button>
+  </div>
+
+  <!-- 🎉 Volume 5 Release Notification Banner (2026-05-28) -->
+  <div style="background:linear-gradient(90deg,#7c2d12,#9a3412,#c15f3c);color:#fff;padding:12px 24px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-size:.88rem;line-height:1.6;word-break:keep-all;">
+    <span style="font-size:1.1rem;">🎉</span>
+    <span style="font-weight:800;color:#fde68a;letter-spacing:.05em;">Volume 5 "The Secret to Delegating Work to AI" Released</span>
+    <span style="color:#fef3c7;">— Released 6/1 · <strong style="color:#fff;">First 100 Copies</strong> · Volume 1: $9,900 · Volume 2: $19,900 · Volume 3: $29,900 · Volume 4: $29,900 · Volume 5 Single: $39,900 · <strong style="color:#fde68a;">Full Package: $99,000</strong></span>
+    <a href="practical-bible.html" style="background:#fff;color:#9a3412;padding:6px 16px;border-radius:8px;font-weight:900;font-size:.84rem;text-decoration:none;white-space:nowrap;margin-left:auto;">📖 Volume 5 Preview →</a>
+    <a href="https://vibecodingbible.jbooking.kr/" target="_blank" style="background:transparent;color:#fde68a;border:1px solid rgba(255,255,255,.4);padding:6px 16px;border-radius:8px;font-weight:700;font-size:.84rem;text-decoration:none;white-space:nowrap;">🎟 Secure Your Spot</a>
+  </div>
+
+  <!-- 📖 Bible Redefinition Message (CEO 2026-05-29) -->
+  <div style="background:rgba(193,95,60,.08);border-left:3px solid #c15f3c;padding:10px 20px;font-size:.84rem;color:#3a3a3a;line-height:1.7;word-break:keep-all;">
+    📖 <strong style="color:#c15f3c;">"Bible" does not mean a definitive answer.</strong> Software businesses have a beginning but no end — this series is an <em>adaptation record that embraces AI change and adjusts weekly</em>. Rather than grinding through your own time and experience — <strong>the goal is to get you started</strong>.
+  </div>
+
+
+  <!-- Book Cover -->
+  <header class="book-header">
+    <div class="book-badge">VIBECODING MASTERY · VOLUME 1</div>
+    <h1 class="book-title">How to Automatically Run Your Blog and YouTube<br>Without Coding</h1>
+    <p class="book-sub">Marketing Automation Essentials — The Vibecoding Bible Series</p>
+    <span class="free-tag">📚 AI Bible Series Volume 1</span>
+    <div style="display:inline-flex;align-items:center;gap:4px;margin-top:10px;font-size:11px;opacity:0.55;">
+      <span>👁</span><span>Total Visitors</span>
+      <img id="visit-badge" src="https://visitor-badge.laobi.icu/badge?page_id=aiaijungle.vibe-ebook&left_color=555&right_color=a78bfa" style="height:16px;vertical-align:middle;border-radius:3px;" alt="visitors" onerror="this.style.display='none';document.getElementById('visit-num').style.display='inline'">
+      <span id="visit-num" style="background:#a78bfa;color:#fff;font-weight:700;padding:0 5px;border-radius:3px;line-height:15px;display:none;">20,000+</span>
+    </div>
+  </header>
+
+  <!-- ===== 🎁 Reader Gift Section (Added at Top, Before Paywall) — 2026-06-17 ===== -->
+  <style>
+    .lm-wrap{max-width:760px;margin:8px auto 36px;border:2px solid var(--accent,#a78bfa);border-radius:18px;padding:30px 26px;background:linear-gradient(180deg,rgba(167,139,250,.08),transparent);word-break:keep-all}
+    .lm-badge{display:inline-block;background:var(--accent,#a78bfa);color:#fff;font-weight:900;font-size:.8rem;padding:6px 14px;border-radius:30px;letter-spacing:.04em}
+    .lm-h{font-size:1.6rem;font-weight:900;line-height:1.4;margin:16px 0 8px;letter-spacing:-.02em}
+    .lm-p{line-height:1.85;margin:10px 0;font-size:.98rem;opacity:.92}
+    .lm-code{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;font-family:Consolas,monospace;font-size:.82rem;line-height:1.6;margin:8px 0;white-space:pre-wrap;border:1px solid #222}
+    .lm-code .c{color:#ffae42;font-weight:700}
+    .lm-list{margin:10px 0 6px}
+    .lm-li{background:rgba(255,255,255,.05);border:1px solid rgba(167,139,250,.3);border-radius:10px;padding:12px 16px;margin:8px 0;font-weight:700;font-size:.98rem}
+    .lm-tip{font-size:.88rem;opacity:.8;margin:6px 0 18px}
+    .lm-bridge{background:rgba(251,191,36,.12);border-left:4px solid #fbbf24;padding:14px 18px;border-radius:8px;margin:20px 0;font-weight:700;line-height:1.7}
+    .lm-proof{font-size:.9rem;opacity:.8;margin:14px 0}
+    .lm-gate{margin:18px 0 6px;padding:20px;background:rgba(0,0,0,.18);border-radius:12px;text-align:center}
+    .lm-gate input{display:block;width:100%;max-width:320px;margin:8px auto;padding:11px 14px;border:1.5px solid var(--accent,#a78bfa);border-radius:8px;background:rgba(0,0,0,.25);color:#fff;font-size:.95rem;text-align:center}
+    .lm-btn{display:inline-block;margin-top:10px;padding:14px 34px;background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#1a0a00;font-weight:900;font-size:1.02rem;border:none;border-radius:10px;cursor:pointer;text-decoration:none}
+    .lm-dl{display:none;margin-top:12px}
+    .lm-cta{display:block;max-width:520px;margin:24px auto 4px;padding:22px;background:linear-gradient(135deg,#7c2d12,#9a3412);border:2px solid #fbbf24;border-radius:16px;text-align:center}
+    .lm-cta b{color:#fbbf24;font-size:1.15rem}
+    .lm-cta a{display:inline-block;margin-top:12px;padding:13px 30px;background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#1a0a00;font-weight:900;border-radius:10px;text-decoration:none}
+  </style>
+  <section class="lm-wrap">
+    <span class="lm-badge">🎁 Reader Gift · Free</span>```html
+<div class="lm-h">Wait — before you read the book,<br>right now let's make a video with just <span style="color:var(--accent,#a78bfa)">one sentence</span>?</div>
+    <p class="lm-p">No camera, no editing, no coding. Connect <b>Higgs Field MCP</b> to Claude, type just one sentence in Korean — and you get cinematic cuts, ads, even a talking AI model. I'll give you that <b>core prompt</b> as a <b>copy-paste-ready PDF</b>.</p>
+
+    <div class="lm-list">
+      <div class="lm-li">🎬 ① Cinematic Video Prompt (Veo)</div>
+      <div class="lm-li">🧍 ② Real-life AI Model Prompt (Soul)</div>
+      <div class="lm-li">🗣 ③ Talking Video Lip-sync (Wan)</div>
+      <div class="lm-li">🎙 ④ Natural Voice (ElevenLabs)</div>
+      <div class="lm-li">⚙️ Higgs Field MCP Setup Guide + 7-Day Execution Checklist</div>
+    </div>
+    <p class="lm-tip">※ The main text is copy-protected. I'll give you the <b>complete ready-to-use prompts in the PDF below</b> 👇</p>
+
+    <div class="lm-bridge">What I just showed you — making one video in minutes.<br>But that's just <span style="color:#fbbf24">1%</span> of AI automation.</div>
+    <p class="lm-p">The remaining <b>99%</b> — running your blog automatically, operating YouTube without filming directly, automating marketing, and even commanding your own <b>AI employee (agent)</b> — it's all here step by step in this book. <b>Unlike paper books, it keeps updating even now</b>.</p>
+    <p class="lm-proof">📈 <b>20,000 people</b> on Facebook read it free first, and among them, doctors, lawyers, accountants, CEOs, and executives quietly buy the full version. One reason — <b>time</b>. What takes a year of fumbling around, I can turn into a <b>system in days</b>.</p>
+
+    <div class="lm-gate">
+      <div style="font-weight:900;font-size:1.05rem;margin-bottom:6px">📥 Get the Prompt Pack PDF (Free)</div>
+      <div style="font-size:.85rem;opacity:.7;margin-bottom:8px">Higgs Field MCP Setup Guide + Prompts + 7-Day Execution Checklist</div>
+      <form id="lm-form" onsubmit="return lmSubmit(event)">
+        <input id="lm-name" type="text" placeholder="Name" required>
+        <input id="lm-email" type="email" placeholder="Email address" required>
+        <button class="lm-btn" type="submit">Get Free</button>
+      </form>
+      <div class="lm-dl" id="lm-dl">
+        <a class="lm-btn" href="AI_One_Sentence_System_Leadmagnet.pdf" download>📥 Download PDF</a>
+        <p style="font-size:.82rem;opacity:.7;margin-top:8px">I've sent it to your email too. (Check spam folder!)</p>
+      </div>
+    </div>
+
+    <div class="lm-cta">
+      <b>The full version has its last discount until July 1st.</b>
+      <p style="margin:8px 0 0;opacity:.92;font-size:.92rem">Read chapters 1 & 2 free first, then upgrade to full if you like.</p>
+      <a href="https://vibecodingbible.jbooking.kr" target="_blank" rel="noopener">Go to Full Version →</a>
+    </div>
+  </section>
+  <script>
+    function lmSubmit(e){
+      e.preventDefault();
+      var n=document.getElementById('lm-name').value.trim();
+      var m=document.getElementById('lm-email').value.trim();
+      if(!n||!m){return false;}
+      try{ // TODO: Formspree/Mailchimp 엔드포인트 연결 (CEO ID 입력)
+        // fetch('https://formspree.io/f/XXXX',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:n,email:m,source:'book1_freegift'})});
+        localStorage.setItem('lm_lead', JSON.stringify({n:n,m:m,t:Date.now()}));
+      }catch(_){}
+      document.getElementById('lm-form').style.display='none';
+      document.getElementById('lm-dl').style.display='block';
+      return false;
+    }
+  </script>
+  <!-- ===== Free Section Ends ===== -->
+
+  <!-- Getting Started -->
+  <p class="para">When you run a business alone, marketing is the heaviest lift. You have to write blogs, upload videos, manage customers. With no employees, I have to do it all.</p>
+
+  <div class="trigger-box">
+    <div class="label">📌 What This Book Covers</div>
+    Blog automation — posts go live every day without me writing them directly<br>
+    YouTube automation — the channel runs without me filming directly
+  </div>
+
+  <p class="para">Minimal theory. Maximum practice. Only things you can use right now.</p>
+
+  <hr class="divider">
+
+  <!-- Chapter 0 -->
+  <h2 class="content-h1">Chapter 0. For Those Who Don't Know What Vibe Coding Is</h2>
+
+  <p class="para">I didn't know at first either. When I heard "coding with AI," I was honestly skeptical. I'm not a developer, never went to coding school, and I only knew Python was a snake's name. But now I run 11 bots. Every morning, blog posts go live automatically, YouTube shorts get created, emails get sent. While I'm sleeping.</p>
+
+  <p class="para">How did it happen? I did Vibe Coding.</p>
+
+  <h3 class="content-h2">The Definition of Vibe Coding</h3>
+
+  <p class="para">Vibe Coding. It's the way to create code by telling AI what you want instead of typing code directly. AI researcher Andrej Karpathy first used this term in February 2025. The core is simple.</p>
+
+  <div class="law-box">
+    <div class="label">🔥 The Definition of Vibe Coding</div>
+    <strong>What I do: Say what I want.</strong><br>
+    <strong>What AI does: Decide how to build it.</strong><br><br>
+    You don't learn code. You command code.
+  </div>
+
+  <p class="para">Using a chef analogy: I'm the customer who says "I want pasta for dinner tonight." The chef (AI) decides which ingredients to use, what order to sauté them in, and how much seasoning to add. I just order the menu. And eat.</p>
+``````html
+<p class="para">Coding is exactly the same. When I say "Grab trending keywords every morning at 9 AM and write a blog post for me," AI creates the code that does that function. I just execute it.</p>
+
+  <h3 class="content-h2">Three Vows — Engrave This Before You Begin</h3>
+
+  <p class="para">There's one thing in common among people who fail before even starting Vibe Coding. Their mindset is wrong. The tool is right, but the person using it is wrong. Read the following three things first. If this wavers, everything else wavers.</p>
+
+  <div class="trigger-box">
+    <div class="label">📌 The Vibe Coder's 3 Vows</div>
+    <strong>The 1st Vow. I will not modify code directly with my own hands.</strong><br>
+    The labor of typing code belongs to AI. Even if you spot a single typo, don't fix it yourself. Tell AI, "There's a typo here, fix it." The moment I touch it, AI won't know what it changed and will overwrite something completely different.<br><br>
+    <strong>The 2nd Vow. I will not fear the red error screen.</strong><br>
+    An error is not a malfunction. It's a diagnostic report AI is sending me. Just copy the entire red text and throw it at AI. "Fix this error." Done.<br><br>
+    <strong>The 3rd Vow. I will not wait until it's perfect.</strong><br>
+    A shoddy bot running tonight changes your life more than a perfect idea gathering dust in a drawer. It's about something functional first, even if crude.
+  </div>
+
+  <p class="para">Anyone who keeps these three things succeeds. Anyone who doesn't, no matter how good a tool you give them, won't make it. I learned this directly through experience.</p>
+
+  <h3 class="content-h2">What I Created First with AI</h3>
+
+  <p class="para">Early 2025, I spoke to Claude for the first time. "Create a feature that automatically sends reservation confirmation messages via KakaoTalk." Five minutes later, the code came out. I copied and pasted it and ran it. It worked.</p>
+
+  <p class="para">The shock of that moment is still vivid. If I had gotten a quote from a freelance developer, this single feature would have cost at least 1 million won. It took five minutes. The cost was just a few cents in Claude API fees.</p>
+
+  <p class="para">The next month, I built a blog automation bot. The month after that, a YouTube Shorts pipeline. The month after that, email automation. I now operate 11 bots. I've never learned coding. I don't plan to in the future. Because it's unnecessary.</p>
+
+  <div class="quote">
+    "You're not learning to code — you're having code done for you. That's the whole difference."
+  </div>
+
+  <hr class="divider">
+
+  <!-- 🏅 사회적 증명 박스 — 결제 박스 직전 (CEO 명시 '결제 나오기 전에' 2026-05-31) -->
+  <div style="max-width:780px;margin:36px auto 20px;">
+    <div style="background:linear-gradient(135deg,#1a0a00,#3d1a00);border:1.5px solid rgba(251,191,36,.5);border-radius:16px;padding:26px 28px;color:#fef3c7;line-height:1.85;word-break:keep-all;">
+      <div style="text-align:center;margin-bottom:18px;">
+        <div style="font-size:.74rem;font-weight:900;color:#fbbf24;letter-spacing:.16em;margin-bottom:6px;">⭐ The AI Bible Trusted by 10,000</div>
+        <div style="font-size:.8rem;color:#fde68a;line-height:1.75;margin-bottom:12px;font-weight:600;word-break:keep-all;">Certified appraisers · Lawyers · Corporate executives · Office workers · Homemakers · Solo entrepreneurs · Marketers · Designers · Professors · Startup founders and more — <strong style="color:#fff;">10,000 readers across all professions</strong></div>
+        <div style="font-size:1.18rem;color:#fff;font-weight:900;line-height:1.5;">Persuasion — not from us, but from our <span style="color:#fbbf24;">readers</span> themselves.</div>
+      </div>
+      <!-- 📊 SNS 실측 데이터 — 6 통계 카드 (CEO 스크린샷 실측 2026-05-31) -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin-bottom:14px;">
+        <div style="background:rgba(255,255,255,.06);border-radius:10px;padding:12px 8px;text-align:center;">
+          <div style="font-size:1.35rem;color:#fff;font-weight:900;line-height:1;">50万+</div>
+          <div style="font-size:.7rem;color:#fde68a;margin-top:5px;">📷 Instagram & Facebook Reach</div>
+        </div>
+        <div style="background:rgba(255,255,255,.06);border-radius:10px;padding:12px 8px;text-align:center;">
+          <div style="font-size:1.35rem;color:#fff;font-weight:900;line-height:1;">618</div>
+          <div style="font-size:.7rem;color:#fde68a;margin-top:5px;">👍 Likes</div>
+        </div>
+        <div style="background:rgba(255,255,255,.06);border-radius:10px;padding:12px 8px;text-align:center;">
+          <div style="font-size:1.35rem;color:#fff;font-weight:900;line-height:1;">135</div>
+          <div style="font-size:.7rem;color:#fde68a;margin-top:5px;">💭 Comments</div>
+        </div>
+``````html
+<div style="background:rgba(255,255,255,.06);border-radius:10px;padding:12px 8px;text-align:center;">
+          <div style="font-size:1.35rem;color:#fff;font-weight:900;line-height:1;">400+</div>
+          <div style="font-size:.7rem;color:#fde68a;margin-top:5px;">🔗 Shares</div>
+        </div>
+        <div style="background:rgba(251,191,36,.18);border:1.5px solid rgba(251,191,36,.55);border-radius:10px;padding:12px 8px;text-align:center;box-shadow:0 0 16px rgba(251,191,36,.15);">
+          <div style="font-size:1.35rem;color:#fbbf24;font-weight:900;line-height:1;">165</div>
+          <div style="font-size:.7rem;color:#fff;margin-top:5px;font-weight:700;">💬 Reviews</div>
+        </div>
+      </div>
+
+      <!-- 🏅 Anthropic Official Certificate (Issued by CEO 2026-05-14) -->
+      <div style="background:linear-gradient(135deg,rgba(99,102,241,.2),rgba(79,70,229,.15));border:1.5px solid rgba(129,140,248,.5);border-radius:10px;padding:14px 18px;margin-bottom:14px;text-align:center;">
+        <div style="font-size:.72rem;font-weight:900;color:#a5b4fc;letter-spacing:.14em;margin-bottom:6px;">🏅 ANTHROPIC OFFICIAL CERTIFICATE</div>
+        <p style="margin:0;color:#fef3c7;font-size:.88rem;line-height:1.7;">
+          <strong style="color:#fff;">"Introduction to Agent Skills"</strong> Certificate of Completion<br>
+          <span style="color:#c7d2fe;font-size:.78rem;">— Hwahyun Kim (Limitlessman) · Issued 2026-05-14</span>
+        </p>
+        <p style="margin:6px 0 0;color:#a5b4fc;font-size:.74rem;font-style:italic;">Direct certification by Claude developer — Author who completed the official Anthropic curriculum, not theory</p>
+      </div>
+
+      <div style="background:rgba(0,0,0,.3);border-left:3px solid #fbbf24;border-radius:0 10px 10px 0;padding:14px 18px;margin-bottom:12px;">
+        <div style="font-size:.74rem;font-weight:900;color:#fbbf24;letter-spacing:.1em;margin-bottom:8px;">🏆 Endorsement — External Expert</div>
+        <p style="margin:0 0 10px;color:#fef3c7;font-style:italic;font-size:.92rem;line-height:1.8;">"With Claude Code and AI agents — <strong style="color:#fff;font-style:normal;">Must-read guide to becoming an AI-native company.</strong>"</p>
+        <p style="margin:0;color:#fde68a;font-size:.82rem;font-style:italic;">— <strong style="color:#fff;font-style:normal;">Seonghwan Noh</strong> · IT CEO (Author of AntiGravity VibeCode at Google)</p>
+      </div>
+      <!-- 🏆 Books 1~4 Endorsements — 3 Key Quotes (CEO Specified 'Add Endorsements' 2026-05-31) -->
+      <div style="background:rgba(0,0,0,.3);border-left:3px solid #fbbf24;border-radius:0 10px 10px 0;padding:14px 18px;margin-bottom:12px;">
+        <div style="font-size:.74rem;font-weight:900;color:#fbbf24;letter-spacing:.1em;margin-bottom:10px;">🏆 Books 1~4 Endorsements — 3 Key Quotes</div>
+        <div style="margin-bottom:10px;padding-bottom:10px;border-bottom:1px dashed rgba(251,191,36,.2);">
+          <p style="margin:0 0 4px;color:#fef3c7;font-style:italic;font-size:.84rem;line-height:1.75;">"The way to embed <strong style="color:#fff;font-style:normal;">company constitution into AI using CLAUDE.md</strong> — if you taught AI without knowing this, you only taught half."</p>
+          <p style="margin:0;color:#fde68a;font-size:.74rem;">— <strong style="color:#fff;">Ki-woong Park</strong>, CEO (AI Education Company SANTA)</p>
+        </div>
+        <div style="margin-bottom:10px;padding-bottom:10px;border-bottom:1px dashed rgba(251,191,36,.2);">
+          <p style="margin:0 0 4px;color:#fef3c7;font-style:italic;font-size:.84rem;line-height:1.75;">"A solo entrepreneur completed a <strong style="color:#fff;font-style:normal;">B2B platform in 96 hours with just the G-Stack methodology</strong> — VibeCode is not a trend but a new development paradigm."</p>
+``````html
+<p style="margin:0;color:#fde68a;font-size:.74rem;">— <strong style="color:#fff;">Professor Deok-eun Kim</strong> (Pusan National University Industry-Academic Cooperation Foundation)</p>
+        </div>
+        <div>
+          <p style="margin:0 0 4px;color:#fef3c7;font-style:italic;font-size:.84rem;line-height:1.75;">"I built an in-house automation system without outsourcing — <strong style="color:#fff;font-style:normal;">and saved 12 million won in development costs.</strong>"</p>
+          <p style="margin:0;color:#fde68a;font-size:.74rem;">— <strong style="color:#fff;">Moo-sung Kang</strong> CEO (SIWU ENT)</p>
+        </div>
+      </div>
+
+      <!-- 💬 Volumes 1–4 Reader Reviews — Core Quote -->
+      <div style="background:rgba(0,0,0,.3);border-radius:10px;padding:14px 18px;margin-bottom:12px;">
+        <div style="font-size:.74rem;font-weight:900;color:#fbbf24;letter-spacing:.1em;margin-bottom:10px;">💬 Reader Review — 1 of 165</div>
+        <p style="margin:0 0 4px;color:#fef3c7;font-style:italic;font-size:.82rem;line-height:1.75;">"I deployed a landing page in just 3 days. <strong style="color:#fff;font-style:normal;">After 10 years as a marketing director, I never told developers what I really wanted—now I built it myself.</strong>"</p>
+        <p style="margin:0;color:#fde68a;font-size:.74rem;">— <strong style="color:#fff;">Park O-jun</strong> (Marketing Director, 38 years old)</p>
+        <p style="margin:8px 0 0;font-size:.72rem;color:#a8a29e;text-align:center;font-style:italic;line-height:1.65;">Total <strong style="color:#fbbf24;">165</strong> direct reviews accumulated · <strong style="color:#fbbf24;">92%</strong> recommendation rate</p>
+      </div>
+      <p style="margin:14px 0 0;font-size:.78rem;color:#a8a29e;text-align:center;font-style:italic;line-height:1.7;">
+        <strong style="color:#fbbf24;">92%</strong> recommendation · <strong style="color:#fbbf24;">20,000+</strong> cumulative visitors measured
+      </p>
+    </div>
+  </div>
+
+  <!-- 🎯 Comprehensive Psychological Triggers + Payment Flow (CEO Directive 2026-05-31 Integrated) -->
+  <div style="max-width:780px;margin:28px auto 36px;">
+    <div style="background:linear-gradient(135deg,#7c2d12,#9a3412,#c15f3c);border-radius:18px;padding:28px 30px;color:#fef3c7;line-height:1.9;box-shadow:0 14px 40px rgba(220,38,38,.35);word-break:keep-all;">
+
+      <!-- ⏳ Life Time Message (CEO Direct Wording) -->
+      <div style="background:rgba(0,0,0,.3);border-left:4px solid #fbbf24;border-radius:0 12px 12px 0;padding:18px 22px;margin:0 0 22px;">
+        <p style="margin:0 0 10px;color:#fff;font-weight:800;font-size:1.06rem;line-height:1.75;">⏳ Life doesn't go according to plan.</p>
+        <p style="margin:0 0 10px;color:#fef3c7;font-size:.94rem;line-height:1.85;">Time doesn't stop.<br><strong style="color:#fff;">AI evolves every single day.</strong></p>
+        <p style="margin:0 0 10px;color:#fde68a;font-size:.94rem;line-height:1.85;">In this age of transformation —<br><strong style="color:#fbbf24;font-size:1.02rem;">become the top 0.1% who harness AI best.</strong></p>
+        <p style="margin:0 0 12px;color:#fef3c7;font-size:.92rem;line-height:1.8;">That value is — <strong style="color:#fbbf24;">10x · 100x · and beyond.</strong></p>
+        <p style="margin:0;color:#fbbf24;font-weight:900;font-size:1.18rem;line-height:1.7;border-top:1px dashed rgba(251,191,36,.3);padding-top:10px;">Start now.</p>
+      </div>
+
+      <!-- 🔥 4 Psychological Triggers (First Come · Impression · Lifetime Updates · PDF Differentiation) -->
+      <div style="margin:0 0 22px;">
+        <div style="font-size:.72rem;font-weight:900;color:#fde68a;letter-spacing:.16em;text-align:center;margin-bottom:12px;">🔥 4 Reasons to Pay Now</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;">
+          <div style="background:rgba(0,0,0,.25);border:1px solid rgba(251,191,36,.45);border-radius:10px;padding:12px 14px;">
+            <div style="font-size:1.2rem;margin-bottom:4px;">🎟</div>
+```<div style="font-weight:900;color:#fff;font-size:.86rem;margin-bottom:4px;">First 100 only</div>
+            <p style="font-size:.76rem;color:#fef3c7;margin:0;line-height:1.65;">Limited discount for 100 people. Regular price applies after sold out.</p>
+          </div>
+          <div style="background:rgba(0,0,0,.25);border:1px solid rgba(251,191,36,.45);border-radius:10px;padding:12px 14px;">
+            <div style="font-size:1.2rem;margin-bottom:4px;">📈</div>
+            <div style="font-weight:900;color:#fff;font-size:.86rem;margin-bottom:4px;">Price increase planned 7/1</div>
+            <p style="font-size:.76rem;color:#fef3c7;margin:0;line-height:1.65;">Today is the cheapest day of your lifetime.</p>
+          </div>
+          <div style="background:rgba(0,0,0,.35);border:2px solid #fbbf24;border-radius:10px;padding:12px 14px;box-shadow:0 0 14px rgba(251,191,36,.2);">
+            <div style="font-size:1.2rem;margin-bottom:4px;">♾</div>
+            <div style="font-weight:900;color:#fff;font-size:.86rem;margin-bottom:4px;">Lifetime updates ⭐</div>
+            <p style="font-size:.76rem;color:#fef3c7;margin:0;line-height:1.65;">Value grows like luxury goods. Yours forever on your account.</p>
+          </div>
+          <div style="background:rgba(0,0,0,.25);border:1px solid rgba(251,191,36,.45);border-radius:10px;padding:12px 14px;">
+            <div style="font-size:1.2rem;margin-bottom:4px;">📊</div>
+            <div style="font-weight:900;color:#fff;font-size:.86rem;margin-bottom:4px;">Incomparable to PDF</div>
+            <p style="font-size:.76rem;color:#fef3c7;margin:0;line-height:1.65;">Regular PDF: 1 area, frozen at publication. JANDA: 5 areas, updated weekly.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 💸 Value anchor (5M+ won) -->
+      <div style="background:rgba(0,0,0,.3);border-radius:10px;padding:14px 16px;margin:0 0 18px;font-size:.84rem;color:#fef3c7;line-height:1.75;">
+        <div style="font-weight:900;color:#fbbf24;text-align:center;margin-bottom:8px;font-size:.86rem;">💸 Original Price — At least 5M+ won</div>
+        <p style="margin:0;text-align:center;line-height:1.7;">
+          📈 Marketing automation 2~5M · 📝 Blog 500K~1.5M · 📹 YouTube 1~3M · 💻 Vibe Coding 1~3M · 🤖 AI Agent 2~5M (monthly/lecture unit price)<br>
+          <strong style="color:#fff;">Total 5M+ · 1-year accumulated 15M+</strong> → All 5 books full package <strong style="color:#fbbf24;font-size:.92rem;">99,000 won</strong>
+        </p>
+      </div>
+
+      <!-- 🏆 99K full package payment box -->
+      <div style="background:linear-gradient(135deg,#1a0a00,#3d1a00);border:2px solid #fbbf24;border-radius:14px;padding:22px 24px;text-align:center;">
+        <div style="font-size:.7rem;font-weight:900;color:#fbbf24;letter-spacing:.18em;margin-bottom:10px;">⭐ ALL 5 BOOKS — MOST RECOMMENDED</div>
+        <div style="font-size:1.2rem;font-weight:900;color:#fff;margin-bottom:12px;line-height:1.5;">🏆 Invest in your future</div>
+        <p style="margin:0 0 14px;color:#fef3c7;font-size:.9rem;line-height:1.8;">
+          <strong style="color:#fbbf24;">99,000 won just once</strong> · All 5 books integrated (Books 1·2·3·4·5) + lifetime updates + VIP Discord
+        </p>
+        <a href="https://vibecodingbible.jbooking.kr/" target="_blank" style="display:inline-block;padding:16px 36px;background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#1a0a00;border-radius:10px;font-weight:900;font-size:1.05rem;text-decoration:none;box-shadow:0 6px 20px rgba(251,191,36,.4);">🏆 Pay 99,000 won full package →</a>
+        <p style="margin:10px 0 0;color:#86efac;font-size:.78rem;font-weight:700;line-height:1.7;">✅ 100% refund guarantee for 1 year (full refund if no value after execution)</p>
+      </div>
+
+      <!-- 📋 Payment & delivery flow — manual operation + Notion DB 6 items (CEO specified 2026-05-31) --><div style="background:rgba(0,0,0,.3);border-left:3px solid #fbbf24;border-radius:0 8px 8px 0;padding:14px 18px;margin:18px 0 0;font-size:.82rem;color:#fef3c7;line-height:1.85;">
+        <div style="font-weight:900;color:#fbbf24;margin-bottom:8px;font-size:.84rem;">🔄 Payment Flow — Manual Operations (CEO Direct)</div>
+        <ol style="margin:0;padding-left:20px;color:#fff;line-height:1.8;">
+          <li><strong style="color:#fde68a;">jbooking page</strong> — enter 5 fields (name·email·phone·purchase product·amount)</li>
+          <li>Auto-collected <strong style="color:#fde68a;">6 items</strong> = above 5 + payment date/time</li>
+          <li>CEO <strong style="color:#fde68a;">records directly in Notion DB (Pre-order Queue)</strong> (manual, checked every 1~2 hours)</li>
+          <li>Payment confirmation → Notion DB registration → <strong style="color:#fde68a;">password sent via email·SMS within 2 business days (excluding holidays)</strong></li>
+          <li>With that password, <strong style="color:#fde68a;">unlock all 5 books + lifetime updates</strong></li>
+        </ol>
+        <div style="margin-top:8px;padding:6px 10px;background:rgba(251,191,36,.1);border-radius:6px;font-size:.74rem;color:#fde68a;">
+          📌 Notion DB 6 columns: <strong style="color:#fff;">Payment Date/Time · Name · Email · Phone · Purchase Product · Amount</strong>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 🔒 Paywall Start — Blocked Before Payment (After CEO Official Launch 2026-06-01) -->
+  <style>
+    .paywall-hidden { display: none !important; }
+    html.paywall-unlocked .paywall-hidden { display: revert !important; }
+    /* 🔒 즉시 차단 (CSS 자동) — JS DOMContentLoaded 전 깜박임 방지 */
+    html:not(.paywall-unlocked) [data-paywall-stop] ~ *:not(script):not(style) { display: none !important; }
+    .paywall-locked-notice { max-width: 720px; margin: 32px auto; padding: 36px 28px; background: linear-gradient(135deg, #7c2d12, #9a3412); color: #fef3c7; border-radius: 16px; text-align: center; border: 2px solid #fbbf24; box-shadow: 0 10px 36px rgba(220,38,38,.4); word-break: keep-all; }
+    .paywall-locked-notice h3 { color: #fbbf24; font-size: 1.4rem; font-weight: 900; margin: 0 0 14px; letter-spacing: -.02em; line-height: 1.4; }
+    .paywall-locked-notice p { margin: 0 0 16px; line-height: 1.85; font-size: .95rem; }
+    .paywall-locked-notice .pw-btn { display: inline-block; padding: 16px 38px; background: linear-gradient(135deg, #fbbf24, #f59e0b); color: #1a0a00; font-weight: 900; font-size: 1.05rem; text-decoration: none; border-radius: 10px; box-shadow: 0 6px 20px rgba(251,191,36,.45); margin: 8px 0; }
+    .paywall-locked-notice .pw-input { display: block; width: 100%; max-width: 340px; margin: 14px auto 8px; padding: 10px 14px; border: 1.5px solid rgba(251,191,36,.4); border-radius: 8px; background: rgba(0,0,0,.3); color: #fff; font-size: .95rem; text-align: center; letter-spacing: .08em; }
+    .paywall-locked-notice .pw-submit { display: inline-block; padding: 8px 20px; background: rgba(255,255,255,.15); color: #fff; border: 1px solid rgba(255,255,255,.3); border-radius: 8px; font-weight: 700; cursor: pointer; font-size: .85rem; }
+    .paywall-locked-notice .pay-channels { text-align: left; background: rgba(0,0,0,.28); border-radius: 10px; padding: 14px 16px; margin: 16px 0; font-size: .86rem; line-height: 1.75; }
+    .paywall-locked-notice .pay-channels .ch-title { color: #fff; font-weight: 800; text-align: center; margin: 0 0 10px; font-size: .9rem; }
+    .paywall-locked-notice .pay-channels .ch-row { margin: 0 0 8px; color: #fde68a; }
+    .paywall-locked-notice .pay-channels .ch-row.recommend { color: #fbbf24; }
+    .paywall-locked-notice .pay-channels .ch-sub { color: #fef3c7; font-size: .78rem; padding-left: 14px; display: block; line-height: 1.7; margin-top: 2px; }
+    @media (max-width: 480px) {
+      .paywall-locked-notice { padding: 26px 18px; margin: 20px 12px; }
+      .paywall-locked-notice h3 { font-size: 1.15rem; }
+      .paywall-locked-notice p { font-size: .88rem; }
+      .paywall-locked-notice .pw-btn { padding: 14px 26px; font-size: .96rem; }
+      .paywall-locked-notice .pay-channels { padding: 12px 14px; font-size: .8rem; }
+    }
+    html.paywall-unlocked .paywall-locked-notice { display: none !important; }
+  </style>
+  <script>
+  (function() {
+    const HASHES = ['fef344d48bce4ba5b8fffef44535bd1e0b29ead21aaac76d8246209865f3cc58','ff6732eb2bd5b7a209c834ff1219d61cd80ebe2113574dc6fe65b4408ced8899','8d61a711645aa98cdc5fa0c37f2e0e45af25f243e4760466b1932ce5c2d679ac'];
+    const valid = (pw) => pw && ((window.__sha256 && HASHES.indexOf(window.__sha256(pw.toUpperCase()))>=0) || /^(B12|B34|B5|BD|CC|CE)-[A-Z0-9]{6,}$/.test(pw.toUpperCase()));
+    const urlPw = new URLSearchParams(location.search).get('unlock');
+    const savedPw = localStorage.getItem('janda_unlock');
+    if (valid(urlPw)) {
+      localStorage.setItem('janda_unlock', urlPw.toUpperCase());
+      document.documentElement.classList.add('paywall-unlocked');
+    } else if (valid(savedPw)) {
+      document.documentElement.classList.add('paywall-unlocked');
+    } else {
+      document.addEventListener('DOMContentLoaded', function() {
+        const m = document.querySelector('[data-paywall-stop]');
+        if (!m) return;
+        // 잠금과 무관 — 선물 모달·잠금 해제 입력 폼·고정 오버레이는 항상 노출
+        const PAYWALL_EXEMPT_IDS = new Set([
+          'gift-modal',           // 친구 선물 (구매 유도)
+          'cgate-overlay',        // 커뮤니티 게이트
+          'paywall-pw-input',     // 잠금 해제 입력 폼
+          'paywall-locked-notice' // 잠금 안내 박스
+        ]);
+        let el = m;
+        while (el && el !== document.body) {
+          let sib = el.nextElementSibling;
+          while (sib) {
+            if (sib.tagName !== 'SCRIPT' && sib.tagName !== 'STYLE'
+                && !PAYWALL_EXEMPT_IDS.has(sib.id)
+                && !sib.hasAttribute('data-paywall-keep')) {
+              sib.classList.add('paywall-hidden');
+            }
+            sib = sib.nextElementSibling;
+          }
+          el = el.parentElement;
+        }
+      });
+    }
+    window.paywallUnlock = function() {
+      const pw = (document.getElementById('paywall-pw-input')||{}).value;
+      if (!pw) return alert('비밀번호를 입력해주세요.');
+      if (valid(pw)) {
+        localStorage.setItem('janda_unlock', pw.toUpperCase());
+        location.reload();
+      } else { alert('비밀번호 형식이 맞지 않습니다. (예: BD-XXXXXXXX)'); }
+    };
+  })();
+  </script>
+
+  <!-- 🔒 Paywall Locked Notice Box (Displayed Before Payment) -->
+  <div class="paywall-locked-notice">
+    <h3>🔒 From Here On — Unlocked After Payment With Password</h3>
+    <p><strong style="color:#fbbf24;">5-Book Full Package 99,000 KRW</strong> — the most valuable one-time purchase for life.<br>After payment confirmation and Notion DB registration → <strong style="color:#fde68a;">password sent via email·SMS within 2 business days (excluding holidays)</strong>.</p>
+    <p style="margin:8px 0 0;color:#fde68a;font-size:.82rem;line-height:1.7;">📖 <strong>AI Bible Platform Guide</strong> — the ebook is accessed <strong style="color:#fff;">via password on the locked page link and read in web format</strong>. Separate PDF files or zip files are not provided.</p>
+
+    <!-- 🏅 Social Proof Box (Psychological Trigger #4 · CEO Noted 2026-05-31) -->
+    <div style="background:rgba(0,0,0,.3);border:1.5px solid rgba(251,191,36,.5);border-radius:12px;padding:16px 18px;margin:16px 0;text-align:left;">
+      <div style="text-align:center;font-weight:900;color:#fbbf24;font-size:.82rem;letter-spacing:.1em;margin-bottom:12px;">🏅 Proof of Trust — AI Bible (Books 1~4 Cumulative)</div>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:12px;">
+        <div style="background:rgba(255,255,255,.05);border-radius:6px;padding:10px 8px;text-align:center;">
+          <div style="font-size:1.3rem;color:#fff;font-weight:900;line-height:1;">230K</div>
+          <div style="font-size:.7rem;color:#fde68a;margin-top:4px;">📷 Instagram Impressions</div>
+        </div>
+        <div style="background:rgba(255,255,255,.05);border-radius:6px;padding:10px 8px;text-align:center;">
+          <div style="font-size:1.3rem;color:#fff;font-weight:900;line-height:1;">230K</div>
+          <div style="font-size:.7rem;color:#fde68a;margin-top:4px;">📘 Facebook Impressions</div>
+        </div>
+        <div style="background:rgba(255,255,255,.05);border-radius:6px;padding:10px 8px;text-align:center;">
+          <div style="font-size:1.3rem;color:#fff;font-weight:900;line-height:1;">400+</div>
+          <div style="font-size:.7rem;color:#fde68a;margin-top:4px;">🔗 Shares</div>
+        </div>
+        <div style="background:rgba(251,191,36,.15);border:1px solid rgba(251,191,36,.4);border-radius:6px;padding:10px 8px;text-align:center;">
+          <div style="font-size:1.3rem;color:#fbbf24;font-weight:900;line-height:1;">165</div>
+          <div style="font-size:.7rem;color:#fff;margin-top:4px;">💬 Direct Reviews</div>
+        </div>
+      </div>```html
+<div style="background:rgba(0,0,0,.25);border-radius:8px;padding:12px 14px;font-size:.8rem;line-height:1.75;">
+        <div style="color:#fbbf24;font-weight:800;margin-bottom:6px;font-size:.72rem;">💬 Endorsements</div>
+        <p style="margin:0 0 6px;color:#fef3c7;font-style:italic;font-size:.78rem;line-height:1.7;">"With Claude Code and AI agents — a must-read for becoming an AI-native enterprise."<br>— <strong style="color:#fff;font-style:normal;">Noh Sung-hwan</strong> · IT CEO (Author of Google AntiGravity VibeCoding)</p>
+        <p style="margin:0;color:#fde68a;font-size:.74rem;">Endorsements for Volumes 1–4: <strong style="color:#fff;">Park Ki-ung · Kim Deok-eun · Kang Moo-sung</strong></p>
+      </div>
+    </div>
+
+    <div class="pay-channels">
+      <div class="ch-title">📋 Payment Methods — 2 Channels</div>
+      <div class="ch-row recommend"><strong>① 🏦 Bank Transfer (0% Fee ⭐)</strong>
+        <span class="ch-sub">Shinhan <strong style="color:#fff;">110-271-235722</strong> · Account Holder <strong style="color:#fff;">Kim Hwa-hyun (JANDA)</strong></span>
+        <span class="ch-sub">After transfer, send via KakaoTalk "JANDA" or ceo@stayjanda.com<br>&nbsp;&nbsp;<strong style="color:#fff;">Name · Email · Phone · Product · Amount</strong> (5 items)</span>
+      </div>
+      <div class="ch-row"><strong>② 💳 jbooking Payment Page</strong>
+        <span class="ch-sub">Card payment or bank transfer (automatic processing)</span>
+      </div>
+    </div>
+
+    <a href="https://vibecodingbible.jbooking.kr/" target="_blank" class="pw-btn">💳 jbooking Payment Page →</a>
+
+    <p style="margin-top:16px;font-size:.82rem;color:#fde68a;">Already paid? — Enter your password</p>
+    <input id="paywall-pw-input" class="pw-input" placeholder="Password (Example: BD-XXXXXXXX)" />
+    <button class="pw-submit" onclick="window.paywallUnlock()">Unlock</button>
+    <div style="margin-top:18px;background:rgba(34,197,94,.12);border:1px solid rgba(134,239,172,.35);border-radius:8px;padding:10px 14px;font-size:.78rem;line-height:1.7;color:#dcfce7;text-align:left;">
+      <p style="margin:0 0 4px;color:#fff;"><strong style="color:#86efac;">✅ Refundable:</strong> If you actively implemented all 5 volumes within a year but didn't feel the 100K value — <strong style="color:#fff;">100% full refund</strong></p>
+      <p style="margin:0 0 4px;color:#fef3c7;font-size:.74rem;"><strong style="color:#fca5a5;">❌ Non-refundable:</strong> Due to the nature of knowledge services — simple change of mind after purchase is non-refundable (Electronic Commerce Act, Article 21)</p>
+      <p style="margin:6px 0 0;color:#fde68a;font-size:.74rem;text-align:center;">📈 Price increase on 7/1 · ♾ Lifetime updates</p>
+    </div>
+  </div>
+
+  <!-- 🔒 Paywall marker — all content below hidden -->
+  <div data-paywall-stop></div>
+
+  <!-- Chapter 1 Blog -->
+<!-- 🔒 PAYWALL content block wrapper start (2026-06-03) -->
+<div class="b1-paywall-locked">
+  <h2 class="content-h1">Chapter 1. Blog Automation</h2>
+
+  <p class="para">People who arrive through search have the highest purchase probability. I actively seek out ads, but with blogs, customers find me first. They're already interested in the problem. Half the persuasion is done.</p>
+
+  <p class="para">The problem is that writing directly exhausts me. Three posts a week, three months. Then it stops. A blog that doesn't get posted won't rank in search.</p>
+
+  <h3 class="content-h2">Why can't people write blogs consistently?</h3>
+
+  <p class="para">It's not a willpower problem. It's a structural problem. I get exhausted because I have to write it myself. When exhausted, I stop. When I stop, I disappear from search. There's only one way to break this cycle: change who's doing the writing. Instead of me writing, make a bot write.</p>
+
+  <p class="para">I don't write my blog directly anymore. Every morning at 9 AM, a bot scrapes today's trending keywords. AI writes a 1,000-word post from those keywords. It publishes automatically. I'm sleeping.</p>
+
+  <div class="law-box">
+    <div class="label">🔥 Core Principle</div>
+    Blogging isn't about consistency — it's about <strong>systems</strong>.<br>
+    Don't make humans consistent; make bots consistently produce.
+  </div>
+
+  <h3 class="content-h2">Structure</h3>
+  <pre class="code">Trending keyword collection → AI post generation → Auto-publish
+      ↓                   ↓              ↓
+  Every morning         Claude API     GitHub Pages</pre>
+``````html
+<p class="para">Every morning, the bot fetches today's keyword. AI writes the article. It goes up automatically. You don't have to do anything. It took one hour to build this. This is what I told Claude.</p>
+
+  <div class="quote">
+    "Make me a Python blog automation bot.<br>
+    1. Fetch 3 trending keywords from Google Trends today<br>
+    2. Write 1,000-character blog posts for each keyword (using Claude API)<br>
+    3. Save as markdown files<br>
+    4. Run automatically every day at 9 AM"
+  </div>
+
+  <p class="para">AI generated the code. I ran it. Done. I didn't type a single line of code myself.</p>
+
+  <h3 class="content-h2">How Blog Posts Become Money</h3>
+
+  <p class="para">If you want to truly understand why search traffic matters, think about this. Advertising is something I spend money on first and then go find. People see it and think "this is an ad" and get defensive. Purchase conversion rates are low.</p>
+
+  <p class="para">Blogs are different. Someone who searched for "how to automate hotel reservations" already wants to solve that problem. They came to me—I didn't go find them. Persuasion starts half-done. Conversion rates are completely different.</p>
+
+  <p class="para">When blog posts go up every day, the space I occupy in search results grows. With 100 posts, I create 100 entry points. Through each one of those doors, people come in every day. Even while I sleep.</p>
+
+  <h3 class="content-h2">What to Try Right Now</h3>
+  <p class="para">You don't need code. Just type this into Claude's web version.</p>
+
+  <div class="quote">
+    "My blog topic is [your field]. Recommend 5 blog titles I could write today. Include SEO-friendly keywords."<br><br>
+    Pick a title you like:<br><br>
+    "Write an 800-character blog post with this title. Include 2 subheadings."
+  </div>
+
+  <p class="para">10 minutes a day. One post. Automation is running this without a person. If a bot works on 3 posts a day, that's 90 posts in a month. 90 search entry points.</p>
+
+  <div class="tip-box">
+    💡 <strong>Note:</strong> Always read the first paragraph of AI-written articles before posting. There might be factual errors. You just need to set the direction. You don't need to rewrite the whole thing.
+  </div>
+
+  <hr class="divider">
+
+  <!-- Chapter 2: YouTube -->
+  <h2 class="content-h1">Chapter 2. YouTube Automation</h2>
+
+  <p class="para">I used to think you have to show your face on YouTube. Wrong. There are channels with tens of thousands of subscribers that never show a face. They run entirely on AI voice and background footage.</p>
+
+  <h3 class="content-h2">You Can Build Subscribers Without Showing Your Face</h3>
+
+  <p class="para">Do you know the #1 reason people don't start YouTube? "I don't want to stand in front of a camera." You have to film yourself talking, edit it, set up lighting. That barrier is too high.</p>
+
+  <p class="para">But there are channel formats that don't need that. Trend analysis channels. News summary channels. Knowledge lecture channels. A face never appears. AI voice narrates, background footage plays. These channels hit tens of thousands of subscribers.</p>
+
+  <p class="para">I automated this. I had Claude create a bot where you just input a topic and a video gets made.</p>
+
+  <h3 class="content-h2">Automatic Shorts Creation</h3>
+  <p class="para">Shorts (vertical videos under 60 seconds) is a format where the algorithm promotes new channels. You get views even without subscribers. YouTube gives new channels exposure to test growth. I automated this format.</p>
+
+  <pre class="code">Input topic
+  → Claude writes 60-second script
+  → ElevenLabs converts to speech (free plan: 10 min/month)
+  → Download background footage from Pexels (free)
+  → Auto-compose with MoviePy
+  → MP4 complete → Upload to YouTube</pre>
+
+  <p class="para">I made this pipeline into a bot. This is what I told Claude.</p>
+
+  <div class="quote">
+    "Make me a YouTube Shorts automation bot.<br>
+    When I input a topic, Claude writes the script,<br>
+    ElevenLabs API creates the voice,<br>
+    Get background footage from Pexels,<br>
+    Compose with MoviePy and output MP4."
+  </div>
+
+  <p class="para">An hour later the bot was done. Now this bot makes Shorts every day. All I do is input one topic.</p>
+
+  <div class="trigger-box">
+    <div class="label">📌 Total Cost</div>
+    Claude Web: Free | ElevenLabs Basic: Free | Pexels: Free<br>
+    <strong>Total cost $0. Time 30 minutes. 1 video complete.</strong>
+  </div>
+
+  <h3 class="content-h2">Catch Trends First</h3>
+
+  <p class="para">If you don't know what topic to make Shorts about, you fail. I need to make videos people want to watch right now, not videos I want to make. That's why I run a separate competitor analysis bot.</p>
+
+  <p class="para">Every morning at 7 AM, the bot scrapes YouTube channels in my field. It pulls out 20 videos from the past 7 days with rapidly rising views. Title, view count, upload date, tags. Saved as an Excel file. I look at it and decide what to make today.</p>
+
+  <p class="para">A competitor analysis report gets generated automatically every day. I told Claude to do this with one line too.</p>
+
+  <div class="quote">
+    "Collect the top 20 trending videos from the past 7 days using YouTube API with the keyword '[my field]' and save as Excel. Run automatically every morning at 7 AM."
+  </div>
+
+  <h3 class="content-h2">What to Try Right Now</h3>
+
+  <div class="quote">
+    Type into Claude:<br><br>
+    "Write a 60-second YouTube Shorts script. Topic: [something you learned today]. Make the first 3 seconds a hook. Write it like you're speaking."
+  </div>
+```<p class="para">Copy script → Paste into ElevenLabs (elevenlabs.io) → Download audio → Download background footage free from Pexels (pexels.com) → Synthesize with CapCut → Upload. My first Shorts video goes live today. Cost: 0 won.</p>
+
+  <hr class="divider">
+
+  <!-- 연결 -->
+  <h2 class="content-h1">Chapter 3. Connection Makes the Difference</h2>
+
+  <p class="para">Running a blog and YouTube separately has less impact than connecting them.</p>
+
+  <div class="law-box">
+    <div class="label">🔥 Automation Loop</div>
+    Write blog post → Generate Shorts script from same content → Upload Shorts<br>
+    → Add blog link in video description → Embed YouTube video in blog<br><br>
+    <strong>One piece of content fills two channels simultaneously.</strong>
+  </div>
+
+  <p class="para">Blog brings search traffic. YouTube brings algorithm traffic. The two channels push each other forward. This is the most efficient structure a solo entrepreneur can execute without a marketing team.</p>
+
+  <hr class="divider">
+
+  <!-- ★ 철학 인사이드: 변화를 적응하는 인간 -->
+  <div style="background:linear-gradient(135deg,#0f0520 0%,#1a0635 50%,#0f0520 100%);border-left:4px solid #a78bfa;border-radius:0 14px 14px 0;padding:30px 26px;margin:44px 0;position:relative;overflow:hidden;">
+    <div style="position:absolute;top:-8px;right:22px;font-size:5rem;opacity:0.05;font-weight:900;color:#fff;pointer-events:none;user-select:none;line-height:1;">∞</div>
+    <div style="font-size:0.65rem;font-weight:800;letter-spacing:0.16em;color:#a78bfa;margin-bottom:12px;text-transform:uppercase;">🧠 Humans Adapt to Change</div>
+    <div style="font-size:1.05rem;font-weight:900;color:#fff;line-height:1.7;margin-bottom:16px;word-break:keep-all;">
+      Humanity has always adapted to change.<br>
+      We built fires, created writing, invented the printing press, connected the internet.<br>
+      And now — <span style="color:#a78bfa;">AI has arrived.</span>
+    </div>
+    <div style="font-size:0.85rem;color:rgba(255,255,255,0.6);line-height:2;word-break:keep-all;margin-bottom:16px;">
+      Every time change came, there were two kinds of people.<br>
+      Those who asked <strong style="color:rgba(255,255,255,0.88);">"How do I use this?"</strong><br>
+      And those who turned away saying <em style="color:rgba(255,255,255,0.32);">"This has nothing to do with me."</em><br><br>
+      When the printing press appeared, scribes lost their jobs,<br>
+      but people who learned to read became stronger than ever.<br>
+      When the internet came, offline stores collapsed,<br>
+      but people who learned to search put the entire world on their desks.
+    </div>
+    <div style="background:rgba(167,139,250,0.07);border:1px solid rgba(167,139,250,0.2);border-radius:10px;padding:15px 19px;font-size:0.86rem;color:rgba(255,255,255,0.8);line-height:1.9;word-break:keep-all;">
+      AI will not replace you.<br>
+      AI will <strong style="color:#a78bfa;">expand by 10x</strong> what you already have.<br><br>
+      Don't fear change.<br>
+      You are already the descendant of a species that has adapted to change for millions of years.<br>
+      <strong style="color:#fff;">That is the essence of humanity, and it is your instinct.</strong>
+    </div>
+  </div>
+
+  <!-- 4장 AI 잘 시키는 법 -->
+  <h2 class="content-h1">Chapter 4. How to Use AI Well</h2>
+
+  <p class="para">This is the most important chapter in this book. 90% of the reason you get results with the right tools but still fail is here. How you talk to AI determines your results.</p>
+
+  <h3 class="content-h2">Why AI Creates the Wrong Thing</h3>
+
+  <p class="para">Most people tell AI this the first time: "Make me a blog automation tool." Then AI builds something. But it's not what I want. Because I didn't explain what I want properly.</p>
+
+  <p class="para">AI can't read my mind. It only processes what I say. If my words are vague, AI fills in the blanks on its own. That "filling in" often isn't what I want. Once you understand this, the way you use AI changes completely.</p>
+
+  <h3 class="content-h2">The CIF Formula — Three Lines, Precisely</h3>
+
+  <p class="para">When I talk to AI, I always include three things. Context, Intent, Format. Shortened to CIF. Once this becomes a habit, AI produces the exact result on the first try.</p>
+
+  <div class="law-box">
+    <div class="label">🔥 CIF Formula</div>
+    <strong>C (Context) — What's the situation right now?</strong><br>
+    "I'm building a hotel booking app. It's Python. The file is blog_bot.py."<br><br>
+    <strong>I (Intent) — What do I want to do?</strong><br>
+    "Get 3 keywords from Google Trends and write an 800-character blog post for each."<br><br>
+    <strong>F (Format) — What form should the output take?</strong><br>
+    "Save it as a markdown file. Filename format: date_keyword.md."
+  </div>```html
+<p class="para">These three lines are enough for AI to know exactly what to do. It doesn't wander. It doesn't ask back. It delivers straight away.</p>
+
+  <p class="para">On the other hand, "Make me a blog automation" has no C, no I, no F. AI decides everything alone. The probability of getting what I want is low.</p>
+
+  <h3 class="content-h2">3 Things You Must Never Do</h3>
+
+  <p class="para">This is the part emphasized the most in Volume 2. The reason people actually fail at the end after building everything is right here.</p>
+
+  <div class="trigger-box">
+    <div class="label">⚠️ Vibecoder DON'Ts</div>
+    <strong>1. Never edit code with your own hands.</strong><br>
+    Even if you spot a typo, don't fix it yourself. Tell AI, "There's a typo here, fix it." The moment I touch it, AI doesn't know what I changed and overwrites it with something wrong. This is the #1 reason beginners blow up everything at the end.<br><br>
+    <strong>2. Never change the topic in one chat window.</strong><br>
+    Don't suddenly say "make a YouTube bot too" while building a blog bot. AI's brain capacity gets twisted. Always open a completely new chat for new features. You need to reset AI's brain fresh.<br><br>
+    <strong>3. Never just mix code you got from someone else.</strong><br>
+    Don't force code from unknown sources into it. You have to run it through AI first: "Merge this code safely into our project." That's how you prevent conflicts.
+  </div>
+
+  <p class="para">If you follow these three things, your failure rate cuts in half. If you don't, things go well then collapse all at once. I did too.</p>
+
+  <h3 class="content-h2">Give AI a Persona</h3>
+
+  <p class="para">One last tip. If you say it this way instead of "Write me a blog post," the output is completely different.</p>
+
+  <div class="quote">
+    "You are a marketing blogger who achieved 100,000 monthly traffic. You write content that captures both SEO and reader persuasion. Today's topic is [keyword]. Your first sentence must make readers stop."
+  </div>
+
+  <p class="para">When AI receives a role, it thinks according to that role. An AI with a role produces much better results than a blank AI. This is called persona assignment. It's just a one-line setup, but the quality of the output changes completely.</p>
+
+  <hr class="divider">
+
+  <!-- 5장 에러 -->
+  <h2 class="content-h1">Chapter 5. When You Encounter an Error, Do This</h2>
+
+  <p class="para">Once you start vibecoding, you will definitely encounter errors. Red text pours across the terminal screen. Most people stop here. "I think I did something wrong." "I think the computer is broken." They close it.</p>
+
+  <p class="para">That's wrong. An error is not a breakdown.</p>
+
+  <h3 class="content-h2">An Error Is a Diagnosis</h3>
+
+  <p class="para">The error message is the computer talking to me. It's telling me, "This is the problem here." Like a doctor looking at test results, when I see an error message, I get exactly what went wrong.</p>
+
+  <p class="para">The problem is we don't understand that language. It's written in English and mixed with development jargon. Even if I read it, I don't understand it.</p>
+
+  <p class="para">So what do I do? Don't try to read it. Just copy it and throw it at AI.</p>
+
+  <div class="law-box">
+    <div class="label">🔥 Error Handling Formula</div>
+    Drag all red text → Copy → Paste into AI<br>
+    "Fix this error."<br><br>
+    <strong>That's all. Don't analyze. Don't try to understand. Just throw it.</strong>
+  </div>
+
+  <p class="para">AI analyzes the error, finds the cause, and fixes the code for you. Run it again. If another error comes up, throw it again. Repeat this cycle and eventually it works.</p>
+
+  <h3 class="content-h2">It's Normal to Get Errors</h3>
+
+  <p class="para">Professional developers get errors too. They get errors every day. The difference is they don't fear errors. They think, "If I get an error, I'll just fix it."</p>
+
+  <p class="para">I was flustered when I saw the red screen at first too. It's different now. I just say, "AI, check out this error," and throw it. From that moment on, it's not my job anymore—it's AI's job.</p>
+
+  <p class="para">In vibecoding, my job is not to fix errors. It's to deliver errors to AI. AI does the fixing. I just run it.</p>
+
+  <div class="tip-box">
+    💡 <strong>Tip:</strong> If the same error repeats more than 3 times, tell AI like this: "This error keeps happening. Find the root cause and fix it structurally." Make it fix the cause, not the symptom.
+  </div>
+
+  <h3 class="content-h2">The First Success Changes Everything</h3>
+
+  <p class="para">There's a moment when your first bot runs. Results print to the terminal, files are created, something executes automatically. That moment changes everything.</p>
+
+  <p class="para">The feeling of "I made this." The confidence that I can make this without knowing how to code. Once you have that, you don't stop. You want to make the next thing. Then the next thing, then the one after that.</p>
+
+  <p class="para">When my first bot ran, it was 2 AM. I couldn't sleep. "What should I make next?" I pulled an all-nighter with that thought. That's how I ended up with 11 bots.</p>
+
+  <p class="para">Open Claude web right now. Use the CIF formula. Throw it if you get an error. Create your first success today.</p>
+
+<!-- ★ Final Quiz -->
+<div id="quiz-container-vol1" style="margin:48px 0;"></div>
+
+  <!-- ★ Reader Review Widget -->
+  <style>
+  #review-widget input,#review-widget textarea{font-family:inherit;box-sizing:border-box;width:100%;}
+  #review-widget #rv-submit-btn:active{opacity:.65!important;}
+  #review-widget #review-next-btn:active{background:rgba(124,58,237,.5)!important;}
+  @media(max-width:480px){
+    #review-widget{padding:22px 16px!important;}
+    #review-cards{grid-template-columns:1fr!important;}
+  }
+  </style>
+  <div id="review-widget" style="margin:48px 0;padding:32px 28px;background:linear-gradient(135deg,#0f0f1a,#1a1a2e);border:1px solid rgba(124,58,237,.25);border-radius:18px;">
+```<div style="font-size:.7rem;font-weight:700;letter-spacing:.18em;color:#a78bfa;margin-bottom:6px;">READERS SAY</div>
+    <div style="font-size:1.1rem;font-weight:900;color:#fff;margin-bottom:20px;">Reader Reviews</div>
+
+    <!-- 3 review cards -->
+    <div id="review-cards" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:16px;">
+      <div style="background:rgba(255,255,255,.04);border-radius:12px;padding:16px;text-align:center;color:rgba(255,255,255,.4);font-size:.85rem;">Loading...</div>
+    </div>
+    <div style="text-align:center;margin-bottom:28px;">
+      <button id="review-next-btn" onclick="nextReviews()" style="background:rgba(124,58,237,.2);border:1px solid rgba(124,58,237,.4);color:#a78bfa;font-size:.8rem;font-weight:700;padding:7px 20px;border-radius:20px;cursor:pointer;transition:all .2s;" onmouseover="this.style.background='rgba(124,58,237,.4)'" onmouseout="this.style.background='rgba(124,58,237,.2)'">Next 4 →</button>
+    </div>
+
+    <!-- Review submission form -->
+    <div style="border-top:1px solid rgba(255,255,255,.08);padding-top:22px;">
+      <div style="font-size:.95rem;font-weight:800;color:#fff;margin-bottom:4px;">Share Your Experience</div>
+      <div style="font-size:.78rem;color:rgba(255,255,255,.4);margin-bottom:14px;line-height:1.7;">Your single review can change the next reader's decision.<br>The more specific, the more helpful it is to others.</div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <input id="rv-name" type="text" maxlength="30" placeholder="Name or nickname" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);border-radius:9px;padding:10px 14px;color:#fff;font-size:.85rem;outline:none;transition:border .2s;" onfocus="this.style.borderColor='rgba(124,58,237,.6)'" onblur="this.style.borderColor='rgba(255,255,255,.15)'" />
+        <textarea id="rv-content" maxlength="500" rows="4" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);border-radius:9px;padding:10px 14px;color:#fff;font-size:.85rem;outline:none;resize:none;transition:border .2s;" onfocus="this.style.borderColor='rgba(124,58,237,.6)'" onblur="this.style.borderColor='rgba(255,255,255,.15)'"
+          placeholder="Example: &quot;I was lost with marketing automation, but after reading this book I built an Instagram auto-posting bot in 3 days.&quot;&#10;&#10;My situation before → What changed after reading → How I used it in practice?"></textarea>
+        <div style="font-size:.72rem;color:rgba(255,255,255,.3);padding-left:2px;">💡 &quot;What was your situation?&quot; &quot;Where were you stuck and how did you solve it?&quot; &quot;Did you actually build something?&quot; — Just cover these 3 things.</div>
+        <button id="rv-submit-btn" onclick="submitReview('Book 1')" style="background:linear-gradient(135deg,#7c3aed,#a78bfa);border:none;color:#fff;font-weight:800;font-size:.88rem;padding:11px;border-radius:9px;cursor:pointer;transition:opacity .2s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">Submit</button>
+        <div id="rv-msg" style="font-size:.78rem;text-align:center;min-height:18px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function(){
+    var SUPA_URL = 'https://hzobwciaqtbfaxxvcots.supabase.co';
+    var SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh6b2J3Y2lhcXRiZmF4eHZjb3RzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg2NTMxMTYsImV4cCI6MjA5NDIyOTExNn0.9VatQ5UxJrAKEE9gOcknvVvd_9I0j9GgQWe_UvtcfCg';
+    var allReviews = [];
+    var pageIdx = 0;
+
+    function hdrs(extra){
+      return Object.assign({'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY},extra||{});
+    }
+
+    function shuffle(arr){
+      for(var i=arr.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=arr[i];arr[i]=arr[j];arr[j]=t;}
+      return arr;
+    }
+
+    function renderCards(){
+      var el=document.getElementById('review-cards');
+      if(!allReviews.length){
+        el.innerHTML='<div style="text-align:center;color:rgba(255,255,255,.35);font-size:.85rem;padding:20px;">아직 후기가 없습니다. 첫 후기를 남겨주세요!</div>';
+        document.getElementById('review-next-btn').style.display='none';
+        return;
+      }
+      var start=(pageIdx*4)%allReviews.length;
+      var count=Math.min(4,allReviews.length);
+      var cards='';
+      for(var i=0;i<count;i++){
+        var r=allReviews[(start+i)%allReviews.length];
+        var d=new Date(r.created_at);
+        var date=(d.getMonth()+1)+'.'+(d.getDate());
+        cards+='<div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:16px;">'
+          +'<div style="font-size:.92rem;color:rgba(255,255,255,.85);line-height:1.7;margin-bottom:12px;word-break:keep-all;">&#8220;'+escHtml(r.content)+'&#8221;</div>'
+          +'<div style="font-size:.75rem;color:rgba(255,255,255,.4);">'+escHtml(r.name)+' &nbsp;·&nbsp; '+date+(r.book?' &nbsp;·&nbsp; <span style="font-size:.62rem;background:rgba(124,58,237,.25);padding:1px 6px;border-radius:4px;">'+escHtml(r.book)+'</span>':'')+' </div>'
+          +'</div>';
+      }
+      el.innerHTML=cards;
+      document.getElementById('review-next-btn').style.display=allReviews.length<=4?'none':'inline-block';
+    }
+
+    function escHtml(s){
+      return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    window.nextReviews=function(){
+      var pages=Math.ceil(allReviews.length/4)||1;pageIdx=(pageIdx+1)%pages;
+      renderCards();
+    };
+
+    window.submitReview=function(book){
+      var name=(document.getElementById('rv-name').value||'').trim();
+      var content=(document.getElementById('rv-content').value||'').trim();
+      var msg=document.getElementById('rv-msg');
+      if(!name){msg.style.color='#f87171';msg.textContent='이름을 입력해주세요.';return;}
+      if(content.length<5){msg.style.color='#f87171';msg.textContent='후기를 5자 이상 입력해주세요.';return;}
+      var btn=document.getElementById('rv-submit-btn');
+      btn.disabled=true;btn.textContent='등록 중...';
+      fetch(SUPA_URL+'/rest/v1/ebook_reviews',{
+        method:'POST',
+        headers:hdrs({'Content-Type':'application/json','Prefer':'return=minimal'}),
+        body:JSON.stringify({book:book,name:name,content:content})
+      }).then(function(r){
+        if(r.ok||r.status===201){
+          msg.style.color='#86efac';msg.textContent='후기가 등록됐습니다. 감사합니다!';
+          document.getElementById('rv-name').value='';
+          document.getElementById('rv-content').value='';
+          setTimeout(function(){loadReviews(book);},800);
+        } else {
+          return r.text().then(function(t){throw new Error(t);});
+        }
+      }).catch(function(e){
+        msg.style.color='#f87171';msg.textContent='오류가 발생했습니다. 잠시 후 다시 시도해주세요.';
+        console.error(e);
+      }).finally(function(){
+        btn.disabled=false;btn.textContent='등록하기';
+      });
+    };
+
+    function loadReviews(book){
+      fetch(SUPA_URL+'/rest/v1/ebook_reviews?select=id,name,content,book,created_at&order=created_at.desc&limit=100',{
+        headers:hdrs()
+      }).then(function(r){return r.json();}).then(function(data){
+        if(Array.isArray(data)){allReviews=shuffle(data);pageIdx=0;renderCards();}
+      }).catch(function(){
+        document.getElementById('review-cards').innerHTML='<div style="color:rgba(255,255,255,.3);font-size:.8rem;text-align:center;">후기를 불러올 수 없습니다.</div>';
+      });
+    }
+
+    loadReviews();
+  })();
+  </script>
+
+  <hr class="divider">
+
+  <!-- CTA -->
+  <div class="cta-box">
+    <h3>This Is Just the Beginning</h3>
+    <p>
+      Converting people from blogs and YouTube into email subscribers,<br>
+      automating sales through email sequences,<br>
+      building a structure where your customer database grows while you sleep.<br><br>
+      That's what Book 2 covers.<br>
+      I share all the actual code, actual bots, and actual pipelines.
+    </p>
+    <a href="https://aiaijungle.github.io/vibe-ebook/" class="cta-btn" target="_blank">Check Out Book 2 →</a>
+    <p class="cta-price">Book 1 is free · If you enjoyed this book, see you in Book 2</p>
+  </div>
+
+  <!-- Series cross-introduction -->```html
+<div style="margin:48px 0;padding:28px 24px;border:1px solid var(--border);border-radius:16px;background:var(--side-bg);">
+    <div style="font-size:.7rem;font-weight:700;letter-spacing:.18em;color:var(--accent);opacity:.7;margin-bottom:16px;">AI Bible Series · Stronger together</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;">
+      <a href="index.html" style="text-decoration:none;display:block;background:rgba(255,255,255,.5);border:1px solid var(--border);border-radius:12px;padding:18px 16px;transition:border-color .2s;" onmouseover="this.style.borderColor='rgba(16,185,129,.5)'" onmouseout="this.style.borderColor=''">
+        <div style="font-size:1.4rem;margin-bottom:8px;">📗</div>
+        <div style="font-size:.88rem;font-weight:800;color:var(--text);margin-bottom:5px;">VibeCoding Bible Bible</div>
+        <div style="font-size:.75rem;color:var(--text);opacity:.55;line-height:1.6;word-break:keep-all;">11 actual bots, complete pipeline disclosure. Practical marketing automation.</div>
+        <div style="margin-top:10px;font-size:.72rem;color:#10b981;font-weight:700;">Read more →</div>
+      </a>
+      <a href="agent-bible.html" style="text-decoration:none;display:block;background:rgba(255,255,255,.5);border:1px solid var(--border);border-radius:12px;padding:18px 16px;transition:border-color .2s;" onmouseover="this.style.borderColor='rgba(245,158,11,.5)'" onmouseout="this.style.borderColor=''">
+        <div style="font-size:1.4rem;margin-bottom:8px;">🤖</div>
+        <div style="font-size:.88rem;font-weight:800;color:var(--text);margin-bottom:5px;">AI Agent Bible</div>
+        <div style="font-size:.75rem;color:var(--text);opacity:.55;line-height:1.6;word-break:keep-all;">From agent design to multi-agent orchestration. Build an AI team without code.</div>
+        <div style="margin-top:10px;font-size:.72rem;color:#f59e0b;font-weight:700;">Read more →</div>
+      </a>
+      <a href="claude-code-bible.html" style="text-decoration:none;display:block;background:rgba(255,255,255,.5);border:1px solid var(--border);border-radius:12px;padding:18px 16px;transition:border-color .2s;" onmouseover="this.style.borderColor='rgba(139,92,246,.5)'" onmouseout="this.style.borderColor=''">
+        <div style="font-size:1.4rem;margin-bottom:8px;">⚡</div>
+        <div style="font-size:.88rem;font-weight:800;color:var(--text);margin-bottom:5px;">Claude Code Bible</div>
+        <div style="font-size:.75rem;color:var(--text);opacity:.55;line-height:1.6;word-break:keep-all;">Master Claude Code in practice starting with one terminal command.</div>
+        <div style="margin-top:10px;font-size:.72rem;color:#8b5cf6;font-weight:700;">Read more →</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <p style="text-align:center;font-size:.78rem;opacity:.4;margin-top:40px">
+    VibeCoding Mastery · Feel free to share this book · dev.janda@gmail.com
+  </p>
+
+</div>
+
+<script>
+// ── 진행 바
+window.addEventListener('scroll', () => {
+  const el = document.documentElement;
+  const pct = el.scrollTop / (el.scrollHeight - el.clientHeight) * 100;
+  document.getElementById('progress-bar').style.width = pct + '%';
+});
+
+// ── 다크모드
+function toggleTheme() {
+  const d = document.documentElement;
+  const isDark = d.getAttribute('data-theme') === 'dark';
+  d.setAttribute('data-theme', isDark ? '' : 'dark');
+  localStorage.setItem('theme', isDark ? '' : 'dark');
+}
+function shareBook() {
+  var data = { title: '🎁 바이브코딩 바이블 1권 — 무료 선물', text: '코딩 없이 블로그와 유튜브를 자동으로 운영하는 법. 지인에게 무료로 선물하세요!', url: location.href };
+  if (navigator.share) {
+    navigator.share(data);
+  } else {
+    navigator.clipboard.writeText(location.href).then(function() {
+      var btn = document.getElementById('share-btn-1');
+      if (btn) { btn.textContent = '✅ 복사됨!'; setTimeout(function(){ btn.textContent = '🎁 선물하기'; }, 2000); }
+    }).catch(function() {
+      var ta = document.createElement('textarea'); ta.value = location.href;
+      document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+      var btn = document.getElementById('share-btn-1');
+      if (btn) { btn.textContent = '✅ 복사됨!'; setTimeout(function(){ btn.textContent = '🎁 선물하기'; }, 2000); }
+    });
+  }
+}
+const saved = localStorage.getItem('theme');
+if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+
+// ── 보안: 우클릭 차단
+document.addEventListener('contextmenu', e => e.preventDefault());
+
+// ── 보안: F12 / Ctrl+Shift+I / Ctrl+U 차단
+document.addEventListener('keydown', e => {
+  if (
+    e.key === 'F12' ||
+    (e.ctrlKey && e.shiftKey && ['I','J','C'].includes(e.key)) ||
+    (e.ctrlKey && e.key === 'U') ||
+    (e.ctrlKey && e.key === 'S') ||
+    (e.ctrlKey && e.key === 'A')
+  ) {
+    e.preventDefault();
+    return false;
+  }
+});
+
+// ── 보안: 드래그 선택 방지 (이미지 드래그 포함)
+document.addEventListener('dragstart', e => e.preventDefault());
+document.addEventListener('selectstart', e => {
+  // pre.code 안은 허용
+  if (e.target.closest('pre.code')) return true;
+  e.preventDefault();
+});
+
+
+// ── 인쇄 차단
+window.addEventListener('beforeprint', e => {
+  document.body.style.display = 'none';
+  setTimeout(() => document.body.style.display = '', 100);
+});
+</script>
+
+<script>
+/* __JANDA_COPY_PROTECT_JS__ */
+(function(){
+  document.addEventListener('contextmenu',function(e){e.preventDefault();});
+  document.addEventListener('copy',function(e){e.preventDefault();});
+  document.addEventListener('cut',function(e){e.preventDefault();});
+  document.addEventListener('selectstart',function(e){e.preventDefault();});
+  document.addEventListener('dragstart',function(e){e.preventDefault();});
+  document.addEventListener('keydown',function(e){
+    var k=e.key?e.key.toLowerCase():'';
+    if((e.ctrlKey&&['c','a','u','s','p','x'].indexOf(k)>-1)||
+       k==='f12'||(e.ctrlKey&&e.shiftKey&&['i','j','c'].indexOf(k)>-1)){
+      e.preventDefault();e.stopPropagation();}
+  });
+})();
+</script>
+
+</div>
+<!-- 🔒 PAYWALL Content Block Wrapper End -->
+
+<!-- Gift Psychology Trigger Section -->
+<div class="gift-section" style="background:linear-gradient(180deg,#0a0010 0%,#12001e 60%,#0a0010 100%);padding:36px 20px 44px;text-align:center;border-top:1px solid rgba(255,149,0,0.15);">
+  <div style="max-width:560px;margin:0 auto;">
+    <div style="font-size:1.6rem;margin-bottom:10px;">🎁</div>
+    <div style="font-size:1.05rem;font-weight:900;color:#fff;line-height:1.55;margin-bottom:12px;word-break:keep-all;">
+      If this book helped you,<br>
+      <span style="color:#ffaa00;">share it with someone you care about</span>
+    </div>
+``````html
+<div style="font-size:0.82rem;color:rgba(255,255,255,0.55);line-height:1.75;margin-bottom:18px;word-break:keep-all;">
+      What you gained today — someone else can gain it too.<br>
+      A single link could completely change their May.
+    </div>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:32px;">
+      <button onclick="(function(){var u=window.location.href;if(navigator.share){navigator.share({title:'Vibe Coding Practical Bible — Free Release',url:u});}else if(navigator.clipboard){navigator.clipboard.writeText(u).then(function(){var b=document.getElementById('gift-copy-btn');b.textContent='✅ Copied!';setTimeout(function(){b.textContent='🔗 Copy Link';},2000);});}})();" id="gift-copy-btn" style="display:inline-flex;align-items:center;gap:6px;padding:12px 22px;background:linear-gradient(135deg,rgba(255,149,0,0.2),rgba(255,68,68,0.12));border:1.5px solid rgba(255,149,0,0.5);border-radius:24px;color:#ffaa00;font-size:0.86rem;font-weight:700;cursor:pointer;transition:all 0.2s;font-family:'Pretendard',sans-serif;" onmouseover="this.style.background='linear-gradient(135deg,rgba(255,149,0,0.38),rgba(255,68,68,0.22))'" onmouseout="this.style.background='linear-gradient(135deg,rgba(255,149,0,0.2),rgba(255,68,68,0.12))'">🔗 Copy Link</button>
+      <a href="#" onclick="event.preventDefault();window.open('https://twitter.com/intent/tweet?text=AI+Vibe+Coding+eBook+Free+Release+🎁&url='+encodeURIComponent(window.location.href),'_blank','width=600,height=400');" style="display:inline-flex;align-items:center;gap:6px;padding:12px 22px;background:rgba(29,161,242,0.1);border:1.5px solid rgba(29,161,242,0.35);border-radius:24px;color:#60c4f8;font-size:0.86rem;font-weight:700;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.background='rgba(29,161,242,0.2)'" onmouseout="this.style.background='rgba(29,161,242,0.1)'">𝕏 Share</a>
+    </div>
+    <div style="max-width:460px;margin:0 auto;background:linear-gradient(135deg,rgba(255,149,0,0.07),rgba(139,92,246,0.05));border:1px solid rgba(255,149,0,0.25);border-radius:12px;padding:16px 18px;text-align:left;">
+      <div style="font-size:0.92rem;font-weight:800;color:#fff;margin-bottom:8px;word-break:keep-all;text-align:center;">
+        And — give yourself a gift <span style="color:#ffaa00;">right now</span>
+      </div>
+      <div style="font-size:0.85rem;color:rgba(255,255,255,0.62);line-height:1.9;word-break:keep-all;">
+        In the busy everyday, time for myself always gets pushed back.<br>
+        But <strong style="color:rgba(255,255,255,0.9);">finishing this book all the way through right now</strong>,<br>
+        that is already the <strong style="color:#ffaa00;">most precious gift</strong> I can give myself.<br><br>
+        Tomorrow, I will be someone who knows a little more about AI than today.<br>
+        That change is quiet, but it accumulates unmistakably,<br>
+        and that becomes the <strong style="color:#ffaa00;">greatest gift I can give myself.</strong>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Vibe Coding Bible Series Introduction Banner -->
+<div id="series-intro-banner" style="position:fixed;bottom:0;left:0;right:0;z-index:9980;background:linear-gradient(135deg,#0d0015,#1a003a);border-top:1px solid rgba(139,92,246,0.5);padding:10px 16px;box-shadow:0 -4px 24px rgba(0,0,0,0.6);">
+  <div style="max-width:900px;margin:0 auto;display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+    <span style="color:#a78bfa;font-size:0.8rem;font-weight:800;white-space:nowrap;flex-shrink:0;">📚 AI Bible Series</span>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;flex:1;align-items:center;">
+``````html
+<a href="https://aiaijungle.github.io/vibe-ebook/book1.html" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:5px 12px;background:rgba(124,58,237,0.25);border:1px solid rgba(124,58,237,0.5);border-radius:20px;color:#c4b5fd;font-size:0.78rem;font-weight:600;text-decoration:none;white-space:nowrap;transition:all 0.2s;" onmouseover="this.style.background='rgba(124,58,237,0.45)'" onmouseout="this.style.background='rgba(124,58,237,0.25)'">📘 Volume 1: Vibe Coding Beginner's Guide</a>
+<a href="https://aiaijungle.github.io/vibe-ebook/index.html" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:5px 12px;background:rgba(16,185,129,0.2);border:1px solid rgba(16,185,129,0.4);border-radius:20px;color:#6ee7b7;font-size:0.78rem;font-weight:600;text-decoration:none;white-space:nowrap;transition:all 0.2s;" onmouseover="this.style.background='rgba(16,185,129,0.35)'" onmouseout="this.style.background='rgba(16,185,129,0.2)'">📗 Volume 2: Vibe Coding Bible</a>
+<a href="https://aiaijungle.github.io/vibe-ebook/agent-bible.html" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:5px 12px;background:rgba(245,158,11,0.2);border:1px solid rgba(245,158,11,0.4);border-radius:20px;color:#fcd34d;font-size:0.78rem;font-weight:600;text-decoration:none;white-space:nowrap;transition:all 0.2s;" onmouseover="this.style.background='rgba(245,158,11,0.35)'" onmouseout="this.style.background='rgba(245,158,11,0.2)'">📙 Volume 3: AI Agent Bible</a>
+<a href="https://aiaijungle.github.io/vibe-ebook/claude-code-bible.html" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:5px 12px;background:rgba(139,92,246,0.2);border:1px solid rgba(139,92,246,0.4);border-radius:20px;color:#a78bfa;font-size:0.78rem;font-weight:600;text-decoration:none;white-space:nowrap;transition:all 0.2s;" onmouseover="this.style.background='rgba(139,92,246,0.35)'" onmouseout="this.style.background='rgba(139,92,246,0.2)'">📕 Volume 4: Claude Code Bible</a>
+    </div>
+    <button onclick="document.getElementById('series-intro-banner').style.display='none';localStorage.setItem('sib_dismissed','1');" style="background:none;border:none;color:#666;font-size:1.3rem;cursor:pointer;padding:4px 8px;flex-shrink:0;line-height:1;" title="Close">&times;</button>
+  </div>
+</div>
+<script>
+if (localStorage.getItem('sib_dismissed')) {
+  document.getElementById('series-intro-banner').style.display = 'none';
+}
+</script>
+
+<!-- ============================================================
+     AITF Ebook Security Layer v1.0 (2026-05-17)
+     - Watermark / Capture Prevention / Right-click·Devtools Block / Copy Warning / IP Logging
+     ============================================================ -->
+<style>
+@media print {
+  body { display:none !important; visibility:hidden !important; }
+  html::before {
+    content: "© AITF 2026 · 인쇄 차단됨 · 무단복제 시 법적 책임";
+    display:block; padding:40px; font-size:20px; color:#900; text-align:center;
+  }
+}
+#aitf-watermark-layer {
+  position:fixed; inset:0; pointer-events:none; opacity:0.08;
+  z-index:99999; overflow:hidden; user-select:none;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+#aitf-watermark-layer .wm-row {
+  display:flex; gap:60px; white-space:nowrap;
+  font-size:14px; font-weight:700; color:#000;
+  transform: rotate(-30deg); transform-origin: 0 0;
+  padding:30px 0;
+}
+#aitf-toast {
+  position:fixed; left:50%; bottom:40px; transform:translateX(-50%);
+  background:#1a1a1a; color:#fff; padding:14px 22px; border-radius:8px;
+  font-size:14px; font-weight:600; z-index:100000;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  opacity:0; transition: opacity 0.25s; pointer-events:none;
+  max-width:90vw; text-align:center;
+}
+#aitf-toast.show { opacity:1; }
+</style>
+<div id="aitf-watermark-layer" aria-hidden="true"></div>
+<div id="aitf-toast" role="status" aria-live="polite"></div>
+<script>
+(function(){
+  'use strict';
+  var TODAY = new Date().toISOString().slice(0,10);
+  var WM_TEXT = '© AITF 2026 · aiaijungle.github.io · ' + TODAY;
+
+  // 1. 워터마크 레이어 채우기
+  try {
+    var layer = document.getElementById('aitf-watermark-layer');
+    if (layer) {
+      var rows = '';
+      for (var r=0; r<14; r++) {
+        var cells = '';
+        for (var c=0; c<8; c++) cells += '<span>' + WM_TEXT + '</span>';
+        rows += '<div class="wm-row">' + cells + '</div>';
+      }
+      layer.innerHTML = rows;
+    }
+  } catch(e){}
+
+  // Toast helper
+  function toast(msg, ms){
+    var t = document.getElementById('aitf-toast');
+    if (!t) return;
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(t._timer);
+    t._timer = setTimeout(function(){ t.classList.remove('show'); }, ms || 3000);
+  }
+
+  // 2. 우클릭 / 단축키 차단
+  document.addEventListener('contextmenu', function(e){
+    e.preventDefault();
+    toast('⚠️ 우클릭이 차단되었습니다. 콘텐츠는 저작권 보호를 받습니다.');
+    return false;
+  });
+  document.addEventListener('keydown', function(e){
+    var k = e.key;
+    var blocked =
+      k === 'F12' ||
+      (e.ctrlKey && e.shiftKey && (k === 'I' || k === 'i' || k === 'J' || k === 'j' || k === 'C' || k === 'c')) ||
+      (e.ctrlKey && (k === 'U' || k === 'u' || k === 'S' || k === 's' || k === 'P' || k === 'p'));
+    if (blocked) {
+      e.preventDefault();
+      toast('⚠️ 개발자 도구·소스보기·인쇄가 차단되었습니다.');
+      return false;
+    }
+  });
+
+  // 3. 복사 시 경고 + 클립보드 텍스트 교체
+  var COPY_WARN = '⚠️ 이 콘텐츠는 저작권 보호를 받습니다. 무단 복사 시 법적 책임이 있습니다. (© AITF 2026)';
+  document.addEventListener('copy', function(e){
+    try {
+      if (e.clipboardData) {
+        e.clipboardData.setData('text/plain', COPY_WARN);
+        e.preventDefault();
+      }
+    } catch(err){}
+    toast('⚠️ 이 콘텐츠는 저작권 보호를 받습니다. 무단 복사 시 법적 책임이 있습니다.');
+  });
+
+  // devtools 감지 (창 크기 휴리스틱)
+  var devtoolsWarned = false;
+  setInterval(function(){
+    var threshold = 160;
+    var widthGap = window.outerWidth - window.innerWidth;
+    var heightGap = window.outerHeight - window.innerHeight;
+    if ((widthGap > threshold || heightGap > threshold) && !devtoolsWarned) {
+      devtoolsWarned = true;
+      toast('⚠️ 개발자 도구가 감지되었습니다. 접속이 기록됩니다.');
+    }
+  }, 1500);
+
+  // 4. IP / 접속 로깅 (1일 1회)
+  try {
+    var LAST_KEY = 'aitf_iplog_last';
+    var last = parseInt(localStorage.getItem(LAST_KEY) || '0', 10);
+    var now = Date.now();
+    if (now - last > 24*60*60*1000) {
+      fetch('https://ipapi.co/json/').then(function(r){ return r.json(); }).then(function(d){
+        var info = {
+          ip: d.ip, country: d.country_name, city: d.city,
+          ua: navigator.userAgent, page: location.pathname, ts: new Date().toISOString()
+        };
+        console.log('[AITF 접속로그]', info);
+        localStorage.setItem('aitf_iplog_data', JSON.stringify(info));
+        localStorage.setItem(LAST_KEY, String(now));
+        // AITF API 전송 (현재는 콘솔 모의 — 서버 엔드포인트 준비 후 활성화)
+        console.log('[AITF API] POST /v1/ebook/access-log (모의)', info);
+      }).catch(function(err){
+        console.warn('[AITF 접속로그] ipapi 호출 실패:', err && err.message);
+      });
+    }
+  } catch(e){}
+})();
+</script>
+<!-- ── Final Quiz + Completion Certificate System ── -->
+<style>
+.eq-wrap{margin:48px 0;padding:32px 28px;background:linear-gradient(135deg,#0d0d1a,#1a1a2e);border:1px solid rgba(167,139,250,.28);border-radius:18px;word-break:keep-all;font-family:inherit}
+.eq-badge{font-size:.68rem;font-weight:700;letter-spacing:.15em;color:#a78bfa;margin-bottom:6px}
+.eq-title{font-size:1.1rem;font-weight:900;color:#fff;margin:0 0 6px}
+.eq-desc{font-size:.82rem;color:rgba(255,255,255,.5);margin:0 0 28px;line-height:1.6}
+.eq-question{margin-bottom:22px;padding:18px 20px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;transition:border-color .2s}
+.eq-question.eq-correct{border-color:rgba(52,211,153,.5);background:rgba(52,211,153,.06)}
+.eq-question.eq-wrong{border-color:rgba(248,113,113,.5);background:rgba(248,113,113,.06)}
+.eq-qnum{font-size:.7rem;font-weight:700;color:#a78bfa;letter-spacing:.1em;margin-bottom:8px}
+.eq-qtext{font-size:.92rem;font-weight:700;color:#f0f0f0;margin:0 0 14px;line-height:1.6}
+.eq-opts{display:flex;flex-direction:column;gap:8px}
+.eq-opt{display:flex;align-items:flex-start;gap:10px;padding:10px 14px;background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.1);border-radius:9px;cursor:pointer;font-size:.86rem;color:rgba(255,255,255,.8);transition:all .18s;line-height:1.45;-webkit-tap-highlight-color:transparent;min-height:44px;user-select:none;font-family:inherit;text-align:left;width:100%}
+.eq-opt:hover{background:rgba(255,255,255,.09);border-color:rgba(167,139,250,.4);color:#fff}
+.eq-opt.eq-selected{border-color:#a78bfa;background:rgba(167,139,250,.12);color:#fff}
+.eq-opt.eq-opt-correct{border-color:#34d399;background:rgba(52,211,153,.12);color:#6ee7b7}
+.eq-opt.eq-opt-wrong{border-color:#f87171;background:rgba(248,113,113,.1);color:#fca5a5}
+.eq-opt-marker{flex-shrink:0;width:22px;height:22px;border-radius:50%;border:1.5px solid rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;margin-top:1px;transition:all .18s}
+.eq-opt.eq-selected .eq-opt-marker{border-color:#a78bfa;color:#a78bfa}
+.eq-opt.eq-opt-correct .eq-opt-marker{border-color:#34d399;background:#34d399;color:#000}
+.eq-opt.eq-opt-wrong .eq-opt-marker{border-color:#f87171;background:#f87171;color:#fff}
+.eq-explain{margin-top:8px;font-size:.78rem;color:rgba(255,255,255,.55);display:none;padding:6px 10px;background:rgba(255,255,255,.04);border-radius:6px;line-height:1.55}
+.eq-question.eq-correct .eq-explain,.eq-question.eq-wrong .eq-explain{display:block}
+.eq-submit{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:52px;margin-top:8px;background:linear-gradient(135deg,#7c3aed,#a78bfa);color:#fff;border:none;border-radius:13px;font-size:1rem;font-weight:800;cursor:pointer;transition:all .2s;font-family:inherit}
+.eq-submit:hover{transform:translateY(-1px);box-shadow:0 6px 24px rgba(124,58,237,.4)}
+.eq-submit:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.eq-result{display:none;margin-top:24px;padding:22px 20px;border-radius:12px;text-align:center;word-break:keep-all}
+.eq-result.eq-pass{background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.35)}
+.eq-result.eq-fail{background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.25)}
+.eq-result-emoji{font-size:40px;margin-bottom:8px}
+.eq-result-title{font-size:1.1rem;font-weight:800;color:#fff;margin:0 0 6px}
+.eq-result-score{font-size:.88rem;color:rgba(255,255,255,.65);margin:0 0 18px}
+.eq-name-input{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:10px 14px;font-size:.9rem;color:#fff;font-family:inherit;outline:none;width:100%;box-sizing:border-box;-webkit-appearance:none;appearance:none;margin-bottom:10px}
+.eq-name-input:focus{border-color:#a78bfa}
+.eq-cert-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:12px 28px;min-height:48px;width:100%;background:linear-gradient(135deg,#7c3aed,#a78bfa);color:#fff;border:none;border-radius:12px;font-size:.95rem;font-weight:800;cursor:pointer;transition:all .2s;font-family:inherit}
+.eq-cert-btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(124,58,237,.4)}
+.eq-retry-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:12px 24px;min-height:48px;background:rgba(255,255,255,.07);color:#ccc;border:1px solid rgba(255,255,255,.18);border-radius:12px;font-size:.9rem;font-weight:700;cursor:pointer;transition:all .2s;font-family:inherit}
+.eq-retry-btn:hover{background:rgba(255,255,255,.12);color:#fff}
+#eq-cert-overlay{display:none;position:fixed;inset:0;z-index:99998;background:rgba(0,0,0,.88);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);overflow-y:auto}
+#eq-cert-overlay.is-open{display:flex;align-items:center;justify-content:center;padding:24px 16px}
+.eq-cert-popup{position:relative;background:#1a1a2e;border-radius:20px;padding:36px 28px 28px;max-width:400px;width:92%;box-shadow:0 24px 64px rgba(0,0,0,.7);word-break:keep-all;color:#f0f0f0}
+.eq-cert-close{position:absolute;top:14px;right:16px;background:none;border:none;color:#888;font-size:24px;line-height:1;cursor:pointer;padding:4px 8px;transition:color .2s;min-height:44px;display:flex;align-items:center;z-index:10}
+.eq-cert-close:hover{color:#fff}
+.eq-cert-card{background:linear-gradient(145deg,#0d0d1a,#1a1a3e);border:2px solid #a78bfa;border-radius:16px;padding:24px 22px;position:relative;overflow:hidden}
+.eq-cert-card::before{content:'🎓';position:absolute;right:-8px;top:-8px;font-size:72px;opacity:.07;pointer-events:none}
+.eq-cert-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(167,139,250,.12);border:1px solid rgba(167,139,250,.4);border-radius:20px;padding:4px 12px;font-size:11px;font-weight:700;color:#a78bfa;margin-bottom:10px;letter-spacing:.05em}
+.eq-cert-book{font-size:14px;font-weight:700;color:#fff;margin:0 0 4px;line-height:1.4}
+.eq-cert-divider{border:none;border-top:1px solid rgba(167,139,250,.25);margin:12px 0}
+.eq-cert-name{font-size:22px;font-weight:900;color:#a78bfa;margin:0 0 4px}
+.eq-cert-score{font-size:12px;color:rgba(255,255,255,.55);margin:0 0 8px}
+.eq-cert-meta{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:4px;margin-top:10px}
+.eq-cert-date{font-size:11px;color:#888}
+.eq-cert-aitf{display:flex;align-items:center;gap:5px}
+.eq-cert-aitf-text{font-size:10px;color:#888}
+.eq-cert-aitf-link{font-size:10px;color:#a78bfa;text-decoration:none;border-bottom:1px solid rgba(167,139,250,.3)}
+.eq-cert-aitf-link:hover{color:#c4b5fd}
+.eq-cert-actions{margin-top:18px}
+.eq-share-row{display:flex;gap:8px;margin-bottom:8px}
+.eq-share-kakao{flex:1;display:flex;align-items:center;justify-content:center;gap:5px;min-height:44px;background:#FEE500;color:#191919;border:none;border-radius:10px;font-size:.83rem;font-weight:800;cursor:pointer;transition:all .2s;font-family:inherit;-webkit-tap-highlight-color:transparent}
+.eq-share-kakao:hover{background:#fdd835}
+.eq-share-x{flex:1;display:flex;align-items:center;justify-content:center;gap:5px;min-height:44px;background:#000;color:#fff;border:1px solid #333;border-radius:10px;font-size:.83rem;font-weight:800;cursor:pointer;transition:all .2s;font-family:inherit;-webkit-tap-highlight-color:transparent;text-decoration:none}
+.eq-share-x:hover{background:#111}
+.eq-pdf-btn{width:100%;min-height:44px;display:flex;align-items:center;justify-content:center;gap:6px;background:rgba(255,255,255,.07);color:#e0e0e0;border:1px solid rgba(255,255,255,.15);border-radius:10px;font-size:.83rem;font-weight:700;cursor:pointer;transition:all .2s;font-family:inherit;margin-bottom:8px}
+.eq-pdf-btn:hover{background:rgba(255,255,255,.12);color:#fff}
+.eq-cert-next-btn{width:100%;min-height:44px;display:flex;align-items:center;justify-content:center;gap:4px;background:linear-gradient(135deg,#7c3aed,#a78bfa);color:#fff;border:none;border-radius:10px;font-size:.83rem;font-weight:700;cursor:pointer;transition:all .2s;text-decoration:none;font-family:inherit}
+.eq-cert-next-btn:hover{box-shadow:0 4px 16px rgba(124,58,237,.4)}
+.eq-cert-community{width:100%;min-height:44px;display:flex;align-items:center;justify-content:center;gap:6px;background:#09B83E;color:#fff;border:none;border-radius:10px;font-size:.83rem;font-weight:800;cursor:pointer;transition:all .2s;text-decoration:none;font-family:inherit;margin-bottom:8px}
+.eq-cert-community:hover{background:#07a034;box-shadow:0 4px 16px rgba(9,184,62,.35)}
+#eq-toast{position:fixed;bottom:32px;left:50%;transform:translateX(-50%) translateY(20px);background:#333;color:#fff;padding:10px 22px;border-radius:24px;font-size:14px;opacity:0;pointer-events:none;transition:all .3s;z-index:100001;white-space:nowrap}
+#eq-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+#eq-print-cert{display:none}
+@media print{
+  html,body{display:block!important;visibility:visible!important;}
+  body>*{display:none!important}
+  #eq-print-cert{display:block!important;position:fixed;inset:0;z-index:999999;background:#fff;padding:40px;font-family:'Apple SD Gothic Neo','Noto Sans KR',sans-serif;text-align:center;}
+  #eq-print-cert .pc-logo{font-size:13px;font-weight:700;color:#7c3aed;letter-spacing:.1em;margin-bottom:8px;text-transform:uppercase}
+  #eq-print-cert .pc-border{border:3px solid #a78bfa;border-radius:16px;padding:40px 36px;max-width:520px;margin:0 auto;position:relative}
+  #eq-print-cert .pc-trophy{font-size:56px;margin-bottom:12px}
+  #eq-print-cert .pc-cert-label{font-size:11px;font-weight:700;letter-spacing:.2em;color:#7c3aed;text-transform:uppercase;margin-bottom:6px}
+  #eq-print-cert .pc-title{font-size:22px;font-weight:900;color:#1a1a2e;margin:0 0 8px}
+  #eq-print-cert .pc-hr{border:1px solid #e0d6ff;margin:16px 0}
+  #eq-print-cert .pc-name{font-size:32px;font-weight:900;color:#7c3aed;margin:12px 0 6px}
+  #eq-print-cert .pc-score{font-size:14px;color:#888;margin:0 0 8px}
+  #eq-print-cert .pc-date{font-size:13px;color:#aaa;margin:0 0 16px}
+  #eq-print-cert .pc-footer{font-size:11px;color:#999;border-top:1px solid #eee;padding-top:12px;margin-top:16px}
+  #eq-print-cert .pc-footer a{color:#7c3aed}
+  #eq-cert-overlay,#eq-toast{display:none!important}
+}
+@media(max-width:480px){
+  .eq-wrap{padding:20px 14px}
+  .eq-question{padding:14px 12px}
+  .eq-cert-popup{padding:30px 16px 22px}
+  .eq-share-row{flex-direction:column}
+}
+</style>
+<div id="eq-cert-overlay" role="dialog" aria-modal="true" aria-label="Completion Certificate">
+  <div class="eq-cert-popup">
+    <button class="eq-cert-close" id="eq-cert-close" aria-label="Close">×</button>
+    <div class="eq-cert-card">
+      <div class="eq-cert-badge">🎓 Completion Certificate · AI Bible Series</div>
+      <p class="eq-cert-book" id="eq-cert-book-title">Book Title</p>
+      <hr class="eq-cert-divider" />
+      <p class="eq-cert-name" id="eq-cert-reader-name">Reader</p>
+      <p class="eq-cert-score" id="eq-cert-score-text">5 of 5 Correct</p>
+      <div class="eq-cert-meta">
+        <span class="eq-cert-date" id="eq-cert-date">2026.05.17</span>
+```<span class="eq-cert-aitf"><span class="eq-cert-aitf-text">by</span><a class="eq-cert-aitf-link" href="https://aitf-landing.onrender.com" target="_blank" rel="noopener">AITF</a></span>
+      </div>
+    </div>
+    <div class="eq-cert-actions">
+      <div class="eq-share-row">
+        <button class="eq-share-kakao" id="eq-share-kakao"><span style="font-size:1.1rem;">💬</span> Kakao Talk</button>
+        <a class="eq-share-x" id="eq-share-x" href="#" target="_blank" rel="noopener"><span style="font-size:1rem;font-weight:900;">✕</span> X (Twitter)</a>
+      </div>
+      <button class="eq-pdf-btn" id="eq-pdf-btn">📄 Download PDF Certificate</button>
+      <button class="eq-cert-community" onclick="openCommunityGate()">💬 Enter AI Hunter 1% Community</button>
+      <a class="eq-cert-next-btn" id="eq-cert-next" href="#" target="_blank" rel="noopener">Read Next Volume →</a>
+    </div>
+  </div>
+</div>
+<div id="eq-toast"></div>
+<div id="eq-print-cert">
+  <div class="pc-logo">AITF · AI Bible Series</div>
+  <div class="pc-border">
+    <div class="pc-trophy">🎓</div>
+    <div class="pc-cert-label">Certificate of Completion</div>
+    <div class="pc-title" id="pc-title">Book Title</div>
+    <div class="pc-hr"></div>
+    <div class="pc-name" id="pc-name">Reader Name</div>
+    <div class="pc-score" id="pc-score">5 out of 5 Correct (100%)</div>
+    <div class="pc-date" id="pc-date">May 17, 2026</div>
+    <div class="pc-footer">AI Hunter Vibecoding eBook Series · <a href="https://aitf-landing.onrender.com">aitf-landing.onrender.com</a><br>This certificate certifies the completion of learning.</div>
+  </div>
+</div>
+<script>
+(function(){
+'use strict';
+var SB_URL='https://hzobwciaqtbfaxxvcots.supabase.co';
+var SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh6b2J3Y2lhcXRiZmF4eHZjb3RzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcxMjIxNTcsImV4cCI6MjA2MjY5ODE1N30.YXKC3Rv1jqMb-rr8NQ5Hm5wFcFWlKuNZ5F2bStUK_Ro';
+var OPTS=['A','B','C','D'];
+var _bookId='',_bookTitle='',_nextUrl='',_score=0,_total=0,_readerName='';
+function lsGet(k){try{return localStorage.getItem(k)}catch(e){return null}}
+function lsSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+function formatDate(d){return d.getFullYear()+'.'+String(d.getMonth()+1).padStart(2,'0')+'.'+String(d.getDate()).padStart(2,'0')}
+function formatDateKo(d){return d.getFullYear()+'년 '+(d.getMonth()+1)+'월 '+d.getDate()+'일'}
+function showToast(msg){var t=document.getElementById('eq-toast');if(!t)return;t.textContent=msg;t.classList.add('show');setTimeout(function(){t.classList.remove('show')},2500)}
+function closeCert(){var o=document.getElementById('eq-cert-overlay');if(o){o.classList.remove('is-open');document.body.style.overflow=''}}
+function populateCert(bookTitle,score,total,name,nextUrl){
+  var d=new Date();var pct=Math.round(score/total*100);
+  var el;
+  el=document.getElementById('eq-cert-book-title');if(el)el.textContent=bookTitle;
+  el=document.getElementById('eq-cert-reader-name');if(el)el.textContent=name;
+  el=document.getElementById('eq-cert-score-text');if(el)el.textContent=total+'문항 중 '+score+'개 정답 ('+pct+'%)';
+  el=document.getElementById('eq-cert-date');if(el)el.textContent=formatDate(d);
+  el=document.getElementById('eq-cert-next');if(el){el.href=nextUrl||'https://aiaijungle.github.io/vibe-ebook/index.html';el.textContent='다음 권 읽기 →'}
+  el=document.getElementById('pc-title');if(el)el.textContent=bookTitle;
+  el=document.getElementById('pc-name');if(el)el.textContent=name;
+  el=document.getElementById('pc-score');if(el)el.textContent=total+'문항 중 '+score+'개 정답 ('+pct+'%)';
+  el=document.getElementById('pc-date');if(el)el.textContent=formatDateKo(d);
+  var xBtn=document.getElementById('eq-share-x');
+  if(xBtn){var xText='['+bookTitle+'] 수료! 🎓\n'+score+'/'+total+' 정답 ('+pct+'%)\n\n#AI사냥꾼 #바이브코딩 #AITF';xBtn.href='https://twitter.com/intent/tweet?text='+encodeURIComponent(xText)+'&url='+encodeURIComponent('https://aiaijungle.github.io/vibe-ebook/')}
+}
+function openCert(bookTitle,bookId,score,total,name,nextUrl){
+  _readerName=name;_score=score;_total=total;_bookTitle=bookTitle;_bookId=bookId;_nextUrl=nextUrl||'';
+  populateCert(bookTitle,score,total,name,nextUrl);
+  var o=document.getElementById('eq-cert-overlay');
+  if(o){o.classList.add('is-open');document.body.style.overflow='hidden'}
+  try{fetch(SB_URL+'/rest/v1/completions',{method:'POST',headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify({book_id:bookId,nickname:name,quote:'퀴즈 수료 ('+score+'/'+total+')'})}).catch(function(){})}catch(e){}
+  lsSet('eq_cert_'+bookId,'1');
+}
+document.addEventListener('DOMContentLoaded',function(){
+  var closeBtn=document.getElementById('eq-cert-close');
+  var overlay=document.getElementById('eq-cert-overlay');
+  var kakaoBtn=document.getElementById('eq-share-kakao');
+  var pdfBtn=document.getElementById('eq-pdf-btn');
+  if(closeBtn)closeBtn.addEventListener('click',closeCert);
+  if(overlay)overlay.addEventListener('click',function(e){if(e.target===overlay)closeCert()});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeCert()});
+  if(kakaoBtn)kakaoBtn.addEventListener('click',function(){
+    var pct=Math.round(_score/_total*100);
+    var text='['+_bookTitle+'] 수료! 🎓\n'+_score+'/'+_total+' 정답 ('+pct+'%)\n지금 무료로 읽기 → https://aiaijungle.github.io/vibe-ebook/\n\n#AI사냥꾼 #바이브코딩';
+    if(navigator.share){navigator.share({title:_bookTitle+' 수료 인증',text:text}).catch(function(){});}
+    else if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){showToast('카카오톡에 붙여넣기 해서 공유하세요! 📋')}).catch(function(){showToast('복사 실패')});}
+    else{var ta=document.createElement('textarea');ta.value=text;ta.style.cssText='position:fixed;opacity:0;top:-9999px;';document.body.appendChild(ta);ta.focus();ta.select();try{document.execCommand('copy');showToast('카카오톡에 붙여넣기 해서 공유하세요! 📋')}catch(ex){showToast('복사 실패')}document.body.removeChild(ta);}
+  });
+  if(pdfBtn)pdfBtn.addEventListener('click',function(){showToast('인쇄 창에서 "PDF로 저장"을 선택하세요');setTimeout(function(){window.print()},400);});
+});
+window.EbookQuiz={
+  render:function(containerId,questions,bookTitle,bookId,nextUrl){
+    _bookId=bookId;_bookTitle=bookTitle;_nextUrl=nextUrl||'';_total=questions.length;
+    var PASS_MIN=Math.ceil(_total*0.8);
+    var container=document.getElementById(containerId);
+    if(!container)return;
+    var html='<div class="eq-wrap"><div class="eq-badge">FINAL QUIZ · '+bookTitle+'</div><div class="eq-title">📝 최종 퀴즈</div><div class="eq-desc">'+_total+'문항 중 <strong style="color:#a78bfa;">'+PASS_MIN+'개 이상</strong> 맞히면 수료증을 받습니다.</div>';
+    questions.forEach(function(q,qi){
+      html+='<div class="eq-question" id="eq-q'+qi+'"><div class="eq-qnum">Q'+(qi+1)+' / '+_total+'</div><div class="eq-qtext">'+q.q+'</div><div class="eq-opts">';
+      q.opts.forEach(function(opt,oi){html+='<button class="eq-opt" data-qi="'+qi+'" data-oi="'+oi+'" type="button"><span class="eq-opt-marker">'+OPTS[oi]+'</span><span>'+opt+'</span></button>';});
+      html+='</div><div class="eq-explain">'+q.explain+'</div></div>';
+    });
+    html+='<button class="eq-submit" id="eq-submit-btn" disabled>✅ 제출하기</button><div class="eq-result" id="eq-result"></div></div>';
+    container.innerHTML=html;
+    var selected={};
+    container.addEventListener('click',function(e){
+      var opt=e.target.closest('.eq-opt');if(!opt)return;
+      var qi=parseInt(opt.getAttribute('data-qi'),10);
+      var oi=parseInt(opt.getAttribute('data-oi'),10);
+      var qEl=document.getElementById('eq-q'+qi);
+      if(qEl.classList.contains('eq-correct')||qEl.classList.contains('eq-wrong'))return;
+      qEl.querySelectorAll('.eq-opt').forEach(function(o){o.classList.remove('eq-selected')});
+      opt.classList.add('eq-selected');selected[qi]=oi;
+      var sb=document.getElementById('eq-submit-btn');
+      if(sb)sb.disabled=Object.keys(selected).length<questions.length;
+    });
+    var sb=document.getElementById('eq-submit-btn');
+    if(sb)sb.addEventListener('click',function(){
+      sb.disabled=true;var score=0;
+      questions.forEach(function(q,qi){
+        var qEl=document.getElementById('eq-q'+qi);var ua=selected[qi];
+        var opts=qEl.querySelectorAll('.eq-opt');
+        if(ua===q.correct){score++;qEl.classList.add('eq-correct');opts[ua].classList.add('eq-opt-correct');}
+        else{qEl.classList.add('eq-wrong');if(ua!==undefined)opts[ua].classList.add('eq-opt-wrong');opts[q.correct].classList.add('eq-opt-correct');}
+      });
+      _score=score;var pass=score>=PASS_MIN;
+      var re=document.getElementById('eq-result');
+      if(re){
+        re.className='eq-result '+(pass?'eq-pass':'eq-fail');re.style.display='block';
+        var pct=Math.round(score/_total*100);
+        if(pass){
+          re.innerHTML='<div class="eq-result-emoji">🎉</div><div class="eq-result-title">합격! 수료증을 받으세요</div><div class="eq-result-score">'+_total+'문항 중 <strong>'+score+'개</strong> 정답 ('+pct+'%)</div><input id="eq-name-input" class="eq-name-input" type="text" maxlength="20" placeholder="수료증에 넣을 이름을 입력하세요" /><button class="eq-cert-btn" id="eq-get-cert-btn">🎓 수료증 받기</button>';
+          document.getElementById('eq-get-cert-btn').addEventListener('click',function(){
+            var ni=document.getElementById('eq-name-input');
+            openCert(bookTitle,bookId,score,_total,(ni&&ni.value.trim())||'독자',nextUrl);
+          });
+        }else{
+          re.innerHTML='<div class="eq-result-emoji">😅</div><div class="eq-result-title">아쉬워요! 다시 도전해보세요</div><div class="eq-result-score">'+_total+'문항 중 <strong>'+score+'개</strong> 정답 — 수료 기준: '+PASS_MIN+'개 이상</div><button class="eq-retry-btn" id="eq-retry-btn">🔄 다시 풀기</button>';
+          document.getElementById('eq-retry-btn').addEventListener('click',function(){EbookQuiz.render(containerId,questions,bookTitle,bookId,nextUrl);});
+        }
+        re.scrollIntoView({behavior:'smooth',block:'nearest'});
+      }
+    });
+  }
+};
+})();
+</script>
+<script>
+var Q_VOL1=[
+  {q:'바이브코딩에서 AI에게 에러를 전달할 때 가장 효과적인 방법은?',opts:['에러 줄 번호만 알려준다','에러 내용을 통째로 복사해서 붙여넣는다','구글에서 찾은 해결책을 먼저 시도한 후 전달한다','에러를 무시하고 다음 기능을 구현한다'],correct:1,explain:'AI는 에러 전체 컨텍스트를 봐야 정확한 해결책을 줍니다. 에러를 통째로 던지는 것이 가장 빠른 해결법입니다.'},
+  {q:"CIF 공식에서 'C'가 의미하는 것은?",opts:['코드(Code)','맥락(Context)','명령(Command)','클로드(Claude)'],correct:1,explain:'CIF = Context(맥락) + Instruction(지시) + Format(형식). 맥락을 먼저 주면 AI 답변의 품질이 달라집니다.'},
+  {q:'블로그 자동화 봇을 만들기 위해 가장 먼저 해야 할 일은?',opts:['파이썬을 먼저 공부한다','API 키를 발급받는다','서버를 구매한다','디자인을 먼저 완성한다'],correct:1,explain:'자동화 봇은 외부 서비스(Claude API, 블로그 플랫폼 등)와 연결이 필요합니다. API 키 발급이 첫 단계입니다.'},
+  {q:'AI 자동화를 처음 시작할 때 가장 좋은 접근법은?',opts:['모든 업무를 한 번에 자동화한다','가장 반복적인 1가지 작업부터 먼저 자동화한다','가장 복잡한 작업부터 시작한다','자동화보다 직접 하는 게 더 빠르다'],correct:1,explain:'완벽한 시스템보다 1가지 반복 작업을 먼저 자동화하면 빠른 성과와 동기부여를 얻을 수 있습니다.'},
+  {q:'AI에게 복잡한 작업을 시킬 때 가장 효과적인 방법은?',opts:['한 번에 모든 요구사항을 길게 설명한다','작업을 단계로 나눠서 순서대로 지시한다','영어로만 질문한다','여러 AI를 동시에 사용한다'],correct:1,explain:'AI는 단계별로 명확한 지시를 받을 때 가장 정확한 결과를 냅니다. 작업을 나눠서 순서대로 진행하세요.'}
+];
+(function(){
+  function r(){if(typeof EbookQuiz!=='undefined')EbookQuiz.render('quiz-container-vol1',Q_VOL1,'1권 바이브코딩 입문','vibe-bible-1','index.html');else setTimeout(r,100);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',r);else r();
+})();
+</script>
+<!-- 🎁 Gift Modal -->
+<div id="gift-modal" onclick="if(event.target===this)closeGiftModal()" style="display:none;position:fixed;inset:0;z-index:99998;background:rgba(0,0,0,.65);">
+  <div style="position:absolute;bottom:0;left:0;right:0;max-width:500px;margin:0 auto;background:var(--bg,#1a1a2e);border-radius:20px 20px 0 0;padding:26px 20px 40px;box-shadow:0 -4px 30px rgba(0,0,0,.4);">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+      <b style="font-size:1.1rem;font-weight:900;color:var(--text,#eee);">🎁 Gift to a Friend</b>
+      <button onclick="closeGiftModal()" style="background:none;border:none;font-size:1.6rem;cursor:pointer;color:var(--text,#eee);line-height:1;padding:0 2px;">×</button>
+    </div>
+    <p style="font-size:.8rem;opacity:.6;margin:0 0 12px;word-break:keep-all;color:var(--text,#eee);">Gift for free to an acquaintance who might fall behind in the AI era 💌</p>
+    <input id="gift-name-input" type="text" maxlength="20" placeholder="Recipient's Name (Optional, e.g.: John Doe)"
+      oninput="giftUpdateMsg()"
+      style="width:100%;padding:11px 13px;border:1.5px solid rgba(128,128,128,.3);border-radius:10px;font-size:.87rem;margin-bottom:10px;box-sizing:border-box;font-family:inherit;background:rgba(255,255,255,.07);color:var(--text,#eee);outline:none;">
+    <textarea id="gift-msg-area" readonly rows="5" onclick="this.select()"
+      style="width:100%;padding:11px 13px;border:1px dashed rgba(245,158,11,.5);border-radius:10px;font-size:.78rem;line-height:1.75;background:rgba(245,158,11,.06);color:var(--text,#eee);box-sizing:border-box;resize:none;font-family:inherit;margin-bottom:13px;word-break:keep-all;cursor:pointer;"></textarea>
+    <div style="display:flex;flex-direction:column;gap:9px;"><button id="gift-btn-msg" onclick="giftCopyMsg()" style="padding:14px;background:linear-gradient(135deg,#f59e0b,#fbbf24);color:#000;border:none;border-radius:12px;font-size:.9rem;font-weight:800;cursor:pointer;font-family:inherit;transition:opacity .2s;">📋 Copy Gift Message</button>
+      <button id="gift-btn-link" onclick="giftCopyLink()" style="padding:12px;background:rgba(128,128,128,.12);border:1.5px solid rgba(128,128,128,.25);border-radius:12px;font-size:.86rem;font-weight:700;cursor:pointer;color:var(--text,#eee);font-family:inherit;transition:opacity .2s;">🔗 Copy Link Only</button>
+    </div>
+    <p style="font-size:.73rem;text-align:center;opacity:.45;margin:11px 0 0;color:var(--text,#eee);">After copying, paste it into KakaoTalk, text message, or DM</p>
+  </div>
+</div>
+<script>
+(function(){
+  var _GU='https://aiaijungle.github.io/vibe-ebook/book1.html';
+  var _GT='바이브코딩 바이블 1권';
+  var _GD='코딩 없이 블로그·유튜브를 자동 운영하는 법 📚\n마케팅 자동화 입문서 — 완전 무료!';
+  function _msg(n){var u=n?_GU+'?ref='+encodeURIComponent(n):_GU;return (n?n+'님에게 드리는 선물 🎁\n\n':'')+'『'+_GT+'』을 무료로 읽어보세요!\n\n'+_GD+'\n\n👉 '+u;}
+  window.openGiftModal=function(){
+    var el=document.getElementById('gift-modal');if(el)el.style.display='block';
+    document.getElementById('gift-name-input').value='';
+    document.getElementById('gift-msg-area').value=_msg('');
+  };
+  window.closeGiftModal=function(){var el=document.getElementById('gift-modal');if(el)el.style.display='none';};
+  window.giftUpdateMsg=function(){
+    var n=(document.getElementById('gift-name-input').value||'').trim();
+    document.getElementById('gift-msg-area').value=_msg(n);
+  };
+  function _fbCp(txt){var ta=document.createElement('textarea');ta.value=txt;ta.style.cssText='position:fixed;opacity:0;top:-9999px;left:0;';document.body.appendChild(ta);ta.focus();ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);}
+  function _doCopy(txt,bid,orig){
+    var b=document.getElementById(bid);
+    function _ok(){if(b){b.textContent='✅ 복사됨! 카카오·문자에 붙여넣기';setTimeout(function(){b.textContent=orig;},2800);}}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(_ok).catch(function(){_fbCp(txt);_ok();});}else{_fbCp(txt);_ok();}
+  }
+  window.giftCopyMsg=function(){var n=(document.getElementById('gift-name-input').value||'').trim();_doCopy(_msg(n),'gift-btn-msg','📋 선물 메시지 복사');};
+  window.giftCopyLink=function(){var n=(document.getElementById('gift-name-input').value||'').trim();_doCopy(n?_GU+'?ref='+encodeURIComponent(n):_GU,'gift-btn-link','🔗 링크만 복사');};
+})();
+</script>
+<script>
+(function(){
+  if(window.IntersectionObserver){var _su='https://hzobwciaqtbfaxxvcots.supabase.co',_sk='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh6b2J3Y2lhcXRiZmF4eHZjb3RzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg2NTMxMTYsImV4cCI6MjA5NDIyOTExNn0.9VatQ5UxJrAKEE9gOcknvVvd_9I0j9GgQWe_UvtcfCg',_bid=location.pathname.split('/').pop().replace('.html','')||'index',_s={},_ob=new IntersectionObserver(function(e){e.forEach(function(x){if(!x.isIntersecting)return;var c=x.target.textContent.trim().slice(0,40);if(_s[c])return;_s[c]=1;try{fetch(_su+'/rest/v1/chapter_views',{method:'POST',headers:{'apikey':_sk,'Authorization':'Bearer '+_sk,'Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify({book_id:_bid,chapter:c})}).catch(function(){});}catch(_e){}});},{threshold:0.3});document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('.content-h1').forEach(function(el){_ob.observe(el);});});}
+  var ref=new URLSearchParams(location.search).get('ref');
+  if(!ref)return;
+  var bar=document.createElement('div');
+  bar.style.cssText='position:fixed;top:0;left:0;right:0;z-index:99997;background:linear-gradient(135deg,#f59e0b,#fbbf24);color:#000;text-align:center;padding:10px 16px;font-size:.85rem;font-weight:700;word-break:keep-all;box-shadow:0 2px 8px rgba(0,0,0,.18);';
+  var nameEl=document.createElement('strong');
+  try{nameEl.textContent=decodeURIComponent(ref);}catch(e){nameEl.textContent=ref;}
+  bar.appendChild(document.createTextNode('🎁 '));
+  bar.appendChild(nameEl);
+  bar.appendChild(document.createTextNode('님이 선물한 책이에요! 반가워요 😊 '));
+  var closeBtn=document.createElement('button');
+  closeBtn.textContent='×';
+  closeBtn.style.cssText='background:none;border:none;cursor:pointer;font-size:1.1rem;font-weight:700;margin-left:4px;vertical-align:middle;';
+  closeBtn.onclick=function(){bar.remove();};
+  bar.appendChild(closeBtn);
+  document.body.appendChild(bar);
+})();
+</script>
+<!-- ▼ Community Gate -->
+<style>
+#cgate-overlay{display:none;position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.92);align-items:center;justify-content:center;padding:16px;box-sizing:border-box}
+#cgate-overlay.open{display:flex}
+#cgate-card{background:#fff;border-radius:20px;width:100%;max-width:400px;padding:26px 22px 20px;position:relative;text-align:center;max-height:90vh;overflow-y:auto}
+#cgate-close{position:absolute;top:12px;right:16px;background:none;border:none;font-size:1.4rem;cursor:pointer;color:#aaa;z-index:1;padding:4px 8px}
+.cgate-badge{display:inline-block;background:#111;color:#fbbf24;font-size:.68rem;font-weight:900;padding:4px 12px;border-radius:20px;margin-bottom:10px;letter-spacing:.6px}
+#cgate-title{font-size:1.1rem;font-weight:900;color:#111;margin-bottom:5px}
+#cgate-sub{font-size:.77rem;color:#666;margin-bottom:16px;line-height:1.6}
+.cgate-method{border:2px solid #eee;border-radius:14px;padding:15px;margin-bottom:10px;text-align:left}
+.cgate-method-title{font-size:.85rem;font-weight:800;color:#111;margin-bottom:4px}
+.cgate-method-desc{font-size:.76rem;color:#888;margin-bottom:10px;line-height:1.5;word-break:keep-all}
+.cgate-method-btn{width:100%;min-height:42px;border:none;border-radius:10px;font-size:.83rem;font-weight:800;cursor:pointer;font-family:inherit;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:5px}
+.cgate-share-btn{background:#09B83E;color:#fff}.cgate-share-btn:hover{background:#07a034}.cgate-share-btn.ok{background:#059669}
+#cgate-review-text{width:100%;box-sizing:border-box;border:1.5px solid #eee;border-radius:8px;padding:10px 12px;font-size:.8rem;resize:none;height:68px;font-family:inherit;outline:none;transition:border-color .2s;display:block}
+#cgate-review-text:focus{border-color:#09B83E}
+#cgate-review-text.err{border-color:#ef4444}
+.cgate-review-btn{background:#111;color:#fff;margin-top:8px}.cgate-review-btn:hover{background:#333}
+#cgate-divider{display:flex;align-items:center;gap:8px;margin:2px 0 10px;color:#ccc;font-size:.73rem}
+#cgate-divider::before,#cgate-divider::after{content:'';flex:1;border-top:1px solid #eee}
+#cgate-code-section{display:none}
+#cgate-unlock-msg{font-size:.88rem;font-weight:800;color:#09B83E;margin-bottom:4px}
+#cgate-code-label{font-size:.75rem;color:#888;margin-bottom:14px;line-height:1.5}
+#cgate-code-wrap{display:flex;justify-content:center;gap:4px;margin-bottom:20px}
+.cgate-digit{width:35px;height:46px;background:#111;color:#fbbf24;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1.25rem;font-weight:900;transform:scale(0) rotate(-15deg);transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
+.cgate-digit.show{transform:scale(1) rotate(0deg)}
+@keyframes _cgate-shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-7px)}40%{transform:translateX(7px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}.cgate-shake{animation:_cgate-shake .5s ease;border-color:#f59e0b!important;transition:border-color .2s}
+#cgate-enter-btn{width:100%;min-height:50px;background:#FEE500;color:#111;border:none;border-radius:12px;font-size:.95rem;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;text-decoration:none;transition:all .2s;font-family:inherit}
+#cgate-enter-btn:hover{background:#f5d900;box-shadow:0 4px 18px rgba(254,229,0,.5)}
+#cgate-already-btn{width:100%;background:none;border:none;color:#bbb;font-size:.72rem;cursor:pointer;margin-top:10px;text-decoration:underline;font-family:inherit;display:block}
+</style>
+<div id="cgate-overlay">
+  <div id="cgate-card">
+    <button id="cgate-close" aria-label="Close">×</button>
+    <div class="cgate-badge">🏹 AI Hunter 0.01% Community</div>
+    <div id="cgate-title">Get Community Access Code</div>
+    <div id="cgate-sub">Among all readers nationwide, the space where only the top 0.01%<br><strong>best at hunting AI gather</strong></div>
+    <div id="cgate-methods">
+      <div class="cgate-method">
+        <div class="cgate-method-title">📤 Method 1 — Share This Book</div>
+        <div class="cgate-method-desc">Share this book link with 1 person and<br>your access code will be revealed instantly</div>
+        <button class="cgate-method-btn cgate-share-btn" id="cgate-share-btn">📤 Share and Get Code</button>
+      </div>
+      <div id="cgate-divider">or</div>
+      <div class="cgate-method">
+        <div class="cgate-method-title">✍️ Method 2 — Leave a One-Line Review</div>
+        <div class="cgate-method-desc">One line about what you learned is enough<br>your code will be revealed immediately after submission</div>
+        <textarea id="cgate-review-text" placeholder="Example) I succeeded in automation for the first time thanks to VibeCode!"></textarea>
+        <button class="cgate-method-btn cgate-review-btn" id="cgate-review-btn">✍️ Leave Review and Get Code</button>
+      </div>
+    </div>
+    <div id="cgate-code-section">
+      <div id="cgate-unlock-msg">🎉 Access Code Unlocked!</div>
+      <div id="cgate-code-label">Enter as password when joining the KakaoTalk Open Chat</div>
+      <div id="cgate-code-wrap">
+        <div class="cgate-digit">a</div><div class="cgate-digit">d</div><div class="cgate-digit">3</div><div class="cgate-digit">8</div><div class="cgate-digit">0</div><div class="cgate-digit">7</div><div class="cgate-digit">0</div><div class="cgate-digit">0</div>
+      </div>
+      <a id="cgate-enter-btn" href="https://open.kakao.com/o/gs65vQmi" target="_blank" rel="noopener">🍊 Enter KakaoTalk Open Chat</a>
+    </div>
+    <button id="cgate-already-btn">I already completed it → View Code</button>
+  </div>
+</div>
+<script>
+(function(){
+  var _BID='book1',_GKEY='community_gate_'+_BID;
+  var _SBU='https://hzobwciaqtbfaxxvcots.supabase.co';
+  var _SBK='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh6b2J3Y2lhcXRiZmF4eHZjb3RzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg2NTMxMTYsImV4cCI6MjA5NDIyOTExNn0.9VatQ5UxJrAKEE9gOcknvVvd_9I0j9GgQWe_UvtcfCg';
+  function _openGate(){document.getElementById('cgate-overlay').classList.add('open');if(localStorage.getItem(_GKEY)){_showCode(false);}else{_showMethods();}}
+  function _closeGate(){document.getElementById('cgate-overlay').classList.remove('open');}
+  function _showMethods(){document.getElementById('cgate-methods').style.display='';document.getElementById('cgate-code-section').style.display='none';document.getElementById('cgate-already-btn').style.display='';}
+  function _unlock(a){localStorage.setItem(_GKEY,'1');_showCode(a);}
+  function _showCode(a){
+    document.getElementById('cgate-methods').style.display='none';
+    document.getElementById('cgate-code-section').style.display='block';
+    document.getElementById('cgate-already-btn').style.display='none';
+    var d=document.querySelectorAll('.cgate-digit');
+    if(a){d.forEach(function(x,i){setTimeout(function(){x.classList.add('show');},i*140+300);});}else{d.forEach(function(x){x.classList.add('show');});}
+  }
+  document.getElementById('cgate-share-btn').onclick=function(){
+    var url=location.origin+location.pathname,btn=this;
+    function done(){btn.textContent='✅ 복사 완료!';btn.classList.add('ok');setTimeout(function(){_unlock(true);},1000);}
+    try{navigator.clipboard.writeText(url).then(done).catch(function(){_fb(url,done);});}catch(e){_fb(url,done);}
+  };
+  function _fb(t,cb){try{var x=document.createElement('textarea');x.value=t;x.style.cssText='position:fixed;top:-9999px';document.body.appendChild(x);x.select();document.execCommand('copy');document.body.removeChild(x);cb();}catch(e){_unlock(true);}}
+  document.getElementById('cgate-review-btn').onclick=function(){
+    var txt=(document.getElementById('cgate-review-text').value||'').trim();
+    if(txt.length<5){var el=document.getElementById('cgate-review-text');el.classList.add('err');setTimeout(function(){el.classList.remove('err');},800);return;}
+    var btn=this;btn.disabled=true;btn.textContent='저장 중...';
+    fetch(_SBU+'/rest/v1/ebook_reviews',{method:'POST',headers:{'apikey':_SBK,'Authorization':'Bearer '+_SBK,'Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify({book:_BID,name:'익명',content:txt})}).catch(function(){}).finally(function(){_unlock(true);});
+  };
+  document.getElementById('cgate-already-btn').onclick=function(){
+    if(localStorage.getItem(_GKEY)){_showCode(false);}
+    else{
+      var self=this,m=document.getElementById('cgate-methods');
+      m.scrollIntoView({behavior:'smooth',block:'nearest'});
+      m.classList.add('cgate-shake');
+      setTimeout(function(){m.classList.remove('cgate-shake');},550);
+      self.textContent='⬆️ 위에서 공유 또는 후기를 먼저!';
+      setTimeout(function(){self.textContent='이미 완료했어요 → 코드 보기';},2200);
+    }
+  };
+  document.getElementById('cgate-close').onclick=_closeGate;
+  document.getElementById('cgate-overlay').onclick=function(e){if(e.target===this)_closeGate();};
+  window.openCommunityGate=_openGate;
+})();
+</script>
+<!-- ▲ Community Gate -->
+
+<!-- 📚 Helpful External Free Resources (CEO noted 2026-06-03) -->
+<div style="max-width:760px;margin:32px auto;padding:24px 22px;background:linear-gradient(135deg,rgba(124,58,237,.08),rgba(245,158,11,.05));border:1.5px solid rgba(124,58,237,.25);border-radius:14px;font-family:'Pretendard','Apple SD Gothic Neo',sans-serif;">
+  <div style="font-weight:800;color:#a78bfa;font-size:1rem;margin-bottom:6px;">📚 Helpful External Free Resources</div>
+  <div style="font-size:.85rem;color:rgba(255,255,255,0.65);margin-bottom:14px;">Using these alongside the book content will speed up your learning (all free or have free plans)</div>
+  <div style="display:grid;grid-template-columns:1fr;gap:8px;font-size:.84rem;color:rgba(255,255,255,0.85);line-height:1.6;">
+    <div>• <strong>Anthropic Claude</strong> — <a href="https://claude.ai" target="_blank" style="color:#a78bfa;">claude.ai</a> (AI Chat) / <a href="https://docs.anthropic.com" target="_blank" style="color:#a78bfa;">docs.anthropic.com</a> (API)</div><div>• <strong>OpenAI ChatGPT</strong> — <a href="https://chat.openai.com" target="_blank" style="color:#a78bfa;">chat.openai.com</a> / <a href="https://platform.openai.com/docs" target="_blank" style="color:#a78bfa;">platform.openai.com/docs</a></div>
+    <div>• <strong>ElevenLabs</strong> (voice synthesis) — <a href="https://elevenlabs.io" target="_blank" style="color:#a78bfa;">elevenlabs.io</a></div>
+    <div>• <strong>Pexels</strong> (free video & images) — <a href="https://pexels.com" target="_blank" style="color:#a78bfa;">pexels.com</a></div>
+    <div>• <strong>VS Code</strong> (editor) — <a href="https://code.visualstudio.com" target="_blank" style="color:#a78bfa;">code.visualstudio.com</a></div>
+    <div>• <strong>Python Official</strong> — <a href="https://python.org/downloads" target="_blank" style="color:#a78bfa;">python.org/downloads</a></div>
+  </div>
+</div>
+
+<!-- Gift button always exposed on mobile (independent of paywall, displayed from first screen) -->
+<button id="floating-gift-btn" data-paywall-keep onclick="openGiftModal()" aria-label="Send a gift"
+  style="position:fixed;bottom:24px;right:20px;z-index:99000;display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#f59e0b,#fbbf24);color:#1a0a00;border:none;padding:14px 20px;border-radius:32px;font-weight:900;font-size:.95rem;cursor:pointer;box-shadow:0 6px 20px rgba(251,191,36,.45);font-family:'Pretendard',sans-serif;white-space:nowrap;">
+  🎁 Send a gift
+</button>
+<a id="ppbuy" href="../checkout.html?utm_source=en_book&utm_medium=paypal&utm_campaign=ai_bible_global">💳 Buy with PayPal</a><style>#ppbuy{position:fixed;right:16px;bottom:16px;z-index:99999;background:linear-gradient(135deg,#7c3aed,#a855f7);color:#fff;font-weight:800;padding:13px 22px;border-radius:99px;text-decoration:none;box-shadow:0 6px 20px rgba(0,0,0,.35);font-family:-apple-system,'Segoe UI',sans-serif;font-size:14px}.paywall-unlocked #ppbuy,html.paywall-unlocked #ppbuy{display:none}@media(max-width:480px){#ppbuy{right:12px;bottom:12px;padding:11px 18px;font-size:13px}}</style>
+
+<div id="rdprog"></div>
+<button id="rdcert" type="button">\U0001F393 Get your Certificate</button>
+<canvas id="rdcertcv" width="1000" height="700" style="display:none"></canvas>
+<style>
+#rdprog{position:fixed;top:0;left:0;height:3px;width:0;z-index:100001;background:linear-gradient(90deg,#7c3aed,#a855f7);transition:width .12s ease-out}
+#rdcert{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);z-index:100000;display:none;background:linear-gradient(135deg,#b8860b,#d4af37);color:#2a1c08;font-weight:800;border:none;padding:13px 24px;border-radius:99px;box-shadow:0 6px 22px rgba(0,0,0,.4);cursor:pointer;font-family:-apple-system,'Segoe UI',sans-serif;font-size:14px}
+@media(max-width:480px){#rdcert{font-size:13px;padding:11px 18px}}
+</style>
+<script>(function(){
+  var bar=document.getElementById('rdprog'),btn=document.getElementById('rdcert');
+  function unlocked(){return document.documentElement.classList.contains('paywall-unlocked')||document.body.classList.contains('paywall-unlocked');}
+  function setP(p){bar.style.width=Math.min(100,Math.max(0,p)).toFixed(1)+'%';btn.style.display=(unlocked()&&p>=95)?'block':'none';}
+  function fromEl(el){if(!el||!el.scrollHeight)return;var h=el.scrollHeight-el.clientHeight;if(h>40)setP(el.scrollTop/h*100);}
+  document.addEventListener('scroll',function(e){var t=e.target;fromEl(t===document?document.scrollingElement:t);},true);
+  window.addEventListener('resize',function(){fromEl(document.scrollingElement);});setTimeout(function(){fromEl(document.scrollingElement);},500);
+  function wrap(x,t,cx,cy,maxw,lh){var w=t.split(' '),line='',y=cy;for(var i=0;i<w.length;i++){var tt=line+w[i]+' ';if(x.measureText(tt).width>maxw&&line){x.fillText(line.trim(),cx,y);line=w[i]+' ';y+=lh;}else line=tt;}x.fillText(line.trim(),cx,y);}
+  function dl(cv){var a=document.createElement('a');a.download='AI-Bible-Certificate.png';a.href=cv.toDataURL('image/png');a.click();}
+  function share(cv,title){cv.toBlob(function(b){var f=new File([b],'certificate.png',{type:'image/png'});var txt='I completed '+title+' \U0001F393 (JANDA AI Bible)';if(navigator.canShare&&navigator.canShare({files:[f]})){navigator.share({files:[f],text:txt}).catch(function(){dl(cv);});}else{dl(cv);}});}
+  btn.onclick=function(){
+    var cv=document.getElementById('rdcertcv'),x=cv.getContext('2d'),W=1000,H=700;
+    x.fillStyle='#fbf3df';x.fillRect(0,0,W,H);
+    x.strokeStyle='#b8860b';x.lineWidth=9;x.strokeRect(34,34,W-68,H-68);
+    x.strokeStyle='#d4af37';x.lineWidth=3;x.strokeRect(50,50,W-100,H-100);
+    x.textAlign='center';
+    x.fillStyle='#1c2f6b';x.font='700 26px Georgia,serif';x.fillText('JANDA · AI BIBLE',W/2,120);
+    x.fillStyle='#7c2d12';x.font='900 56px Georgia,serif';x.fillText('Certificate of Completion',W/2,205);
+    x.strokeStyle='#d4af37';x.lineWidth=2;x.beginPath();x.moveTo(W/2-170,236);x.lineTo(W/2+170,236);x.stroke();
+    x.fillStyle='#3a2f1a';x.font='400 24px Georgia,serif';x.fillText('This certifies the completion of',W/2,316);
+    var title=(document.title||'AI Bible').split('—')[0].split('|')[0].trim();
+    x.fillStyle='#111';x.font='800 36px Georgia,serif';wrap(x,title,W/2,378,W-200,44);
+    var d=new Date(),ds=d.toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+    x.fillStyle='#5a4a2a';x.font='400 22px Georgia,serif';x.fillText('Issued '+ds,W/2,H-150);
+    x.save();x.translate(W-150,H-165);x.strokeStyle='#c0392b';x.lineWidth=4;x.beginPath();x.arc(0,0,56,0,7);x.stroke();x.lineWidth=2;x.beginPath();x.arc(0,0,45,0,7);x.stroke();x.fillStyle='#c0392b';x.font='800 22px Georgia,serif';x.fillText('JANDA',0,-2);x.font='700 12px Georgia,serif';x.fillText('VERIFIED',0,18);x.restore();
+    x.fillStyle='#9a8c6a';x.font='400 18px Georgia,serif';x.fillText('vibecodingbible · AI Bible series',W/2,H-92);
+    share(cv,title);
+  };
+})();</script>
+
+</body>
+</html>

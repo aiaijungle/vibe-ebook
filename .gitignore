@@ -2,3 +2,7 @@
 book1.html.bak_*
 book1_preview.html
 make_freesection.py
+
+*.bak_*
+*.stub_bak_*
+*.bak
