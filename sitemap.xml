@@ -13,6 +13,14 @@
     <xhtml:link rel="alternate" hreflang="ja" href="https://aiaijungle.github.io/vibe-ebook/ja/index.html"/>
   </url>
 
+  <!-- 전자책 판매 페이지 -->
+  <url>
+    <loc>https://aiaijungle.github.io/vibe-ebook/sales.html</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
   <!-- 1권 마케팅 자동화 입문 -->
   <url>
     <loc>https://aiaijungle.github.io/vibe-ebook/book1.html</loc>
