@@ -94,7 +94,7 @@
   var grid = document.getElementById('grid');
   var agree = document.getElementById('agree');
   var emailEl = document.getElementById('buyer-email');
-  var AI_BIBLE_ORCHESTRATOR_WEBHOOK_URL = '';
+  var AI_BIBLE_ORCHESTRATOR_WEBHOOK_URL = 'https://aitf-api.onrender.com/webhook/ebook-order';
 
   function sendOrchestrationEvent(payload){
     payload = payload || {};
@@ -107,7 +107,8 @@
     }
     return fetch(AI_BIBLE_ORCHESTRATOR_WEBHOOK_URL, {
       method:'POST',
-      headers:{'Content-Type':'application/json'},
+      mode:'no-cors',
+      headers:{'Content-Type':'text/plain;charset=UTF-8'},
       body:JSON.stringify(payload),
       keepalive:true
     }).then(function(res){
