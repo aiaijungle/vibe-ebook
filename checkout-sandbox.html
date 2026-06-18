@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>SANDBOX TEST - AI Bible Checkout (no real money)</title>
+<script src="https://www.paypal.com/sdk/js?client-id=Ad5dGPeimMdDUiFZ_7KBqx4txj5P06zyYbN18VzsG2T8gv73Q1djg_sYUYVWB83QMA7H33eZqgWV5y8Q&currency=USD&intent=capture&locale=en_US"></script>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+  body{background:#0e1016;color:#f2f4f8;padding:24px 16px;max-width:760px;margin:0 auto}
+  a{color:#ffae42;font-weight:700;text-decoration:none}
+  .testbar{background:#3b1d6e;border:1.5px solid #a855f7;border-radius:12px;padding:14px 16px;margin:8px 0 16px;line-height:1.6}
+  .testbar b{color:#e9d5ff}
+  .hd{text-align:center;margin:6px 0 14px}
+  .hd h1{font-size:1.5rem;font-weight:900}
+  .hd .sub{color:#9aa2b2;margin-top:8px;font-size:.95rem}
+  .gate{background:#11151c;border:1px solid #2a2f3a;border-radius:12px;padding:16px;margin:16px 0}
+  .gate label.req{font-size:.9rem;font-weight:800;display:block;margin-bottom:6px}
+  .gate input[type=email]{width:100%;padding:12px 14px;border:1.5px solid #2a2f3a;border-radius:10px;background:#0e1016;color:#fff;font-size:1rem;margin-bottom:14px}
+  .gate .agree{display:flex;gap:10px;align-items:flex-start;cursor:pointer;font-size:.9rem;color:#c8cdd6;line-height:1.5}
+  .card{background:#181c24;border:1px solid #2a2f3a;border-radius:16px;padding:18px;margin:12px 0}
+  .card .top{display:flex;justify-content:space-between;align-items:center;gap:14px}
+  .card .name{font-weight:850;font-size:1.04rem}
+  .card .price{text-align:right;white-space:nowrap}
+  .card .price .now{color:#ffae42;font-weight:900;font-size:1.28rem}
+  .card .pp{margin-top:14px}
+  .done{display:none;background:#16351a;border:1px solid #3fb950;border-radius:12px;padding:18px;margin-top:14px;line-height:1.7;word-break:break-word}
+  .ft{color:#6e7681;font-size:.8rem;text-align:center;margin:24px 0 8px}
+</style>
+</head>
+<body>
+  <div class="testbar">
+    🧪 <b>SANDBOX TEST PAGE — NOT REAL.</b><br>
+    This page uses PayPal <b>Sandbox</b> (fake money). Use it only to verify the payment flow works.
+    Log in with a <b>Sandbox personal (buyer) test account</b> from PayPal Developer → Testing Tools → Sandbox Accounts.
+    No real card, no real charge.
+  </div>
+
+  <div class="hd">
+    <h1>AI Bible — Checkout (SANDBOX)</h1>
+    <div class="sub">If a payment completes below, the live integration is correct — only a live Business account + live Client ID are needed.</div>
+  </div>
+
+  <div class="gate">
+    <label class="req" for="buyer-email">Email (test) *</label>
+    <input type="email" id="buyer-email" placeholder="you@example.com" required>
+    <label class="agree"><input type="checkbox" id="agree" checked>
+      <span><b>All sales are final.</b> Digital content, non-refundable. (test agreement)</span>
+    </label>
+  </div>
+
+  <div class="grid" id="grid"></div>
+  <div class="done" id="done"></div>
+
+  <div class="ft">SANDBOX TEST — JANDA AI Bible. No real transaction occurs here.</div>
+
+<script>
+  var PRODUCTS = [
+    { id:'b1', name:'Vol.1 - Marketing Automation Basics', price:10 },
+    { id:'pkg', name:'Full Package - All 5 Volumes', price:120 }
+  ];
+  var grid = document.getElementById('grid');
+  var agree = document.getElementById('agree');
+  var emailEl = document.getElementById('buyer-email');
+  function checkReady(){
+    var em = (emailEl.value||'').trim();
+    if(!em || em.indexOf('@')<0){ alert('Enter a test email.'); return false; }
+    if(!agree.checked){ alert('Check the agreement.'); return false; }
+    return true;
+  }
+  PRODUCTS.forEach(function(p){
+    var card = document.createElement('div'); card.className='card';
+    card.innerHTML =
+      '<div class="top"><div><div class="name">'+p.name+'</div></div>'+
+      '<div class="price"><span class="now">$'+p.price+'</span></div></div>'+
+      '<div class="pp" id="pp-'+p.id+'"></div>';
+    grid.appendChild(card);
+    if (window.paypal) {
+      paypal.Buttons({
+        style:{ layout:'horizontal', height:42, tagline:false },
+        onClick: function(d, actions){ return checkReady() ? actions.resolve() : actions.reject(); },
+        createOrder: function(data, actions){
+          return actions.order.create({
+            purchase_units:[{ amount:{ value:String(p.price), currency_code:'USD' },
+              description:'SANDBOX AI Bible '+p.name, custom_id:(emailEl.value||'').trim() }]
+          });
+        },
+        onApprove: function(data, actions){
+          return actions.order.capture().then(function(details){
+            var d = document.getElementById('done'); d.style.display='block';
+            d.innerHTML = '<b>✅ SANDBOX payment captured — the integration WORKS.</b><br>'+
+              'Payer: '+(details.payer && details.payer.name ? details.payer.name.given_name : '(test)')+'<br>'+
+              'Order ID: <b>'+data.orderID+'</b><br>'+
+              'Status: <b>'+details.status+'</b><br>'+
+              'This proves the code is correct. For real payments, upgrade to PayPal Business and swap in the live Client ID.';
+            d.scrollIntoView({behavior:'smooth'});
+          });
+        },
+        onError: function(err){
+          var d = document.getElementById('done'); d.style.display='block';
+          d.style.background='#3a1616'; d.style.borderColor='#e5534b';
+          d.innerHTML = '<b>Sandbox error:</b><br>'+String(err).slice(0,300);
+        }
+      }).render('#pp-'+p.id);
+    }
+  });
+  if(!window.paypal){
+    grid.innerHTML = '<div class="card">PayPal SDK failed to load (check the sandbox Client ID).</div>';
+  }
+</script>
+</body>
+</html>
