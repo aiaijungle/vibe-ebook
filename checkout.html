@@ -174,6 +174,17 @@
               'Need help? <a href="mailto:management@stayjanda.com">management@stayjanda.com</a>';
             d.scrollIntoView({behavior:'smooth'});
           });
+        },
+        onCancel: function(data){
+          sendOrchestrationEvent({ event:'paypal_cancel', product:p.name, amount:p.price, currency:'USD', email:(emailEl.value||'').trim(), order_id:(data&&data.orderID)||'', url:window.location.href });
+          var d=document.getElementById('done'); d.style.display='block'; d.style.background='#241f2e'; d.style.borderColor='#6e5a9a';
+          d.innerHTML='Payment canceled. You can try again anytime.<br>Questions? <a href="mailto:management@stayjanda.com">management@stayjanda.com</a>';
+        },
+        onError: function(err){
+          sendOrchestrationEvent({ event:'paypal_error', product:p.name, amount:p.price, currency:'USD', email:(emailEl.value||'').trim(), error:String(err).slice(0,300), url:window.location.href });
+          var d=document.getElementById('done'); d.style.display='block'; d.style.background='#3a1616'; d.style.borderColor='#e5534b';
+          d.innerHTML='<b>Payment could not be completed.</b><br>Please try another card or PayPal account, or email <a href="mailto:management@stayjanda.com">management@stayjanda.com</a> and we will help you finish your purchase.';
+          d.scrollIntoView({behavior:'smooth'});
         }
       }).render('#pp-'+p.id);
     }
