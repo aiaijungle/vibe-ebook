@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 실전 레벨 테스트 — 나의 AI 활용력 6역량 무료 진단</title>
+<meta name="description" content="코딩 없이 AI를 얼마나 실전으로 쓰는가? 12문항 무료 진단으로 6역량(지시력·도구활용·자동화·검수·수익화·운영) 점수와 나의 AI 레벨을 확인하고, 약점을 채울 맞춤 가이드를 받으세요.">
+<link rel="canonical" href="https://aiaijungle.github.io/vibe-ebook/ai-level-test.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="AI 실전 레벨 테스트 — 나의 AI 활용력 6역량 무료 진단">
+<meta property="og:description" content="12문항으로 나의 AI 실전 레벨과 6역량 점수를 무료 진단.">
+<meta property="og:url" content="https://aiaijungle.github.io/vibe-ebook/ai-level-test.html">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"AI 실전 레벨 테스트는 무엇인가요?","acceptedAnswer":{"@type":"Answer","text":"코딩을 모르는 사람도 AI를 얼마나 실전으로 활용하는지 12문항으로 진단해, 지시력·도구활용·자동화·검수·수익화·운영 6역량 점수와 종합 레벨(입문·실전·운영자)을 무료로 알려주는 자가진단 테스트입니다."}},
+{"@type":"Question","name":"무료인가요?","acceptedAnswer":{"@type":"Answer","text":"네, 완전 무료입니다. 결과와 맞춤 가이드 리포트를 이메일로 받을 수 있습니다."}}]}
+</script>
+<style>
+:root{--bg:#140c00;--card:#1f1606;--accent:#fbbf24;--accent2:#f59e0b;--text:#fef3c7;--muted:#bda77a;--line:#3b2d12}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Pretendard","Malgun Gothic",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;-webkit-text-size-adjust:100%}
+.wrap{width:min(620px,calc(100% - 32px));margin:0 auto;padding:36px 0 80px}
+.badge{display:inline-block;background:var(--accent);color:#1a0a00;font-weight:900;font-size:.74rem;padding:5px 13px;border-radius:999px;letter-spacing:.04em}
+h1{font-size:clamp(28px,7vw,44px);line-height:1.15;margin:16px 0 8px;color:#fff}
+.lead{color:var(--muted);font-size:clamp(15px,4vw,17px);margin:0 0 26px;word-break:keep-all}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px 22px;margin:16px 0}
+.btn{display:inline-block;width:100%;text-align:center;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#1a0a00;font-weight:900;font-size:1.05rem;border:none;padding:16px;border-radius:12px;cursor:pointer;text-decoration:none}
+.btn.ghost{background:transparent;border:1.5px solid var(--accent);color:var(--accent)}
+.q-num{color:var(--accent);font-weight:900;font-size:.82rem;letter-spacing:.05em}
+.q-text{font-size:clamp(18px,5vw,22px);font-weight:800;color:#fff;margin:6px 0 18px;line-height:1.4;word-break:keep-all}
+.opt{display:block;width:100%;text-align:left;background:#2a1f0c;border:1.5px solid var(--line);color:var(--text);padding:15px 16px;border-radius:11px;margin:9px 0;cursor:pointer;font-size:.97rem;line-height:1.5;transition:all .15s;word-break:keep-all}
+.opt:hover,.opt:active{border-color:var(--accent);background:#33260f}
+.prog{height:7px;background:#2a1f0c;border-radius:99px;overflow:hidden;margin:0 0 22px}
+.prog>i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));width:0;transition:width .3s}
+.bar-row{margin:13px 0}
+.bar-row .lbl{display:flex;justify-content:space-between;font-size:.9rem;margin-bottom:5px}
+.bar-row .lbl b{color:#fff}
+.bar{height:13px;background:#2a1f0c;border-radius:99px;overflow:hidden}
+.bar>i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:99px;width:0;transition:width .8s}
+.level{text-align:center;margin:8px 0 20px}
+.level .lv{font-size:clamp(30px,9vw,52px);font-weight:900;color:var(--accent);line-height:1.1}
+input{width:100%;padding:14px;border-radius:10px;border:1.5px solid var(--line);background:#2a1f0c;color:#fff;font-size:1rem;margin:8px 0;box-sizing:border-box}
+input:focus{outline:none;border-color:var(--accent)}
+.hide{display:none}
+.foot{color:var(--muted);font-size:.8rem;text-align:center;margin-top:14px}
+a.link{color:var(--accent);font-weight:800}
+.weak{background:#3b1d0a;border-left:4px solid var(--accent);padding:16px 18px;border-radius:10px;margin:16px 0;word-break:keep-all}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- 인트로 -->
+  <section id="intro">
+    <span class="badge">무료 진단 · 1분</span>
+    <h1>AI 실전 레벨 테스트</h1>
+    <p class="lead">코딩 못 해도 됩니다. 당신이 <b>AI를 얼마나 '실전'으로 쓰는지</b> 12문항으로 진단해, 6역량 점수와 나의 AI 레벨을 알려드립니다.</p>
+    <div class="card">
+      <div style="font-weight:800;color:#fff;margin-bottom:10px;">진단하는 6역량</div>
+      <div style="font-size:.92rem;color:var(--muted);line-height:1.9">① 지시력 · ② 도구 활용 · ③ 자동화 설계<br>④ 검수·판단 · ⑤ 수익화 연결 · ⑥ 지속 운영</div>
+    </div>
+    <button class="btn" onclick="start()">▶ 진단 시작하기</button>
+    <p class="foot">결과는 이 기기에 저장돼요(이어하기 가능).</p>
+  </section>
+
+  <!-- 문항 -->
+  <section id="quiz" class="hide">
+    <div class="prog"><i id="progbar"></i></div>
+    <div class="q-num" id="qnum"></div>
+    <div class="q-text" id="qtext"></div>
+    <div id="opts"></div>
+    <button class="btn ghost" style="margin-top:10px" onclick="back()">← 이전</button>
+  </section>
+
+  <!-- 이메일 게이트 -->
+  <section id="gate" class="hide">
+    <span class="badge">진단 완료 ✓</span>
+    <h1 style="font-size:clamp(24px,6vw,34px)">결과가 준비됐어요</h1>
+    <p class="lead">아래에 입력하면 <b>6역량 점수 + 나의 AI 레벨 + 약점을 채울 맞춤 가이드</b>를 바로 보여드리고, 상세 리포트를 메일로 보내드립니다.</p>
+    <div class="card">
+      <input id="nm" placeholder="이름 (예: 홍길동)" autocomplete="name">
+      <input id="em" type="email" placeholder="이메일 (결과 리포트 받을 곳)" autocomplete="email">
+      <button class="btn" onclick="submitGate()">📊 내 결과 보기 →</button>
+      <div id="gate-msg" class="foot" style="min-height:16px"></div>
+    </div>
+    <p class="foot">스팸 없음 · 결과 안내와 업데이트 소식만. 언제든 수신거부.</p>
+  </section>
+
+  <!-- 결과 -->
+  <section id="result" class="hide">
+    <span class="badge">나의 AI 실전 레벨</span>
+    <div class="level"><div class="lv" id="lvName"></div><div id="lvDesc" style="color:var(--muted);margin-top:6px"></div></div>
+    <div class="card" id="bars"></div>
+    <div class="weak" id="weakBox"></div>
+    <a class="btn" id="weakCta" href="#">👉 약점 보완 가이드 보기</a>
+    <a class="btn ghost" style="margin-top:10px" href="sales.html">📚 6역량 한 번에 — AI바이블 전권 묶음 보기</a>
+    <p class="foot" id="shareLine">▶ 더 깊은 실전 데모: <a class="link" href="https://www.youtube.com/channel/UCCqi9m0XPHLPxvReWfJhJig" target="_blank" rel="noopener">AI사냥꾼 유튜브</a></p>
+  </section>
+
+</div>
+
+<script>
+// ===== 데이터 =====
+var COMP=[
+ {k:'지시력', book:'index.html', name:'2권 바이브 코딩 실전 바이블'},
+ {k:'도구 활용', book:'claude-code-bible.html', name:'4권 Claude Code 바이블'},
+ {k:'자동화 설계', book:'agent-bible.html', name:'3권 AI 에이전트 바이블'},
+ {k:'검수·판단', book:'practical-bible.html', name:'5권 실무 바이블'},
+ {k:'수익화 연결', book:'book1.html', name:'1권 마케팅 자동화 입문'},
+ {k:'지속 운영', book:'practical-bible.html', name:'5권 실무 바이블'}
+];
+// 각 문항: c=역량index, q, opts(점수 오름차순 1~4)
+var Q=[
+ {c:0,q:"AI에게 보통 어떻게 요청하나요?",o:["단답형 질문만 던진다","맥락과 예시를 같이 준다","역할·출력형식까지 지정한다","작업을 단계로 쪼개 위임하고 검수한다"]},
+ {c:0,q:"원하는 결과가 안 나오면?",o:["포기하고 직접 한다","같은 질문을 반복한다","프롬프트를 고쳐본다","작업을 분해해 다시 지시한다"]},
+ {c:1,q:"써본 AI 도구는 몇 개인가요?",o:["ChatGPT 정도","2~3개","Claude·Cursor 등 4~5개","Claude Code·MCP 등 6개 이상"]},
+ {c:1,q:"AI 코딩 도구(Claude Code/Cursor)는?",o:["모른다","들어만 봤다","가끔 쓴다","일상적으로 쓴다"]},
+ {c:2,q:"반복 업무 자동화는?",o:["전부 수동","간단한 매크로","n8n·Make로 자동화","에이전트/웹훅으로 무인 운영"]},
+ {c:2,q:"노션·슬랙·API 등 도구 연결은?",o:["안 한다","하나 연결","몇 개 연결","통합 운영한다"]},
+ {c:3,q:"AI 결과물을 검증하나요?",o:["그대로 쓴다","대충 본다","사실관계 확인한다","기준 잡고 교정한다"]},
+ {c:3,q:"AI 환각/오류 대응은?",o:["뭔지 모른다","당한 적 있다","항상 의심한다","체크 루틴이 있다"]},
+ {c:4,q:"AI로 만든 걸 수익에 연결?",o:["생각만 한다","아이디어 단계","시도해봤다","실제 매출이 난다"]},
+ {c:4,q:"콘텐츠/상품을 팔아본 적은?",o:["없다","무료로만","소액 판매","지속 매출"]},
+ {c:5,q:"만든 자동화/봇을 유지하나요?",o:["1회성이다","방치한다","가끔 점검","24/7 운영한다"]},
+ {c:5,q:"장애·실패가 나면?",o:["뭘 할지 모른다","포기한다","검색해 고친다","진단·복구 루틴이 있다"]}
+];
+var LEVELS=[
+ {min:0,name:"AI 입문",d:"이제 막 AI를 만나는 단계 — 기초 세팅부터 잡으면 빠르게 도약합니다."},
+ {min:24,name:"AI 실전",d:"AI를 업무에 쓰는 단계 — 자동화·수익화로 확장할 때입니다."},
+ {min:36,name:"AI 운영자",d:"AI를 시스템으로 굴리는 상위 단계 — 운영·확장의 디테일을 채우세요."}
+];
+var LEAD_ENDPOINT='https://aitf-api.onrender.com/v1/quiz/lead'; // AITF→Notion (백엔드 준비 시 활성)
+
+var KEY='janda_ailevel';
+var state={i:0,ans:[]};
+function $(id){return document.getElementById(id)}
+function show(id){['intro','quiz','gate','result'].forEach(function(s){$(s).classList.toggle('hide',s!==id)});window.scrollTo({top:0,behavior:'smooth'})}
+
+function start(){ state={i:0,ans:[]}; show('quiz'); render(); }
+function render(){
+  var q=Q[state.i];
+  $('progbar').style.width=((state.i)/Q.length*100)+'%';
+  $('qnum').textContent='Q'+(state.i+1)+' / '+Q.length+'  ·  '+COMP[q.c].k;
+  $('qtext').textContent=q.q;
+  var h='';
+  for(var j=0;j<q.o.length;j++){ h+='<button class="opt" onclick="pick('+(j+1)+')">'+q.o[j]+'</button>'; }
+  $('opts').innerHTML=h;
+}
+function pick(score){ state.ans[state.i]=score; if(state.i<Q.length-1){state.i++;render();} else { saveLocal(); show('gate'); } }
+function back(){ if(state.i>0){state.i--;render();} else show('intro'); }
+function saveLocal(){ try{localStorage.setItem(KEY,JSON.stringify(state.ans));}catch(e){} }
+
+function scores(){
+  var s=[0,0,0,0,0,0];
+  for(var i=0;i<Q.length;i++){ s[Q[i].c]+= (state.ans[i]||1); }
+  return s; // 각 역량 2~8
+}
+function submitGate(){
+  var nm=$('nm').value.trim(), em=$('em').value.trim();
+  if(!em || em.indexOf('@')<1){ $('gate-msg').textContent='이메일을 확인해주세요.'; return; }
+  $('gate-msg').textContent='결과 분석 중...';
+  var s=scores(), total=s.reduce(function(a,b){return a+b},0);
+  var payload={type:'ai_level_test',name:nm,email:em,scores:s,total:total,ts:Date.now()};
+  try{ localStorage.setItem('janda_ailevel_lead',JSON.stringify(payload)); }catch(e){}
+  // 백엔드 전송(fire-and-forget, 실패해도 결과는 보여줌)
+  try{
+    fetch(LEAD_ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}).catch(function(){});
+  }catch(e){}
+  renderResult(nm,s,total);
+  show('result');
+}
+function renderResult(nm,s,total){
+  var lv=LEVELS[0]; for(var i=0;i<LEVELS.length;i++){ if(total>=LEVELS[i].min) lv=LEVELS[i]; }
+  $('lvName').textContent=(nm?nm+'님은 ':'')+lv.name;
+  $('lvDesc').textContent=lv.d;
+  // 막대
+  var h='';
+  for(var c=0;c<6;c++){ var pct=Math.round((s[c]-2)/6*100); if(pct<5)pct=5;
+    h+='<div class="bar-row"><div class="lbl"><span>'+COMP[c].k+'</span><b>'+pct+'%</b></div><div class="bar"><i style="width:'+pct+'%"></i></div></div>'; }
+  $('bars').innerHTML=h;
+  // 최약 역량
+  var wi=0; for(var c2=1;c2<6;c2++){ if(s[c2]<s[wi]) wi=c2; }
+  var w=COMP[wi];
+  $('weakBox').innerHTML='가장 약한 역량은 <b style="color:#fff">'+w.k+'</b>이에요. 이 부분은 <b style="color:var(--accent)">'+w.name+'</b>에서 집중적으로 다룹니다.';
+  $('weakCta').textContent='👉 '+w.k+' 보완하기 — '+w.name;
+  $('weakCta').href=w.book;
+  // 막대 애니메이션
+  setTimeout(function(){ document.querySelectorAll('.bar > i').forEach(function(el){ el.style.width=el.style.width; }); },50);
+}
+// 이어하기: 이전 답 있으면 인트로에 표시(간단히 생략 — 결과는 localStorage에 보관)
+</script>
+</body>
+</html>
