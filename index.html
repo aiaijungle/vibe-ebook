@@ -1176,6 +1176,14 @@ a,button{-webkit-touch-callout:default!important;-webkit-user-select:auto!import
 <!-- /바이브코딩 원론 섹션 -->
 
 <!-- 🔒 PAYWALL 시작 — 2026-06-02 (5권 패턴, 1단계 베이스캠프부터 차단) -->
+<!-- 🆕 무료존 업데이트 티저 -->
+<div style="max-width:720px;margin:28px auto;padding:22px 24px;background:linear-gradient(135deg,#1a0a00,#3b1d0a);border:1.5px solid #fbbf24;border-radius:14px;color:#fef3c7;text-align:center;word-break:keep-all;">
+  <span style="display:inline-block;background:#fbbf24;color:#1a0a00;font-weight:900;font-size:.78rem;padding:4px 12px;border-radius:999px;letter-spacing:.04em;">🆕 2026.6 실전 업데이트</span>
+  <h3 style="color:#fbbf24;font-size:1.25rem;font-weight:900;margin:14px 0 8px;line-height:1.4;">"96시간 그 후" — 실전에서 진짜 터진 버그 디버깅 사례집 추가</h3>
+  <p style="margin:0;font-size:.92rem;line-height:1.8;">판매 페이지가 글자 깨짐으로 박살 난 사고, 클라우드 동기화가 파일을 잘라먹은 함정, 페이월을 직접 만든 과정 — 책 맨 뒤 <strong style="color:#fde68a;">구매자 전용 챕터</strong>에 실제 복구 로그로 담았습니다.</p>
+  <p style="margin:10px 0 0;font-size:.84rem;color:#d6b88a;">▶ 바이브코딩 실전 데모: <a href="https://www.youtube.com/channel/UCCqi9m0XPHLPxvReWfJhJig" target="_blank" rel="noopener" style="color:#fbbf24;font-weight:800;">AI사냥꾼 유튜브</a></p>
+</div>
+
 <div class="paywall-locked-notice">
   <button class="pw-close" onclick="window.paywallNoticeClose()" aria-label="닫기">✕</button>
   <h3>🔒 여기부터는 — 입금 후 비밀번호로 열립니다</h3>
@@ -4007,6 +4015,26 @@ https://aitf-api.onrender.com/lounge
     <div>• <strong>Render</strong> (무료 호스팅) — <a href="https://render.com" target="_blank" style="color:var(--accent);">render.com</a></div>
   </div>
 </div>
+<section style="margin-top:40px;">
+  <h1 style="font-size:1.8rem;font-weight:900;color:#fbbf24;margin:0 0 6px;line-height:1.25;">🆕 2026.6 실전 업데이트 — 96시간 그 후, 실전 버그 디버깅 사례집</h1>
+  <p style="color:#a8a29e;font-size:.9rem;margin:0 0 20px;">출시한 뒤 실제로 운영하며 터진 사고와 복구 로그입니다. 이론이 아니라 그날의 진단·커밋 그대로입니다.</p>
+  <h2 style="font-size:1.25rem;margin:24px 0 8px;">사례 1 — 판매 페이지가 통째로 '글자 깨짐'</h2>
+  <p style="line-height:1.85;">제목·본문 절반이 알 수 없는 글자로 깨졌다. 한 글자씩 고치려 하면 거의 실패한다. 정답은 <strong>마지막으로 멀쩡했던 시점을 git 이력에서 찾아 그 파일만 복원</strong>하고, 이후의 정상 변경만 다시 얹는 것. "무엇이 마지막으로 정상이었나"는 git이 기억한다.</p>
+  <h2 style="font-size:1.25rem;margin:24px 0 8px;">사례 2 — 클라우드 동기화가 파일을 '잘라먹는' 함정</h2>
+  <p style="line-height:1.85;">중요한 설정·코드 파일의 꼬리가 주기적으로 사라졌다. 범인은 클라우드 드라이브의 '필요할 때만 내려받기' 기능. 해법: 핵심 파일은 <strong>"항상 이 기기에 유지" 설정 + 동기화 폴더 밖에 별도 백업</strong>.</p>
+  <h2 style="font-size:1.25rem;margin:24px 0 8px;">사례 3 — 페이월(잠금)을 직접 만드는 가장 단순한 방법</h2>
+  <p style="line-height:1.85;">새 서버 로직 없이 <strong>CSS + localStorage + URL 파라미터</strong>만으로 "결제 전 흐림 처리 / 비밀번호로 해제"를 구현했다. 새 코드가 적을수록 버그도 적다. 단, 무료/유료 경계를 가리키는 규칙이 여러 개면 <em>반드시 같은 경계를 가리키게</em> 동기화해야 한다.</p>
+  <div style="margin:26px 0 0;padding:18px 20px;background:#fff7ed;border-left:4px solid #fbbf24;border-radius:8px;">
+    <strong style="color:#9a3412;">따라하기 체크리스트</strong>
+    <ul style="margin:10px 0 0;padding-left:20px;line-height:1.9;">
+      <li>깨짐·손상은 고치지 말고 "마지막 정상 커밋" 복원</li>
+      <li>핵심 파일은 클라우드 동기화 밖에 백업본 유지</li>
+      <li>잠금은 새 서버 로직보다 CSS+localStorage가 견고</li>
+      <li>경계를 가리키는 규칙이 여러 개면 한 지점으로 동기화</li>
+    </ul>
+  </div>
+  <p style="margin:22px 0 0;font-size:.9rem;color:#57534e;">▶ 실전 데모: <a href="https://www.youtube.com/channel/UCCqi9m0XPHLPxvReWfJhJig" target="_blank" rel="noopener" style="color:#9a3412;font-weight:800;">AI사냥꾼 유튜브</a></p>
+</section>
     </div>
   </main>
 </div>
