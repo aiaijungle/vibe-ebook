@@ -1668,7 +1668,7 @@
       /* 🔒 즉시 차단 (CSS 자동) — JS DOMContentLoaded 전 깜박임 방지 */
       html:not(.paywall-unlocked) [data-paywall-stop] ~ *:not(script):not(style) { display: none !important; }
       /* 🔒 강력 차단 (ID 화이트리스트) — section.chapter 중 cover만 노출 (LEVEL 0 안 STEP 1~9 모두 차단) */
-      html:not(.paywall-unlocked) section.chapter:not(#cover) { display: none !important; }
+      html:not(.paywall-unlocked) section.chapter:not(#cover):not(#level0):not(#setup):not(#concept) { display: none !important; }
       /* 🛡 paywall 차단 박스는 어떤 상황에서도 강제 표시 (결제 박스 가시성 보장) */
       html:not(.paywall-unlocked) .paywall-locked-notice { display: block !important; visibility: visible !important; height: auto !important; max-height: none !important; }
       .paywall-locked-notice { max-width: 720px; margin: 32px auto; padding: 36px 28px; background: linear-gradient(135deg, #7c2d12, #9a3412); color: #fef3c7; border-radius: 16px; text-align: center; border: 2px solid #fbbf24; box-shadow: 0 10px 36px rgba(220,38,38,.4); word-break: keep-all; }
@@ -1720,65 +1720,8 @@
     })();
     </script>
 
-    <div class="paywall-locked-notice">
-      <h3>🔒 여기부터는 — 입금 후 비밀번호로 열립니다</h3>
-      <p><strong style="color:#fbbf24;">5권 풀패키지 99,000원</strong> — 평생 가장 가치있는 1회 결제.<br>결제 확인 후 노션 DB 등록 → <strong style="color:#fde68a;">영업일 기준 2일 안에 비밀번호 이메일·문자 발송 (공휴일 제외)</strong>.</p>
-      <p style="margin:8px 0 0;color:#fde68a;font-size:.82rem;line-height:1.7;">📖 <strong>AI 바이블 플랫폼 안내</strong> — 전자책은 <strong style="color:#fff;">잠금 페이지 링크에 비밀번호로 접속하여 보는 웹 형태</strong>입니다. 별도 PDF 파일·알집은 제공되지 않습니다.</p>
 
-      <!-- 🏅 사회적 증명 박스 (심리 트리거#4 · CEO 명시 2026-05-31) -->
-      <div style="background:rgba(0,0,0,.3);border:1.5px solid rgba(251,191,36,.5);border-radius:12px;padding:16px 18px;margin:16px 0;text-align:left;">
-        <div style="text-align:center;font-weight:900;color:#fbbf24;font-size:.82rem;letter-spacing:.1em;margin-bottom:12px;">🏅 신뢰의 증거 — AI 바이블 (1~4권 누적)</div>
-        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:12px;">
-          <div style="background:rgba(255,255,255,.05);border-radius:6px;padding:10px 8px;text-align:center;">
-            <div style="font-size:1.3rem;color:#fff;font-weight:900;line-height:1;">23만</div>
-            <div style="font-size:.7rem;color:#fde68a;margin-top:4px;">📷 인스타그램 노출</div>
-          </div>
-          <div style="background:rgba(255,255,255,.05);border-radius:6px;padding:10px 8px;text-align:center;">
-            <div style="font-size:1.3rem;color:#fff;font-weight:900;line-height:1;">23만</div>
-            <div style="font-size:.7rem;color:#fde68a;margin-top:4px;">📘 페이스북 노출</div>
-          </div>
-          <div style="background:rgba(255,255,255,.05);border-radius:6px;padding:10px 8px;text-align:center;">
-            <div style="font-size:1.3rem;color:#fff;font-weight:900;line-height:1;">400+</div>
-            <div style="font-size:.7rem;color:#fde68a;margin-top:4px;">🔗 공유</div>
-          </div>
-          <div style="background:rgba(251,191,36,.15);border:1px solid rgba(251,191,36,.4);border-radius:6px;padding:10px 8px;text-align:center;">
-            <div style="font-size:1.3rem;color:#fbbf24;font-weight:900;line-height:1;">165</div>
-            <div style="font-size:.7rem;color:#fff;margin-top:4px;">💬 직접 작성 후기</div>
-          </div>
-        </div>
-        <div style="background:rgba(0,0,0,.25);border-radius:8px;padding:12px 14px;font-size:.8rem;line-height:1.75;">
-          <div style="color:#fbbf24;font-weight:800;margin-bottom:6px;font-size:.72rem;">💬 추천사</div>
-          <p style="margin:0 0 6px;color:#fef3c7;font-style:italic;font-size:.78rem;line-height:1.7;">"클로드 코드와 AI 에이전트로 — AI 네이티브 기업이 되기 위한 필독서."<br>— <strong style="color:#fff;font-style:normal;">노성환</strong> · IT 대표 (구글 안티그래비티 바이브코딩 저자)</p>
-          <p style="margin:0;color:#fde68a;font-size:.74rem;">1~4권 추천사: <strong style="color:#fff;">박기웅 · 김덕은 · 강무성</strong></p>
-        </div>
-      </div>
-
-      <div class="pay-channels">
-        <div class="ch-title">📋 결제 방법 — 2 채널</div>
-        <div class="ch-row recommend"><strong>① 🏦 무통장 입금 (수수료 0% ⭐)</strong>
-          <span class="ch-sub">신한 <strong style="color:#fff;">110-271-235722</strong> · 예금주 <strong style="color:#fff;">김화현 (JANDA 잔다)</strong></span>
-          <span class="ch-sub">입금 후 카카오톡 "잔다 JANDA" 또는 ceo@stayjanda.com 에<br>&nbsp;&nbsp;<strong style="color:#fff;">이름·이메일·전화·상품·금액</strong> 5 항목 전송</span>
-        </div>
-        <div class="ch-row"><strong>② 💳 jbooking 결제 페이지</strong>
-          <span class="ch-sub">카드 결제 또는 계좌이체 (자동 처리)</span>
-        </div>
-      </div>
-
-      <a href="https://vibecodingbible.jbooking.kr/" target="_blank" class="pw-btn">💳 jbooking 결제 페이지 →</a>
-
-      <p style="margin-top:16px;font-size:.82rem;color:#fde68a;">이미 결제하신 분 — 받으신 비밀번호 입력</p>
-      <input id="paywall-pw-input" class="pw-input" placeholder="비밀번호 (예: BD-XXXXXXXX)" />
-      <button class="pw-submit" onclick="window.paywallUnlock()">잠금 해제</button>
-      <div style="margin-top:18px;background:rgba(34,197,94,.12);border:1px solid rgba(134,239,172,.35);border-radius:8px;padding:10px 14px;font-size:.78rem;line-height:1.7;color:#dcfce7;text-align:left;">
-        <p style="margin:0 0 4px;color:#fff;"><strong style="color:#86efac;">✅ 환불 가능:</strong> 1년 안에 5권 모두 <strong>열심히 실행</strong>했는데 10만원(99K)의 가치를 못 느끼셨다면 — <strong style="color:#fff;">100% 전액 환불</strong></p>
-        <p style="margin:0 0 4px;color:#fef3c7;font-size:.74rem;"><strong style="color:#fca5a5;">❌ 환불 불가:</strong> 지식 서비스 특성상 — 구매 후 <strong>단순 변심</strong>은 환불 불가 (전자상거래법 시행령 제21조)</p>
-        <p style="margin:6px 0 0;color:#fde68a;font-size:.74rem;text-align:center;">📈 7/1 가격 인상 · ♾ 평생 업데이트</p>
-      </div>
-    </div>
-
-    <div data-paywall-stop></div>
-
-    <section class="chapter paywall-locked" id="level0" data-level="0" style="display:none">
+    <section class="chapter" id="level0" data-level="0">
       <div class="ch-header" style="--c1:#38bdf8;--c2:#0ea5e9">
         <h1 class="ch-title">🗺️ LEVEL 0 — 지금 시작해야 하는 이유</h1>
         <div class="flow-diagram">
@@ -2110,7 +2053,7 @@
         </div>
       </div>
     </section>
-    <section class="chapter paywall-locked" id="setup" data-level="0" style="display:none">
+    <section class="chapter" id="setup" data-level="0">
       <div class="ch-header" style="--c1:#38bdf8;--c2:#0ea5e9">
         <h1 class="ch-title">⚙️ STEP 0 — 개발환경 완벽 설정</h1>
 
@@ -2330,7 +2273,7 @@ cd ai-agent-project</code></pre>
         </div>
       </div>
     </section>
-    <section class="chapter paywall-locked" id="concept" data-level="1" style="display:none">
+    <section class="chapter" id="concept" data-level="1">
       <div class="ch-header" style="--c1:#818cf8;--c2:#6366f1">
         <h1 class="ch-title">🤖 STEP 1 — 봇 vs 에이전트 차이</h1>
 
@@ -2535,6 +2478,64 @@ if __name__ == "__main__":
         </div>
       </div>
     </section>
+    <div class="paywall-locked-notice">
+      <h3>🔒 여기부터는 — 입금 후 비밀번호로 열립니다</h3>
+      <p><strong style="color:#fbbf24;">5권 풀패키지 99,000원</strong> — 평생 가장 가치있는 1회 결제.<br>결제 확인 후 노션 DB 등록 → <strong style="color:#fde68a;">영업일 기준 2일 안에 비밀번호 이메일·문자 발송 (공휴일 제외)</strong>.</p>
+      <p style="margin:8px 0 0;color:#fde68a;font-size:.82rem;line-height:1.7;">📖 <strong>AI 바이블 플랫폼 안내</strong> — 전자책은 <strong style="color:#fff;">잠금 페이지 링크에 비밀번호로 접속하여 보는 웹 형태</strong>입니다. 별도 PDF 파일·알집은 제공되지 않습니다.</p>
+
+      <!-- 🏅 사회적 증명 박스 (심리 트리거#4 · CEO 명시 2026-05-31) -->
+      <div style="background:rgba(0,0,0,.3);border:1.5px solid rgba(251,191,36,.5);border-radius:12px;padding:16px 18px;margin:16px 0;text-align:left;">
+        <div style="text-align:center;font-weight:900;color:#fbbf24;font-size:.82rem;letter-spacing:.1em;margin-bottom:12px;">🏅 신뢰의 증거 — AI 바이블 (1~4권 누적)</div>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:12px;">
+          <div style="background:rgba(255,255,255,.05);border-radius:6px;padding:10px 8px;text-align:center;">
+            <div style="font-size:1.3rem;color:#fff;font-weight:900;line-height:1;">23만</div>
+            <div style="font-size:.7rem;color:#fde68a;margin-top:4px;">📷 인스타그램 노출</div>
+          </div>
+          <div style="background:rgba(255,255,255,.05);border-radius:6px;padding:10px 8px;text-align:center;">
+            <div style="font-size:1.3rem;color:#fff;font-weight:900;line-height:1;">23만</div>
+            <div style="font-size:.7rem;color:#fde68a;margin-top:4px;">📘 페이스북 노출</div>
+          </div>
+          <div style="background:rgba(255,255,255,.05);border-radius:6px;padding:10px 8px;text-align:center;">
+            <div style="font-size:1.3rem;color:#fff;font-weight:900;line-height:1;">400+</div>
+            <div style="font-size:.7rem;color:#fde68a;margin-top:4px;">🔗 공유</div>
+          </div>
+          <div style="background:rgba(251,191,36,.15);border:1px solid rgba(251,191,36,.4);border-radius:6px;padding:10px 8px;text-align:center;">
+            <div style="font-size:1.3rem;color:#fbbf24;font-weight:900;line-height:1;">165</div>
+            <div style="font-size:.7rem;color:#fff;margin-top:4px;">💬 직접 작성 후기</div>
+          </div>
+        </div>
+        <div style="background:rgba(0,0,0,.25);border-radius:8px;padding:12px 14px;font-size:.8rem;line-height:1.75;">
+          <div style="color:#fbbf24;font-weight:800;margin-bottom:6px;font-size:.72rem;">💬 추천사</div>
+          <p style="margin:0 0 6px;color:#fef3c7;font-style:italic;font-size:.78rem;line-height:1.7;">"클로드 코드와 AI 에이전트로 — AI 네이티브 기업이 되기 위한 필독서."<br>— <strong style="color:#fff;font-style:normal;">노성환</strong> · IT 대표 (구글 안티그래비티 바이브코딩 저자)</p>
+          <p style="margin:0;color:#fde68a;font-size:.74rem;">1~4권 추천사: <strong style="color:#fff;">박기웅 · 김덕은 · 강무성</strong></p>
+        </div>
+      </div>
+
+      <div class="pay-channels">
+        <div class="ch-title">📋 결제 방법 — 2 채널</div>
+        <div class="ch-row recommend"><strong>① 🏦 무통장 입금 (수수료 0% ⭐)</strong>
+          <span class="ch-sub">신한 <strong style="color:#fff;">110-271-235722</strong> · 예금주 <strong style="color:#fff;">김화현 (JANDA 잔다)</strong></span>
+          <span class="ch-sub">입금 후 카카오톡 "잔다 JANDA" 또는 ceo@stayjanda.com 에<br>&nbsp;&nbsp;<strong style="color:#fff;">이름·이메일·전화·상품·금액</strong> 5 항목 전송</span>
+        </div>
+        <div class="ch-row"><strong>② 💳 jbooking 결제 페이지</strong>
+          <span class="ch-sub">카드 결제 또는 계좌이체 (자동 처리)</span>
+        </div>
+      </div>
+
+      <a href="https://vibecodingbible.jbooking.kr/" target="_blank" class="pw-btn">💳 jbooking 결제 페이지 →</a>
+
+      <p style="margin-top:16px;font-size:.82rem;color:#fde68a;">이미 결제하신 분 — 받으신 비밀번호 입력</p>
+      <input id="paywall-pw-input" class="pw-input" placeholder="비밀번호 (예: BD-XXXXXXXX)" />
+      <button class="pw-submit" onclick="window.paywallUnlock()">잠금 해제</button>
+      <div style="margin-top:18px;background:rgba(34,197,94,.12);border:1px solid rgba(134,239,172,.35);border-radius:8px;padding:10px 14px;font-size:.78rem;line-height:1.7;color:#dcfce7;text-align:left;">
+        <p style="margin:0 0 4px;color:#fff;"><strong style="color:#86efac;">✅ 환불 가능:</strong> 1년 안에 5권 모두 <strong>열심히 실행</strong>했는데 10만원(99K)의 가치를 못 느끼셨다면 — <strong style="color:#fff;">100% 전액 환불</strong></p>
+        <p style="margin:0 0 4px;color:#fef3c7;font-size:.74rem;"><strong style="color:#fca5a5;">❌ 환불 불가:</strong> 지식 서비스 특성상 — 구매 후 <strong>단순 변심</strong>은 환불 불가 (전자상거래법 시행령 제21조)</p>
+        <p style="margin:6px 0 0;color:#fde68a;font-size:.74rem;text-align:center;">📈 7/1 가격 인상 · ♾ 평생 업데이트</p>
+      </div>
+    </div>
+
+    <div data-paywall-stop></div>
+
     <section class="chapter paywall-locked" id="react" data-level="1" style="display:none">
       <div class="ch-header" style="--c1:#818cf8;--c2:#6366f1">
         <h1 class="ch-title">🧠 STEP 2 — ReAct 루프 (에이전트의 사고법)</h1>
