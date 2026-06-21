@@ -966,6 +966,14 @@ claude</pre>
   </section>
 
   <!-- ━━━━ CHAPTER 4 ━━━━ -->
+  <!-- 🆕 무료존 업데이트 티저 (궁금증 유발, 본문 X) -->
+  <div style="max-width:720px;margin:28px auto;padding:22px 24px;background:linear-gradient(135deg,#0f172a,#1e293b);border:1.5px solid #38bdf8;border-radius:14px;color:#e2e8f0;text-align:center;word-break:keep-all;">
+    <span style="display:inline-block;background:#38bdf8;color:#04263a;font-weight:900;font-size:.78rem;padding:4px 12px;border-radius:999px;letter-spacing:.04em;">🆕 2026.6 실전 업데이트</span>
+    <h3 style="color:#7dd3fc;font-size:1.25rem;font-weight:900;margin:14px 0 8px;line-height:1.4;">이 책이 <u>Claude Code로 직접 업데이트된</u> 과정을 통째로 공개했습니다</h3>
+    <p style="margin:0;font-size:.92rem;line-height:1.8;">멀티 AI 동시 작업 · git 복원으로 버그 잡기 · 라이브 사이트를 안 깨고 수술하는 검증 루프 — 책 맨 뒤 <strong style="color:#fbbf24;">구매자 전용 챕터</strong>에 실제 커밋·화면과 함께 담았습니다.</p>
+    <p style="margin:10px 0 0;font-size:.84rem;color:#94a3b8;">▶ 실전 데모 영상: <a href="https://www.youtube.com/channel/UCCqi9m0XPHLPxvReWfJhJig" target="_blank" rel="noopener" style="color:#7dd3fc;font-weight:800;">AI사냥꾼 유튜브</a></p>
+  </div>
+
   <div class="paywall-locked-notice">
     <h3>🔒 여기부터는 — 입금 후 비밀번호로 열립니다</h3>
     <p><strong style="color:#fbbf24;">5권 풀패키지 99,000원</strong> — 평생 가장 가치있는 1회 결제.<br>결제 확인 후 노션 DB 등록 → <strong style="color:#fde68a;">영업일 기준 2일 안에 비밀번호 이메일·문자 발송 (공휴일 제외)</strong>.</p>
@@ -2725,6 +2733,31 @@ claude</pre>
       <div>• <strong>Anthropic Discord</strong> — <a href="https://anthropic.com/discord" target="_blank" style="color:#a78bfa;">anthropic.com/discord</a> (커뮤니티·개발자 채널)</div>
     </div>
   </div>
+
+  <section class="chapter paywall-locked" id="update-2026-06" style="display:none">
+    <h1 style="font-size:1.8rem;font-weight:900;color:#0ea5e9;margin:0 0 6px;line-height:1.25;">🆕 2026.6 실전 업데이트 — 이 책이 Claude Code로 업데이트된 과정</h1>
+    <p style="color:#64748b;font-size:.9rem;margin:0 0 20px;">실제 운영 중인 전자책을, Claude Code로 직접 고치며 남긴 작업 로그입니다. 이론이 아니라 그날의 커밋·검증 그대로입니다.</p>
+
+    <h2 style="font-size:1.25rem;margin:24px 0 8px;">사례 1 — 깨진 판매페이지를 'git 이력 복원'으로 살리기</h2>
+    <p style="line-height:1.85;">판매 페이지 전체가 인코딩 오류로 글자가 깨졌다. 흔한 실수는 깨진 글자를 일일이 고치려는 것 — 이건 거의 실패한다. 대신 <strong>마지막으로 멀쩡했던 커밋</strong>을 git 이력에서 찾아 그 파일만 복원하고, 그 뒤에 추가됐던 정상 변경(영어 버튼 등)만 다시 얹었다. 핵심: <em>"무엇이 마지막으로 정상이었나"</em>를 git이 기억한다.</p>
+
+    <h2 style="font-size:1.25rem;margin:24px 0 8px;">사례 2 — 라이브 사이트를 '안 깨고' 수술하는 검증 루프</h2>
+    <p style="line-height:1.85;">판매 중인 페이지의 잠금(페이월) 위치를 옮기는 작업. 잘못하면 결제자가 못 열거나, 유료 내용이 새어 나간다. 그래서 <strong>① 백업 → ② 수정 → ③ '비결제 방문자에게 뭐가 보이는지' 자동 시뮬레이션 → ④ 배포 후 실제 사이트로 재검증</strong> 순서로만 움직였다. 사람 눈이 아니라 스크립트가 "콜드 방문자에게 정확히 N개만 보인다"를 확인해 줄 때까지 배포하지 않는다.</p>
+
+    <h2 style="font-size:1.25rem;margin:24px 0 8px;">사례 3 — 여러 AI가 동시에 일할 때 충돌 막기</h2>
+    <p style="line-height:1.85;">한 Claude는 검색 최적화, 다른 Claude는 영상, 그리고 자율 AI(시황)는 야간에 코드를 고친다. 같은 저장소를 동시에 건드리면 충돌한다. 해법은 <strong>"누가 어느 폴더를 점유 중인지" 공용 보드</strong>로 영역을 나누고, 전략적 결정은 한 곳(시황)에서 종합하는 것.</p>
+
+    <div style="margin:26px 0 0;padding:18px 20px;background:#f0f9ff;border-left:4px solid #0ea5e9;border-radius:8px;">
+      <strong style="color:#0369a1;">따라하기 체크리스트</strong>
+      <ul style="margin:10px 0 0;padding-left:20px;line-height:1.9;">
+        <li>고치기 전 항상 백업/커밋 — 롤백 지점부터 확보</li>
+        <li>"마지막 정상 상태"는 추측하지 말고 git 이력에서 찾기</li>
+        <li>라이브 변경은 배포 전 <em>자동 검증</em>으로 의도 확인</li>
+        <li>여러 AI/사람이 함께면 점유 영역을 먼저 나누기</li>
+      </ul>
+    </div>
+    <p style="margin:22px 0 0;font-size:.9rem;color:#475569;">▶ 위 과정의 실전 데모는 <a href="https://www.youtube.com/channel/UCCqi9m0XPHLPxvReWfJhJig" target="_blank" rel="noopener" style="color:#0ea5e9;font-weight:800;">AI사냥꾼 유튜브</a>에서 영상으로도 볼 수 있습니다.</p>
+  </section>
 
 </main>
 
