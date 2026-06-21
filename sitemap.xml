@@ -190,4 +190,56 @@
     <priority>0.5</priority>
   </url>
 
+  <!-- 신규 토픽 페이지: AI 오케스트레이션·MCP -->
+  <url>
+    <loc>https://aiaijungle.github.io/vibe-ebook/ai-orchestration.html</loc>
+    <lastmod>2026-06-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://aiaijungle.github.io/vibe-ebook/ai-orchestration.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiaijungle.github.io/vibe-ebook/en/ai-orchestration.html"/>
+  </url>
+
+  <!-- 신규 토픽 페이지: 힉스필드·메타API AI 영상광고 -->
+  <url>
+    <loc>https://aiaijungle.github.io/vibe-ebook/ai-video-ad-automation.html</loc>
+    <lastmod>2026-06-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://aiaijungle.github.io/vibe-ebook/ai-video-ad-automation.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiaijungle.github.io/vibe-ebook/en/ai-video-ad-automation.html"/>
+  </url>
+
+  <!-- 신규 토픽 페이지: 노션·피그마 AI 업무 자동화 -->
+  <url>
+    <loc>https://aiaijungle.github.io/vibe-ebook/ai-work-automation.html</loc>
+    <lastmod>2026-06-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- 신규 토픽 페이지: AEO·GEO -->
+  <url>
+    <loc>https://aiaijungle.github.io/vibe-ebook/aeo-geo.html</loc>
+    <lastmod>2026-06-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- 신규 영문 토픽: AI Orchestration & MCP -->
+  <url>
+    <loc>https://aiaijungle.github.io/vibe-ebook/en/ai-orchestration.html</loc>
+    <lastmod>2026-06-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 신규 영문 토픽: AI Video Ad Automation -->
+  <url>
+    <loc>https://aiaijungle.github.io/vibe-ebook/en/ai-video-ad-automation.html</loc>
+    <lastmod>2026-06-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>
