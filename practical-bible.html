@@ -5154,5 +5154,25 @@ window.toggleTheme = function(){
 })();
 </script>
 
+<!-- 📖 이어보기(챕터 저장) — localStorage, 2026-06-21 -->
+<button id="janda-resume" style="display:none;position:fixed;left:16px;bottom:20px;z-index:9998;background:#7c3aed;color:#fff;border:none;border-radius:999px;padding:11px 18px;font-weight:800;font-size:.86rem;box-shadow:0 6px 20px rgba(124,58,237,.45);cursor:pointer;">📖 이어보기</button>
+<script>
+(function(){
+  try{
+    var KEY='janda_progress_'+location.pathname;
+    var btn=document.getElementById('janda-resume');
+    var saved=parseInt(localStorage.getItem(KEY)||'0',10);
+    if(btn && saved>400){
+      btn.style.display='block';
+      btn.addEventListener('click',function(){ window.scrollTo({top:saved,behavior:'smooth'}); btn.style.display='none'; });
+    }
+    var t;
+    window.addEventListener('scroll',function(){
+      clearTimeout(t);
+      t=setTimeout(function(){ try{ localStorage.setItem(KEY,String(Math.round(window.scrollY))); }catch(e){} if(btn) btn.style.display='none'; },400);
+    },{passive:true});
+  }catch(e){}
+})();
+</script>
 </body>
 </html>

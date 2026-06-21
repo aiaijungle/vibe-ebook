@@ -3479,5 +3479,25 @@ var Q_VOL4=[
   style="position:fixed;bottom:24px;right:20px;z-index:99000;display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#f59e0b,#fbbf24);color:#1a0a00;border:none;padding:14px 20px;border-radius:32px;font-weight:900;font-size:.95rem;cursor:pointer;box-shadow:0 6px 20px rgba(251,191,36,.45);font-family:'Pretendard',sans-serif;white-space:nowrap;">
   🎁 선물하기
 </button>
+<!-- 📖 이어보기(챕터 저장) — localStorage, 2026-06-21 -->
+<button id="janda-resume" style="display:none;position:fixed;left:16px;bottom:20px;z-index:9998;background:#7c3aed;color:#fff;border:none;border-radius:999px;padding:11px 18px;font-weight:800;font-size:.86rem;box-shadow:0 6px 20px rgba(124,58,237,.45);cursor:pointer;">📖 이어보기</button>
+<script>
+(function(){
+  try{
+    var KEY='janda_progress_'+location.pathname;
+    var btn=document.getElementById('janda-resume');
+    var saved=parseInt(localStorage.getItem(KEY)||'0',10);
+    if(btn && saved>400){
+      btn.style.display='block';
+      btn.addEventListener('click',function(){ window.scrollTo({top:saved,behavior:'smooth'}); btn.style.display='none'; });
+    }
+    var t;
+    window.addEventListener('scroll',function(){
+      clearTimeout(t);
+      t=setTimeout(function(){ try{ localStorage.setItem(KEY,String(Math.round(window.scrollY))); }catch(e){} if(btn) btn.style.display='none'; },400);
+    },{passive:true});
+  }catch(e){}
+})();
+</script>
 </body>
 </html>
