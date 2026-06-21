@@ -2478,6 +2478,14 @@ if __name__ == "__main__":
         </div>
       </div>
     </section>
+    <!-- 🆕 무료존 업데이트 티저 (궁금증 유발, 본문 X) -->
+    <div style="max-width:720px;margin:28px auto;padding:22px 24px;background:linear-gradient(135deg,#1a0a00,#3b1d0a);border:1.5px solid #fbbf24;border-radius:14px;color:#fef3c7;text-align:center;word-break:keep-all;">
+      <span style="display:inline-block;background:#fbbf24;color:#1a0a00;font-weight:900;font-size:.78rem;padding:4px 12px;border-radius:999px;letter-spacing:.04em;">🆕 2026.6 실전 업데이트</span>
+      <h3 style="color:#fbbf24;font-size:1.25rem;font-weight:900;margin:14px 0 8px;line-height:1.4;">"AI 에이전트가 <u>조용히 죽는다</u>" — 30개를 6개월 굴리며 겪은 진짜 사고 사례 추가</h3>
+      <p style="margin:0;font-size:.92rem;line-height:1.8;">함수가 소리 없이 사라져 성장 점수가 급락한 SPOF 사고, 그걸 자동 진단·복원한 과정 — 책 맨 뒤 <strong style="color:#fde68a;">구매자 전용 챕터</strong>에 실제 로그와 함께 담았습니다.</p>
+      <p style="margin:10px 0 0;font-size:.84rem;color:#d6b88a;">▶ 30 에이전트 오케스트레이션 데모: <a href="https://www.youtube.com/channel/UCCqi9m0XPHLPxvReWfJhJig" target="_blank" rel="noopener" style="color:#fbbf24;font-weight:800;">AI사냥꾼 유튜브</a></p>
+    </div>
+
     <div class="paywall-locked-notice">
       <h3>🔒 여기부터는 — 입금 후 비밀번호로 열립니다</h3>
       <p><strong style="color:#fbbf24;">5권 풀패키지 99,000원</strong> — 평생 가장 가치있는 1회 결제.<br>결제 확인 후 노션 DB 등록 → <strong style="color:#fde68a;">영업일 기준 2일 안에 비밀번호 이메일·문자 발송 (공휴일 제외)</strong>.</p>
@@ -6333,6 +6341,31 @@ if __name__ == "__main__":
       </div>
   </div>
   </section>
+    <section class="chapter paywall-locked" id="update-2026-06" data-level="0" style="display:none">
+      <h1 style="font-size:1.8rem;font-weight:900;color:#fbbf24;margin:0 0 6px;line-height:1.25;">🆕 2026.6 실전 업데이트 — AI 에이전트가 조용히 죽는다 (SPOF 진단·복원)</h1>
+      <p style="color:#a8a29e;font-size:.9rem;margin:0 0 20px;">30개 에이전트를 24시간 굴리며 실제로 겪은 사고와 복구 로그입니다. 이론이 아니라 그날의 진단·커밋 그대로입니다.</p>
+
+      <h2 style="font-size:1.25rem;margin:24px 0 8px;color:#0d5f80;">증상 — 아무도 안 멈췄는데 성장 점수가 급락</h2>
+      <p style="line-height:1.85;">에러도, 알람도 없었다. 그런데 시스템의 '성장 점수'가 며칠째 한 자리에 고착됐다. 봇은 멀쩡히 도는데 결과만 안 나오는 상태 — 가장 잡기 어려운 종류의 고장이다.</p>
+
+      <h2 style="font-size:1.25rem;margin:24px 0 8px;color:#0d5f80;">원인 — '조용한 SPOF': 함수가 소리 없이 사라졌다</h2>
+      <p style="line-height:1.85;">핵심 파일의 <strong>꼬리와 공개 함수가 통째로 잘려 있었다</strong>(클라우드 동기화가 파일을 잘라먹은 것). 그 함수를 호출하던 다른 에이전트는 <code>try/except</code>로 조용히 실패하고 넘어갔다. 그래서 "안 죽은 것처럼 보이는데 기능만 죽은" 상태가 됐다. 이게 <strong>SPOF(단일 실패점)</strong>다.</p>
+
+      <h2 style="font-size:1.25rem;margin:24px 0 8px;color:#0d5f80;">복원 — '소비자 대조' 전수 점검</h2>
+      <p style="line-height:1.85;">한 파일씩 열어 보는 대신, <strong>"이 함수를 누가 import 하는가"를 코드 전체에서 거꾸로 추적</strong>해(AST 파싱) 호출은 되는데 정의가 사라진 함수를 찾아냈다. 누락 함수를 기존 로그 기반으로 재구성하고, subprocess로 실제 실행을 검증한 뒤 복원하니 점수가 즉시 회복됐다.</p>
+
+      <div style="margin:26px 0 0;padding:18px 20px;background:#fff7ed;border-left:4px solid #fbbf24;border-radius:8px;">
+        <strong style="color:#9a3412;">따라하기 체크리스트</strong>
+        <ul style="margin:10px 0 0;padding-left:20px;line-height:1.9;">
+          <li>에이전트는 "안 죽었는데 기능만 죽는다" — 에러 없음 ≠ 정상</li>
+          <li>핵심 함수는 <em>호출부(소비자)와 정의를 주기적으로 대조</em></li>
+          <li><code>try/except</code>가 실패를 삼키지 않게 — 조용한 실패에 알람 달기</li>
+          <li>중요한 파일은 클라우드 동기화 밖에 백업본 두기(파일 잘림 대비)</li>
+        </ul>
+      </div>
+      <p style="margin:22px 0 0;font-size:.9rem;color:#57534e;">▶ 30 에이전트가 실제로 도는 모습은 <a href="https://www.youtube.com/channel/UCCqi9m0XPHLPxvReWfJhJig" target="_blank" rel="noopener" style="color:#0d5f80;font-weight:800;">AI사냥꾼 유튜브</a>에서 영상으로 볼 수 있습니다.</p>
+    </section>
+
   </div>
 
   <!-- 스크롤 상단 버튼 -->
