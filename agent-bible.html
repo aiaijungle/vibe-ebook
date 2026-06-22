@@ -7279,6 +7279,36 @@ var Q_VOL3=[
   ban.appendChild(x);
 })();
 </script>
+<!-- 복사 시도 차단(클립보드 치환+추적코드) · 저자기기 면제 — 2026-06-22 -->
+<script>
+(function(){
+  if(window.__jandaCopyGuard)return; window.__jandaCopyGuard=true;
+  var AUTHOR=(function(){try{var q=location.search;
+    if(/[?&]author=1\b/.test(q))localStorage.setItem('janda_author','1');
+    var h=location.hostname;
+    return location.protocol==='file:'||h==='localhost'||h==='127.0.0.1'||localStorage.getItem('janda_author')==='1';
+  }catch(e){return false;}})();
+  if(AUTHOR)return; // CEO/저자 기기는 자유 복사
+  var ref=(Math.random().toString(36).slice(2,8)+Date.now().toString(36).slice(-4)).toUpperCase();
+  var WARN='⚠️ 이 콘텐츠는 잔다(JANDA)·리미트리스맨 저작권 보호 자료입니다.\n'
+    +'무단 복사·재배포 시 저작권법 제136조(5년 이하 징역 또는 5천만원 이하 벌금) 및 민법상 손해배상 책임이 따릅니다.\n'
+    +'정식 구매: https://vibecodingbible.jbooking.kr\n[ref:'+ref+']';
+  function toast(m){var t=document.getElementById('janda-toast');
+    if(t){t.textContent=m;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(function(){t.classList.remove('show');},3000);return;}
+    var d=document.getElementById('__jcopytoast'); if(!d){d=document.createElement('div');d.id='__jcopytoast';
+      d.style.cssText='position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:2147483647;background:#1a0a00;color:#fde68a;border:1px solid #fbbf24;padding:11px 18px;border-radius:10px;font-size:.85rem;font-weight:700;box-shadow:0 8px 28px rgba(0,0,0,.5);max-width:90vw;text-align:center;opacity:0;transition:opacity .2s;';
+      document.body.appendChild(d);}
+    d.textContent=m; d.style.opacity='1'; clearTimeout(d._t); d._t=setTimeout(function(){d.style.opacity='0';},3000);
+  }
+  function handler(e){
+    try{ if(e.clipboardData){ e.clipboardData.setData('text/plain',WARN);
+      e.clipboardData.setData('text/html','<p>'+WARN.replace(/\n/g,'<br>')+'</p>'); e.preventDefault(); } }catch(_){ }
+    toast('⚠️ 복사가 제한됩니다 — 저작권 보호 콘텐츠. 정식 구매로 이용해 주세요.');
+  }
+  document.addEventListener('copy',handler,true);
+  document.addEventListener('cut',handler,true);
+})();
+</script>
 </body>
 
 </html>
