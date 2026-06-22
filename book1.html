@@ -2061,7 +2061,7 @@ var Q_VOL1=[
   ban.appendChild(x);
 })();
 </script>
-<!-- 복사 시도 차단(클립보드 치환+추적코드) · 저자기기 면제 — 2026-06-22 -->
+<!-- 복사 시도 시 확실한 경고 + 노션기록 POST · 저자기기 면제 — 2026-06-22 -->
 <script>
 (function(){
   if(window.__jandaCopyGuard)return; window.__jandaCopyGuard=true;
@@ -2070,25 +2070,80 @@ var Q_VOL1=[
     var h=location.hostname;
     return location.protocol==='file:'||h==='localhost'||h==='127.0.0.1'||localStorage.getItem('janda_author')==='1';
   }catch(e){return false;}})();
-  if(AUTHOR)return; // CEO/저자 기기는 자유 복사
+  if(AUTHOR)return;
   var ref=(Math.random().toString(36).slice(2,8)+Date.now().toString(36).slice(-4)).toUpperCase();
-  var WARN='⚠️ 이 콘텐츠는 잔다(JANDA)·리미트리스맨 저작권 보호 자료입니다.\n'
-    +'무단 복사·재배포 시 저작권법 제136조(5년 이하 징역 또는 5천만원 이하 벌금) 및 민법상 손해배상 책임이 따릅니다.\n'
-    +'정식 구매: https://vibecodingbible.jbooking.kr\n[ref:'+ref+']';
-  function toast(m){var t=document.getElementById('janda-toast');
-    if(t){t.textContent=m;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(function(){t.classList.remove('show');},3000);return;}
-    var d=document.getElementById('__jcopytoast'); if(!d){d=document.createElement('div');d.id='__jcopytoast';
-      d.style.cssText='position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:2147483647;background:#1a0a00;color:#fde68a;border:1px solid #fbbf24;padding:11px 18px;border-radius:10px;font-size:.85rem;font-weight:700;box-shadow:0 8px 28px rgba(0,0,0,.5);max-width:90vw;text-align:center;opacity:0;transition:opacity .2s;';
-      document.body.appendChild(d);}
-    d.textContent=m; d.style.opacity='1'; clearTimeout(d._t); d._t=setTimeout(function(){d.style.opacity='0';},3000);
+  var WARN='⚠️ 이 콘텐츠는 잔다(JANDA)·리미트리스맨 저작권 보호 자료입니다.\n무단 복사·재배포 시 저작권법 제136조 및 민법상 손해배상 책임이 따릅니다.\n이 복사 시도는 기록되었습니다. 정식 구매: https://vibecodingbible.jbooking.kr\n[ref:'+ref+']';
+  var logged=false;
+  function logAttempt(type){
+    if(logged)return; logged=true;
+    try{ fetch('https://aitf-api.onrender.com/webhook/copy-attempt',{method:'POST',keepalive:true,
+      headers:{'Content-Type':'text/plain'},
+      body:JSON.stringify({type:type,ref:ref,page:location.pathname.split('/').pop()||'index.html',
+        ua:navigator.userAgent,ref_url:document.referrer||''})}).catch(function(){}); }catch(e){}
+  }
+  function showWarn(){
+    var o=document.getElementById('__jcopywarn');
+    if(o){o.style.display='flex';return;}
+    o=document.createElement('div');o.id='__jcopywarn';
+    o.style.cssText='position:fixed;inset:0;z-index:2147483647;display:flex;align-items:center;justify-content:center;background:rgba(8,6,12,.72);backdrop-filter:blur(3px);padding:24px;';
+    o.innerHTML='<div style="max-width:440px;width:100%;background:linear-gradient(135deg,#7c2d12,#9a3412);border:2px solid #fbbf24;border-radius:16px;padding:26px 22px;text-align:center;font-family:Pretendard,system-ui,sans-serif;box-shadow:0 20px 60px rgba(0,0,0,.6);">'
+      +'<div style="font-size:.74rem;font-weight:800;color:#fbbf24;letter-spacing:.14em;margin-bottom:8px;">⚠ COPYRIGHT PROTECTED</div>'
+      +'<div style="font-size:1.25rem;font-weight:900;color:#fff;margin-bottom:12px;line-height:1.4;">복사가 제한된 콘텐츠입니다</div>'
+      +'<p style="font-size:.9rem;line-height:1.8;color:#fef3c7;margin:0 0 14px;">이 자료는 <b style="color:#fff;">저작권법 제136조</b>로 보호됩니다.<br>무단 복사·재배포 시 <b style="color:#fbbf24;">법적 책임</b>이 따릅니다.<br><b style="color:#fff;">이 복사 시도는 기록되었습니다.</b> <span style="opacity:.7;font-size:.78rem;">(ref:'+ref+')</span></p>'
+      +'<a href="https://vibecodingbible.jbooking.kr" target="_blank" rel="noopener" style="display:inline-block;background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#1a0a00;font-weight:900;padding:12px 26px;border-radius:10px;text-decoration:none;margin-bottom:10px;">정식 구매하고 전체 보기 →</a><br>'
+      +'<button onclick="document.getElementById(&quot;__jcopywarn&quot;).style.display=&quot;none&quot;" style="background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.35);border-radius:8px;padding:8px 18px;font-size:.85rem;cursor:pointer;margin-top:4px;">확인</button>'
+      +'</div>';
+    document.body.appendChild(o);
   }
   function handler(e){
+    var type=e.type;
     try{ if(e.clipboardData){ e.clipboardData.setData('text/plain',WARN);
-      e.clipboardData.setData('text/html','<p>'+WARN.replace(/\n/g,'<br>')+'</p>'); e.preventDefault(); } }catch(_){ }
-    toast('⚠️ 복사가 제한됩니다 — 저작권 보호 콘텐츠. 정식 구매로 이용해 주세요.');
+      e.clipboardData.setData('text/html','<p>'+WARN.replace(/\n/g,'<br>')+'</p>'); e.preventDefault(); } }catch(_){}
+    logAttempt(type); showWarn();
   }
   document.addEventListener('copy',handler,true);
   document.addEventListener('cut',handler,true);
+})();
+</script>
+<!-- SNS 공유바 (시황 권고 위치: 본문 시작 아래) — 2026-06-22 -->
+<script>
+(function(){
+  if(window.__jandaShareBar)return; window.__jandaShareBar=true;
+  var URL=location.href.split('#')[0].split('?')[0];
+  var TITLE=document.title||'AI 바이블';
+  var TXT='AI 바이블 — '+TITLE;
+  function open2(u){window.open(u,'_blank','noopener,width=600,height=560');}
+  function t(m){var d=document.getElementById('__jsharetoast');if(!d){d=document.createElement('div');d.id='__jsharetoast';d.style.cssText='position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:2147483647;background:#1a1a2e;color:#fff;border:1px solid #a78bfa;padding:10px 18px;border-radius:10px;font-size:.85rem;font-weight:700;opacity:0;transition:opacity .2s;';document.body.appendChild(d);}d.textContent=m;d.style.opacity='1';clearTimeout(d._t);d._t=setTimeout(function(){d.style.opacity='0';},2500);}
+  function copy(){try{navigator.clipboard.writeText(URL);}catch(e){} t('🔗 링크가 복사됐어요!');}
+  function kakao(){
+    if(window.Kakao&&window.Kakao.Share){try{window.Kakao.Share.sendDefault({objectType:'feed',content:{title:TITLE,description:TXT,imageUrl:'https://aiaijungle.github.io/vibe-ebook/assets/bible_cover.png',link:{mobileWebUrl:URL,webUrl:URL}}});return;}catch(e){}}
+    if(navigator.share){navigator.share({title:TITLE,url:URL}).catch(function(){});return;}
+    copy(); t('카카오톡에 붙여넣기 하세요!');
+  }
+  var W={
+    web:function(){ if(navigator.share){navigator.share({title:TITLE,text:TXT,url:URL}).catch(function(){});} else {kakao();} },
+    kakao:kakao,
+    fb:function(){open2('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(URL));},
+    x:function(){open2('https://twitter.com/intent/tweet?text='+encodeURIComponent(TXT)+'&url='+encodeURIComponent(URL));},
+    th:function(){open2('https://www.threads.net/intent/post?text='+encodeURIComponent(TXT+' '+URL));},
+    line:function(){open2('https://social-plugins.line.me/lineit/share?url='+encodeURIComponent(URL));},
+    copy:copy
+  };
+  window.__jShare=W;
+  var btns=[['web','📤','공유','#6b7280'],['kakao','💬','카카오','#FEE500'],['fb','f','페북','#1877F2'],['x','𝕏','X','#000000'],['th','@','쓰레드','#101010'],['line','L','라인','#06C755'],['copy','🔗','복사','#a78bfa']];
+  var bar=document.createElement('div');
+  bar.className='janda-sns-share';
+  bar.style.cssText='display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center;max-width:680px;margin:18px auto;padding:14px 12px;background:rgba(124,58,237,.06);border:1px solid rgba(167,139,250,.3);border-radius:14px;';
+  var lab=document.createElement('span');lab.textContent='📢 도움이 됐다면 공유하기';lab.style.cssText='width:100%;text-align:center;font-size:.82rem;font-weight:800;color:#a78bfa;margin-bottom:2px;';
+  bar.appendChild(lab);
+  btns.forEach(function(b){var el=document.createElement('button');el.setAttribute('aria-label',b[2]);
+    el.innerHTML='<span style="font-size:1rem;line-height:1;">'+b[1]+'</span><span style="font-size:.66rem;font-weight:700;">'+b[2]+'</span>';
+    el.style.cssText='display:flex;flex-direction:column;align-items:center;gap:3px;min-width:48px;padding:8px 6px;border:none;border-radius:10px;cursor:pointer;color:'+(b[0]==='kakao'?'#3c1e1e':'#fff')+';background:'+b[3]+';transition:transform .15s;';
+    el.onmouseover=function(){el.style.transform='translateY(-2px)';};el.onmouseout=function(){el.style.transform='none';};
+    el.onclick=function(){W[b[0]]();};bar.appendChild(el);});
+  function place(){var h=document.querySelector('h1')||document.querySelector('.header');
+    if(h&&h.parentNode){h.insertAdjacentElement('afterend',bar);}else{document.body.insertBefore(bar,document.body.firstChild);}}
+  if(document.readyState!=='loading')place();else document.addEventListener('DOMContentLoaded',place);
 })();
 </script>
 </body>
