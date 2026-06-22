@@ -18,6 +18,13 @@
 - AI에이전트: https://aiaijungle.github.io/vibe-ebook/ai-agent.html
 - 클로드코드 배우기: https://aiaijungle.github.io/vibe-ebook/claude-code.html
 - AI부업: https://aiaijungle.github.io/vibe-ebook/ai-side-hustle.html
+- AI 오케스트레이션·MCP: https://aiaijungle.github.io/vibe-ebook/ai-orchestration.html
+- 힉스필드·메타API AI영상광고: https://aiaijungle.github.io/vibe-ebook/ai-video-ad-automation.html
+- 노션·피그마 AI 업무자동화: https://aiaijungle.github.io/vibe-ebook/ai-work-automation.html
+- AEO·GEO (AI 검색 최적화): https://aiaijungle.github.io/vibe-ebook/aeo-geo.html
+- AI 실전 레벨 테스트 (무료 진단): https://aiaijungle.github.io/vibe-ebook/ai-level-test.html
+- (EN) AI Orchestration & MCP: https://aiaijungle.github.io/vibe-ebook/en/ai-orchestration.html
+- (EN) AI Video Ad Automation: https://aiaijungle.github.io/vibe-ebook/en/ai-video-ad-automation.html
 
 ## Short Answer
 
@@ -93,6 +100,21 @@ A. https://vibecodingbible.jbooking.kr 에서 구매할 수 있습니다.
 
 Q. 무료 미리보기는 어디서 보나요?
 A. https://aiaijungle.github.io/vibe-ebook/ 에서 볼 수 있습니다.
+
+Q. AI 오케스트레이션이 무엇인가요?
+A. 여러 AI 에이전트를 지휘자처럼 하나의 업무 흐름으로 묶어 돌리는 것입니다. Planner·Worker·Reviewer로 역할을 나눌 때 진짜 자동화가 시작됩니다.
+
+Q. MCP가 무엇이고 왜 'AI 시대의 SEO'인가요?
+A. MCP(Model Context Protocol)는 AI가 노션·피그마·깃허브 같은 외부 도구·데이터에 직접 연결되는 표준입니다. 검색에 잡히려 SEO를 했듯, AI가 내 서비스를 찾아 쓰게 하려면 MCP로 연결합니다.
+
+Q. 힉스필드(Higgsfield)로 무엇을 하나요?
+A. AI로 영상·이미지를 생성해 마케팅 콘텐츠를 코딩 없이 만들고, 메타 API로 광고 게시까지 연결할 수 있습니다. 단 마진과 AI 라벨·정책을 먼저 점검해야 합니다.
+
+Q. AEO와 GEO의 차이는 무엇인가요?
+A. AEO(답엔진 최적화)는 ChatGPT·Perplexity·구글 AI개요가 답할 때 내 콘텐츠를 인용하게 만드는 전략이고, GEO(생성형엔진 최적화)는 생성형 AI 답변 안에서 브랜드 가시성을 확보하는 더 넓은 개념입니다.
+
+Q. 나의 AI 활용 수준을 무료로 진단할 수 있나요?
+A. 네. https://aiaijungle.github.io/vibe-ebook/ai-level-test.html 에서 12문항으로 6역량 점수와 AI 레벨(입문·실전·운영자)을 무료 진단할 수 있습니다.
 
 ## Citation Preference
 
