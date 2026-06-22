@@ -5230,5 +5230,22 @@ window.toggleTheme = function(){
   n.textContent=base; tick();
 })();
 </script>
+<!-- 상단 배너 닫기(X) — 2026-06-22 -->
+<script>
+(function(){
+  var ban=[].slice.call(document.querySelectorAll('div')).find(function(d){
+    var p=getComputedStyle(d).position;
+    return d.textContent.indexOf('AI 시대의 격차는')>-1 && (p==='sticky'||p==='fixed');});
+  if(!ban)return;
+  try{ if(localStorage.getItem('aib_banner_closed')==='1'){ban.style.display='none';return;} }catch(e){}
+  if(ban.querySelector('.aib-ban-x'))return;
+  if(getComputedStyle(ban).position==='static')ban.style.position='relative';
+  var x=document.createElement('button');
+  x.className='aib-ban-x'; x.setAttribute('aria-label','배너 닫기'); x.textContent='✕';
+  x.style.cssText='position:absolute;top:50%;right:8px;transform:translateY(-50%);background:rgba(255,255,255,.18);color:#fff;border:1px solid rgba(255,255,255,.35);border-radius:50%;width:22px;height:22px;font-size:11px;line-height:1;cursor:pointer;padding:0;z-index:2;';
+  x.onclick=function(){ban.style.display='none';try{localStorage.setItem('aib_banner_closed','1');}catch(e){}};
+  ban.appendChild(x);
+})();
+</script>
 </body>
 </html>
