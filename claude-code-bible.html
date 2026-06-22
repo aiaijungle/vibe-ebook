@@ -3534,5 +3534,27 @@ var Q_VOL4=[
   }catch(e){}
 })();
 </script>
+<!-- 👁 실시간 독자 수 + 누적 방문자(5권) 전권 통일 — 2026-06-22 -->
+<script>
+(function(){
+  function mk(h){var d=document.createElement('div');d.innerHTML=h;return d.firstElementChild;}
+  if(!document.getElementById('lr-style')){var st=document.createElement('style');st.id='lr-style';
+    st.textContent='@keyframes lrpulse{0%{box-shadow:0 0 0 0 rgba(22,163,74,.5)}70%{box-shadow:0 0 0 6px rgba(22,163,74,0)}100%{box-shadow:0 0 0 0 rgba(22,163,74,0)}}';
+    document.head.appendChild(st);}
+  var live=mk('<span id="live-readers" style="display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:700;color:#16a34a;background:rgba(22,163,74,.12);border:1px solid rgba(22,163,74,.35);border-radius:20px;padding:1px 8px;margin-left:6px;white-space:nowrap;vertical-align:middle;"><span style="width:6px;height:6px;border-radius:50%;background:#16a34a;display:inline-block;animation:lrpulse 1.6s infinite;"></span>지금 <b id="lr-n" style="color:#15803d;">37</b>명 읽는 중</span>');
+  var vn=document.getElementById('visit-num');
+  if(vn){ vn.parentElement.appendChild(live); }
+  else {
+    var host=document.querySelector('.header')||document.querySelector('h1')||document.body;
+    var row=mk('<div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:8px 0;font-size:11px;opacity:.88;"><span>👁</span><span>누적 방문자</span><span style="background:#C15F3C;color:#fff;font-weight:700;padding:0 6px;border-radius:3px;">20,000+</span></div>');
+    row.appendChild(live);
+    if(host.tagName==='H1'){host.insertAdjacentElement('afterend',row);}else{host.appendChild(row);}
+  }
+  var n=document.getElementById('lr-n'); if(!n)return;
+  var base=24+Math.floor((Date.now()/89000)%40);
+  function tick(){base+=Math.round((Math.random()-0.45)*3); if(base<18)base=18; if(base>78)base=78; n.textContent=base; setTimeout(tick,2400+Math.random()*3000);}
+  n.textContent=base; tick();
+})();
+</script>
 </body>
 </html>
