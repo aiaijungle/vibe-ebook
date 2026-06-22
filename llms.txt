@@ -12,6 +12,12 @@
 
 ## SEO / AEO Answer Pages
 
+- 프롬프트 엔지니어링: https://aiaijungle.github.io/vibe-ebook/ai-prompt-engineering.html
+- n8n 마케팅 자동화: https://aiaijungle.github.io/vibe-ebook/n8n-automation.html
+- AI 카피라이팅: https://aiaijungle.github.io/vibe-ebook/ai-copywriting.html
+- ChatGPT 비즈니스 활용: https://aiaijungle.github.io/vibe-ebook/chatgpt-business-use.html
+- AI 보고서 자동화: https://aiaijungle.github.io/vibe-ebook/ai-report-automation.html
+
 - AI 바이블: https://aiaijungle.github.io/vibe-ebook/ai-bible.html
 - AI배우기: https://aiaijungle.github.io/vibe-ebook/learn-ai.html
 - 바이브 코딩: https://aiaijungle.github.io/vibe-ebook/vibe-coding.html

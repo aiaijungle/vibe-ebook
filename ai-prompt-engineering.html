@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>프롬프트 엔지니어링이란? 비개발자 실전 작성법</title>
+  <meta name="description" content="프롬프트 엔지니어링은 AI에게 원하는 결과를 얻도록 지시문을 설계하는 기술입니다. 비개발자도 바로 쓰는 실전 4단계 작성법을 정리했습니다.">
+  <link rel="canonical" href="https://aiaijungle.github.io/vibe-ebook/ai-prompt-engineering.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="프롬프트 엔지니어링이란? 비개발자 실전 작성법">
+  <meta property="og:description" content="프롬프트 엔지니어링은 AI에게 원하는 결과를 얻도록 지시문을 설계하는 기술입니다. 비개발자도 바로 쓰는 실전 4단계 작성법을 정리했습니다.">
+  <meta property="og:url" content="https://aiaijungle.github.io/vibe-ebook/ai-prompt-engineering.html">
+  <meta property="og:image" content="https://aiaijungle.github.io/vibe-ebook/assets/og-1200x630.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://aiaijungle.github.io/vibe-ebook/assets/og-1200x630.png">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "프롬프트 엔지니어링이 뭔가요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AI(ChatGPT·Claude 등)에게 원하는 결과를 정확히 얻기 위해 지시문을 설계하는 기술입니다. 역할·맥락·예시·출력형식 네 가지를 정해주면 답 품질이 급격히 올라갑니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "비개발자도 할 수 있나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "네. 코딩이 아니라 '무엇을 어떻게 시킬지' 정리하는 능력입니다. ① 역할 부여(\"너는 마케터다\") ② 맥락 제공 ③ 예시 1개 ④ 출력 형식 지정 — 이 4단계면 충분합니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "실무에서 바로 쓰는 팁은?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "한 번에 다 시키지 말고 단계로 쪼개세요(제목→개요→본문). 결과가 약하면 '더 구체적으로', '표로', '300자로'처럼 제약을 더하면 품질이 올라갑니다."
+      }
+    }
+  ]
+}
+  </script>
+  <style>body{margin:0;font-family:"Pretendard","Malgun Gothic",Arial,sans-serif;background:#fbfcf8;color:#111317;line-height:1.72}.wrap{width:min(920px,calc(100% - 36px));margin:0 auto}header{padding:54px 0 32px;background:#6d28d9;color:#fff}main{padding:48px 0 76px}h1{font-size:clamp(32px,5.4vw,54px);line-height:1.08;margin:.2em 0}h2{font-size:26px;margin-top:38px}.card{background:#fff;border:1px solid #dfe5ee;border-radius:8px;padding:22px;margin:16px 0}a{color:#0f8f5f;font-weight:900}.cta{display:inline-flex;margin-top:18px;padding:14px 22px;border-radius:8px;background:#111317;color:#fff;text-decoration:none}.rel{margin-top:30px;font-size:15px}</style>
+</head>
+<body>
+  <header><div class="wrap"><p><b>Prompt Engineering</b></p><h1>프롬프트 엔지니어링은 'AI에게 일 시키는 문장 설계'입니다.</h1><p>좋은 답은 좋은 지시에서 나옵니다. 코딩이 아니라, AI가 헤매지 않도록 역할·맥락·형식을 정해주는 기술입니다.</p><a class="cta" href="sales.html">AI 바이블에서 실전으로 보기 →</a></div></header>
+  <main class="wrap">
+    <h2>프롬프트 엔지니어링이 뭔가요?</h2>
+    <div class="card">AI(ChatGPT·Claude 등)에게 원하는 결과를 정확히 얻기 위해 지시문을 설계하는 기술입니다. 역할·맥락·예시·출력형식 네 가지를 정해주면 답 품질이 급격히 올라갑니다.</div>
+    <h2>비개발자도 할 수 있나요?</h2>
+    <div class="card">네. 코딩이 아니라 '무엇을 어떻게 시킬지' 정리하는 능력입니다. ① 역할 부여("너는 마케터다") ② 맥락 제공 ③ 예시 1개 ④ 출력 형식 지정 — 이 4단계면 충분합니다.</div>
+    <h2>실무에서 바로 쓰는 팁은?</h2>
+    <div class="card">한 번에 다 시키지 말고 단계로 쪼개세요(제목→개요→본문). 결과가 약하면 '더 구체적으로', '표로', '300자로'처럼 제약을 더하면 품질이 올라갑니다.</div>
+    <h2>AI 바이블과 연결</h2>
+    <p class="rel"><a href="sales.html">AI 바이블 5권 보기</a> · <a href="claude-code.html">클로드코드 배우기</a> · <a href="ai-agent.html">AI 에이전트란?</a> · <a href="vibe-coding.html">바이브 코딩</a> · <a href="ai-bible.html">AI 바이블이란?</a></p>
+  </main>
+</body>
+</html>
