@@ -55,7 +55,8 @@
     "offers": [
       {"@type": "Offer", "price": "79800", "priceCurrency": "KRW", "availability": "https://schema.org/LimitedAvailability", "name": "5권 단권 79,800원"},
       {"@type": "Offer", "price": "79800", "priceCurrency": "KRW", "availability": "https://schema.org/PreOrder", "name": "5권 단권"},
-      {"@type": "Offer", "price": "199000", "priceCurrency": "KRW", "availability": "https://schema.org/PreOrder", "name": "5권 묶음 (1·2·3·4·5권 전체)"}
+      {"@type": "Offer", "price": "199000", "priceCurrency": "KRW", "availability": "https://schema.org/PreOrder", "name": "5권 묶음 (1·2·3·4·5권 전체)"},
+      {"@type": "Offer", "price": "499000", "priceCurrency": "KRW", "availability": "https://schema.org/PreOrder", "name": "AI 바이블 5권 마스터 (알집 포함)"}
     ]
   }
   </script>
@@ -506,7 +507,7 @@
 
 <!-- 얼리버드 배너 -->
 <div style="background:linear-gradient(90deg,#1a0a04,#2B1D12,#1a0a04);border-bottom:1px solid rgba(193,95,60,.3);padding:11px 20px;text-align:center;font-size:.86rem;color:rgba(250,249,245,.92);">
-  🚀 <strong style="color:#C15F3C;">5권 묶음 199,000원</strong> · 알집 포함 마스터 499,000원 ·
+  🚀 <strong style="color:#C15F3C;">5권 묶음 199,000원</strong> · 5권 마스터 499,000원 ·
   <a href="https://vibecodingbible.jbooking.kr/" style="background:#C15F3C;color:#fff;padding:4px 14px;border-radius:18px;text-decoration:none;font-weight:800;margin-left:8px;">신청하기 →</a>
 </div>
 
@@ -720,7 +721,7 @@
     <!-- 💎 인생 변화 카피 — CEO 직접 작성 (2026-05-28) -->
     <p style="font-size:1.15rem;color:#fff;font-weight:800;margin:8px 0 24px;line-height:1.6;word-break:keep-all;text-align:left;letter-spacing:-.01em;">
       <span style="color:#fbbf24;">5권 전권</span>이 — <span style="color:#fff;">당신의 인생을 변화시킬 수 있습니다.</span><br>
-      <span style="font-size:.88rem;font-weight:500;color:#a8a29e;">📌 5권 묶음 199,000원 · 알집 포함 마스터 499,000원 · 한 번 결제 = 평생 업데이트</span>
+      <span style="font-size:.88rem;font-weight:500;color:#a8a29e;">📌 5권 묶음 199,000원 · 5권 마스터 499,000원 · 한 번 결제 = 평생 업데이트</span>
     </p>
     <blockquote class="cover-quote">
       "AI 시대의 사장은 일하는 사람이 아니다. 일 시키는 사람이다."
@@ -1773,7 +1774,7 @@ text = openai.audio.transcriptions.create(
                 <!-- 💠 3티어 가격 (정상가·표시=결제, 2026-07-01) -->
         <div style="background:rgba(0,0,0,.3);border:1px solid rgba(251,191,36,.4);border-radius:12px;padding:20px 22px;margin:18px 0;">
           <div style="background:rgba(0,0,0,.2);border:1px solid rgba(251,191,36,.3);border-radius:8px;padding:10px 14px;margin-bottom:14px;text-align:center;">
-            <div style="font-size:.82rem;font-weight:700;color:#fde68a;">🎟 원하는 구성으로 — 단권 · 묶음 · 알집 포함 마스터</div>
+            <div style="font-size:.82rem;font-weight:700;color:#fde68a;">🎟 원하는 구성으로 — 단권 · 묶음 · 5권 마스터</div>
           </div>
           <table style="width:100%;border-collapse:collapse;font-size:.88rem;color:#fef3c7;">
             <thead>
@@ -1795,7 +1796,7 @@ text = openai.audio.transcriptions.create(
                 <td style="text-align:center;padding:12px 4px;color:#fff;"><strong style="font-size:1.2rem;">199,000원</strong></td>
               </tr>
               <tr style="background:rgba(251,191,36,.14);border-top:1px solid rgba(251,191,36,.35);">
-                <td style="padding:12px 4px;"><strong style="color:#fbbf24;">5권 마스터 🏆</strong></td>
+                <td style="padding:12px 4px;"><strong style="color:#fbbf24;">AI 바이블 5권 마스터 (알집 포함) 🏆</strong></td>
                 <td style="text-align:center;padding:12px 4px;color:#fde68a;">전권 + AI 도구 10종 빌드키트(알집)</td>
                 <td style="text-align:center;padding:12px 4px;color:#fff;"><strong style="font-size:1.2rem;">499,000원</strong></td>
               </tr>
@@ -4410,7 +4411,7 @@ async def payment(req: Request):
               <div style="font-weight:900;color:#fbbf24;font-size:1.3rem;">199,000원</div>
             </div>
             <div style="background:rgba(251,191,36,.12);border:1.5px solid #fbbf24;border-radius:12px;padding:16px;text-align:center;">
-              <div style="font-weight:900;color:#fff;font-size:1.02rem;">5권 마스터 ⭐</div>
+              <div style="font-weight:900;color:#fff;font-size:1.02rem;">AI 바이블 5권 마스터 (알집 포함)</div>
               <div style="font-size:.8rem;color:#fde68a;margin:4px 0 8px;">책 5권 + <strong>알집</strong> + 평생 업데이트</div>
               <div style="font-weight:900;color:#fbbf24;font-size:1.3rem;">499,000원</div>
             </div>
@@ -4420,7 +4421,7 @@ async def payment(req: Request):
       </div>
 
       <div class="cta-box">
-        <div class="cta-badge">🚀 5권 전권 · 평생 업데이트 · 알집 포함 마스터(499,000) 별도</div>
+        <div class="cta-badge">🚀 5권 전권 · 평생 업데이트 · 5권 마스터(499,000) 별도</div>
         <h3>5권 묶음 199,000원 — 한 번 결제 = 평생 업데이트</h3>
         <p>1·2·3·4·5권 시리즈. 단권 5권 합산(259,000원)보다 저렴한 묶음 199,000원. <strong>차이는 가치가 아니라, 그 사이의 1년이다.</strong><br>
         <em style="font-size:.92rem;color:#fde68a;">📌 종이책과 다르다 — 새 모델·MCP·워크플로우 나올 때마다 책이 자동 업데이트. 1년 뒤에도, 3년 뒤에도 최신판이다.</em></p>
@@ -5095,7 +5096,7 @@ function shareBook(){
                      + 'box-shadow:0 -4px 20px rgba(0,0,0,.3);font-family:Pretendard,sans-serif;'
                      + 'transition:transform .3s;';
     bar.innerHTML = '<span style="font-size:.88rem;font-weight:700;color:#fde68a;">🎟 5권 묶음 199,000원</span>'
-                  + '<span style="font-size:.82rem;color:#fef3c7;">— 알집 포함 마스터 499,000원</span>'
+                  + '<span style="font-size:.82rem;color:#fef3c7;">— 5권 마스터 499,000원</span>'
                   + '<a href="https://vibecodingbible.jbooking.kr/" target="_blank" style="background:#fff;color:#9a3412;padding:8px 18px;border-radius:8px;font-weight:900;font-size:.86rem;text-decoration:none;white-space:nowrap;">이어서 읽기 →</a>'
                   + '<button onclick="(function(){localStorage.setItem(\'janda_bottom_bar_dismissed\',Date.now());document.getElementById(\'janda-bottom-bar\').remove();})()" style="background:transparent;border:1px solid rgba(255,255,255,.4);color:#fde68a;padding:6px 12px;border-radius:6px;font-size:.78rem;cursor:pointer;white-space:nowrap;">✕ 나중에</button>';
     document.body.appendChild(bar);
