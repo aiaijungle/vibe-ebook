@@ -70,6 +70,13 @@ main{max-width:40rem;margin:0 auto;padding:20px 26px 80px;}
 .author b{color:var(--ink);}
 .dedication{max-width:34rem;margin:0 auto;padding:46px 26px 40px;text-align:center;border-top:1px solid var(--line);}
 .dedication p{font-family:'Noto Serif KR',serif;font-size:1.02rem;line-height:2.05;color:var(--soft);font-style:italic;margin:0;}
+.ded-photo{width:100%;max-width:330px;border-radius:14px;margin:0 auto 26px;display:block;box-shadow:0 14px 40px rgba(0,0,0,.18);}
+details.refs{margin:8px 0 4px;}
+details.refs summary{cursor:pointer;font-family:'Noto Sans KR',sans-serif;font-size:.95rem;font-weight:700;color:var(--accent);padding:10px 0;list-style:none;}
+details.refs summary::-webkit-details-marker{display:none;}
+details.refs summary::before{content:"▸ ";}
+details.refs[open] summary::before{content:"▾ ";}
+details.refs ul,details.refs p{font-size:.9rem;color:var(--soft);line-height:1.7;}
 .recommend{max-width:40rem;margin:0 auto;padding:34px 30px 10px;font-family:'Noto Sans KR',sans-serif;text-align:center;}
 .rec-k{font-size:1.05rem;font-weight:700;color:var(--ink);margin:0 0 16px;}
 .rec-list{list-style:none;margin:0;padding:0;display:inline-block;text-align:left;}
@@ -242,6 +249,8 @@ footer a{color:var(--accent);text-decoration:none;font-weight:700;}
 </section>
 <section id="sec-2" class="chap">
 <h2>프롤로그 · 대학이 미래를 보장하지 않는 시대, 그런데 우리는 아직 대학을 향해 달린다</h2>
+<p>밤 열한 시. 학원 차에서 내린 아이가 가방을 소파에 툭 던지고, 말 한마디 없이 제 방으로 들어간다. 나는 식탁에 앉아 방금 도착한 이번 달 학원비 결제 문자를 들여다본다. 그러다 문득, 등골이 서늘해지는 생각 하나가 스친다. 이 돈으로 내가 지금 아이에게 키워 주고 있는 바로 그 능력을 — 내 회사에서 일하는 AI는 3초 만에, 나보다 더 정확하게 해낸다.</p>
+<p>이 책은 그 3초에서 시작한다.</p>
 <p>간단한 산수부터 해보자. 지금 초등학교 1학년인 아이는 2038년에 대학에 간다. 그런데 2013년부터 10년 동안, 미국에서만 726곳의 대학이 문을 닫았다. 대부분 영리 대학이었다는 점은 감안하고 보더라도 연간 70곳 페이스다. 하버드 경영대학원의 클레이턴 크리스텐슨 교수는 이미 2013년에 &quot;15년 안에 미국 대학의 절반이 파산 상태에 들어갈 수 있다&quot;고 경고했고, 인구학자들은 진짜 절벽이 이제 시작이라고 말한다. 출생아가 급감한 2007년 이후 세대가 대학 문 앞에 도착하는 것이 바로 2026년부터이기 때문이다. 학생 수가 훨씬 가파르게 줄고 있는 한국은 더 말할 것도 없다. 그러니 이 책은 불편한 질문 하나에서 시작한다. 우리는 지금, 아이가 도착할 무렵이면 상당 부분 달라져 있을 목적지를 향해, 아이를 전력 질주시키고 있는 것은 아닐까.</p>
 <p>그렇다면 대학이라는 정거장이 작아진 세상에서, 우리 아이들은 어떤 풍경 속에서 일하게 될까. 세 가지 그림이 이미 그려지고 있다. 첫째, AI 에이전트의 시대다. 질문에 답만 하던 AI가 이제 스스로 일을 쪼개고 실행하고 보고까지 하는 &#x27;AI 직원&#x27;이 되었다. 시장조사기관 가트너는 2029년까지 지식노동자의 절반 이상이 AI 에이전트에게 일을 시키고, 통제하고, 만들어내는 기술을 익히게 될 것이라 전망했다. 둘째, 피지컬 AI다. 화면 속에 있던 AI가 물리 세계로 나온다. 세계 최대 AI 반도체 기업 엔비디아의 젠슨 황은 CES 무대에서 &quot;피지컬 AI의 챗GPT 모먼트가 왔다&quot;고 선언했다. 셋째, 휴머노이드 로봇이다. 사람 모양의 로봇이 이미 BMW 공장에서 열 달 넘게 자동차 생산을 도왔고, 테슬라는 자사 로봇의 대량 생산 계획을 밝혔다. 기업들의 로드맵이야 늦어지기도 할 것이다. 그러나 방향은 하나로 모인다. 우리 아이가 어른이 되었을 때의 &#x27;일&#x27;이란, 여러 AI와 로봇에게 무엇을 시키고 그 결과를 판단하는 일에 가까워진다.</p>
 <p>과장처럼 들리는가. 나는 이 그림의 첫 장을 이미 살고 있다. 내 회사 잔다(JANDA)는 AI 네이티브 기업이라 30개의 AI 에이전트가 24시간 일하고, 나는 매일 아침 이 AI들에게 일을 나누어 주는 것으로 하루를 연다. 물론 모든 일을 AI가 하는 건 아니다. 중요한 판단과 사람 사이의 일은 사람의 몫이라, 나는 파트너들 — 특히 &#x27;AI하우스&#x27;를 함께 이끄는 대표 — 와 손을 맞춰 일한다. 그러니 나는 이 미래를 예측하는 게 아니라, 거기에 이미 출근해 있는 셈이다. 그 자리에서는 두 가지가 아주 잘 보인다. 어떤 능력이 AI에게 몇 초 만에 넘어가는지, 그리고 어떤 능력이 끝내 사람의 몫으로 남는지. 얼마 전 일곱 살 딸이 계산 문제 두 개를 틀려 왔다. 나는 틀린 것으로 아이를 혼내지 않는다. 솔직히 그렇게 정확히 계산하고 암기하는 일은 이미 AI가 나보다도, 우리 아이보다도 훨씬 잘한다는 걸 매일 일하며 인정하게 됐으니까. 내가 마음 쓴 것은 틀린 두 개가 아니라, 아이가 &quot;왜 그렇게 될까?&quot;라는 질문을 잃지 않는 것이었다. 아는 것과 키우는 것은 그만큼 다른 일이다.</p>
@@ -572,6 +581,7 @@ footer a{color:var(--accent);text-decoration:none;font-weight:700;}
 </section>
 <section id="sec-26" class="chap">
 <h2>부록 A · 참고문헌 — 이 책이 기댄 연구와 데이터</h2>
+<details class="refs"><summary>인용한 연구·데이터 전체 펼쳐보기</summary>
 <p>이 책의 모든 주장에는 근거가 있다. 느낌이 아니라 검증된 연구와 데이터다. 직접 확인하고 싶은 독자를 위해, 본문에서 인용한 출처를 장별로 정리한다. 프리프린트(동료심사 전 공개 논문)와 기업 자체 발표는 그 성격을 함께 표기했다.</p>
 <p><strong>프롤로그 · 2장 — 대학과 미래</strong></p>
 <ul>
@@ -683,6 +693,7 @@ footer a{color:var(--accent);text-decoration:none;font-weight:700;}
 <ul>
 <li>교육부 (2025) — AI 디지털교과서 초3·4, 중1 수학·영어·정보 도입(초1~2는 발달상 이유로 제외). korea.kr</li>
 </ul>
+</details>
 </section>
 <section id="sec-27" class="chap">
 <h2>부록 B · 그대로 복사해 쓰는 AI 프롬프트 50</h2>
@@ -936,6 +947,7 @@ footer a{color:var(--accent);text-decoration:none;font-weight:700;}
 </main>
 
 <section class="dedication">
+  <img class="ded-photo" src="family.jpg" alt="바닷가를 함께 걷는 아빠와 딸" loading="lazy">
   <p>우리 딸을 키우는 일에 누구보다 진심인 아내에게,<br>고마운 마음을 담아 이 책을 선물합니다.</p>
 </section>
 
@@ -952,9 +964,7 @@ footer a{color:var(--accent);text-decoration:none;font-weight:700;}
 .q-sub{text-align:center;color:#6b675f;font-size:.9rem;margin:0 0 22px;}
 .q-item{margin:0 0 18px;}
 .q-item p{font-weight:700;color:#2b2a27;margin:0 0 8px;font-size:1rem;}
-.q-opt{display:block;width:100%;text-align:left;padding:12px 16px;margin:6px 0;border:1.5px solid #e6e1d6;border-radius:10px;background:#fbf9f4;cursor:pointer;font-size:.95rem;color:#3c3a35;transition:.15s;font-family:inherit;line-height:1.5;}
-.q-opt:hover{border-color:#b4472e;}
-.q-opt.sel{border-color:#b4472e;background:#fdeee9;font-weight:700;color:#b4472e;}
+/* 선택지형 스타일 제거 — 체크박스형으로 전환 */
 .q-check{display:flex;align-items:flex-start;gap:11px;text-align:left;padding:12px 15px;margin:8px 0;border:1.5px solid #e6e1d6;border-radius:10px;background:#fbf9f4;cursor:pointer;font-size:.95rem;color:#3c3a35;line-height:1.55;}
 .q-check input{margin-top:3px;width:19px;height:19px;accent-color:#b4472e;flex:0 0 auto;cursor:pointer;}
 .q-check:has(input:checked){border-color:#b4472e;background:#fdeee9;color:#b4472e;font-weight:600;}
@@ -1055,7 +1065,7 @@ function shareFB(){window.open('https://www.facebook.com/sharer/sharer.php?u='+e
 function shareX(){window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent('AI 시대, 우리 아이 교육 — 무료로 읽는 책'+rv())+'&url='+encodeURIComponent(location.href),'_blank');}
 function copyLink(){copyText(location.href);toast('링크가 복사되었어요!');}
 function shareGift(){var g='「AI를 부리는 아이가 이긴다」 이 책을 선물합니다'+rv()+'. AI 시대, 우리 아이 교육을 무료로 읽어보세요 → ';var u=location.href;if(navigator.share){navigator.share({title:document.title,text:g,url:u}).then(function(){}).catch(function(){copyText(g+u);toast('선물 메시지가 복사되었어요 — 전할 분에게 붙여넣어 보내세요!');});}else{copyText(g+u);toast('선물 메시지가 복사되었어요 — 전할 분에게 붙여넣어 보내세요!');}}
-(function(){var el=document.getElementById('readcount');if(!el)return;var BASE=50;var ns='aibible6parenting';var t=new Date().toISOString().slice(0,10).replace(/-/g,'');function g(k){return fetch('https://abacus.jasoncameron.dev/hit/'+ns+'/'+k).then(function(r){return r.json();}).catch(function(){return null;});}function show(raw,day){var tot=BASE+(typeof raw==='number'?raw:0);var s='';if(typeof day==='number'&&day>0)s+='오늘 <b>'+day.toLocaleString()+'</b>명 · ';s+='누적 <b>'+tot.toLocaleString()+'</b>명의 부모가 함께 읽었어요';el.innerHTML='📖 '+s;el.style.display='block';}Promise.all([g('total'),g('d'+t)]).then(function(res){show(res[0]&&res[0].value,res[1]&&res[1].value);}).catch(function(){show(0,null);});})();
+(function(){var el=document.getElementById('readcount');if(!el)return;var BASE=12;var ns='aibible6parenting';var t=new Date().toISOString().slice(0,10).replace(/-/g,'');var fresh=!sessionStorage.getItem('aib6v');try{sessionStorage.setItem('aib6v','1');}catch(e){}var verb=fresh?'hit':'get';function g(k){return fetch('https://abacus.jasoncameron.dev/'+verb+'/'+ns+'/'+k).then(function(r){return r.json();}).catch(function(){return null;});}function show(raw,day){var tot=BASE+(typeof raw==='number'?raw:0);var s='방문자 <b>'+tot.toLocaleString()+'</b>명';if(typeof day==='number'&&day>0)s+=' · 오늘 <b>'+day.toLocaleString()+'</b>명';el.innerHTML='📖 '+s+'이 함께 읽고 있어요';el.style.display='block';}Promise.all([g('total'),g('d'+t)]).then(function(res){show(res[0]&&res[0].value,res[1]&&res[1].value);}).catch(function(){show(0,null);});})();
 render();
 </script>
 
