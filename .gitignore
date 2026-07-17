@@ -6,3 +6,8 @@ make_freesection.py
 *.bak_*
 *.stub_bak_*
 *.bak
+
+# Obsidian: user-specific window state / trash, not shared config
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.trash/
