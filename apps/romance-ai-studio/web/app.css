@@ -1,0 +1,182 @@
+html {
+  font-size: var(--sitewide-font-size);
+}
+
+.app {
+  height: 100vh;
+  height: 100dvh;
+  /* height: -webkit-fill-available; */
+  overflow-y: overlay;
+}
+
+.app .content-background {
+  background-color: rgba(var(--rgb-bg-900), 0.9);
+  @apply h-max rounded-lg pb-4;
+}
+
+#fuse-privacy-tool {
+  font-size: 0.5rem;
+}
+
+/* hack while we figure out why text boxes aren't the correct size */
+.text-input-min-h-override {
+  min-height: 120px !important;
+}
+
+.bg-chat-bot {
+  background: var(--rgba-chat-bot);
+  backdrop-filter: blur(5px);
+}
+
+.bg-chat-user {
+  background: var(--rgba-chat-user);
+  backdrop-filter: blur(5px);
+}
+
+.bg-chat-ooc {
+  background: var(--rgba-chat-ooc);
+  backdrop-filter: blur(5px);
+}
+
+.unblur {
+  backdrop-filter: none !important;
+}
+
+.tooltip-cursor {
+  position: absolute;
+  left: var(--tooltip-x);
+  top: var(--tooltip-y);
+}
+
+.drawer {
+  height: calc(100vh);
+  height: calc(100dvh);
+  position: absolute;
+  top: 0;
+  /* top: 48px; */
+  left: 0;
+  transition: opacity 250ms ease;
+  transition: 400ms ease;
+  @apply bg-[var(--bg-800)] sm:top-0 sm:clear-none;
+  @apply z-20 sm:z-0;
+  @apply border-r border-[var(--bg-600)];
+}
+
+#main-content {
+  transition: margin-left 400ms ease;
+}
+
+@media (min-width: 1280px) {
+  .drawer {
+    height: 100vh;
+    height: 100dvh;
+  }
+}
+
+.drawer--pane-open {
+  animation-fill-mode: forwards;
+  animation: hideDrawer 0s ease 800ms;
+  @apply left-[-320px] sm:left-0 sm:left-0;
+}
+
+.drawer--hide {
+  animation-fill-mode: forwards;
+  animation: hideDrawer 0s ease 800ms;
+  @apply left-[-480px] sm:w-0;
+}
+
+.drawer__content {
+  /* position: fixed; */
+  top: 0;
+  left: 0;
+  height: calc(100% - 16px);
+  transition: 800ms ease;
+  @apply min-w-[320px] max-w-[320px];
+}
+
+.drawer > * > a.active {
+  @apply border-l-2 border-[var(--hl-400)] bg-[var(--hl-800)];
+  padding-left: calc(0.5rem - 2px);
+}
+
+@keyframes hideDrawer {
+  to {
+    visibility: hidden;
+  }
+}
+
+.slot-sticky {
+  position: sticky;
+  top: 0;
+}
+
+.helper-text {
+  @apply mt-[-0.125rem] text-sm text-[var(--text-600)];
+}
+
+.spinner {
+  animation: spin 1.3s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.input-bar {
+  max-height: 50vh;
+  max-height: 50svh;
+}
+
+.input-buttons {
+  position: relative;
+  display: inline-block;
+}
+
+.input-buttons input {
+  padding-right: 40px;
+}
+
+.input-buttons button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.shepherd-text {
+  color: var(--text-900) !important;
+}
+
+.variable-textarea-container {
+  z-index: 10;
+  align-items: flex-end;
+  max-height: 40px;
+}
+
+.variable-textarea {
+  height: 40px;
+  max-height: 40px;
+}
+
+.variable-textarea:focus {
+  field-sizing: content !important;
+  height: unset !important;
+  max-height: 100px !important;
+  border: 1px solid var(--bg-500) !important;
+}
+
+.text-outline {
+  text-shadow: var(--outline-thickness) 0 var(--outline-shadow) var(--text-100),
+    0 var(--outline-thickness-rev) var(--outline-shadow) var(--text-100),
+    0 var(--outline-thickness) var(--outline-shadow) var(--text-100),
+    var(--outline-thickness-rev) 0 var(--outline-shadow) var(--text-100);
+}

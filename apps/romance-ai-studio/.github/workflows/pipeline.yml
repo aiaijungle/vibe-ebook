@@ -1,0 +1,50 @@
+name: Automated checks
+
+permissions:
+  # This is required for actions/checkout
+  contents: read
+
+on: pull_request
+
+env:
+  node-version: '22.14.0'
+  pnpm-version: 10.6.1
+
+jobs:
+  checks:
+    name: Checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Install Node and PNPM
+        uses: ./.github/actions/install-node-pnpm
+        with:
+          node-version: ${{  env.node-version  }}
+          pnpm-version: ${{  env.pnpm-version  }}
+
+      - name: Get cached dependencies
+        # cache is automatically saved after this job completes. jobs depending on this one will get the latest cached files
+        id: cache-step
+        uses: actions/cache@v3
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
+
+      - name: Install project dependencies
+        if: steps.cache-step.outputs.cache-hit != 'true'
+        run: |
+          echo $NODE_ENV
+          pnpm install --frozen-lockfile
+
+      - name: Run Prettier
+        run: pnpm run format
+
+      - name: Run compiler
+        run: pnpm run typecheck
+
+      - name: Run tests
+        run: |
+          pnpm run build:server
+          pnpm run test

@@ -1,0 +1,245 @@
+import { Router } from 'express'
+import { assertValid } from '/common/valid'
+import { store } from '../db'
+import { isAdmin, loggedIn } from './auth'
+import { StatusError, handle } from './wrap'
+import { getLiveCounts, sendAll } from './ws/redis'
+import { decryptText, encryptText } from '../db/util'
+import { embedMultiple } from './chat/embedding'
+
+const router = Router()
+
+router.use(loggedIn, isAdmin)
+
+const featureAccess = ['off', 'all', 'users', 'subscribers', 'admins'] as const
+
+const configGuard = {
+  slots: 'string',
+  maintenance: 'boolean',
+  maintenanceMessage: 'string',
+  apiAccess: featureAccess,
+  policiesEnabled: 'boolean',
+  termsOfService: 'string',
+  privacyStatement: 'string',
+  enabledAdapters: ['string'],
+  imagesEnabled: 'boolean',
+  imagesHost: 'string',
+  ttsAccess: featureAccess,
+  ttsHost: 'string',
+  ttsApiKey: 'string?',
+  imagesModels: ['any'],
+  supportEmail: 'string',
+  googleClientId: 'string',
+  stripeCustomerPortal: 'string',
+  embedding: 'string',
+  embeddingsAccess: featureAccess,
+} as const
+
+const embedGuard = {
+  _id: 'string',
+  model: 'string',
+  url: 'string',
+  key: 'string',
+  batch: 'boolean',
+  inputProp: 'string',
+} as const
+
+const searchUsers = handle(async (req) => {
+  const { body } = req
+  assertValid(
+    { username: 'string?', page: 'number?', customerId: 'string?', subscribed: 'boolean?' },
+    body
+  )
+  const users = await store.admin.getUsers({
+    username: body.username,
+    customerId: body.customerId,
+    subscribed: body.subscribed,
+    page: body.page,
+  })
+
+  return { users: users.map((u) => ({ ...u, hash: undefined })) }
+})
+
+const generatePasswordReset = handle(async (req) => {
+  const userId = req.params.userId
+
+  const user = await store.users.getUser(userId)
+  if (!user) {
+    throw new StatusError(`User ID does not exist`, 400)
+  }
+
+  if (user._id !== userId) {
+    throw new StatusError(`User ID does not match`, 400)
+  }
+
+  const result = await store.admin.setPasswordResetCode(userId)
+  return { success: true, code: result.code }
+})
+
+const banUser = handle(async (req) => {
+  const user = await store.users.getUser(req.params.userId)
+  assertValid({ reason: 'string' }, req.body)
+
+  if (!user) {
+    throw new StatusError('User not found', 404)
+  }
+
+  const next = await store.admin.banUser(req.params.userId, req.body.reason)
+  return next
+})
+
+const unbanUser = handle(async (req) => {
+  const next = await store.admin.unbanUser(req.params.userId)
+  return next
+})
+
+const impersonateUser = handle(async (req) => {
+  const userId = req.params.userId
+  const user = await store.users.getUser(userId)
+  if (!user) {
+    throw new StatusError('User not found', 404)
+  }
+
+  const token = await store.users.createAccessToken(user.username, user)
+  return { token }
+})
+
+const setUserPassword = handle(async (req) => {
+  assertValid({ userId: 'string', password: 'string' }, req.body)
+  await store.admin.changePassword({ userId: req.body.userId, password: req.body.password })
+  return { success: true }
+})
+
+const getUserInfo = handle(async ({ params }) => {
+  const info = await store.admin.getUserInfo(params.id)
+  return info
+})
+
+const notifyAll = handle(async ({ body }) => {
+  assertValid({ message: 'string', level: 'number?' }, body)
+  sendAll({ type: 'admin-notification', message: body.message, level: body.level })
+
+  return { success: true }
+})
+
+const getMetrics = handle(async () => {
+  const { entries: counts, maxLiveCount } = getLiveCounts()
+  const metrics = await store.users.getMetrics()
+
+  const connected = counts.map((count) => count.count).reduce((prev, curr) => prev + curr, 0)
+  const versioned = counts.map((count) => count.versioned).reduce((prev, curr) => prev + curr, 0)
+  const shas = counts.reduce((prev, curr) => {
+    for (const [sha, count] of Object.entries(curr.shas)) {
+      if (!prev[sha]) prev[sha] = 0
+      prev[sha] += count
+    }
+    return prev
+  }, {} as Record<string, number>)
+
+  const threshold = Date.now() - 30000
+  return {
+    ...metrics,
+    connected,
+    versioned,
+    maxLiveCount,
+    shas,
+    each: counts.filter((c) => c.date.valueOf() >= threshold),
+  }
+})
+
+const createEmbedding = handle(async ({ body }) => {
+  assertValid(embedGuard, body)
+
+  const key = body.key
+  body.key = encryptText(body.key)
+
+  const next = await store.admin.createServerEmbedding(body)
+  const test = await embedMultiple(['Embedding test'], { ...body, key }).catch((err) => ({
+    err: err.message,
+  }))
+
+  return { cfg: next, test }
+})
+
+const updateEmbedding = handle(async ({ body }) => {
+  assertValid(embedGuard, body)
+
+  if (body.key) body.key = encryptText(body.key)
+  const next = await store.admin.updateServerEmbedding(body)
+
+  const latest = next.embeddings.find((e) => e._id === body._id)!
+  latest.key = decryptText(latest.key, true)
+
+  const test = await embedMultiple(['Embedding '], latest).catch((err) => ({ err: err?.message }))
+
+  return { cfg: next, test }
+})
+
+const updateConfigurationPartial = handle(async ({ body }) => {
+  assertValid(configGuard, body, true)
+
+  const update = { ...body }
+  encryptProps(update, ['ttsApiKey'])
+
+  const next = await store.admin.updateServerConfiguration(update)
+  return next
+})
+
+const updateConfiguration = handle(async ({ body }) => {
+  assertValid(configGuard, body)
+
+  const update = {
+    kind: 'configuration' as const,
+    privacyUpdated: '',
+    tosUpdated: '',
+    maxGuidanceTokens: 1000,
+    maxGuidanceVariables: 15,
+    ...body,
+  }
+
+  if (!update.ttsApiKey) {
+    delete update.ttsApiKey
+  } else {
+    update.ttsApiKey = encryptText(update.ttsApiKey)
+  }
+
+  const next = await store.admin.updateServerConfiguration(update)
+
+  return next
+})
+
+const updateTier = handle(async (req) => {
+  assertValid({ tierId: 'string' }, req.body)
+  await store.users.updateUserTier(req.params.userId, req.body.tierId)
+  return { success: true }
+})
+
+router.post('/embedding', createEmbedding)
+router.post('/update-embedding', updateEmbedding)
+router.post('/impersonate/:userId', impersonateUser)
+router.post('/users', searchUsers)
+router.post('/users/:userId/tier', updateTier)
+router.get('/metrics', getMetrics)
+router.get('/users/:id/info', getUserInfo)
+router.post('/user/password', setUserPassword)
+router.post('/notify', notifyAll)
+router.post('/configuration', updateConfiguration)
+router.post('/configuration-partial', updateConfigurationPartial)
+router.post('/ban/:userId', banUser)
+router.post('/unban/:userId', unbanUser)
+router.post('/password-reset/:userId', generatePasswordReset)
+
+export default router
+
+/** @destructive */
+function encryptProps<T extends {}>(obj: T, props: Array<keyof T>) {
+  for (const prop of props) {
+    if (!obj[prop]) continue
+    if (typeof obj[prop] === 'string') {
+      // @ts-ignore
+      obj[prop] = encryptText(obj[prop])
+    }
+  }
+
+  return obj
+}

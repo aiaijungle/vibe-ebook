@@ -1,0 +1,553 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/** Global focus style override. */
+*:focus {
+  @apply outline-none;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--hl-800);
+  outline-offset: -2px;
+  border-radius: 8px;
+}
+
+* > code {
+  @apply rounded-md bg-[var(--bg-600)] p-1 text-[var(--text-900)];
+}
+
+body {
+  color: var(--text-100);
+  font-family: var(--sitewide-font);
+  font-style: var(--sitewide-fontstyle);
+  font-weight: 400;
+}
+
+.w-10 {
+  width: 2.5rem;
+}
+
+.max-w-7xl {
+  max-width: 80rem;
+}
+
+.max-w-6xl {
+  max-width: 72rem;
+}
+
+.max-w-5xl {
+  max-width: 64rem;
+}
+
+.max-w-8xl {
+  max-width: 88rem;
+}
+
+body {
+  @apply text-900 bg-[var(--bg-900)];
+  height: 100%;
+  height: -webkit-fill-available;
+}
+
+@supports (-webkit-touch-callout: none) {
+  /* .app {
+    height: calc(100dvh - 74px);
+  } */
+}
+
+.ellipsis {
+  min-width: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.link {
+  @apply cursor-pointer text-[var(--hl-500)] hover:text-[var(--hl-300)];
+}
+
+.base-link {
+  @apply cursor-pointer hover:text-[var(--hl-300)];
+}
+
+.highlight {
+  @apply text-[var(--hl-400)];
+}
+
+.text-hl-100 {
+  color: var(--hl-900);
+}
+
+.text-hl-200 {
+  color: var(--hl-800);
+}
+
+.text-hl-300 {
+  color: var(--hl-700);
+}
+
+.text-hl-400 {
+  color: var(--hl-600);
+}
+
+.text-hl-500 {
+  color: var(--hl-500);
+}
+
+.text-hl-600 {
+  color: var(--hl-400);
+}
+
+.text-hl-700 {
+  color: var(--hl-300);
+}
+
+.text-hl-800 {
+  color: var(--hl-200);
+}
+
+.text-hl-900 {
+  color: var(--hl-100);
+}
+
+@layer base {
+  /* .bg-100 {
+    background: linear-gradient(var(--bg-100), var(--gradient-100));
+  }
+
+  .bg-200 {
+    background: linear-gradient(var(--bg-200), var(--gradient-200));
+  }
+
+  .bg-300 {
+    background: linear-gradient(var(--bg-300), var(--gradient-300));
+  }
+
+  .bg-400 {
+    background: linear-gradient(var(--bg-400), var(--gradient-400));
+  }
+
+  .bg-500 {
+    background: linear-gradient(var(--bg-500), var(--gradient-500));
+  }
+
+  .bg-600 {
+    background: linear-gradient(var(--bg-600), var(--gradient-600));
+  }
+
+  .bg-700 {
+    background: linear-gradient(var(--bg-700), var(--gradient-700));
+  }
+
+  .bg-800 {
+    background: linear-gradient(var(--bg-800), var(--gradient-800));
+  }
+
+  .bg-900 {
+    background: linear-gradient(var(--bg-900), var(--gradient-900));
+  }
+
+  .bg-1000 {
+    background: linear-gradient(var(--bg-1000), var(--gradient-1000));
+  } */
+
+  .bg-100 {
+    background: var(--bg-100);
+  }
+
+  .bg-200 {
+    background: var(--bg-200);
+  }
+
+  .bg-300 {
+    background: var(--bg-300);
+  }
+
+  .bg-400 {
+    background: var(--bg-400);
+  }
+
+  .bg-500 {
+    background: var(--bg-500);
+  }
+
+  .bg-600 {
+    background-color: var(--bg-600);
+  }
+
+  .bg-700 {
+    background-color: var(--bg-700);
+  }
+
+  .bg-800 {
+    background-color: var(--bg-800);
+  }
+
+  .bg-900 {
+    background: var(--bg-900);
+  }
+
+  .bg-1000 {
+    background: var(--bg-1000);
+  }
+
+  .text-100 {
+    color: var(--text-100);
+  }
+
+  .text-200 {
+    color: var(--text-200);
+  }
+
+  .text-300 {
+    color: var(--text-300);
+  }
+
+  .text-400 {
+    color: var(--text-400);
+  }
+
+  .text-500 {
+    color: var(--text-500);
+  }
+
+  .text-600 {
+    color: var(--text-600);
+  }
+
+  .text-700 {
+    color: var(--text-700);
+  }
+
+  .text-800 {
+    color: var(--text-800);
+  }
+
+  .text-900 {
+    color: var(--text-900);
+  }
+
+  .text-1000 {
+    color: var(--text-1000);
+  }
+
+  /**
+   * Scrollbar
+   */
+
+  ::-webkit-scrollbar {
+    @apply h-1.5 w-1.5;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-[var(--bg-700)];
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-[var(--bg-500)];
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-[var(--bg-300)];
+  }
+
+  /**
+   * Focus/accessibility-related utilities.
+   */
+  ._focusable-base {
+    @apply transition-all duration-150;
+  }
+
+  .focusable-field {
+    @apply _focusable-base;
+    @apply bg-[var(--bg-800)] hover:bg-[var(--bg-700)];
+    @apply placeholder:text-[var(--text-600)];
+    @apply border border-[var(--bg-700)] focus:border-[var(--hl-600)];
+  }
+
+  .focusable-icon-button,
+  .icon-button {
+    @apply _focusable-base cursor-pointer;
+    @apply text-500 hover:text-[var(--text-900)] focus:text-[var(--text-900)];
+  }
+
+  .green-icon-button {
+    @apply _focusable-base cursor-pointer;
+    @apply text-[var(--green-500)] hover:text-[var(--green-900)] focus:text-[var(--green-900)];
+  }
+
+  .red-icon-button {
+    @apply _focusable-base cursor-pointer;
+    @apply text-[var(--red-500)] hover:text-[var(--red-900)] focus:text-[var(--red-900)];
+  }
+
+  /** Integrates with solid-router - highlights current selection. */
+  .focusable-icon-button.active,
+  .icon-button.active {
+    @apply text-100;
+  }
+
+  .icon-button.disabled,
+  .icon-button:disabled {
+    @apply text-300 hover:text-300 focus:text-300 cursor-not-allowed;
+  }
+
+  /**
+   * Buttons.
+   */
+  .btn-base {
+    @apply flex h-fit gap-1;
+    @apply transition-colors duration-150;
+    @apply rounded-lg px-3;
+    @apply disabled:cursor-not-allowed;
+  }
+
+  .btn-primary {
+    @apply btn-base;
+    @apply bg-[var(--hl-700)] enabled:hover:bg-[var(--hl-500)] enabled:active:bg-[var(--hl-400)];
+    @apply disabled:bg-[var(--hl-900)] disabled:text-[var(--text-700)];
+  }
+
+  .btn-hollow {
+    @apply btn-base;
+    @apply bg-transparent text-[var(--hl-500)] enabled:hover:bg-[var(--hl-900)];
+    border: 1px solid var(--hl-500);
+    @apply border-[var(--hl-800)] disabled:text-[var(--hl-800)];
+  }
+
+  .btn-secondary {
+    @apply btn-base;
+    @apply bg-[var(--bg-600)] hover:bg-[var(--bg-500)] active:bg-[var(--bg-400)];
+    @apply disabled:bg-[var(--bg-700)] disabled:text-[var(--text-400)];
+  }
+
+  .btn-red {
+    @apply btn-base bg-red-700 active:bg-red-300 enabled:hover:bg-red-400;
+    @apply text-[var(--black-900)] disabled:bg-red-900 disabled:text-[var(--text-600)];
+  }
+
+  .btn-green {
+    @apply btn-base bg-green-600 active:bg-green-300 enabled:hover:bg-green-400;
+    @apply disabled:bg-green-900 disabled:text-[var(--text-600)];
+  }
+
+  .btn-yellow,
+  .btn-orange {
+    @apply btn-base bg-yellow-700 active:bg-yellow-500 enabled:hover:bg-yellow-600;
+    @apply disabled:bg-orange-900 disabled:text-[var(--text-600)];
+  }
+
+  .btn-clear {
+    @apply btn-base;
+    @apply border-[var(--bg-500)] bg-transparent enabled:hover:bg-[var(--bg-600)];
+  }
+
+  .btn-input {
+    @apply btn-base;
+    @apply border-0 bg-transparent hover:bg-transparent;
+  }
+
+  .btn-bordered {
+    @apply btn-base;
+    @apply border-[1px] border-[var(--bg-700)] bg-transparent hover:bg-[var(--bg-700)];
+  }
+
+  .btn-icon {
+    @apply btn-base;
+    @apply bg-transparent;
+    @apply text-500 hover:text-[var(--text-900)] focus:text-[var(--text-900)];
+  }
+
+  /**
+   * Cards.
+   */
+  .focusable-card {
+    @apply _focusable-base;
+    @apply max-h-96 max-w-[10rem];
+    @apply rounded-md shadow-md;
+    @apply bg-background-lighter hover:bg-zinc-900 active:bg-zinc-800;
+  }
+
+  /**
+   * Tooltips
+   */
+  .tooltip {
+    /* position: relative; */
+    display: inline-block;
+  }
+
+  .tooltip .tooltip-text {
+    visibility: hidden;
+    position: absolute;
+  }
+
+  .tooltip:hover .tooltip-text {
+    visibility: visible;
+  }
+
+  /**
+   * Other form stuff.
+   */
+  .form-check-input:checked[type='radio'] {
+    background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%22-4 -4 8 8%22%3E%3Ccircle r=%222%22 fill=%22%23fff%22/%3E%3C/svg%3E');
+  }
+
+  option:checked {
+    @apply text-900 bg-[var(--hl-400)];
+  }
+
+  input[type='file']::file-selector-button {
+    @apply text-900 bg-[var(--hl-700)] p-2;
+
+    border: 0;
+
+    transition: 1s;
+  }
+
+  input[type='text']:disabled {
+    @apply bg-[var(--bg-700)] text-[var(--text-600)];
+  }
+
+  input[type='number']:disabled {
+    @apply bg-[var(--bg-700)] text-[var(--text-600)];
+  }
+
+  /* input[type='text']:invalid {
+    @apply border-2 border-red-600;
+  } */
+
+  input[type='range'] {
+    background: var(--bg-700);
+    background-image: linear-gradient(var(--hl-700), var(--hl-700));
+    background-repeat: no-repeat;
+  }
+
+  input[type='range']::-webkit-slider-thumb {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background: var(--hl-600);
+    box-shadow: 0 0 2px 0 #555;
+  }
+
+  input[type='range']:disabled {
+    background-image: linear-gradient(var(--hl-900), var(--hl-900));
+  }
+
+  input[type='range']::-webkit-slider-runnable-track {
+    box-shadow: none;
+    border: none;
+    background: transparent;
+  }
+
+  input[type='text']:disabled {
+    @apply bg-[var(--bg-900)];
+  }
+}
+
+textarea::placeholder,
+textarea:placeholder-shown {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+textarea:disabled {
+  @apply bg-[var(--bg-900)];
+}
+
+.markdown code {
+  font-size: 0.75rem !important;
+}
+
+.markdown a {
+  @apply cursor-pointer text-[var(--hl-500)] hover:text-[var(--hl-300)];
+}
+
+.markdown h1 {
+  @apply pt-8 text-2xl font-bold text-[var(--hl-400)];
+}
+
+.markdown h2 {
+  @apply pt-6 text-xl font-bold text-[var(--hl-400)];
+}
+
+.markdown h3 {
+  @apply pt-4 text-lg font-bold text-[var(--hl-400)];
+}
+
+.markdown h4 {
+  @apply py-1 text-base font-bold text-[var(--hl-400)];
+}
+
+.markdown p {
+  @apply py-1;
+}
+
+.markdown em {
+  @apply font-normal text-[var(--hl-200)];
+}
+
+.markdown ul {
+  @apply pl-5;
+  list-style-type: disc;
+  list-style-position: inside;
+}
+
+.markdown ol {
+  @apply pl-5;
+  counter-reset: item;
+  list-style-position: inside;
+}
+
+.markdown ul > li {
+  /* @apply ml-5; */
+  list-style-type: disc;
+}
+
+.markdown ol > li {
+  counter-increment: item;
+}
+
+.markdown ol > li::before {
+  content: counters(item, '.') '. ';
+}
+
+.markdown > ul > li > ul {
+  @apply pl-5;
+  list-style-type: circle;
+  list-style-position: inside;
+}
+
+.markdown > blockquote {
+  @apply pl-4;
+  border-left: 0.25em solid var(--bg-300);
+}
+
+.markdown ul > li {
+  list-style-type: disc;
+}
+.markdown ul > li > ul > li {
+  list-style-type: circle;
+}
+.markdown ul > li > ul > li > ul > li {
+  list-style-type: square;
+}
+/* .markdown ul ul ul ul li {
+  list-style: disc;
+}
+.markdown ul ul ul ul ul li {
+  list-style: circle;
+}
+.markdown ul ul ul ul ul ul li {
+  list-style: square;
+} */
+
+.overlay {
+  position: fixed; /* Sit on top of the page content */
+  display: none; /* Hidden by default */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}

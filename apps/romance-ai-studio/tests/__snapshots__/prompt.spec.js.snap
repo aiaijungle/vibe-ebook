@@ -1,0 +1,338 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Prompt building will allow using wildcards in keywords 1`] = `
+"MainChar's Persona: MainCharacter talks a lot
+
+Scenario: MAIN MainChar
+Facts:ENTRY 1
+How MainChar speaks: SAMPLECHAT MainChar
+
+<START>
+ChatOwner: ebooks
+MainChar:"
+`;
+
+exports[`Prompt building will build a basic prompt 1`] = `
+"OtherBot's Persona: OtherBot replies a lot
+
+Scenario: MAIN MainChar
+How OtherBot speaks: SAMPLECHAT OtherBot
+
+<START>
+MainChar: FIRST
+ChatOwner: SECOND
+OtherBot:"
+`;
+
+exports[`Prompt building will build a continue prompt 1`] = `
+"MainChar's Persona: MainCharacter talks a lot
+
+Scenario: MAIN MainChar
+How MainChar speaks: SAMPLECHAT MainChar
+
+<START>
+MainChar: FIRST
+MainChar: ORIGINAL
+MainChar:"
+`;
+
+exports[`Prompt building will disallow injecting arbitrary regexes 1`] = `
+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa's Persona: MainCharacter talks a lot
+
+Scenario: MAIN aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+Facts:ENTRY 1
+How aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa speaks: SAMPLECHAT aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+
+<START>
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa: books
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa:"
+`;
+
+exports[`Prompt building will exclude lowest priority memory to fit in budget 1`] = `
+"OtherBot's Persona: OtherBot replies a lot
+
+Scenario: MAIN MainChar
+Facts:ENTRY TWO
+ENTRY THREE
+How OtherBot speaks: SAMPLECHAT OtherBot
+
+<START>
+MainChar: FIRST
+ChatOwner: 1-TRIGGER
+ChatOwner: 10-TRIGGER
+ChatOwner: 20-TRIGGER
+OtherBot:"
+`;
+
+exports[`Prompt building will exclude matches that are not a whole word match 1`] = `
+"OtherBot's Persona: OtherBot replies a lot
+
+Scenario: MAIN MainChar
+Facts:ENTRY ONE
+How OtherBot speaks: SAMPLECHAT OtherBot
+
+<START>
+MainChar: LONGWOR A
+ChatOwner: 1-TRIGGER
+OtherBot:"
+`;
+
+exports[`Prompt building will exclude memories triggered outside of memory depth 1`] = `
+"OtherBot's Persona: OtherBot replies a lot
+
+Scenario: MAIN MainChar
+Facts:ENTRY TIE
+ENTRY THREE
+How OtherBot speaks: SAMPLECHAT OtherBot
+
+<START>
+MainChar: FIRST
+ChatOwner: 1-TRIGGER
+ChatOwner: TIE-TRIGGER
+ChatOwner: 20-TRIGGER
+OtherBot:"
+`;
+
+exports[`Prompt building will exclude sample chat when gaslight contains sample chat placeholder 1`] = `
+"OtherBot's Persona: OtherBot replies a lot
+Scenario: MAIN MainChar
+This is how OtherBot should talk: SAMPLECHAT OtherBot
+MainChar: FIRST
+ChatOwner: SECOND
+MainChar: ORIGINAL
+OtherBot:"
+`;
+
+exports[`Prompt building will exclude scenario when empty in condition 1`] = `
+"Roleplay instructions
+MainChar: first
+OtherBot:"
+`;
+
+exports[`Prompt building will include example dialogue with omitted from template (no longer true) 1`] = `
+"GASLIGHT
+ChatOwner
+OtherBot
+Facts: ENTRY ONE
+ENTRY TIE
+ENTRY THREE
+MainChar: FIRST
+ChatOwner: 1-TRIGGER
+ChatOwner: TIE-TRIGGER
+ChatOwner: 20-TRIGGER
+OtherBot:"
+`;
+
+exports[`Prompt building will include gaslight for non-turbo adapter 1`] = `
+"GASLIGHT ChatOwner
+MainChar: FIRST
+ChatOwner: 1-TRIGGER
+ChatOwner: TIE-TRIGGER
+ChatOwner: 20-TRIGGER
+OtherBot:"
+`;
+
+exports[`Prompt building will include placeholders in the gaslight 1`] = `
+"GASLIGHT
+ChatOwner
+OtherBot
+Facts:ENTRY ONE
+ENTRY TIE
+ENTRY THREE
+MainChar: FIRST
+ChatOwner: 1-TRIGGER
+ChatOwner: TIE-TRIGGER
+ChatOwner: 20-TRIGGER
+OtherBot:"
+`;
+
+exports[`Prompt building will include sample chat when gaslight does not contain sample chat placeholder 1`] = `
+"Gaslight
+MainChar: FIRST
+ChatOwner: SECOND
+MainChar: ORIGINAL
+OtherBot:"
+`;
+
+exports[`Prompt building will include scenario when populated in condition 1`] = `
+"Roleplay instructions
+Scenario: Populated scenario
+MainChar: first
+OtherBot:"
+`;
+
+exports[`Prompt building will include two memories by weight when triggered 1`] = `
+"OtherBot's Persona: OtherBot replies a lot
+
+Scenario: MAIN MainChar
+Facts:ENTRY ONE
+ENTRY TWO
+How OtherBot speaks: SAMPLECHAT OtherBot
+
+<START>
+MainChar: FIRST
+ChatOwner: 10-TRIGGER
+ChatOwner: 1-TRIGGER
+OtherBot:"
+`;
+
+exports[`Prompt building will include ujb when omitted from gaslight 1`] = `
+Object {
+  "lines": Array [
+    Object {
+      "_id": "",
+      "json": Object {},
+      "msg": "MainChar: bot response",
+      "role": "user",
+    },
+  ],
+  "parts": Object {
+    "allPersonas": Array [
+      "MainChar's personality: MainCharacter talks a lot",
+    ],
+    "chatEmbeds": Array [],
+    "greeting": "GREETING",
+    "memory": "",
+    "persona": "OtherBot replies a lot",
+    "post": Array [
+      "OtherBot:",
+    ],
+    "prefill": "",
+    "props": undefined,
+    "sampleChat": Array [
+      "SAMPLECHAT OtherBot",
+    ],
+    "scenario": "MAIN MainChar",
+    "systemPrompt": undefined,
+    "ujb": "!!UJB_PROMPT!!",
+    "userEmbeds": Array [],
+  },
+  "template": Object {
+    "addedLines": Array [],
+    "blockPrompt": "",
+    "blocks": Array [],
+    "flags": Object {
+      "is_final": true,
+      "jsonAliases": Object {},
+      "messages": Array [],
+      "pre_render": false,
+    },
+    "history": Array [
+      Object {
+        "id": "",
+        "line": "MainChar: bot response",
+        "role": "user",
+        "type": "history",
+      },
+    ],
+    "inserts": Map {},
+    "linesAddedCount": 1,
+    "parsed": "GASLIGHT TEMPLATE
+ChatOwner
+OtherBot
+Auto-injected text:
+MainChar: bot response
+OtherBot:",
+  },
+}
+`;
+
+exports[`Prompt building will not use other character book 1`] = `
+"OtherBot's Persona: OtherBot replies a lot
+
+Scenario: MAIN MainChar
+How OtherBot speaks: SAMPLECHAT OtherBot
+
+<START>
+ChatOwner: TRIGGER
+OtherBot:"
+`;
+
+exports[`Prompt building will not use the gaslight when set to false 1`] = `
+"GASLIGHT
+ChatOwner
+OtherBot
+Facts: ENTRY ONE
+ENTRY TIE
+ENTRY THREE
+MainChar: FIRST
+ChatOwner: 1-TRIGGER
+ChatOwner: TIE-TRIGGER
+ChatOwner: 20-TRIGGER
+OtherBot:"
+`;
+
+exports[`Prompt building will omit sample chat when replyAs has no samplechat 1`] = `
+"OtherBot's Persona: OtherBot replies a lot
+
+Scenario: MAIN MainChar
+<START>
+
+OtherBot:"
+`;
+
+exports[`Prompt building will order by trigger position when weight tie occurs 1`] = `
+"OtherBot's Persona: OtherBot replies a lot
+
+Scenario: MAIN MainChar
+Facts:ENTRY ONE
+ENTRY TIE
+ENTRY THREE
+How OtherBot speaks: SAMPLECHAT OtherBot
+
+<START>
+MainChar: FIRST
+ChatOwner: 1-TRIGGER
+ChatOwner: TIE-TRIGGER
+ChatOwner: 20-TRIGGER
+OtherBot:"
+`;
+
+exports[`Prompt building will put char book entries with higher weight after mem book entries 1`] = `
+"MainChar's Persona: MainCharacter talks a lot
+
+Scenario: MAIN MainChar
+Facts:ENTRY 10
+ENTRY 20
+How MainChar speaks: SAMPLECHAT MainChar
+
+<START>
+ChatOwner: TRIGGER
+MainChar:"
+`;
+
+exports[`Prompt building will put mem book entries with higher weight after char book entries 1`] = `
+"MainChar's Persona: MainCharacter talks a lot
+
+Scenario: MAIN MainChar
+Facts:ENTRY 10
+ENTRY 20
+How MainChar speaks: SAMPLECHAT MainChar
+
+<START>
+ChatOwner: TRIGGER
+MainChar:"
+`;
+
+exports[`Prompt building will use correct placeholders in scenario and sample chat 1`] = `
+"OtherBot's Persona: OtherBot replies a lot
+
+Scenario: MAIN MainChar
+How OtherBot speaks: SAMPLECHAT OtherBot
+
+<START>
+
+OtherBot:"
+`;
+
+exports[`Prompt building will use currently speaking character book 1`] = `
+"OtherBot's Persona: OtherBot replies a lot
+
+Scenario: MAIN MainChar
+Facts:ENTRY
+How OtherBot speaks: SAMPLECHAT OtherBot
+
+<START>
+ChatOwner: TRIGGER
+OtherBot:"
+`;

@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Placeholder tests will not include duplicates in {{all_personalities}} 1`] = `
+Object {
+  "addedLines": Array [],
+  "blockPrompt": "",
+  "blocks": Array [],
+  "flags": Object {
+    "is_final": true,
+    "jsonAliases": Object {},
+    "messages": Array [],
+    "pre_render": false,
+  },
+  "history": Array [],
+  "inserts": Map {},
+  "length": undefined,
+  "linesAddedCount": 0,
+  "parsed": "OtherBot replies a lot
+
+MainChar's personality: MainCharacter talks a lot",
+  "sections": Object {
+    "done": true,
+    "flags": Object {},
+    "sections": Object {
+      "history": Array [],
+      "post": Array [],
+      "post_system": Array [],
+      "pre_system": Array [
+        "OtherBot replies a lot",
+        "
+
+",
+        "MainChar's personality: MainCharacter talks a lot",
+      ],
+      "system": Array [
+        "OtherBot replies a lot",
+        "
+
+",
+        "MainChar's personality: MainCharacter talks a lot",
+      ],
+    },
+    "strictSystem": Array [
+      "OtherBot replies a lot",
+      "
+
+",
+      "MainChar's personality: MainCharacter talks a lot",
+    ],
+    "warnings": Object {
+      "noHistory": true,
+      "noPost": true,
+    },
+  },
+}
+`;

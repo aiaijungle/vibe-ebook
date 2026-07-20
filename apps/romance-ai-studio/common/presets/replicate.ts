@@ -1,0 +1,40 @@
+import { AppSchema } from '../types/schema'
+
+export const replicatePresets = {
+  replicate_vicuna_13b: {
+    name: 'Replicate (Vicuna 13B)',
+    replicateModelType: 'llama',
+    replicateModelVersion: '6282abe6a492de4145d7bb601023762212f9ddbbe78278bd6771c8b3b2f2a13b',
+    temp: 0.75,
+    topP: 1,
+    repetitionPenalty: 1,
+    service: 'replicate',
+    maxTokens: 500,
+    maxContextLength: 2048,
+    gaslight: ``,
+  },
+  replicate_stablelm_7b: {
+    name: 'Replicate (StableLM Tuned Alpha 7B)',
+    replicateModelType: 'stablelm',
+    replicateModelVersion: 'c49dae362cbaecd2ceabb5bd34fdb68413c4ff775111fea065d259d577757beb',
+    temp: 0.75,
+    topP: 1,
+    repetitionPenalty: 1.2,
+    service: 'replicate',
+    maxTokens: 100,
+    maxContextLength: 2048,
+    gaslight: ``,
+  },
+  replicate_open_assistant_pythia_12b: {
+    name: 'Replicate (Open-Assistant Pythia 12B)',
+    replicateModelType: 'openassistant',
+    replicateModelVersion: '28d1875590308642710f46489b97632c0df55adb5078d43064e1dc0bf68117c3',
+    temp: 0.75,
+    topP: 1,
+    repetitionPenalty: 1.2,
+    service: 'replicate',
+    maxTokens: 500,
+    maxContextLength: 2048,
+    gaslight: ``,
+  },
+} satisfies Record<string, Partial<AppSchema.GenSettings>>

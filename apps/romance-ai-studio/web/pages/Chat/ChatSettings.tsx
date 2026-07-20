@@ -1,0 +1,620 @@
+import {
+  Component,
+  For,
+  Match,
+  Show,
+  Switch,
+  createEffect,
+  createMemo,
+  createSignal,
+  on,
+  onMount,
+} from 'solid-js'
+import { AppSchema } from '../../../common/types/schema'
+import Button from '../../shared/Button'
+import Select from '../../shared/Select'
+import PersonaAttributes, { fromAttrs, toAttrs } from '../../shared/PersonaAttributes'
+import TextInput from '../../shared/TextInput'
+import {
+  chatStore,
+  presetStore,
+  responseStore,
+  scenarioStore,
+  toastStore,
+  userStore,
+} from '../../store'
+import { defaultPresets } from '/common/presets'
+import { Card, Pill, TitleCard } from '/web/shared/Card'
+import { Toggle } from '/web/shared/Toggle'
+import TagInput from '/web/shared/TagInput'
+import { usePane } from '/web/shared/hooks'
+import Divider from '/web/shared/Divider'
+import { Check, Minus, Sparkles, Wand, X } from 'lucide-solid'
+import { createStore } from 'solid-js/store'
+import FileInput, { FileInputResult } from '/web/shared/FileInput'
+import { StreamCallback } from '/web/store/data/messages'
+import { generateField, MinCharacter } from '../Character/generate-char'
+import { RelativeSpinner } from '/web/shared/Loading'
+import { isDefaultPreset } from '/common/default-preset'
+import { FormLabel } from '/web/shared/FormLabel'
+import { useParticipantList } from './util'
+import { CharacterDefaultVisibility, VisibilityToggle } from './components/Visibility'
+import { neat } from '/common/util'
+
+const formatOptions = [
+  { value: 'attributes', label: 'Attributes' },
+  { value: 'text', label: 'Plain text' },
+]
+
+const backupFormats: any = {
+  sbf: { value: 'sbf', label: 'SBF' },
+  wpp: { value: 'wpp', label: 'W++' },
+  boostyle: { value: 'boostyle', label: 'Boostyle' },
+}
+
+function genOverrideField(opts: {
+  prop: string
+  trait?: string
+  char: MinCharacter
+  tick: StreamCallback
+}) {
+  if (!opts.char) return
+
+  const min: MinCharacter = {
+    name: opts.char.name,
+    description: opts.char.description,
+    appearance: opts.char.appearance,
+
+    greeting: opts.char.greeting || '',
+    persona: opts.char.persona,
+    sampleChat: opts.char.sampleChat || '',
+    scenario: opts.char.scenario || '',
+  }
+
+  generateField({ char: min, prop: opts.prop, trait: opts.trait, tick: opts.tick })
+}
+
+const ChatSettings: Component<{
+  close: () => void
+  footer: (children: any) => void
+}> = (props) => {
+  const state = chatStore((s) => ({ active: s.details[s.lastChatId || ''] }))
+  const [generating, setGenerating] = createSignal('')
+  const [flags, setFlags] = createSignal<Record<string, boolean | undefined>>({})
+  const [edit, setEdit] = createStore(getInitState(state.active?.chat, state.active?.char))
+
+  const user = userStore((s) => ({ user: s.user }))
+  const presets = presetStore((s) => ({ list: s.presets }))
+  const scenarioState = scenarioStore((s) => ({
+    scenarios: s.scenarios,
+    loading: s.loading,
+    partial: s.partial,
+  }))
+
+  const pane = usePane()
+  const lists = useParticipantList()
+
+  const saveBackgroundImage = async (files: FileInputResult[]) => {
+    if (!files?.length) return
+    if (!state.active?.chat) return
+
+    const [file] = files
+
+    chatStore.editChatBackground(file.file)
+  }
+
+  const saveLocalSettings = (update: Partial<AppSchema.Chat['localSettings']>) => {
+    chatStore.editLocalChatSettings(update)
+  }
+
+  const personaFormats = createMemo(() => {
+    const format = edit.personaKind
+    if (!format || format in backupFormats === false) return formatOptions
+
+    return formatOptions.concat(backupFormats[format])
+  })
+
+  const activePreset = createMemo(() => {
+    const presetId = state.active?.chat?.genPreset
+    if (!presetId) return
+
+    if (isDefaultPreset(presetId)) return defaultPresets[presetId]
+    return presets.list.find((pre) => pre._id === presetId)
+  })
+
+  createEffect(
+    on(
+      () => [state.active?.chat, state.active?.char] as const,
+      ([chat, char]) => {
+        if (!chat || !char) return
+        setFlags(state.active?.chat?.invisible ? { ...state.active?.chat.invisible } : {})
+        setEdit(getInitState(chat, char))
+      }
+    )
+  )
+
+  onMount(() => {
+    if (scenarioState.scenarios.length) return
+    scenarioStore.getAll()
+  })
+
+  createEffect(() => {
+    setEdit('scenarioId', state.active?.chat?.scenarioIds?.[0] || '')
+  })
+
+  createEffect(
+    on(
+      () => [edit.scenarioId],
+      () => {
+        const currentText = edit.scenario
+        const scenario = scenarioState.scenarios.find((s) => s._id === edit.scenarioId)
+        if (
+          scenario?.overwriteCharacterScenario &&
+          !state.active?.chat?.scenarioIds?.includes(scenario._id)
+        ) {
+          setEdit('scenario', scenario.text)
+        } else {
+          setEdit('scenario', currentText)
+        }
+      }
+    )
+  )
+
+  const scenarios = createMemo(() => {
+    const noScenario = [{ value: '', label: "None (use character's scenario)" }]
+    if (scenarioState.loading || scenarioState.partial) {
+      return noScenario.concat(
+        (state.active?.chat?.scenarioIds ?? []).map((id) => ({
+          value: id,
+          label: '...',
+        }))
+      )
+    } else {
+      return noScenario.concat(
+        scenarioState.scenarios.map((s) => ({ label: s.name || 'Untitled scenario', value: s._id }))
+      )
+    }
+  })
+
+  const genField = (prop: string, trait?: string) => {
+    if (generating()) {
+      toastStore.warn(`Cannot generator: Already generating`)
+      return
+    }
+
+    setGenerating(prop)
+
+    const index = trait
+      ? edit.personaAttrs.findIndex((a) => a.key === trait)
+      : edit.personaAttrs.findIndex((a) => a.key === 'text')
+
+    genOverrideField({
+      char: {
+        name: edit.name,
+        appearance: state.active?.char?.appearance || '',
+        description: edit.description || '',
+
+        greeting: edit.greeting,
+        persona: {
+          kind: edit.personaKind === 'text' ? 'text' : 'attributes',
+          attributes: edit.personaAttrs.reduce(
+            (prev, curr) => Object.assign(prev, { [curr.key]: [curr.values] }),
+            {} as any
+          ),
+        },
+        sampleChat: edit.sampleChat,
+        scenario: edit.scenario,
+      },
+      prop,
+      trait,
+      tick: (res, st) => {
+        if (st === 'done' || st === 'error') {
+          setGenerating('')
+        }
+
+        if (prop === 'persona') {
+          const next = [...edit.personaAttrs]
+          next[index] = { key: trait || 'text', values: res }
+          setEdit('personaAttrs', next)
+          return
+        }
+
+        if (prop in edit) {
+          setEdit(prop as keyof typeof edit, res)
+        }
+      },
+    })
+  }
+
+  const toggle = (charId: string) => {
+    const next = { ...flags() }
+    const curr = next[charId]
+    const flag = curr === undefined ? true : curr === false ? undefined : false
+    next[charId] = flag
+    setFlags(next)
+    chatStore.editChat(state.active?.chat?._id!, { invisible: next }, { quiet: true })
+  }
+
+  const onSave = () => {
+    const payload = {
+      name: edit.name,
+      greeting: edit.greeting,
+      sampleChat: edit.sampleChat,
+      systemPrompt: edit.systemPrompt,
+      postHistoryInstructions: edit.postHistoryInstructions,
+      scenario: edit.scenario,
+      overrides: {
+        kind: edit.personaKind,
+        attributes: fromAttrs(edit.personaAttrs),
+      },
+      imageSource: edit.imageSource,
+      scenarioIds: edit.scenarioId ? [edit.scenarioId] : [],
+      scenarioStates: edit.scenarioStates,
+    }
+    chatStore.editChat(state.active?.chat?._id!, payload, {
+      useOverrides: edit.useOverrides,
+      onSuccess: () => {
+        if (pane() !== 'pane') {
+          props.close()
+        }
+      },
+    })
+  }
+
+  const revert = () => {
+    const char = state.active?.char
+    if (!char) return
+
+    chatStore.editChat(state.active?.chat?._id!, {})
+  }
+
+  const Footer = (
+    <>
+      <div class="flex w-full justify-between gap-2">
+        <div>
+          <Button schema="secondary" onClick={revert}>
+            Reset Character
+          </Button>
+        </div>
+        <div class="flex gap-2">
+          <Button schema="secondary" onClick={props.close}>
+            Cancel
+          </Button>
+          <Button onClick={onSave}>Save</Button>
+        </div>
+      </div>
+    </>
+  )
+
+  onMount(() => props.footer(Footer))
+
+  return (
+    <form class="flex flex-col gap-3">
+      <Show when={user.user?.admin}>
+        <Card class="text-xs">{state.active?.chat?._id}</Card>
+      </Show>
+
+      <Card>
+        <Select
+          fieldName="imageSource"
+          label="Image Source"
+          helperText={<>Which settings to use when generating images for this chat</>}
+          items={[
+            { label: 'Main Character', value: 'main-character' },
+            { label: 'Last Character to Speak', value: 'last-character' },
+            { label: 'Chat Settings', value: 'chat' },
+            { label: 'App Settings', value: 'settings' },
+          ]}
+          value={edit.imageSource}
+          onChange={(ev) => setEdit('imageSource', ev.value as any)}
+        />
+      </Card>
+
+      <Card>
+        <div class="flex gap-1">
+          <FileInput
+            fieldName="chatBackground"
+            label={
+              <div class="flex items-center justify-between gap-1">
+                Background Image{' '}
+                <div class="flex items-center gap-1">
+                  <Show when={state.active?.chat?.background}>
+                    <Select
+                      parentClass="text-xs"
+                      items={[
+                        { label: 'Auto', value: 'auto' },
+                        { label: 'Cover', value: 'cover' },
+                        { label: 'Contain', value: 'contain' },
+                      ]}
+                      onChange={(next) => saveLocalSettings({ bgFormat: next.value as any })}
+                    />
+                    <Button size="sm" schema="red" onClick={() => chatStore.removeChatBackground()}>
+                      Remove
+                    </Button>
+                  </Show>
+                </div>
+              </div>
+            }
+            helperText="The image will be stored on your current device and not available on other devices"
+            onUpdate={saveBackgroundImage}
+            accept="image/png,image/jpeg,image/apng,image/gif,image/webp"
+          />
+        </div>
+      </Card>
+
+      <Show when={activePreset()?.service !== 'horde'}>
+        <Card>
+          <Select
+            fieldName="mode"
+            label="Chat Mode"
+            helperText={
+              <>
+                <Show when={state.active?.chat?.mode !== 'companion' && edit.mode === 'companion'}>
+                  <TitleCard type="orange">
+                    Warning! Switching to COMPANION mode is irreversible! You will no longer be able
+                    to: retry messages, delete chats, edit chat settings.
+                  </TitleCard>
+                </Show>
+              </>
+            }
+            items={[
+              { label: 'Conversation', value: 'standard' },
+              { label: 'Companion', value: 'companion' },
+            ]}
+            value={edit.mode}
+            onChange={(ev) => setEdit('mode', ev.value as any)}
+          />
+        </Card>
+      </Show>
+
+      <Card>
+        <TextInput
+          class="text-sm"
+          value={edit?.name || ''}
+          onChange={(ev) => setEdit('name', ev.currentTarget.value)}
+          label={
+            <>
+              Chat name{' '}
+              <div
+                onClick={() =>
+                  responseStore.chatQuery(
+                    {
+                      question:
+                        'Generate one name for this conversation. Reply only with the one chat name only and no other formatting or commentary.',
+                      assistant: 'Conversation Name Generator',
+                    },
+                    (msg, state) => {
+                      if (state !== 'partial' && state !== 'done') return
+                      setEdit('name', msg)
+                    }
+                  )
+                }
+              >
+                <Wand />
+              </div>
+            </>
+          }
+        />
+      </Card>
+
+      <Card>
+        <Toggle
+          value={edit.useOverrides}
+          onChange={(ev) => setEdit('useOverrides', ev)}
+          label="Override Character Definitions"
+          helperText="Overrides apply to this chat only. If you want to edit the original character, open the 'Character' link in the Chat Menu instead."
+        />
+      </Card>
+
+      <Show when={scenarios().length > 1}>
+        <Card>
+          <Select
+            label="Scenario"
+            helperText="The scenario to use for this conversation"
+            items={scenarios()}
+            value={edit.scenarioId}
+            onChange={(ev) => setEdit('scenarioId', ev.value)}
+          />
+
+          <Show when={edit.scenarioId !== ''}>
+            <TagInput
+              availableTags={[]}
+              onSelect={(tags) => setEdit('scenarioStates', tags)}
+              label="The current state of the scenario"
+              helperText="What flags have been set in the chat by the scenario so far"
+              value={edit.scenarioStates}
+            />
+          </Show>
+        </Card>
+      </Show>
+
+      <Show when={edit.useOverrides}>
+        <Card>
+          <TextInput
+            class="text-sm"
+            isMultiline
+            value={edit.description}
+            helperText="A description, label, or notes for your character: Used for AI field generation. Does not change your character's behavior."
+            onChange={(ev) => setEdit('description', ev.currentTarget.value)}
+            label="Description"
+          />
+
+          <TextInput
+            class="text-sm"
+            isMultiline
+            label={
+              <GenLabel generating={generating()} label="Greeting" prop="greeting" gen={genField} />
+            }
+            value={edit.greeting}
+            onChange={(ev) => setEdit('greeting', ev.currentTarget.value)}
+          />
+
+          <TextInput
+            class="text-sm"
+            isMultiline
+            value={edit.scenario}
+            onChange={(ev) => setEdit('scenario', ev.currentTarget.value)}
+            label={
+              <GenLabel generating={generating()} label="Scenario" prop="scenario" gen={genField} />
+            }
+          />
+
+          <TextInput
+            class="text-sm"
+            isMultiline
+            label={
+              <GenLabel
+                generating={generating()}
+                label="Sample Chat"
+                prop="sampleChat"
+                gen={genField}
+              />
+            }
+            value={edit.sampleChat}
+            onChange={(ev) => setEdit('sampleChat', ev.currentTarget.value)}
+          />
+
+          <TextInput
+            class="text-sm"
+            label="Character System Prompt"
+            value={edit.systemPrompt}
+            onChange={(ev) => setEdit('systemPrompt', ev.currentTarget.value)}
+          />
+
+          <TextInput
+            class="text-sm"
+            label="Character Post-History Instructions"
+            value={edit.postHistoryInstructions}
+            onChange={(ev) => setEdit('postHistoryInstructions', ev.currentTarget.value)}
+          />
+
+          <Select
+            fieldName="schema"
+            label="Persona"
+            items={personaFormats()}
+            value={edit.personaKind}
+            onChange={(ev) => setEdit('personaKind', ev.value as any)}
+          />
+          <div class="mt-4 flex flex-col gap-2 text-sm">
+            <PersonaAttributes
+              state={edit.personaAttrs}
+              setter={(next) => setEdit('personaAttrs', next)}
+              hideLabel
+              schema={edit.personaKind}
+              generate={genField}
+              disabled={!!generating()}
+            />
+          </div>
+        </Card>
+      </Show>
+
+      <Divider />
+
+      <FormLabel
+        label="Default Message Visibility"
+        helperMarkdown={neat`
+          When the Message has not had visibility edited.
+          The _most specific_ takes precendence:
+          \`Message > Character Default > All Default\`
+          `}
+      />
+
+      <div>
+        <div class="flex flex-wrap gap-2">
+          <Pill small inverse>
+            <Check size={16} color="var(--success-500)" class="flex items-center gap-1" />
+            Visible
+          </Pill>
+          <Pill small inverse>
+            <X size={16} color="var(--error-500)" class="flex items-center gap-1" />
+            Invisible
+          </Pill>
+          <Pill small inverse class="flex items-center gap-1">
+            <Minus size={16} />
+            Not Set
+          </Pill>
+        </div>
+
+        <div>
+          <strong>Defaults for All Messages</strong>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <For each={lists().chars}>
+            {(char) => (
+              <VisibilityToggle
+                char={char}
+                invisible={flags()[char._id]}
+                onClick={() => toggle(char._id)}
+              />
+            )}
+          </For>
+
+          <For each={lists().tempsActive}>
+            {(char) => (
+              <VisibilityToggle
+                char={char}
+                invisible={flags()[char._id]}
+                onClick={() => toggle(char._id)}
+              />
+            )}
+          </For>
+        </div>
+
+        <Show when={state.active.chat}>
+          <CharacterDefaultVisibility chat={state.active.chat} participants={lists()} />
+        </Show>
+      </div>
+    </form>
+  )
+}
+
+function getInitState(chat?: AppSchema.Chat, char?: AppSchema.Character) {
+  return {
+    name: chat?.name || '',
+    description: char?.description || '',
+    imageSource: chat?.imageSource || 'settings',
+    mode: chat?.mode || 'standard',
+    useOverrides: !!chat?.overrides,
+    scenarioId: chat?.scenarioIds?.[0] || '',
+    scenarioStates: chat?.scenarioStates || [],
+
+    greeting: chat?.greeting || char?.greeting || '',
+    scenario: chat?.scenario || char?.scenario || '',
+    sampleChat: chat?.sampleChat || char?.sampleChat || '',
+    systemPrompt: chat?.systemPrompt || '',
+    postHistoryInstructions: chat?.postHistoryInstructions || '',
+
+    personaKind: chat?.overrides?.kind || char?.persona.kind || 'text',
+    personaAttrs: toAttrs(chat?.overrides?.attributes || char?.persona.attributes),
+  }
+}
+
+const GenLabel: Component<{
+  label: string
+  prop: string
+  generating: string
+  gen: (prop: string, trait?: string) => void
+}> = (props) => {
+  return (
+    <Switch>
+      <Match when={props.prop === props.generating}>
+        <div class="flex gap-2">
+          <Button size="sm" onClick={() => props.gen(props.prop)} disabled>
+            <RelativeSpinner size={16} />
+          </Button>
+          {props.label}
+        </div>
+      </Match>
+      <Match when>
+        <div class="flex gap-2">
+          <Button size="sm" onClick={() => props.gen(props.prop)} disabled={!!props.generating}>
+            <Sparkles size={16} />
+          </Button>
+          {props.label}
+        </div>
+      </Match>
+    </Switch>
+  )
+}
+
+export default ChatSettings

@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "target": "ES2022",
+    "module": "nodenext",
+    "incremental": true,
+    "moduleResolution": "nodenext",
+    "noEmit": false,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "sourceMap": true,
+    "baseUrl": ".",
+    "paths": {
+      "/srv/*": ["./srv/*"],
+      "/common/*": ["./common/*"]
+    }
+  },
+  "include": ["srv", "common", "tests"]
+}

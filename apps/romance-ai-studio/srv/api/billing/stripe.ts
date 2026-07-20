@@ -1,0 +1,240 @@
+import Stripe from 'stripe'
+import { config } from '/srv/config'
+import { AppSchema } from '/common/types'
+import { logger } from '../../middleware'
+import { store } from '/srv/db'
+import { getCachedTiers } from '/srv/db/subscriptions'
+import { domain } from '/srv/domains'
+import { subsCmd } from '/srv/domains/subs/cmd'
+
+// export const stripe = new Stripe(config.billing.private, { apiVersion: '2025-11-17.clover' })
+export const stripe = new Stripe(config.billing.private, { apiVersion: '2023-08-16' })
+
+const ONE_HOUR_MS = 60000 * 60
+
+export async function resyncSubscription(user: AppSchema.User) {
+  const subscription = await findValidSubscription(user)
+
+  if (subscription instanceof Error) {
+    return new Error(
+      `Could not retrieve subscription information - Please try again or contact support`
+    )
+  }
+
+  if (!subscription) {
+    if (!user.billing) return
+
+    // Don't throw when already cancelled
+    if (user.billing.status === 'cancelled') return
+
+    // Remove subscription if the call succeeds, but returns no active subscription
+    // Don't clear it if it's occupied by other provider
+    if (user.sub && user.sub.type === 'native') {
+      await store.users.updateUser(user._id, { sub: null as any })
+    }
+
+    if (user.billing) {
+      user.billing.cancelling = false
+      user.billing.status = 'cancelled'
+
+      // if (isActive(user.billing.validUntil)) {
+      //   user.billing.validUntil = new Date(Date.now() - ONE_HOUR_MS * 2).toISOString()
+      // }
+
+      await store.users.updateUser(user._id, { billing: user.billing })
+    }
+
+    return new Error(
+      `Could not retrieve subscription information - Please try again or contact support`
+    )
+  }
+
+  const plan: Stripe.Plan | undefined = (subscription as any).plan
+  const allTiers = getCachedTiers()
+  const state = await domain.subscription.getAggregate(user._id)
+  const predowngradeId = state.state === 'active' && state.downgrade ? state.tierId : undefined
+
+  /**
+   * If a downgrade is in process, ensure we use the pre-downgrade tier until it comes into effect
+   */
+  const expectedTier = allTiers.find((t) => {
+    if (predowngradeId) return t._id === predowngradeId
+    return !!plan && t.productId === plan.product
+  })
+
+  if (!expectedTier) {
+    logger.error(
+      { customerId: user.billing?.customerId, plan, userId: user._id },
+      'Subscription missing plan information'
+    )
+    return new Error(
+      `Internal server error: Could not locate your subscription plan - Contact support`
+    )
+  }
+
+  // Provide a buffer (1 or more hours) to allow subscriptions to auto-renew
+  // Automatic invoices seem to be in a draft status for ~1 hour so provide enough time for it to clear
+  const renewedAt = new Date(subscription.current_period_start * 1000)
+  const validUntil = new Date(subscription.current_period_end * 1000)
+
+  const billing: AppSchema.User['billing'] = user.billing
+    ? user.billing
+    : {
+        lastChecked: new Date().toISOString(),
+        validUntil: new Date(0).toDateString(),
+        customerId: '',
+        lastRenewed: '',
+        status: 'cancelled',
+        subscriptionId: '',
+      }
+
+  if (billing.subscriptionId !== subscription.id) {
+    billing.subscriptionId = subscription.id
+    billing.customerId = subscription.customer as string
+  }
+
+  /**
+   * If the subscription has not been renewed and the tier is downgrading then ensure
+   * the sub is still valid and return to pre-downgrade level
+   */
+  const isDowngrading = user.sub?.tierId === expectedTier._id
+  if (isActive(validUntil) && isDowngrading) {
+    billing.lastChecked = new Date().toISOString()
+    billing.validUntil = validUntil.toISOString()
+    billing.lastRenewed = renewedAt.toISOString()
+    billing.status = 'active'
+    await store.users.updateUser(user._id, { billing })
+    return expectedTier.level
+  }
+
+  if (!isActive(validUntil)) {
+    billing.lastChecked = new Date().toISOString()
+    billing.validUntil = validUntil.toISOString()
+    billing.lastRenewed = renewedAt.toISOString()
+    billing.status = 'cancelled'
+    billing.cancelling = false
+    await store.users.updateUser(user._id, { billing })
+    return new Error('Your subscripion has expired')
+  }
+
+  billing.lastRenewed = renewedAt.toISOString()
+  billing.validUntil = validUntil.toISOString()
+  billing.lastChecked = new Date().toISOString()
+  billing.status = 'active'
+  user.sub = { level: expectedTier.level, tierId: expectedTier._id }
+  await store.users.updateUser(user._id, { billing, sub: user.sub })
+  return expectedTier.level
+}
+
+export async function findValidSubscription(user: AppSchema.User) {
+  const customerIds = new Set<string>()
+  if (user.billing?.customerId) {
+    customerIds.add(user.billing.customerId)
+  }
+
+  const sessionIds = (user.stripeSessions || []).slice().reverse()
+  for (const sessionId of sessionIds) {
+    const agg = await domain.billing.getAggregate(sessionId)
+
+    // Likelyu failed to complete, skip it
+    if (!agg.session?.subscription) continue
+    if (agg.session.customer) {
+      customerIds.add(agg.session.customer as string)
+    }
+
+    continue
+  }
+
+  const subs = await getActiveCustomerSubscriptions(Array.from(customerIds.values()))
+
+  let errored = false
+
+  if (!subs.length && !errored) return
+  if (!subs.length && errored) {
+    return new Error('Failed to retrieve a subscription')
+  }
+
+  const allTiers = getCachedTiers()
+  const state = await domain.subscription.getAggregate(user._id)
+  const predowngradeId = state.state === 'active' && state.downgrade ? state.tierId : undefined
+
+  let match: AppSchema.SubscriptionTier | undefined
+  const bestSub = subs.reduce<Stripe.Subscription | undefined>((prev, curr) => {
+    const plan: Stripe.Plan | undefined = (curr as any).plan
+    if (!plan) {
+      return prev
+    }
+
+    if (curr.status !== 'active') {
+      return prev
+    }
+
+    const tier = allTiers.find((t) => {
+      if (predowngradeId) return t._id === predowngradeId
+      return !!plan && t.productId === plan.product
+    })
+
+    if (!tier) return prev
+    if (!prev || tier.level > match!.level) {
+      match = tier
+      return curr
+    }
+
+    return prev
+  }, undefined)
+
+  const plan: Stripe.Plan = bestSub ? (bestSub as any).plan : undefined
+  if (bestSub && plan && bestSub.id !== state.subscriptionId) {
+    const priceId = bestSub.items.data[0].price.id
+    const productId = bestSub.items.data[0].price.product as string
+    await subsCmd.subscribe(user._id, {
+      customerId: bestSub.customer as string,
+      priceId,
+      productId,
+      subscription: bestSub,
+      subscriptionId: bestSub.id,
+      tierId: match?._id!,
+    })
+  }
+
+  return bestSub
+}
+
+/**
+ * Provides a grace period for expiry
+ * @param until
+ * @returns
+ */
+export function isActive(until: Date | number | string, hours = 2) {
+  const ms =
+    typeof until === 'string'
+      ? new Date(until).valueOf()
+      : typeof until === 'number'
+      ? until
+      : until.valueOf()
+
+  const valid = new Date(ms * 1000)
+  const now = Date.now() - ONE_HOUR_MS * hours
+
+  return now < valid.valueOf()
+}
+
+async function getActiveCustomerSubscriptions(customerIds: string[]) {
+  const subs: Stripe.Subscription[] = []
+
+  for (const customerId of customerIds) {
+    const customer = await stripe.customers.retrieve(customerId, {
+      expand: ['subscriptions'],
+    })
+
+    if (customer.deleted) continue
+    if (!customer?.subscriptions?.data?.length) continue
+
+    for (const sub of customer.subscriptions.data) {
+      if (sub.status !== 'active') continue
+      subs.push(sub)
+    }
+  }
+
+  return subs
+}

@@ -1,0 +1,93 @@
+import * as express from 'express'
+import { AppSchema } from '../../common/types/schema'
+import { AppLog } from '../middleware'
+
+export function handle(handler: Handler): express.RequestHandler {
+  const wrapped = async (req: AppRequest, res: express.Response, next: express.NextFunction) => {
+    let nextCalled = false
+    const wrappedNext = (err?: any) => {
+      nextCalled = true
+      next(err)
+    }
+
+    const isEventStream = req.headers.accept === 'text/event-stream'
+    try {
+      // We want to ensure that all requests are terminated
+      const result = await handler(req as any, res, wrappedNext)
+
+      if (nextCalled) {
+        // Should we error here?
+        return
+      }
+
+      if (!nextCalled && !res.writableEnded && isEventStream) {
+        res.end()
+        return
+      }
+
+      if (result && !res.headersSent) {
+        res.json(result)
+        return
+      }
+
+      if (res.writableEnded) return
+
+      const err = new StatusError('Server API failed handle the request', 500)
+      req.log.error({ err }, 'Unexpected handler fall-through')
+      next(err)
+      return
+    } catch (ex: any) {
+      req.log.error({ err: ex }, 'Error occurred handling request')
+
+      if (!res.writableEnded && isEventStream) {
+        res.write('data: ' + JSON.stringify({ error: ex?.message || ex }) + '\n\n')
+        res.status(500)
+        res.end()
+        return
+      }
+
+      if (!res.writableEnded) next(ex)
+    }
+  }
+  return wrapped as any as express.RequestHandler
+}
+
+export const wrap = handle
+
+export class StatusError extends Error {
+  constructor(public msg: string, public status: number) {
+    super(msg)
+  }
+}
+
+class BannedError extends StatusError {
+  public banned = true
+
+  constructor(public reason: string) {
+    super(reason, 401)
+  }
+}
+
+export type Handler = (req: AppRequest, res: express.Response, next: express.NextFunction) => any
+
+export type AppRequest<T = any> = Omit<express.Request, 'log' | 'body'> & {
+  user?: AppSchema.Token
+  requestId: string
+  userId: string
+  log: AppLog
+  socketId: string
+  scopes?: string[]
+  authed?: AppSchema.User
+  tier?: AppSchema.SubscriptionTier
+  body: T
+}
+
+export const errors = {
+  NotFound: new StatusError('Resource not found', 404),
+  CharacterNotFound: new StatusError('Character not found', 404),
+  ChatNotFound: new StatusError('Chat not found', 404),
+  Unauthorized: new StatusError('Unauthorized', 401),
+  Forbidden: new StatusError('Forbidden', 403),
+  BadRequest: new StatusError('Bad request', 400),
+  UserBanned: (reason: string) => new BannedError(reason || 'No reason given'),
+}

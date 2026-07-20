@@ -1,0 +1,500 @@
+import { batch, createEffect, createMemo, createSignal, on, onMount } from 'solid-js'
+import { SetStoreFunction, createStore } from 'solid-js/store'
+import { AppSchema, VoiceSettings } from '/common/types'
+import { FullSprite } from '/common/types/sprite'
+import { defaultCulture } from '/web/shared/CultureCodes'
+import { fromAttrs, toAttrs } from '/web/shared/PersonaAttributes'
+import { NewCharacter, characterStore, toastStore, userStore } from '/web/store'
+import { generateField } from './generate-char'
+import { ImageSettings } from '/common/types/image-schema'
+import { useImageCache } from '/web/shared/hooks'
+import { imageApi } from '/web/store/data/image'
+import { v4 } from 'uuid'
+import { ResponseSchema } from '/common/types/library'
+import { createDebounce, storage } from '/web/shared/util'
+
+const EDITOR_CACHE_KEY = `agnai-char-editor`
+
+export type EditorState = {
+  __type?: string
+  state: 'init' | 'loaded'
+  editId?: string
+  name: string
+  personaKind: AppSchema.Character['persona']['kind']
+  personaAttrs: Array<{ key: string; values: string }>
+  description: string
+  appearance: string
+  scenario: string
+  greeting: string
+  sampleChat: string
+  prefill: string
+  creator: string
+  characterVersion: string
+  postHistoryInstructions: string
+  insert?: {
+    prompt: string
+    depth: number
+  }
+  systemPrompt: string
+
+  visualType: string
+
+  avatar?: File
+  originalAvatar?: any
+  sprite?: FullSprite
+
+  tags: string[]
+  book?: AppSchema.MemoryBook
+  voiceDisabled?: boolean
+  voice: VoiceSettings
+  culture: string
+  alternateGreetings: string[]
+  persona: AppSchema.Persona
+
+  imageSettings?: ImageSettings
+  json?: ResponseSchema
+  imageOverride: string
+  flags: Record<string, any>
+}
+
+export type SetEditor = SetStoreFunction<EditorState>
+
+const initState: EditorState = {
+  state: 'init',
+  name: '',
+  personaKind: 'text',
+  personaAttrs: [],
+  sampleChat: '',
+  description: '',
+  appearance: '',
+  scenario: '',
+  greeting: '',
+  creator: '',
+  characterVersion: '',
+  postHistoryInstructions: '',
+  prefill: '',
+  voiceDisabled: false,
+  insert: {
+    prompt: '',
+    depth: 3,
+  },
+  systemPrompt: '',
+
+  visualType: 'avatar',
+  tags: [],
+  alternateGreetings: [],
+  culture: defaultCulture,
+  voice: { service: undefined },
+  sprite: undefined,
+  book: undefined,
+  persona: { kind: 'text', attributes: { text: [''] } },
+  imageSettings: {
+    type: 'sd',
+    width: 512,
+    height: 512,
+    steps: 10,
+    clipSkip: 0,
+    cfg: 9,
+    negative: '',
+    prefix: '',
+    suffix: '',
+    summariseChat: true,
+    summaryPrompt: '',
+    template: '',
+    imageProviderId: '',
+    openai: {} as any,
+
+    agnai: {
+      _id: 'agnai',
+      name: 'Agnaistic',
+      type: 'agnai',
+      url: '',
+      model: '',
+      sampler: '',
+      scheduler: '',
+      draftMode: false,
+    },
+
+    horde: {
+      _id: 'horde',
+      name: 'Horde',
+      type: 'horde',
+      url: '',
+      model: '',
+      sampler: '',
+      scheduler: '',
+    },
+
+    novel: {
+      _id: 'novel',
+      name: 'NovelAI',
+      type: 'novel',
+      url: '',
+      model: '',
+      sampler: '',
+      qualityTags: true,
+      ucPreset: '0',
+      scheduler: '',
+    },
+
+    sd: {
+      _id: 'sd',
+      name: 'Stable Diffusion',
+      type: 'sd',
+      url: '',
+      sampler: '',
+      model: '',
+      scheduler: '',
+    },
+
+    swarm: {
+      _id: 'swarm',
+      name: 'SwarmUI',
+      type: 'swarm',
+      url: '',
+      sampler: '',
+      local: true,
+      model: '',
+      scheduler: '',
+    },
+  },
+  imageOverride: '',
+  flags: {},
+}
+
+const [updateCache] = createDebounce(async (state: EditorState) => {
+  if (state.state === 'init') return
+  const id = state.editId || 'new'
+
+  if (id !== 'new') {
+    await storage.removeItem(EDITOR_CACHE_KEY)
+    return
+  }
+
+  const next = {
+    id,
+    name: state.name,
+    description: state.description,
+    tags: state.tags,
+    appearance: state.appearance,
+    scenario: state.scenario,
+    persona: state.persona,
+    personaKind: state.personaKind,
+    personaAttrs: state.personaAttrs,
+    systemPrompt: state.systemPrompt,
+    greeting: state.greeting,
+    alternateGreetings: state.alternateGreetings,
+    sampleChat: state.sampleChat,
+    json: state.json,
+    postHistoryInstructions: state.postHistoryInstructions,
+    creator: state.creator,
+    characterVersion: state.characterVersion,
+    insert: state.insert,
+    prefill: state.prefill,
+  }
+
+  await storage.setItem(EDITOR_CACHE_KEY, JSON.stringify(next))
+}, 500)
+
+export type CharEditor = ReturnType<typeof useCharEditor>
+
+export function useCharEditor(editing?: NewCharacter & { _id?: string; __type?: string }) {
+  const cache = useImageCache({ id: 'avatars-images', clean: true })
+
+  const [original, setOriginal] = createSignal(editing)
+  const [state, setState] = createStore<EditorState>({ ...initState })
+  const [imageData, setImageData] = createSignal<string>()
+  const [generating, setGenerating] = createSignal(false)
+  const [imageId, setImageId] = createSignal('')
+
+  const canGenerate = createMemo(
+    on(
+      () => `${state.name}${state.description}`,
+      () => {
+        return !!state.name.trim() && !!state.description.trim()
+      }
+    )
+  )
+
+  createEffect(async () => {
+    const nextImage = cache.state.image
+
+    if (nextImage) {
+      const file = await imageApi.dataURLtoFile(nextImage, cache.state.imageId)
+
+      setImageData(nextImage)
+      setState('avatar', file)
+    }
+  })
+
+  onMount(() => {
+    if (!editing) return
+
+    const orig = original()
+    if (!orig || orig._id !== editing._id) {
+      setOriginal(editing)
+    }
+  })
+
+  const receiveAvatar = async (image: File, original?: boolean) => {
+    if (!image) return
+    const base64 = await imageApi.getImageData(image)
+    setState('avatar', image)
+    setImageData(base64)
+
+    if (base64) {
+      const id = original ? 'original' : v4()
+      await cache.addImage(base64, { id })
+      if (original) {
+        setImageId(`avatars-${id}`)
+      }
+    }
+
+    return base64
+  }
+
+  const createAvatar = async () => {
+    const current = payload()
+    const attributes = fromAttrs(state.personaAttrs)
+    const desc = current.appearance || (attributes?.appeareance || attributes?.looks)?.join(', ')
+    const override = state.imageOverride
+    const avatar = await generateAvatar(desc || '', override)
+    if (!avatar) return
+
+    return receiveAvatar(avatar)
+  }
+
+  const genField = async (field: string, trait?: string) => {
+    const char = payload(false)
+
+    if (generating()) {
+      toastStore.warn(`Cannot generate: Already generating`)
+      return
+    }
+
+    setGenerating(true)
+
+    const index = trait
+      ? state.personaAttrs.findIndex((a) => a.key === trait)
+      : state.personaAttrs.findIndex((a) => a.key === 'text')
+
+    generateField({
+      char,
+      prop: field,
+      trait,
+      tick: (res, st) => {
+        if (st === 'done' || st === 'error') {
+          setGenerating(false)
+        }
+
+        if (st !== 'done' && st !== 'partial') return
+
+        if (field === 'persona') {
+          const next = [...state.personaAttrs]
+          next[index] = { key: trait || 'text', values: res }
+          setState('personaAttrs', next)
+          updateCache(state)
+
+          // const attributes = { ...char.persona.attributes }
+          // if (!trait) {
+          //   attributes.text = [res]
+          // } else {
+          //   attributes[trait as 'text'] = [res]
+          // }
+
+          // setState('personaAttrs', attributes)
+          return
+        }
+
+        if (field in state) {
+          setState(field as keyof EditorState, res)
+          updateCache(state)
+        }
+      },
+    })
+  }
+
+  const reset = async () => {
+    batch(async () => {
+      const char = original()
+      setState({ ...initState, state: 'loaded' })
+
+      const personaKind = char?.persona?.kind || state.personaKind || ''
+
+      setState('personaKind', personaKind)
+
+      if (char?.originalAvatar) {
+        // Intentionally do this in a separate tick
+        // It's not worth holding up the editor for this
+        Promise.resolve().then(async () => {
+          try {
+            const base64 = await imageApi.getImageData(char.originalAvatar)
+            if (base64) {
+              const file = await imageApi.dataURLtoFile(base64)
+              receiveAvatar(file, true)
+            }
+          } catch (ex) {}
+        })
+      }
+
+      // We set fields that aren't properly managed by form elements
+      setState({
+        ...char,
+        flags: {},
+        personaKind,
+        personaAttrs: toAttrs(char?.persona?.attributes),
+        alternateGreetings: char?.alternateGreetings || [],
+        book: char?.characterBook,
+        voice: char?.voice || { service: undefined },
+        sprite: char?.sprite || undefined,
+        visualType: char?.visualType || 'avatar',
+        culture: char?.culture || defaultCulture,
+        insert: char?.insert ? { prompt: char.insert.prompt, depth: char.insert.depth } : undefined,
+      })
+    })
+  }
+
+  const clear = () => {
+    setImageData()
+    load({ ...initState, originalAvatar: undefined })
+  }
+
+  const loadCached = async () => {
+    const cached = await storage
+      .getItem(EDITOR_CACHE_KEY)
+      .then((cached) => (cached ? JSON.parse(cached) : null))
+
+    if (!cached) {
+      setState({ ...cached, state: 'loaded' })
+    }
+
+    setState({ ...cached, state: 'loaded' })
+  }
+
+  const load = async (char: NewCharacter | AppSchema.Character) => {
+    batch(() => {
+      if ('_id' in char) {
+        const { avatar, ...incoming } = char
+
+        setOriginal({ ...incoming, originalAvatar: avatar })
+        reset()
+        return
+      }
+
+      setOriginal(char)
+      reset()
+    })
+  }
+
+  const payload = (submitting?: boolean) => {
+    const imgId = imageId()
+    const data = getPayload(state, original())
+
+    if (submitting) {
+      if (imgId !== cache.state.imageId) {
+        data.avatar = state.avatar
+        setImageId(cache.state.imageId)
+      } else {
+        delete data.avatar
+      }
+    }
+
+    return data
+  }
+
+  const convert = (): AppSchema.Character => {
+    const payload = getPayload(state, original())
+
+    return {
+      _id: '',
+      kind: 'character',
+      userId: '',
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+      ...payload,
+      avatar: imageData(),
+    }
+  }
+
+  const updateState: typeof setState = function (this: any, ...args: any[]) {
+    setState.apply(this, args as any)
+    updateCache(state)
+  }
+
+  return {
+    state,
+    update: updateState,
+    reset,
+    load,
+    loadCached,
+    convert,
+    payload,
+    original,
+    clear,
+    createAvatar,
+    receiveAvatar,
+    avatar: imageData,
+    generating,
+    canGenerate,
+    generateField: genField,
+    generateAvatar,
+    imageCache: cache,
+  }
+}
+
+function getPayload(state: EditorState, original?: NewCharacter) {
+  const payload = {
+    name: state.name,
+    description: state.description,
+    culture: state.culture,
+    tags: state.tags,
+    scenario: state.scenario,
+    appearance: state.appearance,
+    visualType: state.visualType,
+    avatar: state.avatar ?? (null as any),
+    sprite: state.sprite ?? (null as any),
+    greeting: state.greeting,
+    sampleChat: state.sampleChat,
+    originalAvatar: original?.originalAvatar,
+    voiceDisabled: state.voiceDisabled,
+    voice: state.voice,
+
+    // New fields start here
+    systemPrompt: state.systemPrompt ?? '',
+    postHistoryInstructions: state.postHistoryInstructions ?? '',
+    prefill: state.prefill,
+    insert: { prompt: state.insert?.prompt || '', depth: state.insert?.depth ?? 3 },
+    alternateGreetings: state.alternateGreetings ?? [],
+    characterBook: state.book,
+    creator: state.creator ?? '',
+    extensions: original?.extensions,
+    characterVersion: state.characterVersion ?? '',
+    persona: {
+      kind: state.personaKind,
+      attributes: fromAttrs(state.personaAttrs),
+    },
+    json: {
+      ...state.json,
+    } as ResponseSchema,
+  }
+
+  return payload
+}
+
+async function generateAvatar(description: string, override?: string) {
+  const { user } = userStore.getState()
+  if (!user) {
+    return toastStore.error(`Image generation settings missing`)
+  }
+
+  // const image = await imageApi.generateImageAsync(description)
+  // return image
+
+  return new Promise<File>((resolve, reject) => {
+    characterStore.generateAvatar({ user, persona: description, override }, (err, image) => {
+      if (err) return reject(err)
+      if (image) return resolve(image)
+      reject(err)
+    })
+  })
+}

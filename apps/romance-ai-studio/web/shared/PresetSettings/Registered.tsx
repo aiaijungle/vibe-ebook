@@ -1,0 +1,49 @@
+import { Component, createMemo, For, Show } from 'solid-js'
+import { AppSchema } from '../../../common/types/schema'
+import { AIAdapter } from '../../../common/adapters'
+import { settingStore } from '../../store'
+import { ServiceOption } from '../../pages/Settings/components/RegisteredSettings'
+import { PresetFuncs } from '/web/store/preset-context'
+
+export const RegisteredSettings: Component<{
+  service?: AIAdapter
+  state: Partial<AppSchema.GenSettings>
+  setters: PresetFuncs
+}> = (props) => {
+  const state = settingStore((s) => ({ config: s.config }))
+
+  const options = createMemo(() => {
+    if (!props.service) return []
+
+    const svc = state.config.registered.find((reg) => reg.name === props.service)
+    if (!svc) return []
+
+    return svc.settings.filter((s) => s.preset)
+  })
+
+  return (
+    <Show when={options().length}>
+      <div class="mt-2 flex flex-col gap-2">
+        <For each={options()}>
+          {(opt) => (
+            <ServiceOption
+              opt={opt}
+              service={props.service!}
+              field={(field) => `registered.${props.service!}.${field}`}
+              value={props.state?.registered?.[props.service!]?.[opt.field]}
+              hide={props.state.presetMode === 'simple' && opt.advanced === false}
+              onChange={(ev) => {
+                if (!props.setters || !props.state) return
+                if (!props.service) return
+                const prev = { ...(props.state.registered as any)?.[props.service!] }
+                prev[opt.field] = ev
+                const next = { ...props.state.registered, [props.service]: prev }
+                props.setters.setState('registered', next)
+              }}
+            />
+          )}
+        </For>
+      </div>
+    </Show>
+  )
+}

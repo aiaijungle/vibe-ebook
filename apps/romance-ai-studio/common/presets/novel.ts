@@ -1,0 +1,61 @@
+import { AppSchema } from '../types/schema'
+import { templates } from './templates'
+
+export const NOVEL_MODELS = {
+  'llama-3-erato-v1': 'erato-v1',
+  euterpe: 'euterpe-v2',
+  krake: 'krake-v2',
+  clio_v1: 'clio-v1',
+  kayra_v1: 'kayra-v1',
+  glm_46: 'glm-4-6',
+} satisfies { [key: string]: string }
+
+export const NOVEL_ALIASES: Record<string, string> = {
+  'erato-v1': 'llama-3-erato-v1',
+  glm_45: 'glm-4-6',
+}
+
+export const novelPresets = {
+  novel_kayra: {
+    name: 'Kayra - Carefree',
+    service: 'novel',
+    novelModel: NOVEL_MODELS.kayra_v1,
+    maxTokens: 300,
+    maxContextLength: 8000,
+    repetitionPenalty: 2.8,
+    repetitionPenaltyRange: 2048,
+    repetitionPenaltySlope: 0.02,
+    frequencyPenalty: 0.03,
+    presencePenalty: 0.0,
+    temp: 1.05,
+    tailFreeSampling: 0.915,
+    topK: 12,
+    topP: 0.85,
+    topA: 0.1,
+    order: [6, 2, 3, 0, 4, 1, 5],
+    disabledSamplers: [6, 5],
+    streamResponse: true,
+    typicalP: 1,
+    gaslight: templates.NovelAI,
+  },
+  novel_clio: {
+    name: 'Clio - Talker C',
+    service: 'novel',
+    novelModel: NOVEL_MODELS.clio_v1,
+    maxTokens: 300,
+    maxContextLength: 8000,
+    repetitionPenalty: 1.5,
+    repetitionPenaltyRange: 8000,
+    repetitionPenaltySlope: 0.09,
+    frequencyPenalty: 0.03,
+    presencePenalty: 0.005,
+    temp: 1.35,
+    tailFreeSampling: 0.967,
+    topK: 80,
+    topP: 0.95,
+    topA: 0.075,
+    order: [1, 3, 4, 0, 2],
+    streamResponse: true,
+    gaslight: templates.NovelAI,
+  },
+} satisfies Record<string, Partial<AppSchema.GenSettings>>

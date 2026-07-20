@@ -1,0 +1,69 @@
+.avatar-xs {
+  @apply w-6 min-w-[1.25rem] overflow-hidden sm:w-6;
+}
+
+.avatar-sm {
+  @apply w-8 min-w-[2rem] overflow-hidden sm:w-8 sm:min-w-[2rem];
+}
+
+.avatar-md {
+  @apply w-8 min-w-[2rem] overflow-hidden sm:w-10 sm:min-w-[2.5rem];
+}
+
+.avatar-lg {
+  @apply w-8 min-w-[2rem] overflow-hidden sm:w-12 sm:min-w-[3rem];
+}
+
+.avatar-xl {
+  @apply w-10 min-w-[2.5rem] overflow-hidden sm:w-16 sm:min-w-[4rem];
+}
+
+.avatar-2xl {
+  @apply w-12 min-w-[3rem] overflow-hidden sm:w-20 sm:min-w-[5rem];
+}
+
+.avatar-3xl {
+  @apply w-14 min-w-[3.5rem] overflow-hidden sm:w-24 sm:min-w-[6rem];
+}
+
+.avatar-max3xl {
+  @apply w-14 max-w-[3.5rem] overflow-hidden sm:w-24 sm:max-w-[6rem];
+}
+
+.avatar-xs.avatar-circle {
+  @apply h-6 min-h-[1.25rem] sm:h-6;
+}
+
+.avatar-sm.avatar-circle {
+  @apply h-8 min-h-[2rem] sm:h-8;
+}
+
+.avatar-md.avatar-circle {
+  @apply h-8 min-h-[2rem] sm:h-10 sm:min-h-[2.5rem];
+}
+
+.avatar-lg.avatar-circle {
+  @apply h-8 min-h-[2rem] sm:h-12 sm:min-h-[3rem];
+}
+
+.avatar-xl.avatar-circle {
+  @apply h-10 min-h-[2.5rem] sm:h-16 sm:min-h-[4rem];
+}
+
+.avatar-2xl.avatar-circle {
+  @apply h-12 min-h-[3rem] sm:h-20 sm:min-h-[5rem];
+}
+
+.avatar-3xl.avatar-circle {
+  @apply h-14 min-h-[3.5rem] sm:h-24 sm:min-h-[6rem];
+}
+
+.avatar-max3xl.avatar-circle {
+  @apply h-14 min-h-[3.5rem] sm:h-24 sm:min-h-[6rem];
+}
+
+.avatar-custom {
+  width: var(--avatar-user-width);
+  height: var(--avatar-user-height);
+  @apply overflow-hidden !border-0;
+}

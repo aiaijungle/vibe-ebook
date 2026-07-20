@@ -1,0 +1,53 @@
+import { Component, For, Show } from 'solid-js'
+import { ChubItem } from './ChubItem'
+import { ChubEntity, chubStore } from '../../store/chub'
+import ChubNavigation, { ChubPager } from './ChubNavigation'
+import type { NewCharacter } from '/web/store/character'
+import Loading from '/web/shared/Loading'
+
+const CharList: Component<{
+  loading: () => void
+  setChar: (char: NewCharacter, fullPath: string, entity: ChubEntity) => void
+}> = (props) => {
+  const state = chubStore((s) => ({ charsLoading: s.charsLoading, chars: s.chars }))
+
+  return (
+    <>
+      <ChubNavigation page="chars" />
+      <ChubPager page="chars" />
+
+      <Show when={state.charsLoading}>
+        <div class="flex w-full justify-center">
+          <Loading />
+        </div>
+      </Show>
+
+      <div class="grid w-full grid-cols-[repeat(auto-fit,minmax(220px,1fr))] flex-row flex-wrap justify-start gap-2 py-1">
+        <For each={state.chars}>
+          {(char) => (
+            <ChubItem
+              entity={char}
+              loading={props.loading}
+              name={char.name}
+              fullPath={char.fullPath}
+              description={char.tagline || char.description}
+              avatar={
+                char.avatar_url ||
+                `https://avatars.charhub.io/avatars/${char.fullPath}/avatar.webp` ||
+                `https://git.chub.ai/${char.fullPath}/-/raw/main/avatar.webp`
+              }
+              setChar={props.setChar}
+            />
+          )}
+        </For>
+        <Show when={state.chars.length < 4}>
+          <For each={new Array(4 - state.chars.length)}>{() => <div></div>}</For>
+        </Show>
+      </div>
+
+      <ChubPager page="chars" />
+    </>
+  )
+}
+
+export default CharList

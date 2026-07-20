@@ -1,0 +1,71 @@
+.modal-container {
+  max-height: var(--window-height);
+  display: grid;
+  grid-template-areas:
+    'header'
+    'content'
+    'footer';
+
+  grid-template-rows: auto 1fr auto;
+}
+
+.modal-header {
+  grid-area: header;
+}
+
+.modal-content-area {
+  grid-area: content;
+}
+
+.modal-footer {
+  grid-area: footer;
+}
+
+.modal-height {
+  max-height: var(--window-height);
+  /* max-height: 80vh; */
+  /* max-height: 80dvh; */
+}
+
+.modal-height-fixed {
+  max-height: calc(var(--window-height) - 0px);
+  height: calc(var(--window-height) - 0px);
+  /* min-height: calc(80vh - 132px);
+  min-height: calc(80dvh - 132px); */
+}
+
+.modal-content {
+  max-height: calc(var(--window-height) - 148px);
+  /* max-height: calc(80vh - 132px);
+  max-height: calc(80dvh - 132px); */
+}
+
+.modal-content-footerless {
+  max-height: calc(var(--window-height) - 76px);
+  /* max-height: calc(80vh - 132px);
+  max-height: calc(80dvh - 132px); */
+}
+
+@media (min-width: 1024px) {
+  /* .modal-height {
+    max-height: 75vh;
+    max-height: 75dvh;
+  } */
+
+  /* .modal-content {
+    max-height: calc(75vh - 132px);
+    max-height: calc(75dvh - 132px);
+  } */
+  /* 
+  .modal-height-fixed {
+    min-height: calc(75vh - 132px);
+    min-height: calc(75dvh - 132px);
+  } */
+}
+
+.modal-body {
+  @apply flex items-center;
+  height: var(--window-height);
+  /* height: 100vh;
+  height: 100dvh; */
+}

@@ -1,0 +1,141 @@
+import { AppSchema, NewBook } from '../../common/types/schema'
+import { EVENTS, events } from '../emitter'
+import { createStore } from './create'
+import { memoryApi } from './data/memory'
+import { toastStore } from './toasts'
+import { embedApi } from './embeddings'
+import { storage } from '../shared/util'
+import { InitEntities } from './data/user'
+
+export type MemoryState = {
+  show: boolean
+  books: {
+    loaded: boolean
+    list: AppSchema.MemoryBook[]
+  }
+  creating: boolean
+  loadingAll: boolean
+  updating: boolean
+  embeds: Array<{ id: string; name: string; state: string }>
+}
+
+const initState: MemoryState = {
+  creating: false,
+  show: true,
+  books: { loaded: false, list: [] },
+  loadingAll: false,
+  updating: false,
+  embeds: [],
+}
+
+export const memoryStore = createStore<MemoryState>(
+  'memory',
+  initState
+)((get, set) => {
+  events.on(EVENTS.loggedOut, () => {
+    memoryStore.setState(initState)
+  })
+
+  events.on(EVENTS.loggedIn, async () => {
+    const cache = await storage.userCacheGet('books')
+
+    if (cache) {
+      memoryStore.setState({ books: { loaded: true, list: cache } })
+      return
+    }
+  })
+
+  events.on(EVENTS.init, async (init: InitEntities) => {
+    if (init.books) {
+      memoryStore.setState({ books: { loaded: true, list: init.books } })
+
+      if (!init.cachedBooks) {
+        await storage.userCacheSet('books', init.books)
+      }
+    }
+  })
+
+  return {
+    toggle(_, show: boolean) {
+      return { show }
+    },
+    async *getAll({ books: prev, loadingAll }) {
+      if (loadingAll) return
+
+      yield { loadingAll: true, books: { loaded: false, list: [] } }
+      const res = await memoryApi.getBooks()
+      yield { loadingAll: false }
+      if (res.result) {
+        yield { books: { loaded: true, list: res.result.books } }
+        await storage.userCacheSet('books', res.result.books)
+      }
+
+      if (res.error) {
+        yield { books: prev }
+        toastStore.error(`Failed to retrieve memory books: ${res.error}`)
+      }
+    },
+
+    async *create(
+      { books, creating },
+      book: NewBook,
+      onSuccess?: (book: AppSchema.MemoryBook) => void
+    ) {
+      if (creating) return
+      yield { creating: true }
+      const res = await memoryApi.createBook(book)
+      yield { creating: false }
+      if (res.error) {
+        toastStore.error(`Could not create memory book: ${res.error}`)
+      }
+
+      if (res.result) {
+        const next = books.list.concat(res.result)
+        yield { books: { ...books, list: next } }
+        toastStore.success('Created memory book')
+        onSuccess?.(res.result)
+        await storage.userCacheSet('books', next)
+      }
+    },
+
+    async *reloadAll({ books: prev }) {
+      yield { books: { list: prev.list, loaded: false } }
+      memoryStore.getAll()
+    },
+
+    async *update({ books: { list: prev }, updating }, bookId: string, update: NewBook) {
+      if (updating) return
+      yield { updating: true }
+      const res = await memoryApi.updateBook(bookId, update)
+      yield { updating: false }
+      if (res.error) {
+        toastStore.error(`Failed to update book: ${res.error}`)
+      }
+
+      if (res.result) {
+        toastStore.success(`Book updated`)
+        const next = prev.map((book) => (book._id === bookId ? { ...book, ...update } : book))
+        yield { books: { list: next, loaded: true } }
+        await storage.userCacheSet('books', next)
+      }
+    },
+
+    async *remove({ books: { list: prev } }, bookId: string, onSuccess?: Function) {
+      const res = await memoryApi.removeBook(bookId)
+
+      if (res.error) {
+        toastStore.error(`Failed to remove book: ${res.error}`)
+      }
+
+      if (res.result) {
+        const next = prev.filter((book) => book._id !== bookId)
+        yield { books: { list: next, loaded: true } }
+        await storage.userCacheSet('books', next)
+        toastStore.success('Book deleted')
+        onSuccess?.()
+      }
+    },
+  }
+})
+
+embedApi.setup(memoryStore.getState, memoryStore.setState)

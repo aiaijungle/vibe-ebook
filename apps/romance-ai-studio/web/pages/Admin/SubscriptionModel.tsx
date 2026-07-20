@@ -1,0 +1,578 @@
+import { A, useNavigate, useParams, useSearchParams } from '@solidjs/router'
+import { Edit, Plus, Save, Trash, X } from 'lucide-solid'
+import {
+  Component,
+  createEffect,
+  createMemo,
+  createSignal,
+  Index,
+  Match,
+  on,
+  onMount,
+  Show,
+  Switch,
+} from 'solid-js'
+import { AppSchema } from '../../../common/types/schema'
+import Button from '../../shared/Button'
+import Select, { Option } from '../../shared/Select'
+import Modal, { ConfirmModal } from '../../shared/Modal'
+import PageHeader from '../../shared/PageHeader'
+import TextInput from '../../shared/TextInput'
+import { setComponentPageTitle } from '../../shared/util'
+import { presetStore, settingStore, toastStore } from '../../store'
+import Loading from '/web/shared/Loading'
+import { Toggle } from '/web/shared/Toggle'
+import { Card } from '/web/shared/Card'
+import { Page } from '/web/Layout'
+import PresetSettings from '/web/shared/PresetSettings'
+import { FormLabel } from '/web/shared/FormLabel'
+import { defaultPresets, isDefaultPreset, presetDefaults } from '/common/default-preset'
+import { getSubPresetForm, usePresetContext } from '/web/store/preset-context'
+
+const emptyPreset: AppSchema.GenSettings = {
+  ...presetDefaults,
+  ...defaultPresets.agnai,
+  name: '',
+  temp: 0.85,
+  topK: 0,
+  topP: 1,
+  tailFreeSampling: 1,
+  repetitionPenalty: 1,
+  repetitionPenaltyRange: 64,
+  maxContextLength: 4090,
+  maxTokens: 250,
+  streamResponse: true,
+}
+
+const tokenizers = [
+  { label: 'None', value: '' },
+  { label: 'Llama', value: 'llama' },
+  { label: 'Llama 3', value: 'llama3' },
+  { label: 'Turbo', value: 'turbo' },
+  { label: 'DaVinci', value: 'davinci' },
+  { label: 'Novel Kayra', value: 'novel-modern' },
+  { label: 'Novel (Old)', value: 'novel' },
+  { label: 'Mistral', value: 'mistral' },
+  { label: 'Yi', value: 'yi' },
+  { label: 'Cohere', value: 'cohere' },
+  { label: 'Qwen2', value: 'qwen2' },
+  { label: 'Qwen3', value: 'qwen3' },
+  { label: 'Gemma', value: 'gemma' },
+]
+
+export const SubscriptionModel: Component = () => {
+  const { updateTitle } = setComponentPageTitle('Subscription Model')
+  let ref: any
+
+  const params = useParams()
+  const [query] = useSearchParams()
+
+  const nav = useNavigate()
+  const [edit, setEdit] = createSignal(false)
+  const [deleting, setDeleting] = createSignal(false)
+  const [replacing, setReplacing] = createSignal(false)
+  const [state, setters] = usePresetContext({ anonymous: true })
+
+  const onEdit = (preset: AppSchema.SubscriptionModel) => {
+    nav(`/admin/subscriptions/${preset._id}`)
+  }
+
+  const cfg = settingStore((s) => s.config)
+
+  const presets = presetStore(({ subs, saving }) => ({
+    saving,
+    subs,
+    items: subs.map<Option>((p) => ({ label: p.name, value: p._id })),
+    editing: subs.find((pre) => pre._id === query.preset || params.id),
+  }))
+
+  createEffect(
+    on(
+      () => presets.editing,
+      (edit) => {
+        if (!edit) return
+        setters.setState(edit)
+      }
+    )
+  )
+
+  onMount(async () => {
+    if (params.id === 'new') {
+      const copySource = query.preset
+      if (copySource) {
+        updateTitle(`Copy subscription ${copySource}`)
+      } else {
+        updateTitle(`Create subscription`)
+      }
+
+      const importing = presets.subs.find((p) => p._id === query.preset)
+      setters.clear()
+      if (importing) {
+        setters.setState({ ...importing, _id: '' })
+      }
+      return
+    } else if (params.id === 'default') {
+      if (!isDefaultPreset(query.preset)) return
+      setters.setState({
+        ...emptyPreset,
+        ...defaultPresets[query.preset],
+        _id: '',
+        subLevel: 0,
+        subModel: '',
+        subApiKey: '',
+        subDisabled: false,
+        levels: [],
+      })
+      return
+    }
+
+    if (params.id && state.current._id !== params.id) {
+      const match = presets.subs.find((p) => p._id === params.id)
+
+      if (!match) {
+        presetStore.getSubscriptions()
+        return
+      }
+
+      setters.setState(match)
+      return
+    }
+
+    if (params.id && state.current._id !== params.id) {
+      const preset = presets.subs.find((p) => p._id === params.id)
+      if (preset) setters.setState(preset)
+    }
+
+    if (params.id && state.current._id) {
+      updateTitle(`Edit subscription ${state.current.name}`)
+    }
+  })
+
+  const startNew = () => {
+    nav('/admin/subscriptions/new')
+  }
+
+  const deletePreset = () => {
+    presetStore.deleteSubscription(state.current._id, () => nav('/admin/subscriptions'))
+  }
+
+  const onSave = (_ev: Event, force?: boolean) => {
+    if (presets.saving) return
+
+    const presetData = getSubPresetForm(state.current)
+    const body: any = { ...presetData, levels: state.current.levels }
+
+    body.thirdPartyFormat = body.thirdPartyFormat || (null as any)
+
+    if (!body.service) {
+      toastStore.error(`You must select an AI service before saving`)
+      return
+    }
+
+    if (body.openRouterModel) {
+      const actual = cfg.openRouter.models.find((or) => or.id === body.openRouterModel)
+      body.openRouterModel = actual || undefined
+    }
+
+    if (state.current._id) {
+      presetStore.updateSubscription(state.current._id, body as any)
+    } else {
+      presetStore.createSubscription(body as any, (newPreset) => {
+        nav(`/admin/subscriptions/${newPreset._id}`)
+      })
+    }
+  }
+
+  return (
+    <Page>
+      <PageHeader
+        title={
+          <A class="link" href="/admin/subscriptions">
+            Subscription Model
+          </A>
+        }
+      />
+      <Switch>
+        <Match when={params.id && params.id !== 'new' && !presets.editing}>
+          <Loading />
+        </Match>
+        <Match when>
+          <div class="flex flex-col gap-2 pb-10">
+            <div class="flex flex-col gap-4 p-2">
+              <form ref={ref} onSubmit={onSave} class="flex flex-col gap-4">
+                <div class="flex gap-4">
+                  <Show when={presets.subs.length > 1}>
+                    <Button onClick={() => setEdit(true)}>Load Preset</Button>
+                  </Show>
+                  <Button onClick={startNew}>
+                    <Plus />
+                    New Subscription
+                  </Button>
+                  <Button onClick={() => setReplacing(true)} schema="red">
+                    Replace/Supercede
+                  </Button>
+                </div>
+                <div class="flex flex-col">
+                  <div>ID: {state.current._id || 'New Subscription'}</div>
+                  <TextInput
+                    fieldName="id"
+                    value={state.current._id || ''}
+                    disabled
+                    class="hidden"
+                  />
+                  <TextInput
+                    fieldName="name"
+                    label="Name"
+                    helperText="Name of the model"
+                    placeholder="E.g. Mythomax"
+                    value={state.current.name}
+                    onChange={(ev) => setters.setState({ name: ev.currentTarget.value })}
+                    required
+                    parentClass="mb-2"
+                  />
+
+                  <TextInput
+                    fieldName="description"
+                    label="Description"
+                    helperText="A short description of your model"
+                    placeholder="E.g. LLama 3.1 8B fine-tune"
+                    value={state.current.description}
+                    onChange={(ev) => setters.setState({ description: ev.currentTarget.value })}
+                    required
+                    parentClass="mb-2"
+                  />
+
+                  <TextInput
+                    fieldName="subApiKey"
+                    label="API Key"
+                    helperText="(Optional) API Key for your AI service if applicable."
+                    placeholder={
+                      state.current.subApiKeySet ? 'API Key is set' : 'API Key is not set'
+                    }
+                    value={state.current.subApiKey}
+                    onChange={(ev) => setters.setState({ subApiKey: ev.currentTarget.value })}
+                    required
+                    parentClass="mb-2"
+                  />
+
+                  <Card>
+                    <TextInput
+                      type="number"
+                      fieldName="subLevel"
+                      label="Subscription Level"
+                      helperText='Anything above -1 requires a "subscription". All users by default are -1.'
+                      placeholder="0"
+                      value={state.current.subLevel ?? 0}
+                      onChange={(ev) => setters.setState({ subLevel: +ev.currentTarget.value })}
+                      required
+                    />
+
+                    <Levels
+                      levels={state.current.levels || []}
+                      update={(levels) => setters.setState({ levels: levels })}
+                    />
+                  </Card>
+
+                  <Card class="mt-4">
+                    <TextInput
+                      fieldName="subModel"
+                      label="Model"
+                      helperText="Agnaistic service only"
+                      placeholder=""
+                      value={state.current.subModel}
+                      onChange={(ev) => setters.setState({ subModel: ev.currentTarget.value })}
+                      required
+                      parentClass="mb-2"
+                    />
+
+                    <TextInput
+                      fieldName="subServiceUrl"
+                      label="Model Service URL"
+                      helperText="Agnaistic service only"
+                      placeholder="https://..."
+                      value={state.current.subServiceUrl}
+                      onChange={(ev) => setters.setState({ subServiceUrl: ev.currentTarget.value })}
+                      required
+                      parentClass="mb-2"
+                    />
+
+                    <Toggle
+                      fieldName="guidanceCapable"
+                      label="Guidance Capable"
+                      helperText="Agnaistic service only"
+                      value={state.current.guidanceCapable}
+                      onChange={(ev) => setters.setState({ guidanceCapable: ev })}
+                    />
+                  </Card>
+
+                  <Card class="mt-4 flex flex-col gap-2">
+                    <Toggle
+                      fieldName="subDisabled"
+                      label="Subscription Disabled"
+                      helperText="Disable the use of this subscription"
+                      value={state.current.subDisabled ?? false}
+                      onChange={(ev) => setters.setState('subDisabled', ev)}
+                    />
+                    <Toggle
+                      fieldName="isDefaultSub"
+                      label="Is Default Subscription"
+                      helperText="Is chosen as fallback when no subscription is provided with a request"
+                      value={state.current.isDefaultSub ?? false}
+                      onChange={(ev) => setters.setState('isDefaultSub', ev)}
+                    />
+
+                    <Toggle
+                      fieldName="jsonSchemaCapable"
+                      label="JSON Schema Capable (Structured Responses)"
+                      value={state.current.jsonSchemaCapable}
+                      onChange={(ev) => setters.setState('jsonSchemaCapable', ev)}
+                    />
+
+                    <Toggle
+                      fieldName="subVisionModel"
+                      label="Vision Model"
+                      helperText="Agnaistic service only"
+                      value={state.current.subVisionModel}
+                      onChange={(ev) => setters.setState('subVisionModel', ev)}
+                    />
+
+                    <Toggle
+                      fieldName="allowGuestUsage"
+                      label="Allow Guest Usage"
+                      helperText={
+                        'Typically for default subscriptions. Require users to sign in to use this subscription.'
+                      }
+                      value={state.current.allowGuestUsage === false ? false : true}
+                      onChange={(ev) => setters.setState('allowGuestUsage', ev)}
+                    />
+                  </Card>
+                </div>
+
+                <Select
+                  fieldName="tokenizer"
+                  items={tokenizers}
+                  value={state.current.tokenizer}
+                  label="Tokenizer Override"
+                  helperText="Optional. For use with custom models."
+                  onChange={(ev) => setters.setState('tokenizer', ev.value)}
+                />
+
+                <PresetSettings
+                  state={state.current}
+                  setters={setters}
+                  disabled={params.id === 'default'}
+                  noSave
+                  noModel
+                />
+                <div class="flex flex-row justify-end">
+                  <Show when={state.current._id}>
+                    <Button disabled={presets.saving} onClick={onSave}>
+                      <Save /> Save
+                    </Button>
+                  </Show>
+                  <Show when={!state.current._id}>
+                    <Button disabled={presets.saving} onClick={onSave}>
+                      <Save /> Create
+                    </Button>
+                  </Show>
+                </div>
+              </form>
+            </div>
+          </div>
+        </Match>
+      </Switch>
+
+      <EditPreset show={edit()} close={() => setEdit(false)} select={onEdit} />
+      <SupercedeModal show={replacing()} close={() => setReplacing(false)} />
+      <ConfirmModal
+        show={deleting()}
+        close={() => setDeleting(false)}
+        confirm={deletePreset}
+        message="Are you sure you wish to delete this preset?"
+      />
+    </Page>
+  )
+}
+
+export default SubscriptionModel
+
+const SupercedeModal: Component<{ show: boolean; close: () => void }> = (props) => {
+  let form: any
+
+  const params = useParams()
+  const nav = useNavigate()
+
+  const [replaceId, setReplaceId] = createSignal('')
+
+  const state = presetStore((s) => ({ subs: s.subs }))
+  const replacements = createMemo(() =>
+    state.subs
+      .filter((sub) => sub._id !== params.id && !sub.subDisabled)
+      .map((sub) => ({ label: `[${sub.subLevel}] ${sub.name}`, value: sub._id }))
+  )
+
+  const onSubmit = () => {
+    const subscriptionId = params.id
+
+    if (!replaceId()) {
+      toastStore.warn('Replacement ID not set')
+      return
+    }
+
+    presetStore.replaceSubscription(subscriptionId, replaceId(), () => {
+      props.close()
+      nav(`/admin/subscriptions`)
+    })
+  }
+
+  const Footer = (
+    <>
+      <Button schema="secondary" onClick={props.close}>
+        Cancel
+      </Button>
+      <Button schema="green" onClick={onSubmit}>
+        Replace
+      </Button>
+    </>
+  )
+
+  return (
+    <Modal show={props.show} close={props.close} title="Replace Subscription" footer={Footer}>
+      <form ref={form}>
+        <Select
+          items={replacements()}
+          fieldName="replacementId"
+          label="Replacement Subscription"
+          helperText="The subscription that will supercede the current subscription"
+          onChange={(ev) => setReplaceId(ev.value)}
+        />
+      </form>
+    </Modal>
+  )
+}
+
+const Levels: Component<{
+  levels: AppSchema.SubscriptionModelLevel[]
+  update: (levels: AppSchema.SubscriptionModelLevel[]) => void
+}> = (props) => {
+  const change = (index: number, update: Partial<AppSchema.SubscriptionModelLevel>) => {
+    const next = props.levels.map((l, i) => {
+      if (i !== index) return l
+      return { ...l, ...update }
+    })
+
+    props.update(next)
+  }
+
+  const add = () => {
+    const next = props.levels.concat({
+      level: 0,
+      maxTokens: 400,
+      maxContextLength: 8192,
+    })
+    props.update(next)
+  }
+
+  const remove = (i: number) => {
+    const next = props.levels.slice()
+    next.splice(i, 1)
+    props.update(next)
+  }
+
+  return (
+    <>
+      <div class="flex flex-col gap-2">
+        <FormLabel
+          label={
+            <div class="flex items-center gap-2">
+              Levels{' '}
+              <Button size="sm" onClick={add}>
+                <Plus size={12} />
+              </Button>
+            </div>
+          }
+        />
+      </div>
+
+      <Index each={props.levels}>
+        {(level, i) => (
+          <div class="flex gap-2">
+            <TextInput
+              fieldName={`level.threshold.${i}`}
+              type="number"
+              helperText="Sub Level"
+              value={level().level}
+              onChange={(ev) => change(i, { level: +ev.currentTarget.value })}
+            />
+
+            <TextInput
+              fieldName={`level.maxtokens.${i}`}
+              type="number"
+              helperText="Tokens"
+              value={level().maxTokens}
+              onChange={(ev) => change(i, { maxTokens: +ev.currentTarget.value })}
+            />
+
+            <TextInput
+              fieldName={`level.maxcontext.${i}`}
+              type="number"
+              helperText="Context"
+              value={level().maxContextLength}
+              onChange={(ev) => change(i, { maxContextLength: +ev.currentTarget.value })}
+            />
+
+            <Button schema="red" onClick={() => remove(i)}>
+              <Trash size={16} />
+            </Button>
+          </div>
+        )}
+      </Index>
+    </>
+  )
+}
+
+const EditPreset: Component<{
+  show: boolean
+  close: () => void
+  select: (preset: AppSchema.SubscriptionModel) => void
+}> = (props) => {
+  const params = useParams()
+  const state = presetStore((s) => ({ subs: s.subs }))
+  const [id, setId] = createSignal('')
+
+  const select = () => {
+    const preset = state.subs.find((preset) => preset._id === id())
+    props.select(preset!)
+    props.close()
+  }
+
+  return (
+    <Modal
+      show={props.show}
+      close={props.close}
+      title="Load Preset"
+      footer={
+        <>
+          <Button schema="secondary" onClick={props.close}>
+            <X /> Cancel
+          </Button>
+          <Button onClick={select}>
+            <Edit /> Load Preset
+          </Button>
+        </>
+      }
+    >
+      <form>
+        <Select
+          label="Preset"
+          helperText="Select a preset to start editing. If you are currently editing a preset, it won't be in the list."
+          value={id()}
+          onChange={(ev) => setId(ev.value)}
+          items={state.subs
+            .filter((pre) => pre._id !== params.id)
+            .map((pre) => ({ label: pre.name, value: pre._id }))}
+        />
+      </form>
+    </Modal>
+  )
+}

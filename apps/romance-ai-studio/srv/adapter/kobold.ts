@@ -1,0 +1,485 @@
+import needle from 'needle'
+import { logger } from '../middleware'
+import { normalizeUrl } from '../api/chat/common'
+import { AdapterProps, CompletionGenerator, ModelAdapter } from './type'
+import { decryptText } from '../db/util'
+import { toSamplerOrder } from '/common/sampler-order'
+import { getOaiCompatibleUrl, joinUrl, sanitise } from '/common/requests/util'
+import { streamGenerator } from '/common/requests/stream'
+import { presetDefaults } from '/common/default-preset'
+import { round } from '/common/util'
+import { getStoppingStrings, getThirdPartyPayload } from '/common/requests/payloads'
+import { stripImageContent } from '/common/template-messages'
+
+/**
+ * Sampler order
+ * 0. Top K
+ * 1. Top A
+ * 2. Top P
+ * 3. Tail Free Sampling
+ * 4. Typical P
+ * 5. Temperature
+ * 6. Repetition Penalty
+ */
+
+const MIN_STREAMING_KCPPVERSION = '1.30'
+const REQUIRED_SAMPLERS = presetDefaults.order!
+
+// const base = {
+//   use_story: false,
+//   use_memory: false,
+//   use_authors_note: false,
+//   use_world_info: false,
+// }
+
+export const handleThirdParty: ModelAdapter = async function* (opts) {
+  const body = getThirdPartyPayload(opts)
+
+  // Kobold has a stop sequence parameter which automatically
+  // halts generation when a certain token is generated
+  const stop_sequence = getStoppingStrings(opts, opts.gen)
+  if (opts.gen.thirdPartyFormat === 'kobold' || opts.gen.thirdPartyFormat === 'koboldcpp') {
+    stop_sequence.push('END_OF_DIALOG')
+    body.stop_sequence = stop_sequence
+
+    // Kobold sampler order parameter must contain all 6 samplers to be valid
+    // If the sampler order is provided, but incomplete, add the remaining samplers.
+    const samplers = toSamplerOrder('kobold', opts.gen.order, opts.gen.disabledSamplers)
+    if (samplers) {
+      body.sampler_order = samplers.order
+    } else {
+      delete body.sampler_order
+    }
+
+    if (body.sampler_order && body.sampler_order.length !== 6) {
+      for (const sampler of REQUIRED_SAMPLERS) {
+        if (body.sampler_order.includes(sampler)) continue
+
+        body.sampler_order.push(sampler)
+      }
+    }
+  }
+
+  logger.debug(`Prompt:\n${body.prompt}`)
+  logger.debug(
+    { ...body, prompt: null, images: null, messages: null },
+    `3rd-party payload ${opts.gen.thirdPartyFormat}`
+  )
+
+  const start = Date.now()
+  const stream = await dispatch(opts, body)
+  yield { prompt: body.messages ? stripImageContent(body.messages) : body.prompt }
+
+  let accum = ''
+  let wait = 0
+
+  for await (const generated of stream) {
+    if (!generated) break
+
+    if (typeof generated === 'string') {
+      accum = generated
+      break
+    }
+
+    if ('error' in generated) {
+      yield { error: generated.error }
+      return
+    }
+
+    if ('token' in generated) {
+      if (!wait) {
+        wait = round((Date.now() - start) / 1000)
+      }
+      accum += generated.token
+      yield { partial: accum }
+    }
+
+    if ('thoughts' in generated) {
+      yield { thoughts: generated.thoughts! }
+    }
+
+    if ('tokens' in generated) {
+      const gens = 'gens' in generated ? generated.gens : undefined
+      if (gens) {
+        yield { gens, tokens: generated.tokens }
+      }
+
+      accum = generated.tokens
+      break
+    }
+  }
+
+  let meta: any = {
+    fmt: opts.conn.format,
+    wait,
+    time: round((Date.now() - start) / 1000, 2),
+  }
+  if (body.model) meta.model = body.model
+  yield { meta }
+
+  const parsed = sanitise(accum)
+  yield parsed
+}
+
+async function dispatch(opts: AdapterProps, body: any) {
+  const baseURL = normalizeUrl(opts.gen.thirdPartyUrl || opts.user.koboldUrl)
+  const useChat = !!opts.hasAttachments
+
+  const headers: any = await getHeaders(opts)
+  const base = {
+    signal: opts.signal,
+    service: '',
+    log: opts.log,
+    userId: opts.user._id,
+    body,
+    headers,
+  }
+
+  await validateModel(opts, baseURL, body, headers)
+
+  switch (opts.gen.thirdPartyFormat) {
+    case 'llamacpp':
+    case 'vllm': {
+      body.messages = opts.messages
+      const url =
+        !opts.gen.providerId && opts.gen.thirdPartyUrlNoSuffix
+          ? baseURL
+          : body.messages
+          ? `${baseURL}/v1/chat/completions`
+          : `${baseURL}/v1/completions`
+      return opts.gen.streamResponse
+        ? streamGenerator({ ...base, url, format: opts.gen.thirdPartyFormat })
+        : fullCompletion({ ...base, url, service: opts.gen.thirdPartyFormat })
+    }
+
+    case 'ooba':
+    case 'aphrodite':
+    case 'tabby': {
+      body.messages = opts.messages
+      let url = opts.gen.thirdPartyUrlNoSuffix ? baseURL : `${baseURL}/v1/`
+      if (useChat) {
+        url += 'chat/completions'
+      } else {
+        url += 'completions'
+      }
+
+      return opts.gen.streamResponse
+        ? streamGenerator({ ...base, url, format: opts.gen.thirdPartyFormat })
+        : fullCompletion({ ...base, url, service: opts.gen.thirdPartyFormat })
+    }
+
+    case 'exllamav2': {
+      body.messages = opts.messages
+      return opts.gen.streamResponse
+        ? streamGenerator({ ...base, url: baseURL, format: opts.gen.thirdPartyFormat })
+        : fullCompletion({ ...base, url: baseURL, service: opts.gen.thirdPartyFormat })
+    }
+
+    case 'mistral': {
+      body.messages = opts.messages
+      const url = 'https://api.mistral.ai/v1/chat/completions'
+      const stream = opts.gen.streamResponse
+        ? streamGenerator({ ...base, url, format: 'mistral' })
+        : fullCompletion({ ...base, url, service: 'mistral' })
+      return stream
+    }
+
+    case 'ollama': {
+      body.messages = opts.messages
+      body.prompt = undefined
+      const url = body.messages ? `${baseURL}/chat/completions` : `${baseURL}/completions`
+      return opts.gen.streamResponse
+        ? streamGenerator({ ...base, url, format: opts.gen.thirdPartyFormat })
+        : fullCompletion({ ...base, url, service: opts.gen.thirdPartyFormat })
+    }
+
+    case 'featherless': {
+      // Intentionally always using message format
+      if (opts.messages) {
+        body.messages = opts.messages
+        body.prompt = undefined
+      }
+      let suffix = body.messages ? 'chat/completions' : 'completions'
+
+      const url = `https://api.featherless.ai/v1/${suffix}`
+      return opts.gen.streamResponse
+        ? streamGenerator({ ...base, url, format: opts.gen.thirdPartyFormat })
+        : fullCompletion({ ...base, url, service: opts.gen.thirdPartyFormat })
+    }
+
+    case 'arli': {
+      body.messages = opts.messages
+      const url = 'https://api.arliai.com/v1/chat/completions'
+      return opts.gen.streamResponse
+        ? streamGenerator({ ...base, url, format: opts.gen.thirdPartyFormat })
+        : fullCompletion({ ...base, url, service: opts.gen.thirdPartyFormat })
+    }
+
+    case 'openai':
+    case 'openai-chat':
+    case 'lm-studio':
+    case 'openai-chatv2': {
+      if (opts.gen.thirdPartyFormat === 'openai') {
+        body.prompt = opts.prompt
+      } else {
+        body.messages = opts.messages
+      }
+      const url = getOaiCompatibleUrl(opts.gen, true)
+      const fullUrl =
+        !opts.gen.providerId && opts.gen.thirdPartyUrlNoSuffix
+          ? url.url
+          : joinUrl(
+              url.url,
+              opts.gen.thirdPartyFormat === 'openai' ? 'completions' : 'chat/completions'
+            )
+
+      return opts.gen.streamResponse
+        ? streamGenerator({ ...base, url: fullUrl, format: opts.gen.thirdPartyFormat })
+        : fullCompletion({ ...base, url: fullUrl, service: opts.gen.thirdPartyFormat })
+    }
+
+    case 'koboldcpp':
+    case 'kobold':
+    default: {
+      const isStreamSupported = await checkStreamSupported(`${baseURL}/api/extra/version`)
+      const url =
+        opts.gen.streamResponse && isStreamSupported
+          ? `${baseURL}/api/extra/generate/stream`
+          : `${baseURL}/api/v1/generate`
+
+      body.prompt = opts.prompt
+      body.messages = undefined
+
+      return opts.gen.streamResponse && isStreamSupported
+        ? streamGenerator({ ...base, url, format: 'koboldcpp' })
+        : fullCompletion({
+            ...base,
+            url: `${baseURL}/api/v1/generate`,
+            service: opts.gen.thirdPartyFormat || opts.gen.service!,
+          })
+    }
+  }
+}
+
+async function getHeaders(opts: AdapterProps) {
+  const password = opts.gen.thirdPartyUrl ? opts.gen.thirdPartyKey : opts.user.thirdPartyPassword
+  const headers: any = {
+    'HTTP-Referer': 'https://agnai.chat',
+    'X-Title': 'Agnai.Chat',
+  }
+
+  switch (opts.gen.thirdPartyFormat) {
+    case 'koboldcpp':
+    case 'aphrodite': {
+      if (!password) return headers
+      const apiKey = opts.guest ? password : decryptText(password, true)
+      headers['x-api-key'] = apiKey
+      headers['Authorization'] = `Bearer ${apiKey}`
+      break
+    }
+
+    case 'vllm': {
+      if (!password) return headers
+      const apiKey = opts.guest ? password : decryptText(password, true)
+      headers['Authorization'] = `Bearer ${apiKey}`
+      headers['Accept'] = 'application/json'
+      break
+    }
+    case 'tabby': {
+      if (!password) return headers
+      const apiKey = opts.guest ? password : decryptText(password, true)
+      headers['Authorization'] = `Bearer ${apiKey}`
+      break
+    }
+
+    case 'featherless': {
+      if (!opts.gen.featherlessModel) {
+        throw new Error(`Featherless model not set. Check your preset`)
+      }
+
+      const key = opts.gen.thirdPartyKey || opts.user.featherlessApiKey
+      if (!key) {
+        throw new Error(
+          `Featherless API key not set. Check your Settings->AI->Third-party settings`
+        )
+      }
+
+      const apiKey = key ? (opts.guest ? key : decryptText(key, true)) : ''
+      if (apiKey) {
+        headers['Authorization'] = `Bearer ${apiKey}`
+      }
+      headers['Content-Type'] = 'application/json'
+      break
+    }
+
+    case 'arli': {
+      if (!opts.gen.arliModel) {
+        throw new Error(`ArliAI model not set. Check your preset`)
+      }
+
+      const key = opts.gen.thirdPartyKey || opts.user.arliApiKey
+      if (!key) {
+        throw new Error(`ArliAI API key not set. Check your Settings->AI->Third-party settings`)
+      }
+
+      const apiKey = key ? (opts.guest ? key : decryptText(key, true)) : ''
+      if (apiKey) {
+        headers['Authorization'] = `Bearer ${apiKey}`
+      }
+      headers['Content-Type'] = 'application/json'
+      break
+    }
+
+    case 'mistral': {
+      const key = opts.gen.thirdPartyKey || opts.user.mistralKey
+      if (!key)
+        throw new Error(`Mistral API key not set. Check your Settings->AI->Third-party settings`)
+
+      const apiKey = opts.guest ? key : decryptText(key, true)
+      headers['Authorization'] = `Bearer ${apiKey}`
+      headers['Content-Type'] = 'application/json'
+      break
+    }
+
+    case 'openai':
+    case 'openai-chat':
+    case 'openai-chatv2': {
+      const key = opts.gen.thirdPartyKey
+      if (!key) break
+
+      const apiKey = opts.guest ? key : decryptText(key, true)
+      headers['x-api-key'] = apiKey
+      headers['Authorization'] = `Bearer ${apiKey}`
+    }
+  }
+
+  if (headers.Authorization) {
+    headers['x-api-key'] = headers.Authorization.replace('Bearer ', '')
+  }
+
+  return headers
+}
+
+async function checkStreamSupported(versioncheckURL: any) {
+  const result = await needle('get', versioncheckURL).catch((err) => ({ err }))
+  if ('err' in result) {
+    return false
+  }
+
+  if (result.statusCode !== 200 || result.errored) return false
+
+  const { body } = result
+
+  if (body.result !== 'KoboldCpp') return false
+  const version: string = body.version ?? '0.0'
+
+  const isSupportedVersion =
+    version.localeCompare(MIN_STREAMING_KCPPVERSION, undefined, {
+      numeric: true,
+      sensitivity: 'base',
+    }) > -1
+
+  return isSupportedVersion
+}
+
+const fullCompletion: CompletionGenerator<any> = async function* (opts) {
+  const resp = await needle('post', opts.url, opts.body, {
+    signal: opts.signal.signal,
+    headers: { 'Bypass-Tunnel-Reminder': 'true', ...opts.headers },
+    json: true,
+  }).catch((err) => ({ error: err }))
+
+  if ('error' in resp) {
+    yield { error: `${opts.service} request failed: ${resp.error?.message || resp.error}` }
+    opts.log?.error({ error: resp.error }, `${opts.service} request failed`)
+    return
+  }
+
+  if (resp.statusCode && resp.statusCode >= 400) {
+    yield { error: `${opts.service} request failed: ${resp.statusMessage}` }
+    opts.log?.error({ error: resp.body }, `${opts.service} request failed`)
+    return
+  }
+
+  if ('choices' in resp.body) {
+    const first = resp.body.choices[0]
+    const text = first.message ? first.message.content : first.text
+
+    const gens: string[] = []
+    for (const choice of resp.body.choices) {
+      if (!choice.index || choice.index === 0) continue
+      const text = choice.message ? choice.message.content : choice.text
+      gens.push(text)
+    }
+
+    if (gens.length) {
+      yield { tokens: text, gens }
+    } else {
+      yield { tokens: text }
+    }
+    return
+  }
+
+  const text = resp.body.results?.[0]?.text as string
+
+  if (text) {
+    yield { tokens: text }
+    return
+  } else {
+    opts.log?.error({ err: resp.body }, `Failed to generate text using ${opts.service} adapter`)
+    yield { error: `${opts.service} failed to generate a response: ${resp.body}` }
+    return
+  }
+}
+
+async function validateModel(opts: AdapterProps, baseURL: string, payload: any, headers: any) {
+  if (opts.gen.thirdPartyFormat === 'aphrodite') {
+    const res = await needle('get', `${baseURL}/v1/models`, { headers, json: true })
+
+    const code = res.statusCode ?? 400
+    if (code >= 400) {
+      return
+    }
+
+    if (!Array.isArray(res.body.data)) return
+    const names = res.body.data.map((data: any) => data.id) as string[]
+
+    if (!payload.model || !names.includes(payload.model)) {
+      payload.model = names[0]
+    }
+  }
+
+  if (opts.gen.thirdPartyFormat === 'ollama') {
+    const res = await needle('get', `${baseURL}/api/tags`, { headers, json: true })
+    const code = res.statusCode ?? 400
+    if (code >= 400) {
+      return
+    }
+
+    if (!Array.isArray(res.body.models)) return
+    const models = res.body.models as Array<{ name: string; model: string }>
+    if (!models.length) return
+
+    if (!payload.model) {
+      payload.model = models[0].name
+      return
+    }
+
+    const paylow: string = (payload.model || '').toLowerCase()
+    const match = models.find((m) => {
+      const low = m.name.toLowerCase()
+      if (low === paylow) return true
+      if (low.includes(':')) {
+        const [name] = m.name.split(':')
+        if (name === paylow) return true
+        if (name.startsWith(paylow)) return true
+      }
+
+      return low.startsWith(paylow)
+    })
+    if (!match) {
+      payload.model = models[0].name
+      return
+    }
+  }
+}

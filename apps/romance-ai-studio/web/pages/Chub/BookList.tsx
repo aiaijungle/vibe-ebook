@@ -1,0 +1,45 @@
+import { Component, For, Show } from 'solid-js'
+import { ChubItem } from './ChubItem'
+import { ChubEntity, chubStore } from '../../store/chub'
+import ChubNavigation, { ChubPager } from './ChubNavigation'
+import { AppSchema } from '/common/types'
+import Loading from '/web/shared/Loading'
+
+const BookList: Component<{
+  setBook: (book: AppSchema.MemoryBook, fullPath: string, entity: ChubEntity) => void
+}> = (props) => {
+  const state = chubStore((s) => ({ books: s.books, booksLoading: s.booksLoading }))
+
+  return (
+    <>
+      <ChubNavigation page="books" />
+      <ChubPager page="books" />
+      <Show when={state.booksLoading}>
+        <div class="flex w-full justify-center">
+          <Loading />
+        </div>
+      </Show>
+      <div class="grid w-full grid-cols-[repeat(auto-fit,minmax(105px,1fr))] flex-row flex-wrap justify-start gap-2 py-2">
+        <For each={state.books}>
+          {(book) => (
+            <ChubItem
+              entity={book}
+              name={book.name}
+              fullPath={book.fullPath}
+              avatar={`https://avatars.charhub.io/avatars/${book.fullPath}/avatar.webp`}
+              book={true}
+              setBook={props.setBook}
+              description={book.tagline || book.description}
+            />
+          )}
+        </For>
+        <Show when={state.books.length < 4}>
+          <For each={new Array(4 - state.books.length)}>{() => <div></div>}</For>
+        </Show>
+      </div>
+      <ChubPager page="chars" />
+    </>
+  )
+}
+
+export default BookList

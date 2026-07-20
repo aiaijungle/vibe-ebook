@@ -1,0 +1,235 @@
+import { Filter } from 'mongodb'
+import { db } from './client'
+import { encryptPassword } from './util'
+import { AppSchema } from '../../common/types/schema'
+import { domain } from '../domains'
+import { config } from '../config'
+import { StatusError } from '../api/wrap'
+import { v4 } from 'uuid'
+
+type UsersOpts = {
+  username?: string
+  page?: number
+  subscribed?: boolean
+  customerId?: string
+}
+
+export async function getServerConfiguration() {
+  const cfg = await db('configuration').findOne({ kind: 'configuration' })
+  if (cfg) return cfg
+
+  const next: AppSchema.Configuration = {
+    kind: 'configuration',
+    apiAccess: 'off',
+    enabledAdapters: [],
+    maintenance: !!config.ui.maintenance,
+    maintenanceMessage: config.ui.maintenance || '',
+    policiesEnabled: config.ui.policies,
+    privacyStatement: '',
+    privacyUpdated: new Date().toISOString(),
+    slots: '',
+    termsOfService: '',
+    tosUpdated: new Date().toISOString(),
+    imagesEnabled: false,
+    imagesHost: '',
+    imagesModels: [],
+    imagesLoraUrl: '',
+    supportEmail: '',
+    ttsAccess: 'off',
+    ttsApiKey: '',
+    ttsHost: '',
+    maxGuidanceTokens: 1000,
+    maxGuidanceVariables: 15,
+    googleClientId: '',
+    googleEnabled: false,
+    actionCalls: [],
+    lockSeconds: 0,
+    stripeCustomerPortal: '',
+    defaultImageModel: '',
+    embedding: '',
+    embeddings: [],
+  }
+
+  await db('configuration').insertOne(next)
+  return next
+}
+
+export async function updateServerConfiguration(update: Partial<AppSchema.Configuration>) {
+  await db('configuration').updateOne({ kind: 'configuration' }, { $set: update }, { upsert: true })
+  const cfg = await getServerConfiguration()
+  return cfg
+}
+
+export async function createServerEmbedding(embed: AppSchema.ServerEmbedding) {
+  const cfg = await getServerConfiguration()
+  const embeddings = cfg.embeddings || []
+
+  if (!embed._id) {
+    embed._id = v4()
+  }
+
+  embeddings.push(embed)
+
+  await updateServerConfiguration({ embeddings })
+  cfg.embeddings = embeddings
+
+  return cfg
+}
+
+export async function updateServerEmbedding(embed: AppSchema.ServerEmbedding) {
+  const cfg = await getServerConfiguration()
+  const embeddings = cfg.embeddings || []
+
+  if (!cfg.embeddings) {
+    throw new StatusError('Cannot update embedding: Embeddings not found in config', 500)
+  }
+
+  if (!embed._id) {
+    throw new StatusError('Cannot update embedding: ID not supplied', 400)
+  }
+
+  let updated = false
+  const next = embeddings.map((e) => {
+    if (e._id !== embed._id) return e
+
+    updated = true
+    if (!embed.key) embed.key = e.key
+    return embed
+  })
+
+  if (!updated) {
+    throw new StatusError('Cannot update embedding: Embedding not found', 400)
+  }
+
+  await updateServerConfiguration({ embeddings: next })
+  cfg.embeddings = next
+  return cfg
+}
+
+export async function setPasswordResetCode(userId: string) {
+  const code = v4()
+
+  await db('user').updateOne({ _id: userId }, { $set: { resetCode: code } })
+
+  return { code }
+}
+
+export async function getUsers(opts: UsersOpts = {}) {
+  const filter: Filter<AppSchema.User> = {}
+  const skip = (opts.page || 0) * 200
+
+  if (opts.username || opts.subscribed || opts.customerId) {
+    const filters: (typeof filter)['$or'] = []
+
+    if (opts.username) {
+      filters.push(
+        { username: { $regex: new RegExp(opts.username.trim(), 'gi') } },
+        { _id: opts.username.trim() }
+      )
+    }
+
+    if (opts.subscribed) {
+      filters.push({ $or: [{ 'sub.level': { $gt: -1 } }, { 'patreon.sub.level': { $gt: -1 } }] })
+    }
+
+    if (opts.customerId) {
+      filters.push({ 'billing.customerId': opts.customerId })
+      filters.push({ patreonUserId: opts.customerId })
+      filters.push({ 'patreon.user.attributes.email': opts.customerId })
+      filters.push({ 'google.email': opts.customerId })
+    }
+
+    filter.$or = filters
+  }
+
+  const list = await db('user').find(filter).skip(skip).limit(200).toArray()
+
+  if (!list.length && opts.username) {
+    const char = await db('character').findOne({ _id: opts.username })
+    const preset = await db('gen-setting').findOne({ _id: opts.username })
+    const chat = await db('chat').findOne({ _id: opts.username })
+
+    const userId = char?.userId || preset?.userId || chat?.userId
+    if (!userId) {
+      return []
+    }
+
+    const user = await db('user').findOne({ _id: userId })
+    return user ? [user] : []
+  }
+
+  return list
+}
+
+export async function changePassword(opts: { userId: string; password: string }) {
+  const hash = await encryptPassword(opts.password)
+  await db('user').updateOne({ _id: opts.userId }, { $set: { hash } })
+  return true
+}
+
+export async function getUserInfo(userId: string) {
+  const billing = await db('user').findOne(
+    { _id: userId },
+    {
+      projection: {
+        username: 1,
+        sub: 1,
+        manualSub: 1,
+        billing: 1,
+        patreon: 1,
+        stripeSessions: 1,
+        google: 1,
+        banned: 1,
+      },
+    }
+  )
+  const profile = await db('profile').findOne({ userId })
+  // const chats = await db('chat').countDocuments({ userId })
+  // const characters = await db('character').countDocuments({ userId })
+  const state = await domain.subscription.getAggregate(userId)
+
+  return {
+    userId,
+    chats: 0,
+    characters: 0,
+    handle: profile?.handle,
+    avatar: profile?.avatar,
+    state,
+    ...billing,
+  }
+}
+
+export async function banUser(userId: string, reason: string) {
+  await db('user').updateOne(
+    { _id: userId },
+    {
+      $set: {
+        banned: {
+          at: new Date(),
+          reason: reason || 'No reason given',
+        },
+      },
+    }
+  )
+
+  const next = await getUserInfo(userId)
+  return next
+}
+
+export async function unbanUser(userId: string) {
+  const user = await db('user').findOne({ _id: userId })
+  if (!user) {
+    throw new StatusError(`User not found`, 404)
+  }
+
+  if (!user.banned) {
+    throw new StatusError(`User not banned`, 400)
+  }
+
+  const banHistory = user.banHistory || []
+  banHistory.push(user.banned)
+
+  await db('user').updateOne({ _id: userId }, { $set: { banHistory, banned: null as any } })
+  const next = await getUserInfo(userId)
+  return next
+}

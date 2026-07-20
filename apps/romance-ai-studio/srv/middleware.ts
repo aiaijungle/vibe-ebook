@@ -1,0 +1,126 @@
+import * as uuid from 'uuid'
+import type { NextFunction, Response, Request } from 'express'
+import { StatusError, errors } from './api/wrap'
+import { verifyApiKey } from './db/oauth'
+import { verifyJwt } from './db/user'
+import { config } from './config'
+import { db, isConnected } from './db/client'
+import { getUserSubscriptionTier } from '/common/util'
+import { getCachedTiers } from './db/subscriptions'
+import { AppLog, logger } from '/common/logger'
+
+export { AppLog, logger }
+
+const VALID_ID = /^[a-z0-9-]+$/g
+
+const ID_KEYS = ['id', 'charId', 'inviteId', 'userId']
+
+const INFERENCE_URLS: Record<string, boolean> = {
+  '/models': true,
+  '/v1/models': true,
+  '/completions': true,
+  '/v1/completions': true,
+  '/chat/completions': true,
+  '/v1/chat/completions': true,
+  '/v1/image': true,
+  '/v1/generate-image': true,
+}
+
+function isInferenceUrl(url: string) {
+  return INFERENCE_URLS[url.toLowerCase()]
+}
+
+export function logMiddleware() {
+  const middleware = async (req: any, res: Response, next: NextFunction) => {
+    if (config.requestTimeout) {
+      const request = req as Request
+      request.setTimeout(config.requestTimeout * 1000)
+    }
+
+    for (const prop in ID_KEYS) {
+      const value = req.params[prop]
+      if (value && !VALID_ID.test(value)) {
+        return next(new StatusError('Bad request: Invalid ID', 400))
+      }
+    }
+
+    const requestId = uuid.v4()
+    const log = logger.child({ requestId, url: req.url, method: req.method })
+
+    req.requestId = requestId
+    req.log = log
+
+    const canLog =
+      req.method !== 'OPTIONS' &&
+      (req.url.startsWith('/api') || req.url.startsWith('/v1') || isInferenceUrl(req.url)) &&
+      !req.url.includes('/subscriptions?')
+
+    const socketId = req.get('socket-id') || ''
+    req.socketId = socketId
+
+    const auth = req.get('authorization')
+    if (auth && !isInferenceUrl(req.url)) {
+      /** API Key usage */
+      if (auth.startsWith('Key ') && config.auth.oauth) {
+        const apikey = auth.replace('Key ', '')
+        const key = await verifyApiKey(apikey)
+
+        if (!key) {
+          return next(errors.Unauthorized)
+        }
+
+        req.user = key
+        req.userId = key.userId
+        req.log.setBindings({ user: key.username })
+      } else if (auth.startsWith('Bearer ')) {
+        /** JWT usage */
+        const token = auth.replace('Bearer ', '')
+        try {
+          const payload = verifyJwt(token)
+          req.user = payload as any
+          req.userId = (payload as any).userId
+          req.log.setBindings({ user: (payload as any)?.username || 'anonymous' })
+        } catch (ex) {
+          req.user = {} as any
+          return next(errors.Unauthorized)
+        }
+      } else {
+        /** Auth header provided, but invalid */
+        return next(errors.Unauthorized)
+      }
+    } else {
+      req.log.setBindings({ guest: true })
+    }
+
+    if (req.userId && isConnected()) {
+      const user = await db('user').findOne({ _id: req.userId })
+      if (!user) {
+        return next(errors.Unauthorized)
+      }
+
+      if (user.banned) {
+        // res.status(401)
+        res.json({ message: `${user.banned.reason}`, user_banned: true })
+        return
+      }
+
+      const sub = getUserSubscriptionTier(user, getCachedTiers())
+      req.authed = user
+      req.user.admin = user.admin
+      req.tier = sub?.tier
+    }
+
+    if (canLog) req.log.info('start request')
+
+    const start = Date.now()
+
+    res.on('finish', () => {
+      const duration = Date.now() - start
+      if (canLog) req.log.info({ duration, statusCode: res.statusCode }, 'end request')
+    })
+
+    next()
+  }
+
+  return middleware
+}

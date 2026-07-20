@@ -1,0 +1,11 @@
+name: "Restore PNPM cache"
+description: "Restores the PNPM cache"
+runs:
+  using: "composite"
+  steps:
+    - name: Restore cache
+      uses: actions/cache/restore@v3
+      with:
+        path: "**/node_modules"
+        key: ${{ runner.os }}-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
+        fail-on-cache-miss: true

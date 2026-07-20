@@ -1,0 +1,15 @@
+.home-cards {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  @apply gap-4;
+
+  * > ul {
+    @apply ml-6;
+    list-style-type: disc;
+  }
+
+  * > ol {
+    list-style-type: decimal;
+  }
+}

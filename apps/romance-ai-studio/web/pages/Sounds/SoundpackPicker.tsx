@@ -1,0 +1,48 @@
+import { Component, createEffect, createMemo, createSignal } from 'solid-js'
+import Select from '../../shared/Select'
+import { SoundpackLevel, audioStore } from '/web/store'
+
+const __none_soundpack__ = '__none_soundpack__'
+
+export const SoundpackPicker: Component<{
+  fieldName: string
+  label?: string
+  helperText?: string
+  level: SoundpackLevel
+}> = (props) => {
+  const audio = audioStore((s) => ({
+    soundpacks: s.soundpacks,
+    selectedSoundpacks: s.selectedSoundpacks,
+  }))
+  const [selectedId, setSelectedId] = createSignal<string>(__none_soundpack__)
+
+  const getSoundpackOptions = createMemo(() => {
+    return [
+      { value: __none_soundpack__, label: 'None' },
+      ...audio.soundpacks.map((sp) => {
+        return { value: sp.id, label: sp.name }
+      }),
+    ]
+  })
+
+  const selectSoundpack = (opts: { value: string }) => {
+    setSelectedId(opts.value)
+    audioStore.selectSoundpack(
+      props.level,
+      opts.value === __none_soundpack__ ? undefined : opts.value
+    )
+  }
+
+  createEffect(() => setSelectedId(audio.selectedSoundpacks[props.level] || __none_soundpack__))
+
+  return (
+    <Select
+      fieldName={props.fieldName}
+      label={props.label}
+      helperText={props.helperText}
+      items={getSoundpackOptions()}
+      value={selectedId()}
+      onChange={selectSoundpack}
+    />
+  )
+}
