@@ -152,7 +152,7 @@ export const uiGuard = {
 } as const
 
 export const defaultUIsettings: UISettings = {
-  theme: 'sky',
+  theme: 'rose',
   themeBg: 'truegray',
 
   bgCustomGradient: '',

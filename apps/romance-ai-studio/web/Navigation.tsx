@@ -181,13 +181,13 @@ const Navigation: Component = () => {
                 class="w-8/12 max-w-[calc(100%-64px)]"
                 href="/"
                 role="link"
-                aria-label="Agnaistic main page"
+                aria-label="로맨스AI스튜디오 메인 페이지"
               >
                 <div
                   class="flex h-8 w-full items-center justify-center rounded-lg text-lg font-bold tracking-wide"
                   aria-hidden="true"
                 >
-                  Agn<span class="text-[var(--hl-400)]">ai</span>
+                  로맨스<span class="text-[var(--hl-400)]">AI</span>
                   {suffix()}
                 </div>
               </A>
@@ -302,7 +302,7 @@ const UserNavigation: Component = () => {
         <MultiItem>
           <Item href="/presets" ariaLabel="Presets">
             <Sliders aria-hidden="true" />
-            <span aria-hidden="true">Presets</span>
+            <span aria-hidden="true">프리셋</span>
           </Item>
           <EndItem>
             <A class="icon-button" href="/presets/new" role="button" aria-label="Add a new preset">
@@ -391,7 +391,7 @@ const GuestNavigation: Component = () => {
               ariaLabel="Presets"
               onClick={() => soundEmitter.emit('menu-item-clicked', 'presets')}
             >
-              <Sliders /> Presets
+              <Sliders /> 프리셋
             </Item>
             <EndItem>
               <A
@@ -667,7 +667,7 @@ const Library: Component<{}> = (props) => {
         onClick={() => soundEmitter.emit('menu-item-clicked', 'library')}
       >
         <Book aria-hidden="true" />
-        <span aria-hidden="true"> Library </span>
+        <span aria-hidden="true"> 라이브러리 </span>
       </Item>
     </div>
   )
@@ -705,7 +705,7 @@ const CharacterLink = () => {
         class="tour-character"
       >
         <WizardIcon aria-hidden="true" />
-        <span aria-hidden="true"> Characters </span>
+        <span aria-hidden="true"> 캐릭터 </span>
       </Item>
       <EndItem>
         <A class="icon-button" href="/editor" role="button" aria-label="Add a new character">
@@ -725,7 +725,7 @@ const ChatLink = () => {
         onClick={() => soundEmitter.emit('menu-item-clicked', 'chats')}
       >
         <MessageCircle fill="var(--bg-100)" aria-hidden="true" />
-        <span aria-hidden="true"> Chats </span>
+        <span aria-hidden="true"> 채팅 </span>
       </Item>
       <EndItem>
         <A class="icon-button" href="/chats/create" role="button" aria-label="Create a new chat">
@@ -785,7 +785,7 @@ export const UserProfile = () => {
               if (menu.showMenu) pageStore.closeMenu()
             }}
           >
-            Persona
+            페르소나
             {/* <VenetianMask aria-hidden="true" /> */}
           </Button>
         </div>

@@ -223,7 +223,7 @@ const Layout: Component<{ children?: any }> = (props) => {
 
                 <Match when>
                   <div class="flex flex-col items-center gap-2">
-                    <div>Agnaistic failed to load</div>
+                    <div>로맨스AI스튜디오 로딩에 실패했습니다</div>
                     <div>
                       <Button onClick={reload}>Try Again</Button>
                     </div>

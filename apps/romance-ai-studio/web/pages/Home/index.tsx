@@ -39,7 +39,7 @@ const enum Sub {
 
 const HomePage: Component = () => {
   const [ref, onRef] = useRef()
-  setComponentPageTitle('Information')
+  setComponentPageTitle('로맨스AI스튜디오')
   const [sub, setSub] = createSignal(Sub.None)
 
   const closeSub = () => setSub(Sub.None)
@@ -78,8 +78,8 @@ const HomePage: Component = () => {
       <Show when={!cfg.guest}>
         <div class="flex text-orange-500" role="alert">
           <AlertTriangle class="mb-2 mr-2" aria-hidden="true" />
-          Your browser does not support local storage. You will need to login/register to use
-          Agnaistic.
+          브라우저가 로컬 저장소를 지원하지 않습니다. 로맨스AI스튜디오를 이용하려면 로그인/회원가입이
+          필요합니다.
         </div>
       </Show>
 
@@ -91,8 +91,11 @@ const HomePage: Component = () => {
           aria-labelledby="homeTitle"
         >
           <span id="homeTitle" aria-hidden="true">
-            Agn<span class="text-[var(--hl-500)]">ai</span>
+            로맨스<span class="text-[var(--hl-500)]">AI</span>
           </span>
+        </div>
+        <div class="flex justify-center text-base text-500" aria-hidden="true">
+          회귀·빙의·계약연애 — 당신이 주인공인 로맨스판타지·BL 이야기
         </div>
 
         <div class="w-full" ref={onRef}>
@@ -107,8 +110,8 @@ const HomePage: Component = () => {
             ariaRole="region"
             ariaLabel="Models"
           >
-            Agnaistic now hosts its own models! Get started for free by using the{' '}
-            <span class="font-bold">&nbsp;Agnaistic&nbsp;</span> service in your presets
+            로맨스AI스튜디오가 자체 모델을 호스팅합니다! 프리셋에서{' '}
+            <span class="font-bold">&nbsp;로맨스AI&nbsp;</span> 서비스를 무료로 시작해보세요
           </TitleCard>
         </Show>
 
@@ -119,29 +122,23 @@ const HomePage: Component = () => {
         </Show>
 
         <div class="home-cards">
-          <TitleCard type="bg" title="Guides" class="" center ariaRole="region" ariaLabel="Guides">
+          <TitleCard type="bg" title="큐레이션 캐릭터" class="" center ariaRole="region" ariaLabel="Guides">
             <div class="flex flex-wrap justify-center gap-2">
-              <a href="https://agnai.guide" target="_blank">
+              <A href="/character/list">
                 <Pill type="hl" inverse ariaRole="link" class="cursor-pointer">
-                  Official Guides
+                  로판/BL 캐릭터 둘러보기
                 </Pill>
-              </a>
+              </A>
 
               <A href="/guides/memory">
-                <Pill inverse>Memory Book</Pill>
+                <Pill inverse>세계관 메모리북</Pill>
               </A>
             </div>
           </TitleCard>
 
-          <TitleCard type="bg" title="Links" center ariaRole="region" ariaLabel="Links">
+          <TitleCard type="bg" title="커뮤니티" center ariaRole="region" ariaLabel="Links">
             <div class="flex flex-wrap justify-center gap-2">
-              <a href="https://discord.agnai.chat" target="_blank">
-                <Pill inverse>Agnaistic Discord</Pill>
-              </a>
-
-              <A href="https://github.com/agnaistic/agnai" target="_blank">
-                <Pill inverse>GitHub</Pill>
-              </A>
+              <Pill inverse>준비 중 — 커뮤니티 채널 오픈 예정</Pill>
             </div>
           </TitleCard>
         </div>
@@ -160,19 +157,16 @@ const HomePage: Component = () => {
 
         <Card border ariaRole="region" ariaLabel="Getting started">
           <div class="mb-2 flex justify-center text-xl font-bold" aria-hidden="true">
-            Getting Started
+            시작하기
           </div>
           <div class="flex flex-col items-center gap-2 leading-6">
             <p>
-              Looking for help with getting started? Check out the{' '}
-              <a class="link" href="https://agnai.guide" target="_blank">
-                Official Guide
-              </a>{' '}
-              or head to the{' '}
-              <a class="link" target="_blank" href="https://discord.agnai.chat">
-                Agnaistic Discord
-              </a>
-              .
+              마음에 드는{' '}
+              <A class="link" href="/character/list">
+                캐릭터
+              </A>
+              를 골라 대화를 시작해보세요. 회귀·빙의·계약연애 클리셰의 큐레이션 캐릭터로 매주 새 이야기가
+              추가됩니다.
             </p>
           </div>
         </Card>
@@ -215,7 +209,7 @@ const RecentChats: Component<{ emitter: ComponentEventEmitter<'loaded'> }> = (pr
   return (
     <section class="flex flex-col" aria-labelledby="homeRecConversations">
       <div id="homeRecConversations" class="text-lg font-bold" aria-hidden="true">
-        Recent Conversations
+        최근 대화
       </div>
       <div
         class="grid w-full grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-4"
@@ -308,14 +302,14 @@ const RecentChats: Component<{ emitter: ComponentEventEmitter<'loaded'> }> = (pr
         </For>
         <Show when={state.last.length < 4}>
           <BorderCard href="/chats/create" ariaLabel="Start conversation">
-            <div aria-hidden="true">Start Conversation</div>
+            <div aria-hidden="true">새 대화 시작</div>
             <Plus size={20} aria-hidden="true" />
           </BorderCard>
         </Show>
 
         <Show when={state.last.length < 3}>
           <BorderCard href="/editor" ariaLabel="Create a character">
-            <div aria-hidden="true">Create a Character</div>
+            <div aria-hidden="true">캐릭터 만들기</div>
             <WizardIcon size={20} aria-hidden="true" />
           </BorderCard>
         </Show>
@@ -323,7 +317,7 @@ const RecentChats: Component<{ emitter: ComponentEventEmitter<'loaded'> }> = (pr
         <Show when={state.last.length < 2}>
           <BorderCard href="/settings" ariaLabel="Configure your AI services">
             <div class="flex w-full items-center justify-center text-center" aria-hidden="true">
-              Configure your AI Services
+              AI 서비스 설정
             </div>
             <Settings size={20} aria-hidden="true" />
           </BorderCard>
@@ -376,32 +370,27 @@ const Features: Component = () => (
   <Card border>
     <section aria-labelledby="homeNotableFeats">
       <div id="homeNotableFeats" class="flex justify-center text-xl font-bold" aria-hidden="true">
-        Notable Features
+        이런 게 다릅니다
       </div>
       <div class="flex flex-col gap-2 leading-6">
         <p>
-          <b class="highlight">Agnaistic</b> is completely free to use. It is free to register. Your
-          data will be kept private and you can permanently delete your data at any time. We take
-          your privacy very seriously.
+          <b class="highlight">장르 전문 큐레이션</b> — 회귀·빙의·계약연애 같은 클리셰를 제대로 아는
+          캐릭터·세계관만 엄선해서 올립니다. 아무나 만든 캐릭터의 홍수가 아닙니다.
         </p>
         <p>
-          <b class="highlight">Register</b> to have your data available on all of your devices.
+          <b class="highlight">완전 무료로 시작</b> — 회원가입 없이도 바로 대화할 수 있습니다. 데이터는
+          안전하게 보관되며 언제든 완전히 삭제할 수 있습니다.
         </p>
-        <p>Chat with multiple users and multiple characters at the same time</p>
+        <p>내가 원하는 전개로 이야기를 이끌어가는 인터랙티브 스토리 경험</p>
         <p>
-          Create <b class="highlight">Memory Books</b> to give your characters information about
-          their world.
-        </p>
-        <p>
-          <b class="highlight">Image generation</b> - Use Horde, NovelAI or your own Stable
-          Diffusion server.
+          <b class="highlight">세계관 메모리북</b>으로 캐릭터가 우리만의 설정을 기억하게 만드세요.
         </p>
         <p>
-          <b class="highlight">Voice</b> - Give your characters a voice and speak back to them.
+          <b class="highlight">보이스</b> — 캐릭터의 목소리로 대사를 들어보세요.
         </p>
         <p>
-          <b class="highlight">Custom Presets</b> - Completely customise the Generation settings
-          used to generate your responses.
+          <b class="highlight">커스텀 프리셋</b> — 대화 생성 방식을 원하는 대로 세밀하게 조정할 수
+          있습니다.
         </p>
       </div>
     </section>

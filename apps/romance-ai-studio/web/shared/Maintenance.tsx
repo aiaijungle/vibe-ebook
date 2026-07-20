@@ -15,7 +15,7 @@ const Maintenance: Component = () => {
   return (
     <Modal show={show()} close={() => setShow(false)} title="Maintenance Mode">
       <div class="flex flex-col gap-4">
-        <div>Agnaistic is currently down for maintenance</div>
+        <div>로맨스AI스튜디오가 현재 점검 중입니다</div>
 
         <div>You can continue to use the site as a guest.</div>
 

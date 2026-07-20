@@ -424,7 +424,7 @@ const ChatDetail: Component = () => {
   return (
     <>
       <ChatMenu ctx={ctx} isOwner={isOwner()} />
-      <Show when={!ctx.appReady}>Agnaistic loading...</Show>
+      <Show when={!ctx.appReady}>로맨스AI스튜디오 로딩중...</Show>
       <ModeDetail
         footer={
           <ChatFooter
