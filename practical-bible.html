@@ -5384,6 +5384,14 @@ html body #un-panel{display:block!important;visibility:visible!important}
 #un-panel .un-note{font-size:13.5px;color:#57534e;background:#fafaf9;border-radius:8px;padding:10px 12px}
 #un-panel .un-meta{color:#78716c;font-size:13px;margin:0 0 14px}
 #un-panel ul,#un-panel ol{padding-left:20px}
+#un-teaser{margin:8px 0 4px;padding:14px 16px;background:#fafaf9;border:1px solid #e7e5e4;border-radius:10px}
+#un-teaser p{margin:0 0 10px}
+#un-teaser .un-locked{position:relative;filter:blur(5px);user-select:none;pointer-events:none}
+html.paywall-unlocked #un-teaser .un-locked{filter:none;user-select:auto;pointer-events:auto}
+#un-teaser .un-gate{margin-top:-96px;position:relative;padding:28px 12px 8px;text-align:center;background:linear-gradient(180deg,rgba(250,250,249,0) 0%,#fafaf9 55%)}
+html.paywall-unlocked #un-teaser .un-gate{display:none}
+#un-teaser .un-gate-txt{display:inline-block;font-weight:700;color:#57534e;padding:6px 12px;border:1px dashed #d6d3d1;border-radius:999px}
+#un-teaser .un-gate small{display:block;color:#78716c;margin-top:6px}
 #un-close{float:right;border:0;background:#f5f5f4;border-radius:8px;padding:6px 12px;cursor:pointer;font-weight:700}
 @media(max-width:480px){#un-ov{padding:10px}#un-panel{padding:16px 14px;font-size:14px;max-height:92vh}#un-panel h2{font-size:1.1rem}#un-btn{padding:8px 11px;font-size:12px}.un-full{display:none}#un-panel table{font-size:12px}}
 </style>
@@ -5395,6 +5403,9 @@ html body #un-panel{display:block!important;visibility:visible!important}
   <p class="un-meta">초판(2026.4~6) 이후 바뀐 것만 모았습니다. '평생 업데이트' 약속의 2판 1차분(2026-10-19). 본문 전면 개정은 순차 반영 중입니다.</p>
   <h3>⓪ 이 책에서 바뀌는 것</h3>
   <ul><li>🆕 전자책이 실제로 팔리기까지 — 7일 판매 0 → 페이월 재배치(첫맛 무료) → 검색 등록 → 첫 결제까지의 기록(2판 신설 장 준비 중).</li><li>🆕 AI 운영체계를 남에게 파는 법 — '설치형'이 아니라 '운영형(Done-WITH-You)'으로 재포지션한 논리.</li><li>✏️ 권한 매트릭스 v4 — L1 50건/시간, L4 '시스템 자체 중단 금지' 1원칙 추가. 디스코드 게이트 15명령으로 갱신.</li></ul>
+  <h3>⓪-1 신설 장 미리보기 (앞 두 문단 공개)</h3>
+  <div id="un-teaser"><p>7일 동안 판매가 0이었다. 광고 문제가 아니었다. 첫 실전 장부터 잠겨 있어서 방문자가 가치를 맛보기 전에 가격을 만났다. 잠금 시작점을 세 장 뒤로 옮긴 날부터 결제가 생겼다.</p><p>두 번째 원인은 더 단순했다. 판매 사이트가 검색엔진에 등록돼 있지 않았다. 색인 0. 서치콘솔에 올리고 사이트맵을 제출하자 '검색으로 들어온 첫 손님'이 생겼다.</p><div class="un-locked"><p>AI 운영체계를 남에게 파는 법은 '설치형'이 아니라 '운영형'이었다. 설치해 드리겠다는 제안은 전부 거절당했고, 같이 운영해 드리겠다는 제안만 미팅으로 이어졌다. 고객이 사는 건 도구가 아니라 책임이다.</p><p>권한 매트릭스 v4에선 자율 한도를 시간당 5건에서 50건으로 늘리고, 대신 절대 금지 영역에 '시스템 자체 중단'을 넣었다. 더 많이 맡기되 멈출 권한만은 사람에게. 이 두 줄이 운영형의 계약 조항이 됐다.</p></div>
+  <div class="un-gate"><span class="un-gate-txt">이어지는 내용은 구매자 본문에서 열립니다</span><small>이미 구매하셨다면 본문 잠금 해제 후 다시 열면 전부 보입니다</small></div></div>
   
 <h3>① 모델 세대가 바뀌었습니다 — 책의 '4.x' 표기는 이렇게 읽으세요</h3>
 <table><tr><th>책에 나온 표기</th><th>2026.10 현재(공식 모델 ID)</th><th>가격(입력/출력, 100만 토큰)</th><th>용도</th></tr>

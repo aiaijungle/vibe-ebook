@@ -7421,6 +7421,14 @@ html body #un-panel{display:block!important;visibility:visible!important}
 #un-panel .un-note{font-size:13.5px;color:#57534e;background:#fafaf9;border-radius:8px;padding:10px 12px}
 #un-panel .un-meta{color:#78716c;font-size:13px;margin:0 0 14px}
 #un-panel ul,#un-panel ol{padding-left:20px}
+#un-teaser{margin:8px 0 4px;padding:14px 16px;background:#fafaf9;border:1px solid #e7e5e4;border-radius:10px}
+#un-teaser p{margin:0 0 10px}
+#un-teaser .un-locked{position:relative;filter:blur(5px);user-select:none;pointer-events:none}
+html.paywall-unlocked #un-teaser .un-locked{filter:none;user-select:auto;pointer-events:auto}
+#un-teaser .un-gate{margin-top:-96px;position:relative;padding:28px 12px 8px;text-align:center;background:linear-gradient(180deg,rgba(250,250,249,0) 0%,#fafaf9 55%)}
+html.paywall-unlocked #un-teaser .un-gate{display:none}
+#un-teaser .un-gate-txt{display:inline-block;font-weight:700;color:#57534e;padding:6px 12px;border:1px dashed #d6d3d1;border-radius:999px}
+#un-teaser .un-gate small{display:block;color:#78716c;margin-top:6px}
 #un-close{float:right;border:0;background:#f5f5f4;border-radius:8px;padding:6px 12px;cursor:pointer;font-weight:700}
 @media(max-width:480px){#un-ov{padding:10px}#un-panel{padding:16px 14px;font-size:14px;max-height:92vh}#un-panel h2{font-size:1.1rem}#un-btn{padding:8px 11px;font-size:12px}.un-full{display:none}#un-panel table{font-size:12px}}
 </style>
@@ -7432,6 +7440,9 @@ html body #un-panel{display:block!important;visibility:visible!important}
   <p class="un-meta">초판(2026.4~6) 이후 바뀐 것만 모았습니다. '평생 업데이트' 약속의 2판 1차분(2026-10-19). 본문 전면 개정은 순차 반영 중입니다.</p>
   <h3>⓪ 이 책에서 바뀌는 것</h3>
   <ul><li>🆕 에이전트에게 장기기억 주기 — 옵시디언 vault→A-MEM 융합, 지식수집 엔진이 25건 모아도 0건 저장되던 import 버그(2판 신설 장 준비 중).</li><li>🆕 에이전트 상태는 어디에 있는가(SSOT) — 30개 에이전트 상태가 5곳에 흩어져 자기 상태를 오인한 사고와 단일 진실 원천 설계.</li><li>✏️ STEP 7 비용 통제 — Haiku 5.5 기준 재계산, 자율 한도 5→50건/시간 근거.</li></ul>
+  <h3>⓪-1 신설 장 미리보기 (앞 두 문단 공개)</h3>
+  <div id="un-teaser"><p>에이전트에게 장기기억을 주는 가장 싼 방법은 벡터 DB가 아니라 '노트 폴더'였다. 옵시디언 vault의 마크다운을 그대로 에이전트 메모리 노트로 변환하는 스크립트 하나로, 사람이 쓴 기록과 에이전트가 쓴 기록이 같은 곳에 쌓인다.</p><p>함정은 조용했다. 지식 수집 엔진이 매일 25건을 모았는데 메모리엔 0건이 저장됐다. 없는 함수 이름을 import하고 있었고, 예외는 삼켜졌다. 숫자가 늘지 않으면 잘림이나 import 오류를 먼저 의심하라.</p><div class="un-locked"><p>두 번째 장은 SSOT다. 30개 에이전트의 상태가 다섯 곳에 흩어져 있었고, 조정자는 오래된 스냅샷을 보고 '멈춘 에이전트'를 깨우려 했다. 상태는 한 곳에만 쓰고 나머지는 읽기만 하게 바꿨다.</p><p>그 한 곳은 append-only 테이블이다. 덮어쓰지 않으니 '언제 누가 바꿨나'가 남고, 에이전트가 자기 상태를 오인하는 일이 사라졌다. 설계도와 체크리스트는 본문에 있다.</p></div>
+  <div class="un-gate"><span class="un-gate-txt">이어지는 내용은 구매자 본문에서 열립니다</span><small>이미 구매하셨다면 본문 잠금 해제 후 다시 열면 전부 보입니다</small></div></div>
   
 <h3>① 모델 세대가 바뀌었습니다 — 책의 '4.x' 표기는 이렇게 읽으세요</h3>
 <table><tr><th>책에 나온 표기</th><th>2026.10 현재(공식 모델 ID)</th><th>가격(입력/출력, 100만 토큰)</th><th>용도</th></tr>

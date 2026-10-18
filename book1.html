@@ -2200,6 +2200,14 @@ html body #un-panel{display:block!important;visibility:visible!important}
 #un-panel .un-note{font-size:13.5px;color:#57534e;background:#fafaf9;border-radius:8px;padding:10px 12px}
 #un-panel .un-meta{color:#78716c;font-size:13px;margin:0 0 14px}
 #un-panel ul,#un-panel ol{padding-left:20px}
+#un-teaser{margin:8px 0 4px;padding:14px 16px;background:#fafaf9;border:1px solid #e7e5e4;border-radius:10px}
+#un-teaser p{margin:0 0 10px}
+#un-teaser .un-locked{position:relative;filter:blur(5px);user-select:none;pointer-events:none}
+html.paywall-unlocked #un-teaser .un-locked{filter:none;user-select:auto;pointer-events:auto}
+#un-teaser .un-gate{margin-top:-96px;position:relative;padding:28px 12px 8px;text-align:center;background:linear-gradient(180deg,rgba(250,250,249,0) 0%,#fafaf9 55%)}
+html.paywall-unlocked #un-teaser .un-gate{display:none}
+#un-teaser .un-gate-txt{display:inline-block;font-weight:700;color:#57534e;padding:6px 12px;border:1px dashed #d6d3d1;border-radius:999px}
+#un-teaser .un-gate small{display:block;color:#78716c;margin-top:6px}
 #un-close{float:right;border:0;background:#f5f5f4;border-radius:8px;padding:6px 12px;cursor:pointer;font-weight:700}
 @media(max-width:480px){#un-ov{padding:10px}#un-panel{padding:16px 14px;font-size:14px;max-height:92vh}#un-panel h2{font-size:1.1rem}#un-btn{padding:8px 11px;font-size:12px}.un-full{display:none}#un-panel table{font-size:12px}}
 </style>
@@ -2211,6 +2219,9 @@ html body #un-panel{display:block!important;visibility:visible!important}
   <p class="un-meta">초판(2026.4~6) 이후 바뀐 것만 모았습니다. '평생 업데이트' 약속의 2판 1차분(2026-10-19). 본문 전면 개정은 순차 반영 중입니다.</p>
   <h3>⓪ 이 책에서 바뀌는 것</h3>
   <ul><li>🆕 말로 시키는 자동화 — 디스코드에 한국어로 말하면 실행되는 15명령 구조(찾아·넣어·ppt·확산·이메일·팟캐스트·깃·db·보안·n8n…)는 2판 신설 장으로 준비 중.</li><li>🆕 막히면 돌아가는 법 — 구글 메일 인증이 막혔을 때 Resend API로 우회한 과정, 클라우드 동기화가 키 파일을 잘라먹어 자동화가 조용히 멈춘 사고와 '백업 한 줄' 루틴.</li></ul>
+  <h3>⓪-1 신설 장 미리보기 (앞 두 문단 공개)</h3>
+  <div id="un-teaser"><p>디스코드 채널에 한국어로 "이번 주 리드 중 점수 70 넘는 회사 찾아줘"라고 치면, 봇이 노션을 뒤져 표로 답한다. 명령어를 외울 필요가 없다. 의도 분류기가 문장을 15가지 명령 중 하나로 바꾸고, 각 명령은 파이썬 파일 하나가 맡는다.</p><p>이 구조의 핵심은 '말 → 분류 → 파일 실행 → 결과 게시' 네 칸이 분리돼 있다는 것이다. 그래서 명령을 하나 더 늘릴 때 게이트웨이를 고치지 않고 파일 하나만 추가한다.</p><div class="un-locked"><p>실제로 막혔던 날의 기록이다. 구글이 메일 발송 계정의 본인인증을 막아 자동 메일이 전부 멈췄다. 우회는 Resend API였다. 발송 함수 하나만 공급자 중립으로 바꾸자 30분 만에 복구됐고, 그 뒤로는 공급자가 바뀌어도 코드가 바뀌지 않는다.</p><p>두 번째 사고는 더 조용했다. 클라우드 동기화가 키 파일의 꼬리를 잘라먹어 자동화가 에러 없이 멈췄다. 알람이 없는 멈춤이 가장 비싸다. 해결은 '키 파일 줄 수를 매일 세는 한 줄'이었다.</p></div>
+  <div class="un-gate"><span class="un-gate-txt">이어지는 내용은 구매자 본문에서 열립니다</span><small>이미 구매하셨다면 본문 잠금 해제 후 다시 열면 전부 보입니다</small></div></div>
   
 <h3>① 모델 세대가 바뀌었습니다 — 책의 '4.x' 표기는 이렇게 읽으세요</h3>
 <table><tr><th>책에 나온 표기</th><th>2026.10 현재(공식 모델 ID)</th><th>가격(입력/출력, 100만 토큰)</th><th>용도</th></tr>
