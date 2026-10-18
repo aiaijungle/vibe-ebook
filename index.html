@@ -5820,9 +5820,9 @@ html body #un-panel{display:block!important;visibility:visible!important}
 #un-panel .un-meta{color:#78716c;font-size:13px;margin:0 0 14px}
 #un-panel ul,#un-panel ol{padding-left:20px}
 #un-close{float:right;border:0;background:#f5f5f4;border-radius:8px;padding:6px 12px;cursor:pointer;font-weight:700}
-@media(max-width:480px){#un-ov{padding:10px}#un-panel{padding:16px 14px;font-size:14px;max-height:92vh}#un-panel h2{font-size:1.1rem}#un-btn{padding:9px 12px;font-size:12px}#un-panel table{font-size:12px}}
+@media(max-width:480px){#un-ov{padding:10px}#un-panel{padding:16px 14px;font-size:14px;max-height:92vh}#un-panel h2{font-size:1.1rem}#un-btn{padding:8px 11px;font-size:12px}.un-full{display:none}#un-panel table{font-size:12px}}
 </style>
-<button id="un-btn" onclick="document.getElementById('un-ov').classList.add('open')">🆕 2026.10 업데이트</button>
+<button id="un-btn" onclick="document.getElementById('un-ov').classList.add('open')">🆕 <span class="un-full">2026.10 </span>업데이트</button>
 <div id="un-ov" onclick="if(event.target===this)this.classList.remove('open')">
  <div id="un-panel">
   <button id="un-close" onclick="document.getElementById('un-ov').classList.remove('open')">닫기 ✕</button>
