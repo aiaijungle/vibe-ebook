@@ -5367,5 +5367,65 @@ window.toggleTheme = function(){
 })();
 </script>
 <script>(function(){var s=new Date("2026-06-01T00:00:00+09:00").getTime();function p(n){return String(n).padStart(2,"0");}function t(){var df=Date.now()-s;if(df<0)df=0;var d=Math.floor(df/86400000),h=Math.floor(df%86400000/3600000),m=Math.floor(df%3600000/60000),x=Math.floor(df%60000/1000);document.querySelectorAll(".ai-gap-d").forEach(function(e){e.textContent=d;});document.querySelectorAll(".ai-gap-h").forEach(function(e){e.textContent=p(h);});document.querySelectorAll(".ai-gap-m").forEach(function(e){e.textContent=p(m);});document.querySelectorAll(".ai-gap-s").forEach(function(e){e.textContent=p(x);});}t();setInterval(t,1000);})();</script>
+<!-- UPDATE-NOTE-2026-10 START -->
+<style>
+html body #un-btn{display:inline-block!important;visibility:visible!important;opacity:1!important;position:fixed;left:14px;bottom:14px;z-index:2147483000;background:#fbbf24;color:#1c1917;border:0;border-radius:999px;padding:10px 14px;font-weight:800;font-size:13px;box-shadow:0 6px 18px rgba(0,0,0,.25);cursor:pointer;transition:all .2s;font-family:inherit}
+#un-btn:hover{transform:translateY(-2px)}
+html body #un-ov{position:fixed;inset:0;z-index:2147483001;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;padding:16px}
+html body #un-ov.open{display:flex!important;visibility:visible!important}
+html body #un-panel{display:block!important;visibility:visible!important}
+#un-panel{box-sizing:border-box;min-width:0;overflow-x:hidden;background:#fff;color:#1c1917;max-width:min(760px,calc(100vw - 20px));width:100%;max-height:88vh;overflow:auto;border-radius:14px;padding:22px 24px 26px;box-shadow:0 20px 60px rgba(0,0,0,.4);font-size:15px;line-height:1.75;word-break:keep-all}
+#un-panel h2{margin:0 0 4px;font-size:1.35rem;color:#9a3412}
+#un-panel h3{margin:22px 0 8px;font-size:1.05rem;color:#0d5f80;border-left:4px solid #fbbf24;padding-left:10px}
+#un-panel table{border-collapse:collapse;font-size:13.5px;margin:8px 0;display:block;max-width:100%;overflow-x:auto;white-space:nowrap}
+#un-panel th,#un-panel td{border:1px solid #e7e5e4;padding:6px 8px;text-align:left;vertical-align:top}
+#un-panel th{background:#fff7ed}
+#un-panel code{background:#f5f5f4;padding:1px 5px;border-radius:4px;font-size:.9em}
+#un-panel .un-note{font-size:13.5px;color:#57534e;background:#fafaf9;border-radius:8px;padding:10px 12px}
+#un-panel .un-meta{color:#78716c;font-size:13px;margin:0 0 14px}
+#un-panel ul,#un-panel ol{padding-left:20px}
+#un-close{float:right;border:0;background:#f5f5f4;border-radius:8px;padding:6px 12px;cursor:pointer;font-weight:700}
+@media(max-width:480px){#un-ov{padding:10px}#un-panel{padding:16px 14px;font-size:14px;max-height:92vh}#un-panel h2{font-size:1.1rem}#un-btn{padding:9px 12px;font-size:12px}#un-panel table{font-size:12px}}
+</style>
+<button id="un-btn" onclick="document.getElementById('un-ov').classList.add('open')">🆕 2026.10 업데이트</button>
+<div id="un-ov" onclick="if(event.target===this)this.classList.remove('open')">
+ <div id="un-panel">
+  <button id="un-close" onclick="document.getElementById('un-ov').classList.remove('open')">닫기 ✕</button>
+  <h2>🆕 2026.10 업데이트 노트 — 5권 《AI에게 일시키는 비법》</h2>
+  <p class="un-meta">초판(2026.4~6) 이후 바뀐 것만 모았습니다. '평생 업데이트' 약속의 2판 1차분(2026-10-19). 본문 전면 개정은 순차 반영 중입니다.</p>
+  <h3>⓪ 이 책에서 바뀌는 것</h3>
+  <ul><li>🆕 전자책이 실제로 팔리기까지 — 7일 판매 0 → 페이월 재배치(첫맛 무료) → 검색 등록 → 첫 결제까지의 기록(2판 신설 장 준비 중).</li><li>🆕 AI 운영체계를 남에게 파는 법 — '설치형'이 아니라 '운영형(Done-WITH-You)'으로 재포지션한 논리.</li><li>✏️ 권한 매트릭스 v4 — L1 50건/시간, L4 '시스템 자체 중단 금지' 1원칙 추가. 디스코드 게이트 15명령으로 갱신.</li></ul>
+  
+<h3>① 모델 세대가 바뀌었습니다 — 책의 '4.x' 표기는 이렇게 읽으세요</h3>
+<table><tr><th>책에 나온 표기</th><th>2026.10 현재(공식 모델 ID)</th><th>가격(입력/출력, 100만 토큰)</th><th>용도</th></tr>
+<tr><td>Haiku 4.5</td><td><code>claude-haiku-5-5</code></td><td>$0.10 / $0.50</td><td>라우팅·분류·대량 처리(10배 저렴)</td></tr>
+<tr><td>Sonnet 4.x</td><td><code>claude-sonnet-5-5</code></td><td>$2 / $10</td><td>분석·종합·일상 코딩</td></tr>
+<tr><td>Opus 4.x</td><td><code>claude-opus-5-5</code></td><td>$4 / $20</td><td>깊은 설계·디버깅(기본 추천)</td></tr>
+<tr><td>—</td><td><code>claude-fable-5-1</code></td><td>$10 / $50</td><td>가장 어려운 장기 에이전트 작업</td></tr></table>
+<p class="un-note">전부 컨텍스트 100만 토큰. 가격은 Anthropic 1차 API 기준(2026-10-06 캐시). 본문 코드 예제에서 모델 ID만 바꾸면 <b>400 에러</b>가 날 수 있는 3가지: ① <code>budget_tokens</code>(고정 사고 예산)는 제거 → <code>thinking: {type:"adaptive"}</code> 또는 생략 ② <code>tool_choice: any/tool</code>(강제 도구 호출)은 5.5·Fable에서 거부 → <code>auto</code>+프롬프트 지시 ③ 어시스턴트 프리필(답변 앞부분 미리 쓰기) 제거 → 구조화 출력(<code>output_config.format</code>) 사용.</p>
+
+<h3>② Claude Code에서 진짜 달라진 것 (changelog 2.1.293~2.1.302, 10월)</h3>
+<ul>
+<li><b>서브에이전트 백그라운드 기본 ON</b> — 보고서 쓰는 동안 자료조사를 따로 돌려 둡니다. 6월 책의 "병렬 처리" 조언이 기본값이 됐습니다.</li>
+<li><b>유휴 자동 압축</b> — 20만 토큰 넘는 대화를 54분 방치하면 캐시 만료 전에 알아서 압축(/config에서 끌 수 있음). 점심 다녀와도 비용이 덜 듭니다.</li>
+<li><b>훅 <code>onFailure: "block"</code></b> — 검사 훅이 고장 나면 그 동작(예: 발송)을 막습니다. "자동 발송 금지" 같은 규칙을 코드로 강제하는 안전장치.</li>
+<li><b>/usage 비용 경고</b> — max effort·큰 도구 결과 등 비용을 키우는 요인을 알려 줍니다. Sonnet 5.5 캐시 읽기 단가도 인하.</li>
+<li><b>Haiku 5.5 기본 탑재</b> — 분류·라우팅은 이걸로. 책 13장(토큰 절약)의 "라우팅은 Haiku" 원칙이 10배 더 유리해졌습니다.</li>
+</ul>
+
+<h3>③ ChatGPT 쪽 변화 (2026.10) — 비교하며 쓰실 분께</h3>
+<ul>
+<li>사용 수준 5단계로 보면: 질문 → <b>Projects+Memory</b>(작업공간) → GPTs·Canvas(전용 도구) → <b>Deep research</b>(조사, Plus 이상) → <b>ChatGPT Work</b>(구 agent 모드, 컴퓨터에서 대행).</li>
+<li>10/7 GPT-6(Intelligent UI) 배포, 10/15 음성 모델 교체, 10/16 Slides(Pro·Business부터), 10/1 카메라 문서 스캔·10/6 오디오 업로드. 플랜별 한도는 자주 바뀌니 결제 전 공식 페이지 확인.</li>
+<li>성능 수치는 어느 회사든 <b>자체 발표</b>입니다. 믿기 전 확인 3가지: 독립 검증이 있나 · 지금 내 계정에서 되나 · 가격과 한도.</li>
+</ul>
+
+<h3>④ 끝판왕의 공통 습관 3 (이 책 전권에 적용)</h3>
+<ol><li>질문하지 않고 <b>명령서 5요소</b>(역할·목표·입력·출력 형식·검수 기준)를 쓴다.</li><li>한 번 되는 명령은 <b>파일로 저장</b>한다(CLAUDE.md·프로젝트 지침·맞춤 GPT).</li><li>결과를 믿지 않고 <b>검수 기준</b>을 준다 — "끝나면 이걸 확인해".</li></ol>
+
+  <p class="un-note">출처: Anthropic 모델·가격 공식 문서(2026-10-06 캐시), Claude Code 공식 changelog(2.1.293~2.1.302), OpenAI 릴리스 노트(2026-10). 확인되지 않은 항목은 넣지 않았습니다.</p>
+ </div>
+</div>
+<!-- UPDATE-NOTE-2026-10 END -->
 </body>
 </html>
