@@ -1,0 +1,30 @@
+{
+  "description": "가상 데이터: 가상 스튜디오의 예약 검토 연습. 실제 고객·서비스와 무관합니다.",
+  "now": "2026-11-02T10:05:00+09:00",
+  "request": {
+    "customer_id": "C-001",
+    "resource_id": "S-01",
+    "start": "2026-11-03T14:00:00+09:00",
+    "end": "2026-11-03T15:00:00+09:00",
+    "idempotency_key": "training-request-001"
+  },
+  "world": {
+    "schema_version": "studio-lab-v1",
+    "source": "training-fixture",
+    "verified_at": "2026-11-02T10:00:00+09:00",
+    "valid_until": "2026-11-02T10:15:00+09:00",
+    "customers": {"C-001": {"label": "샘플 고객 A", "remaining_sessions": 2}},
+    "resources": {"S-01": {"label": "스튜디오 A", "aliases": ["A실", "1번룸"]}},
+    "availability_coverage": [{
+      "resource_id": "S-01",
+      "start": "2026-11-03T00:00:00+09:00",
+      "end": "2026-11-04T00:00:00+09:00",
+      "complete": true
+    }],
+    "reservations": [{
+      "id": "R-002", "resource_id": "S-01", "status": "confirmed",
+      "start": "2026-11-03T16:00:00+09:00", "end": "2026-11-03T17:00:00+09:00"
+    }],
+    "processed_requests": {}
+  }
+}

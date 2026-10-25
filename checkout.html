@@ -66,7 +66,7 @@
   <div class="grid" id="grid"></div>
   <div class="done" id="done"></div>
 
-  <div class="contact">Questions? <a href="mailto:management@stayjanda.com">management@stayjanda.com</a></div>
+  <div class="contact">Questions? <a href="mailto:housepeoplekorea@gmail.com">housepeoplekorea@gmail.com</a></div>
 
   <div class="ebook-links" style="margin-top:26px;border-top:1px solid #2a2f3a;padding-top:18px">
     <h2 style="font-size:1rem;color:#9aa2b2;margin-bottom:10px">Other options</h2>
@@ -176,27 +176,28 @@
             d.innerHTML = '<b>Payment complete.</b><br>Thank you, '+(details.payer.name?details.payer.name.given_name:'')+'.<br>'+
               'Order ID: <b>'+data.orderID+'</b><br>'+
               'We will email access instructions to <b>'+(emailEl.value||'').trim()+'</b> within 1 business day.<br>'+
-              'Need help? <a href="mailto:management@stayjanda.com">management@stayjanda.com</a>';
+              'Need help? <a href="mailto:housepeoplekorea@gmail.com">housepeoplekorea@gmail.com</a>';
             d.scrollIntoView({behavior:'smooth'});
           });
         },
         onCancel: function(data){
           sendOrchestrationEvent({ event:'paypal_cancel', product:p.name, amount:p.price, currency:'USD', email:(emailEl.value||'').trim(), order_id:(data&&data.orderID)||'', url:window.location.href });
           var d=document.getElementById('done'); d.style.display='block'; d.style.background='#241f2e'; d.style.borderColor='#6e5a9a';
-          d.innerHTML='Payment canceled. You can try again anytime.<br>Questions? <a href="mailto:management@stayjanda.com">management@stayjanda.com</a>';
+          d.innerHTML='Payment canceled. You can try again anytime.<br>Questions? <a href="mailto:housepeoplekorea@gmail.com">housepeoplekorea@gmail.com</a>';
         },
         onError: function(err){
           sendOrchestrationEvent({ event:'paypal_error', product:p.name, amount:p.price, currency:'USD', email:(emailEl.value||'').trim(), error:String(err).slice(0,300), url:window.location.href });
           var d=document.getElementById('done'); d.style.display='block'; d.style.background='#3a1616'; d.style.borderColor='#e5534b';
-          d.innerHTML='<b>Payment could not be completed.</b><br>Please try another card or PayPal account, or email <a href="mailto:management@stayjanda.com">management@stayjanda.com</a> and we will help you finish your purchase.';
+          d.innerHTML='<b>Payment could not be completed.</b><br>Please try another card or PayPal account, or email <a href="mailto:housepeoplekorea@gmail.com">housepeoplekorea@gmail.com</a> and we will help you finish your purchase.';
           d.scrollIntoView({behavior:'smooth'});
         }
       }).render('#pp-'+p.id);
     }
   });
   if(!window.paypal){
-    grid.innerHTML = '<div class="card">PayPal SDK failed to load. Please refresh the page or contact management@stayjanda.com.</div>';
+    grid.innerHTML = '<div class="card">PayPal SDK failed to load. Please refresh the page or contact housepeoplekorea@gmail.com.</div>';
   }
 </script>
 </body>
 </html>
+

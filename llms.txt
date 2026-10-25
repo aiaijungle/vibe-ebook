@@ -151,3 +151,13 @@ https://aiaijungle.github.io/vibe-ebook/sales.html
 - Prompt to Workflow: https://aiaijungle.github.io/vibe-ebook/en/prompt-to-workflow.html
 - International PayPal checkout: https://aiaijungle.github.io/vibe-ebook/checkout.html
 - Free AI Bible 7-day PDF: https://aiaijungle.github.io/vibe-ebook/AI_Bible_Free_7Day_Checklist.pdf
+
+
+
+## 2026-10-25 실습 보강
+- 1권: AI에게 처음 맡길 업무 하나 — https://aiaijungle.github.io/vibe-ebook/book1.html#aib-update-20261025
+- 2권: 말로 만든 도구를 고객이 쓸 수 있게 — https://aiaijungle.github.io/vibe-ebook/index.html#aib-update-20261025
+- 3권: 에이전트 한 명에서, 이어지는 업무로 — https://aiaijungle.github.io/vibe-ebook/agent-bible.html#aib-update-20261025
+- 4권: AI가 고친 코드를 믿기 전에 — https://aiaijungle.github.io/vibe-ebook/claude-code-bible.html#aib-update-20261025
+- 5권: AI 에이전트가 노는 세상, 온톨로지로 쉽게 시작하기 — https://aiaijungle.github.io/vibe-ebook/practical-bible.html#aib-update-20261025
+가상 데이터 기반의 교육용 실습입니다. 상세 본문은 기존 구매자 접근 방식으로 제공하며, 실습 코드는 실제 예약·결제·발송을 수행하지 않습니다.
