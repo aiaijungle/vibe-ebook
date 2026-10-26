@@ -112,3 +112,17 @@
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();
+
+/* Load the approved volume 5 UI assets on that page only. */
+(function () {
+  if (!/(^|\/)practical-bible\.html$/.test(location.pathname)) return;
+  if (document.getElementById('volume5-mobile-assets')) return;
+  var style = document.createElement('link');
+  style.id = 'volume5-mobile-assets';
+  style.rel = 'stylesheet';
+  style.href = 'assets/practical-mobile-20261026.css';
+  document.head.appendChild(style);
+  var script = document.createElement('script');
+  script.src = 'assets/practical-mobile-20261026.js';
+  document.body.appendChild(script);
+})();
