@@ -1,0 +1,1 @@
+{"compilerOptions":{"strict":true,"lib":["deno.window","dom","es2022"]}}

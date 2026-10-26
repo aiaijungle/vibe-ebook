@@ -126,3 +126,14 @@
   script.src = 'assets/practical-mobile-20261026.js';
   document.body.appendChild(script);
 })();
+
+/* AI 바이블 actual visitor / reader statistics (2026-10-26). */
+(function () {
+  if (!/^\/vibe-ebook\/(?:(?:book1|index|agent-bible|claude-code-bible|practical-bible)\.html)?$/.test(location.pathname)) return;
+  if (document.getElementById('aib-reader-stats-script')) return;
+  document.documentElement.classList.add('aib-actual-stats');
+  var script = document.createElement('script');
+  script.id = 'aib-reader-stats-script';
+  script.src = 'assets/reader-stats-20261026.js?v=1';
+  document.body.appendChild(script);
+})();

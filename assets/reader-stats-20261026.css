@@ -1,0 +1,22 @@
+/* Supersede the legacy badge, mobile fallback and simulated reader number. */
+html.aib-actual-stats #live-readers, html.aib-actual-stats #visit-badge, html.aib-actual-stats #visit-num, html.aib-actual-stats #visit-num-mobile { display: none !important; }
+.aib-live-stats {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 6px 14px;
+  box-sizing: border-box; max-width: 100%; width: fit-content;
+  margin: 14px 0; padding: 10px 13px; border: 1px solid #d4e1d8;
+  border-radius: 10px; background: #f3f7f4; color: #223e2b;
+  font-family: -apple-system, BlinkMacSystemFont, "Malgun Gothic", sans-serif;
+  font-size: 12px; font-weight: 400; line-height: 1.6;
+  text-align: left; letter-spacing: normal;
+}
+.aib-live-stats .aib-stat-item { display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; font-size: 12px; }
+.aib-live-stats strong { color: #174a2b; font-size: 15px; font-weight: 800; line-height: 1.6; }
+.aib-live-stats small { flex-basis: 100%; color: #53695b; font-size: 11px; line-height: 1.5; font-weight: 400; }
+.aib-live-stats .aib-stat-dot { width: 6px; height: 6px; border-radius: 50%; background: #178544; flex: 0 0 6px; }
+.aib-live-stats[data-aib-state="offline"] .aib-stat-dot { background: #7d857e; }
+.header .aib-live-stats, .book-header .aib-live-stats { margin-left: auto; margin-right: auto; }
+@media (max-width: 480px) {
+  .aib-live-stats { gap: 4px 10px; padding: 9px 11px; }
+  .aib-live-stats .aib-stat-item { font-size: 11px; }
+  .aib-live-stats strong { font-size: 14px; }
+}

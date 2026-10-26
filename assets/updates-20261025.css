@@ -1,3 +1,4 @@
+@import url("reader-stats-20261026.css?v=1");
 /* Scoped reading components for the 2026-10-25 supplement. */
 .aib-update,.aib-update-notice,.aib-series-update{--au-ink:#24303a;--au-muted:#53616d;--au-line:#dce2e5;--au-paper:#fffefa;--au-soft:#f2f5f5;--au-accent:#97472e;box-sizing:border-box;font-family:inherit;color:var(--au-ink);word-break:keep-all;overflow-wrap:anywhere}
 .aib-update{max-width:820px;margin:56px auto;padding:clamp(20px,4vw,42px);border:1px solid var(--au-line);border-radius:18px;background:var(--au-paper);font-size:17px;line-height:1.9;scroll-margin-top:88px;text-align:left;clear:both}
