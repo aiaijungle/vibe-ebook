@@ -1,0 +1,70 @@
+diff --git a/practical-bible.html b/practical-bible.html
+index 906beb0..220910b 100644
+--- a/practical-bible.html
++++ b/practical-bible.html
+@@ -509,14 +509,16 @@
+     a,button,input{-webkit-user-select:auto;user-select:auto}
+   </style>
+ <link rel="stylesheet" href="assets/updates-20261025.css">
++<link rel="stylesheet" href="assets/practical-mobile-20261026.css">
++<script src="assets/practical-mobile-20261026.js" defer></script>
+ </head>
+ <body>
+ 
+ <!-- 5권 단독 빌드 — 시리즈 네비 제거됨 (CEO 2026-05-27 결정: 기존 책 연동 X, 따로 완성 우선) -->
+ 
+ <!-- 얼리버드 배너 -->
+-<div style="background:linear-gradient(90deg,#1a0a04,#2B1D12,#1a0a04);border-bottom:1px solid rgba(193,95,60,.3);padding:11px 20px;text-align:center;font-size:.86rem;color:rgba(250,249,245,.92);">
+-  🚀 <strong style="color:#C15F3C;">5권 묶음 199,000원</strong> · 5권 마스터 499,000원 ·
++<div class="book-promo" style="background:linear-gradient(90deg,#1a0a04,#2B1D12,#1a0a04);border-bottom:1px solid rgba(193,95,60,.3);padding:11px 20px;text-align:center;font-size:.86rem;color:rgba(250,249,245,.92);">
++  <span class="book-promo-prices"><strong style="color:#C15F3C;">🚀 5권 묶음 199,000원</strong><span>5권 마스터 499,000원</span></span>
+   <a href="https://vibecodingbible.jbooking.kr/" style="background:#C15F3C;color:#fff;padding:4px 14px;border-radius:18px;text-decoration:none;font-weight:800;margin-left:8px;">신청하기 →</a>
+ </div>
+ 
+@@ -656,20 +658,24 @@
+ <!-- 메인 -->
+ <main id="main">
+   <div class="top-bar">
+-    <button class="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('mobile-open')" aria-label="목차 열기"><span class="menu-icon">☰</span><span class="menu-label">목차</span></button>
++    <div class="top-bar-identity">
++    <button class="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('mobile-open')" aria-label="목차 열기" aria-controls="sidebar" aria-expanded="false"><span class="menu-icon">☰</span><span class="menu-label">목차</span></button>
+     <span class="top-bar-title">5권</span>
+     <span class="top-bar-chapter" id="current-chapter">AI에게 일시키는 비법</span>
++    </div>
++    <div class="top-bar-actions">
+     <span id="dday-countdown" style="display:inline-flex;align-items:center;gap:6px;font-size:.78rem;font-weight:800;color:#b45309;background:rgba(245,158,11,.1);padding:4px 12px;border-radius:14px;border:1px solid rgba(245,158,11,.3);"><span style="font-size:.95rem;">⏱</span><span id="dday-text">계산 중…</span></span>
+     <button onclick="openGiftModal()" aria-label="선물하기" style="display:inline-flex;align-items:center;gap:4px;background:linear-gradient(135deg,#f59e0b,#fbbf24);color:#1a0a00;border:none;padding:7px 12px;border-radius:8px;font-weight:900;font-size:.82rem;cursor:pointer;letter-spacing:-.01em;box-shadow:0 2px 6px rgba(251,191,36,.3);white-space:nowrap;flex-shrink:0;">🎁 <span class="gift-label">선물</span></button>
+     <a class="cta-btn-top" href="https://vibecodingbible.jbooking.kr/">풀묶음 199,000원</a>
++    </div>
+   </div>
+ 
+   <!-- 📚 시리즈 연동 띠 — 1~4권으로 가는 cross-link (2026-05-28) -->
+-  <div style="background:linear-gradient(90deg,#FAF9F5,#FFEAD8);border-bottom:1px solid var(--border);padding:10px 24px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-size:.84rem;color:var(--text);">
+-    <span style="font-weight:800;color:var(--accent);letter-spacing:.08em;">📚 시리즈</span>
++  <div class="series-nav" role="navigation" aria-label="AI바이블 시리즈" style="background:linear-gradient(90deg,#FAF9F5,#FFEAD8);border-bottom:1px solid var(--border);padding:10px 24px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-size:.84rem;color:var(--text);">
++    <span class="series-label" style="font-weight:800;color:var(--accent);letter-spacing:.08em;">📚 시리즈</span>
+     <a href="https://aiaijungle.github.io/vibe-ebook/book1.html" target="_blank" style="color:var(--text);text-decoration:none;padding:4px 10px;border-radius:14px;background:#fff;border:1px solid var(--border);transition:all .2s;">1~2권 · 바이브 코딩 실전</a>
+     <a href="https://aiaijungle.github.io/vibe-ebook/claude-code-bible.html" target="_blank" style="color:var(--text);text-decoration:none;padding:4px 10px;border-radius:14px;background:#fff;border:1px solid var(--border);transition:all .2s;">3~4권 · 클로드 코딩 바이블</a>
+-    <span style="color:#fff;text-decoration:none;padding:4px 10px;border-radius:14px;background:var(--accent);font-weight:800;">5권 · AI에게 일시키기 ← 현재</span>
++    <span class="series-current" aria-current="page" style="color:#fff;text-decoration:none;padding:4px 10px;border-radius:14px;background:var(--accent);font-weight:800;">5권 · AI에게 일시키기 ← 현재</span>
+     <a href="https://aiaijungle.github.io/vibe-ebook/" target="_blank" style="color:var(--muted);text-decoration:none;padding:4px 10px;font-size:.82rem;margin-left:auto;">시리즈 인덱스 →</a>
+   </div>
+   <script>
+@@ -4801,7 +4807,7 @@ AI가 제안할 수 있는 것:
+   document.addEventListener('click', e => {
+     const sb = document.getElementById('sidebar')
+     if (window.innerWidth <= 768 && sb.classList.contains('mobile-open')) {
+-      if (!sb.contains(e.target) && !e.target.classList.contains('menu-toggle')) {
++      if (!sb.contains(e.target) && !e.target.closest('.menu-toggle')) {
+         sb.classList.remove('mobile-open')
+       }
+     }
+@@ -5191,7 +5197,7 @@ function shareBook(){
+                      + 'transition:transform .3s;';
+     bar.innerHTML = '<span style="font-size:.88rem;font-weight:700;color:#fde68a;">🎟 5권 묶음 199,000원</span>'
+                   + '<span style="font-size:.82rem;color:#fef3c7;">— 5권 마스터 499,000원</span>'
+-                  + '<a href="https://vibecodingbible.jbooking.kr/" target="_blank" style="background:#fff;color:#9a3412;padding:8px 18px;border-radius:8px;font-weight:900;font-size:.86rem;text-decoration:none;white-space:nowrap;">이어서 읽기 →</a>'
++                  + '<a href="https://vibecodingbible.jbooking.kr/" target="_blank" rel="noopener" style="background:#fff;color:#9a3412;padding:8px 18px;border-radius:8px;font-weight:900;font-size:.86rem;text-decoration:none;white-space:nowrap;">구매 안내 →</a>'
+                   + '<button onclick="(function(){localStorage.setItem(\'janda_bottom_bar_dismissed\',Date.now());document.getElementById(\'janda-bottom-bar\').remove();})()" style="background:transparent;border:1px solid rgba(255,255,255,.4);color:#fde68a;padding:6px 12px;border-radius:6px;font-size:.78rem;cursor:pointer;white-space:nowrap;">✕ 나중에</button>';
+     document.body.appendChild(bar);
+ 
