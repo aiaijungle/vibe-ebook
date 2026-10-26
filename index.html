@@ -825,7 +825,6 @@ a,button{-webkit-touch-callout:default!important;-webkit-user-select:auto!import
   <div class="mobile-progress-wrap">
     <div class="mobile-progress-bar" id="mobile-progress-bar"></div>
   </div>
-  <span style="font-size:9px; color:var(--text); opacity:0.55; white-space:nowrap;">👁 <span id="visit-num-mobile">98</span></span>
   <button class="topbar-share-btn" onclick="openGiftModal()" title="선물하기">🎁</button>
   <span class="mobile-pct" id="mobile-pct">0%</span>
 </div>
@@ -844,9 +843,6 @@ a,button{-webkit-touch-callout:default!important;-webkit-user-select:auto!import
           badge.onerror = function(){ badge.style.display='none'; span.style.display='inline'; };
           badge.onload  = function(){ span.style.display='none'; };
         }
-        // 모바일용 카운터는 localStorage 표시 유지
-        var mob = document.getElementById('visit-num-mobile');
-        if(mob) mob.textContent = '1,000+';
       })();
     </script>
     <div class="header">
@@ -854,11 +850,11 @@ a,button{-webkit-touch-callout:default!important;-webkit-user-select:auto!import
         <div>📚 바이브 코딩 실전 바이블</div>
         <div class="subtitle">리미트리스맨 저 · 2026</div>
         <div style="display:flex;align-items:center;gap:4px;margin-top:5px;font-size:10px;opacity:0.6;">
-          <span>👁</span><span>누적 방문자</span>
+          <span>👁</span><span>공통 방문 카운터</span>
           <img id="visit-badge"
                src="https://visitor-badge.laobi.icu/badge?page_id=aiaijungle.vibe-ebook&left_color=555&right_color=9D4EDD"
                style="height:16px;vertical-align:middle;border-radius:3px;" alt="visitors">
-          <span id="visit-num" style="background:#9D4EDD;color:#fff;font-weight:700;padding:0 5px;border-radius:3px;line-height:15px;display:none;">1,000+</span>
+          <span id="visit-num" style="background:#9D4EDD;color:#fff;font-weight:700;padding:0 5px;border-radius:3px;line-height:15px;display:none;">집계 확인 불가</span>
         </div>
       </div>
       <button class="theme-btn" onclick="document.documentElement.toggleAttribute('data-theme')" title="다크모드">🌓</button>
@@ -5704,28 +5700,8 @@ window.copyGiftLink = function(){
   }catch(e){}
 })();
 </script>
-<!-- 👁 실시간 독자 수 + 누적 방문자(5권) 전권 통일 — 2026-06-22 -->
-<script>
-(function(){
-  function mk(h){var d=document.createElement('div');d.innerHTML=h;return d.firstElementChild;}
-  if(!document.getElementById('lr-style')){var st=document.createElement('style');st.id='lr-style';
-    st.textContent='@keyframes lrpulse{0%{box-shadow:0 0 0 0 rgba(22,163,74,.5)}70%{box-shadow:0 0 0 6px rgba(22,163,74,0)}100%{box-shadow:0 0 0 0 rgba(22,163,74,0)}}';
-    document.head.appendChild(st);}
-  var live=mk('<span id="live-readers" style="display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:700;color:#16a34a;background:rgba(22,163,74,.12);border:1px solid rgba(22,163,74,.35);border-radius:20px;padding:1px 8px;margin-left:6px;white-space:nowrap;vertical-align:middle;"><span style="width:6px;height:6px;border-radius:50%;background:#16a34a;display:inline-block;animation:lrpulse 1.6s infinite;"></span>지금 <b id="lr-n" style="color:#15803d;">37</b>명 읽는 중</span>');
-  var vn=document.getElementById('visit-num');
-  if(vn){ vn.parentElement.appendChild(live); }
-  else {
-    var host=document.querySelector('.header')||document.querySelector('h1')||document.body;
-    var row=mk('<div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:8px 0;font-size:11px;opacity:.88;"><span>👁</span><span>누적 방문자</span><span style="background:#C15F3C;color:#fff;font-weight:700;padding:0 6px;border-radius:3px;">20,000+</span></div>');
-    row.appendChild(live);
-    if(host.tagName==='H1'){host.insertAdjacentElement('afterend',row);}else{host.appendChild(row);}
-  }
-  var n=document.getElementById('lr-n'); if(!n)return;
-  var base=24+Math.floor((Date.now()/89000)%40);
-  function tick(){base+=Math.round((Math.random()-0.45)*3); if(base<18)base=18; if(base>78)base=78; n.textContent=base; setTimeout(tick,2400+Math.random()*3000);}
-  n.textContent=base; tick();
-})();
-</script>
+<!-- 방문 카운터의 의미와 실시간 집계 상태 — 2026-10-26 -->
+<script src="assets/reader-metrics-20261026.js" defer></script>
 <!-- 상단 배너 닫기(X) — 2026-06-22 -->
 <script>
 (function(){
