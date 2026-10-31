@@ -51,9 +51,27 @@ def main():
         work = v5 / 'examples/operations-edition'
         results.append(run(work, ['operations_lab.py']))
         results.append(run(work, ['-m', 'unittest', '-v', 'test_operations_lab.py']))
+        kit = base / 'work-completion-kit'
+        kit.mkdir()
+        extract('examples/work-completion-kit/work-completion-kit.zip', kit)
+        project = kit / 'examples/work-completion-kit'
+        for name in ['workbench.html', 'kit-engine.js', 'project-example.js', 'project-template.js',
+                     'project-example.json', 'project-template.json', 'workbook-ko.md',
+                     'workbook-en.md', 'completed-example.md', 'acceptance-rubric.md']:
+            assert (project / name).is_file(), f'Missing work-completion material: {name}'
+        environment = dict(os.environ, PYTHONIOENCODING='utf-8', PYTHONUTF8='1')
+        checked = subprocess.run(['node', str(project / 'test_kit_engine.cjs')],
+                                 cwd=project, capture_output=True, text=True, encoding='utf-8',
+                                 timeout=45, env=environment)
+        assert checked.returncode == 0, 'Bundled work-completion tests failed: ' + checked.stdout[-2500:] + checked.stderr[-1500:]
+        summary = json.loads(checked.stdout.strip().splitlines()[-1])
+        kit_tests = sum(line.startswith('PASS ') for line in checked.stdout.splitlines())
+        assert kit_tests > 0 and summary['passed'] == kit_tests, 'No work-completion acceptance checks were executed'
+        assert summary['network'] is False and summary['browser'] is False and summary['actual_execution'] is False
     total = sum(item['unit_tests'] for item in results)
     assert total == 41, f'Expected all 41 current unit tests to run, got {total}'
-    print(json.dumps({'download_commands': results, 'python_tests': total, 'network_calls': 0}, ensure_ascii=False, indent=2))
+    print(json.dumps({'download_commands': results, 'python_tests': total,
+                      'bundled_kit_tests': kit_tests, 'network_calls': 0}, ensure_ascii=False, indent=2))
 
 if __name__ == '__main__':
     main()

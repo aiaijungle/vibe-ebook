@@ -8,6 +8,8 @@ import tempfile
 ROOT = Path(__file__).resolve().parents[1]
 FILES = ['book1.html', 'index.html', 'agent-bible.html',
          'claude-code-bible.html', 'practical-bible.html']
+if (ROOT / 'examples/work-completion-kit/workbench.html').is_file():
+    FILES.append('examples/work-completion-kit/workbench.html')
 
 class Scripts(HTMLParser):
     def __init__(self):

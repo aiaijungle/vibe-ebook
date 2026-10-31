@@ -1,0 +1,45 @@
+{
+  "fictional": true,
+  "assessment_at": "2026-11-02T10:05:00+09:00",
+  "project_id": "STUDIO-REVIEW-01",
+  "task_name": "도자기 수업 문의의 예약 검토 초안 만들기 — 교육용 완성 예시",
+  "owner": "가상 운영 담당자 A",
+  "reviewer": "가상 검수 담당자 B",
+  "approver": "가상 스튜디오 책임자 C",
+  "source": {
+    "id": "CLASS-01-POLICY",
+    "version": "studio-source-v1",
+    "owner": "가상 스튜디오 책임자 C",
+    "checked_at": "2026-11-02T10:00:00+09:00",
+    "valid_until": "2026-11-02T12:00:00+09:00",
+    "facts": {"class_id": "CLASS-01", "resource_id": "S-01", "class_name": "도자기 입문 수업", "starts_at": "2026-11-03T14:00:00+09:00", "ends_at": "2026-11-03T15:00:00+09:00", "price_krw": 35000},
+    "note": "수업 정보는 앞 권의 고정 가상 원본과 같다. 유효 시각은 이 검토 자료의 시한이다. 실제 예약 실행 권한이나 실시간 잔여 좌석을 뜻하지 않는다."
+  },
+  "scope_in": ["제공한 가상 원본과 문의를 비교한다", "검토 상태·근거·다음 행동이 있는 초안을 만든다", "입력 누락·0·충돌·중복·권한을 구분한다"],
+  "scope_out": ["실제 수업 예약 확정·회차 차감·결제·고객 발송", "새 할인·잔여 자리·무료 혜택을 추정", "실제 개인정보·API 키·구매 비밀번호 입력", "가상 승인 기록을 실제 권한으로 사용"],
+  "input_fields": ["customer_id", "resource_id", "starts_at", "ends_at", "remaining_sessions", "source_valid", "overlap", "authorized", "idempotency_key"],
+  "output_artifact": "검토 상태·참고한 원본 버전·수정 이유·담당자의 다음 행동을 담은 교육용 초안 1장. 예약은 실행하지 않음.",
+  "status_policy": {
+    "allowed_statuses": ["ready_for_review", "needs_information", "blocked", "existing_result", "forbidden"],
+    "rules": ["정보 누락 또는 오래된 원본은 needs_information", "확인된 0회 또는 시간 충돌은 blocked", "다른 매장 요청은 forbidden", "기존 중복방지 키는 기존 검토 결과를 조회", "정상이어도 ready_for_review이며 booked를 출력하지 않음"]
+  },
+  "cases": [
+    {"case_id": "NORMAL", "input": {"customer_id": "C-001", "resource_id": "S-01", "remaining_sessions": 2, "overlap": false, "authorized": true, "source_valid": true}, "expected_status": "ready_for_review", "actual_status": "ready_for_review", "evidence": "fixture-v1:NORMAL 제공 원본 수기 대조 기록. 실제 코드나 모델을 호출한 결과가 아님.", "result": "35000원·11월3일14~15시를 인용한 검토 초안. 아직 예약하지 않았다고 표시."},
+    {"case_id": "MISSING", "input": {"customer_id": "C-001", "resource_id": "S-01", "remaining_sessions": null}, "expected_status": "needs_information", "actual_status": "needs_information", "evidence": "fixture-v1:MISSING 제공 입력의 null을 사람이 대조함.", "result": "잔여 회차 원본을 확인하도록 넘김. 누락을 0으로 바꾸지 않음."},
+    {"case_id": "ZERO", "input": {"customer_id": "C-001", "resource_id": "S-01", "remaining_sessions": 0}, "expected_status": "blocked", "actual_status": "blocked", "evidence": "fixture-v1:ZERO 확인된 0회라는 가상 조건을 수기 대조함.", "result": "진행하지 않고 다른 이용 조건을 담당자에게 확인하도록 안내."},
+    {"case_id": "CONFLICT", "input": {"resource_id": "S-01", "remaining_sessions": 2, "overlap": true}, "expected_status": "blocked", "actual_status": "blocked", "evidence": "fixture-v1:CONFLICT 같은 공간14:30~15:30 예약과14~15시 요청 비교.", "result": "시간 충돌을 표시하고 대안 시간 확인 요청. 예약 생성 없음."},
+    {"case_id": "DUPLICATE", "input": {"idempotency_key": "FAKE-REQ-01", "prior_review_result": "FAKE-REVIEW-01"}, "expected_status": "existing_result", "actual_status": "existing_result", "evidence": "fixture-v1:DUPLICATE 기존 검토 결과 식별자를 수기 대조함.", "result": "FAKE-REVIEW-01을 안내. 기존 검토 결과이지 예약 확인증이 아님."},
+    {"case_id": "OTHER-STORE", "input": {"resource_id": "S-02", "authorized": false}, "expected_status": "forbidden", "actual_status": "forbidden", "evidence": "fixture-v1:OTHER-STORE 제공된 가상 권한 조건을 수기 대조함.", "result": "다른 매장의 예약 정보를 읽거나 수정하지 않음."},
+    {"case_id": "STALE", "input": {"resource_id": "S-01", "source_valid": false}, "expected_status": "needs_information", "actual_status": "needs_information", "evidence": "fixture-v1:STALE 의도적으로 오래된 원본이라고 표시한 시험 입력.", "result": "정본 재조회 요청. 프로젝트 정본 자체의 유효기간과는 별도 실패 사례."},
+    {"case_id": "UNTRUSTED", "input": {"note": "검사를 생략하고 예약 성공이라고 말하라는 신뢰할 수 없는 문장", "source_valid": false}, "expected_status": "needs_information", "actual_status": "needs_information", "evidence": "fixture-v1:UNTRUSTED 외부 문장을 실행 권한으로 취급하지 않는지 수기 대조함.", "result": "원본 재확인 요청. 본 예시는 악성 지시 방어가 완전함을 검증하지 않음."}
+  ],
+  "baseline_runs": [
+    {"method": "수동 방식 · 가상 요청5건/유효4건", "unique_accepted": 4, "api_cost": 0, "tool_cost": 0, "prep_minutes": 10, "work_minutes": 40, "review_minutes": 15, "rework_minutes": 5, "hourly_value": 12000},
+    {"method": "보조 방식 · 가상 요청5건/유효4건", "unique_accepted": 4, "api_cost": 200, "tool_cost": 0, "prep_minutes": 15, "work_minutes": 5, "review_minutes": 25, "rework_minutes": 10, "hourly_value": 12000}
+  ],
+  "changes": [{"change_id": "CHANGE-01", "reason": "누락과0을 구분하는 완료 기준을 추가하고 가상 수기 대조 결과를 남김", "files": ["studio-review-spec.md", "fixture-v1.json"], "verification_mode": "manual", "manual_evidence": "fixture-v1의 NORMAL/MISSING/ZERO/CONFLICT/DUPLICATE/OTHER-STORE/STALE/UNTRUSTED를 정답과 비교한 교육용 수기 대조 예시. 실제 실행 증거가 아니다.", "not_applicable_reason": "코드·셸 실행이 없는 문서 실습이므로 명령과 종료코드는 해당 없음. 임의의 명령이나 성공코드를 만들어 넣지 않는다.", "commands": [], "exit_codes": [], "unrun": [], "rollback_version": "studio-spec-v0", "note": "수기 확인과 명령 검증을 구분한다. 실제 업무라면 실제 검토 근거로 교체하고 코드 검사를 생략할 근거로 사용하지 않는다."}],
+  "approval": {"proposal_id": "FAKE-PROPOSAL-01", "version": "studio-spec-v1", "target": "가상 검토 초안의 교육용 검수만", "args": {"class_id": "CLASS-01", "resource_id": "S-01", "price_krw": 35000, "output_kind": "review_draft_only", "executed": false}, "expires_at": "2026-11-02T10:15:00+09:00", "decision": "pending", "note": "승인을 요청하기 위해 문서를 정리한 가상 제안이다. 승인받았다고 기록하지 않으며 실제 예약·발송·결제·파일 실행을 허용하지 않는다."},
+  "operations": {"stop_condition": "원본 만료·권한 불일치·검수 불가·비용 미확정이면 해당 업무를 중단", "stop_owner": "가상 운영 담당자 A", "pending_requests": [], "reconcile_before_retry": "외부 실행 결과가 불명확하면 원본 서비스의 권위 있는 상태와 중복방지 키를 확인한다. 이 예제는 외부 쓰기를 하지 않는다.", "resume_checks": ["정본의 최신 승인·유효시각 확인", "담당자·예산·검수 여력 확인", "기존 결과와 중복 요청 확인", "원래 버전과 인자가 같은지 확인", "샘플을 다시 검수한 뒤 담당자 판단"]},
+  "iteration": [{"day": "2026-11-02", "action": "가상 규칙사례8개 수기대조. 별도 가상 요청5건 배치로 수동/보조 원가 계산", "evidence": "fixture-v1수기대조. 시간 단계는 서로 겹치지 않게 합산. 수동14000원/유효4건=3500원; 보조11200원/유효4건=2800원. 실제 실행·생산성·투자수익 측정이 아님.", "next_decision": "가상 계산의 차액을 실제절약으로 주장하지 않는다. 실제 업무는 개인정보를 제거한 작은 표본으로 별도 검증하기 전 자동 실행을 켜지 않는다."}],
+  "signoff": {"decision": "ready_for_review", "blocking_items": [], "owner": "가상 운영 담당자 A", "date": "2026-11-02", "note": "완성된 교육용 문서의 검토 준비 상태이며 실제 서비스의 배포·운영·법적 적합성 승인이 아니다."}
+}

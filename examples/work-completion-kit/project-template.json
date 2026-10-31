@@ -1,0 +1,22 @@
+{
+  "fictional": true,
+  "assessment_at": "2026-11-02T10:05:00+09:00",
+  "project_id": "",
+  "task_name": "",
+  "owner": "",
+  "reviewer": "",
+  "approver": "",
+  "source": {"id": "", "version": "", "owner": "", "checked_at": "", "valid_until": ""},
+  "scope_in": [],
+  "scope_out": [],
+  "input_fields": [],
+  "output_artifact": "",
+  "status_policy": {"allowed_statuses": ["ready_for_review", "needs_information", "blocked", "existing_result", "forbidden"], "rules": []},
+  "cases": [{"case_id": "", "input": {}, "expected_status": "", "actual_status": "", "evidence": "", "result": ""}],
+  "baseline_runs": [{"method": "", "unique_accepted": 0, "api_cost": 0, "tool_cost": 0, "prep_minutes": 0, "work_minutes": 0, "review_minutes": 0, "rework_minutes": 0, "hourly_value": 0}],
+  "changes": [{"change_id": "", "reason": "", "files": [], "verification_mode": "", "manual_evidence": "", "not_applicable_reason": "", "commands": [], "exit_codes": [], "unrun": [], "rollback_version": ""}],
+  "approval": {"proposal_id": "", "version": "", "target": "", "args": {}, "expires_at": "", "decision": "pending"},
+  "operations": {"stop_condition": "", "stop_owner": "", "pending_requests": [], "reconcile_before_retry": "", "resume_checks": []},
+  "iteration": [{"day": "", "action": "", "evidence": "", "next_decision": ""}],
+  "signoff": {"decision": "draft", "blocking_items": [], "owner": "", "date": ""}
+}
