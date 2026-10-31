@@ -272,7 +272,7 @@
     @media(max-width:600px) { .service-cards { grid-template-columns: 1fr } }
 
     /* ── 복사 방지 ── */
-    *{-webkit-user-select:none!important;-moz-user-select:none!important;-ms-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important}
+    /* Text selection and platform long-press actions remain available. */
     pre.code,.ic{-webkit-user-select:text!important;user-select:text!important}
     a,button{-webkit-touch-callout:default!important;-webkit-user-select:auto!important;}
 
@@ -281,8 +281,7 @@
       #series-intro-banner{display:none!important;}
     }
   </style>
-<script type="application/ld+json">
-{
+<script type="application/ld+json">{
   "@context": "https://schema.org",
   "@type": "Book",
   "name": "Claude Code 바이블",
@@ -302,12 +301,22 @@
     "priceCurrency": "KRW",
     "availability": "https://schema.org/InStock",
     "url": "https://vibecodingbible.jbooking.kr"
-  }
-}
-</script>
+  },
+  "dateModified": "2026-10-31"
+}</script>
 <link rel="stylesheet" href="assets/updates-20261025.css">
+<link rel="stylesheet" href="assets/learning-edition-20261031.css?v=3">
+<script src="assets/reader-sharing-20261031.js"></script>
+<link rel="canonical" href="https://aiaijungle.github.io/vibe-ebook/claude-code-bible.html">
+<link rel="alternate" hreflang="ko" href="https://aiaijungle.github.io/vibe-ebook/claude-code-bible.html"><link rel="alternate" hreflang="en" href="https://aiaijungle.github.io/vibe-ebook/en/claude-code-bible.html">
 </head>
-<body>
+<body data-aib-volume="4">
+<section class="aib-update aib-route" id="aib-learning-route" aria-labelledby="aib-route-title">
+    <p class="aib-kicker">AI BIBLE · 4권 독자 안내</p><h2 id="aib-route-title">Claude Code로 수정하고 검증하기</h2>
+    <p>프로젝트 읽기 → 작은 변경 → 검사 → 변경 내역 검토가 본선입니다. MCP·Hooks·Subagents는 필요한 문제에 맞춰 선택합니다.</p><p><strong>이 책에서 남길 것</strong> — 수정 전 재현 · 변경 내역 · 실제 검사 결과</p>
+    <details class="aib-reading-contract"><summary>이번 권의 학습 흐름과 다음 단계</summary><p>현재 프로젝트와 지침을 읽고 작은 오류를 재현합니다. 기능을 많이 연결하는 것보다 바뀐 동작을 확인하는 것이 먼저입니다.</p><p><strong>읽는 중심선</strong><br>프로젝트 이해 → 실패 재현 → 최소 수정 → 검사 → 변경 내역·복구 확인</p><p><strong>다음 단계로 가기 전</strong><br>입력·기대 결과·실제 결과를 비교하고 미실행 검사를 구분할 수 있다면 3권의 업무 연결을 검토하세요.</p></details><details><summary>준비물과 읽는 순서</summary><p>로컬 프로젝트와 Claude Code 사용 환경. 구독 로그인과 API 과금을 구분합니다.</p><p>처음 배우는 독자: 1 → 2 → 4 → 3 → 5. 대표·운영 담당자: 5권의 운영판부터 시작하고 필요한 구현 장으로 이동하세요. 권 번호는 주제 구분이며 난이도 순서는 아닙니다.</p></details>
+    <nav aria-label="학습 경로"><a href="start-here.html">내게 맞는 책과 무료 첫 실습</a> · <a href="#aib-update-20261025">이 책의 실습과 완료 기준</a> · <a href="en/sales.html" lang="en">English edition</a></nav>
+    <p class="aib-small">과거 사례는 당시 기록입니다. 실행 환경과 비용은 현재 제공자의 공식 안내를 확인하세요. 읽기·제안·실행·검증은 서로 다른 완료 단계입니다.</p></section>
 <!-- AI 시대 가치 배너 -->
 <div style="background:linear-gradient(135deg,#0d001f,#1a0040);padding:10px 16px;text-align:center;font-family:'Pretendard','Apple SD Gothic Neo',sans-serif;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;position:sticky;top:0;z-index:10001;border-bottom:1px solid rgba(139,92,246,0.3);">
   <span style="color:#c4b5fd;font-weight:800;font-size:0.82rem;">AI 시대의 격차는 지금 이 순간에도 벌어지고 있습니다.</span>
@@ -388,7 +397,7 @@
     <div style="padding:12px 16px 10px;display:flex;flex-direction:column;gap:9px;">
       <div style="font-size:0.81rem;color:rgba(255,255,255,0.72);display:flex;align-items:flex-start;gap:8px;word-break:keep-all;"><span style="color:#ff9500;flex-shrink:0;margin-top:1px;">✦</span>⏰ 가장 중요한 가치는 — <strong style="color:#ffaa00;">여러분의 시간</strong>입니다. 6개월 운영 노하우를 단 30일에 압축해서 드립니다</div>
       <div style="font-size:0.81rem;color:rgba(255,255,255,0.72);display:flex;align-items:flex-start;gap:8px;word-break:keep-all;"><span style="color:#ff9500;flex-shrink:0;margin-top:1px;">✦</span>CLAUDE.md 실전 작성법 심화 — <span style="color:rgba(255,255,255,0.35);">[챕터 비공개]</span></div>
-      <div style="font-size:0.81rem;color:rgba(255,255,255,0.72);display:flex;align-items:flex-start;gap:8px;word-break:keep-all;"><span style="color:#ff9500;flex-shrink:0;margin-top:1px;">✦</span>흔한 실수 TOP 10 + 해결법 — 구독자 <strong style="color:#ffaa00;">먼저</strong> 공개</div>
+      <div style="font-size:0.81rem;color:rgba(255,255,255,0.72);display:flex;align-items:flex-start;gap:8px;word-break:keep-all;"><span style="color:#ff9500;flex-shrink:0;margin-top:1px;">✦</span>흔한 실수 12가지 + 해결법 — 구독자 <strong style="color:#ffaa00;">먼저</strong> 공개</div>
     </div>
     <div style="padding:0 16px 14px;">
       <a href="https://www.youtube.com/channel/UCCqi9m0XPHLPxvReWfJhJig?sub_confirmation=1" target="_blank" rel="noopener" style="display:block;background:linear-gradient(90deg,#ff6b00,#ff9d00);color:#fff;text-align:center;padding:9px;border-radius:8px;font-size:0.81rem;font-weight:800;text-decoration:none;">🔔 AI사냥꾼 채널 구독하고 먼저 받기</a>
@@ -405,7 +414,7 @@
   function p(n){return String(n).padStart(2,'0');}
   function tick(){
     var now=new Date(),diff=dl-now;
-    if(1){var b=document.getElementById('may-countdown');if(b)b.innerHTML='<div style="padding:22px 20px;background:linear-gradient(135deg,rgba(16,185,129,.12),rgba(251,191,36,.08));border:1px solid rgba(251,191,36,.4);border-radius:14px;color:#fef3c7;text-align:center;word-break:keep-all;"><div style="display:inline-flex;align-items:center;gap:6px;background:rgba(16,185,129,.18);border:1px solid rgba(16,185,129,.45);border-radius:20px;padding:5px 14px;margin-bottom:14px;"><span style="font-size:.72rem;font-weight:800;color:#34d399;">📖 살아있는 문서 · 가치가 계속 올라갑니다</span></div><div style="font-size:1.25rem;font-weight:900;color:#fff;line-height:1.5;margin-bottom:10px;">한 번 결제 = <span style="color:#fbbf24;">평생 무료 업데이트</span></div><div style="display:flex;justify-content:center;align-items:flex-end;gap:4px;margin:4px 0 12px;"><div style="text-align:center;"><div style="background:rgba(255,90,0,.12);border:1.5px solid rgba(255,90,0,.45);border-radius:10px;padding:9px 11px;min-width:50px;"><span class="ai-gap-d" style="font-size:1.9rem;font-weight:900;color:#ff7200;line-height:1;">30</span></div><div style="font-size:.58rem;color:rgba(255,255,255,.4);margin-top:4px;">일</div></div><div style="color:rgba(255,90,0,.5);font-size:1.5rem;font-weight:900;margin-bottom:15px;">:</div><div style="text-align:center;"><div style="background:rgba(255,90,0,.12);border:1.5px solid rgba(255,90,0,.45);border-radius:10px;padding:9px 11px;min-width:50px;"><span class="ai-gap-h" style="font-size:1.9rem;font-weight:900;color:#ff7200;line-height:1;">00</span></div><div style="font-size:.58rem;color:rgba(255,255,255,.4);margin-top:4px;">시간</div></div><div style="color:rgba(255,90,0,.5);font-size:1.5rem;font-weight:900;margin-bottom:15px;">:</div><div style="text-align:center;"><div style="background:rgba(255,90,0,.12);border:1.5px solid rgba(255,90,0,.45);border-radius:10px;padding:9px 11px;min-width:50px;"><span class="ai-gap-m" style="font-size:1.9rem;font-weight:900;color:#ff7200;line-height:1;">00</span></div><div style="font-size:.58rem;color:rgba(255,255,255,.4);margin-top:4px;">분</div></div><div style="color:rgba(255,90,0,.5);font-size:1.5rem;font-weight:900;margin-bottom:15px;">:</div><div style="text-align:center;"><div style="background:rgba(255,90,0,.12);border:1.5px solid rgba(255,90,0,.45);border-radius:10px;padding:9px 11px;min-width:50px;"><span class="ai-gap-s" style="font-size:1.9rem;font-weight:900;color:#ff7200;line-height:1;">00</span></div><div style="font-size:.58rem;color:rgba(255,255,255,.4);margin-top:4px;">초</div></div></div><div style="font-size:.78rem;color:#fdba74;margin:0 auto 14px;max-width:440px;line-height:1.6;">⏱ AI 바이블 출시(6/1)부터 흐른 시간 — <strong style="color:#fff;">먼저 시작한 사람은 그만큼 앞서갑니다.</strong> 지금 이 순간에도 가치는 쌓입니다.</div><div style="font-size:.8rem;color:#fde68a;line-height:1.7;max-width:460px;margin:0 auto 14px;background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.2);border-radius:10px;padding:11px 15px;">👥 출시 한 달 · <strong style="color:#fff;">매일 100명+ 방문</strong> — 대학교수·감정평가사·건축사·CEO·CTO 등 <strong style="color:#fff;">각 분야를 대표하는 전문가들이 이미 선택</strong>했습니다.</div><div style="font-size:.9rem;color:#cdd9e5;line-height:1.75;max-width:460px;margin:0 auto 14px;">종이책과 다릅니다. 새 AI 모델·도구·워크플로우가 나올 때마다 책이 갱신됩니다 — 늦게 사도 받는 건 같지만, <strong style="color:#fff;">그동안 못 쓴 시간은 안 돌아옵니다.</strong></div><div style="font-size:.82rem;color:#9fb3c8;line-height:1.7;max-width:460px;margin:0 auto 16px;border-top:1px solid rgba(255,255,255,.1);padding-top:12px;">📈 삼성·SK가 수천조를 붓고 기업 85%가 AI 도입, 인재는 30만 명 부족 — <strong style="color:#34d399;">AI 격차는 매주 벌어지는 중.</strong> 지금 시작하면 따라잡을 수 있습니다. <span style="opacity:.55;">(출처: 언론·CIO 2026)</span></div><a href="https://vibecodingbible.jbooking.kr/" target="_blank" style="display:inline-block;padding:12px 28px;background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#1a0a00;border-radius:10px;font-weight:900;font-size:.95rem;text-decoration:none;">🏆 지금 시작하기 →</a></div>';return;}
+    if(1){var b=document.getElementById('may-countdown');if(b)b.innerHTML='<div style="padding:22px 20px;background:rgba(16,185,129,.08);border:1px solid rgba(251,191,36,.35);border-radius:14px;color:#fef3c7;text-align:center;word-break:keep-all;"><h2 style="font-size:1.15rem;color:#fff;">내 업무 하나로 먼저 확인하세요</h2><p style="line-height:1.8;">무료 실습에서 원문과 AI 초안을 비교하고, 직접 고친 결과를 남겨보세요. 전체 과정이 필요하다면 권별 구성과 구매 안내를 확인할 수 있습니다.</p><a href="start-here.html" style="display:inline-flex;align-items:center;min-height:44px;padding:8px 18px;color:#fde68a;">무료 실습 시작하기 →</a></div>';return;}
     var d=Math.floor(diff/86400000),h=Math.floor((diff%86400000)/3600000),m=Math.floor((diff%3600000)/60000),s=Math.floor((diff%60000)/1000);
     var th=document.getElementById('cd-total-hours');if(th)th.textContent=Math.floor(diff/3600000).toLocaleString('ko-KR');
     var th2=document.getElementById('cd-total-hours-txt');if(th2)th2.textContent=Math.floor(diff/3600000).toLocaleString('ko-KR');
@@ -452,7 +461,7 @@
 
     <div class="toc-section-label">보너스 · 실전 도구</div>
     <a class="toc-item" onclick="goChapter('ch11')"><span class="toc-icon">📋</span><span class="toc-label">보너스1. 프롬프트 치트시트</span></a>
-    <a class="toc-item" onclick="goChapter('ch12')"><span class="toc-icon">💀</span><span class="toc-label">보너스2. 흔한 실수 TOP 10</span></a>
+    <a class="toc-item" onclick="goChapter('ch12')"><span class="toc-icon">💀</span><span class="toc-label">보너스2. 흔한 실수 12가지</span></a>
     <a class="toc-item" onclick="goChapter('ch13')"><span class="toc-icon">💰</span><span class="toc-label">보너스3. 비용·VS Code·Git</span></a>
   </nav>
   <div class="progress-wrap">
@@ -474,7 +483,7 @@
   </div>
 </nav>
 
-<button id="sidebar-toggle" onclick="toggleSidebar()">❮</button>
+<button id="sidebar-toggle" aria-label="목차 열기 또는 닫기" onclick="toggleSidebar()">목차</button>
 
 <!-- ── 메인 ── -->
 <main id="main">
@@ -721,7 +730,7 @@
         </thead>
         <tbody>
           <tr><td>파일 접근</td><td>붙여넣기만 가능</td><td class="acc">직접 읽고 쓰고 실행</td></tr>
-          <tr><td>기억</td><td>대화 끝나면 리셋</td><td class="acc">CLAUDE.md로 영구 기억</td></tr>
+          <tr><td>기억</td><td>대화 끝나면 리셋</td><td class="acc">CLAUDE.md로 프로젝트 지침 제공</td></tr>
           <tr><td>행동</td><td>답변 생성</td><td class="acc">계획 → 실행 → 검증</td></tr>
           <tr><td>확장</td><td>없음</td><td class="acc">MCP로 DB·GitHub 직접 제어</td></tr>
         </tbody>
@@ -823,7 +832,11 @@
       <h2>설치 (1분)</h2>
 
       <div class="code-label">터미널에 그대로 붙여넣기</div>
-      <pre class="code">npm install -g @anthropic-ai/claude-code</pre>
+      <pre class="code"># 현재 권장 설치는 운영체제별 공식 안내를 확인하세요.
+# https://code.claude.com/docs/en/setup
+# Windows PowerShell: irm https://claude.ai/install.ps1 | iex
+# macOS/Linux: curl -fsSL https://claude.ai/install.sh | bash
+claude --version</pre>
 
       <h2>로그인 (2분)</h2>
 
@@ -883,7 +896,7 @@ claude</pre>
     <div class="ch-header">
       <div class="ch-num">Level 1 · 입문 — 3강</div>
       <h2 class="ch-title">황금 워크플로우<br>Explore → Plan → Code → Commit</h2>
-      <p class="ch-desc">Claude Code를 쓰는 올바른 순서. 이 순서를 무시하면 90%가 실패한다. 우리가 직접 증명했다.</p>
+      <p class="ch-desc">Claude Code를 쓰는 올바른 순서. 탐색·계획·구현·검증을 구분하면 무엇을 고쳤는지 확인하기 쉽다.</p>
       <div class="ch-badges">
         <span class="badge badge-o">핵심 패턴</span>
         <span class="badge badge-g">실전 예제</span>
@@ -1085,9 +1098,9 @@ claude</pre>
     <div class="ch-header">
       <div class="ch-num">Level 2 · 핵심 — 4강</div>
       <h2 class="ch-title">CLAUDE.md — AI에게 뇌를 심어라</h2>
-      <p class="ch-desc">Claude는 기본적으로 기억이 없다. 매 세션마다 처음 만나는 사람이다. CLAUDE.md가 그 기억을 만든다.</p>
+      <p class="ch-desc">Claude는 기본적으로 기억이 없다. 대화의 맥락만 믿으면 새 작업에서 규칙이 누락될 수 있다. CLAUDE.md에 프로젝트 지침을 기록하고 최신 상태를 확인한다.</p>
       <div class="ch-badges">
-        <span class="badge badge-o">영구 컨텍스트</span>
+        <span class="badge badge-o">파일로 제공하는 프로젝트 지침</span>
         <span class="badge badge-g">실전 템플릿 제공</span>
       </div>
     </div>
@@ -1104,9 +1117,9 @@ claude</pre>
         "CLAUDE.md 없이 Claude Code 쓰는 건, 직원을 고용했는데 회사 설명은 안 해주는 것과 같다. 매번 처음부터 설명해야 한다."
       </blockquote>
 
-      <h2>CLAUDE.md가 뭔가</h2>
+      <h2>CLAUDE.md가 뭔가</h2><p>지침은 모델이 참고하는 문맥이며 운영체제 권한이나 강제 실행 차단을 대신하지 않는다. 자동 기억과 지침·권한의 차이는 <a href="#aib-rules-hooks-20261031">실행 경계 실습</a>에서 직접 확인한다.</p>
 
-      <p>Claude Code가 시작할 때 가장 먼저 찾는 파일이 CLAUDE.md다. 여기에 쓰인 내용은 매 세션마다 자동으로 읽힌다. 한 번 써두면 다시 설명할 필요가 없다.</p>
+      <p>Claude Code가 시작할 때 가장 먼저 찾는 파일이 CLAUDE.md다. 여기에 쓰인 내용은 매 세션마다 자동으로 읽힌다. 반복 설명을 줄일 수 있지만, 규칙과 프로젝트 상태가 바뀌면 파일도 갱신하고 적용 여부를 확인해야 한다.</p>
 
       <div class="story-box" data-tag="WHY — 실제 불편함">
         CLAUDE.md 없이 개발하던 초기. 매 세션마다 "이 프로젝트는 FastAPI고, 포트는 8766이고, MASTER.env에 키가 있고, 한국어 경로 때문에 인코딩 주의해야 하고..."를 반복했다. 어느 날 세어보니 매 세션 준비에 5분씩 썼다. 한 달이면 2시간 반이다. CLAUDE.md 쓰는 데 30분 투자해서 2시간 반을 아꼈다.
@@ -1246,7 +1259,7 @@ claude</pre>
 
       <h2>설정 파일로 관리하는 법</h2>
 
-      <div class="code-label">~/.claude/settings.json</div>
+      <div class="code-label">프로젝트 .claude/settings.json · 아래 파일을 프로젝트에 준비한 뒤 경로 확인</div>
       <pre class="code">{
   "mcpServers": {
     "supabase": {
@@ -1318,7 +1331,7 @@ claude</pre>
 
       <div class="tip-box">
         <div class="label">🎯 이 강의 학습 목표</div>
-        ① Hooks의 5가지 이벤트 타입을 안다<br>
+        ① Hooks의 대표 이벤트의 쓰임을 알고 전체 목록을 공식 문서에서 확인한다<br>
         ② settings.json에서 Hook을 직접 설정한다<br>
         ③ 실전에서 쓸 수 있는 Hook 레시피 2개 이상 적용한다
       </div>
@@ -1331,7 +1344,7 @@ claude</pre>
         파일 수정 후 자동으로 테스트가 돌아가게 했다. Claude가 뭔가 고치면 1초 뒤에 테스트 결과가 터미널에 뜬다. 깨진 게 있으면 Claude가 바로 안다. 내가 "테스트 돌려봐" 안 해도 된다. 이게 진짜 자동화다.
       </div>
 
-      <h2>Hook 이벤트 5가지</h2>
+      <h2>대표 Hook 이벤트 5가지</h2>
 
       <table class="compare-table">
         <thead><tr><th>이벤트</th><th>언제 실행되나</th><th>활용</th></tr></thead>
@@ -1339,7 +1352,7 @@ claude</pre>
           <tr><td><span class="ic">PreToolUse</span></td><td>도구 실행 직전</td><td class="acc">위험 명령어 차단, 로그 기록</td></tr>
           <tr><td><span class="ic">PostToolUse</span></td><td>도구 실행 직후</td><td class="acc">테스트 자동 실행, 린트 체크</td></tr>
           <tr><td><span class="ic">Notification</span></td><td>알림 발생 시</td><td class="acc">Slack/텔레그램 전송</td></tr>
-          <tr><td><span class="ic">Stop</span></td><td>Claude 응답 완료</td><td class="acc">소리 알림, 자동 커밋</td></tr>
+          <tr><td><span class="ic">Stop</span></td><td>Claude 응답 완료</td><td class="acc">소리 알림, 검토 대기 안내</td></tr>
           <tr><td><span class="ic">SubagentStop</span></td><td>하위 에이전트 완료</td><td class="acc">파이프라인 다음 단계 트리거</td></tr>
         </tbody>
       </table>
@@ -1355,14 +1368,13 @@ claude</pre>
         "hooks": [
           {
             "type": "command",
-            "command": "pytest tests/ -x -q 2>&1 | tail -8"
+            "command": "python examples/claude-code-checks/run_checks.py"
           }
         ]
       }
     ],
     "Stop": [
       {
-        "matcher": "*",
         "hooks": [
           {
             "type": "command",
@@ -1378,29 +1390,29 @@ claude</pre>
 
       <h3>① 파일 수정 후 자동 테스트</h3>
       <div class="code-label">PostToolUse → Edit</div>
-      <pre class="code">"command": "python -m pytest tests/ -x -q 2>&1 | tail -5"</pre>
+      <pre class="code">"command": "python examples/claude-code-checks/run_checks.py"</pre>
 
       <h3>② 작업 완료 시 소리 알림 (Windows)</h3>
       <div class="code-label">Stop</div>
       <pre class="code">"command": "powershell -c \"[console]::beep(800,300)\""</pre>
 
-      <h3>③ 텔레그램 알림 전송</h3>
-      <div class="code-label">Stop</div>
-      <pre class="code">"command": "python /tools/telegram_notify.py \"Claude 작업 완료!\""</pre>
+      <h3>③ 실패 신호 전달 확인</h3>
+      <div class="code-label">터미널에서 수동 실행 · 훅에 등록하지 않기</div>
+      <pre class="code">python examples/claude-code-checks/run_checks.py --demo-failure</pre>
 
-      <h3>④ rm -rf 차단 (PreToolUse)</h3>
-      <div class="code-label">PreToolUse → Bash, 보안 스크립트가 종료코드 2 반환 시 차단</div>
-      <pre class="code">"command": "python /tools/bash_safety_check.py"</pre>
+      <h3>④ 허용·차단 fixture 검사 (PreToolUse 이해)</h3>
+      <div class="code-label">PreToolUse → 교육용 guard: Read만 허용, 그 외 종료코드 2 · 자동 설치 안 함</div>
+      <pre class="code">"command": "python examples/claude-code-checks/hook_guard.py"</pre>
 
-      <h3>⑤ 파일 수정 후 git auto-stage</h3>
+      <h3>⑤ 파일 수정 후 변경 범위 검토</h3>
       <div class="code-label">PostToolUse → Edit</div>
-      <pre class="code">"command": "git add -u"</pre>
+      <pre class="code">"command": "git diff --stat"</pre>
 
       <div class="tip-box">
         <div class="label">💡 Hook 실전 원칙</div>
-        Hook 명령어는 <strong>10초 이내</strong>에 끝나야 한다.<br>
-        오래 걸리는 작업은 백그라운드(&amp;)로 빼거나 별도 파이프라인에서 처리.<br>
-        PreToolUse에서 종료코드 2를 반환하면 해당 Claude 동작이 차단된다.
+        이 예제의 빠른 검사는 <strong>10초 이내를 목표</strong>로 한다. 실제 제한은 이벤트·설정·설치 버전에서 확인한다.<br>
+        오래 걸리는 검사는 지원되는 비동기 설정이나 별도 검사 단계로 분리하고, 결과가 도착하기 전에 성공으로 보고하지 않는다.<br>
+        PreToolUse에서 종료코드 2를 반환하면 해당 도구 호출이 차단된다. PostToolUse에서는 이미 실행된 변경을 취소하지 못한다. 아래 <a href="#aib-rules-hooks-20261031">실행 가능한 fixture와 종료코드 실습</a>으로 차이를 확인한다. 설정 예제는 프로젝트 루트에서 실행하고 경로를 실제 저장 위치에 맞춘다.
       </div>
 
     </div>
@@ -1454,12 +1466,12 @@ claude</pre>
 
 각각 독립적으로 분석하고, 끝나면 종합 보고서 만들어줘.</pre>
 
-      <h2>Agent SDK — 코드로 팀 구성</h2>
+      <h2>Client SDK — API 호출을 연결해 팀 구성</h2>
 
-      <p>Anthropic Agent SDK를 쓰면 멀티에이전트 시스템을 코드로 만들 수 있다. 이게 JANDA 시황 AGI의 핵심이다.</p>
+      <p>다음 예제는 Client SDK로 API 호출을 연결한다. Claude Agent SDK는 도구·권한·세션·에이전트 루프를 제공하는 별도 SDK다. 이게 JANDA 시황 AGI의 핵심이다.</p>
 
-      <div class="code-label">Python — Agent SDK 순차 파이프라인 패턴 (진단 → 개선)</div>
-      <pre class="code">import anthropic
+      <div class="code-label">Python — Client SDK 순차 파이프라인 패턴 (진단 → 개선)</div>
+      <p class="aib-small">과거 API 예제입니다. 현재 SDK·모델·설정과 대조 후 사용하세요. 이 판에서 실행 확인한 예제는 공통 Python 실습이며 외부 모델 호출을 검증한 것은 아닙니다.</p><pre class="code">import anthropic
 
 client = anthropic.Anthropic()
 
@@ -1534,7 +1546,7 @@ async def run_parallel(tasks: list[str]):
       <h2>기본 메시지 전송</h2>
 
       <div class="code-label">Python</div>
-      <pre class="code">import anthropic
+      <p class="aib-small">과거 API 예제입니다. 현재 SDK·모델·설정과 대조 후 사용하세요. 이 판에서 실행 확인한 예제는 공통 Python 실습이며 외부 모델 호출을 검증한 것은 아닙니다.</p><pre class="code">import anthropic
 import os
 from dotenv import load_dotenv
 
@@ -1644,7 +1656,7 @@ print(response.content[0].text)</pre>
       <h2>스트리밍 응답</h2>
 
       <div class="code-label">Python — 글자가 실시간으로 출력됨</div>
-      <pre class="code">with client.messages.stream(
+      <p class="aib-small">과거 API 예제입니다. 현재 SDK·모델·설정과 대조 후 사용하세요. 이 판에서 실행 확인한 예제는 공통 Python 실습이며 외부 모델 호출을 검증한 것은 아닙니다.</p><pre class="code">with client.messages.stream(
     model="claude-sonnet-4-6",
     max_tokens=2048,
     messages=[{"role": "user", "content": "긴 보고서 작성해줘"}]
@@ -1655,7 +1667,7 @@ print(response.content[0].text)</pre>
       <h2>Tool Use — Claude에게 함수 주기</h2>
 
       <div class="code-label">Python — 외부 API 호출 도구 등록</div>
-      <pre class="code">tools = [{
+      <p class="aib-small">과거 API 예제입니다. 현재 SDK·모델·설정과 대조 후 사용하세요. 이 판에서 실행 확인한 예제는 공통 Python 실습이며 외부 모델 호출을 검증한 것은 아닙니다.</p><pre class="code">tools = [{
     "name": "search_naver_local",
     "description": "네이버 지역 검색 API로 업체 정보 검색",
     "input_schema": {
@@ -2205,11 +2217,11 @@ Windows 작업 스케줄러 또는 Linux cron 설정 방법 알려줘.
     </div>
   </section>
 
-  <!-- ━━━━ BONUS 2: 흔한 실수 TOP 10 ━━━━ -->
+  <!-- ━━━━ BONUS 2: 흔한 실수 12가지 ━━━━ -->
   <section class="chapter paywall-locked" id="ch12" style="display:none">
     <div class="ch-header">
       <div class="ch-num">보너스 2 · 실전 도구</div>
-      <h2 class="ch-title">흔한 실수 TOP 10<br>경험자만 아는 함정들</h2>
+      <h2 class="ch-title">흔한 실수 12가지<br>경험자만 아는 함정들</h2>
       <p class="ch-desc">직접 저지른 실수들이다. 이걸 읽고 나면 똑같은 삽질을 피할 수 있다.</p>
       <div class="ch-badges">
         <span class="badge badge-o">실패 경험 기반</span>
@@ -2386,7 +2398,7 @@ token*.pickle</pre>
       </div>
 
       <!-- 실수 11 -->
-      <h2>실수 #11 — Claude가 루프에 빠졌을 때 방치하기</h2>
+      <h2>실수 #10 — Claude가 루프에 빠졌을 때 방치하기</h2>
 
       <div class="story-box" data-tag="실제 사례">
         "이 버그 고쳐줘" → Claude가 고쳤다 → "아직도 안 돼" → 또 고쳤다 → "아직도 안 돼" → 10번 반복. 전부 시간과 토큰 낭비였다. 3번 이상 같은 패턴이 반복된다면 접근법이 잘못된 거다.
@@ -2407,7 +2419,7 @@ token*.pickle</pre>
       </div>
 
       <!-- 실수 12 -->
-      <h2>실수 #12 — 컨텍스트 창 고갈 모르고 계속하기</h2>
+      <h2>실수 #11 — 컨텍스트 창 고갈 모르고 계속하기</h2>
 
       <div class="story-box" data-tag="실제 사례">
         대화가 한참 이어졌다. Claude 답변이 점점 이상해졌다. 초반에 정한 규칙이랑 다르게 동작했다. 컨텍스트가 꽉 차서 초반 내용이 잘려 나간 것이었다. /clear 한 번으로 바로 해결됐다.
@@ -2421,7 +2433,7 @@ token*.pickle</pre>
       </div>
 
       <!-- 실수 10 -->
-      <h2>실수 #10 — Claude 말을 100% 믿기</h2>
+      <h2>실수 #12 — Claude 말을 100% 믿기</h2>
 
       <div class="story-box" data-tag="실제 사례">
         Claude가 "이 방법이 최적입니다"라고 해서 그대로 적용했다. 나중에 알고 보니 더 간단한 방법이 있었다. Claude도 틀린다. 특히 최신 라이브러리 버전, 특정 환경 설정에서는.
@@ -2507,7 +2519,7 @@ token*.pickle</pre>
       </div>
 
       <div class="code-label">Python — 비용 효율적인 API 호출 패턴</div>
-      <pre class="code">import anthropic
+      <p class="aib-small">과거 API 예제입니다. 현재 SDK·모델·설정과 대조 후 사용하세요. 이 판에서 실행 확인한 예제는 공통 Python 실습이며 외부 모델 호출을 검증한 것은 아닙니다.</p><pre class="code">import anthropic
 
 client = anthropic.Anthropic()
 
@@ -2613,7 +2625,7 @@ fi
 echo "✅ 보안 체크 통과"</pre>
 
       <div class="story-box" data-tag="실전 팁">
-        이 pre-commit hook을 CLAUDE.md에 적어두면 Claude Code가 커밋 전에 항상 확인한다. "git commit 전에 보안 체크 스크립트 실행해줘"라고 매번 말할 필요가 없다.
+        CLAUDE.md에 적는 것은 확인 지침이다. 실제 Git 훅으로 실행하려면 이 저장소의 .git/hooks/pre-commit에 설치하고 사용하는 운영체제·Git 환경에서 실행되는지 확인해야 한다. 위 예제는 파일 이름만 검사하며, 다른 이름의 비밀값이나 기존 코드에 포함된 키를 찾아내는 완전한 보안 검사가 아니다. 자동 커밋 대신 변경 범위·검사 결과·스테이징 목록을 검토한 후 승인된 단위로 커밋한다.
       </div>
 
       <h3>GitHub Actions + Claude (고급)</h3>
@@ -2875,7 +2887,50 @@ python -m unittest -v test_ontology_lab.py
 <p>오류 화면만 주기보다 <strong>입력·기대 결과·실제 결과</strong>를 같이 주면 확인하기 쉽습니다. 같은 실패를 고친 뒤에는 정상 입력도 계속 통과하는지 확인합니다. 이것이 회귀 확인입니다.</p>
 <h3>5. 배포 전 마지막으로 확인할 것</h3>
 <ul><li><strong>차이 보기:</strong> 수정한 파일과 실제 차이가 요청 범위 안인지 확인합니다.</li><li><strong>실행 경계:</strong> 화면이 아니라 서버가 고객·매장·행동 권한을 확인하는지 봅니다.</li><li><strong>동시성:</strong> 두 요청이 동시에 오면 마지막 충돌을 어디에서 막을지 정합니다. 이 읽기 전용 예제에는 실제 예약 트랜잭션이 없습니다.</li><li><strong>복구:</strong> 실패 시 되돌릴 버전을 기록합니다. 운영 데이터 되돌리기는 코드 되돌리기와 별개입니다.</li><li><strong>보고:</strong> 로컬 검사 성공, 배포 성공, 사용자 흐름 성공을 각각 확인합니다. 하나가 다른 하나의 증거가 되지는 않습니다.</li></ul>
-<ul class="aib-checklist"><li><label><input type="checkbox" data-aib-check="v4-0"><span>지침 파일과 실행 차단 장치의 차이를 설명할 수 있다.</span></label></li><li><label><input type="checkbox" data-aib-check="v4-1"><span>누락·0회·시간 겹침을 각각 검사했다.</span></label></li><li><label><input type="checkbox" data-aib-check="v4-2"><span>실행하지 않은 검사를 통과로 보고하지 않는다.</span></label></li><li><label><input type="checkbox" data-aib-check="v4-3"><span>변경 범위와 복구 방법을 기록했다.</span></label></li></ul><footer class="aib-sources"><p>공식 참고자료 · 2026-10-25 확인. 아래 실습·문서 양식·판정 기준은 본서가 만든 교육용 예시입니다.</p><ul><li><a href="https://code.claude.com/docs/en/memory" target="_blank" rel="noopener noreferrer">Claude Code · CLAUDE.md와 메모리</a></li><li><a href="https://modelcontextprotocol.io/specification/2026-07-28/server/tools" target="_blank" rel="noopener noreferrer">MCP · Tools specification</a></li></ul></footer><nav class="aib-crosslinks" aria-label="다른 권의 10월 실습"><a href="book1.html#aib-update-20261025">1권 · 업무지시서</a><a href="index.html#aib-update-20261025">2권 · 제작과 검증</a><a href="agent-bible.html#aib-update-20261025">3권 · 에이전트 연결</a><a href="practical-bible.html#aib-update-20261025">5권 · 온톨로지</a></nav></div></section>
+<ul class="aib-checklist"><li><label><input type="checkbox" data-aib-check="v4-0"><span>지침 파일과 실행 차단 장치의 차이를 설명할 수 있다.</span></label></li><li><label><input type="checkbox" data-aib-check="v4-1"><span>누락·0회·시간 겹침을 각각 검사했다.</span></label></li><li><label><input type="checkbox" data-aib-check="v4-2"><span>실행하지 않은 검사를 통과로 보고하지 않는다.</span></label></li><li><label><input type="checkbox" data-aib-check="v4-3"><span>변경 범위와 복구 방법을 기록했다.</span></label></li></ul><section id="aib-rules-hooks-20261031" class="aib-deep-practice aib-edition-update">
+<h3>지침에 적은 약속과, 실행 경계에서 확인한 규칙</h3>
+<p>앞에서 업무 규칙을 검사 코드로 바꿨습니다. 이번에는 그 규칙이 어디에서 작동하는지 구분합니다. CLAUDE.md에 ‘승인 없이 파일을 바꾸지 말 것’이라고 쓰면 모델이 참고할 지침이 됩니다. 그러나 그 문장 자체가 파일 시스템의 쓰기 권한을 없애지는 않습니다. 자동 기억도 지난 교훈을 재사용하는 수단이지 승인 장치가 아닙니다.</p>
+<div class="aib-table-wrap"><table><thead><tr><th>층</th><th>남기는 것</th><th>확인할 질문</th></tr></thead><tbody><tr><td>프로젝트 지침</td><td>작업 범위·검사 명령·완료 보고 기준</td><td>새 세션이 읽고 이해했는가?</td></tr><tr><td>자동 기억</td><td>재사용할 교훈·선호</td><td>오래되거나 틀린 기록을 고쳤는가?</td></tr><tr><td>권한·PreToolUse 등</td><td>실행 전 허용·차단 판단</td><td>금지된 입력이 실제로 차단되는가?</td></tr><tr><td>PostToolUse 검사</td><td>이미 한 변경의 결과 확인</td><td>실패가 보존·보고되는가?</td></tr></tbody></table></div>
+<p><strong>10분 실습:</strong> ‘항상 잘해라’ 같은 추상 규칙 대신 작은 저장소의 지침을 다섯 줄로 적으세요. ①이번 변경 범위 ②먼저 재현할 증상 ③실행할 검사 ④미실행 검사의 보고 방식 ⑤커밋·배포 승인 경계를 포함합니다. 그런 다음 모델에게 각 줄을 어떻게 검증할지 설명하게 하고, 설명과 실제 결과를 따로 기록합니다.</p>
+<pre>이번 작업은 샘플 잔여 횟수 판정 함수만 수정한다.
+근거가 없으면 needs_evidence로 끝나는 실패 사례를 먼저 재현한다.
+python examples/claude-code-checks/run_checks.py 를 실행한다.
+실행하지 못한 검사는 미실행으로 쓰고 원인을 남긴다.
+diff를 검토한 뒤에만 다음 단계로 넘기며 커밋·배포는 별도 승인한다.</pre>
+<details><summary>이 지침으로 보장되는 것과 안 되는 것</summary><p>좋은 답은 변경 범위와 검사 결과를 추적할 수 있게 해줍니다. 하지만 ‘파일에 적었으니 외부 발송이 불가능하다’고 결론 내리면 오답입니다. 실제 경계는 사용 가능한 도구·운영체제 권한·서비스 측 인가·승인 절차로도 확인해야 합니다. 지침 파일에는 API 키나 고객 원문을 넣지 않습니다.</p></details>
+</section><section id="aib-hook-exitcodes-20261031" class="aib-deep-practice aib-edition-update"><h3>테스트가 실패했는데 마지막 줄은 성공이라면</h3>
+<p>검사를 자동으로 실행하는 것보다 중요한 것은 실패를 잃지 않는 것입니다. 셸 파이프라인의 마지막 명령이 성공하면 앞쪽 테스트 실패가 숨겨질 수 있습니다. 이 책의 Hooks 예제는 이제 tail로 출력을 잘라서 넘기는 대신 Python 실행기가 자식 검사 프로세스의 종료코드를 그대로 반환합니다. 출력도 그대로 보여주므로 오류의 앞뒤 맥락을 확인할 수 있습니다.</p>
+<pre>python examples/claude-code-checks/run_checks.py
+python examples/claude-code-checks/run_checks.py --demo-failure</pre>
+<p>두 번째 명령은 실패 전달을 확인하는 의도적 fixture입니다. 실행 직후 PowerShell은 <code>$LASTEXITCODE</code>, Bash는 <code>echo $?</code>를 확인하세요. 정상 검사는0, 의도적 실패는1이어야 합니다. 실패를 숨기지 않는 실행기를 만들었다고 해서 Claude Code가 모든 이벤트를 같은 방식으로 차단하는 것은 아닙니다.</p>
+<p><strong>이벤트 경계:</strong> PreToolUse는 실행 전 도구 호출을 막을 수 있습니다. PostToolUse는 도구가 이미 실행된 다음이므로 종료코드로 과거의 변경을 취소할 수 없습니다. PostToolUse에서 검사 실패를 보았다면 다음 수정·검토로 연결하고, 원복이 필요하면 diff를 확인한 후 별도로 수행합니다. Stop 등 다른 이벤트의 종료코드 의미도 같다고 가정하지 마세요.</p>
+<p><strong>오프라인 차단 실습:</strong> 제공된 hook_guard.py는 Read만 허용하는 교육용 허용목록입니다. 검사 코드는 Read 입력→0, Write 입력→2, 잘못된 JSON→2를 직접 확인합니다. 전달된 파일 경로나 명령을 실제 실행하지 않으므로 삭제·발송이 발생하지 않습니다. 이 파일은 Claude Code에 자동 설치되지 않으며, 전체 보안 해법도 아닙니다.</p>
+<div class="aib-downloads"><a href="examples/claude-code-checks/reader-checks.zip" download>종료코드·차단 실습 묶음 내려받기 · ZIP</a></div><p>빈 폴더에 압축을 풀고, <code>examples</code> 폴더가 보이는 위치에서 위 명령을 실행하세요. 이 묶음은 Claude Code 설정을 자동 변경하지 않습니다.</p>
+<p><a href="examples/claude-code-checks/hook_guard.py" download>교육용 guard</a> · <a href="examples/claude-code-checks/README.md">실행 방법과 한계</a></p>
+<details><summary>검사 후 남길 보고서</summary><pre>변경 전 증상:
+수정한 파일과 범위:
+실행한 명령 / 종료코드:
+허용 fixture / 차단 fixture 결과:
+미실행 검사와 이유:
+실제 외부 동작: 없음
+다음 검토자 / 복구 방법:</pre><p>합격은 초록색 메시지를 캡처하는 것이 아니라 정상0·의도적 실패1·차단2를 구별하고, 실제로 실행하지 않은 통합 검사는 미실행이라고 쓰는 것입니다. 다음 코드 수정 실습에서도 테스트를 약하게 바꿔 통과시키지 말고 업무 규칙을 보존하세요.</p></details>
+<p class="aib-small">2026-10-31 공식 문서 확인: <a href="https://code.claude.com/docs/en/memory">지침과 자동 기억</a> · <a href="https://code.claude.com/docs/en/hooks">Hooks 입력·출력과 이벤트별 종료코드</a>. 여기서는 Claude Code 통합 동작을 재현했다고 주장하지 않습니다. 로컬 Python fixture만 실행하며 실제 적용은 설치 버전·운영체제·권한 설정에 맞춰 별도 확인합니다.</p>
+</section><section id="aib-practice-20261031" class="aib-deep-practice"><h3>검사를 통과시키는 수정과, 문제를 해결하는 수정</h3><p class="aib-small">2026.10.31 · 예측하고, 실행하고, 결과를 설명하는 실습</p><p>AI에게 “테스트를 모두 통과시켜라”라고만 말하면 잘못된 동작을 고치는 대신 검사를 느슨하게 만들 수도 있습니다. 먼저 유지해야 할 업무 규칙을 적어두세요. 이번 실습의 규칙은 잔여 횟수를 모르면 확인 필요, 확인된 0회면 차단, 정상 조건이면 검토 준비입니다. 실제 예약은 실행하지 않습니다.</p>
+<p>Claude Code에 현재 프로젝트와 지침을 읽게 하고, 이 판정을 담당하는 파일과 검사 파일을 찾게 하세요. 다음으로 누락 값을 0으로 취급하는 문제가 실제로 있는지 확인합니다. 문제가 없다면 정상 동작을 깨뜨려 고칠 필요는 없습니다. 연습용 복사본에서만 잘못된 조건을 넣고 실패를 재현합니다.</p>
+<p>수정 요청은 다음처럼 구체적으로 적습니다. “업무 규칙과 기대 결과는 유지하세요. 먼저 실패하는 입력과 출력을 보여주고, 원인이 되는 조건을 최소한으로 수정하세요. 검사 파일을 바꿔야 한다면 이유를 설명하세요.” 검사 변경이 무조건 나쁜 것은 아닙니다. 중요한 것은 제품의 요구사항을 몰래 바꾸지 않는 것입니다.</p>
+<p>결과 보고에서는 바뀐 코드보다 증거를 먼저 봅니다. 어떤 명령을 실행했는지, 누락·0·정상 입력이 각각 무엇을 반환했는지, 실행하지 못한 검사는 무엇인지 확인하세요. 이어 변경 내역을 열어 관련 없는 파일이나 설정이 함께 바뀌지 않았는지 살펴봅니다.</p>
+<p>Claude Code의 작업 완료 메시지는 검수의 시작입니다. 결과가 맞아도 운영 배포는 별도 단계이고, 코드 되돌리기로 외부에서 이미 발생한 변경까지 취소할 수 있는 것은 아닙니다. 이번 과제는 연습용 코드의 수정과 검증에서 끝냅니다. 남길 산출물은 변경 전 재현 결과, 수정 내역, 변경 후 검사 결과, 남은 한계 네 가지입니다.</p>
+<pre>현재 파일과 프로젝트 지침을 먼저 읽어줘.
+요구사항을 유지한 채 문제를 재현하고 최소 수정해줘.
+보고에는 아래를 포함해줘.
+1. 재현 입력과 수정 전 결과
+2. 수정한 파일과 이유
+3. 실제 실행한 검사와 결과
+4. 실행하지 못한 검사와 남은 위험
+관련 없는 기능과 운영 설정은 변경하지 마.</pre>
+<h4>SDK 설명 교체 문장</h4>
+<p>이 절의 <code>import anthropic</code>와 <code>client.messages.create()</code> 예제는 Claude API를 호출하는 Client SDK 예제입니다. 호출을 순서대로 연결하거나 병렬로 실행하는 방법을 보여줍니다. Claude Agent SDK는 Claude Code의 도구·에이전트 루프·컨텍스트 관리 등을 애플리케이션에서 사용하는 별도 SDK이므로 이름과 설치 방법을 구분해야 합니다.</p>
+<p>공식 문서도 CLI, Client SDK, Agent SDK를 구분한다. <a href="https://code.claude.com/docs/en/agent-sdk/overview" target="_blank" rel="noopener noreferrer">Claude Agent SDK 개요</a></p></section><h3>실행 전 확인하는 현재 모델과 비용</h3><p>2026-10-31 공식 Claude API 개요 기준. 아래 값은 입력/출력 100만 토큰당 USD이며 구독 요금이 아닙니다. Haiku는 시작 가격이고 옵션·플랫폼에 따라 달라질 수 있습니다.</p><div class="aib-table-wrap"><table><tr><th>모델 ID</th><th>입력 / 출력</th><th>비교할 용도</th></tr><tr><td><code>claude-haiku-5-5</code></td><td>부터 $0.10 / $0.50</td><td>분류·추출·라우팅</td></tr><tr><td><code>claude-sonnet-5-5</code></td><td>$2 / $10</td><td>속도·품질 균형</td></tr><tr><td><code>claude-opus-5-5</code></td><td>$4 / $20</td><td>복잡한 코딩·지식 업무</td></tr><tr><td><code>claude-fable-5-1</code></td><td>$10 / $50</td><td>장기·고난도 작업</td></tr></table></div><p>선택은 같은 샘플의 정답률·검수 시간·비용으로 결정합니다. 모델 이름만 바꾼 코드가 호환된다고 가정하지 마세요. 과거 사례와 당시 모델명은 기록으로 보존합니다.</p><p><a href="https://platform.claude.com/docs/en/models/overview">공식 모델·가격·기능 확인</a> · <a href="https://code.claude.com/docs/en/setup">Claude Code 설치 안내</a></p><footer class="aib-sources"><p>공식 참고자료 · 2026-10-25 확인. 아래 실습·문서 양식·판정 기준은 본서가 만든 교육용 예시입니다.</p><ul><li><a href="https://code.claude.com/docs/en/memory" target="_blank" rel="noopener noreferrer">Claude Code · CLAUDE.md와 메모리</a></li><li><a href="https://modelcontextprotocol.io/specification/2026-07-28/server/tools" target="_blank" rel="noopener noreferrer">MCP · Tools specification</a></li></ul></footer><nav class="aib-crosslinks" aria-label="다른 권의 10월 실습"><a href="book1.html#aib-update-20261025">1권 · 업무지시서</a><a href="index.html#aib-update-20261025">2권 · 제작과 검증</a><a href="agent-bible.html#aib-update-20261025">3권 · 에이전트 연결</a><a href="practical-bible.html#aib-update-20261025">5권 · 온톨로지</a></nav></div></section>
 <!-- AIB-SUPPLEMENT-20261025 END -->
 </main>
 
@@ -2911,7 +2966,7 @@ python -m unittest -v test_ontology_lab.py
 
   // ── 챕터 이동 ──
   const CHAPTERS = ['ch0','ch1','ch2','ch3','ch4','ch5','ch6','ch7','ch8','ch9','ch10','ch11','ch12','ch13'];
-  const LABELS   = ['표지','1강. Claude Code가 뭔데?','2강. 설치 & 첫 대화','3강. 황금 워크플로우','4강. CLAUDE.md — AI의 뇌','5강. MCP — 슈퍼파워 장착','6강. Hooks — 자동화의 끝','7강. Subagents — AI 팀 구성','8강. API로 직접 연동','9강. JANDA AGI 구축기','10강. 다음 단계 & AI사냥꾼','보너스1. 프롬프트 치트시트','보너스2. 흔한 실수 TOP 10','보너스3. 비용·VS Code·Git'];
+  const LABELS   = ['표지','1강. Claude Code가 뭔데?','2강. 설치 & 첫 대화','3강. 황금 워크플로우','4강. CLAUDE.md — AI의 뇌','5강. MCP — 슈퍼파워 장착','6강. Hooks — 자동화의 끝','7강. Subagents — AI 팀 구성','8강. API로 직접 연동','9강. JANDA AGI 구축기','10강. 다음 단계 & AI사냥꾼','보너스1. 프롬프트 치트시트','보너스2. 흔한 실수 12가지','보너스3. 비용·VS Code·Git'];
 
   function goChapter(id) {
     document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
@@ -2950,18 +3005,12 @@ python -m unittest -v test_ontology_lab.py
       document.body.classList.add('sidebar-collapsed');
       document.getElementById('top-progress').style.left = '0';
     }
-    document.addEventListener('contextmenu', e => e.preventDefault());
-    document.addEventListener('copy', e => e.preventDefault());
-    document.addEventListener('cut', e => e.preventDefault());
-    document.addEventListener('selectstart', e => e.preventDefault());
-    document.addEventListener('dragstart', e => e.preventDefault());
-    document.addEventListener('keydown', e => {
-      var k = e.key ? e.key.toLowerCase() : '';
-      if ((e.ctrlKey && ['c','a','u','s','p','x'].indexOf(k) > -1) ||
-          k === 'f12' || (e.ctrlKey && e.shiftKey && ['i','j','c'].indexOf(k) > -1)) {
-        e.preventDefault(); e.stopPropagation();
-      }
-    });
+    /* Reader selection, clipboard and browser controls remain available. */
+    /* Reader selection, clipboard and browser controls remain available. */
+    /* Reader selection, clipboard and browser controls remain available. */
+    /* Reader selection, clipboard and browser controls remain available. */
+    /* Reader selection, clipboard and browser controls remain available. */
+    /* Reader selection, clipboard and browser controls remain available. */
   })();
 </script>
 
@@ -2978,8 +3027,8 @@ python -m unittest -v test_ontology_lab.py
       링크 하나가, 그 사람의 5월을 완전히 바꿀 수 있습니다.
     </div>
     <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:32px;">
-      <button onclick="(function(){var u=window.location.href;if(navigator.share){navigator.share({title:'Claude Code 바이블 — 무료 공개',url:u});}else if(navigator.clipboard){navigator.clipboard.writeText(u).then(function(){var b=document.getElementById('gift-copy-btn');b.textContent='✅ 복사됨!';setTimeout(function(){b.textContent='🔗 링크 복사';},2000);});}})();" id="gift-copy-btn" style="display:inline-flex;align-items:center;gap:6px;padding:12px 22px;background:linear-gradient(135deg,rgba(255,149,0,0.2),rgba(255,68,68,0.12));border:1.5px solid rgba(255,149,0,0.5);border-radius:24px;color:#ffaa00;font-size:0.86rem;font-weight:700;cursor:pointer;transition:all 0.2s;font-family:'Pretendard',sans-serif;" onmouseover="this.style.background='linear-gradient(135deg,rgba(255,149,0,0.38),rgba(255,68,68,0.22))'" onmouseout="this.style.background='linear-gradient(135deg,rgba(255,149,0,0.2),rgba(255,68,68,0.12))'">🔗 링크 복사</button>
-      <a href="#" onclick="event.preventDefault();window.open('https://twitter.com/intent/tweet?text=Claude+Code+바이블+무료+공개+🎁&url='+encodeURIComponent(window.location.href),'_blank','width=600,height=400');" style="display:inline-flex;align-items:center;gap:6px;padding:12px 22px;background:rgba(29,161,242,0.1);border:1.5px solid rgba(29,161,242,0.35);border-radius:24px;color:#60c4f8;font-size:0.86rem;font-weight:700;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.background='rgba(29,161,242,0.2)'" onmouseout="this.style.background='rgba(29,161,242,0.1)'">𝕏 공유</a>
+      <button onclick="BibleSharing.copy(BibleSharing.publicUrl())" id="gift-copy-btn" style="display:inline-flex;align-items:center;gap:6px;padding:12px 22px;background:linear-gradient(135deg,rgba(255,149,0,0.2),rgba(255,68,68,0.12));border:1.5px solid rgba(255,149,0,0.5);border-radius:24px;color:#ffaa00;font-size:0.86rem;font-weight:700;cursor:pointer;transition:all 0.2s;font-family:'Pretendard',sans-serif;" onmouseover="this.style.background='linear-gradient(135deg,rgba(255,149,0,0.38),rgba(255,68,68,0.22))'" onmouseout="this.style.background='linear-gradient(135deg,rgba(255,149,0,0.2),rgba(255,68,68,0.12))'">🔗 링크 복사</button>
+      <a href="#" onclick="event.preventDefault();window.open('https://twitter.com/intent/tweet?text=Claude+Code+바이블+무료+미리보기+🎁&url='+encodeURIComponent(BibleSharing.publicUrl()),'_blank','width=600,height=400');" style="display:inline-flex;align-items:center;gap:6px;padding:12px 22px;background:rgba(29,161,242,0.1);border:1.5px solid rgba(29,161,242,0.35);border-radius:24px;color:#60c4f8;font-size:0.86rem;font-weight:700;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.background='rgba(29,161,242,0.2)'" onmouseout="this.style.background='rgba(29,161,242,0.1)'">𝕏 공유</a>
     </div>
     <div style="max-width:460px;margin:0 auto;background:linear-gradient(135deg,rgba(255,149,0,0.07),rgba(139,92,246,0.05));border:1px solid rgba(255,149,0,0.25);border-radius:12px;padding:16px 18px;text-align:left;">
       <div style="font-size:0.92rem;font-weight:800;color:#fff;margin-bottom:8px;word-break:keep-all;text-align:center;">
@@ -3049,120 +3098,12 @@ if (localStorage.getItem('sib_dismissed')) {
 }
 #aitf-toast.show { opacity:1; }
 </style>
-<div id="aitf-watermark-layer" aria-hidden="true"></div>
+
 <div id="aitf-toast" role="status" aria-live="polite"></div>
+<!-- Reader usability: copyright credit remains; synthetic counters and global browser blocking removed. -->
 <script>
-(function(){
-  'use strict';
-  var TODAY = new Date().toISOString().slice(0,10);
-  var WM_TEXT = '© AITF 2026 · aiaijungle.github.io · ' + TODAY;
-
-  // 1. 워터마크 레이어 채우기
-  try {
-    var layer = document.getElementById('aitf-watermark-layer');
-    if (layer) {
-      var rows = '';
-      for (var r=0; r<14; r++) {
-        var cells = '';
-        for (var c=0; c<8; c++) cells += '<span>' + WM_TEXT + '</span>';
-        rows += '<div class="wm-row">' + cells + '</div>';
-      }
-      layer.innerHTML = rows;
-    }
-  } catch(e){}
-
-  // Toast helper
-  function toast(msg, ms){
-    var t = document.getElementById('aitf-toast');
-    if (!t) return;
-    t.textContent = msg;
-    t.classList.add('show');
-    clearTimeout(t._timer);
-    t._timer = setTimeout(function(){ t.classList.remove('show'); }, ms || 3000);
-  }
-
-  // 2. 우클릭 / 단축키 차단
-  document.addEventListener('contextmenu', function(e){
-    e.preventDefault();
-    toast('⚠️ 우클릭이 차단되었습니다. 콘텐츠는 저작권 보호를 받습니다.');
-    return false;
-  });
-  document.addEventListener('keydown', function(e){
-    var k = e.key;
-    var blocked =
-      k === 'F12' ||
-      (e.ctrlKey && e.shiftKey && (k === 'I' || k === 'i' || k === 'J' || k === 'j' || k === 'C' || k === 'c')) ||
-      (e.ctrlKey && (k === 'U' || k === 'u' || k === 'S' || k === 's' || k === 'P' || k === 'p'));
-    if (blocked) {
-      e.preventDefault();
-      toast('⚠️ 개발자 도구·소스보기·인쇄가 차단되었습니다.');
-      return false;
-    }
-  });
-
-  // 3. 복사 시 경고 + 클립보드 텍스트 교체
-  var COPY_WARN = '⚠️ 이 콘텐츠는 저작권 보호를 받습니다. 무단 복사 시 법적 책임이 있습니다. (© AITF 2026)';
-  document.addEventListener('copy', function(e){
-    try {
-      if (e.clipboardData) {
-        e.clipboardData.setData('text/plain', COPY_WARN);
-        e.preventDefault();
-      }
-    } catch(err){}
-    toast('⚠️ 이 콘텐츠는 저작권 보호를 받습니다. 무단 복사 시 법적 책임이 있습니다.');
-  });
-
-  // devtools 감지 (창 크기 휴리스틱)
-  var devtoolsWarned = false;
-  setInterval(function(){
-    var threshold = 160;
-    var widthGap = window.outerWidth - window.innerWidth;
-    var heightGap = window.outerHeight - window.innerHeight;
-    if ((widthGap > threshold || heightGap > threshold) && !devtoolsWarned) {
-      devtoolsWarned = true;
-      toast('⚠️ 개발자 도구가 감지되었습니다. 접속이 기록됩니다.');
-    }
-  }, 1500);
-
-  // 4. IP / 접속 로깅 (1일 1회)
-  try {
-    var LAST_KEY = 'aitf_iplog_last';
-    var last = parseInt(localStorage.getItem(LAST_KEY) || '0', 10);
-    var now = Date.now();
-    if (now - last > 24*60*60*1000) {
-      fetch('https://ipapi.co/json/').then(function(r){ return r.json(); }).then(function(d){
-        var info = {
-          ip: d.ip, country: d.country_name, city: d.city,
-          ua: navigator.userAgent, page: location.pathname, ts: new Date().toISOString()
-        };
-        console.log('[AITF 접속로그]', info);
-        localStorage.setItem('aitf_iplog_data', JSON.stringify(info));
-        localStorage.setItem(LAST_KEY, String(now));
-        // AITF API 전송 (현재는 콘솔 모의 — 서버 엔드포인트 준비 후 활성화)
-        console.log('[AITF API] POST /v1/ebook/access-log (모의)', info);
-      }).catch(function(err){
-        console.warn('[AITF 접속로그] ipapi 호출 실패:', err && err.message);
-      });
-    }
-  } catch(e){}
-})();
-</script>
-<script>
-function shareBook() {
-  var data = { title: '🎁 Claude Code 바이블 — 무료 선물', text: 'Claude Code 완전 정복 가이드. 지인에게 무료로 선물하세요!', url: location.href };
-  if (navigator.share) {
-    navigator.share(data);
-  } else {
-    navigator.clipboard.writeText(location.href).then(function() {
-      var btn = document.getElementById('share-btn-cc');
-      if (btn) { btn.textContent = '✅ 복사됨!'; setTimeout(function(){ btn.textContent = '🎁 선물하기'; }, 2000); }
-    }).catch(function() {
-      var ta = document.createElement('textarea'); ta.value = location.href;
-      document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
-      var btn = document.getElementById('share-btn-cc');
-      if (btn) { btn.textContent = '✅ 복사됨!'; setTimeout(function(){ btn.textContent = '🎁 선물하기'; }, 2000); }
-    });
-  }
+function shareBook(){
+  return BibleSharing.share({title:"Claude Code 바이블 4권 — 무료 미리보기",text:'무료 미리보기와 첫 실습을 확인하세요. 전체 유료 구성은 구매 안내에서 확인할 수 있습니다.'});
 }
 </script>
 <!-- ── 최종 퀴즈 + 수료증 시스템 ── -->
@@ -3340,9 +3281,7 @@ document.addEventListener('DOMContentLoaded',function(){
   if(kakaoBtn)kakaoBtn.addEventListener('click',function(){
     var pct=Math.round(_score/_total*100);
     var text='['+_bookTitle+'] 수료! 🎓\n'+_score+'/'+_total+' 정답 ('+pct+'%)\n지금 무료로 읽기 → https://aiaijungle.github.io/vibe-ebook/\n\n#AI사냥꾼 #바이브코딩';
-    if(navigator.share){navigator.share({title:_bookTitle+' 수료 인증',text:text}).catch(function(){});}
-    else if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){showToast('카카오톡에 붙여넣기 해서 공유하세요! 📋')}).catch(function(){showToast('복사 실패')});}
-    else{var ta=document.createElement('textarea');ta.value=text;ta.style.cssText='position:fixed;opacity:0;top:-9999px;';document.body.appendChild(ta);ta.focus();ta.select();try{document.execCommand('copy');showToast('카카오톡에 붙여넣기 해서 공유하세요! 📋')}catch(ex){showToast('복사 실패')}document.body.removeChild(ta);}
+    BibleSharing.share({title:_bookTitle+' 실습 결과',text:text});
   });
   if(pdfBtn)pdfBtn.addEventListener('click',function(){showToast('인쇄 창에서 "PDF로 저장"을 선택하세요');setTimeout(function(){window.print()},400);});
 });
@@ -3423,7 +3362,7 @@ var Q_VOL4=[
       <b style="font-size:1.1rem;font-weight:900;color:var(--text,#eee);">🎁 친구에게 선물하기</b>
       <button onclick="closeGiftModal()" style="background:none;border:none;font-size:1.6rem;cursor:pointer;color:var(--text,#eee);line-height:1;padding:0 2px;">×</button>
     </div>
-    <p style="font-size:.8rem;opacity:.6;margin:0 0 12px;word-break:keep-all;color:var(--text,#eee);">AI 시대 뒤처지는 지인에게 무료로 선물하세요 💌</p>
+    <p style="font-size:.8rem;opacity:.6;margin:0 0 12px;word-break:keep-all;color:var(--text,#eee);">필요한 동료에게 무료 미리보기와 첫 실습을 공유하세요.</p>
     <input id="gift-name-input" type="text" maxlength="20" placeholder="받는 분 이름 (선택, 예: 홍길동)"
       oninput="giftUpdateMsg()"
       style="width:100%;padding:11px 13px;border:1.5px solid rgba(128,128,128,.3);border-radius:10px;font-size:.87rem;margin-bottom:10px;box-sizing:border-box;font-family:inherit;background:rgba(255,255,255,.07);color:var(--text,#eee);outline:none;">
@@ -3440,8 +3379,8 @@ var Q_VOL4=[
 (function(){
   var _GU='https://aiaijungle.github.io/vibe-ebook/claude-code-bible.html';
   var _GT='Claude Code 실전 바이블 4권';
-  var _GD='Claude Code로 AI와 함께 개발하는 법 💻\n바이브코딩 마스터 가이드 — 완전 무료!';
-  function _msg(n){var u=n?_GU+'?ref='+encodeURIComponent(n):_GU;return (n?n+'님에게 드리는 선물 🎁\n\n':'')+'『'+_GT+'』을 무료로 읽어보세요!\n\n'+_GD+'\n\n👉 '+u;}
+  var _GD='Claude Code로 AI와 함께 개발하는 법 💻\n바이브코딩 마스터 가이드 — 무료 미리보기와 첫 실습 · 전체 유료 구성은 구매 안내에서 확인하세요.';
+  function _msg(n){var u=_GU;return (n?n+'님에게 드리는 선물 🎁\n\n':'')+'『'+_GT+'』 무료 미리보기와 첫 실습을 확인하세요!\n\n'+_GD+'\n\n👉 '+u;}
   window.openGiftModal=function(){
     var el=document.getElementById('gift-modal');if(el)el.style.display='block';
     document.getElementById('gift-name-input').value='';
@@ -3456,10 +3395,10 @@ var Q_VOL4=[
   function _doCopy(txt,bid,orig){
     var b=document.getElementById(bid);
     function _ok(){if(b){b.textContent='✅ 복사됨! 카카오·문자에 붙여넣기';setTimeout(function(){b.textContent=orig;},2800);}}
-    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(_ok).catch(function(){_fbCp(txt);_ok();});}else{_fbCp(txt);_ok();}
+    BibleSharing.copy(txt).then(function(copied){if(copied)_ok();});
   }
   window.giftCopyMsg=function(){var n=(document.getElementById('gift-name-input').value||'').trim();_doCopy(_msg(n),'gift-btn-msg','📋 선물 메시지 복사');};
-  window.giftCopyLink=function(){var n=(document.getElementById('gift-name-input').value||'').trim();_doCopy(n?_GU+'?ref='+encodeURIComponent(n):_GU,'gift-btn-link','🔗 링크만 복사');};
+  window.giftCopyLink=function(){var n=(document.getElementById('gift-name-input').value||'').trim();_doCopy(_GU,'gift-btn-link','🔗 링크만 복사');};
 })();
 </script>
 <script>
@@ -3521,16 +3460,16 @@ var Q_VOL4=[
     <div id="cgate-sub">전국 완독자 중 AI를 가장 잘 사냥하는<br><strong>대한민국 0.01%만 모인 공간</strong></div>
     <div id="cgate-methods">
       <div class="cgate-method">
-        <div class="cgate-method-title">📤 방법 1 — 책 공유하기</div>
-        <div class="cgate-method-desc">이 책 링크를 1명에게 공유하면<br>즉시 입장 코드가 공개됩니다</div>
-        <button class="cgate-method-btn cgate-share-btn" id="cgate-share-btn">📤 공유하고 코드 받기</button>
+        <div class="cgate-method-title">📤 선택 — 무료 미리보기 공유</div>
+        <div class="cgate-method-desc">필요한 동료에게 링크를 보내주세요.<br>공유·후기 없이도 아래에서 입장 안내를 볼 수 있습니다.</div>
+        <button class="cgate-method-btn cgate-share-btn" id="cgate-share-btn">🔗 미리보기 링크 복사</button>
       </div>
       <div id="cgate-divider">또는</div>
       <div class="cgate-method">
-        <div class="cgate-method-title">✍️ 방법 2 — 한 줄 후기 남기기</div>
-        <div class="cgate-method-desc">읽고 느낀 점 한 줄이면 충분합니다<br>후기 제출 즉시 코드가 공개됩니다</div>
+        <div class="cgate-method-title">✍️ 선택 — 한 줄 후기 남기기</div>
+        <div class="cgate-method-desc">좋았던 점과 어려웠던 점을 자유롭게 남겨주세요.<br>제출하면 익명 후기로 공개될 수 있습니다. 개인정보는 적지 마세요.</div>
         <textarea id="cgate-review-text" placeholder="예) Claude Code로 배포까지 혼자 해냈어요!"></textarea>
-        <button class="cgate-method-btn cgate-review-btn" id="cgate-review-btn">✍️ 후기 남기고 코드 받기</button>
+        <button class="cgate-method-btn cgate-review-btn" id="cgate-review-btn">✍️ 선택 후기 제출</button>
       </div>
     </div>
     <div id="cgate-code-section">
@@ -3541,7 +3480,7 @@ var Q_VOL4=[
       </div>
       <a id="cgate-enter-btn" href="https://open.kakao.com/o/gs65vQmi" target="_blank" rel="noopener">🍊 카카오 오픈채팅 입장하기</a>
     </div>
-    <button id="cgate-already-btn">이미 완료했어요 → 코드 보기</button>
+    <button id="cgate-already-btn" style="min-height:44px;color:#374151;font-size:.85rem;font-weight:700;">공유·후기 없이 입장 안내 보기 →</button>
   </div>
 </div>
 <script>
@@ -3561,27 +3500,17 @@ var Q_VOL4=[
     if(a){d.forEach(function(x,i){setTimeout(function(){x.classList.add('show');},i*140+300);});}else{d.forEach(function(x){x.classList.add('show');});}
   }
   document.getElementById('cgate-share-btn').onclick=function(){
-    var url=location.origin+location.pathname,btn=this;
-    function done(){btn.textContent='✅ 복사 완료!';btn.classList.add('ok');setTimeout(function(){_unlock(true);},1000);}
-    try{navigator.clipboard.writeText(url).then(done).catch(function(){_fb(url,done);});}catch(e){_fb(url,done);}
+    var btn=this;
+    BibleSharing.copy(BibleSharing.publicUrl()).then(function(copied){if(copied){btn.textContent='✅ 링크 복사 완료';btn.classList.add('ok');}});
   };
-  function _fb(t,cb){try{var x=document.createElement('textarea');x.value=t;x.style.cssText='position:fixed;top:-9999px';document.body.appendChild(x);x.select();document.execCommand('copy');document.body.removeChild(x);cb();}catch(e){_unlock(true);}}
   document.getElementById('cgate-review-btn').onclick=function(){
     var txt=(document.getElementById('cgate-review-text').value||'').trim();
     if(txt.length<5){var el=document.getElementById('cgate-review-text');el.classList.add('err');setTimeout(function(){el.classList.remove('err');},800);return;}
     var btn=this;btn.disabled=true;btn.textContent='저장 중...';
-    fetch(_SBU+'/rest/v1/ebook_reviews',{method:'POST',headers:{'apikey':_SBK,'Authorization':'Bearer '+_SBK,'Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify({book:_BID,name:'익명',content:txt})}).catch(function(){}).finally(function(){_unlock(true);});
+    fetch(_SBU+'/rest/v1/ebook_reviews',{method:'POST',headers:{'apikey':_SBK,'Authorization':'Bearer '+_SBK,'Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify({book:_BID,name:'익명',content:txt})}).then(function(response){if(!response.ok)throw new Error('review save failed');btn.textContent='후기를 제출했습니다';}).catch(function(){btn.disabled=false;btn.textContent='저장하지 못했습니다 — 다시 시도';});
   };
   document.getElementById('cgate-already-btn').onclick=function(){
-    if(localStorage.getItem(_GKEY)){_showCode(false);}
-    else{
-      var self=this,m=document.getElementById('cgate-methods');
-      m.scrollIntoView({behavior:'smooth',block:'nearest'});
-      m.classList.add('cgate-shake');
-      setTimeout(function(){m.classList.remove('cgate-shake');},550);
-      self.textContent='⬆️ 위에서 공유 또는 후기를 먼저!';
-      setTimeout(function(){self.textContent='이미 완료했어요 → 코드 보기';},2200);
-    }
+    _unlock(true);
   };
   document.getElementById('cgate-close').onclick=_closeGate;
   document.getElementById('cgate-overlay').onclick=function(e){if(e.target===this)_closeGate();};
@@ -3616,27 +3545,7 @@ var Q_VOL4=[
 })();
 </script>
 <!-- 👁 실시간 독자 수 + 누적 방문자(5권) 전권 통일 — 2026-06-22 -->
-<script>
-(function(){
-  function mk(h){var d=document.createElement('div');d.innerHTML=h;return d.firstElementChild;}
-  if(!document.getElementById('lr-style')){var st=document.createElement('style');st.id='lr-style';
-    st.textContent='@keyframes lrpulse{0%{box-shadow:0 0 0 0 rgba(22,163,74,.5)}70%{box-shadow:0 0 0 6px rgba(22,163,74,0)}100%{box-shadow:0 0 0 0 rgba(22,163,74,0)}}';
-    document.head.appendChild(st);}
-  var live=mk('<span id="live-readers" style="display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:700;color:#16a34a;background:rgba(22,163,74,.12);border:1px solid rgba(22,163,74,.35);border-radius:20px;padding:1px 8px;margin-left:6px;white-space:nowrap;vertical-align:middle;"><span style="width:6px;height:6px;border-radius:50%;background:#16a34a;display:inline-block;animation:lrpulse 1.6s infinite;"></span>지금 <b id="lr-n" style="color:#15803d;">37</b>명 읽는 중</span>');
-  var vn=document.getElementById('visit-num');
-  if(vn){ vn.parentElement.appendChild(live); }
-  else {
-    var host=document.querySelector('.header')||document.querySelector('h1')||document.body;
-    var row=mk('<div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:8px 0;font-size:11px;opacity:.88;"><span>👁</span><span>누적 방문자</span><span style="background:#C15F3C;color:#fff;font-weight:700;padding:0 6px;border-radius:3px;">20,000+</span></div>');
-    row.appendChild(live);
-    if(host.tagName==='H1'){host.insertAdjacentElement('afterend',row);}else{host.appendChild(row);}
-  }
-  var n=document.getElementById('lr-n'); if(!n)return;
-  var base=24+Math.floor((Date.now()/89000)%40);
-  function tick(){base+=Math.round((Math.random()-0.45)*3); if(base<18)base=18; if(base>78)base=78; n.textContent=base; setTimeout(tick,2400+Math.random()*3000);}
-  n.textContent=base; tick();
-})();
-</script>
+<!-- Reader usability: copyright credit remains; synthetic counters and global browser blocking removed. -->
 <!-- 상단 배너 닫기(X) — 2026-06-22 -->
 <script>
 (function(){
@@ -3649,72 +3558,30 @@ var Q_VOL4=[
   if(getComputedStyle(ban).position==='static')ban.style.position='relative';
   var x=document.createElement('button');
   x.className='aib-ban-x'; x.setAttribute('aria-label','배너 닫기'); x.textContent='✕';
-  x.style.cssText='position:absolute;top:50%;right:8px;transform:translateY(-50%);background:rgba(255,255,255,.18);color:#fff;border:1px solid rgba(255,255,255,.35);border-radius:50%;width:22px;height:22px;font-size:11px;line-height:1;cursor:pointer;padding:0;z-index:2;';
+  x.style.cssText='position:absolute;top:50%;right:8px;transform:translateY(-50%);background:rgba(255,255,255,.18);color:#fff;border:1px solid rgba(255,255,255,.35);border-radius:50%;width:44px;height:44px;font-size:14px;line-height:1;cursor:pointer;padding:0;z-index:2;';
   x.onclick=function(){ban.style.display='none';try{localStorage.setItem('aib_banner_closed','1');}catch(e){}};
   ban.appendChild(x);
 })();
 </script>
 <!-- 복사 시도 시 확실한 경고 + 노션기록 POST · 저자기기 면제 — 2026-06-22 -->
-<script>
-(function(){
-  if(window.__jandaCopyGuard)return; window.__jandaCopyGuard=true;
-  var AUTHOR=(function(){try{var q=location.search;
-    if(/[?&]author=1\b/.test(q))localStorage.setItem('janda_author','1');
-    var h=location.hostname;
-    return location.protocol==='file:'||h==='localhost'||h==='127.0.0.1'||localStorage.getItem('janda_author')==='1';
-  }catch(e){return false;}})();
-  if(AUTHOR)return;
-  var ref=(Math.random().toString(36).slice(2,8)+Date.now().toString(36).slice(-4)).toUpperCase();
-  var WARN='⚠️ 이 콘텐츠는 잔다(JANDA)·리미트리스맨 저작권 보호 자료입니다.\n무단 복사·재배포 시 저작권법 제136조 및 민법상 손해배상 책임이 따릅니다.\n이 복사 시도는 기록되었습니다. 정식 구매: https://vibecodingbible.jbooking.kr\n[ref:'+ref+']';
-  var logged=false;
-  function logAttempt(type){
-    if(logged)return; logged=true;
-    try{ fetch('https://aitf-api.onrender.com/webhook/copy-attempt',{method:'POST',keepalive:true,
-      headers:{'Content-Type':'text/plain'},
-      body:JSON.stringify({type:type,ref:ref,page:location.pathname.split('/').pop()||'index.html',
-        ua:navigator.userAgent,ref_url:document.referrer||''})}).catch(function(){}); }catch(e){}
-  }
-  function showWarn(){
-    var o=document.getElementById('__jcopywarn');
-    if(o){o.style.display='flex';return;}
-    o=document.createElement('div');o.id='__jcopywarn';
-    o.style.cssText='position:fixed;inset:0;z-index:2147483647;display:flex;align-items:center;justify-content:center;background:rgba(8,6,12,.72);backdrop-filter:blur(3px);padding:24px;';
-    o.innerHTML='<div style="max-width:440px;width:100%;background:linear-gradient(135deg,#7c2d12,#9a3412);border:2px solid #fbbf24;border-radius:16px;padding:26px 22px;text-align:center;font-family:Pretendard,system-ui,sans-serif;box-shadow:0 20px 60px rgba(0,0,0,.6);">'
-      +'<div style="font-size:.74rem;font-weight:800;color:#fbbf24;letter-spacing:.14em;margin-bottom:8px;">⚠ COPYRIGHT PROTECTED</div>'
-      +'<div style="font-size:1.25rem;font-weight:900;color:#fff;margin-bottom:12px;line-height:1.4;">복사가 제한된 콘텐츠입니다</div>'
-      +'<p style="font-size:.9rem;line-height:1.8;color:#fef3c7;margin:0 0 14px;">이 자료는 <b style="color:#fff;">저작권법 제136조</b>로 보호됩니다.<br>무단 복사·재배포 시 <b style="color:#fbbf24;">법적 책임</b>이 따릅니다.<br><b style="color:#fff;">이 복사 시도는 기록되었습니다.</b> <span style="opacity:.7;font-size:.78rem;">(ref:'+ref+')</span></p>'
-      +'<a href="https://vibecodingbible.jbooking.kr" target="_blank" rel="noopener" style="display:inline-block;background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#1a0a00;font-weight:900;padding:12px 26px;border-radius:10px;text-decoration:none;margin-bottom:10px;">정식 구매하고 전체 보기 →</a><br>'
-      +'<button onclick="document.getElementById(&quot;__jcopywarn&quot;).style.display=&quot;none&quot;" style="background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.35);border-radius:8px;padding:8px 18px;font-size:.85rem;cursor:pointer;margin-top:4px;">확인</button>'
-      +'</div>';
-    document.body.appendChild(o);
-  }
-  function handler(e){
-    var type=e.type;
-    try{ if(e.clipboardData){ e.clipboardData.setData('text/plain',WARN);
-      e.clipboardData.setData('text/html','<p>'+WARN.replace(/\n/g,'<br>')+'</p>'); e.preventDefault(); } }catch(_){}
-    logAttempt(type); showWarn();
-  }
-  document.addEventListener('copy',handler,true);
-  document.addEventListener('cut',handler,true);
-})();
-</script>
+<!-- Reader usability: copyright credit remains; synthetic counters and global browser blocking removed. -->
 <!-- SNS 공유바 (시황 권고 위치: 본문 시작 아래) — 2026-06-22 -->
 <script>
 (function(){
   if(window.__jandaShareBar)return; window.__jandaShareBar=true;
-  var URL=location.href.split('#')[0].split('?')[0];
+  var URL='https://aiaijungle.github.io/vibe-ebook/claude-code-bible.html';
   var TITLE=document.title||'AI 바이블';
   var TXT='AI 바이블 — '+TITLE;
   function open2(u){window.open(u,'_blank','noopener,width=600,height=560');}
   function t(m){var d=document.getElementById('__jsharetoast');if(!d){d=document.createElement('div');d.id='__jsharetoast';d.style.cssText='position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:2147483647;background:#1a1a2e;color:#fff;border:1px solid #a78bfa;padding:10px 18px;border-radius:10px;font-size:.85rem;font-weight:700;opacity:0;transition:opacity .2s;';document.body.appendChild(d);}d.textContent=m;d.style.opacity='1';clearTimeout(d._t);d._t=setTimeout(function(){d.style.opacity='0';},2500);}
-  function copy(){try{navigator.clipboard.writeText(URL);}catch(e){} t('🔗 링크가 복사됐어요!');}
+  function copy(){return BibleSharing.copy(URL);}
   function kakao(){
     if(window.Kakao&&window.Kakao.Share){try{window.Kakao.Share.sendDefault({objectType:'feed',content:{title:TITLE,description:TXT,imageUrl:'https://aiaijungle.github.io/vibe-ebook/assets/bible_cover.png',link:{mobileWebUrl:URL,webUrl:URL}}});return;}catch(e){}}
-    if(navigator.share){navigator.share({title:TITLE,url:URL}).catch(function(){});return;}
-    copy(); t('카카오톡에 붙여넣기 하세요!');
+    if(navigator.share){BibleSharing.share({title:TITLE,text:'무료 미리보기와 첫 실습',url:URL});return;}
+    return copy();
   }
   var W={
-    web:function(){ if(navigator.share){navigator.share({title:TITLE,text:TXT,url:URL}).catch(function(){});} else {kakao();} },
+    web:function(){ if(navigator.share){BibleSharing.share({title:TITLE,text:TXT,url:URL});} else {kakao();} },
     kakao:kakao,
     fb:function(){open2('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(URL));},
     x:function(){open2('https://twitter.com/intent/tweet?text='+encodeURIComponent(TXT)+'&url='+encodeURIComponent(URL));},
@@ -3723,7 +3590,7 @@ var Q_VOL4=[
     copy:copy
   };
   window.__jShare=W;
-  var btns=[['web','📤','공유','#6b7280'],['kakao','💬','카카오','#FEE500'],['fb','f','페북','#1877F2'],['x','𝕏','X','#000000'],['th','@','쓰레드','#101010'],['line','L','라인','#06C755'],['copy','🔗','복사','#a78bfa']];
+  var btns=[['web','📤','공유','#6b7280'],['copy','🔗','링크 복사','#a78bfa']];
   var bar=document.createElement('div');
   bar.className='janda-sns-share';
   bar.style.cssText='display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center;max-width:680px;margin:18px auto;padding:14px 12px;background:rgba(124,58,237,.06);border:1px solid rgba(167,139,250,.3);border-radius:14px;';
@@ -3795,7 +3662,7 @@ html.paywall-unlocked #un-teaser .un-gate{display:none}
   <h3>⓪-1 신설 장 미리보기 (앞 두 문단 공개)</h3>
   <div id="un-teaser"><p>Claude 5 세대에서 Claude Code를 쓰는 규칙은 세 줄이다. 라우팅·분류는 Haiku, 분석·종합은 Sonnet, 깊은 설계와 디버깅만 Opus나 Fable. 비용 차이가 10배라서 이 분기 하나가 월 청구서를 바꾼다.</p><p>effort는 모델보다 먼저 만지는 손잡이다. 같은 모델에서 effort만 낮춰도 이전 세대 상위 모델만큼 나오는 일이 많다. 서브에이전트는 low, 본 작업은 high, 정확도가 돈보다 중요할 때만 max.</p><div class="un-locked"><p>서브에이전트가 백그라운드로 기본 실행되면서 '한 창에서 다 하기'가 끝났다. 조사·검증·렌더를 각각 띄우고 메인은 결론만 받는다. 단, 같은 파일을 두 에이전트가 만지지 않게 점유판을 먼저 쓴다.</p><p>흔한 실수 3개가 추가됐다. OneDrive 안에 저장소 두기, index.lock 방치, 구글 계정이 섞인 브라우저로 OAuth 하기. 셋 다 에러 메시지 없이 며칠을 잡아먹는다. 부록 4의 명령 15종 카드와 함께 본문에 수록한다.</p></div>
   <div class="un-gate"><span class="un-gate-txt">이어지는 내용은 구매자 본문에서 열립니다</span><small>이미 구매하셨다면 본문 잠금 해제 후 다시 열면 전부 보입니다</small></div></div>
-  
+
 <h3>① 모델 세대가 바뀌었습니다 — 책의 '4.x' 표기는 이렇게 읽으세요</h3>
 <table><tr><th>책에 나온 표기</th><th>2026.10 현재(공식 모델 ID)</th><th>가격(입력/출력, 100만 토큰)</th><th>용도</th></tr>
 <tr><td>Haiku 4.5</td><td><code>claude-haiku-5-5</code></td><td>$0.10 / $0.50</td><td>라우팅·분류·대량 처리(10배 저렴)</td></tr>

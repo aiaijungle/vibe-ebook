@@ -6,3 +6,6 @@ make_freesection.py
 *.bak_*
 *.stub_bak_*
 *.bak
+
+__pycache__/
+*.py[cod]

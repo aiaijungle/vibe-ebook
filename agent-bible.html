@@ -1080,8 +1080,7 @@
     #series-intro-banner{display:none!important;}
   }
   </style>
-<script type="application/ld+json">
-{
+<script type="application/ld+json">{
   "@context": "https://schema.org",
   "@type": "Book",
   "name": "AI 에이전트 바이블",
@@ -1101,13 +1100,23 @@
     "priceCurrency": "KRW",
     "availability": "https://schema.org/InStock",
     "url": "https://vibecodingbible.jbooking.kr"
-  }
-}
-</script>
+  },
+  "dateModified": "2026-10-31"
+}</script>
 <link rel="stylesheet" href="assets/updates-20261025.css">
+<link rel="stylesheet" href="assets/learning-edition-20261031.css?v=3">
+<script src="assets/reader-sharing-20261031.js"></script>
+<link rel="canonical" href="https://aiaijungle.github.io/vibe-ebook/agent-bible.html">
+<link rel="alternate" hreflang="ko" href="https://aiaijungle.github.io/vibe-ebook/agent-bible.html"><link rel="alternate" hreflang="en" href="https://aiaijungle.github.io/vibe-ebook/en/agent-bible.html">
 </head>
 
-<body>
+<body data-aib-volume="3">
+<section class="aib-update aib-route" id="aib-learning-route" aria-labelledby="aib-route-title">
+    <p class="aib-kicker">AI BIBLE · 3권 독자 안내</p><h2 id="aib-route-title">에이전트의 실행과 실패를 통제하기</h2>
+    <p>단일 호출로 해결하지 못하는 지점을 확인한 뒤 도구·기억·분업을 추가합니다. 여러 에이전트가 항상 좋은 것은 아닙니다.</p><p><strong>이 책에서 남길 것</strong> — 업무 인계표 · 호출 한도 · 응답 유실 복구 기록</p>
+    <details class="aib-reading-contract"><summary>이번 권의 학습 흐름과 다음 단계</summary><p>한 번의 호출로 해결되지 않는 이유를 먼저 확인합니다. 도구·기억·분업은 문제를 해결할 때만 추가합니다.</p><p><strong>읽는 중심선</strong><br>단일 요청 → 도구와 관찰 → 필요한 기억 → 단계 분리 → 승인 → 한도·복구</p><p><strong>다음 단계로 가기 전</strong><br>결과가 끊겨도 완료·미완료·확인 대기를 구분하고 다음 담당자에게 넘길 수 있다면 5권 운영판에 적용하세요.</p></details><details><summary>준비물과 읽는 순서</summary><p>작은 스크립트 실행 경험. API 실습은 별도 계정·요금·호출 한도를 확인합니다.</p><p>처음 배우는 독자: 1 → 2 → 4 → 3 → 5. 대표·운영 담당자: 5권의 운영판부터 시작하고 필요한 구현 장으로 이동하세요. 권 번호는 주제 구분이며 난이도 순서는 아닙니다.</p></details>
+    <nav aria-label="학습 경로"><a href="start-here.html">내게 맞는 책과 무료 첫 실습</a> · <a href="#aib-update-20261025">이 책의 실습과 완료 기준</a> · <a href="en/sales.html" lang="en">English edition</a></nav>
+    <p class="aib-small">과거 사례는 당시 기록입니다. 실행 환경과 비용은 현재 제공자의 공식 안내를 확인하세요. 읽기·제안·실행·검증은 서로 다른 완료 단계입니다.</p></section>
 <!-- AI 시대 가치 배너 -->
 <div style="background:linear-gradient(135deg,#0d001f,#1a0040);padding:10px 16px;text-align:center;font-family:'Pretendard','Apple SD Gothic Neo',sans-serif;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;position:sticky;top:0;z-index:10001;border-bottom:1px solid rgba(245,158,11,0.3);">
   <span style="color:#fbbf24;font-weight:800;font-size:0.82rem;">AI 시대의 격차는 지금 이 순간에도 벌어지고 있습니다.</span>
@@ -1200,7 +1209,7 @@
   function p(n){return String(n).padStart(2,'0');}
   function tick(){
     var now=new Date(),diff=dl-now;
-    if(1){var b=document.getElementById('may-countdown');if(b)b.innerHTML='<div style="padding:22px 20px;background:linear-gradient(135deg,rgba(16,185,129,.12),rgba(251,191,36,.08));border:1px solid rgba(251,191,36,.4);border-radius:14px;color:#fef3c7;text-align:center;word-break:keep-all;"><div style="display:inline-flex;align-items:center;gap:6px;background:rgba(16,185,129,.18);border:1px solid rgba(16,185,129,.45);border-radius:20px;padding:5px 14px;margin-bottom:14px;"><span style="font-size:.72rem;font-weight:800;color:#34d399;">📖 살아있는 문서 · 가치가 계속 올라갑니다</span></div><div style="font-size:1.25rem;font-weight:900;color:#fff;line-height:1.5;margin-bottom:10px;">한 번 결제 = <span style="color:#fbbf24;">평생 무료 업데이트</span></div><div style="display:flex;justify-content:center;align-items:flex-end;gap:4px;margin:4px 0 12px;"><div style="text-align:center;"><div style="background:rgba(255,90,0,.12);border:1.5px solid rgba(255,90,0,.45);border-radius:10px;padding:9px 11px;min-width:50px;"><span class="ai-gap-d" style="font-size:1.9rem;font-weight:900;color:#ff7200;line-height:1;">30</span></div><div style="font-size:.58rem;color:rgba(255,255,255,.4);margin-top:4px;">일</div></div><div style="color:rgba(255,90,0,.5);font-size:1.5rem;font-weight:900;margin-bottom:15px;">:</div><div style="text-align:center;"><div style="background:rgba(255,90,0,.12);border:1.5px solid rgba(255,90,0,.45);border-radius:10px;padding:9px 11px;min-width:50px;"><span class="ai-gap-h" style="font-size:1.9rem;font-weight:900;color:#ff7200;line-height:1;">00</span></div><div style="font-size:.58rem;color:rgba(255,255,255,.4);margin-top:4px;">시간</div></div><div style="color:rgba(255,90,0,.5);font-size:1.5rem;font-weight:900;margin-bottom:15px;">:</div><div style="text-align:center;"><div style="background:rgba(255,90,0,.12);border:1.5px solid rgba(255,90,0,.45);border-radius:10px;padding:9px 11px;min-width:50px;"><span class="ai-gap-m" style="font-size:1.9rem;font-weight:900;color:#ff7200;line-height:1;">00</span></div><div style="font-size:.58rem;color:rgba(255,255,255,.4);margin-top:4px;">분</div></div><div style="color:rgba(255,90,0,.5);font-size:1.5rem;font-weight:900;margin-bottom:15px;">:</div><div style="text-align:center;"><div style="background:rgba(255,90,0,.12);border:1.5px solid rgba(255,90,0,.45);border-radius:10px;padding:9px 11px;min-width:50px;"><span class="ai-gap-s" style="font-size:1.9rem;font-weight:900;color:#ff7200;line-height:1;">00</span></div><div style="font-size:.58rem;color:rgba(255,255,255,.4);margin-top:4px;">초</div></div></div><div style="font-size:.78rem;color:#fdba74;margin:0 auto 14px;max-width:440px;line-height:1.6;">⏱ AI 바이블 출시(6/1)부터 흐른 시간 — <strong style="color:#fff;">먼저 시작한 사람은 그만큼 앞서갑니다.</strong> 지금 이 순간에도 가치는 쌓입니다.</div><div style="font-size:.8rem;color:#fde68a;line-height:1.7;max-width:460px;margin:0 auto 14px;background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.2);border-radius:10px;padding:11px 15px;">👥 출시 한 달 · <strong style="color:#fff;">매일 100명+ 방문</strong> — 대학교수·감정평가사·건축사·CEO·CTO 등 <strong style="color:#fff;">각 분야를 대표하는 전문가들이 이미 선택</strong>했습니다.</div><div style="font-size:.9rem;color:#cdd9e5;line-height:1.75;max-width:460px;margin:0 auto 14px;">종이책과 다릅니다. 새 AI 모델·도구·워크플로우가 나올 때마다 책이 갱신됩니다 — 늦게 사도 받는 건 같지만, <strong style="color:#fff;">그동안 못 쓴 시간은 안 돌아옵니다.</strong></div><div style="font-size:.82rem;color:#9fb3c8;line-height:1.7;max-width:460px;margin:0 auto 16px;border-top:1px solid rgba(255,255,255,.1);padding-top:12px;">📈 삼성·SK가 수천조를 붓고 기업 85%가 AI 도입, 인재는 30만 명 부족 — <strong style="color:#34d399;">AI 격차는 매주 벌어지는 중.</strong> 지금 시작하면 따라잡을 수 있습니다. <span style="opacity:.55;">(출처: 언론·CIO 2026)</span></div><a href="https://vibecodingbible.jbooking.kr/" target="_blank" style="display:inline-block;padding:12px 28px;background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#1a0a00;border-radius:10px;font-weight:900;font-size:.95rem;text-decoration:none;">🏆 지금 시작하기 →</a></div>';return;}
+    if(1){var b=document.getElementById('may-countdown');if(b)b.innerHTML='<div style="padding:22px 20px;background:rgba(16,185,129,.08);border:1px solid rgba(251,191,36,.35);border-radius:14px;color:#fef3c7;text-align:center;word-break:keep-all;"><h2 style="font-size:1.15rem;color:#fff;">내 업무 하나로 먼저 확인하세요</h2><p style="line-height:1.8;">무료 실습에서 원문과 AI 초안을 비교하고, 직접 고친 결과를 남겨보세요. 전체 과정이 필요하다면 권별 구성과 구매 안내를 확인할 수 있습니다.</p><a href="start-here.html" style="display:inline-flex;align-items:center;min-height:44px;padding:8px 18px;color:#fde68a;">무료 실습 시작하기 →</a></div>';return;}
     var d=Math.floor(diff/86400000),h=Math.floor((diff%86400000)/3600000),m=Math.floor((diff%3600000)/60000),s=Math.floor((diff%60000)/1000);
     var th=document.getElementById('cd-total-hours');if(th)th.textContent=Math.floor(diff/3600000).toLocaleString('ko-KR');
     var th2=document.getElementById('cd-total-hours-txt');if(th2)th2.textContent=Math.floor(diff/3600000).toLocaleString('ko-KR');
@@ -1766,11 +1775,9 @@
 
         <p>과장이 아니다. 숫자로 말하겠다.</p>
 
-        <p>Gartner는 2028년까지 기업 소프트웨어의 <strong>33%</strong>가 AI 에이전트를 포함할 것이라 예측했다. McKinsey에 따르면 AI 에이전트 도입 기업은 평균
-          <strong>20~40% ROI 향상</strong>을 경험한다. 국내? 대기업 AI 에이전트 도입률은 이미 <strong>47%</strong>를 넘었다(2025년 1분기 기준).
-        </p>
+        <p>분업의 이점은 업무별로 다르다. 동일한 입력·정답표·예산으로 비교하고, 실제로 확인한 성과만 기록한다.</p>
 
-        <p>문제는 당신이 그 47%에 속하느냐, 나머지 53%에 속하느냐다.</p>
+        <p>분업의 이점은 업무별로 다르다. 동일한 입력·정답표·예산으로 비교하고, 실제로 확인한 성과만 기록한다.</p>
 
         <hr>
 
@@ -1788,13 +1795,9 @@
 
         <p><strong>2026년, AI 에이전트는 "당연한 것"이 된다.</strong></p>
 
-        <p>여기가 핵심이다. 당연한 것이 되면 어떻게 되나? <strong>진입장벽이 사라진다.</strong> 모두가 할 수 있으면 경쟁우위가 없다. 1년 후 당신이 에이전트를 배운다면, 그건 "앞서가는
-          것"이 아니라 "따라가는 것"이다. 지금 시작하는 사람과 1년 후 시작하는 사람의 격차? <strong>회복 불가능한 3년</strong>이라고 Stanford HAI 보고서는 경고한다.</p>
+        <p>에이전트 도입 효과는 업무·입력·평가 기준에 따라 달라진다. 동일한 샘플과 정답표로 도입 전후의 품질·비용·검수 시간을 비교한다.</p>
 
-        <blockquote>
-          <p>"기술 도입 곡선에서 Early Majority가 되느냐, Late Majority가 되느냐의 차이는 커리어 전체를 좌우한다."<br>— Stanford HAI, "AI Adoption and
-            Career Trajectories" (2024)</p>
-        </blockquote>
+        <blockquote>이 책의 실습에서는 보편적인 성과 수치 대신, 같은 과제의 입력·출력·비용·검수 기록으로 개선 여부를 판단합니다.</blockquote>
 
         <p>비유하겠다. 2010년에 스마트폰 앱 개발을 배운 사람과 2015년에 배운 사람. 둘 다 개발자다. 하지만 전자는 카카오톡을 만들었고, 후자는 카카오톡의 부속 기능을 만들었다.</p>
 
@@ -2132,7 +2135,7 @@
 
         <p>웹 브라우저를 열고 주소창에 다음 주소를 입력합니다:</p>
 
-        <pre><code>https://console.anthropic.com</code></pre>
+        <pre>https://console.anthropic.com</pre>
 
         <p>화면에 Anthropic 로그인 페이지가 나타납니다. 처음 방문하셨다면 "Sign Up" 또는 "Create Account" 버튼을 클릭하세요.</p>
 
@@ -2219,11 +2222,11 @@
 
         <p>열린 검은 화면(또는 흰 화면)에 다음 명령어를 입력하고 Enter를 누릅니다:</p>
 
-        <pre><code>python --version</code></pre>
+        <pre>python --version</pre>
 
         <p>또는 Mac에서 위 명령어가 안 되면:</p>
 
-        <pre><code>python3 --version</code></pre>
+        <pre>python3 --version</pre>
 
         <p>화면에 <code>Python 3.12.x</code>와 같은 버전 정보가 나타나면 성공입니다!</p>
 
@@ -2239,11 +2242,11 @@
 
         <p>터미널(또는 명령 프롬프트)에서 다음 명령어를 입력합니다:</p>
 
-        <pre><code>pip install anthropic python-dotenv</code></pre>
+        <pre>pip install anthropic python-dotenv</pre>
 
         <p>Mac 사용자 중 위 명령어가 안 되면:</p>
 
-        <pre><code>pip3 install anthropic python-dotenv</code></pre>
+        <pre>pip3 install anthropic python-dotenv</pre>
 
         <p>Enter를 누르면 설치가 시작됩니다. 화면에 여러 줄의 텍스트가 빠르게 지나가는 것이 보일 겁니다. 정상입니다!</p>
 
@@ -2261,13 +2264,13 @@
 
         <h4>Windows에서</h4>
 
-        <pre><code>mkdir ai-agent-project
-cd ai-agent-project</code></pre>
+        <pre>mkdir ai-agent-project
+cd ai-agent-project</pre>
 
         <h4>Mac에서</h4>
 
-        <pre><code>mkdir ai-agent-project
-cd ai-agent-project</code></pre>
+        <pre>mkdir ai-agent-project
+cd ai-agent-project</pre>
 
         <p><code>mkdir</code>은 새 폴더를 만드는 명령어, <code>cd</code>는 해당 폴더로 이동하는 명령어입니다.</p>
 
@@ -2387,7 +2390,7 @@ cd ai-agent-project</code></pre>
 
         <h3>실전 Python 코드: 뉴스 헤드라인 수집봇</h3>
 
-        <pre><code>import requests
+        <pre>import requests
 from bs4 import BeautifulSoup
 import json
 from datetime import datetime
@@ -2398,23 +2401,23 @@ class CollectorBot:
     - 생성 X, 포스팅 X
     - 단일 책임 원칙(SRP) 준수
     """
-    
+
     def __init__(self, source_name: str):
         self.source_name = source_name
         self.collected_data = []
         self.headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
         }
-    
-    def collect_from_rss(self, rss_url: str) -> list:
+
+    def collect_from_rss(self, rss_url: str) -&gt; list:
         """RSS 피드에서 데이터 수집"""
         try:
             response = requests.get(rss_url, headers=self.headers, timeout=10)
             response.raise_for_status()
-            
+
             soup = BeautifulSoup(response.content, 'xml')
             items = soup.find_all('item')
-            
+
             for item in items[:10]:  # 최신 10개만
                 data = {
                     'title': item.find('title').text if item.find('title') else '',
@@ -2425,23 +2428,23 @@ class CollectorBot:
                     'collected_at': datetime.now().isoformat()
                 }
                 self.collected_data.append(data)
-            
+
             return self.collected_data
-            
+
         except requests.RequestException as e:
             print(f"[수집봇 오류] {e}")
             return []
-    
-    def collect_from_webpage(self, url: str, title_selector: str, link_selector: str) -> list:
+
+    def collect_from_webpage(self, url: str, title_selector: str, link_selector: str) -&gt; list:
         """웹페이지 크롤링으로 데이터 수집"""
         try:
             response = requests.get(url, headers=self.headers, timeout=10)
             response.raise_for_status()
-            
+
             soup = BeautifulSoup(response.text, 'html.parser')
             titles = soup.select(title_selector)
             links = soup.select(link_selector)
-            
+
             for title, link in zip(titles[:10], links[:10]):
                 data = {
                     'title': title.get_text(strip=True),
@@ -2450,13 +2453,13 @@ class CollectorBot:
                     'collected_at': datetime.now().isoformat()
                 }
                 self.collected_data.append(data)
-            
+
             return self.collected_data
-            
+
         except requests.RequestException as e:
             print(f"[수집봇 오류] {e}")
             return []
-    
+
     def save_to_file(self, filename: str = 'collected_data.json'):
         """수집된 데이터 저장 (다음 봇에게 전달용)"""
         with open(filename, 'w', encoding='utf-8') as f:
@@ -2468,13 +2471,13 @@ class CollectorBot:
 if __name__ == "__main__":
     # 1. 수집봇 생성
     bot = CollectorBot(source_name="TechNews")
-    
+
     # 2. RSS에서 수집 (예: 기술 뉴스 피드)
     data = bot.collect_from_rss("https://feeds.feedburner.com/TechCrunch/")
-    
+
     # 3. 저장 (생성봇에게 전달)
     bot.save_to_file("tech_news_data.json")
-</code></pre>
+</pre>
 
         <p><strong>핵심 포인트:</strong> 수집봇은 절대 데이터를 가공하거나 발행하지 않는다. 수집 → 저장만 한다. 이 원칙을 지켜야 다음 봇(생성봇)이 독립적으로 교체 가능하다.</p>
 
@@ -2669,13 +2672,13 @@ if __name__ == "__main__":
           디버깅과 신뢰성 향상에 필수적입니다.
         </div>
 
-        <pre><code># Thought 예시
+        <pre># Thought 예시
 """
-Thought: 사용자가 최신 AI 트렌드에 대해 물었다. 
-나의 학습 데이터는 과거 정보이므로, 웹 검색을 통해 
+Thought: 사용자가 최신 AI 트렌드에 대해 물었다.
+나의 학습 데이터는 과거 정보이므로, 웹 검색을 통해
 최신 정보를 가져와야 정확한 답변을 할 수 있다.
 검색어는 "AI trends 2024"가 적절할 것 같다.
-"""</code></pre>
+"""</pre>
 
         <h3>⚡ Step 2: Action (행동)</h3>
         <p>
@@ -2683,28 +2686,28 @@ Thought: 사용자가 최신 AI 트렌드에 대해 물었다.
           다양한 형태가 있습니다.
         </p>
 
-        <pre><code># Action 예시
+        <pre># Action 예시
 {
     "tool": "search_web",
     "parameters": {
         "query": "AI trends 2024",
         "num_results": 5
     }
-}</code></pre>
+}</pre>
 
         <h3>👁️ Step 3: Observation (관찰)</h3>
         <p>
           도구 실행 결과를 받아서 분석합니다. 이 결과는 다음 Thought의 입력이 됩니다.
         </p>
 
-        <pre><code># Observation 예시
+        <pre># Observation 예시
 """
 Observation: 검색 결과 5개를 받았다.
 1. "2024년 AI 트렌드: 멀티모달 AI의 부상" - TechNews
 2. "생성형 AI, 기업 생산성 30% 향상" - Forbes
 3. "AI 에이전트, 2024년 가장 주목받는 기술로 선정" - Gartner
 ...
-"""</code></pre>
+"""</pre>
 
         <h2>💻 3. 실전 Python 코드: ReAct 루프 직접 구현</h2>
 
@@ -2715,7 +2718,7 @@ Observation: 검색 결과 5개를 받았다.
 
         <h3>📦 3.1 도구(Tools) 정의하기</h3>
 
-        <pre><code>import json
+        <pre>import json
 import os
 from datetime import datetime
 from typing import Any, Callable
@@ -2725,7 +2728,7 @@ import anthropic
 # 도구(Tools) 정의 - 에이전트가 사용할 수 있는 기능들
 # =============================================================
 
-def search_web(query: str, num_results: int = 3) -> str:
+def search_web(query: str, num_results: int = 3) -&gt; str:
     """
     웹 검색을 시뮬레이션하는 함수
     실제 프로덕션에서는 Google Search API, Bing API 등을 사용
@@ -2742,13 +2745,13 @@ def search_web(query: str, num_results: int = 3) -> str:
         ]
     }
     results = simulated_results.get(query, [{"title": f"'{query}' 검색 결과", "snippet": "관련 정보를 찾았습니다."}])
-    return "\n".join([f"- {r['title']}: {r['snippet']}" for r in results[:num_results]])</code></pre>
+    return "\n".join([f"- {r['title']}: {r['snippet']}" for r in results[:num_results]])</pre>
 
         <h3>🔄 3.2 ReAct while 루프 — 3턴 동작 구현</h3>
         <p>이제 핵심이다. <strong>생각→행동→관찰</strong>을 while 루프로 반복하는 실제 코드다.<br>
           Claude가 "더 이상 도구가 필요 없다" 판단하면 루프가 종료된다.</p>
 
-        <pre><code>import anthropic, os
+        <p class="aib-small">과거 API 예제입니다. 현재 SDK·모델·설정과 대조 후 사용하세요. 이 판에서 실행 확인한 예제는 공통 Python 실습이며 외부 모델 호출을 검증한 것은 아닙니다.</p><pre>import anthropic, os
 
 client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 
@@ -2762,12 +2765,12 @@ TOOLS_DEF = [{
     }
 }]
 
-def run_react_loop(task: str, max_turns: int = 5) -> str:
+def run_react_loop(task: str, max_turns: int = 5) -&gt; str:
     """ReAct 루프: 생각→행동→관찰 반복"""
     messages = [{"role": "user", "content": task}]
     turn = 0
 
-    while turn < max_turns:
+    while turn &lt; max_turns:
         turn += 1
         print(f"\n{'='*40}")
         print(f"[턴 {turn}] Claude 생각 중...")
@@ -2807,7 +2810,7 @@ def run_react_loop(task: str, max_turns: int = 5) -> str:
 # 실행 예시
 if __name__ == "__main__":
     answer = run_react_loop("2026년 AI 에이전트 최신 트렌드를 검색해서 3줄로 요약해줘")
-    print(f"\n최종 답변:\n{answer}")</code></pre>
+    print(f"\n최종 답변:\n{answer}")</pre>
 
         <div class="tip-box">
           <strong>💡 실행 로그 예시 (3턴):</strong><br>
@@ -2854,7 +2857,7 @@ if __name__ == "__main__":
         <div class="intro-box">
           <h2>🎯 이 챕터에서 만들 것</h2>
           <p>이론은 그만! 지금부터 <strong>진짜 동작하는 AI 에이전트</strong>를 만듭니다.</p>
-          <p>완성하면 매일 아침 이런 메시지가 텔레그램으로 도착합니다:</p>
+          <p>이 단계의 코드는 RSS 제목을 수집하고 AI 요약을 콘솔에 출력하는 것까지 구현합니다. 아래 메시지는 이후 텔레그램 전송과 예약 실행을 연결했을 때의 가상 출력 예시이며 실제 뉴스 사실을 제시하는 문장이 아닙니다. 이 코드만 실행해서는 자동 전송되지 않습니다.</p>
           <div style="background: rgba(255,255,255,0.2); padding: 15px; border-radius: 10px; margin-top: 15px;">
             <em>"📰 오늘의 AI 뉴스 요약<br><br>
               1. OpenAI가 새로운 추론 모델 발표 - 기존 대비 3배 빠른 처리 속도<br>
@@ -2948,14 +2951,14 @@ if __name__ == "__main__":
 
         <div class="file-name">news_agent.py — 완성본 (복사 후 바로 실행 가능)</div>
         <div class="code-block">
-          <pre>import os
+          <p class="aib-small">과거 API 예제입니다. 현재 SDK·모델·설정과 대조 후 사용하세요. 이 판에서 실행 확인한 예제는 공통 Python 실습이며 외부 모델 호출을 검증한 것은 아닙니다.</p><pre>import os
 import anthropic
 import requests
 from bs4 import BeautifulSoup
 
 def fetch_news_headlines(query="AI 인공지능", num_headlines=10):
     """Google News RSS에서 뉴스 헤드라인 수집"""
-    url = f"https://news.google.com/rss/search?q={query}&hl=ko&gl=KR&ceid=KR:ko"
+    url = f"https://news.google.com/rss/search?q={query}&amp;hl=ko&amp;gl=KR&amp;ceid=KR:ko"
     try:
         response = requests.get(url, timeout=10)
         soup = BeautifulSoup(response.content, 'xml')
@@ -2971,8 +2974,8 @@ def fetch_news_headlines(query="AI 인공지능", num_headlines=10):
         print(f"수집 오류: {e}")
         return []
 
-def summarize_with_claude(headlines: list) -> str:
-    """Claude Haiku로 뉴스 3줄 요약 — 빠르고 저렴"""
+def summarize_with_claude(headlines: list) -&gt; str:
+    """RSS 제목만으로 만든 요약 초안 — 기사 본문은 읽지 않음"""
     client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
     headline_text = "\n".join([f"- {h['title']}" for h in headlines])
     response = client.messages.create(
@@ -3038,53 +3041,13 @@ mail = claude("이메일 도입부: " + sns)</pre>
 
         <p>A의 출력이 B의 입력이 되고, B의 출력이 C의 입력이 된다. 공장의 컨베이어 벨트처럼. 각 단계가 하나의 일만 완벽하게 처리한다.</p>
 
-        <blockquote>"복잡한 작업을 체인으로 분해하면 정확도가 평균 47% 향상된다" — Anthropic Prompt Engineering Guide 2024</blockquote>
+        <blockquote>단계를 나눌 때는 각 단계의 입력·결과·실패 조건을 정하고, 품질과 총비용을 함께 확인한다.</blockquote>
 
         <p>오늘 이 글을 끝까지 읽으면, 당신은 블로그 글 하나로 SNS 콘텐츠, 뉴스레터 도입부까지 자동 생산하는 시스템을 갖게 된다.</p>
 
         <hr>
 
-        <h2>1. 프롬프트 체이닝이 왜 3배 좋은가 — 데이터가 말한다</h2>
-
-        <p><strong>먼저 불편한 진실부터.</strong></p>
-
-        <p>단순 프롬프트(한 번에 모든 요구사항 입력)의 한계는 명확하다. Anthropic의 연구에 따르면, 복잡한 작업을 단일 프롬프트로 처리할 때 <strong>정확도가 40% 이하</strong>로
-          떨어지는 경우가 빈번하다.</p>
-
-        <p>왜 그런가?</p>
-
-        <p><strong>LLM은 "지시 과부하(instruction overload)"에 취약하다.</strong> 한 프롬프트에 5가지 이상의 요구사항이 들어가면, 후반부 지시를 무시하거나 앞뒤가 맞지
-          않는 결과물을 내놓는다.</p>
-
-        <p>Stanford HAI의 2024년 보고서는 이렇게 말한다:</p>
-
-        <blockquote>"대형 언어 모델의 성능 저하는 대부분 모델 자체의 한계가 아니라, 프롬프트 설계의 문제에서 비롯된다."</blockquote>
-
-        <p><strong>체이닝의 3가지 압도적 장점:</strong></p>
-
-        <p><strong>첫째, 정확도 상승.</strong> Anthropic 가이드라인에 따르면, 복잡한 워크플로우를 체인으로 분해하면 각 단계에서 오류가 감소하고, 전체 정확도가 평균 47% 향상된다.
-        </p>
-
-        <p><strong>둘째, 디버깅이 쉬워진다.</strong> 단일 프롬프트에서 결과물이 이상하면? 어디가 문제인지 알 수 없다. 체이닝에서는? 어느 단계에서 삐끗했는지 즉시 파악 가능하다. 공장의
-          품질관리(QC)와 같은 원리다.</p>
-
-        <p><strong>셋째, 재사용성.</strong> 한번 만든 체인의 각 단계는 다른 프로젝트에서도 재활용 가능하다. "SNS 요약 노드"를 만들어두면, 어떤 블로그 글이든 입력만 바꾸면 된다.
-        </p>
-
-        <p><strong>McKinsey Digital 2024 조사 결과:</strong></p>
-
-        <p>AI 도입 기업 중 생산성 향상을 체감한 상위 20% 기업의 공통점? <strong>체이닝 기반 워크플로우를 사용</strong>하고 있었다. 단순 "ChatGPT 물어보기"를 넘어선 기업들만
-          실질적 ROI를 거두고 있다.</p>
-
-        <p>Gartner의 2024 예측은 더 직접적이다:</p>
-
-        <blockquote>"2026년까지 엔터프라이즈 AI 애플리케이션의 70%가 멀티스텝 에이전트 아키텍처를 채택할 것이다."</blockquote>
-
-        <p><strong>당신만 모르고 있을 수 있다.</strong> 지금 이 순간에도 경쟁자들은 체이닝을 활용해 콘텐츠 생산 속도를 3배로 올리고 있다.</p>
-
-        <hr>
-
-        <h2>2. 3단계 체이닝 Python 코드 — 블로그→SNS→이메일</h2>
+        <h2>1. 단계를 나누면 무엇을 확인할 수 있나</h2><p>초안·검토·변환을 나누면 실패한 단계를 찾고 그 부분만 다시 실행하기 쉽다. 반면 앞 단계의 오류가 뒤로 전파될 수도 있다. 단계별 입력·출력·완료 기준을 정하고 단일 호출보다 나은지 같은 예제로 비교한다.</p><h2>2. 3단계 체이닝 Python 코드 — 블로그→SNS→이메일</h2>
 
         <p><strong>이론은 끝났다. 이제 실전이다.</strong></p>
 
@@ -3099,12 +3062,12 @@ mail = claude("이메일 도입부: " + sns)</pre>
 
         <div class="file-name">chaining.py — Claude SDK 완성본</div>
         <div class="code-block">
-          <pre>import os
+          <p class="aib-small">과거 API 예제입니다. 현재 SDK·모델·설정과 대조 후 사용하세요. 이 판에서 실행 확인한 예제는 공통 Python 실습이며 외부 모델 호출을 검증한 것은 아닙니다.</p><pre>import os
 import anthropic
 
 client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 
-def call_claude(prompt: str, max_tokens: int = 2000) -> str:
+def call_claude(prompt: str, max_tokens: int = 2000) -&gt; str:
     """Claude API 호출 헬퍼"""
     response = client.messages.create(
         model="claude-sonnet-4-6",
@@ -3115,20 +3078,20 @@ def call_claude(prompt: str, max_tokens: int = 2000) -> str:
     return response.content[0].text
 
 # STEP 1: 블로그 글 생성 (1500자)
-def generate_blog(topic: str) -> str:
+def generate_blog(topic: str) -&gt; str:
     return call_claude(
         f"다음 주제로 1500자 블로그 글 작성\n주제: {topic}\n구조: 도입부→본론 3포인트→결론"
     )
 
 # STEP 2: 블로그 → SNS 3줄 요약
-def blog_to_sns(blog: str) -> str:
+def blog_to_sns(blog: str) -&gt; str:
     return call_claude(
         f"다음 블로그를 SNS 3줄 요약으로 변환 (각 줄 50자, 마지막 줄 해시태그 3개):\n{blog[:400]}",
         max_tokens=200
     )
 
 # STEP 3: SNS → 이메일 뉴스레터 도입부
-def sns_to_email(sns: str) -> str:
+def sns_to_email(sns: str) -&gt; str:
     return call_claude(
         f"다음 SNS를 이메일 뉴스레터 도입부(200자)로 변환 (독자 클릭 유도):\n{sns}",
         max_tokens=300
@@ -3178,13 +3141,12 @@ if __name__ == "__main__":
         </div>
       </div>
       <div class="ch-body">
-        <h2>에이전트의 기억 4종류 완전 정복 — 파일, DB, 벡터DB, 컨텍스트</h2>
+        <h2>에이전트의 기억 4종류 완전 정복 — 파일, DB, 벡터DB, 컨텍스트</h2><p>저장 방식 다음에는 근거 선택을 배운다. 오래된 메모와 현재 정본이 충돌할 때 무엇을 전달할지는 <a href="#aib-context-outcomes-20261031">기억 선택·최종 결과 실습</a>에서 확인한다.</p>
 
         <p><strong>당신의 AI 에이전트가 바보인 이유.</strong> 기억력이 없어서다. 매번 같은 질문에 같은 대답. 어제 한 대화를 오늘 기억 못 함. 사용자 이름도 까먹음. 이건 치매
           수준이다.</p>
 
-        <p>Anthropic의 2024 AI Agents 보고서에 따르면, <strong>프로덕션 에이전트의 73%가 기억 시스템 부재로 사용자 만족도 하락</strong>을 경험한다. 반대로 적절한 기억
-          시스템을 갖춘 에이전트는 재방문율이 3.2배 높다.</p>
+        <p>기억은 이전 정보를 다시 사용하는 수단이다. 저장한다고 답이 항상 맞아지는 것은 아니다. 무엇을 언제 저장했는지, 갱신·삭제·접근 범위가 무엇인지 함께 확인한다.</p>
 
         <p>인간의 뇌에도 기억 종류가 있다. 순간 기억, 단기 기억, 장기 기억, 의미 기억. AI 에이전트도 똑같다. 4가지 기억 시스템을 알면, 당신의 에이전트는 "아, 이 분 저번에 커피 추천 물어봤던
           분이시네요"라고 말할 수 있다.</p>
@@ -3214,22 +3176,22 @@ if __name__ == "__main__":
 
         <h3>Claude API로 대화 유지하는 실전 코드</h3>
 
-        <pre><code>import anthropic
+        <p class="aib-small">과거 API 예제입니다. 현재 SDK·모델·설정과 대조 후 사용하세요. 이 판에서 실행 확인한 예제는 공통 Python 실습이며 외부 모델 호출을 검증한 것은 아닙니다.</p><pre>import anthropic
 
 client = anthropic.Anthropic()
 
 # 대화 히스토리를 리스트로 관리
 conversation_history = []
 
-def chat(user_message: str) -> str:
+def chat(user_message: str) -&gt; str:
     """대화를 이어가는 함수"""
-    
+
     # 사용자 메시지 추가
     conversation_history.append({
         "role": "user",
         "content": user_message
     })
-    
+
     # Claude에게 전체 대화 히스토리 전달
     response = client.messages.create(
         model="claude-sonnet-4-6",
@@ -3237,27 +3199,27 @@ def chat(user_message: str) -> str:
         system="너는 친절한 커피 전문가야. 이전 대화를 기억해.",
         messages=conversation_history
     )
-    
+
     assistant_message = response.content[0].text
-    
+
     # 어시스턴트 응답도 히스토리에 추가
     conversation_history.append({
-        "role": "assistant", 
+        "role": "assistant",
         "content": assistant_message
     })
-    
+
     return assistant_message
 
 # 실제 사용
 print(chat("나 아메리카노 좋아해"))
 # → "아메리카노를 좋아하시는군요! 산미가 강한 걸 선호하시나요?"
 
-print(chat("응, 신맛 좋아해"))  
-# → "그렇군요! 에티오피아 예가체프를 추천드려요. 
+print(chat("응, 신맛 좋아해"))
+# → "그렇군요! 에티오피아 예가체프를 추천드려요.
 #    아메리카노를 좋아하시고 산미도 좋아하신다니 딱이에요."
 
 print(chat("내가 뭐 좋아한다고 했지?"))
-# → "아메리카노와 산미 강한 커피를 좋아하신다고 하셨어요!"</code></pre>
+# → "아메리카노와 산미 강한 커피를 좋아하신다고 하셨어요!"</pre>
 
         <p><strong>핵심은 messages 배열의 누적이다.</strong> 매번 API를 호출할 때 이전 대화 전체를 함께 보낸다. Claude는 이 히스토리를 읽고 맥락을 파악한다.</p>
 
@@ -3266,41 +3228,41 @@ print(chat("내가 뭐 좋아한다고 했지?"))
         <p>문제가 있다. 대화가 100턴 넘어가면? <strong>토큰 폭발</strong>이다. Claude Sonnet 4.6의 컨텍스트 윈도우는 200K 토큰이지만, 비용과 속도 면에서 최적은 아니다.
         </p>
 
-        <pre><code>def manage_context_window(messages: list, max_messages: int = 20) -> list:
+        <p class="aib-small">과거 API 예제입니다. 현재 SDK·모델·설정과 대조 후 사용하세요. 이 판에서 실행 확인한 예제는 공통 Python 실습이며 외부 모델 호출을 검증한 것은 아닙니다.</p><pre>def manage_context_window(messages: list, max_messages: int = 20) -&gt; list:
     """최근 N개 대화만 유지 (슬라이딩 윈도우)"""
-    
-    if len(messages) > max_messages:
+
+    if len(messages) &gt; max_messages:
         # 가장 오래된 대화 제거
         # 단, 첫 번째 대화는 중요한 맥락일 수 있으니 유지
         return [messages[0]] + messages[-(max_messages-1):]
-    
+
     return messages
 
-def chat_with_management(user_message: str) -> str:
+def chat_with_management(user_message: str) -&gt; str:
     global conversation_history
-    
+
     conversation_history.append({
         "role": "user",
         "content": user_message
     })
-    
+
     # 컨텍스트 관리 적용
     managed_history = manage_context_window(conversation_history)
-    
+
     response = client.messages.create(
         model="claude-sonnet-4-6",
         max_tokens=1024,
         system="너는 친절한 커피 전문가야.",
         messages=managed_history
     )
-    
+
     assistant_message = response.content[0].text
     conversation_history.append({
         "role": "assistant",
         "content": assistant_message
     })
-    
-    return assistant_message</code></pre>
+
+    return assistant_message</pre>
 
         <h3>컨텍스트 기억의 장단점</h3>
         <div class="table-wrap">
@@ -3327,12 +3289,12 @@ def chat_with_management(user_message: str) -> str:
         <h2>2. 파일 기억 — 재시작 후에도 기억하는 법 (JSON)</h2>
         <p>대화가 끝나도 기억을 유지하려면 <strong>파일에 저장</strong>해야 한다. JSON 한 파일로 충분하다. 단골 이름 종이 메모장에 적어두는 것과 같다.</p>
         <div class="code-block">
-          <pre>import json, os, anthropic
+          <p class="aib-small">과거 API 예제입니다. 현재 SDK·모델·설정과 대조 후 사용하세요. 이 판에서 실행 확인한 예제는 공통 Python 실습이며 외부 모델 호출을 검증한 것은 아닙니다.</p><pre>import json, os, anthropic
 from datetime import datetime
 
 MEMORY_FILE = "user_memory.json"
 
-def load_memory(user_id: str) -> dict:
+def load_memory(user_id: str) -&gt; dict:
     if os.path.exists(MEMORY_FILE):
         data = json.load(open(MEMORY_FILE, encoding="utf-8"))
         return data.get(user_id, {"name": "", "history": []})
@@ -3345,7 +3307,7 @@ def save_memory(user_id: str, memory: dict):
     data[user_id] = memory
     json.dump(data, open(MEMORY_FILE, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
 
-def chat(user_id: str, message: str) -> str:
+def chat(user_id: str, message: str) -&gt; str:
     memory = load_memory(user_id)
     client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
     system = f"사용자 이름: {memory['name'] or '미등록'}. 최근 기록: {memory['history'][-3:]}"
@@ -3388,7 +3350,7 @@ def set_memory(user_id: str, key: str, value: str):
                  (user_id, key, value))
     conn.commit(); conn.close()
 
-def get_memory(user_id: str, key: str) -> str:
+def get_memory(user_id: str, key: str) -&gt; str:
     conn = sqlite3.connect(DB_FILE)
     row = conn.execute("SELECT value FROM memory WHERE user_id=? AND key=?",
                        (user_id, key)).fetchone()
@@ -3494,7 +3456,7 @@ def add_memory(user_id: str, content: str, doc_id: str):
     col.add(documents=[content], ids=[f"{user_id}_{doc_id}"],
             metadatas=[{"user_id": user_id}])
 
-def recall(user_id: str, query: str, n=3) -> list:
+def recall(user_id: str, query: str, n=3) -&gt; list:
     """의미 유사도 기반 기억 검색"""
     results = col.query(query_texts=[query], n_results=n,
                         where={"user_id": user_id})
@@ -3620,7 +3582,7 @@ if __name__ == "__main__":
 
         <p>패턴이 보이는가? <strong>AI는 명령을 "잘" 수행한다. 다만, 당신의 의도가 아닌 "해석"을 수행한다.</strong></p>
 
-        <pre><code># 이게 왜 위험한지 보여주는 간단한 예시
+        <pre># 이게 왜 위험한지 보여주는 간단한 예시
 def send_email(to: str, subject: str, body: str):
     # AI가 이 함수를 직접 호출하면?
     # 되돌릴 수 없다. 이메일은 이미 나갔다.
@@ -3636,42 +3598,16 @@ def request_email_approval(to: str, subject: str, body: str):
         status="PENDING"
     )
     notify_human("이메일 전송 요청이 있습니다. 확인해주세요.")
-    return "승인 대기 중"  # 아직 안 나감!</code></pre>
+    return "승인 대기 중"  # 아직 안 나감!</pre>
 
         <hr>
 
-        <h2>2. MIT 연구 데이터: AI+인간 협업의 마법</h2>
-
-        <p>"그냥 AI를 더 똑똑하게 만들면 안 되나요?"</p>
-
-        <p>안 된다. 연구가 증명한다.</p>
-
-        <p><strong>MIT 슬로안 경영대학원(2023)</strong> 연구에 따르면, AI 단독 의사결정 대비 <strong>Human-in-the-Loop 구조에서 오류율이 73%
-            감소</strong>했다. 특히 "고위험 판단" 영역에서 효과가 극대화됐다.</p>
-
-        <p>수치를 보자:</p>
-
-        <p><strong>□ AI 단독 의사결정</strong><br>
-          - 일반 태스크 정확도: 89%<br>
-          - 고위험 태스크 정확도: 67%<br>
-          - 치명적 오류 발생률: 12%</p>
-
-        <p><strong>□ AI + Human-in-the-Loop</strong><br>
-          - 일반 태스크 정확도: 91% (+2%)<br>
-          - 고위험 태스크 정확도: 94% (+27%)<br>
-          - 치명적 오류 발생률: 3.2% (-73%)</p>
-
-        <p>왜 이런 차이가 나는가? <strong>Stanford HAI(Human-Centered AI) 연구소</strong>의 분석:</p>
-
-        <blockquote>"AI는 패턴 인식에 탁월하지만, 예외 상황 판단에서 인간의 상식에 의존해야 한다. HITL은 AI의 강점(속도, 일관성)과 인간의 강점(맥락 이해, 윤리적 판단)을 결합한 최적
-          구조다."<br>— Stanford HAI, Human-AI Collaboration Report (2023)</blockquote>
-
-        <div class="highlight-box" style="margin:28px 0">
+        <h2>2. 사람 검토가 필요한 판단을 정하기</h2><p>사람과 AI를 결합한다고 항상 정확도가 높아지지는 않는다. 업무와 역할 분담에 따라 결과가 달라진다. 같은 샘플에서 AI 단독·사람 검토의 오류 탐지와 검수 시간을 비교하고, 외부 실행의 승인 기준을 정한다.</p><p><a href="https://mitsloan.mit.edu/ideas-made-to-matter/when-humans-and-ai-work-best-together-and-when-each-better-alone">MIT Sloan: 인간과 AI 협업 연구</a></p><div class="highlight-box" style="margin:28px 0">
           <strong>✅ STEP 6a 완료 체크리스트</strong><br><br>
           ☐ &nbsp;HITL이 필요한 이유 — AI 단독 실행의 위험성을 설명할 수 있다<br>
           ☐ &nbsp;<code>request_email_approval()</code> 패턴을 내 코드에 적용했다<br>
           ☐ &nbsp;텔레그램 ✅승인/❌반려 버튼 구현을 이해했다<br>
-          ☐ &nbsp;MIT 연구 결과: HITL 적용 시 오류율 73% 감소를 기억한다<br><br>
+          ☐ &nbsp;사람이 확인할 항목과 승인하지 않을 조건을 설명할 수 있다<br><br>
           <span style="font-size:.85em;opacity:.8">STEP 6b로 넘어가기 전에 텔레그램 승인봇을 직접 한 번 만들어보자.</span>
         </div>
       </div>
@@ -3681,7 +3617,7 @@ def request_email_approval(to: str, subject: str, body: str):
         <h1 class="ch-title">🤝 STEP 6b — 멀티에이전트 팀 구성</h1>
         <div class="code-block">
           <pre>ResearchAgent(topic) → AnalystAgent(data) → WriterAgent(brief)
-# 3인 파이프라인: 정확도 40% · 창의성 35% 향상</pre>
+# 교육용 3인 파이프라인: 품질·비용·지연은 직접 비교한다</pre>
         </div>
       </div>
       <div class="ch-body">
@@ -3689,52 +3625,16 @@ def request_email_approval(to: str, subject: str, body: str):
 
         <p>혼자 일하는 천재보다, <strong>협업하는 평범한 3명이 이긴다.</strong></p>
 
-        <p>이건 AI도 마찬가지다. Stanford HAI 2024 연구가 증명했다. 멀티에이전트 시스템이 단일 에이전트보다 <strong>정확도 40%, 창의성 35% 높다.</strong> 왜일까?
-        </p>
+        <p>분업의 이점은 업무별로 다르다. 동일한 입력·정답표·예산으로 비교하고, 실제로 확인한 성과만 기록한다.</p>
 
-        <blockquote>"하나의 LLM에게 모든 걸 시키면, 결국 아무것도 제대로 못한다."<br>— Stanford HAI, "Multi-Agent Collaboration Benchmark"
-          (2024.03)</blockquote>
+        <blockquote>단계를 나눌 때는 각 단계의 입력·결과·실패 조건을 정하고, 품질과 총비용을 함께 확인한다.</blockquote>
 
         <p>오늘 당신에게 줄 건 이론이 아니다. <strong>지금 바로 복사해서 쓸 수 있는 3인 에이전트 팀</strong>이다. 트렌드 리서처 → 데이터 분석가 → 콘텐츠 작가. 이 파이프라인
           하나면 리포트, 블로그, 시장조사 전부 자동화된다.</p>
 
         <hr>
 
-        <h2>1. 왜 멀티에이전트가 40% 더 정확한가?</h2>
-
-        <p>단일 에이전트의 한계를 빵집으로 설명하겠다.</p>
-
-        <p>빵집 주인 혼자서 반죽도 하고, 굽기도 하고, 포장도 하고, 계산도 한다. 손님이 3명만 와도 터진다. 반죽하다가 오븐 까먹고, 계산하다가 빵 태운다.</p>
-
-        <p><strong>이게 "하나의 프롬프트에 모든 걸 담는" 방식이다.</strong></p>
-
-        <h3>Stanford 연구의 핵심 발견 3가지</h3>
-
-        <p><strong>첫째, 역할 분리가 인지 부하를 줄인다.</strong></p>
-
-        <p>GPT-4에게 "리서치하고 분석하고 글도 써"라고 하면, 토큰의 70%가 "어떤 모드로 작동해야 하나" 결정하는 데 낭비된다. 역할을 분리하면? 각 에이전트가 <strong>100%
-            집중</strong>한다.</p>
-
-        <p><strong>둘째, 상호 검증이 환각을 잡는다.</strong></p>
-
-        <p>리서처가 찾은 데이터를 분석가가 "이거 맞아?"하고 검증한다. 분석가의 인사이트를 작가가 "근거 있어?"하고 확인한다. <strong>3단계 필터링으로 환각률 67% 감소</strong>했다.
-        </p>
-
-        <p><strong>셋째, 전문성 시뮬레이션이 품질을 높인다.</strong></p>
-
-        <p>"너는 10년차 데이터 분석가야"라는 페르소나가 실제로 작동한다. MIT 연구에서 전문가 페르소나를 부여받은 LLM이 <strong>도메인 특화 태스크에서 28% 높은 성능</strong>을
-          보였다.</p>
-
-        <blockquote>실제 수치: Stanford 벤치마크 결과<br>
-          - 복합 리서치 태스크 정확도: 단일 에이전트 62% vs 멀티에이전트 87%<br>
-          - 논리적 일관성 점수: 단일 71점 vs 멀티 94점<br>
-          - 태스크 완료 시간: 단일 45초 vs 멀티 52초 (7초 추가로 40% 품질 향상)</blockquote>
-
-        <p>7초 더 걸려서 40% 더 정확하다. 이 트레이드오프를 안 하는 게 바보다.</p>
-
-        <hr>
-
-        <h2>2. 3인 팀 전체 Python 코드</h2>
+        <h2>1. 분업이 필요한지 먼저 비교하기</h2><p>같은 과제를 단일 에이전트와 역할을 나눈 방식에 맡기고 정답·근거 누락·비용·검수 시간을 비교한다. 역할 분리는 독립 작업이나 상호 검토에 유용할 수 있지만 호출과 조율 비용도 늘어난다. 이 책은 보편적인 정확도 향상률을 보장하지 않는다.</p><h2>2. 3인 팀 전체 Python 코드</h2>
 
         <p>이론은 됐다. <strong>지금 바로 복사해서 실행하라.</strong></p>
 
@@ -3744,7 +3644,7 @@ def request_email_approval(to: str, subject: str, body: str):
           □ <strong>DataAnalyst</strong>: 트렌드 받아서 인사이트 도출<br>
           □ <strong>ContentWriter</strong>: 인사이트 받아서 블로그 글 작성</p>
 
-        <pre><code>import os
+        <pre>import os
 from openai import OpenAI
 from dataclasses import dataclass
 from typing import List, Dict, Any
@@ -3761,17 +3661,17 @@ class AgentOutput:
     task: str
     result: Dict[str, Any]
     metadata: Dict[str, Any]
-    
-    def to_json(self) -> str:
+
+    def to_json(self) -&gt; str:
         return json.dumps({
             "agent": self.agent_name,
             "task": self.task,
             "result": self.result,
             "metadata": self.metadata
         }, ensure_ascii=False, indent=2)
-    
+
     @classmethod
-    def from_json(cls, json_str: str) -> 'AgentOutput':
+    def from_json(cls, json_str: str) -&gt; 'AgentOutput':
         data = json.loads(json_str)
         return cls(
             agent_name=data["agent"],
@@ -3783,14 +3683,14 @@ class AgentOutput:
 
 class BaseAgent:
     """모든 에이전트의 부모 클래스"""
-    
+
     def __init__(self, name: str, role: str, model: str = "gpt-4o"):
         self.name = name
         self.role = role
         self.model = model
         self.client = OpenAI()
-        
-    def _create_system_prompt(self) -> str:
+
+    def _create_system_prompt(self) -&gt; str:
         return f"""당신은 {self.role}입니다.
 
 [행동 원칙]
@@ -3798,8 +3698,8 @@ class BaseAgent:
 2. 모든 주장에는 근거나 출처를 포함합니다
 3. 불확실한 정보는 명시적으로 표시합니다
 4. 간결하고 실행 가능한 정보를 제공합니다"""
-    
-    def execute(self, task: str, context: Dict = None) -> AgentOutput:
+
+    def execute(self, task: str, context: Dict = None) -&gt; AgentOutput:
         """태스크 실행 - 각 에이전트가 오버라이드"""
         raise NotImplementedError
 
@@ -3807,7 +3707,7 @@ class BaseAgent:
 # ═══════════════════════════════════════════
 # 1. 트렌드 리서처 에이전트 (위 BaseAgent를 상속해서 구현)
 # ═══════════════════════════════════════════
-</code></pre>
+</pre>
 
         <hr>
 
@@ -3886,7 +3786,7 @@ class BaseAgent:
         <h3>자율 실행 루프 — run_agent() 핵심 코드</h3>
 
         <div class="code-block">
-          <pre>def run_agent(task: str, client, max_turns: int = 10) -> str:
+          <p class="aib-small">과거 API 예제입니다. 현재 SDK·모델·설정과 대조 후 사용하세요. 이 판에서 실행 확인한 예제는 공통 Python 실습이며 외부 모델 호출을 검증한 것은 아닙니다.</p><pre>def run_agent(task: str, client, max_turns: int = 10) -&gt; str:
     """
     Claude Tool Use ReAct 루프
     task → Claude 판단 → 도구 실행 → Claude 재판단 → ... → 완료
@@ -3894,7 +3794,7 @@ class BaseAgent:
     messages = [{"role": "user", "content": task}]
     turn = 0
 
-    while turn < max_turns:
+    while turn &lt; max_turns:
         turn += 1
         print(f"[턴 {turn}] Claude 판단 중...")
 
@@ -4109,7 +4009,7 @@ send_email(
           <pre># 민감 데이터 마스킹 후 API 전송
 import re
 
-def mask_pii(text: str) -> str:
+def mask_pii(text: str) -&gt; str:
     """이름·전화·이메일·금액 마스킹"""
     text = re.sub(r'\d{3}-\d{4}-\d{4}', '[전화번호]', text)
     text = re.sub(r'[\w.+-]+@[\w-]+\.\w+', '[이메일]', text)
@@ -4195,7 +4095,7 @@ def audit_log(agent_name: str, tool: str, input_data: dict, output: str):
           <pre># 사용자 입력이 시스템 프롬프트를 탈취하는 공격 방어
 SYSTEM = "당신은 고객 서비스 봇입니다. 환불 정책만 답변하세요."
 
-def safe_query(user_input: str) -> str:
+def safe_query(user_input: str) -&gt; str:
     # 인젝션 패턴 차단
     blocked = ["ignore previous", "disregard", "새로운 지시", "시스템 프롬프트"]
     for pattern in blocked:
@@ -4231,7 +4131,7 @@ def safe_query(user_input: str) -> str:
 
           <hr>
 
-          <h2>1. 충격적인 진실: 한글은 영어보다 3배 비싸다</h2>
+          <h2>1. 언어별 토큰 수는 모델과 문장으로 직접 측정한다</h2>
 
           <p>먼저 현실을 직시하자.</p>
 
@@ -4242,13 +4142,13 @@ def safe_query(user_input: str) -> str:
           <p>AI 모델은 텍스트를 <strong>"토큰"</strong>이라는 조각으로 나눈다. 빵집에서 빵을 조각내어 파는 것과 같다. 문제는 <strong>조각내는 방식이 영어
               중심</strong>이라는 점이다.</p>
 
-          <pre><code># 영어 토큰화 예시
+          <pre># 영어 토큰화 예시
 "Hello, how are you?" → ["Hello", ",", " how", " are", " you", "?"]
 # 6토큰
 
-# 한글 토큰화 예시  
+# 한글 토큰화 예시
 "안녕하세요, 잘 지내세요?" → ["안", "녕", "하", "세", "요", ",", " 잘", " 지", "내", "세", "요", "?"]
-# 12토큰 (2배)</code></pre>
+# 12토큰 (2배)</pre>
 
           <p>왜 이런 일이 벌어지는가?</p>
 
@@ -4265,19 +4165,19 @@ def safe_query(user_input: str) -> str:
 
           <p><strong>실제 측정 결과:</strong></p>
 
-          <pre><code>영어: "Please summarize this article in 3 bullet points"
+          <pre>영어: "Please summarize this article in 3 bullet points"
 → 9토큰
 
 한글: "이 기사를 3개의 핵심 포인트로 요약해주세요"
 → 24토큰
 
-비용 차이: 2.67배</code></pre>
+비용 차이: 2.67배</pre>
 
           <p>이건 불공평하다. 하지만 현실이다. <strong>우리가 할 수 있는 건 전략으로 극복하는 것</strong>뿐이다.</p>
 
           <hr>
 
-          <h2>2. 2026년 AI API 가격 비교표</h2>
+          <p><strong>현재 사용 시 주의:</strong> 위 토큰 수는 예시이며 모든 모델의 실제 측정 결과가 아닙니다. 한국어가 언제나 몇 배 비싸다고 일반화하지 말고 사용하는 모델의 토큰 계산 도구로 같은 업무를 비교하세요.</p><h2>2. 2026년 AI API 가격 비교표</h2>
 
           <p>비용 최적화의 첫 단계는 <strong>적을 아는 것</strong>이다.</p>
 
@@ -4804,7 +4704,7 @@ model = ROUTING["complex"] if scene_count > 30 else ROUTING["standard"]
         <h3>핵심 함수 — run_bot() : 오케스트레이터가 모든 봇을 실행하는 단일 인터페이스</h3>
 
         <div class="code-block">
-          <pre>def run_bot(script: Path, args: list, timeout: int = 300) -> tuple[int, str]:
+          <pre>def run_bot(script: Path, args: list, timeout: int = 300) -&gt; tuple[int, str]:
     """
     서브프로세스로 봇 실행 — 타임아웃 + 에러 캡처
     반환: (return_code, stdout)
@@ -4874,21 +4774,21 @@ telegram(f"리미트리스 일일 리포트\nSTEP4: {_icon(rc4)}\nSTEP9: {_icon(
 
         <p>로컬에선 .env 파일이 있다. 서버엔 없다. 끝.</p>
 
-        <pre><code># 로컬: 잘 됨
+        <pre># 로컬: 잘 됨
 OPENAI_API_KEY=sk-xxx  # .env 파일에 있음
 
 # 서버: 터짐
-os.getenv("OPENAI_API_KEY")  # None 반환 → 500 에러</code></pre>
+os.getenv("OPENAI_API_KEY")  # None 반환 → 500 에러</pre>
 
         <p><strong>해결법:</strong> 배포 전 환경변수 체크 스크립트를 필수로 실행하라.</p>
 
-        <pre><code># check_env.py
+        <pre># check_env.py
 import os
 import sys
 
 REQUIRED_VARS = [
     "OPENAI_API_KEY",
-    "DATABASE_URL", 
+    "DATABASE_URL",
     "SECRET_KEY",
     "TELEGRAM_BOT_TOKEN"
 ]
@@ -4899,13 +4799,13 @@ if missing:
     print(f"❌ 누락된 환경변수: {missing}")
     sys.exit(1)
 else:
-    print("✅ 모든 환경변수 확인 완료")</code></pre>
+    print("✅ 모든 환경변수 확인 완료")</pre>
 
         <h3>TOP 2: 의존성 버전 충돌 (실패율 28%)</h3>
 
         <p>로컬엔 numpy 1.24가 있고, 서버엔 numpy 1.21이 깔린다. <strong>requirements.txt에 버전을 안 적었기 때문이다.</strong></p>
 
-        <pre><code># ❌ 잘못된 방식
+        <pre># ❌ 잘못된 방식
 numpy
 pandas
 openai
@@ -4913,7 +4813,7 @@ openai
 # ✅ 올바른 방식 (버전 고정)
 numpy==1.24.3
 pandas==2.0.3
-openai==1.12.0</code></pre>
+openai==1.12.0</pre>
 
         <p><strong>프로 팁:</strong> <code>pip freeze > requirements.txt</code> 쓰지 마라. 불필요한 패키지까지 다 들어간다. 대신
           <code>pip-tools</code>를 써라.
@@ -4923,13 +4823,13 @@ openai==1.12.0</code></pre>
 
         <p>Windows에선 <code>C:\Users\you\project\data.csv</code>가 된다. Linux 서버에선? 안 된다.</p>
 
-        <pre><code># ❌ 절대 경로 (Windows)
+        <pre># ❌ 절대 경로 (Windows)
 file_path = "C:\\Users\\you\\project\\data.csv"
 
 # ✅ 상대 경로 (어디서든 작동)
 from pathlib import Path
 BASE_DIR = Path(__file__).parent
-file_path = BASE_DIR / "data.csv"</code></pre>
+file_path = BASE_DIR / "data.csv"</pre>
 
         <h3>TOP 4: 메모리/타임아웃 (실패율 12%)</h3>
 
@@ -4939,11 +4839,11 @@ file_path = BASE_DIR / "data.csv"</code></pre>
 
         <h3>TOP 5: 포트/네트워크 설정 (실패율 7%)</h3>
 
-        <pre><code># ❌ 로컬 전용
+        <pre># ❌ 로컬 전용
 app.run(host="127.0.0.1", port=5000)
 
 # ✅ 프로덕션용 (외부 접근 허용)
-app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))</code></pre>
+app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))</pre>
 
         <p>Render, Heroku, Railway 모두 <strong>PORT 환경변수를 자동 주입</strong>한다. 하드코딩하면 터진다.</p>
 
@@ -4955,22 +4855,22 @@ app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))</code></pre>
 
         <h3>□ 코드 레벨 체크 (배포 D-1)</h3>
 
-        <pre><code>□ print() 문 제거 (logging으로 교체)
+        <pre>□ print() 문 제거 (logging으로 교체)
 □ 하드코딩된 API 키 없음 (git log로 확인)
 □ try-except로 모든 외부 API 호출 감싸기
 □ 타임아웃 설정 (requests.get(url, timeout=30))
 □ 메모리 사용량 체크 (대용량 파일 스트리밍 처리)
 □ 테스트 코드 실행 (pytest -v)
-□ 린터 통과 (flake8 . --max-line-length=120)</code></pre>
+□ 린터 통과 (flake8 . --max-line-length=120)</pre>
 
         <h3>□ 보안 체크 (배포 D-1)</h3>
 
-        <pre><code>□ .gitignore에 .env, *.pem, secrets/ 포함
+        <pre>□ .gitignore에 .env, *.pem, secrets/ 포함
 □ git log --all --full-history -- "*.env" 로 과거 커밋 확인
 □ API 키 rotation (이번 달 내 변경했는가?)
 □ CORS 설정 — 허용 도메인 명시 (*, 와일드카드 금지)
 □ Rate limiting 적용 (ip당 분당 60회 이하)
-□ SQL injection / Prompt injection 방어 확인</code></pre>
+□ SQL injection / Prompt injection 방어 확인</pre>
 
         <hr style='border:none;border-top:1px solid rgba(255,255,255,.08);margin:32px 0'>
         <h2>1인 기업 하루 워크플로우 완전 자동화 — 시간대별 설계</h2>
@@ -5048,7 +4948,7 @@ app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))</code></pre>
 
         <h3>📝 blog/create - 블로그 초안 생성</h3>
 
-        <pre><code>curl -X POST "https://api.aitf.io/v1/blog/create" \
+        <pre>curl -X POST "https://api.aitf.io/v1/blog/create" \
   -H "Authorization: Bearer YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
@@ -5059,10 +4959,10 @@ app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))</code></pre>
     "include_data": true,
     "seo_optimize": true
   }'
-</code></pre>
+</pre>
 
         <p><strong>응답 예시:</strong></p>
-        <pre><code>{
+        <pre>{
   "status": "success",
   "content": {
     "title": "2026년 AI 자동화, 1인 기업이 반드시 알아야 할 5가지",
@@ -5074,7 +4974,7 @@ app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))</code></pre>
   },
   "generation_time_ms": 3241
 }
-</code></pre>
+</pre>
         <div class="yt-cta">
           <div class="yt-cta-icon">▶</div>
           <div class="yt-cta-content">
@@ -5168,7 +5068,7 @@ app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))</code></pre>
 
         <h4>오전: 개발 환경 구축</h4>
 
-        <pre><code class="language-bash"># 1. Python 가상환경 생성
+        <pre># 1. Python 가상환경 생성
 python -m venv ai-agent-env
 source ai-agent-env/bin/activate  # Windows: ai-agent-env\Scripts\activate
 
@@ -5177,11 +5077,11 @@ pip install anthropic python-dotenv requests beautifulsoup4
 
 # 3. 프로젝트 구조 생성
 mkdir -p ai-agents/{agents,tools,memory,config,logs}
-touch ai-agents/.env ai-agents/main.py</code></pre>
+touch ai-agents/.env ai-agents/main.py</pre>
 
         <h4>오후: 첫 에이전트 실행</h4>
 
-        <pre><code class="language-python"># ai-agents/agents/first_agent.py
+        <p class="aib-small">과거 API 예제입니다. 현재 SDK·모델·설정과 대조 후 사용하세요. 이 판에서 실행 확인한 예제는 공통 Python 실습이며 외부 모델 호출을 검증한 것은 아닙니다.</p><pre># ai-agents/agents/first_agent.py
 import anthropic
 from dotenv import load_dotenv
 import os
@@ -5191,7 +5091,7 @@ load_dotenv()
 def create_first_agent():
     """당신의 첫 번째 AI 에이전트"""
     client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
-    
+
     response = client.messages.create(
         model="claude-sonnet-4-6",
         max_tokens=1024,
@@ -5200,13 +5100,13 @@ def create_first_agent():
             {"role": "user", "content": "안녕하세요! 자기소개 부탁드려요."}
         ]
     )
-    
+
     print("🤖 첫 에이전트 응답:")
     print(response.content[0].text)
     return response
 
 if __name__ == "__main__":
-    create_first_agent()</code></pre>
+    create_first_agent()</pre>
 
         <h4>Day 1 체크리스트</h4>
         <ul>
@@ -5221,18 +5121,18 @@ if __name__ == "__main__":
 
         <h4>핵심 개념 구현</h4>
 
-        <pre><code class="language-python"># ai-agents/agents/react_agent.py
+        <p class="aib-small">과거 API 예제입니다. 현재 SDK·모델·설정과 대조 후 사용하세요. 이 판에서 실행 확인한 예제는 공통 Python 실습이며 외부 모델 호출을 검증한 것은 아닙니다.</p><pre># ai-agents/agents/react_agent.py
 import anthropic
 import json
 from datetime import datetime
 
 class ReActAgent:
     """ReAct 패턴을 구현한 기본 에이전트"""
-    
+
     def __init__(self):
         self.client = anthropic.Anthropic()
         self.tools = self._define_tools()
-    
+
     def _define_tools(self):
         return [
             {
@@ -5259,8 +5159,8 @@ class ReActAgent:
                 }
             }
         ]
-    
-    def _execute_tool(self, tool_name: str, tool_input: dict) -> str:
+
+    def _execute_tool(self, tool_name: str, tool_input: dict) -&gt; str:
         """도구 실행"""
         if tool_name == "get_current_time":
             return datetime.now().strftime("%Y년 %m월 %d일 %H시 %M분")
@@ -5276,11 +5176,11 @@ class ReActAgent:
             except Exception as e:
                 return f"계산 오류: {str(e)}"
         return "알 수 없는 도구입니다."
-    
-    def run(self, user_message: str) -> str:
+
+    def run(self, user_message: str) -&gt; str:
         """에이전트 실행 (ReAct 루프)"""
         messages = [{"role": "user", "content": user_message}]
-        
+
         while True:
             response = self.client.messages.create(
                 model="claude-sonnet-4-6",
@@ -5289,14 +5189,14 @@ class ReActAgent:
                 tools=self.tools,
                 messages=messages
             )
-            
+
             # 응답 처리
             if response.stop_reason == "end_turn":
                 # 최종 응답
                 for block in response.content:
                     if hasattr(block, 'text'):
                         return block.text
-            
+
             elif response.stop_reason == "tool_use":
                 # 도구 사용
                 tool_results = []
@@ -5309,23 +5209,23 @@ class ReActAgent:
                             "tool_use_id": block.id,
                             "content": result
                         })
-                
+
                 # 대화 이력 업데이트
                 messages.append({"role": "assistant", "content": response.content})
                 messages.append({"role": "user", "content": tool_results})
-            
+
             else:
                 return "예상치 못한 응답입니다."
 
 # 테스트
 if __name__ == "__main__":
     agent = ReActAgent()
-    
+
     # 테스트 1: 시간 확인
     print(agent.run("지금 몇 시야?"))
-    
+
     # 테스트 2: 계산
-    print(agent.run("1234 * 5678은 얼마야?"))</code></pre>
+    print(agent.run("1234 * 5678은 얼마야?"))</pre>
 
         <h4>Day 2 체크리스트</h4>
         <ul>
@@ -5339,7 +5239,7 @@ if __name__ == "__main__":
 
         <h4>Day 3: 뉴스 수집봇</h4>
 
-        <pre><code class="language-python"># ai-agents/agents/news_collector.py
+        <pre># ai-agents/agents/news_collector.py
 import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
@@ -5347,24 +5247,24 @@ import json
 
 class NewsCollector:
     """네이버 뉴스 수집봇"""
-    
+
     def __init__(self, keywords: list):
         self.keywords = keywords
         self.headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
         }
-    
-    def collect(self, keyword: str, max_articles: int = 5) -> list:
+
+    def collect(self, keyword: str, max_articles: int = 5) -&gt; list:
         """키워드로 뉴스 수집"""
-        url = f"https://search.naver.com/search.naver?where=news&query={keyword}"
-        
+        url = f"https://search.naver.com/search.naver?where=news&amp;query={keyword}"
+
         try:
             response = requests.get(url, headers=self.headers, timeout=10)
             soup = BeautifulSoup(response.text, 'html.parser')
-            
+
             articles = []
             news_items = soup.select('.news_tit')[:max_articles]
-            
+
             for item in news_items:
                 articles.append({
                     "title": item.get_text(),
@@ -5372,13 +5272,13 @@ class NewsCollector:
                     "keyword": keyword,
                     "collected_at": datetime.now().isoformat()
                 })
-            
+
             return articles
         except Exception as e:
             print(f"수집 오류: {e}")
             return []
-    
-    def collect_all(self) -> list:
+
+    def collect_all(self) -&gt; list:
         """모든 키워드 수집"""
         all_articles = []
         for keyword in self.keywords:
@@ -5397,11 +5297,11 @@ class NewsCollector:
 if __name__ == "__main__":
     collector = NewsCollector(["AI 에이전트", "ChatGPT", "Claude AI"])
     articles = collector.collect_all()
-    collector.save_results(articles)</code></pre>
+    collector.save_results(articles)</pre>
 
         <h4>Day 4: 경쟁사 모니터링봇</h4>
 
-        <pre><code class="language-python"># ai-agents/agents/competitor_monitor.py
+        <pre># ai-agents/agents/competitor_monitor.py
 import requests, hashlib, json, os
 from bs4 import BeautifulSoup
 from datetime import datetime
@@ -5416,7 +5316,7 @@ class CompetitorMonitor:
         self.cache_file = "competitor_cache.json"
         self.cache = self._load_cache()
 
-    def _load_cache(self) -> dict:
+    def _load_cache(self) -&gt; dict:
         if os.path.exists(self.cache_file):
             with open(self.cache_file, 'r') as f:
                 return json.load(f)
@@ -5426,7 +5326,7 @@ class CompetitorMonitor:
         with open(self.cache_file, 'w') as f:
             json.dump(self.cache, f)
 
-    def _get_content_hash(self, url: str, selector: str) -> tuple:
+    def _get_content_hash(self, url: str, selector: str) -&gt; tuple:
         try:
             resp = requests.get(url, headers=self.headers, timeout=10)
             soup = BeautifulSoup(resp.text, 'html.parser')
@@ -5436,7 +5336,7 @@ class CompetitorMonitor:
         except Exception as e:
             return None, str(e)
 
-    def check_all(self) -> list:
+    def check_all(self) -&gt; list:
         """변경된 경쟁사 페이지 반환"""
         changed = []
         for t in self.targets:
@@ -5460,11 +5360,11 @@ if __name__ == "__main__":
     ])
     changes = monitor.check_all()
     if changes:
-        print(f"\n🚨 {len(changes)}개 변경 감지 → 텔레그램 보고 필요")</code></pre>
+        print(f"\n🚨 {len(changes)}개 변경 감지 → 텔레그램 보고 필요")</pre>
 
         <h4>Day 5: SNS 키워드 트래킹봇</h4>
 
-        <pre><code class="language-python"># ai-agents/agents/sns_keyword_tracker.py
+        <p class="aib-small">과거 API 예제입니다. 현재 SDK·모델·설정과 대조 후 사용하세요. 이 판에서 실행 확인한 예제는 공통 Python 실습이며 외부 모델 호출을 검증한 것은 아닙니다.</p><pre># ai-agents/agents/sns_keyword_tracker.py
 import anthropic, os, json
 from datetime import datetime
 
@@ -5472,7 +5372,7 @@ client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 
 KEYWORDS = ["AI 에이전트", "Claude API", "자동화 봇", "n8n"]
 
-def analyze_trend_with_claude(keyword: str, sample_posts: list) -> dict:
+def analyze_trend_with_claude(keyword: str, sample_posts: list) -&gt; dict:
     """Claude로 키워드 트렌드 분석"""
     posts_text = "\n".join([f"- {p}" for p in sample_posts[:10]])
     response = client.messages.create(
@@ -5511,18 +5411,18 @@ if __name__ == "__main__":
         analysis = analyze_trend_with_claude(kw, sample)
         results.append({"keyword": kw, **analysis})
         print(f"'{kw}': {analysis['sentiment']} / {analysis['trend']}")
-    save_report(results)</code></pre>
+    save_report(results)</pre>
 
         <h4>Day 6-7: 블로그 자동생성봇 (수집 → 생성 파이프라인)</h4>
 
-        <pre><code class="language-python"># ai-agents/agents/blog_generator.py
+        <p class="aib-small">과거 API 예제입니다. 현재 SDK·모델·설정과 대조 후 사용하세요. 이 판에서 실행 확인한 예제는 공통 Python 실습이며 외부 모델 호출을 검증한 것은 아닙니다.</p><pre># ai-agents/agents/blog_generator.py
 import anthropic, os, json
 from datetime import datetime
 from pathlib import Path
 
 client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 
-def generate_blog_post(topic: str, keywords: list, tone: str = "전문적이고 실용적인") -> dict:
+def generate_blog_post(topic: str, keywords: list, tone: str = "전문적이고 실용적인") -&gt; dict:
     """Claude로 SEO 최적화 블로그 포스트 생성"""
     kw_str = ", ".join(keywords)
     response = client.messages.create(
@@ -5566,22 +5466,22 @@ def save_blog_html(post: dict, topic: str):
 
     sections_html = ""
     for s in post.get("sections", []):
-        sections_html += f"<h2>{s['h2']}</h2>\n<p>{s['content']}</p>\n"
+        sections_html += f"&lt;h2&gt;{s['h2']}&lt;/h2&gt;\n&lt;p&gt;{s['content']}&lt;/p&gt;\n"
 
-    html = f"""<!DOCTYPE html>
-<html lang="ko">
-<head><meta charset="UTF-8"><title>{title}</title>
-<meta name="description" content="{post.get('meta_description', '')}">
-</head>
-<body>
-<article>
-<h1>{title}</h1>
-<p>{post.get('intro', '')}</p>
+    html = f"""&lt;!DOCTYPE html&gt;
+&lt;html lang="ko"&gt;
+&lt;head&gt;&lt;meta charset="UTF-8"&gt;&lt;title&gt;{title}&lt;/title&gt;
+&lt;meta name="description" content="{post.get('meta_description', '')}"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;article&gt;
+&lt;h1&gt;{title}&lt;/h1&gt;
+&lt;p&gt;{post.get('intro', '')}&lt;/p&gt;
 {sections_html}
-<section><h2>마무리</h2><p>{post.get('conclusion', '')}</p></section>
-</article>
-<script>(function(){var s=new Date("2026-06-01T00:00:00+09:00").getTime();function p(n){return String(n).padStart(2,"0");}function t(){var df=Date.now()-s;if(df<0)df=0;var d=Math.floor(df/86400000),h=Math.floor(df%86400000/3600000),m=Math.floor(df%3600000/60000),x=Math.floor(df%60000/1000);document.querySelectorAll(".ai-gap-d").forEach(function(e){e.textContent=d;});document.querySelectorAll(".ai-gap-h").forEach(function(e){e.textContent=p(h);});document.querySelectorAll(".ai-gap-m").forEach(function(e){e.textContent=p(m);});document.querySelectorAll(".ai-gap-s").forEach(function(e){e.textContent=p(x);});}t();setInterval(t,1000);})();</script>
-</body></html>"""
+&lt;section&gt;&lt;h2&gt;마무리&lt;/h2&gt;&lt;p&gt;{post.get('conclusion', '')}&lt;/p&gt;&lt;/section&gt;
+&lt;/article&gt;
+
+&lt;/body&gt;&lt;/html&gt;"""
 
     filename.write_text(html, encoding='utf-8')
     print(f"✅ 블로그 저장: {filename}")
@@ -5592,7 +5492,7 @@ if __name__ == "__main__":
         topic="AI 에이전트로 업무 자동화하는 법",
         keywords=["AI 에이전트", "Claude API", "자동화", "파이썬"]
     )
-    save_blog_html(post, "AI에이전트_자동화")</code></pre>
+    save_blog_html(post, "AI에이전트_자동화")</pre>
 
         <hr>
         <h3>Week 2 (Day 8~14): 에이전트 + HITL 텔레그램 ⏱️ 각 3-4시간</h3>
@@ -5601,7 +5501,7 @@ if __name__ == "__main__":
 
         <p>ReAct(Reasoning + Acting) 패턴은 AI가 생각하고 → 행동하고 → 관찰하고 → 다시 생각하는 루프다. Claude의 Tool Use와 완벽히 맞아떨어지는 구조다.</p>
 
-        <pre><code class="language-python"># ai-agents/react_agent.py
+        <p class="aib-small">과거 API 예제입니다. 현재 SDK·모델·설정과 대조 후 사용하세요. 이 판에서 실행 확인한 예제는 공통 Python 실습이며 외부 모델 호출을 검증한 것은 아닙니다.</p><pre># ai-agents/react_agent.py
 import anthropic, os, json, requests
 from datetime import datetime
 
@@ -5641,16 +5541,16 @@ TOOLS = [
     }
 ]
 
-def web_search(query: str) -> str:
+def web_search(query: str) -&gt; str:
     """실제 검색 대신 시뮬레이션 (운영 시 SerpAPI 연결)"""
     return f"'{query}' 검색 결과: 관련 기사 5건 발견 (시뮬레이션)"
 
-def save_file(filename: str, content: str) -> str:
+def save_file(filename: str, content: str) -&gt; str:
     with open(filename, 'w', encoding='utf-8') as f:
         f.write(content)
     return f"파일 저장 완료: {filename} ({len(content)}자)"
 
-def send_telegram(message: str) -> str:
+def send_telegram(message: str) -&gt; str:
     token = os.getenv("TELEGRAM_BOT_TOKEN")
     chat_id = os.getenv("TELEGRAM_CHAT_ID")
     if not token:
@@ -5661,7 +5561,7 @@ def send_telegram(message: str) -> str:
 
 TOOL_MAP = {"web_search": web_search, "save_file": save_file, "send_telegram": send_telegram}
 
-def run_react_agent(task: str, max_iterations: int = 5) -> str:
+def run_react_agent(task: str, max_iterations: int = 5) -&gt; str:
     """ReAct 루프 실행"""
     messages = [{"role": "user", "content": task}]
     print(f"\n🤖 태스크: {task}")
@@ -5699,11 +5599,11 @@ def run_react_agent(task: str, max_iterations: int = 5) -> str:
 if __name__ == "__main__":
     run_react_agent(
         "AI 에이전트 트렌드를 검색하고, 요약 파일을 저장한 뒤 텔레그램으로 보고하세요."
-    )</code></pre>
+    )</pre>
 
         <h4>Day 10-11: Tool Use 3개 실전 연결</h4>
 
-        <pre><code class="language-python"># ai-agents/tools/tool_registry.py
+        <pre># ai-agents/tools/tool_registry.py
 # 실무에서 쓰는 Tool 3종 완성판
 
 import anthropic, os, json, smtplib
@@ -5713,18 +5613,18 @@ from pathlib import Path
 client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 
 # Tool 1: 파일 읽기/쓰기
-def read_file(path: str) -> str:
+def read_file(path: str) -&gt; str:
     p = Path(path)
     if not p.exists():
         return f"파일 없음: {path}"
     return p.read_text(encoding='utf-8')
 
-def write_file(path: str, content: str) -> str:
+def write_file(path: str, content: str) -&gt; str:
     Path(path).write_text(content, encoding='utf-8')
     return f"저장 완료: {path}"
 
 # Tool 2: 이메일 발송 (Gmail SMTP)
-def send_email(to: str, subject: str, body: str) -> str:
+def send_email(to: str, subject: str, body: str) -&gt; str:
     gmail = os.getenv("GMAIL_ADDRESS")
     password = os.getenv("GMAIL_APP_PASSWORD")
     if not gmail:
@@ -5739,7 +5639,7 @@ def send_email(to: str, subject: str, body: str) -> str:
     return f"이메일 발송: {to}"
 
 # Tool 3: JSON 데이터 저장/조회
-def save_data(key: str, value: str, store_file: str = "agent_store.json") -> str:
+def save_data(key: str, value: str, store_file: str = "agent_store.json") -&gt; str:
     store = {}
     if Path(store_file).exists():
         store = json.loads(Path(store_file).read_text())
@@ -5747,17 +5647,17 @@ def save_data(key: str, value: str, store_file: str = "agent_store.json") -> str
     Path(store_file).write_text(json.dumps(store, ensure_ascii=False, indent=2))
     return f"저장: {key}"
 
-def get_data(key: str, store_file: str = "agent_store.json") -> str:
+def get_data(key: str, store_file: str = "agent_store.json") -&gt; str:
     if not Path(store_file).exists():
         return "데이터 없음"
     store = json.loads(Path(store_file).read_text())
-    return store.get(key, {}).get("value", f"키 없음: {key}")</code></pre>
+    return store.get(key, {}).get("value", f"키 없음: {key}")</pre>
 
         <h4>Day 12-14: HITL (Human-in-the-Loop) 텔레그램 승인</h4>
 
         <p><strong>HITL</strong>은 AI가 위험한 행동을 하기 전에 사람 승인을 받는 패턴이다. "AI 팀장" 구조의 핵심이다.</p>
 
-        <pre><code class="language-python"># ai-agents/hitl_agent.py
+        <p class="aib-small">과거 API 예제입니다. 현재 SDK·모델·설정과 대조 후 사용하세요. 이 판에서 실행 확인한 예제는 공통 Python 실습이며 외부 모델 호출을 검증한 것은 아닙니다.</p><pre># ai-agents/hitl_agent.py
 import anthropic, os, requests, time, json
 from datetime import datetime
 
@@ -5765,7 +5665,7 @@ client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 TELEGRAM_CHAT   = os.getenv("TELEGRAM_CHAT_ID")
 
-def telegram_send(text: str) -> int:
+def telegram_send(text: str) -&gt; int:
     """메시지 전송 후 message_id 반환"""
     r = requests.post(
         f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage",
@@ -5773,9 +5673,9 @@ def telegram_send(text: str) -> int:
     )
     return r.json().get("result", {}).get("message_id", 0)
 
-def telegram_ask_approval(action_name: str, details: str, timeout: int = 300) -> bool:
+def telegram_ask_approval(action_name: str, details: str, timeout: int = 300) -&gt; bool:
     """텔레그램으로 승인 요청 → 5분 내 /yes 또는 /no 응답 대기"""
-    msg = f"""🤖 <b>승인 요청</b>
+    msg = f"""🤖 &lt;b&gt;승인 요청&lt;/b&gt;
 ━━━━━━━━━━━━━━
 작업: {action_name}
 내용: {details}
@@ -5790,7 +5690,7 @@ def telegram_ask_approval(action_name: str, details: str, timeout: int = 300) ->
     # 폴링: /yes 또는 /no 대기
     deadline = time.time() + timeout
     last_update = 0
-    while time.time() < deadline:
+    while time.time() &lt; deadline:
         r = requests.get(
             f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/getUpdates",
             params={"offset": last_update + 1, "timeout": 10}
@@ -5843,7 +5743,7 @@ def run_hitl_pipeline(task: str):
     print(f"결과: {result}")
 
 if __name__ == "__main__":
-    run_hitl_pipeline("경쟁사 3곳 가격 변동 분석 후 이메일 발송")</code></pre>
+    run_hitl_pipeline("경쟁사 3곳 가격 변동 분석 후 이메일 발송")</pre>
 
         <hr>
         <h3>Week 3 (Day 15~21): 프로덕션 하네스 구축 ⏱️ 각 2-3시간</h3>
@@ -5852,7 +5752,7 @@ if __name__ == "__main__":
 
         <h4>Day 15-16: 에러 핸들링 + 자동 재시도</h4>
 
-        <pre><code class="language-python"># ai-agents/utils/resilient_caller.py
+        <p class="aib-small">과거 API 예제입니다. 현재 SDK·모델·설정과 대조 후 사용하세요. 이 판에서 실행 확인한 예제는 공통 Python 실습이며 외부 모델 호출을 검증한 것은 아닙니다.</p><pre># ai-agents/utils/resilient_caller.py
 import time, functools, logging
 from typing import Callable, Any
 
@@ -5869,9 +5769,9 @@ logger = logging.getLogger(__name__)
 def retry(max_attempts: int = 3, delay: float = 2.0, backoff: float = 2.0,
           exceptions: tuple = (Exception,)):
     """지수 백오프 재시도 데코레이터"""
-    def decorator(func: Callable) -> Callable:
+    def decorator(func: Callable) -&gt; Callable:
         @functools.wraps(func)
-        def wrapper(*args, **kwargs) -> Any:
+        def wrapper(*args, **kwargs) -&gt; Any:
             wait = delay
             for attempt in range(1, max_attempts + 1):
                 try:
@@ -5891,7 +5791,7 @@ import anthropic, os
 client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 
 @retry(max_attempts=3, delay=2.0, exceptions=(anthropic.APIError, anthropic.RateLimitError))
-def safe_claude_call(prompt: str, model: str = "claude-sonnet-4-6") -> str:
+def safe_claude_call(prompt: str, model: str = "claude-sonnet-4-6") -&gt; str:
     response = client.messages.create(
         model=model, max_tokens=1000,
         messages=[{"role": "user", "content": prompt}]
@@ -5920,11 +5820,11 @@ class AgentLogger:
 # 사용법
 # alog = AgentLogger("blog_generator")
 # alog.log("start", {"task": "AI 트렌드 블로그 생성"})
-# alog.log("complete", {"tokens_used": 1200, "file": "blog_2026.html"})</code></pre>
+# alog.log("complete", {"tokens_used": 1200, "file": "blog_2026.html"})</pre>
 
         <h4>Day 19-21: 20항목 배포 전 체크리스트 자동화</h4>
 
-        <pre><code class="language-python"># ai-agents/utils/deployment_harness.py
+        <p class="aib-small">과거 API 예제입니다. 현재 SDK·모델·설정과 대조 후 사용하세요. 이 판에서 실행 확인한 예제는 공통 Python 실습이며 외부 모델 호출을 검증한 것은 아닙니다.</p><pre># ai-agents/utils/deployment_harness.py
 import os, sys, subprocess
 from pathlib import Path
 
@@ -5938,7 +5838,7 @@ CHECKS = [
     ("requirements.txt 존재",        lambda: Path("requirements.txt").exists()),
     ("agent_store.json 접근 가능",   lambda: True),  # 첫 실행 시 자동 생성
     ("로그 폴더 쓰기 가능",           lambda: Path("logs").mkdir(exist_ok=True) or True),
-    ("Python 버전 3.9+",             lambda: sys.version_info >= (3, 9)),
+    ("Python 버전 3.9+",             lambda: sys.version_info &gt;= (3, 9)),
     ("anthropic 패키지 설치됨",      lambda: __import__('importlib').util.find_spec("anthropic") is not None),
     ("requests 패키지 설치됨",       lambda: __import__('importlib').util.find_spec("requests") is not None),
     ("bs4 패키지 설치됨",            lambda: __import__('importlib').util.find_spec("bs4") is not None),
@@ -5949,10 +5849,10 @@ CHECKS = [
     ("텔레그램 봇 연결 가능",         lambda: bool(os.getenv("TELEGRAM_BOT_TOKEN"))),
     ("출력 디렉토리 존재",            lambda: Path("output").mkdir(exist_ok=True) or True),
     ("타임아웃 설정 확인",            lambda: True),
-    ("메모리 사용량 < 80%",          lambda: __import__('psutil').virtual_memory().percent < 80 if __import__('importlib').util.find_spec("psutil") else True),
+    ("메모리 사용량 &lt; 80%",          lambda: __import__('psutil').virtual_memory().percent &lt; 80 if __import__('importlib').util.find_spec("psutil") else True),
 ]
 
-def run_harness() -> bool:
+def run_harness() -&gt; bool:
     print("=" * 50)
     print("  배포 전 체크리스트 (20항목)")
     print("=" * 50)
@@ -5968,7 +5868,7 @@ def run_harness() -> bool:
         else:   failed += 1
     print("=" * 50)
     print(f"결과: {passed}/20 통과  |  실패: {failed}개")
-    if failed > 0:
+    if failed &gt; 0:
         print("❌ 배포 중단 — 실패 항목 수정 후 재시도")
         return False
     print("✅ 모든 체크 통과 — 배포 진행 가능")
@@ -5976,14 +5876,14 @@ def run_harness() -> bool:
 
 if __name__ == "__main__":
     ok = run_harness()
-    sys.exit(0 if ok else 1)</code></pre>
+    sys.exit(0 if ok else 1)</pre>
 
         <hr>
         <h3>Week 4 (Day 22~30): 오케스트레이터 + KPI 자동 보고 ⏱️ 집중 완성주</h3>
 
         <h4>Day 22-24: 오케스트레이터 완성</h4>
 
-        <pre><code class="language-python"># ai-agents/daily_orchestrator.py
+        <pre># ai-agents/daily_orchestrator.py
 """매일 07:00 자동 실행 — Windows 작업 스케줄러 등록"""
 import subprocess, os, json, time
 from datetime import datetime
@@ -6000,7 +5900,7 @@ def log(msg: str):
     with open(log_file, 'a', encoding='utf-8') as f:
         f.write(line + '\n')
 
-def run_step(name: str, script: str, timeout: int = 300) -> bool:
+def run_step(name: str, script: str, timeout: int = 300) -&gt; bool:
     log(f"▶ STEP 시작: {name}")
     try:
         result = subprocess.run(
@@ -6028,7 +5928,7 @@ def send_daily_report(results: dict):
     if not token: return
 
     icons = {True: "✅", False: "❌"}
-    lines = [f"📊 <b>일일 오케스트레이터 리포트</b>",
+    lines = [f"📊 &lt;b&gt;일일 오케스트레이터 리포트&lt;/b&gt;",
              f"날짜: {datetime.now().strftime('%Y-%m-%d')}",
              "━━━━━━━━━━━━━━"]
     for step, ok in results.items():
@@ -6057,27 +5957,27 @@ if __name__ == "__main__":
         results[name] = run_step(name, script)
         time.sleep(2)
     send_daily_report(results)
-    log("🏁 오케스트레이터 종료")</code></pre>
+    log("🏁 오케스트레이터 종료")</pre>
 
         <h4>Day 25-27: KPI 대시보드 (HTML)</h4>
 
-        <pre><code class="language-python"># ai-agents/kpi_dashboard.py
+        <pre># ai-agents/kpi_dashboard.py
 """agent_runs.jsonl을 읽어 KPI HTML 대시보드 생성"""
 import json
 from pathlib import Path
 from datetime import datetime, timedelta
 from collections import defaultdict
 
-def load_runs(log_file: str = "agent_runs.jsonl") -> list:
+def load_runs(log_file: str = "agent_runs.jsonl") -&gt; list:
     if not Path(log_file).exists():
         return []
     with open(log_file, 'r', encoding='utf-8') as f:
         return [json.loads(line) for line in f if line.strip()]
 
-def calc_kpi(runs: list) -> dict:
+def calc_kpi(runs: list) -&gt; dict:
     """핵심 KPI 계산"""
     last_7 = [r for r in runs
-              if r.get("ts", "") >= (datetime.now() - timedelta(days=7)).isoformat()]
+              if r.get("ts", "") &gt;= (datetime.now() - timedelta(days=7)).isoformat()]
     agents = defaultdict(lambda: {"total": 0, "success": 0, "tokens": 0})
     for r in last_7:
         a = agents[r.get("agent", "unknown")]
@@ -6093,7 +5993,7 @@ def calc_kpi(runs: list) -> dict:
                         max(sum(a["total"] for a in agents.values()), 1) * 100
     }
 
-def format_report(kpi: dict) -> str:
+def format_report(kpi: dict) -&gt; str:
     """텍스트 KPI 리포트 생성 (터미널 출력 + 파일 저장용)"""
     sep = "=" * 50
     lines = [
@@ -6109,7 +6009,7 @@ def format_report(kpi: dict) -> str:
     ]
     for agent, data in kpi["agents"].items():
         rate = data["success"] / max(data["total"], 1) * 100
-        lines.append(f"  {agent:<20} {data['total']:>4}회  {rate:>5.1f}%  {data['tokens']:>8,} 토큰")
+        lines.append(f"  {agent:&lt;20} {data['total']:&gt;4}회  {rate:&gt;5.1f}%  {data['tokens']:&gt;8,} 토큰")
     lines.append(sep)
     return "\n".join(lines)
 
@@ -6121,7 +6021,7 @@ if __name__ == "__main__":
     # JSON 저장 (다른 도구에서 읽기 쉬운 형식)
     out = Path(f"kpi_{datetime.now().strftime('%Y%m%d')}.json")
     out.write_text(json.dumps(kpi, ensure_ascii=False, indent=2), encoding='utf-8')
-    print(f"\n✅ KPI JSON 저장: {out}")</code></pre>
+    print(f"\n✅ KPI JSON 저장: {out}")</pre>
 
         <h4>Day 28-30: 자동 KPI 보고 + 최종 배포</h4>
 
@@ -6431,21 +6331,21 @@ if __name__ == "__main__":
 <p>순서가 정해진 반복 작업은 워크플로우로, 자료에 따라 다음 행동을 골라야 하는 부분은 에이전트로 만듭니다. 예를 들어 매일 같은 시각에 보고서를 모으는 것은 워크플로우이고, 서로 충돌하는 보고서의 차이를 설명하는 것은 에이전트가 맡을 수 있습니다.</p>
 <h3>2. 다음 에이전트가 추측하지 않게 넘기기</h3>
 <p>“분석 끝났어. 네가 알아서 해” 대신 <strong>업무 ID·상태·근거·미해결 항목</strong>을 넘깁니다. 아래는 가상 스튜디오 예약 검토의 인수인계 예시입니다. 개인정보 대신 샘플 ID를 씁니다.</p>
-<pre id="v3-handoff"><code>{
-  &quot;task_id&quot;: &quot;TASK-DEMO-001&quot;,
-  &quot;run_id&quot;: &quot;RUN-DEMO-001&quot;,
-  &quot;goal&quot;: &quot;스튜디오 사용 가능 여부 검토&quot;,
-  &quot;state&quot;: &quot;waiting_for_review&quot;,
-  &quot;input_refs&quot;: [&quot;C-001&quot;, &quot;S-01&quot;],
-  &quot;source&quot;: &quot;training-fixture&quot;,
-  &quot;verified_at&quot;: &quot;2026-11-02T10:00:00+09:00&quot;,
-  &quot;proposal&quot;: &quot;2026-11-03 14:00~15:00 이용 검토&quot;,
-  &quot;evidence&quot;: [&quot;잔여 2회&quot;, &quot;해당 시간대 전체 예약 조회 완료&quot;],
-  &quot;unresolved&quot;: [],
-  &quot;limits&quot;: {&quot;max_tool_calls&quot;: 5, &quot;max_retries&quot;: 1},
-  &quot;external_action&quot;: &quot;none&quot;,
-  &quot;next&quot;: &quot;담당자 검토. 아직 예약·차감·발송하지 않음&quot;
-}</code></pre><div class="aib-template-tools"><button type="button" data-aib-copy="v3-handoff">템플릿 복사</button><button type="button" data-aib-download="v3-handoff">텍스트 저장</button><span class="aib-small" role="status" aria-live="polite"></span></div>
+<pre id="v3-handoff">{
+  "task_id": "TASK-DEMO-001",
+  "run_id": "RUN-DEMO-001",
+  "goal": "스튜디오 사용 가능 여부 검토",
+  "state": "waiting_for_review",
+  "input_refs": ["C-001", "S-01"],
+  "source": "training-fixture",
+  "verified_at": "2026-11-02T10:00:00+09:00",
+  "proposal": "2026-11-03 14:00~15:00 이용 검토",
+  "evidence": ["잔여 2회", "해당 시간대 전체 예약 조회 완료"],
+  "unresolved": [],
+  "limits": {"max_tool_calls": 5, "max_retries": 1},
+  "external_action": "none",
+  "next": "담당자 검토. 아직 예약·차감·발송하지 않음"
+}</pre><div class="aib-template-tools"><button type="button" data-aib-copy="v3-handoff">템플릿 복사</button><button type="button" data-aib-download="v3-handoff">텍스트 저장</button><span class="aib-small" role="status" aria-live="polite"></span></div>
 <p class="aib-small">호출 5회·재시도 1회는 실습용 한도입니다. 실제 한도는 업무 비용과 복구 정책으로 정합니다. 이 JSON은 전달 양식이며 MCP 프로토콜 메시지나 승인 증명이 아닙니다.</p>
 <h3>3. “AI가 노는 세상”에는 공통 작업판이 필요하다</h3>
 <p>각 에이전트가 자기 대화창에만 결과를 남기면 다른 에이전트는 진행 상황을 모릅니다. 공동 작업판에 <strong>요청됨 → 진행 중 → 검토 대기 → 승인 대기 → 실행 중 → 완료</strong>를 기록하세요. 모든 요청이 이 순서를 다 거치는 것은 아닙니다. 읽기 전용 보고서는 검토 후 끝날 수 있고, 정보가 모자라면 확인 대기로 이동합니다.</p>
@@ -6456,7 +6356,48 @@ if __name__ == "__main__":
 <h3>5. 잘 작동하는지 확인할 질문 다섯 가지</h3>
 <ol><li>업무 10개 중 사람이 다시 손댄 것은 몇 개인가?</li><li>실패 후 같은 결과를 두 번 만든 적은 없는가?</li><li>정보 부족을 사실처럼 답한 적은 없는가?</li><li>결과 하나에서 원본·실행 기록까지 따라갈 수 있는가?</li><li>비용은 호출 횟수가 아니라 <strong>검수까지 마친 업무 한 건</strong>당 얼마인가?</li></ol>
 <p>속도만 빨라지고 재작업이 늘면 좋은 자동화가 아닙니다. 먼저 <a href="examples/agent-ontology/README.md">공통 실습</a>의 정상·누락·충돌 사례를 돌리고, 각 결과를 어떤 상태로 넘길지 정해보세요.</p>
-<ul class="aib-checklist"><li><label><input type="checkbox" data-aib-check="v3-0"><span>각 역할의 입력과 출력, 책임을 적었다.</span></label></li><li><label><input type="checkbox" data-aib-check="v3-1"><span>조회·제안·승인·실제 실행을 구분했다.</span></label></li><li><label><input type="checkbox" data-aib-check="v3-2"><span>재시도와 사용 한도를 에이전트 밖에서 관리하도록 설계했다.</span></label></li><li><label><input type="checkbox" data-aib-check="v3-3"><span>근거 ID와 실제 결과 ID를 업무 기록에 남긴다.</span></label></li></ul><footer class="aib-sources"><p>공식 참고자료 · 2026-10-25 확인. 아래 실습·문서 양식·판정 기준은 본서가 만든 교육용 예시입니다.</p><ul><li><a href="https://www.anthropic.com/research/building-effective-agents" target="_blank" rel="noopener noreferrer">Anthropic · Building effective agents</a></li><li><a href="https://modelcontextprotocol.io/specification/2026-07-28/server/tools" target="_blank" rel="noopener noreferrer">MCP · Tools specification</a></li></ul></footer><nav class="aib-crosslinks" aria-label="다른 권의 10월 실습"><a href="book1.html#aib-update-20261025">1권 · 업무지시서</a><a href="index.html#aib-update-20261025">2권 · 제작과 검증</a><a href="claude-code-bible.html#aib-update-20261025">4권 · 코드 검사</a><a href="practical-bible.html#aib-update-20261025">5권 · 온톨로지</a></nav></div></section>
+<ul class="aib-checklist"><li><label><input type="checkbox" data-aib-check="v3-0"><span>각 역할의 입력과 출력, 책임을 적었다.</span></label></li><li><label><input type="checkbox" data-aib-check="v3-1"><span>조회·제안·승인·실제 실행을 구분했다.</span></label></li><li><label><input type="checkbox" data-aib-check="v3-2"><span>재시도와 사용 한도를 에이전트 밖에서 관리하도록 설계했다.</span></label></li><li><label><input type="checkbox" data-aib-check="v3-3"><span>근거 ID와 실제 결과 ID를 업무 기록에 남긴다.</span></label></li></ul><section id="aib-context-outcomes-20261031" class="aib-deep-practice aib-edition-update">
+<h3>기억을 늘리기 전에, 이번 일에 필요한 근거를 고르기</h3>
+<p>앞에서 역할과 인계 양식을 만들었습니다. 그런데 조사자가 오래된 회의 메모를 넘기고 검토자가 그것을 최신 정책으로 믿으면, 두 역할 모두 성실하게 일해도 결과는 틀립니다. 기억 시스템의 품질은 저장량만으로 결정되지 않습니다. <strong>어떤 업무에, 어느 시점의, 어떤 권위를 가진 기록을 사용하는지</strong>가 중요합니다.</p>
+<p>이번 실습은 취소 규정과 예약 가능 여부를 검토하는 가상 업무입니다. 자료를 많이 전달할수록 유리하다고 가정하지 마세요. 질문과 관계없는 색상 선호나 미확정 행사안은 컨텍스트를 늘리지만 이 판단의 근거가 되지는 않습니다. 오래된 자료도 삭제하는 대신 제외 이유를 남깁니다.</p>
+<div class="aib-table-wrap"><table><thead><tr><th>기록</th><th>출처와 상태</th><th>내용</th></tr></thead><tbody>
+<tr><td>R1</td><td>과거 회의 메모 · 만료</td><td>취소는 1시간 전까지</td></tr><tr><td>R2</td><td>현재 정책 정본</td><td>취소는 24시간 전까지</td></tr><tr><td>R3</td><td>현재 정책 정본</td><td>정원 4명</td></tr><tr><td>R4</td><td>현재 거래 기록</td><td>잔여 1회</td></tr><tr><td>R5</td><td>현재 선호 기록</td><td>좋아하는 색은 파랑</td></tr><tr><td>R6</td><td>회의 초안 · 미승인</td><td>프로모션 검토 중</td></tr>
+</tbody></table></div>
+<p><strong>먼저 해볼 일:</strong> 전달할 기록을 세 개로 제한하고, 각 선택·제외 이유를 한 줄씩 적으세요. 제공되지 않은 정책 적용일이나 개인 정보를 상상해서 채우지 않습니다. 실무에서는 정본 책임자와 적용 시각을 확인해야 하며, 이 표의 current 표시는 그 확인을 대신하지 않습니다.</p>
+<pre>context_packet.md
+업무: 취소 규정과 예약 가능 여부 검토
+사용 근거 ID / 이 업무에 필요한 이유:
+제외 근거 ID / 제외 이유:
+아직 모르는 것 / 확인 담당자:
+실행 권한: 조회·검토만, 실제 예약 금지</pre>
+<details><summary>해설과 판정 기준</summary><p>선택은 R2·R3·R4입니다. R1은 최신 정본과 충돌하는 만료 메모, R5는 이번 질문과 무관, R6는 승인되지 않은 다른 업무의 초안입니다. 정본끼리 충돌하거나 R4의 확인 시각이 불명확하다면 임의로 진행하지 말고 확인 필요로 남깁니다. 실제 예약 가능 시간과 고객의 취소 요청 시각은 이 자료에 없으므로 최종 예약·환불 결정을 내릴 수 없습니다.</p></details>
+<p>파일·DB·벡터DB는 기록을 가져오는 수단입니다. 이 실습은 검색엔진을 구축하는 대신 근거를 고르는 기준부터 고정합니다. 조직 전체의 정본 책임과 보존 정책은 <a href="practical-bible.html#aib-update-20261025">5권 운영판</a>에서 이어집니다. 여기서는 다음 역할에게 전달할 작은 작업 묶음만 완성하세요.</p>
+</section><section id="aib-outcome-evals-20261031" class="aib-deep-practice aib-edition-update"><h3>완료 메시지 대신, 다섯 가지 최종 결과를 채점하기</h3>
+<p>올바른 근거를 전달했다면 다음 질문은 “말을 잘했는가”가 아니라 “허용된 상태로 끝났는가”입니다. 답변에 ‘처리했습니다’라고 써도 원장에 결과가 없으면 성공이 아닙니다. 반대로 승인 대기로 정확히 멈춘 것은 시스템 오류가 아니라 기대한 결과입니다.</p>
+<div class="aib-table-wrap"><table><thead><tr><th>사례</th><th>기대 상태</th><th>가상 원장 신규 기록</th></tr></thead><tbody>
+<tr><td>근거 있음·승인 있음·도구 정상</td><td>recorded</td><td>1건</td></tr><tr><td>근거 누락</td><td>needs_evidence</td><td>0건</td></tr><tr><td>승인 없음</td><td>awaiting_approval</td><td>0건</td></tr><tr><td>같은 요청 이미 기록됨</td><td>already_recorded</td><td>0건</td></tr><tr><td>도구 결과 불명확</td><td>reconcile_required</td><td>0건 · 실제 상태 확인 후 판단</td></tr>
+</tbody></table></div>
+<p><strong>실행:</strong> 저장소 전체를 받은 뒤 프로젝트 루트에서 아래 명령을 실행합니다. Python 표준 라이브러리만 쓰며 API 키·설치 패키지·실제 예약이 필요 없습니다. reader_lab은 각 시도마다 새 가상 원장을 만들고, 결과의 상태와 신규 기록 수를 정답표와 비교합니다.</p>
+<pre>python examples/claude-code-checks/reader_lab.py
+python examples/claude-code-checks/run_checks.py</pre>
+<div class="aib-downloads"><a href="examples/claude-code-checks/reader-checks.zip" download>3·4권 실습 묶음 내려받기 · ZIP</a></div><p>빈 폴더에 압축을 풀면 <code>examples/claude-code-checks/</code> 구조가 생깁니다. 압축을 푼 최상위 폴더에서 위 명령을 실행하세요. Python 표준 라이브러리만 사용하며 모델 호출·발송·실제 예약은 없습니다.</p>
+<p><a href="examples/claude-code-checks/reader_lab.py" download>실습 코드</a> · <a href="examples/claude-code-checks/test_reader_lab.py" download>검사 코드</a> · <a href="examples/claude-code-checks/run_checks.py" download>검사 실행기</a> · <a href="examples/claude-code-checks/README.md">준비·실행 안내</a></p>
+<details><summary>예상 결과와 해석</summary><p>selected_context는 R2·R3·R4, 다섯 사례를 두 번씩 확인한10개 결과의 passed는 true, external_actions는0입니다. 같은 입력의 반복 확인은 이 결정적 가상 코드의 회귀 검사입니다. 실제 모델 정확도·반복 실행 신뢰도를 측정했다는 뜻은 아닙니다. 모델을 연결할 때는 동일한 평가 사례에 실제 도구 기록과 검수 시간을 붙여 다시 측정해야 합니다.</p><p>예를 들어 승인 없는 사례가 recorded가 되면, 마지막 답변 문구를 고치기 전에 실행 경로를 고칩니다. 도구 실패 사례에서 새 요청을 자동 전송하지 않는 이유는 아래 재시도 실습에서 확인합니다. 상태 확인→같은 요청 식별자 확인→필요한 경우에만 재시도 순서를 유지하세요.</p></details>
+<p class="aib-small">공식 배경: <a href="https://www.anthropic.com/research/effective-context-engineering-for-ai-agents">컨텍스트 엔지니어링</a>(2025-09-29), <a href="https://www.anthropic.com/research/demystifying-evals-for-ai-agents">에이전트 평가</a>(2026-01-09). 2026-10-31 확인. 표·가상 원장·정답은 본서의 교육용 예시이며 실제 모델 성능 수치가 아닙니다.</p>
+</section><section id="aib-practice-20261031" class="aib-deep-practice"><h3>응답이 끊겼을 때 다시 시켜도 될까</h3><p class="aib-small">2026.10.31 · 예측하고, 실행하고, 결과를 설명하는 실습</p><p>에이전트가 “완료 응답을 받지 못했다”고 보고해도 실제 작업까지 실패했다는 뜻은 아닙니다. 요청은 처리됐지만 돌아오는 응답만 끊길 수 있습니다. 이때 같은 일을 새 요청으로 다시 보내면 예약이나 알림이 두 번 생깁니다. 복구는 먼저 지금 어떤 상태인지 확인하는 데서 시작합니다.</p>
+<p>이번에는 외부 서비스를 연결하지 않고 종이에 모의 실행 기록을 만듭니다. 업무 ID는 <code>TASK-001</code>, 중복방지 키는 <code>DEMO-001</code>입니다. 모의 실행기는 같은 키를 처음 받으면 결과 <code>RESULT-001</code>을 기록합니다. 단, 첫 응답은 의도적으로 전달하지 않습니다. 에이전트는 결과를 모르지만 기록에는 이미 한 건이 존재하는 상황입니다.</p>
+<p>올바른 다음 행동은 키로 기존 결과를 조회하는 것입니다. 조회 결과가 있으면 그 결과를 인수인계하고, 없다면 서비스의 처리 규칙을 확인합니다. 결과를 모른다는 이유로 키를 새로 만들면 안 됩니다. 같은 키를 다시 사용하는 방식도 실행 서비스가 중복방지를 보장할 때만 믿을 수 있습니다.</p>
+<p>다음에는 조회까지 실패하게 해보세요. 정한 재시도 한도를 넘으면 “실패 확정”이 아니라 “결과 확인 대기”로 남깁니다. 담당자가 이어받을 수 있도록 요청 내용, 마지막 확인 시각, 사용한 키, 확인하지 못한 사항을 기록합니다. 복구 담당자가 처음부터 추측하게 만들지 않는 것이 목표입니다.</p>
+<p>분업의 효과도 같은 방식으로 확인할 수 있습니다. 동일한 가상 요청 묶음을 단일 에이전트와 계획·실행·검토 방식에 각각 맡겨 보세요. 정답 수뿐 아니라 호출 비용, 검수 시간, 상태 누락을 비교합니다. 여러 에이전트가 더 낫다는 결론을 미리 정하지 마세요. 이번 업무에서 어느 구조가 더 안정적으로 끝났는지가 선택 기준입니다.</p>
+<div class="aib-table-wrap"><table>
+<tr><th>주입한 문제</th><th>기대 처리</th></tr>
+<tr><td>처리 완료 후 응답 유실</td><td>기존 키로 결과 조회</td></tr>
+<tr><td>조회도 계속 실패</td><td>결과 확인 대기, 인수인계 기록</td></tr>
+<tr><td>한도 소진</td><td>추가 호출 중단, 부분 결과 보존</td></tr>
+<tr><td>정상 응답 복구</td><td>기존 결과 1건을 확인하고 종료</td></tr>
+</table></div>
+<p>완료 기준: 모의 결과는 한 건이고, 재시도 횟수와 최종 상태가 기록된다.</p>
+<p>Anthropic도 정해진 흐름의 워크플로우와 모델이 다음 행동을 고르는 에이전트를 구분하며, 필요한 경우에만 복잡성을 늘리도록 설명한다. “여럿이면 항상 정확하다”는 주장보다 비교 실습이 적절하다. <a href="https://www.anthropic.com/research/building-effective-agents" target="_blank" rel="noopener noreferrer">Anthropic 설계 설명</a></p></section><h3>실행 전 확인하는 현재 모델과 비용</h3><p>2026-10-31 공식 Claude API 개요 기준. 아래 값은 입력/출력 100만 토큰당 USD이며 구독 요금이 아닙니다. Haiku는 시작 가격이고 옵션·플랫폼에 따라 달라질 수 있습니다.</p><div class="aib-table-wrap"><table><tr><th>모델 ID</th><th>입력 / 출력</th><th>비교할 용도</th></tr><tr><td><code>claude-haiku-5-5</code></td><td>부터 $0.10 / $0.50</td><td>분류·추출·라우팅</td></tr><tr><td><code>claude-sonnet-5-5</code></td><td>$2 / $10</td><td>속도·품질 균형</td></tr><tr><td><code>claude-opus-5-5</code></td><td>$4 / $20</td><td>복잡한 코딩·지식 업무</td></tr><tr><td><code>claude-fable-5-1</code></td><td>$10 / $50</td><td>장기·고난도 작업</td></tr></table></div><p>선택은 같은 샘플의 정답률·검수 시간·비용으로 결정합니다. 모델 이름만 바꾼 코드가 호환된다고 가정하지 마세요. 과거 사례와 당시 모델명은 기록으로 보존합니다.</p><p><a href="https://platform.claude.com/docs/en/models/overview">공식 모델·가격·기능 확인</a> · <a href="https://code.claude.com/docs/en/setup">Claude Code 설치 안내</a></p><footer class="aib-sources"><p>공식 참고자료 · 2026-10-25 확인. 아래 실습·문서 양식·판정 기준은 본서가 만든 교육용 예시입니다.</p><ul><li><a href="https://www.anthropic.com/research/building-effective-agents" target="_blank" rel="noopener noreferrer">Anthropic · Building effective agents</a></li><li><a href="https://modelcontextprotocol.io/specification/2026-07-28/server/tools" target="_blank" rel="noopener noreferrer">MCP · Tools specification</a></li></ul></footer><nav class="aib-crosslinks" aria-label="다른 권의 10월 실습"><a href="book1.html#aib-update-20261025">1권 · 업무지시서</a><a href="index.html#aib-update-20261025">2권 · 제작과 검증</a><a href="claude-code-bible.html#aib-update-20261025">4권 · 코드 검사</a><a href="practical-bible.html#aib-update-20261025">5권 · 온톨로지</a></nav></div></section>
 <!-- AIB-SUPPLEMENT-20261025 END -->
   </div>
 
@@ -6575,22 +6516,12 @@ if __name__ == "__main__":
     });
 
     // 복사 방지 + 개발자 도구 차단
-    document.addEventListener('copy', e => e.preventDefault());
-    document.addEventListener('cut', e => e.preventDefault());
-    document.addEventListener('selectstart', e => e.preventDefault());
-    document.addEventListener('dragstart', e => e.preventDefault());
-    document.addEventListener('contextmenu', e => { e.preventDefault(); return false; });
-    document.addEventListener('keydown', e => {
-      // 복사/저장/인쇄 차단
-      if ((e.ctrlKey || e.metaKey) && ['c', 'x', 'u', 's', 'p', 'a'].includes(e.key.toLowerCase())) {
-        e.preventDefault();
-      }
-      // 개발자 도구 차단: F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C
-      if (e.key === 'F12') { e.preventDefault(); return; }
-      if ((e.ctrlKey || e.metaKey) && e.shiftKey && ['i', 'j', 'c'].includes(e.key.toLowerCase())) {
-        e.preventDefault();
-      }
-    });
+    /* Reader selection, clipboard and browser controls remain available. */
+    /* Reader selection, clipboard and browser controls remain available. */
+    /* Reader selection, clipboard and browser controls remain available. */
+    /* Reader selection, clipboard and browser controls remain available. */
+    /* Reader selection, clipboard and browser controls remain available. */
+    /* Reader selection, clipboard and browser controls remain available. */
 
     // 읽기 위치 저장/복원
     const SCROLL_KEY = 'agentBibleScrollY';
@@ -6666,8 +6597,8 @@ if __name__ == "__main__":
       링크 하나가, 그 사람의 5월을 완전히 바꿀 수 있습니다.
     </div>
     <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:32px;">
-      <button onclick="(function(){var u=window.location.href;if(navigator.share){navigator.share({title:'AI 에이전트 바이블 — 무료 공개',url:u});}else if(navigator.clipboard){navigator.clipboard.writeText(u).then(function(){var b=document.getElementById('gift-copy-btn');b.textContent='✅ 복사됨!';setTimeout(function(){b.textContent='🔗 링크 복사';},2000);});}})();" id="gift-copy-btn" style="display:inline-flex;align-items:center;gap:6px;padding:12px 22px;background:linear-gradient(135deg,rgba(255,149,0,0.2),rgba(255,68,68,0.12));border:1.5px solid rgba(255,149,0,0.5);border-radius:24px;color:#ffaa00;font-size:0.86rem;font-weight:700;cursor:pointer;transition:all 0.2s;font-family:'Pretendard',sans-serif;" onmouseover="this.style.background='linear-gradient(135deg,rgba(255,149,0,0.38),rgba(255,68,68,0.22))'" onmouseout="this.style.background='linear-gradient(135deg,rgba(255,149,0,0.2),rgba(255,68,68,0.12))'">🔗 링크 복사</button>
-      <a href="#" onclick="event.preventDefault();window.open('https://twitter.com/intent/tweet?text=AI+에이전트+바이블+무료+공개+🎁&url='+encodeURIComponent(window.location.href),'_blank','width=600,height=400');" style="display:inline-flex;align-items:center;gap:6px;padding:12px 22px;background:rgba(29,161,242,0.1);border:1.5px solid rgba(29,161,242,0.35);border-radius:24px;color:#60c4f8;font-size:0.86rem;font-weight:700;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.background='rgba(29,161,242,0.2)'" onmouseout="this.style.background='rgba(29,161,242,0.1)'">𝕏 공유</a>
+      <button onclick="BibleSharing.copy(BibleSharing.publicUrl())" id="gift-copy-btn" style="display:inline-flex;align-items:center;gap:6px;padding:12px 22px;background:linear-gradient(135deg,rgba(255,149,0,0.2),rgba(255,68,68,0.12));border:1.5px solid rgba(255,149,0,0.5);border-radius:24px;color:#ffaa00;font-size:0.86rem;font-weight:700;cursor:pointer;transition:all 0.2s;font-family:'Pretendard',sans-serif;" onmouseover="this.style.background='linear-gradient(135deg,rgba(255,149,0,0.38),rgba(255,68,68,0.22))'" onmouseout="this.style.background='linear-gradient(135deg,rgba(255,149,0,0.2),rgba(255,68,68,0.12))'">🔗 링크 복사</button>
+      <a href="#" onclick="event.preventDefault();window.open('https://twitter.com/intent/tweet?text=AI+에이전트+바이블+무료+미리보기+🎁&url='+encodeURIComponent(BibleSharing.publicUrl()),'_blank','width=600,height=400');" style="display:inline-flex;align-items:center;gap:6px;padding:12px 22px;background:rgba(29,161,242,0.1);border:1.5px solid rgba(29,161,242,0.35);border-radius:24px;color:#60c4f8;font-size:0.86rem;font-weight:700;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.background='rgba(29,161,242,0.2)'" onmouseout="this.style.background='rgba(29,161,242,0.1)'">𝕏 공유</a>
     </div>
     <div style="max-width:460px;margin:0 auto;background:linear-gradient(135deg,rgba(255,149,0,0.07),rgba(139,92,246,0.05));border:1px solid rgba(255,149,0,0.25);border-radius:12px;padding:16px 18px;text-align:left;">
       <div style="font-size:0.92rem;font-weight:800;color:#fff;margin-bottom:8px;word-break:keep-all;text-align:center;">
@@ -6737,120 +6668,12 @@ if (localStorage.getItem('sib_dismissed')) {
 }
 #aitf-toast.show { opacity:1; }
 </style>
-<div id="aitf-watermark-layer" aria-hidden="true"></div>
+
 <div id="aitf-toast" role="status" aria-live="polite"></div>
+<!-- Reader usability: copyright credit remains; synthetic counters and global browser blocking removed. -->
 <script>
-(function(){
-  'use strict';
-  var TODAY = new Date().toISOString().slice(0,10);
-  var WM_TEXT = '© AITF 2026 · aiaijungle.github.io · ' + TODAY;
-
-  // 1. 워터마크 레이어 채우기
-  try {
-    var layer = document.getElementById('aitf-watermark-layer');
-    if (layer) {
-      var rows = '';
-      for (var r=0; r<14; r++) {
-        var cells = '';
-        for (var c=0; c<8; c++) cells += '<span>' + WM_TEXT + '</span>';
-        rows += '<div class="wm-row">' + cells + '</div>';
-      }
-      layer.innerHTML = rows;
-    }
-  } catch(e){}
-
-  // Toast helper
-  function toast(msg, ms){
-    var t = document.getElementById('aitf-toast');
-    if (!t) return;
-    t.textContent = msg;
-    t.classList.add('show');
-    clearTimeout(t._timer);
-    t._timer = setTimeout(function(){ t.classList.remove('show'); }, ms || 3000);
-  }
-
-  // 2. 우클릭 / 단축키 차단
-  document.addEventListener('contextmenu', function(e){
-    e.preventDefault();
-    toast('⚠️ 우클릭이 차단되었습니다. 콘텐츠는 저작권 보호를 받습니다.');
-    return false;
-  });
-  document.addEventListener('keydown', function(e){
-    var k = e.key;
-    var blocked =
-      k === 'F12' ||
-      (e.ctrlKey && e.shiftKey && (k === 'I' || k === 'i' || k === 'J' || k === 'j' || k === 'C' || k === 'c')) ||
-      (e.ctrlKey && (k === 'U' || k === 'u' || k === 'S' || k === 's' || k === 'P' || k === 'p'));
-    if (blocked) {
-      e.preventDefault();
-      toast('⚠️ 개발자 도구·소스보기·인쇄가 차단되었습니다.');
-      return false;
-    }
-  });
-
-  // 3. 복사 시 경고 + 클립보드 텍스트 교체
-  var COPY_WARN = '⚠️ 이 콘텐츠는 저작권 보호를 받습니다. 무단 복사 시 법적 책임이 있습니다. (© AITF 2026)';
-  document.addEventListener('copy', function(e){
-    try {
-      if (e.clipboardData) {
-        e.clipboardData.setData('text/plain', COPY_WARN);
-        e.preventDefault();
-      }
-    } catch(err){}
-    toast('⚠️ 이 콘텐츠는 저작권 보호를 받습니다. 무단 복사 시 법적 책임이 있습니다.');
-  });
-
-  // devtools 감지 (창 크기 휴리스틱)
-  var devtoolsWarned = false;
-  setInterval(function(){
-    var threshold = 160;
-    var widthGap = window.outerWidth - window.innerWidth;
-    var heightGap = window.outerHeight - window.innerHeight;
-    if ((widthGap > threshold || heightGap > threshold) && !devtoolsWarned) {
-      devtoolsWarned = true;
-      toast('⚠️ 개발자 도구가 감지되었습니다. 접속이 기록됩니다.');
-    }
-  }, 1500);
-
-  // 4. IP / 접속 로깅 (1일 1회)
-  try {
-    var LAST_KEY = 'aitf_iplog_last';
-    var last = parseInt(localStorage.getItem(LAST_KEY) || '0', 10);
-    var now = Date.now();
-    if (now - last > 24*60*60*1000) {
-      fetch('https://ipapi.co/json/').then(function(r){ return r.json(); }).then(function(d){
-        var info = {
-          ip: d.ip, country: d.country_name, city: d.city,
-          ua: navigator.userAgent, page: location.pathname, ts: new Date().toISOString()
-        };
-        console.log('[AITF 접속로그]', info);
-        localStorage.setItem('aitf_iplog_data', JSON.stringify(info));
-        localStorage.setItem(LAST_KEY, String(now));
-        // AITF API 전송 (현재는 콘솔 모의 — 서버 엔드포인트 준비 후 활성화)
-        console.log('[AITF API] POST /v1/ebook/access-log (모의)', info);
-      }).catch(function(err){
-        console.warn('[AITF 접속로그] ipapi 호출 실패:', err && err.message);
-      });
-    }
-  } catch(e){}
-})();
-</script>
-<script>
-function shareBook() {
-  var data = { title: '🎁 AI 에이전트 바이블 — 무료 선물', text: '봇·에이전트·하네스·오케스트레이터를 직접 만드는 실전 가이드. 지인에게 무료로 선물하세요!', url: location.href };
-  if (navigator.share) {
-    navigator.share(data);
-  } else {
-    navigator.clipboard.writeText(location.href).then(function() {
-      var btn = document.getElementById('share-btn-agent');
-      if (btn) { btn.textContent = '✅ 복사됨!'; setTimeout(function(){ btn.textContent = '🎁 선물하기'; }, 2000); }
-    }).catch(function() {
-      var ta = document.createElement('textarea'); ta.value = location.href;
-      document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
-      var btn = document.getElementById('share-btn-agent');
-      if (btn) { btn.textContent = '✅ 복사됨!'; setTimeout(function(){ btn.textContent = '🎁 선물하기'; }, 2000); }
-    });
-  }
+function shareBook(){
+  return BibleSharing.share({title:"AI 에이전트 바이블 3권 — 무료 미리보기",text:'무료 미리보기와 첫 실습을 확인하세요. 전체 유료 구성은 구매 안내에서 확인할 수 있습니다.'});
 }
 </script>
 <!-- ── 최종 퀴즈 + 수료증 시스템 ── -->
@@ -7028,9 +6851,7 @@ document.addEventListener('DOMContentLoaded',function(){
   if(kakaoBtn)kakaoBtn.addEventListener('click',function(){
     var pct=Math.round(_score/_total*100);
     var text='['+_bookTitle+'] 수료! 🎓\n'+_score+'/'+_total+' 정답 ('+pct+'%)\n지금 무료로 읽기 → https://aiaijungle.github.io/vibe-ebook/\n\n#AI사냥꾼 #바이브코딩';
-    if(navigator.share){navigator.share({title:_bookTitle+' 수료 인증',text:text}).catch(function(){});}
-    else if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){showToast('카카오톡에 붙여넣기 해서 공유하세요! 📋')}).catch(function(){showToast('복사 실패')});}
-    else{var ta=document.createElement('textarea');ta.value=text;ta.style.cssText='position:fixed;opacity:0;top:-9999px;';document.body.appendChild(ta);ta.focus();ta.select();try{document.execCommand('copy');showToast('카카오톡에 붙여넣기 해서 공유하세요! 📋')}catch(ex){showToast('복사 실패')}document.body.removeChild(ta);}
+    BibleSharing.share({title:_bookTitle+' 실습 결과',text:text});
   });
   if(pdfBtn)pdfBtn.addEventListener('click',function(){showToast('인쇄 창에서 "PDF로 저장"을 선택하세요');setTimeout(function(){window.print()},400);});
 });
@@ -7111,7 +6932,7 @@ var Q_VOL3=[
       <b style="font-size:1.1rem;font-weight:900;color:var(--text,#eee);">🎁 친구에게 선물하기</b>
       <button onclick="closeGiftModal()" style="background:none;border:none;font-size:1.6rem;cursor:pointer;color:var(--text,#eee);line-height:1;padding:0 2px;">×</button>
     </div>
-    <p style="font-size:.8rem;opacity:.6;margin:0 0 12px;word-break:keep-all;color:var(--text,#eee);">AI 시대 뒤처지는 지인에게 무료로 선물하세요 💌</p>
+    <p style="font-size:.8rem;opacity:.6;margin:0 0 12px;word-break:keep-all;color:var(--text,#eee);">필요한 동료에게 무료 미리보기와 첫 실습을 공유하세요.</p>
     <input id="gift-name-input" type="text" maxlength="20" placeholder="받는 분 이름 (선택, 예: 홍길동)"
       oninput="giftUpdateMsg()"
       style="width:100%;padding:11px 13px;border:1.5px solid rgba(128,128,128,.3);border-radius:10px;font-size:.87rem;margin-bottom:10px;box-sizing:border-box;font-family:inherit;background:rgba(255,255,255,.07);color:var(--text,#eee);outline:none;">
@@ -7128,8 +6949,8 @@ var Q_VOL3=[
 (function(){
   var _GU='https://aiaijungle.github.io/vibe-ebook/agent-bible.html';
   var _GT='AI 에이전트 실전 바이블 3권';
-  var _GD='AI 에이전트로 업무 자동화하는 실전 가이드 🤖\nAI 사냥꾼 실전 바이블 — 완전 무료!';
-  function _msg(n){var u=n?_GU+'?ref='+encodeURIComponent(n):_GU;return (n?n+'님에게 드리는 선물 🎁\n\n':'')+'『'+_GT+'』을 무료로 읽어보세요!\n\n'+_GD+'\n\n👉 '+u;}
+  var _GD='AI 에이전트로 업무 자동화하는 실전 가이드 🤖\nAI 사냥꾼 실전 바이블 — 무료 미리보기와 첫 실습 · 전체 유료 구성은 구매 안내에서 확인하세요.';
+  function _msg(n){var u=_GU;return (n?n+'님에게 드리는 선물 🎁\n\n':'')+'『'+_GT+'』 무료 미리보기와 첫 실습을 확인하세요!\n\n'+_GD+'\n\n👉 '+u;}
   window.openGiftModal=function(){
     var el=document.getElementById('gift-modal');if(el)el.style.display='block';
     document.getElementById('gift-name-input').value='';
@@ -7144,10 +6965,10 @@ var Q_VOL3=[
   function _doCopy(txt,bid,orig){
     var b=document.getElementById(bid);
     function _ok(){if(b){b.textContent='✅ 복사됨! 카카오·문자에 붙여넣기';setTimeout(function(){b.textContent=orig;},2800);}}
-    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(_ok).catch(function(){_fbCp(txt);_ok();});}else{_fbCp(txt);_ok();}
+    BibleSharing.copy(txt).then(function(copied){if(copied)_ok();});
   }
   window.giftCopyMsg=function(){var n=(document.getElementById('gift-name-input').value||'').trim();_doCopy(_msg(n),'gift-btn-msg','📋 선물 메시지 복사');};
-  window.giftCopyLink=function(){var n=(document.getElementById('gift-name-input').value||'').trim();_doCopy(n?_GU+'?ref='+encodeURIComponent(n):_GU,'gift-btn-link','🔗 링크만 복사');};
+  window.giftCopyLink=function(){var n=(document.getElementById('gift-name-input').value||'').trim();_doCopy(_GU,'gift-btn-link','🔗 링크만 복사');};
 })();
 </script>
 <script>
@@ -7209,16 +7030,16 @@ var Q_VOL3=[
     <div id="cgate-sub">전국 완독자 중 AI를 가장 잘 사냥하는<br><strong>대한민국 0.01%만 모인 공간</strong></div>
     <div id="cgate-methods">
       <div class="cgate-method">
-        <div class="cgate-method-title">📤 방법 1 — 책 공유하기</div>
-        <div class="cgate-method-desc">이 책 링크를 1명에게 공유하면<br>즉시 입장 코드가 공개됩니다</div>
-        <button class="cgate-method-btn cgate-share-btn" id="cgate-share-btn">📤 공유하고 코드 받기</button>
+        <div class="cgate-method-title">📤 선택 — 무료 미리보기 공유</div>
+        <div class="cgate-method-desc">필요한 동료에게 링크를 보내주세요.<br>공유·후기 없이도 아래에서 입장 안내를 볼 수 있습니다.</div>
+        <button class="cgate-method-btn cgate-share-btn" id="cgate-share-btn">🔗 미리보기 링크 복사</button>
       </div>
       <div id="cgate-divider">또는</div>
       <div class="cgate-method">
-        <div class="cgate-method-title">✍️ 방법 2 — 한 줄 후기 남기기</div>
-        <div class="cgate-method-desc">읽고 느낀 점 한 줄이면 충분합니다<br>후기 제출 즉시 코드가 공개됩니다</div>
+        <div class="cgate-method-title">✍️ 선택 — 한 줄 후기 남기기</div>
+        <div class="cgate-method-desc">좋았던 점과 어려웠던 점을 자유롭게 남겨주세요.<br>제출하면 익명 후기로 공개될 수 있습니다. 개인정보는 적지 마세요.</div>
         <textarea id="cgate-review-text" placeholder="예) AI 에이전트 개념이 드디어 잡혔어요!"></textarea>
-        <button class="cgate-method-btn cgate-review-btn" id="cgate-review-btn">✍️ 후기 남기고 코드 받기</button>
+        <button class="cgate-method-btn cgate-review-btn" id="cgate-review-btn">✍️ 선택 후기 제출</button>
       </div>
     </div>
     <div id="cgate-code-section">
@@ -7229,7 +7050,7 @@ var Q_VOL3=[
       </div>
       <a id="cgate-enter-btn" href="https://open.kakao.com/o/gs65vQmi" target="_blank" rel="noopener">🍊 카카오 오픈채팅 입장하기</a>
     </div>
-    <button id="cgate-already-btn">이미 완료했어요 → 코드 보기</button>
+    <button id="cgate-already-btn" style="min-height:44px;color:#374151;font-size:.85rem;font-weight:700;">공유·후기 없이 입장 안내 보기 →</button>
   </div>
 </div>
 <script>
@@ -7249,27 +7070,17 @@ var Q_VOL3=[
     if(a){d.forEach(function(x,i){setTimeout(function(){x.classList.add('show');},i*140+300);});}else{d.forEach(function(x){x.classList.add('show');});}
   }
   document.getElementById('cgate-share-btn').onclick=function(){
-    var url=location.origin+location.pathname,btn=this;
-    function done(){btn.textContent='✅ 복사 완료!';btn.classList.add('ok');setTimeout(function(){_unlock(true);},1000);}
-    try{navigator.clipboard.writeText(url).then(done).catch(function(){_fb(url,done);});}catch(e){_fb(url,done);}
+    var btn=this;
+    BibleSharing.copy(BibleSharing.publicUrl()).then(function(copied){if(copied){btn.textContent='✅ 링크 복사 완료';btn.classList.add('ok');}});
   };
-  function _fb(t,cb){try{var x=document.createElement('textarea');x.value=t;x.style.cssText='position:fixed;top:-9999px';document.body.appendChild(x);x.select();document.execCommand('copy');document.body.removeChild(x);cb();}catch(e){_unlock(true);}}
   document.getElementById('cgate-review-btn').onclick=function(){
     var txt=(document.getElementById('cgate-review-text').value||'').trim();
     if(txt.length<5){var el=document.getElementById('cgate-review-text');el.classList.add('err');setTimeout(function(){el.classList.remove('err');},800);return;}
     var btn=this;btn.disabled=true;btn.textContent='저장 중...';
-    fetch(_SBU+'/rest/v1/ebook_reviews',{method:'POST',headers:{'apikey':_SBK,'Authorization':'Bearer '+_SBK,'Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify({book:_BID,name:'익명',content:txt})}).catch(function(){}).finally(function(){_unlock(true);});
+    fetch(_SBU+'/rest/v1/ebook_reviews',{method:'POST',headers:{'apikey':_SBK,'Authorization':'Bearer '+_SBK,'Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify({book:_BID,name:'익명',content:txt})}).then(function(response){if(!response.ok)throw new Error('review save failed');btn.textContent='후기를 제출했습니다';}).catch(function(){btn.disabled=false;btn.textContent='저장하지 못했습니다 — 다시 시도';});
   };
   document.getElementById('cgate-already-btn').onclick=function(){
-    if(localStorage.getItem(_GKEY)){_showCode(false);}
-    else{
-      var self=this,m=document.getElementById('cgate-methods');
-      m.scrollIntoView({behavior:'smooth',block:'nearest'});
-      m.classList.add('cgate-shake');
-      setTimeout(function(){m.classList.remove('cgate-shake');},550);
-      self.textContent='⬆️ 위에서 공유 또는 후기를 먼저!';
-      setTimeout(function(){self.textContent='이미 완료했어요 → 코드 보기';},2200);
-    }
+    _unlock(true);
   };
   document.getElementById('cgate-close').onclick=_closeGate;
   document.getElementById('cgate-overlay').onclick=function(e){if(e.target===this)_closeGate();};
@@ -7304,27 +7115,7 @@ var Q_VOL3=[
 })();
 </script>
 <!-- 👁 실시간 독자 수 + 누적 방문자(5권) 전권 통일 — 2026-06-22 -->
-<script>
-(function(){
-  function mk(h){var d=document.createElement('div');d.innerHTML=h;return d.firstElementChild;}
-  if(!document.getElementById('lr-style')){var st=document.createElement('style');st.id='lr-style';
-    st.textContent='@keyframes lrpulse{0%{box-shadow:0 0 0 0 rgba(22,163,74,.5)}70%{box-shadow:0 0 0 6px rgba(22,163,74,0)}100%{box-shadow:0 0 0 0 rgba(22,163,74,0)}}';
-    document.head.appendChild(st);}
-  var live=mk('<span id="live-readers" style="display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:700;color:#16a34a;background:rgba(22,163,74,.12);border:1px solid rgba(22,163,74,.35);border-radius:20px;padding:1px 8px;margin-left:6px;white-space:nowrap;vertical-align:middle;"><span style="width:6px;height:6px;border-radius:50%;background:#16a34a;display:inline-block;animation:lrpulse 1.6s infinite;"></span>지금 <b id="lr-n" style="color:#15803d;">37</b>명 읽는 중</span>');
-  var vn=document.getElementById('visit-num');
-  if(vn){ vn.parentElement.appendChild(live); }
-  else {
-    var host=document.querySelector('.header')||document.querySelector('h1')||document.body;
-    var row=mk('<div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:8px 0;font-size:11px;opacity:.88;"><span>👁</span><span>누적 방문자</span><span style="background:#C15F3C;color:#fff;font-weight:700;padding:0 6px;border-radius:3px;">20,000+</span></div>');
-    row.appendChild(live);
-    if(host.tagName==='H1'){host.insertAdjacentElement('afterend',row);}else{host.appendChild(row);}
-  }
-  var n=document.getElementById('lr-n'); if(!n)return;
-  var base=24+Math.floor((Date.now()/89000)%40);
-  function tick(){base+=Math.round((Math.random()-0.45)*3); if(base<18)base=18; if(base>78)base=78; n.textContent=base; setTimeout(tick,2400+Math.random()*3000);}
-  n.textContent=base; tick();
-})();
-</script>
+<!-- Reader usability: copyright credit remains; synthetic counters and global browser blocking removed. -->
 <!-- 상단 배너 닫기(X) — 2026-06-22 -->
 <script>
 (function(){
@@ -7337,72 +7128,30 @@ var Q_VOL3=[
   if(getComputedStyle(ban).position==='static')ban.style.position='relative';
   var x=document.createElement('button');
   x.className='aib-ban-x'; x.setAttribute('aria-label','배너 닫기'); x.textContent='✕';
-  x.style.cssText='position:absolute;top:50%;right:8px;transform:translateY(-50%);background:rgba(255,255,255,.18);color:#fff;border:1px solid rgba(255,255,255,.35);border-radius:50%;width:22px;height:22px;font-size:11px;line-height:1;cursor:pointer;padding:0;z-index:2;';
+  x.style.cssText='position:absolute;top:50%;right:8px;transform:translateY(-50%);background:rgba(255,255,255,.18);color:#fff;border:1px solid rgba(255,255,255,.35);border-radius:50%;width:44px;height:44px;font-size:14px;line-height:1;cursor:pointer;padding:0;z-index:2;';
   x.onclick=function(){ban.style.display='none';try{localStorage.setItem('aib_banner_closed','1');}catch(e){}};
   ban.appendChild(x);
 })();
 </script>
 <!-- 복사 시도 시 확실한 경고 + 노션기록 POST · 저자기기 면제 — 2026-06-22 -->
-<script>
-(function(){
-  if(window.__jandaCopyGuard)return; window.__jandaCopyGuard=true;
-  var AUTHOR=(function(){try{var q=location.search;
-    if(/[?&]author=1\b/.test(q))localStorage.setItem('janda_author','1');
-    var h=location.hostname;
-    return location.protocol==='file:'||h==='localhost'||h==='127.0.0.1'||localStorage.getItem('janda_author')==='1';
-  }catch(e){return false;}})();
-  if(AUTHOR)return;
-  var ref=(Math.random().toString(36).slice(2,8)+Date.now().toString(36).slice(-4)).toUpperCase();
-  var WARN='⚠️ 이 콘텐츠는 잔다(JANDA)·리미트리스맨 저작권 보호 자료입니다.\n무단 복사·재배포 시 저작권법 제136조 및 민법상 손해배상 책임이 따릅니다.\n이 복사 시도는 기록되었습니다. 정식 구매: https://vibecodingbible.jbooking.kr\n[ref:'+ref+']';
-  var logged=false;
-  function logAttempt(type){
-    if(logged)return; logged=true;
-    try{ fetch('https://aitf-api.onrender.com/webhook/copy-attempt',{method:'POST',keepalive:true,
-      headers:{'Content-Type':'text/plain'},
-      body:JSON.stringify({type:type,ref:ref,page:location.pathname.split('/').pop()||'index.html',
-        ua:navigator.userAgent,ref_url:document.referrer||''})}).catch(function(){}); }catch(e){}
-  }
-  function showWarn(){
-    var o=document.getElementById('__jcopywarn');
-    if(o){o.style.display='flex';return;}
-    o=document.createElement('div');o.id='__jcopywarn';
-    o.style.cssText='position:fixed;inset:0;z-index:2147483647;display:flex;align-items:center;justify-content:center;background:rgba(8,6,12,.72);backdrop-filter:blur(3px);padding:24px;';
-    o.innerHTML='<div style="max-width:440px;width:100%;background:linear-gradient(135deg,#7c2d12,#9a3412);border:2px solid #fbbf24;border-radius:16px;padding:26px 22px;text-align:center;font-family:Pretendard,system-ui,sans-serif;box-shadow:0 20px 60px rgba(0,0,0,.6);">'
-      +'<div style="font-size:.74rem;font-weight:800;color:#fbbf24;letter-spacing:.14em;margin-bottom:8px;">⚠ COPYRIGHT PROTECTED</div>'
-      +'<div style="font-size:1.25rem;font-weight:900;color:#fff;margin-bottom:12px;line-height:1.4;">복사가 제한된 콘텐츠입니다</div>'
-      +'<p style="font-size:.9rem;line-height:1.8;color:#fef3c7;margin:0 0 14px;">이 자료는 <b style="color:#fff;">저작권법 제136조</b>로 보호됩니다.<br>무단 복사·재배포 시 <b style="color:#fbbf24;">법적 책임</b>이 따릅니다.<br><b style="color:#fff;">이 복사 시도는 기록되었습니다.</b> <span style="opacity:.7;font-size:.78rem;">(ref:'+ref+')</span></p>'
-      +'<a href="https://vibecodingbible.jbooking.kr" target="_blank" rel="noopener" style="display:inline-block;background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#1a0a00;font-weight:900;padding:12px 26px;border-radius:10px;text-decoration:none;margin-bottom:10px;">정식 구매하고 전체 보기 →</a><br>'
-      +'<button onclick="document.getElementById(&quot;__jcopywarn&quot;).style.display=&quot;none&quot;" style="background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.35);border-radius:8px;padding:8px 18px;font-size:.85rem;cursor:pointer;margin-top:4px;">확인</button>'
-      +'</div>';
-    document.body.appendChild(o);
-  }
-  function handler(e){
-    var type=e.type;
-    try{ if(e.clipboardData){ e.clipboardData.setData('text/plain',WARN);
-      e.clipboardData.setData('text/html','<p>'+WARN.replace(/\n/g,'<br>')+'</p>'); e.preventDefault(); } }catch(_){}
-    logAttempt(type); showWarn();
-  }
-  document.addEventListener('copy',handler,true);
-  document.addEventListener('cut',handler,true);
-})();
-</script>
+<!-- Reader usability: copyright credit remains; synthetic counters and global browser blocking removed. -->
 <!-- SNS 공유바 (시황 권고 위치: 본문 시작 아래) — 2026-06-22 -->
 <script>
 (function(){
   if(window.__jandaShareBar)return; window.__jandaShareBar=true;
-  var URL=location.href.split('#')[0].split('?')[0];
+  var URL='https://aiaijungle.github.io/vibe-ebook/agent-bible.html';
   var TITLE=document.title||'AI 바이블';
   var TXT='AI 바이블 — '+TITLE;
   function open2(u){window.open(u,'_blank','noopener,width=600,height=560');}
   function t(m){var d=document.getElementById('__jsharetoast');if(!d){d=document.createElement('div');d.id='__jsharetoast';d.style.cssText='position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:2147483647;background:#1a1a2e;color:#fff;border:1px solid #a78bfa;padding:10px 18px;border-radius:10px;font-size:.85rem;font-weight:700;opacity:0;transition:opacity .2s;';document.body.appendChild(d);}d.textContent=m;d.style.opacity='1';clearTimeout(d._t);d._t=setTimeout(function(){d.style.opacity='0';},2500);}
-  function copy(){try{navigator.clipboard.writeText(URL);}catch(e){} t('🔗 링크가 복사됐어요!');}
+  function copy(){return BibleSharing.copy(URL);}
   function kakao(){
     if(window.Kakao&&window.Kakao.Share){try{window.Kakao.Share.sendDefault({objectType:'feed',content:{title:TITLE,description:TXT,imageUrl:'https://aiaijungle.github.io/vibe-ebook/assets/bible_cover.png',link:{mobileWebUrl:URL,webUrl:URL}}});return;}catch(e){}}
-    if(navigator.share){navigator.share({title:TITLE,url:URL}).catch(function(){});return;}
-    copy(); t('카카오톡에 붙여넣기 하세요!');
+    if(navigator.share){BibleSharing.share({title:TITLE,text:'무료 미리보기와 첫 실습',url:URL});return;}
+    return copy();
   }
   var W={
-    web:function(){ if(navigator.share){navigator.share({title:TITLE,text:TXT,url:URL}).catch(function(){});} else {kakao();} },
+    web:function(){ if(navigator.share){BibleSharing.share({title:TITLE,text:TXT,url:URL});} else {kakao();} },
     kakao:kakao,
     fb:function(){open2('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(URL));},
     x:function(){open2('https://twitter.com/intent/tweet?text='+encodeURIComponent(TXT)+'&url='+encodeURIComponent(URL));},
@@ -7411,7 +7160,7 @@ var Q_VOL3=[
     copy:copy
   };
   window.__jShare=W;
-  var btns=[['web','📤','공유','#6b7280'],['kakao','💬','카카오','#FEE500'],['fb','f','페북','#1877F2'],['x','𝕏','X','#000000'],['th','@','쓰레드','#101010'],['line','L','라인','#06C755'],['copy','🔗','복사','#a78bfa']];
+  var btns=[['web','📤','공유','#6b7280'],['copy','🔗','링크 복사','#a78bfa']];
   var bar=document.createElement('div');
   bar.className='janda-sns-share';
   bar.style.cssText='display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center;max-width:680px;margin:18px auto;padding:14px 12px;background:rgba(124,58,237,.06);border:1px solid rgba(167,139,250,.3);border-radius:14px;';
@@ -7482,7 +7231,7 @@ html.paywall-unlocked #un-teaser .un-gate{display:none}
   <h3>⓪-1 신설 장 미리보기 (앞 두 문단 공개)</h3>
   <div id="un-teaser"><p>에이전트에게 장기기억을 주는 가장 싼 방법은 벡터 DB가 아니라 '노트 폴더'였다. 옵시디언 vault의 마크다운을 그대로 에이전트 메모리 노트로 변환하는 스크립트 하나로, 사람이 쓴 기록과 에이전트가 쓴 기록이 같은 곳에 쌓인다.</p><p>함정은 조용했다. 지식 수집 엔진이 매일 25건을 모았는데 메모리엔 0건이 저장됐다. 없는 함수 이름을 import하고 있었고, 예외는 삼켜졌다. 숫자가 늘지 않으면 잘림이나 import 오류를 먼저 의심하라.</p><div class="un-locked"><p>두 번째 장은 SSOT다. 30개 에이전트의 상태가 다섯 곳에 흩어져 있었고, 조정자는 오래된 스냅샷을 보고 '멈춘 에이전트'를 깨우려 했다. 상태는 한 곳에만 쓰고 나머지는 읽기만 하게 바꿨다.</p><p>그 한 곳은 append-only 테이블이다. 덮어쓰지 않으니 '언제 누가 바꿨나'가 남고, 에이전트가 자기 상태를 오인하는 일이 사라졌다. 설계도와 체크리스트는 본문에 있다.</p></div>
   <div class="un-gate"><span class="un-gate-txt">이어지는 내용은 구매자 본문에서 열립니다</span><small>이미 구매하셨다면 본문 잠금 해제 후 다시 열면 전부 보입니다</small></div></div>
-  
+
 <h3>① 모델 세대가 바뀌었습니다 — 책의 '4.x' 표기는 이렇게 읽으세요</h3>
 <table><tr><th>책에 나온 표기</th><th>2026.10 현재(공식 모델 ID)</th><th>가격(입력/출력, 100만 토큰)</th><th>용도</th></tr>
 <tr><td>Haiku 4.5</td><td><code>claude-haiku-5-5</code></td><td>$0.10 / $0.50</td><td>라우팅·분류·대량 처리(10배 저렴)</td></tr>

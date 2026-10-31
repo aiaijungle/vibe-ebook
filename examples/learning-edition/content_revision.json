@@ -1,0 +1,37 @@
+{
+  "fictional": true,
+  "v1": {
+    "source_id": "DOC-01-v1",
+    "class_id": "CLASS-01",
+    "date": "2026-11-03",
+    "time": "14:00–15:00",
+    "price_krw": 35000,
+    "room": "S-01",
+    "audience": "성인 입문자",
+    "application": "확인 필요",
+    "remaining": "확인 필요"
+  },
+  "v2": {
+    "source_id": "DOC-01-v2",
+    "class_id": "CLASS-01",
+    "date": "2026-11-05",
+    "time": "14:00–15:00",
+    "price_krw": 40000,
+    "room": "S-01",
+    "audience": "성인 입문자",
+    "application": "담당자 문의 후 신청 방법 안내",
+    "remaining": "확인 필요"
+  },
+  "changes": [
+    "date",
+    "price_krw",
+    "application"
+  ],
+  "unchanged": [
+    "class_id",
+    "time",
+    "room",
+    "audience",
+    "remaining"
+  ]
+}

@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Free AI Draft-Review Exercise · AI Bible</title>
+  <meta name="description" content="Try a complete AI Bible exercise: review a fictional class announcement, find unsupported claims, handle a price change and check your work against an answer key.">
+  <link rel="canonical" href="https://aiaijungle.github.io/vibe-ebook/en/first-workflow.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Free AI Draft-Review Exercise · AI Bible">
+  <meta property="og:description" content="One fictional source, a flawed draft and an answer key. Learn to check AI work before publishing it.">
+  <meta property="og:url" content="https://aiaijungle.github.io/vibe-ebook/en/first-workflow.html">
+  <meta property="og:locale" content="en_US">
+  <link rel="stylesheet" href="../assets/global-edition.css">
+  <link rel="stylesheet" href="./edition-guide.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="wrap">
+  <a class="brand" href="./sales.html">AI BIBLE<small>THE PRACTICAL SERIES</small></a>
+  <nav aria-label="Main navigation"><a href="./sales.html#volumes">Five volumes</a><a href="./ai-bible-global.html">Learning guide</a><a href="./sales.html#buying-guide">Purchase information</a></nav>
+</header>
+<main id="main" class="wrap">
+<article class="section edition-sample">
+  <p class="eyebrow">COMPLETE FREE SAMPLE · VOLUME 1</p>
+  <h1>A polished draft.<br><span>Five things to check.</span></h1>
+  <p class="lead">Turn a fictional class announcement into a draft you can review. Then find deliberate errors and update the price without leaving conflicting information behind.</p>
+  <div class="edition-callout"><h2>What you need</h2><p>A place to take notes and, optionally, an AI chat tool you already use. You can review the supplied draft without an AI account. No coding, purchase password or real customer data is needed.</p><p><strong>What you will keep:</strong> a brief, a corrected draft, a fact-check record and questions for the source owner. This exercise does not publish or send anything.</p></div>
+
+  <h2 id="source">1. Keep one source of truth</h2>
+  <p>All details below are fictional. Treat this source as the only approved information. Do not search for a real class or add a registration link.</p>
+  <pre class="edition-code"><code>SOURCE: CLASS-NOTICE-01 / revision 1 / fictional training data
+Class ID: CLASS-01
+Class: Introductory pottery workshop
+Room: Studio A / resource ID S-01
+Date: 3 November 2026
+Time: 14:00–15:00, Asia/Seoul (UTC+09:00)
+Price: KRW 35,000
+Registration method: not yet confirmed
+Remaining places: not yet confirmed
+Materials included: not yet confirmed
+Discounts or gifts: none stated in this source</code></pre>
+  <p>Keep the currency and time zone exactly as given. A translated announcement should not quietly convert the price, choose a local time zone or invent an exchange rate.</p>
+
+  <h2 id="brief">2. Ask for a reviewable draft</h2>
+  <p>Copy the source and this brief into your chosen AI chat tool, or use them to write your own draft. The supplied flawed draft in the next step lets you complete the exercise either way.</p>
+  <pre class="edition-code"><code>Use only CLASS-NOTICE-01, revision 1, below.
+Audience: someone considering the introductory pottery workshop.
+Create: one short announcement and three FAQs.
+Preserve the date, time zone, currency, price and room.
+Do not invent places, links, discounts, gifts or included materials.
+Put missing information in a Questions for the owner section.
+Return: Draft / Fact-check record / Questions for the owner.
+For each factual claim, name its source field.
+Work on text only. Do not publish, send or book anything.
+
+[Paste the source here.]</code></pre>
+
+  <h2 id="challenge">3. Find the deliberate errors</h2>
+  <p>Compare this draft with revision 1. List every changed or unsupported fact before opening the answer key.</p>
+  <blockquote><p>Join our introductory pottery workshop in Studio A on 3 November 2026, 15:00–16:00 (Asia/Seoul). Entry is KRW 30,000. Only two places remain! Materials are included, and the first two people receive a free gift.</p></blockquote>
+  <details><summary>Open the answer key: five issues</summary><ol><li><strong>Time:</strong> the approved time is 14:00–15:00, not 15:00–16:00.</li><li><strong>Price:</strong> revision 1 says KRW 35,000, not KRW 30,000.</li><li><strong>Remaining places:</strong> the source does not confirm a number. Remove the claim that only two places remain.</li><li><strong>Included materials:</strong> this is unconfirmed. Ask the owner instead of stating that materials are included.</li><li><strong>Gift:</strong> the source states no gift offer. Remove the claim; this does not establish that a gift could never be offered.</li></ol><p>The class, room and date match the source. Registration is still unconfirmed: keep it as a question rather than inventing instructions.</p></details>
+  <p>A useful correction says what changed and why: “Time corrected using the source Time field.” Asking the AI to sound more professional would not address these errors.</p>
+
+  <h2 id="change">4. Handle a changed fact</h2>
+  <p>The owner now supplies <strong>revision 2</strong>: the price is <strong>KRW 40,000</strong>. All other fields remain the same. Update both the announcement and the FAQ. Label your result with the new source revision.</p>
+  <details><summary>See one acceptable result</summary><p><strong>Announcement · CLASS-NOTICE-01, revision 2:</strong> The introductory pottery workshop takes place in Studio A on 3 November 2026, from 14:00 to 15:00 (Asia/Seoul, UTC+09:00). The price is KRW 40,000. Registration details are awaiting confirmation.</p><p><strong>FAQ 1 — What does it cost?</strong> KRW 40,000, according to the Price field in revision 2.</p><p><strong>FAQ 2 — When and where is it?</strong> 3 November 2026, 14:00–15:00, Asia/Seoul, in Studio A (S-01).</p><p><strong>FAQ 3 — How do I register, and what is included?</strong> Registration and included materials are not yet confirmed.</p><p><strong>Questions for the owner:</strong> What is the approved registration method? How many places remain? Are materials included?</p><p>Different wording is fine if the facts, source revision and unknowns remain intact. This is a reviewed internal draft, not a published announcement.</p></details>
+
+  <h2 id="finish">5. Leave evidence of completion</h2>
+  <fieldset class="edition-checks"><legend>Your completion check</legend><label><input type="checkbox">I found all five issues in the deliberately flawed draft.</label><label><input type="checkbox">The announcement and FAQ both use KRW 40,000 from revision 2.</label><label><input type="checkbox">Unconfirmed facts remain questions; I did not invent a link or offer.</label><label><input type="checkbox">I kept the source ID, revision, currency and time zone.</label><label><input type="checkbox">I recorded the review effort and did not publish or send the draft.</label></fieldset>
+  <p class="note">These checkboxes are a temporary worksheet and are not saved. Copy your notes or print this page to keep a record. Open the answer sections before printing if you want them included.</p>
+  <pre class="edition-code edition-log"><code>Source used:
+Drafting time:
+Review and correction time:
+Tool cost, if any (record unknown if unavailable):
+Errors found:
+Questions still open:
+One instruction I would improve next time:</code></pre>
+  <p>If a wrong fact remains, revise the draft and check it again. If you cannot confirm a fact, leave it unresolved. A useful workflow makes uncertainty visible instead of treating an attractive answer as proof.</p>
+
+  <h2 id="next">Choose your next step</h2>
+  <p><a href="./book1.html">Volume 1</a> develops this into a repeatable content workflow. <a href="./ai-bible-global.html#prepare">The learning guide</a> shows what to prepare for tools, code verification, agents and operations. You can also inspect the <a href="./practice/volume-1.html">Volume 1 practice companion introduction</a>; its complete material uses the existing purchase password.</p>
+  <div class="actions"><a class="btn" href="./sales.html#volumes">Compare the five volumes →</a><a class="btn secondary" href="./sales.html#buying-guide">Check format and access →</a></div>
+</article>
+</main>
+<footer class="wrap"><p><strong>AI Bible · By Limitlessman</strong></p><p>Public educational sample · 31 October 2026 · Fictional data. Purchase and access support: <a href="mailto:housepeoplekorea@gmail.com">housepeoplekorea@gmail.com</a></p><p><a href="./media-kit.html">Series media kit</a> · <a href="./sales.html">English series page</a></p></footer>
+</body>
+</html>

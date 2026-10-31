@@ -283,6 +283,8 @@
 <style id="m390fix">html,body{max-width:100%;overflow-x:hidden}pre{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}pre code,code[class*="language-"]{white-space:pre}img,table,video,svg{max-width:100%;height:auto}@media(max-width:480px){pre,code{font-size:12px}}</style>
 </head>
 <body>
+<div role="navigation" class="edition-reader-route" aria-label="Learning resources" style="box-sizing:border-box;width:calc(100% - 32px);max-width:960px;margin:18px auto;padding:14px 18px;background:#edf2fa;color:#142d4c;border:1px solid #cbd8e9;border-radius:8px;font:14px/1.7 system-ui,sans-serif;overflow-wrap:anywhere;"><strong>Practice before you scale.</strong> <a href="./first-workflow.html" style="color:#173f85;text-decoration:underline;">Try the complete free draft-review exercise</a> · <a href="./ai-bible-global.html#reading-order" style="color:#173f85;text-decoration:underline;">Suggested learning order: 1 → 2 → 4 → 3 → 5</a> · <a href="./sales.html#buying-guide" style="color:#173f85;text-decoration:underline;">Format, language and access</a></div>
+
 <!-- AI Era Value Banner -->
 <div style="background:linear-gradient(135deg,#0d001f,#1a0040);padding:10px 16px;text-align:center;font-family:'Pretendard','Apple SD Gothic Neo',sans-serif;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;position:sticky;top:0;z-index:10001;border-bottom:1px solid rgba(139,92,246,0.3);">
   <span style="color:#c4b5fd;font-weight:800;font-size:0.82rem;">The gap in the AI era is widening this very moment.</span>
@@ -1376,7 +1378,7 @@ Check after each file modification to ensure it runs smoothly.</pre>
         <div class="label">🎯 Learning Goals for This Lecture</div>
         ① I understand the orchestrator - sub-agent relationship<br>
         ② I can write parallel processing prompts in Claude Code<br>
-        ③ I know the existence and basic patterns of Agent SDK
+        ③ I can distinguish a Client SDK API pipeline from the Claude Agent SDK
       </div>
 
       <blockquote>
@@ -1406,11 +1408,11 @@ Check after each file modification to ensure it runs smoothly.</pre>
 
 Analyze each independently, and once done, create a comprehensive report.</pre>
 
-      <h2>Agent SDK — Build Teams in Code</h2>
+      <h2>Client SDK — Connect API Calls in Code</h2>
 
-      <p>With Anthropic Agent SDK, I can build multi-agent systems in code. This is the core of JANDA Shixuan AGI.</p>
+      <p>The following example uses the Anthropic Client SDK to call the Messages API and pass one result to another call. It is not a Claude Agent SDK example. The <a href="https://code.claude.com/docs/en/agent-sdk/overview">Claude Agent SDK</a> provides Claude Code tools, an agent loop and context management as a separate library. Choose the interface before following its installation guide.</p>
 
-      <div class="code-label">Python — Agent SDK Sequential Pipeline Pattern (Diagnosis → Improvement)</div>
+      <div class="code-label">Python — Client SDK Sequential Pipeline Pattern (Diagnosis → Improvement)</div>
       <pre class="code">import anthropic
 
 client = anthropic.Anthropic()

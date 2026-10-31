@@ -311,6 +311,8 @@ a:hover{text-decoration:underline}
 <style id="m390fix">html,body{max-width:100%;overflow-x:hidden}pre{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}pre code,code[class*="language-"]{white-space:pre}img,table,video,svg{max-width:100%;height:auto}@media(max-width:480px){pre,code{font-size:12px}}</style>
 </head>
 <body>
+<div role="navigation" class="edition-reader-route" aria-label="Learning resources" style="box-sizing:border-box;width:calc(100% - 32px);max-width:960px;margin:18px auto;padding:14px 18px;background:#edf2fa;color:#142d4c;border:1px solid #cbd8e9;border-radius:8px;font:14px/1.7 system-ui,sans-serif;overflow-wrap:anywhere;"><strong>Practice before you scale.</strong> <a href="./first-workflow.html" style="color:#173f85;text-decoration:underline;">Try the complete free draft-review exercise</a> · <a href="./ai-bible-global.html#reading-order" style="color:#173f85;text-decoration:underline;">Suggested learning order: 1 → 2 → 4 → 3 → 5</a> · <a href="./sales.html#buying-guide" style="color:#173f85;text-decoration:underline;">Format, language and access</a></div>
+
 
 <!-- ── Lock Screen ── -->
 <div id="lock-screen">
@@ -475,7 +477,7 @@ a:hover{text-decoration:underline}
 <li><a href='#section-118' class='toc-h3'>Relay to treat short-term memory loss: ‘Worksharing MD (Claude format)’</a></li>
 <li><a href='#section-119' class='toc-h3'>A time machine that erases the fear of endless digging: ‘Save Point (Git)’</a></li>
 <li><a href='#section-120' class='toc-h2'>🧠 Chapter 20: Top 1% Vibe Coder’s 3 Secret Weapons (Docs Injection, Hallucination Control, Modularization)</a></li>
-<li><a href='#section-121' class='toc-h3'>Documentation Injection — Top Secret to reduce AI hallucinations to 0%</a></li>
+<li><a href='#section-121' class='toc-h3'>Documentation Injection — Reduce unsupported answers with current sources</a></li>
 <li><a href='#section-122' class='toc-h3'>Hallucination Control — How to make AI say it doesn’t know</a></li>
 <li><a href='#section-123' class='toc-h3'>Modularization — The only way to maintain 15 bots alone</a></li>
 <li><a href='#section-124' class='toc-h2'>📡 Chapter 21: AI Agent Practical Operation Log — Vivid records of Telegram Bridge and autonomous bots</a></li>
@@ -520,8 +522,8 @@ a:hover{text-decoration:underline}
 <li><a href='#section-163' class='toc-h2'>🤖 2. Tag team strategy between Claude and Anti-Gravity (Google)</a></li>
 <li><a href='#section-164' class='toc-h2'>🧱 3. ‘Modularization’ secret to keeping AI smart</a></li>
 <li><a href='#section-165' class='toc-h2'>👻 4. Setting up an ‘infinite background bot’ that makes money even while you sleep</a></li>
-<li><a href='#section-166' class='toc-h1'>[Advanced Chapter 4] (Expert Level) The secret to injecting ‘Docs (official documents)’ to eliminate hallucinations in AI</a></li>
-<li><a href='#section-167' class='toc-h2'>📚 1. Cure for the incurable disease ‘Hallucination’: Docs</a></li>
+<li><a href='#section-166' class='toc-h1'>[Advanced Chapter 4] (Expert Level) Using ‘Docs (official documents)’ to check AI answers</a></li>
+<li><a href='#section-167' class='toc-h2'>📚 1. Checking unsupported answers against current documentation</a></li>
 <li><a href='#section-168' class='toc-h2'>🧠 2. Two practical ways to feed Docs to Claude and Anti-Gravity</a></li>
 <li><a href='#section-169' class='toc-h3'>1) Directly throwing a Markdown (.md) document (the most primitive and reliable method)</a></li>
 <li><a href='#section-170' class='toc-h3'>2) Auto document reference (Claude Code MCP)</a></li>
@@ -652,7 +654,7 @@ a:hover{text-decoration:underline}
 </ul>
 <h3 id='section-8' class='content-h3'>Things a Vibe Coder ‘Never’ Should Do (DON’Ts)</h3>
 <ol class='md-ol'>
-<li>[Absolutely no] Editing typos or code yourself: Take your hands off the keyboard. Even if there is a single spelling error, you have to tell the agent, “There is a typo here in the code, please correct it and spit out the entire code again.” The moment you make a manual correction, the AI ​​overwrites the wrong code using only its past memories without knowing what you modified. (This is the number one reason why beginners build everything and then blow it up at the end.)</li>
+<li>Keep edits synchronized: you can edit code yourself. Before the next AI change, have it read the current files and diff so it does not rely on an earlier conversation. Save a recoverable version and check the affected behavior after either human or AI edits.</li>
 <li>[Absolutely prohibited] Changing the topic in one chat window: Don't suddenly ask to change the homepage design while building a payment bot. The context window (brain capacity) is seriously messed up. When working on a completely new feature or module, you should always open ‘New Chat’ to give the AI’s brain a refreshing reset.</li>
 <li>[Absolutely prohibited] Mindlessly mixing 'slices of code' given by others into your product: Do not forcefully insert snippets (pieces of code) from unknown sources. “Please safely refactor and integrate this code into our project,” so that it doesn’t conflict with existing systems once it goes through the AI ​​conveyor belt.</li>
 </ol>
@@ -1578,7 +1580,7 @@ Press the [Continue] button to proceed.</code></pre><p class='para'>The KakaoTal
 <p class='para'>This chapter is spicy.</p>
 <p class='para'>If the previous 20 chapters were about the basics and practice of vibe coding, this chapter is a technique known only to experts who overwhelmingly surpass it. A warning before you read — if you don't know these three things, your AI will become increasingly dumber as you scale.</p>
 <hr class='divider'>
-<h3 id='section-121' class='content-h3'>Documentation Injection — Top Secret to reduce AI hallucinations to 0%</h3>
+<h3 id='section-121' class='content-h3'>Documentation Injection — Reduce unsupported answers with current sources</h3><p class="para">Official documentation provides evidence, not a guarantee of zero errors. Ask the AI to identify the relevant document version and passage, mark unsupported assumptions and run the applicable checks.</p>
 <p class='para'>The reason AI writes wrong code is not because it is stupid. This is because it uses old knowledge.</p>
 <p class='para'>Neither Claude nor GPT know about changes to the API since the time of training. There is no way to know whether Toss Payments changed the payment parameters last year or whether Kiwoom Securities OpenAPI changed the function name. So, I write the code as if everything is fine, but when I actually run it, I get a 404 error. This is called <strong>Hallucination</strong>.</p>
 <p class='para'>There is only one solution — directly feed the AI the official, up-to-date documentation (Docs).</p>
@@ -2151,10 +2153,10 @@ The popup window contents are as follows.
 </ol>
 <p class='para'>Now you are the perfect admiral <strong>controlling costs, commanding two AIs, assembling modules like block toys and running them endlessly</strong>. Run every business in the world with Vibe Coding.</p>
 <p class='para'><br><br></p>
-<h1 id='section-166' class='content-h1'>[Advanced Chapter 4] (Expert Level) The secret to injecting ‘Docs (official documents)’ to eliminate hallucinations in AI</h1>
+<h1 id='section-166' class='content-h1'>[Advanced Chapter 4] (Expert Level) Using ‘Docs (official documents)’ to check AI answers</h1>
 <p class='para'>There is a critical limitation that non-developer Admirals most often encounter. This is <strong>"a phenomenon in which AI writes an old version of code and cannot be executed."</strong> Because AIs have learned from past data, they don't know how to use the latest version. We will teach you the top secret <strong>'Docs (document) injection'</strong> technique from top experts to solve this problem.</p>
 <hr class='divider'>
-<h2 id='section-167' class='content-h2'>📚 1. Cure for the incurable disease ‘Hallucination’: Docs</h2>
+<h2 id='section-167' class='content-h2'>📚 1. Checking unsupported answers against current documentation</h2>
 <p class='para'>Claude and Antigravity sometimes pretend to know something they don't know and spit out code. This is especially critical when developing recently updated packages (e.g. <code>Google GenAI</code>, <code>latest Discord.py</code>).</p>
 <p class='para'>The only way to prevent this is to "feed them a whole document (Docs) before giving an order"**.</p>
 <h2 id='section-168' class='content-h2'>🧠 2. Two practical ways to feed Docs to Claude and Anti-Gravity</h2>

@@ -1084,6 +1084,8 @@
 </head>
 
 <body>
+<div role="navigation" class="edition-reader-route" aria-label="Learning resources" style="box-sizing:border-box;width:calc(100% - 32px);max-width:960px;margin:18px auto;padding:14px 18px;background:#edf2fa;color:#142d4c;border:1px solid #cbd8e9;border-radius:8px;font:14px/1.7 system-ui,sans-serif;overflow-wrap:anywhere;"><strong>Practice before you scale.</strong> <a href="./first-workflow.html" style="color:#173f85;text-decoration:underline;">Try the complete free draft-review exercise</a> · <a href="./ai-bible-global.html#reading-order" style="color:#173f85;text-decoration:underline;">Suggested learning order: 1 → 2 → 4 → 3 → 5</a> · <a href="./sales.html#buying-guide" style="color:#173f85;text-decoration:underline;">Format, language and access</a></div>
+
 <!-- AI Era Value Banner -->
 <div style="background:linear-gradient(135deg,#0d001f,#1a0040);padding:10px 16px;text-align:center;font-family:'Pretendard','Apple SD Gothic Neo',sans-serif;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;position:sticky;top:0;z-index:10001;border-bottom:1px solid rgba(245,158,11,0.3);">
   <span style="color:#fbbf24;font-weight:800;font-size:0.82rem;">The gap in the AI era is widening even as we speak right now.</span>
@@ -1789,10 +1791,7 @@ style="background:linear-gradient(135deg,#fff3e0,#fff7ed);border:1.5px solid #FF
 
         <p>This is not an exaggeration. Let me back it up with numbers.</p>
 
-        <p>Gartner predicts that by 2028, <strong>33%</strong> of enterprise software will include AI agents. According to McKinsey, companies that adopt AI agents experience average <strong>20-40% ROI improvement</strong>. In Korea? The adoption rate of AI agents among large corporations has already exceeded <strong>47%</strong> (as of Q1 2025).
-        </p>
-
-        <p>The question is whether you belong to that 47% or the remaining 53%.</p>
+        <p>Adoption headlines are not enough to decide whether an agent fits your business. Start with a repeatable task, a baseline completion time and a quality criterion. Measure the result on your own workflow before committing to a larger rollout.</p>
 
         <hr>
 
@@ -2945,32 +2944,16 @@ mail = claude("Email introduction: " + sns)</pre>
 
         <p>A's output becomes B's input, and B's output becomes C's input. Like a factory conveyor belt. Each step handles one job perfectly.</p>
 
-        <blockquote>"Breaking down complex tasks into chains improves accuracy by an average of 47%" — Anthropic Prompt Engineering Guide 2024</blockquote>
+        <blockquote>Chaining separates a task into stages whose intermediate outputs can be checked. Whether it improves your result must be measured on the task; no fixed percentage gain is assumed here.</blockquote>
 
         <p>By the end of this article, you'll have a system that takes one blog post and automatically produces SNS content and newsletter introductions.</p>
 
         <hr>
 
-        <h2>1. Why Prompt Chaining is 3x Better — The Data Speaks</h2>
-
-        <p><strong>First, the uncomfortable truth.</strong></p>
-
-        <p>The limitations of simple prompts (entering all requirements at once) are clear. According to Anthropic research, when handling complex tasks with a single prompt, <strong>accuracy often drops below 40%</strong>.</p>
-
-        <p>Why?</p>
-
-        <p><strong>LLMs are vulnerable to "instruction overload."</strong> Once a prompt contains five or more requirements, the model ignores later instructions or produces results that don't add up.</p>
-
-        <p>Stanford HAI's 2024 report puts it this way:</p>
-
-        <blockquote>"Most performance degradation in large language models stems not from model limitations themselves, but from prompt design issues."</blockquote>
-
-        <p><strong>Three overwhelmingly powerful advantages of chaining:</strong></p>
-
-        <p><strong>First, improved accuracy.</strong> According to Anthropic guidelines, breaking complex workflows into chains reduces errors at each step, resulting in an average 47% improvement in overall accuracy.
-        </p>
-
-        <p><strong>Second, debugging becomes easier.</strong> When results are wrong with a single prompt, where's the problem? With chaining, you immediately identify which step went wrong. It's like a factory's quality control process.
+        <h2>1. What chaining changes</h2>
+<p>A long request can be hard to inspect. When the task naturally divides into steps, check each intermediate output before passing it on. There is no universal number of instructions at which a model fails.</p>
+<p><strong>First, inspectable stages.</strong> <a href="https://www.anthropic.com/research/building-effective-agents">Anthropic explains chaining</a> as a workflow for tasks that can be cleanly decomposed, with checks between steps. It trades additional calls and latency for a chance to improve task performance. Measure the outcome instead of assuming a fixed accuracy increase.</p>
+<p><strong>Second, debugging becomes easier.</strong> When results are wrong with a single prompt, where's the problem? With chaining, you immediately identify which step went wrong. It's like a factory's quality control process.
         </p>
 
         <p><strong>Third, reusability.</strong> Each step in a chain you build once can be reused in other projects. Build an "SNS summary node" once, and you just swap the input for any blog post.
@@ -3085,7 +3068,7 @@ if __name__ == "__main__":
 
         <p><strong>Why your AI agent is dumb.</strong> It has no memory. Same answer to the same question every time. Can't remember yesterday's conversation today. Forgets user names. This is dementia-level.</p>
 
-<p>According to Anthropic's 2024 AI Agents report, <strong>73% of production agents experience declining user satisfaction due to lack of memory systems</strong>. Conversely, agents with proper memory systems have 3.2x higher revisit rates.</p>
+<p>Stored context can help an agent continue a task, but the benefit depends on what is retained and how it is retrieved. The previously stated satisfaction and revisit-rate figures do not have a verified primary source here and are not used as evidence. Compare repeat tasks with and without memory, and record stale or incorrectly retrieved facts.</p>
 
 <p>The human brain also has different types of memory. Instant memory, short-term memory, long-term memory, semantic memory. AI agents work the same way. Once you understand the 4 memory systems, your agent can say things like "Oh, you're the person who asked me for coffee recommendations last time."</p>
 
@@ -3535,36 +3518,15 @@ def request_email_approval(to: str, subject: str, body: str):
 
         <hr>
 
-        <h2>2. MIT Research Data: The Magic of AI+Human Collaboration</h2>
-
-        <p>"Can't we just make AI smarter?"</p>
-
-        <p>No. Research proves it.</p>
-
-        <p>According to <strong>MIT Sloan School of Management (2023)</strong> research, compared to AI-only decision-making, <strong>the error rate decreased by 73% in Human-in-the-Loop structures</strong>. The effect was maximized particularly in "high-risk judgment" domains.</p>
-
-        <p>Let's look at the numbers:</p>
-
-        <p><strong>□ AI-Only Decision-Making</strong><br>
-          - General task accuracy: 89%<br>
-          - High-risk task accuracy: 67%<br>
-          - Fatal error rate: 12%</p>
-
-        <p><strong>□ AI + Human-in-the-Loop</strong><br>
-          - General task accuracy: 91% (+2%)<br>
-          - High-risk task accuracy: 94% (+27%)<br>
-          - Fatal error rate: 3.2% (-73%)</p>
-
-        <p>Why is there such a difference? Analysis from <strong>Stanford HAI (Human-Centered AI) Institute</strong>:</p>
-
-        <blockquote>"AI excels at pattern recognition but must rely on human common sense for exceptional situation judgment. HITL is the optimal structure combining AI's strengths (speed, consistency) with human strengths (contextual understanding, ethical judgment)."<br>— Stanford HAI, Human-AI Collaboration Report (2023)</blockquote>
-
-        <div class="highlight-box" style="margin:28px 0">
+        <h2>2. Human review needs its own evidence</h2>
+<p>Human review can catch errors, but adding a reviewer does not guarantee that a system becomes more accurate. A <a href="https://mitsloan.mit.edu/ideas-made-to-matter/when-humans-and-ai-work-best-together-and-when-each-better-alone">MIT Sloan summary of research on human–AI collaboration</a> describes results that vary by task; combined performance did not, on average, beat the best human-only or AI-only option.</p>
+<p>Choose what the reviewer can verify: the intended recipient, source facts, permitted action and expected result. Compare errors, review time and unresolved cases on the same sample tasks. The earlier fixed error-reduction percentages and comparison table are not supported by a verified source in this edition.</p>
+<div class="highlight-box" style="margin:28px 0">
           <strong>✅ STEP 6a Completion Checklist</strong><br><br>
           ☐ &nbsp;Why HITL is necessary — I can explain the risks of AI-only execution<br>
           ☐ &nbsp;I applied the <code>request_email_approval()</code> pattern to my code<br>
           ☐ &nbsp;I understand the Telegram ✅Approve/❌Reject button implementation<br>
-          ☐ &nbsp;MIT research result: 73% error reduction with HITL application — I remember it<br><br>
+          ☐ &nbsp;I can explain what the reviewer checks and how I will measure errors and review effort<br><br>
           <span style="font-size:.85em;opacity:.8">Before moving to STEP 6b, try building a Telegram approval bot yourself once.</span>
         </div>
       </div>
@@ -3574,51 +3536,23 @@ def request_email_approval(to: str, subject: str, body: str):
         <h1 class="ch-title">🤝 STEP 6b — Structuring Multi-Agent Teams</h1>
         <div class="code-block">
           <pre>ResearchAgent(topic) → AnalystAgent(data) → WriterAgent(brief)
-# 3-person pipeline: 40% accuracy increase · 35% creativity improvement</pre>
+# Three-role pipeline: compare accuracy, review effort and cost with a single-role baseline</pre>
         </div>
       </div>
       <div class="ch-body">
         <h2>Multi-Agent Team Structuring</h2>
 
-        <p>An ordinary three working collaboratively beats a lone genius.</p>
-
-        <p>The same applies to AI. Stanford HAI 2024 research proved it. Multi-agent systems are <strong>40% more accurate and 35% more creative than single agents.</strong> Why?</p>
-
-        <blockquote>"If you make one LLM do everything, it ultimately does nothing well."<br>— Stanford HAI, "Multi-Agent Collaboration Benchmark" (2024.03)</blockquote>
-
-        <p>What I'm giving you today isn't theory. It's a <strong>3-agent team you can copy and use right now</strong>. Trend researcher → Data analyst → Content writer. This one pipeline automates all reports, blogs, and market research.</p>
+        <p>Separate roles when they have distinct inputs, responsibilities and checks. A multi-agent design can also add cost, delay and opportunities to pass along an error.</p>
+<p>The previously attributed Stanford accuracy and creativity percentages are not used here because a matching primary source has not been verified. Evaluate the design on your own tasks before expanding it.</p>
+<p>What I'm giving you today isn't theory. It's a <strong>3-agent team you can copy and use right now</strong>. Trend researcher → Data analyst → Content writer. This one pipeline automates all reports, blogs, and market research.</p>
 
         <hr>
 
-        <h2>1. Why is Multi-Agent 40% More Accurate?</h2>
-
-        <p>I'll explain the limitations of a single agent using a bakery analogy.</p><p>A bakery owner does everything alone—mixing dough, baking, packaging, and taking payments. If just 3 customers show up, it all falls apart. While mixing dough, they forget about the oven; while calculating payments, they burn the bread.</p>
-
-<p><strong>This is the "putting everything into one prompt" approach.</strong></p>
-
-<h3>3 Key Findings from Stanford Research</h3>
-
-<p><strong>First, role separation reduces cognitive load.</strong></p>
-
-<p>When you tell GPT-4 "research and analyze and write," 70% of tokens are wasted deciding "what mode should I operate in?" When you separate roles? Each agent achieves <strong>100% focus</strong>.</p>
-
-<p><strong>Second, mutual validation catches hallucinations.</strong></p>
-
-<p>The researcher finds data, and the analyst asks "is this correct?" The analyst's insights get verified by the writer asking "is there evidence?" <strong>Three-layer filtering reduced hallucination rate by 67%</strong>.</p>
-
-<p><strong>Third, expertise simulation improves quality.</strong></p>
-
-<p>The persona "you're a data analyst with 10 years of experience" actually works. In MIT research, LLMs given expert personas showed <strong>28% higher performance on domain-specific tasks</strong>.</p>
-
-<blockquote>Actual numbers: Stanford benchmark results<br>
-- Complex research task accuracy: single agent 62% vs. multi-agent 87%<br>
-- Logical consistency score: single 71 points vs. multi 94 points<br>
-- Task completion time: single 45 seconds vs. multi 52 seconds (7 more seconds for 40% quality improvement)</blockquote>
-
-<p>7 more seconds for 40% better accuracy. Not making this trade-off is foolish.</p>
-
+        <h2>1. When does separating roles help?</h2>
+<p>A researcher can return source references, an analyst can compare claims, and a writer can produce a draft within the approved evidence. Define what each role receives and must return. Giving a role an expert title does not establish real expertise.</p>
+<p>Use the same fictional requests for a single-role baseline and the three-role pipeline. Keep the evaluation criteria fixed: factual accuracy, missing-source handling, review time, total cost and duplicate actions. Preserve disagreements instead of averaging them into a confident answer.</p>
+<p>Independent review is useful only if the reviewer can check evidence. Several agents repeating the same unsupported claim do not make it true. Keep the simpler approach if extra roles do not improve the result enough to justify their cost.</p>
 <hr>
-
 <h2>2. Complete Python Code for the 3-Person Team</h2>
 
 <p>Theory is done. <strong>Copy and run this right now.</strong></p>
