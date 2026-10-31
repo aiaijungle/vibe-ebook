@@ -6375,9 +6375,9 @@ if __name__ == "__main__":
 </section><section id="aib-outcome-evals-20261031" class="aib-deep-practice aib-edition-update"><h3>완료 메시지 대신, 다섯 가지 최종 결과를 채점하기</h3>
 <p>올바른 근거를 전달했다면 다음 질문은 “말을 잘했는가”가 아니라 “허용된 상태로 끝났는가”입니다. 답변에 ‘처리했습니다’라고 써도 원장에 결과가 없으면 성공이 아닙니다. 반대로 승인 대기로 정확히 멈춘 것은 시스템 오류가 아니라 기대한 결과입니다.</p>
 <div class="aib-table-wrap"><table><thead><tr><th>사례</th><th>기대 상태</th><th>가상 원장 신규 기록</th></tr></thead><tbody>
-<tr><td>근거 있음·승인 있음·도구 정상</td><td>recorded</td><td>1건</td></tr><tr><td>근거 누락</td><td>needs_evidence</td><td>0건</td></tr><tr><td>승인 없음</td><td>awaiting_approval</td><td>0건</td></tr><tr><td>같은 요청 이미 기록됨</td><td>already_recorded</td><td>0건</td></tr><tr><td>도구 결과 불명확</td><td>reconcile_required</td><td>0건 · 실제 상태 확인 후 판단</td></tr>
+<tr><td>근거 있음·승인 있음·도구 정상</td><td>recorded</td><td>1건</td></tr><tr><td>근거 누락</td><td>needs_evidence</td><td>0건</td></tr><tr><td>승인 없음</td><td>awaiting_approval</td><td>0건</td></tr><tr><td>같은 요청 이미 기록됨</td><td>already_recorded</td><td>0건</td></tr><tr><td>도구 결과 불명확</td><td>reconcile_required</td><td>이 모의 코드에서는 0건 · 실제 외부 결과는 미확정</td></tr>
 </tbody></table></div>
-<p><strong>실행:</strong> 저장소 전체를 받은 뒤 프로젝트 루트에서 아래 명령을 실행합니다. Python 표준 라이브러리만 쓰며 API 키·설치 패키지·실제 예약이 필요 없습니다. reader_lab은 각 시도마다 새 가상 원장을 만들고, 결과의 상태와 신규 기록 수를 정답표와 비교합니다.</p>
+<p><strong>실행:</strong> 아래 ZIP을 빈 폴더에 풀고 <code>examples</code> 폴더가 보이는 위치에서 아래 명령을 실행합니다. Python 표준 라이브러리만 쓰며 API 키·설치 패키지·실제 예약이 필요 없습니다. reader_lab은 각 시도마다 새 가상 원장을 만들고, 결과의 상태와 신규 기록 수를 정답표와 비교합니다. 도구 결과 불명확 사례의 0건은 이 코드가 만든 로컬 목록의 결과입니다. 실제 서비스에서는 응답이 없어도 이미 기록됐을 수 있으므로 0건으로 단정하거나 새 요청을 보내지 말고 기존 요청 식별자로 결과를 확인해야 합니다.</p>
 <pre>python examples/claude-code-checks/reader_lab.py
 python examples/claude-code-checks/run_checks.py</pre>
 <div class="aib-downloads"><a href="examples/claude-code-checks/reader-checks.zip" download>3·4권 실습 묶음 내려받기 · ZIP</a></div><p>빈 폴더에 압축을 풀면 <code>examples/claude-code-checks/</code> 구조가 생깁니다. 압축을 푼 최상위 폴더에서 위 명령을 실행하세요. Python 표준 라이브러리만 사용하며 모델 호출·발송·실제 예약은 없습니다.</p>

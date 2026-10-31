@@ -7,7 +7,7 @@ import json
 import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
-EDITION = '2026-10-31-practical-v2'
+EDITION = '2026-10-31-practical-v3'
 READERS = ['book1.html', 'index.html', 'agent-bible.html', 'claude-code-bible.html', 'practical-bible.html']
 
 def bundle(folder, name):

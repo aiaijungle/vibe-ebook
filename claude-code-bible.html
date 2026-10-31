@@ -2892,8 +2892,9 @@ python -m unittest -v test_ontology_lab.py
 <p>앞에서 업무 규칙을 검사 코드로 바꿨습니다. 이번에는 그 규칙이 어디에서 작동하는지 구분합니다. CLAUDE.md에 ‘승인 없이 파일을 바꾸지 말 것’이라고 쓰면 모델이 참고할 지침이 됩니다. 그러나 그 문장 자체가 파일 시스템의 쓰기 권한을 없애지는 않습니다. 자동 기억도 지난 교훈을 재사용하는 수단이지 승인 장치가 아닙니다.</p>
 <div class="aib-table-wrap"><table><thead><tr><th>층</th><th>남기는 것</th><th>확인할 질문</th></tr></thead><tbody><tr><td>프로젝트 지침</td><td>작업 범위·검사 명령·완료 보고 기준</td><td>새 세션이 읽고 이해했는가?</td></tr><tr><td>자동 기억</td><td>재사용할 교훈·선호</td><td>오래되거나 틀린 기록을 고쳤는가?</td></tr><tr><td>권한·PreToolUse 등</td><td>실행 전 허용·차단 판단</td><td>금지된 입력이 실제로 차단되는가?</td></tr><tr><td>PostToolUse 검사</td><td>이미 한 변경의 결과 확인</td><td>실패가 보존·보고되는가?</td></tr></tbody></table></div>
 <p><strong>10분 실습:</strong> ‘항상 잘해라’ 같은 추상 규칙 대신 작은 저장소의 지침을 다섯 줄로 적으세요. ①이번 변경 범위 ②먼저 재현할 증상 ③실행할 검사 ④미실행 검사의 보고 방식 ⑤커밋·배포 승인 경계를 포함합니다. 그런 다음 모델에게 각 줄을 어떻게 검증할지 설명하게 하고, 설명과 실제 결과를 따로 기록합니다.</p>
-<pre>이번 작업은 샘플 잔여 횟수 판정 함수만 수정한다.
-근거가 없으면 needs_evidence로 끝나는 실패 사례를 먼저 재현한다.
+<p>아래 다섯 줄은 3권과 함께 쓰는 <code>reader_lab.py</code>의 가상 원장 판정을 대상으로 합니다. 뒤의 잔여 횟수 수정 과제와는 검사 대상이 다릅니다. 근거 누락의 <code>needs_evidence</code>와 잔여 횟수 미확인의 <code>needs_information</code>을 서로 바꿔 쓰지 마세요.</p>
+<pre>이번 작업은 가상 원장의 근거·승인 판정만 다룬다.
+현재 파일에서 근거가 없으면 needs_evidence, 승인이 없으면 awaiting_approval인지 먼저 확인한다.
 python examples/claude-code-checks/run_checks.py 를 실행한다.
 실행하지 못한 검사는 미실행으로 쓰고 원인을 남긴다.
 diff를 검토한 뒤에만 다음 단계로 넘기며 커밋·배포는 별도 승인한다.</pre>
@@ -2902,7 +2903,7 @@ diff를 검토한 뒤에만 다음 단계로 넘기며 커밋·배포는 별도 
 <p>검사를 자동으로 실행하는 것보다 중요한 것은 실패를 잃지 않는 것입니다. 셸 파이프라인의 마지막 명령이 성공하면 앞쪽 테스트 실패가 숨겨질 수 있습니다. 이 책의 Hooks 예제는 이제 tail로 출력을 잘라서 넘기는 대신 Python 실행기가 자식 검사 프로세스의 종료코드를 그대로 반환합니다. 출력도 그대로 보여주므로 오류의 앞뒤 맥락을 확인할 수 있습니다.</p>
 <pre>python examples/claude-code-checks/run_checks.py
 python examples/claude-code-checks/run_checks.py --demo-failure</pre>
-<p>두 번째 명령은 실패 전달을 확인하는 의도적 fixture입니다. 실행 직후 PowerShell은 <code>$LASTEXITCODE</code>, Bash는 <code>echo $?</code>를 확인하세요. 정상 검사는0, 의도적 실패는1이어야 합니다. 실패를 숨기지 않는 실행기를 만들었다고 해서 Claude Code가 모든 이벤트를 같은 방식으로 차단하는 것은 아닙니다.</p>
+<p>두 번째 명령은 실패 전달을 확인하는 의도적 fixture입니다. 실행 직후 PowerShell은 <code>$LASTEXITCODE</code>, Bash는 <code>echo $?</code>를 확인하세요. 정상 검사는 0, 의도적 실패는 1이어야 합니다. 실패를 숨기지 않는 실행기를 만들었다고 해서 Claude Code가 모든 이벤트를 같은 방식으로 차단하는 것은 아닙니다.</p>
 <p><strong>이벤트 경계:</strong> PreToolUse는 실행 전 도구 호출을 막을 수 있습니다. PostToolUse는 도구가 이미 실행된 다음이므로 종료코드로 과거의 변경을 취소할 수 없습니다. PostToolUse에서 검사 실패를 보았다면 다음 수정·검토로 연결하고, 원복이 필요하면 diff를 확인한 후 별도로 수행합니다. Stop 등 다른 이벤트의 종료코드 의미도 같다고 가정하지 마세요.</p>
 <p><strong>오프라인 차단 실습:</strong> 제공된 hook_guard.py는 Read만 허용하는 교육용 허용목록입니다. 검사 코드는 Read 입력→0, Write 입력→2, 잘못된 JSON→2를 직접 확인합니다. 전달된 파일 경로나 명령을 실제 실행하지 않으므로 삭제·발송이 발생하지 않습니다. 이 파일은 Claude Code에 자동 설치되지 않으며, 전체 보안 해법도 아닙니다.</p>
 <div class="aib-downloads"><a href="examples/claude-code-checks/reader-checks.zip" download>종료코드·차단 실습 묶음 내려받기 · ZIP</a></div><p>빈 폴더에 압축을 풀고, <code>examples</code> 폴더가 보이는 위치에서 위 명령을 실행하세요. 이 묶음은 Claude Code 설정을 자동 변경하지 않습니다.</p>
@@ -2928,7 +2929,7 @@ python examples/claude-code-checks/run_checks.py --demo-failure</pre>
 3. 실제 실행한 검사와 결과
 4. 실행하지 못한 검사와 남은 위험
 관련 없는 기능과 운영 설정은 변경하지 마.</pre>
-<h4>SDK 설명 교체 문장</h4>
+<h4>API 호출 예제와 Agent SDK의 범위</h4>
 <p>이 절의 <code>import anthropic</code>와 <code>client.messages.create()</code> 예제는 Claude API를 호출하는 Client SDK 예제입니다. 호출을 순서대로 연결하거나 병렬로 실행하는 방법을 보여줍니다. Claude Agent SDK는 Claude Code의 도구·에이전트 루프·컨텍스트 관리 등을 애플리케이션에서 사용하는 별도 SDK이므로 이름과 설치 방법을 구분해야 합니다.</p>
 <p>공식 문서도 CLI, Client SDK, Agent SDK를 구분한다. <a href="https://code.claude.com/docs/en/agent-sdk/overview" target="_blank" rel="noopener noreferrer">Claude Agent SDK 개요</a></p></section><h3>실행 전 확인하는 현재 모델과 비용</h3><p>2026-10-31 공식 Claude API 개요 기준. 아래 값은 입력/출력 100만 토큰당 USD이며 구독 요금이 아닙니다. Haiku는 시작 가격이고 옵션·플랫폼에 따라 달라질 수 있습니다.</p><div class="aib-table-wrap"><table><tr><th>모델 ID</th><th>입력 / 출력</th><th>비교할 용도</th></tr><tr><td><code>claude-haiku-5-5</code></td><td>부터 $0.10 / $0.50</td><td>분류·추출·라우팅</td></tr><tr><td><code>claude-sonnet-5-5</code></td><td>$2 / $10</td><td>속도·품질 균형</td></tr><tr><td><code>claude-opus-5-5</code></td><td>$4 / $20</td><td>복잡한 코딩·지식 업무</td></tr><tr><td><code>claude-fable-5-1</code></td><td>$10 / $50</td><td>장기·고난도 작업</td></tr></table></div><p>선택은 같은 샘플의 정답률·검수 시간·비용으로 결정합니다. 모델 이름만 바꾼 코드가 호환된다고 가정하지 마세요. 과거 사례와 당시 모델명은 기록으로 보존합니다.</p><p><a href="https://platform.claude.com/docs/en/models/overview">공식 모델·가격·기능 확인</a> · <a href="https://code.claude.com/docs/en/setup">Claude Code 설치 안내</a></p><footer class="aib-sources"><p>공식 참고자료 · 2026-10-25 확인. 아래 실습·문서 양식·판정 기준은 본서가 만든 교육용 예시입니다.</p><ul><li><a href="https://code.claude.com/docs/en/memory" target="_blank" rel="noopener noreferrer">Claude Code · CLAUDE.md와 메모리</a></li><li><a href="https://modelcontextprotocol.io/specification/2026-07-28/server/tools" target="_blank" rel="noopener noreferrer">MCP · Tools specification</a></li></ul></footer><nav class="aib-crosslinks" aria-label="다른 권의 10월 실습"><a href="book1.html#aib-update-20261025">1권 · 업무지시서</a><a href="index.html#aib-update-20261025">2권 · 제작과 검증</a><a href="agent-bible.html#aib-update-20261025">3권 · 에이전트 연결</a><a href="practical-bible.html#aib-update-20261025">5권 · 온톨로지</a></nav></div></section>
 <!-- AIB-SUPPLEMENT-20261025 END -->
