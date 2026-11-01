@@ -1,0 +1,51 @@
+/* AI Bible interactive labs (2026-11-01). Self-contained tokens so every volume theme renders the same card. */
+.aib-lab{--lab-ink:#24303a;--lab-muted:#53616d;--lab-line:#dce2e5;--lab-paper:#fffefa;--lab-soft:#f2f5f5;--lab-accent:#97472e;--lab-ok:#1f7a4d;--lab-ok-bg:#e6f4ec;--lab-bad:#b3261e;--lab-bad-bg:#fbeaea;--lab-pick:#2a5d9f;--lab-pick-bg:#e8f0fb;
+  box-sizing:border-box;max-width:820px;margin:40px auto;padding:clamp(18px,4vw,36px);border:1px solid var(--lab-line);border-radius:18px;background:var(--lab-paper);color:var(--lab-ink);font-size:17px;line-height:1.8;text-align:left;word-break:keep-all;overflow-wrap:anywhere;clear:both;scroll-margin-top:88px}
+.aib-lab *{box-sizing:border-box;min-width:0}
+.aib-lab .lab-kicker{font-size:12px;font-weight:800;letter-spacing:.08em;color:var(--lab-accent);margin:0 0 8px}
+.aib-lab h2{font-size:clamp(22px,3.6vw,30px);line-height:1.4;letter-spacing:-.03em;color:var(--lab-ink);background:none;border:0;padding:0;margin:0 0 10px}
+.aib-lab p{color:var(--lab-ink);margin:10px 0;line-height:1.8}
+.aib-lab .lab-meta{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:14px;color:var(--lab-muted);margin:6px 0 14px}
+.aib-lab .lab-layer{margin:14px 0;padding:0;border:0}
+.aib-lab .lab-layer summary{cursor:pointer;min-height:44px;padding:10px 0;font-weight:700;color:var(--lab-ink)}
+.aib-lab .lab-source{margin:12px 0;padding:14px 16px;border-radius:10px;background:var(--lab-soft);font-size:15px}
+.aib-lab .lab-source b{display:block;font-size:13px;color:var(--lab-muted);margin-bottom:4px}
+.aib-lab .lab-q{font-weight:700;margin:16px 0 8px}
+.aib-lab .lab-segs{line-height:2.2}
+.aib-lab .lab-seg{display:inline;font:inherit;color:inherit;background:transparent;border:0;border-bottom:2px dashed var(--lab-line);padding:2px 2px;margin:0 1px;cursor:pointer;text-align:left;border-radius:4px}
+.aib-lab .lab-seg[aria-pressed="true"]{background:var(--lab-pick-bg);border-bottom-color:var(--lab-pick)}
+.aib-lab .lab-seg.is-hit{background:var(--lab-ok-bg);border-bottom-color:var(--lab-ok)}
+.aib-lab .lab-seg.is-miss{background:var(--lab-bad-bg);border-bottom-color:var(--lab-bad)}
+.aib-lab .lab-seg.is-false{background:var(--lab-bad-bg);border-bottom-color:var(--lab-bad);text-decoration:line-through}
+.aib-lab .lab-options{display:grid;gap:8px;margin:8px 0}
+.aib-lab .lab-btn,.aib-lab .lab-opt{display:block;width:100%;min-height:44px;padding:10px 14px;border:1px solid var(--lab-line);border-radius:10px;background:#fff;color:var(--lab-ink);font:inherit;font-size:16px;line-height:1.6;text-align:left;cursor:pointer}
+.aib-lab .lab-opt:hover{border-color:var(--lab-accent)}
+.aib-lab .lab-opt[disabled]{cursor:default}
+.aib-lab .lab-opt.is-ok{border-color:var(--lab-ok);background:var(--lab-ok-bg)}
+.aib-lab .lab-opt.is-bad{border-color:var(--lab-bad);background:var(--lab-bad-bg)}
+.aib-lab .lab-actions{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 4px}
+.aib-lab .lab-btn{width:auto;display:inline-flex;align-items:center;font-weight:700;text-align:center}
+.aib-lab .lab-btn.primary{background:var(--lab-accent);border-color:var(--lab-accent);color:#fff}
+.aib-lab .lab-feedback{margin:10px 0;padding:12px 14px;border-left:4px solid var(--lab-accent);background:var(--lab-soft);border-radius:0 10px 10px 0;font-size:15px}
+.aib-lab .lab-feedback.ok{border-left-color:var(--lab-ok)}
+.aib-lab .lab-feedback.bad{border-left-color:var(--lab-bad)}
+.aib-lab .lab-feedback ul{margin:6px 0 0;padding-left:20px}
+.aib-lab .lab-progress{font-size:13px;color:var(--lab-muted);margin:0 0 4px}
+.aib-lab .lab-bar{height:6px;border-radius:3px;background:var(--lab-line);overflow:hidden;margin:4px 0 14px}
+.aib-lab .lab-bar i{display:block;height:100%;width:0;background:var(--lab-accent);transition:width .3s}
+.aib-lab label.lab-field{display:block;margin:12px 0}
+.aib-lab label.lab-field span{display:block;font-weight:700;font-size:15px}
+.aib-lab label.lab-field small{display:block;color:var(--lab-muted);font-size:13px;line-height:1.6}
+.aib-lab textarea,.aib-lab select{width:100%;margin-top:6px;padding:10px 12px;border:1px solid var(--lab-line);border-radius:10px;background:#fff;color:var(--lab-ink);font:inherit;font-size:16px;line-height:1.6}
+.aib-lab textarea{min-height:64px;resize:vertical}
+.aib-lab .lab-out{white-space:pre-wrap;margin:12px 0;padding:14px 16px;border-radius:10px;background:#1f2933;color:#f5f7f8;font:14px/1.7 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;max-height:360px;overflow:auto}
+.aib-lab .lab-checks{list-style:none;margin:8px 0;padding:0;font-size:15px}
+.aib-lab .lab-checks li{padding:2px 0}
+.aib-lab .lab-sort-row{display:grid;grid-template-columns:1fr minmax(150px,220px);gap:8px 12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--lab-line)}
+.aib-lab .lab-sort-row select{margin:0}
+.aib-lab .lab-sort-why{grid-column:1/-1;font-size:14px;margin:0}
+.aib-lab .lab-legend{font-size:14px;color:var(--lab-muted);margin:8px 0;padding-left:18px}
+.aib-lab :focus-visible{outline:3px solid #005fcc;outline-offset:2px}
+.aib-lab .lab-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media(max-width:600px){.aib-lab{margin:20px 10px;padding:18px;font-size:16px}.aib-lab .lab-sort-row{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.aib-lab .lab-bar i{transition:none}}

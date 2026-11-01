@@ -306,6 +306,8 @@
 }</script>
 <link rel="stylesheet" href="assets/updates-20261025.css">
 <link rel="stylesheet" href="assets/learning-edition-20261031.css?v=3">
+<link rel="stylesheet" href="assets/interactive-labs-20261101.css?v=1">
+<script src="assets/interactive-labs-20261101.js?v=1" defer></script>
 <script src="assets/reader-sharing-20261031.js"></script>
 <link rel="canonical" href="https://aiaijungle.github.io/vibe-ebook/claude-code-bible.html">
 <link rel="alternate" hreflang="ko" href="https://aiaijungle.github.io/vibe-ebook/claude-code-bible.html"><link rel="alternate" hreflang="en" href="https://aiaijungle.github.io/vibe-ebook/en/claude-code-bible.html">
@@ -317,6 +319,16 @@
     <details class="aib-reading-contract"><summary>이번 권의 학습 흐름과 다음 단계</summary><p>현재 프로젝트와 지침을 읽고 작은 오류를 재현합니다. 기능을 많이 연결하는 것보다 바뀐 동작을 확인하는 것이 먼저입니다.</p><p><strong>읽는 중심선</strong><br>프로젝트 이해 → 실패 재현 → 최소 수정 → 검사 → 변경 내역·복구 확인</p><p><strong>다음 단계로 가기 전</strong><br>입력·기대 결과·실제 결과를 비교하고 미실행 검사를 구분할 수 있다면 3권의 업무 연결을 검토하세요.</p></details><details><summary>준비물과 읽는 순서</summary><p>로컬 프로젝트와 Claude Code 사용 환경. 구독 로그인과 API 과금을 구분합니다.</p><p>처음 배우는 독자: 1 → 2 → 4 → 3 → 5. 대표·운영 담당자: 5권의 운영판부터 시작하고 필요한 구현 장으로 이동하세요. 권 번호는 주제 구분이며 난이도 순서는 아닙니다.</p></details>
     <nav aria-label="학습 경로"><a href="start-here.html">내게 맞는 책과 무료 첫 실습</a> · <a href="#aib-update-20261025">이 책의 실습과 완료 기준</a> · <a href="en/sales.html" lang="en">English edition</a></nav>
     <p class="aib-small">과거 사례는 당시 기록입니다. 실행 환경과 비용은 현재 제공자의 공식 안내를 확인하세요. 읽기·제안·실행·검증은 서로 다른 완료 단계입니다.</p></section>
+<section class="aib-lab" data-lab="builder" id="aib-lab-v4" aria-labelledby="aib-lab-v4-title">
+  <p class="lab-kicker">직접 해보기 · 인터랙티브 실습</p><h2 id="aib-lab-v4-title">Claude Code 작업 지시서 조립기</h2>
+  <p class="lab-meta"><span>⏱ 5분</span><span>🎯 다섯 칸을 채워 바로 쓸 수 있는 지시서 만들기</span><span>로그인·API 키 불필요 · 입력 내용은 저장·전송되지 않음</span></p>
+  <p>&quot;잘 만들어 줘&quot;는 AI에게 아무 정보도 주지 않습니다. 아래 다섯 칸을 채우면 지시서가 자동으로 완성되고, 빠진 요소를 알려 줍니다. 처음이면 &quot;예시로 채우기&quot;를 눌러 보세요.</p>
+  <div class="lab-mount"></div>
+  <details class="lab-layer"><summary>한 단계 깊게 — 왜 이 다섯 칸인가</summary><p>4권의 황금 워크플로우(탐색 → 계획 → 수정 → 커밋)를 지시서로 옮긴 것입니다. 범위와 금지는 AI가 엉뚱한 파일을 바꾸는 사고를, 먼저 할 일은 계획 없이 바로 고치는 실수 #1을, 완료 확인은 검증 없이 배포하는 실수 #8을 막습니다.</p></details>
+  <details class="lab-layer"><summary>실무 노트 — 반복되면 CLAUDE.md로</summary><p>같은 금지 사항을 매번 쓰고 있다면 프로젝트의 CLAUDE.md로 옮기세요. 다만 CLAUDE.md는 매 대화에 읽히는 지침일 뿐 강제 장치가 아닙니다. 절대 바뀌면 안 되는 파일은 권한 설정이나 훅(PreToolUse)으로 막고, 완료 확인은 테스트 명령으로 자동화합니다.</p></details>
+  <script type="application/json" class="lab-data">{"fields": [{"key": "goal", "label": "목표 — 무엇이 어떻게 바뀌어야 하나", "hint": "눈으로 확인할 수 있는 결과로 씁니다.", "placeholder": "예: 로그인 실패 시 빈 화면 대신 안내 문구를 보여준다", "example": "로그인 실패 시 빈 화면 대신 \"비밀번호를 확인해 주세요\" 문구를 입력창 아래에 보여준다."}, {"key": "scope", "label": "범위 — 수정해도 되는 파일", "hint": "파일 이름을 직접 적습니다.", "placeholder": "예: src/login.js", "example": "src/login.js, src/login.css"}, {"key": "deny", "label": "금지 — 건드리면 안 되는 것", "hint": "비밀값·결제·잘 되는 기능을 적습니다.", "placeholder": "예: .env, 결제 관련 파일", "example": ".env 파일과 src/payment/ 폴더는 열지도 수정하지도 않는다. 새 라이브러리를 설치하지 않는다."}, {"key": "first", "label": "먼저 할 일 — 고치기 전에", "hint": "읽기와 계획을 먼저 시킵니다.", "placeholder": "예: 관련 파일을 읽고 계획을 먼저 보여 줘", "example": "관련 파일을 읽고 원인과 수정 계획을 3줄로 먼저 보여 준다. 내가 승인하기 전에는 수정하지 않는다."}, {"key": "done", "label": "완료 확인 — 무엇을 실행해 확인하나", "hint": "명령과 기대 결과를 함께 적습니다.", "placeholder": "예: npm test 가 모두 통과", "example": "npm test 를 실행해 모두 통과하는지 보고한다. 틀린 비밀번호를 넣었을 때 문구가 보이는지 확인하는 방법을 알려 준다."}], "checks": [{"key": "goal", "min": 12, "ok": "목표가 결과로 적혀 있음", "todo": "목표를 \"무엇이 어떻게 보이면 끝인지\"로 12자 이상 적기"}, {"key": "scope", "pattern": "[\\w/-]+\\.\\w+|/", "ok": "수정 범위에 파일이 있음", "todo": "수정할 파일 이름(예: src/app.js) 적기"}, {"key": "deny", "min": 4, "ok": "금지 사항이 있음", "todo": "건드리면 안 되는 파일이나 행동 적기"}, {"key": "first", "pattern": "계획|읽|탐색|plan|승인", "ok": "수정 전 계획 단계가 있음", "todo": "\"먼저 읽고 계획을 보여 줘\"처럼 계획 단계 넣기"}, {"key": "done", "pattern": "test|npm|python|node|pytest|실행|확인", "ok": "완료를 확인할 방법이 있음", "todo": "실행할 명령이나 확인 방법 적기"}], "footer": "## 보고 방식\n수정한 파일과 바뀐 내용을 요약하고, 완료 확인을 실행한 결과를 그대로 보여 줘. 확인하지 못한 것은 확인하지 못했다고 말해."}</script>
+</section>
+
 <!-- AI 시대 가치 배너 -->
 <div style="background:linear-gradient(135deg,#0d001f,#1a0040);padding:10px 16px;text-align:center;font-family:'Pretendard','Apple SD Gothic Neo',sans-serif;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;position:sticky;top:0;z-index:10001;border-bottom:1px solid rgba(139,92,246,0.3);">
   <span style="color:#c4b5fd;font-weight:800;font-size:0.82rem;">AI 시대의 격차는 지금 이 순간에도 벌어지고 있습니다.</span>

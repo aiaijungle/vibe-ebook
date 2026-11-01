@@ -562,6 +562,8 @@
   </style>
 <link rel="stylesheet" href="assets/updates-20261025.css">
 <link rel="stylesheet" href="assets/learning-edition-20261031.css?v=3">
+<link rel="stylesheet" href="assets/interactive-labs-20261101.css?v=1">
+<script src="assets/interactive-labs-20261101.js?v=1" defer></script>
 <script src="assets/reader-sharing-20261031.js"></script>
 <link rel="alternate" hreflang="ko" href="https://aiaijungle.github.io/vibe-ebook/practical-bible.html"><link rel="alternate" hreflang="en" href="https://aiaijungle.github.io/vibe-ebook/en/practical-bible.html">
 </head>
@@ -704,6 +706,16 @@
     <details class="aib-reading-contract"><summary>이번 권의 학습 흐름과 다음 단계</summary><p>대표·운영 담당자는 코드보다 업무·정본·책임·승인·예산을 먼저 정합니다. PM2·라우터·프레임워크 구현은 필요한 사람만 읽는 선택 경로입니다.</p><p><a href="#ch1">첫 실무: 회의 기록부터 시작하기 →</a> · 읽기 전에 반복 업무 하나와 담당자를 적어두세요.</p><p><strong>읽는 중심선</strong><br>업무 → 정본 자료 → 완료 기준 → 권한·승인 → 실행·확인 → 비용·복구 → 인수인계</p><p><strong>다음 단계로 가기 전</strong><br>대체 담당자가 운영판만 보고 중단 이유와 재개 조건을 설명할 수 있으면 작은 업무부터 시범 운영을 준비하세요.</p></details><details><summary>준비물과 읽는 순서</summary><p>반복 업무 하나와 업무 책임자. 코드 구현은 선택 경로이며 운영판부터 완성할 수 있습니다.</p><p>처음 배우는 독자: 1 → 2 → 4 → 3 → 5. 대표·운영 담당자: 5권의 운영판부터 시작하고 필요한 구현 장으로 이동하세요. 권 번호는 주제 구분이며 난이도 순서는 아닙니다.</p></details>
     <nav aria-label="학습 경로"><a href="start-here.html">내게 맞는 책과 무료 첫 실습</a> · <a href="#aib-update-20261025">이 책의 실습과 완료 기준</a> · <a href="en/sales.html" lang="en">English edition</a></nav>
     <p class="aib-small">과거 사례는 당시 기록입니다. 실행 환경과 비용은 현재 제공자의 공식 안내를 확인하세요. 읽기·제안·실행·검증은 서로 다른 완료 단계입니다.</p></section>
+<section class="aib-lab" data-lab="sort" id="aib-lab-v5" aria-labelledby="aib-lab-v5-title">
+  <p class="lab-kicker">직접 해보기 · 인터랙티브 실습</p><h2 id="aib-lab-v5-title">L0~L4 권한 배치 연습</h2>
+  <p class="lab-meta"><span>⏱ 5분</span><span>🎯 팀 업무 7개에 AI 권한 단계 정하기</span><span>로그인·API 키 불필요 · 입력 내용은 저장·전송되지 않음</span></p>
+  <p>AI에게 권한을 너무 적게 주면 쓸모가 없고, 너무 많이 주면 사고가 납니다. 5권의 다섯 단계 권한표로 우리 팀 업무 7개를 배치해 보세요.</p>
+  <div class="lab-mount"></div>
+  <details class="lab-layer"><summary>한 단계 깊게 — 단계를 나누는 기준</summary><p>단계가 올라갈수록 &quot;되돌리기 어려움&quot;과 &quot;영향 범위&quot;가 커집니다. 읽기는 자유롭게, 정해진 반복은 한도 안에서 자율로, 외부에 쓰는 일은 책임자 클릭으로, 대량·결제·권한 변경은 더 강한 확인으로, 정책과 AI 자신의 규칙은 사람만 바꿉니다.</p></details>
+  <details class="lab-layer"><summary>실무 노트 — 표를 운영판으로</summary><p>배치가 끝나면 업무마다 담당자 · 단계 · 한도(건수·금액) · 승인자 · 기록 위치를 한 줄로 적습니다. 이것이 5권 운영판의 첫 줄입니다. 한 달 동안 사고 없이 돌아간 업무만 한 단계 내리고, 사고가 나면 즉시 한 단계 올립니다.</p></details>
+  <script type="application/json" class="lab-data">{"levels": [{"id": "L0", "label": "L0 정보", "desc": "읽기·검색, 자유"}, {"id": "L1", "label": "L1 자율", "desc": "정해진 반복 업무, 건수 한도 안에서"}, {"id": "L2", "label": "L2 1-click", "desc": "외부에 쓰는 일, 책임자 클릭 승인"}, {"id": "L3", "label": "L3 강한 확인", "desc": "대량 발송·결제·권한 변경, 재확인 필수"}, {"id": "L4", "label": "L4 사람 전용", "desc": "AI는 추천만, 실행은 사람"}], "question": "각 업무에 알맞은 단계를 고르세요.", "items": [{"text": "지난주 회의록에서 결정 사항만 찾아 정리", "answer": "L0", "why": "읽고 정리만 합니다. 아무것도 바뀌지 않습니다."}, {"text": "매일 아침 정해진 형식으로 매출 요약을 팀 채널에 게시", "answer": "L1", "why": "내부 채널, 고정 형식, 하루 1건. 틀려도 바로 정정할 수 있습니다."}, {"text": "거래처 문의에 견적 회신 메일 보내기", "answer": "L2", "why": "외부로 나가는 한 건입니다. 책임자가 내용을 보고 클릭으로 승인합니다."}, {"text": "결제 실패한 구독 고객 전체에 재결제 실행", "answer": "L3", "why": "돈이 움직이고 대상이 많습니다. 대상 수와 금액을 재확인한 뒤 실행합니다."}, {"text": "신규 입사자에게 공유 드라이브 접근 권한 부여", "answer": "L3", "why": "권한은 주는 순간부터 정보가 열립니다. 대상과 범위를 재확인합니다."}, {"text": "홈페이지의 환불·이용 정책 문구 변경", "answer": "L4", "why": "법적 약속입니다. AI는 초안만, 결정과 게시는 사람이 합니다."}, {"text": "AI 자신의 운영 규칙 파일(CLAUDE.md 등) 수정", "answer": "L4", "why": "AI가 자기 규칙을 바꾸면 다른 모든 통제가 무력해집니다."}], "takeaway": "단계는 \"얼마나 똑똑한가\"가 아니라 \"틀렸을 때 얼마나 크게 번지는가\"로 정합니다."}</script>
+</section>
+
   <div class="top-bar">
     <button class="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('mobile-open')" aria-label="목차 열기"><span class="menu-icon">☰</span><span class="menu-label">목차</span></button>
     <span class="top-bar-title">5권</span>

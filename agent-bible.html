@@ -1105,6 +1105,8 @@
 }</script>
 <link rel="stylesheet" href="assets/updates-20261025.css">
 <link rel="stylesheet" href="assets/learning-edition-20261031.css?v=3">
+<link rel="stylesheet" href="assets/interactive-labs-20261101.css?v=1">
+<script src="assets/interactive-labs-20261101.js?v=1" defer></script>
 <script src="assets/reader-sharing-20261031.js"></script>
 <link rel="canonical" href="https://aiaijungle.github.io/vibe-ebook/agent-bible.html">
 <link rel="alternate" hreflang="ko" href="https://aiaijungle.github.io/vibe-ebook/agent-bible.html"><link rel="alternate" hreflang="en" href="https://aiaijungle.github.io/vibe-ebook/en/agent-bible.html">
@@ -1117,6 +1119,16 @@
     <details class="aib-reading-contract"><summary>이번 권의 학습 흐름과 다음 단계</summary><p>한 번의 호출로 해결되지 않는 이유를 먼저 확인합니다. 도구·기억·분업은 문제를 해결할 때만 추가합니다.</p><p><strong>읽는 중심선</strong><br>단일 요청 → 도구와 관찰 → 필요한 기억 → 단계 분리 → 승인 → 한도·복구</p><p><strong>다음 단계로 가기 전</strong><br>결과가 끊겨도 완료·미완료·확인 대기를 구분하고 다음 담당자에게 넘길 수 있다면 5권 운영판에 적용하세요.</p></details><details><summary>준비물과 읽는 순서</summary><p>작은 스크립트 실행 경험. API 실습은 별도 계정·요금·호출 한도를 확인합니다.</p><p>처음 배우는 독자: 1 → 2 → 4 → 3 → 5. 대표·운영 담당자: 5권의 운영판부터 시작하고 필요한 구현 장으로 이동하세요. 권 번호는 주제 구분이며 난이도 순서는 아닙니다.</p></details>
     <nav aria-label="학습 경로"><a href="start-here.html">내게 맞는 책과 무료 첫 실습</a> · <a href="#aib-update-20261025">이 책의 실습과 완료 기준</a> · <a href="en/sales.html" lang="en">English edition</a></nav>
     <p class="aib-small">과거 사례는 당시 기록입니다. 실행 환경과 비용은 현재 제공자의 공식 안내를 확인하세요. 읽기·제안·실행·검증은 서로 다른 완료 단계입니다.</p></section>
+<section class="aib-lab" data-lab="sort" id="aib-lab-v3" aria-labelledby="aib-lab-v3-title">
+  <p class="lab-kicker">직접 해보기 · 인터랙티브 실습</p><h2 id="aib-lab-v3-title">에이전트에게 맡길 일, 승인받을 일, 맡기면 안 되는 일</h2>
+  <p class="lab-meta"><span>⏱ 4분</span><span>🎯 행동 7개를 세 단계로 나누기</span><span>로그인·API 키 불필요 · 입력 내용은 저장·전송되지 않음</span></p>
+  <p>에이전트는 스스로 행동합니다. 그래서 &quot;무엇을 혼자 해도 되는가&quot;를 먼저 정해야 합니다. 아래 행동 7개를 세 단계 중 하나로 나눈 뒤 정답과 비교하세요.</p>
+  <div class="lab-mount"></div>
+  <details class="lab-layer"><summary>한 단계 깊게 — 판단 기준 세 가지</summary><p>① 밖으로 나가는가(고객·외부 서비스에 닿는가) ② 되돌릴 수 있는가 ③ 돈·약속·개인정보가 걸렸는가. 셋 다 &quot;아니오&quot;면 자동 실행, 하나라도 &quot;예&quot;면 사람 승인, 돈과 법적 약속은 사람이 직접 결정합니다. 3권 STEP 6a의 텔레그램 승인 버튼이 이 기준을 코드로 만든 것입니다.</p></details>
+  <details class="lab-layer"><summary>실무 노트 — 재시도와 중복 실행</summary><p>응답이 끊겼을 때 &quot;다시 보내기&quot;는 위험합니다. 메일·결제·예약은 이미 처리됐을 수 있습니다. 요청마다 고유 키(idempotency key)를 붙이고, 재시도 전에 같은 키로 결과를 먼저 조회합니다. 일반 조회 요청은 횟수 한도를 두고 자동 재시도해도 됩니다.</p></details>
+  <script type="application/json" class="lab-data">{"levels": [{"id": "auto", "label": "자동 실행", "desc": "외부 영향이 없고 되돌릴 수 있음"}, {"id": "approve", "label": "사람 승인 후 실행", "desc": "밖으로 나가거나 되돌리기 어려움"}, {"id": "human", "label": "사람이 직접", "desc": "돈·법적 약속·중복 위험이 큼, 에이전트는 제안만"}], "question": "각 행동에 알맞은 단계를 고르세요.", "items": [{"text": "오늘 뉴스 10건을 요약해 내 노트에 저장", "answer": "auto", "why": "내 노트에만 쓰고, 틀리면 지우면 됩니다."}, {"text": "블로그 초안을 써서 \"검토 대기\" 폴더에 저장", "answer": "auto", "why": "아직 공개되지 않았고 사람이 검토하는 단계가 남아 있습니다."}, {"text": "실패한 조회 API를 최대 3번까지 다시 호출", "answer": "auto", "why": "읽기 요청이고 횟수 한도가 있어 비용 폭주가 없습니다."}, {"text": "고객 120명에게 가격 변경 안내 메일 발송", "answer": "approve", "why": "밖으로 나가고, 보낸 메일은 되돌릴 수 없으며, 대량입니다."}, {"text": "회사 SNS 계정에 게시물 올리기", "answer": "approve", "why": "공개되는 순간 회사의 말이 됩니다. 문구와 사실을 사람이 확인합니다."}, {"text": "고객 환불 요청에 \"환불 완료\"라고 답장", "answer": "human", "why": "환불 여부는 정책·법·돈이 걸린 결정입니다. 잘못된 약속이 실제 분쟁으로 이어진 사례가 있습니다."}, {"text": "결제 응답이 끊겨 같은 결제를 다시 요청", "answer": "human", "why": "이미 결제됐다면 중복 결제가 됩니다. 결과를 먼저 조회하고 사람이 판단합니다."}], "takeaway": "밖으로 나가는가, 되돌릴 수 있는가, 돈·약속이 걸렸는가. 이 세 질문으로 승인 버튼의 위치가 정해집니다."}</script>
+</section>
+
 <!-- AI 시대 가치 배너 -->
 <div style="background:linear-gradient(135deg,#0d001f,#1a0040);padding:10px 16px;text-align:center;font-family:'Pretendard','Apple SD Gothic Neo',sans-serif;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;position:sticky;top:0;z-index:10001;border-bottom:1px solid rgba(245,158,11,0.3);">
   <span style="color:#fbbf24;font-weight:800;font-size:0.82rem;">AI 시대의 격차는 지금 이 순간에도 벌어지고 있습니다.</span>

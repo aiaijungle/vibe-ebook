@@ -182,6 +182,8 @@ a,button{-webkit-touch-callout:default!important;-webkit-user-select:auto!import
 }</script>
 <link rel="stylesheet" href="assets/updates-20261025.css">
 <link rel="stylesheet" href="assets/learning-edition-20261031.css?v=3">
+<link rel="stylesheet" href="assets/interactive-labs-20261101.css?v=1">
+<script src="assets/interactive-labs-20261101.js?v=1" defer></script>
 <script src="assets/reader-sharing-20261031.js"></script>
 <link rel="canonical" href="https://aiaijungle.github.io/vibe-ebook/book1.html">
 <link rel="alternate" hreflang="ko" href="https://aiaijungle.github.io/vibe-ebook/book1.html"><link rel="alternate" hreflang="en" href="https://aiaijungle.github.io/vibe-ebook/en/book1.html">
@@ -193,6 +195,16 @@ a,button{-webkit-touch-callout:default!important;-webkit-user-select:auto!import
     <details class="aib-reading-contract"><summary>이번 권의 학습 흐름과 다음 단계</summary><p>공개 가능한 원문을 준비하고 초안을 만든 뒤 날짜·가격·링크를 대조합니다. 자동 발행은 검수 기준이 정해진 다음 단계입니다.</p><p><strong>읽는 중심선</strong><br>수동으로 초안 만들기 → 같은 입력으로 재실행 → 오류 찾기 → 반복할 부분 정하기</p><p><strong>다음 단계로 가기 전</strong><br>원문과 초안의 차이를 설명하고, 모르는 사실은 질문으로 남길 수 있다면 2권의 작은 도구 제작으로 넘어가세요.</p></details><details><summary>준비물과 읽는 순서</summary><p>공개 가능한 안내문 하나. API 키 없이 수동 초안부터 시작합니다.</p><p>처음 배우는 독자: 1 → 2 → 4 → 3 → 5. 대표·운영 담당자: 5권의 운영판부터 시작하고 필요한 구현 장으로 이동하세요. 권 번호는 주제 구분이며 난이도 순서는 아닙니다.</p></details>
     <nav aria-label="학습 경로"><a href="start-here.html">내게 맞는 책과 무료 첫 실습</a> · <a href="#aib-update-20261025">이 책의 실습과 완료 기준</a> · <a href="en/sales.html" lang="en">English edition</a></nav>
     <p class="aib-small">과거 사례는 당시 기록입니다. 실행 환경과 비용은 현재 제공자의 공식 안내를 확인하세요. 읽기·제안·실행·검증은 서로 다른 완료 단계입니다.</p></section>
+<section class="aib-lab" data-lab="spot" id="aib-lab-v1" aria-labelledby="aib-lab-v1-title">
+  <p class="lab-kicker">직접 해보기 · 인터랙티브 실습</p><h2 id="aib-lab-v1-title">AI 홍보글에서 틀린 문장 찾기</h2>
+  <p class="lab-meta"><span>⏱ 3분</span><span>🎯 원문과 다른 문장을 모두 고르기</span><span>로그인·API 키 불필요 · 입력 내용은 저장·전송되지 않음</span></p>
+  <p>AI는 문장을 매끄럽게 쓰지만, 원문에 없는 내용도 그럴듯하게 채웁니다. 아래 공지를 보고 AI가 쓴 홍보글에서 원문과 다른 문장을 눌러 고른 뒤 채점하세요.</p>
+  <div class="lab-mount"></div>
+  <details class="lab-layer"><summary>한 단계 깊게 — 왜 이런 일이 생기나</summary><p>AI는 &quot;다음에 올 그럴듯한 말&quot;을 만드는 방식으로 글을 씁니다. 원문에 빈칸이 있으면 비슷한 글에서 자주 나오는 내용으로 채웁니다. 그래서 오류는 대개 세 종류입니다. 원문과 반대로 쓰기, 원문에 없는 내용 덧붙이기, 근거 없는 구매 압박 넣기. 이 세 가지만 눈으로 훑어도 대부분의 사고를 막을 수 있습니다.</p></details>
+  <details class="lab-layer"><summary>실무 노트 — 사실 확인표</summary><p>발행 전 표 하나를 만듭니다. 칸은 항목 · 원문 값 · 초안 값 · 일치 여부 · 조치. 날짜·요일·가격·포함 여부·장소·신청 방법·잔여 수량은 반드시 넣습니다. 원문에 없는 수치나 &quot;선착순&quot;, &quot;보장&quot; 같은 표현은 허위·과장 광고 문제가 될 수 있어 지우는 것이 기본입니다.</p></details>
+  <script type="application/json" class="lab-data">{"source": "한빛공방 원데이 클래스 · 11월 15일(토) 오후 2시~4시 · 참가비 35,000원(재료 포함) · 정원 6명 · 신청은 카카오톡 채널 「한빛공방」 · 주차 불가(인근 공영주차장 이용)", "question": "아래 AI 초안에서 원문과 다른 문장을 모두 눌러 고르세요.", "segments": [{"text": "🌿 11월 15일 토요일 오후 2시, 한빛공방 원데이 클래스가 열립니다.", "wrong": false, "why": "날짜·요일·시간이 원문과 같습니다."}, {"text": "두 시간 동안 나만의 도자기 컵을 만들어 보세요.", "wrong": true, "why": "원문에는 무엇을 만드는지가 없습니다. AI가 그럴듯하게 채운 내용입니다."}, {"text": "참가비는 35,000원이며 재료비는 별도입니다.", "wrong": true, "why": "원문은 \"재료 포함\"입니다. 원문과 반대로 쓴 경우입니다."}, {"text": "정원은 6명입니다.", "wrong": false, "why": "원문과 같습니다."}, {"text": "현재 선착순 2자리만 남았어요!", "wrong": true, "why": "잔여석 정보는 원문에 없습니다. 근거 없는 구매 압박입니다."}, {"text": "신청은 카카오톡 채널 「한빛공방」에서 받습니다.", "wrong": false, "why": "원문과 같습니다."}, {"text": "공방 앞 주차가 가능하니 편하게 오세요.", "wrong": true, "why": "원문은 \"주차 불가\"입니다. 고객이 실제로 곤란해지는 오류입니다."}, {"text": "완성작은 가마에서 구운 뒤 2주 후에 받아 가실 수 있습니다.", "wrong": true, "why": "원문에 없는 약속입니다. 지키지 못하면 고객 불만으로 이어집니다."}], "takeaway": "오류는 ① 원문과 반대(재료비·주차) ② 원문에 없는 덧붙임(도자기 컵·2주 후 수령) ③ 근거 없는 압박(잔여석) 세 종류였습니다. 사실 확인표도 이 세 칸을 기준으로 만드세요."}</script>
+</section>
+
 <!-- AI 시대 가치 배너 -->
 <div style="background:linear-gradient(135deg,#0d001f,#1a0040);padding:10px 16px;text-align:center;font-family:'Pretendard','Apple SD Gothic Neo',sans-serif;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;position:sticky;top:0;z-index:10001;border-bottom:1px solid rgba(167,139,250,0.3);">
   <span style="color:#a78bfa;font-weight:800;font-size:0.82rem;">AI 시대의 격차는 지금 이 순간에도 벌어지고 있습니다.</span>
