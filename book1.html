@@ -193,7 +193,7 @@ a,button{-webkit-touch-callout:default!important;-webkit-user-select:auto!import
     <p class="aib-kicker">AI BIBLE · 1권 독자 안내</p><h2 id="aib-route-title">마케팅 업무 하나를 끝내기</h2>
     <p>자료에서 사실을 가져오고 AI에게 표현을 맡깁니다. 먼저 한 번 제대로 끝낸 뒤 반복할 부분만 자동화합니다.</p><p><strong>이 책에서 남길 것</strong> — 검수된 초안 · 사실 확인표 · 7일 기록</p>
     <details class="aib-reading-contract"><summary>이번 권의 학습 흐름과 다음 단계</summary><p>공개 가능한 원문을 준비하고 초안을 만든 뒤 날짜·가격·링크를 대조합니다. 자동 발행은 검수 기준이 정해진 다음 단계입니다.</p><p><strong>읽는 중심선</strong><br>수동으로 초안 만들기 → 같은 입력으로 재실행 → 오류 찾기 → 반복할 부분 정하기</p><p><strong>다음 단계로 가기 전</strong><br>원문과 초안의 차이를 설명하고, 모르는 사실은 질문으로 남길 수 있다면 2권의 작은 도구 제작으로 넘어가세요.</p></details><details><summary>준비물과 읽는 순서</summary><p>공개 가능한 안내문 하나. API 키 없이 수동 초안부터 시작합니다.</p><p>처음 배우는 독자: 1 → 2 → 4 → 3 → 5. 대표·운영 담당자: 5권의 운영판부터 시작하고 필요한 구현 장으로 이동하세요. 권 번호는 주제 구분이며 난이도 순서는 아닙니다.</p></details>
-    <nav aria-label="학습 경로"><a href="start-here.html">내게 맞는 책과 무료 첫 실습</a> · <a href="first-win.html">30분 첫 성공</a> · <a href="recipes.html">직업별 레시피</a> · <a href="failure-museum.html">실패 박물관</a> · <a href="#aib-update-20261025">이 책의 실습과 완료 기준</a> · <a href="en/sales.html" lang="en">English edition</a></nav>
+    <nav aria-label="학습 경로"><a href="start-here.html">내게 맞는 책과 무료 첫 실습</a> · <a href="first-win.html">30분 첫 성공</a> · <a href="recipes.html">직업별 레시피</a> · <a href="failure-museum.html">실패 박물관</a> · <a href="challenge.html">30일 챌린지</a> · <a href="monthly.html">이달의 변경</a> · <a href="#aib-update-20261025">이 책의 실습과 완료 기준</a> · <a href="en/sales.html" lang="en">English edition</a></nav>
     <p class="aib-small">과거 사례는 당시 기록입니다. 실행 환경과 비용은 현재 제공자의 공식 안내를 확인하세요. 읽기·제안·실행·검증은 서로 다른 완료 단계입니다.</p></section>
 <section class="aib-lab" data-lab="spot" id="aib-lab-v1" aria-labelledby="aib-lab-v1-title">
   <p class="lab-kicker">직접 해보기 · 인터랙티브 실습</p><h2 id="aib-lab-v1-title">AI 홍보글에서 틀린 문장 찾기</h2>
@@ -989,7 +989,14 @@ a,button{-webkit-touch-callout:default!important;-webkit-user-select:auto!import
     </div>
   </div>
 
-  <!-- 4장 AI 잘 시키는 법 -->
+  <section class="aib-lab" data-lab="choice" id="lab-v1-ch3" aria-labelledby="lab-v1-ch3-t">
+<p class="lab-kicker">본문 실습 · 이 장을 바로 써 보기</p><h2 id="lab-v1-ch3-t">채널을 바꿔도 사실은 같게</h2>
+<p class="lab-meta"><span>⏱ 3분</span><span>🎯 채널별 변환에서 생기는 실수 3개 판단</span></p>
+<p>블로그 글을 인스타그램·문자·영상 대본으로 바꿀 때 가장 자주 생기는 일 세 가지입니다.</p>
+<div class="lab-mount"></div>
+<script type="application/json" class="lab-data">{"steps": [{"context": "블로그 원문: \"11월 30일까지 10% 할인, 공식몰에서만\". 문자로 줄였더니 → \"지금 10% 할인 중!\"", "q": "이 문자를 보내도 될까요?", "options": [{"label": "짧아야 하니 그대로 보낸다", "best": false, "why": "마감일과 판매처가 빠지면 다른 곳에서 할인을 요구하는 문의가 생깁니다."}, {"label": "마감일과 판매처를 넣고, 대신 다른 수식어를 뺀다", "best": true, "why": "줄일 때 빼는 것은 꾸밈말이지 조건이 아닙니다."}]}, {"context": "영상 대본으로 바꾸자 AI가 \"구매자 98%가 만족했어요\"라는 문장을 넣었습니다. 원문에는 없는 숫자입니다.", "q": "어떻게 할까요?", "options": [{"label": "영상은 재미가 중요하니 둔다", "best": false, "why": "근거 없는 수치는 채널과 상관없이 허위 광고 문제가 될 수 있습니다."}, {"label": "지운다. 실제 후기가 있으면 출처와 함께 따로 넣는다", "best": true, "why": "원문에 없는 숫자는 지우는 것이 기본입니다."}]}, {"context": "세 채널 글을 모두 받았습니다. 시간이 10분밖에 없습니다.", "q": "무엇부터 확인할까요?", "options": [{"label": "문장이 매끄러운지", "best": false, "why": "문장은 나중에 고쳐도 됩니다. 틀린 사실은 고객에게 바로 피해를 줍니다."}, {"label": "세 채널의 날짜·가격·조건·링크가 원문과 같은지", "best": true, "why": "사실 확인이 먼저, 표현은 그다음입니다."}]}], "results": [{"min": 3, "title": "채널 변환 합격", "text": "줄여도 조건은 남기는 감각이 있습니다."}, {"min": 0, "title": "한 번 더", "text": "틀린 장면의 이유를 다시 읽어 보세요."}], "takeaway": "채널마다 말투와 길이는 달라도, 독자에게 약속한 사실은 같아야 한다."}</script>
+</section>
+<!-- 4장 AI 잘 시키는 법 -->
   <h2 class="content-h1">4장. AI한테 잘 시키는 법</h2>
 
   <p class="para">이게 이 책에서 제일 중요한 챕터다. 도구는 맞는데 결과가 안 나오는 이유의 90%가 여기 있다. AI한테 어떻게 말하느냐가 결과를 결정한다.</p>
@@ -1044,7 +1051,14 @@ a,button{-webkit-touch-callout:default!important;-webkit-user-select:auto!import
 
   <p class="para">AI는 역할을 받으면 그 역할에 맞게 사고한다. 빈 AI보다 역할을 가진 AI가 훨씬 좋은 결과물을 낸다. 이걸 페르소나 부여라고 한다. 한 줄짜리 설정이지만 결과물 품질이 완전히 달라진다.</p>
 
-  <hr class="divider">
+  <section class="aib-lab" data-lab="builder" id="lab-v1-ch4" aria-labelledby="lab-v1-ch4-t">
+<p class="lab-kicker">본문 실습 · 이 장을 바로 써 보기</p><h2 id="lab-v1-ch4-t">CIF 지시서 조립기</h2>
+<p class="lab-meta"><span>⏱ 5분</span><span>🎯 C·I·F 세 줄을 채워 지시서 완성</span></p>
+<p>이 장의 CIF 공식을 바로 써 봅니다. 세 칸만 채우면 AI에게 줄 지시서가 완성됩니다. 금지와 확인 칸을 더하면 더 안전합니다.</p>
+<div class="lab-mount"></div>
+<script type="application/json" class="lab-data">{"fields": [{"key": "c", "label": "C (Context) — 지금 상황", "example": "나는 동네 꽃집을 한다. 인스타그램 팔로워 1,200명. 이번 주 신상품은 미니 꽃다발 15,000원", "placeholder": "예: 나는 동네 꽃집을 한다. 인스타그램 팔로워 1,200명. 이번 주 신상품"}, {"key": "i", "label": "I (Intent) — 하고 싶은 것", "example": "이번 주 신상품 소개 게시물 문구 3가지 버전을 만들고 싶다", "placeholder": "예: 이번 주 신상품 소개 게시물 문구 3가지 버전을 만들고 싶다"}, {"key": "f", "label": "F (Format) — 결과물 형태", "example": "각 150자 이내, 해시태그 5개, 버전마다 첫 문장을 다르게", "placeholder": "예: 각 150자 이내, 해시태그 5개, 버전마다 첫 문장을 다르게"}, {"key": "ban", "label": "금지 — 하지 말 것", "example": "가격·재고·할인을 바꾸거나 새로 만들지 말 것", "placeholder": "예: 가격·재고·할인을 바꾸거나 새로 만들지 말 것"}, {"key": "chk", "label": "확인 — 내가 볼 것", "example": "가격 15,000원이 그대로인지, 매장 위치를 지어내지 않았는지", "placeholder": "예: 가격 15,000원이 그대로인지, 매장 위치를 지어내지 않았는지"}], "checks": [{"key": "c", "min": 4, "ok": "C (Context) 적음", "todo": "C (Context) 채우기"}, {"key": "i", "min": 4, "ok": "I (Intent) 적음", "todo": "I (Intent) 채우기"}, {"key": "f", "min": 4, "ok": "F (Format) 적음", "todo": "F (Format) 채우기"}, {"key": "ban", "min": 4, "ok": "금지 적음", "todo": "금지 채우기"}, {"key": "chk", "min": 4, "ok": "확인 적음", "todo": "확인 채우기"}], "footer": "## 모르는 정보\n빠진 정보가 있으면 추측하지 말고 [확인 필요]로 표시해 줘."}</script>
+</section>
+<hr class="divider">
 
   <!-- 5장 에러 -->
   <h2 class="content-h1">5장. 에러를 만나면 이렇게 해라</h2>

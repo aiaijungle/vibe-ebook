@@ -718,6 +718,7 @@ a,button{-webkit-touch-callout:default!important;-webkit-user-select:auto!import
 <script src="assets/reader-sharing-20261031.js"></script>
 <link rel="canonical" href="https://aiaijungle.github.io/vibe-ebook/index.html">
 <link rel="alternate" hreflang="ko" href="https://aiaijungle.github.io/vibe-ebook/index.html"><link rel="alternate" hreflang="en" href="https://aiaijungle.github.io/vibe-ebook/en/index.html">
+<style id="aib-guide-style">.aib-guide h3{margin:22px 0 6px}.aib-guide p a{white-space:normal}.aib-glossary{margin:12px 0}.aib-glossary dt{font-weight:800;margin-top:12px}.aib-glossary dd{margin:2px 0 0;line-height:1.75}</style>
 </head>
 <body data-aib-volume="2">
 
@@ -1077,7 +1078,7 @@ a,button{-webkit-touch-callout:default!important;-webkit-user-select:auto!import
     <p class="aib-kicker">AI BIBLE · 2권 독자 안내</p><h2 id="aib-route-title">작은 도구를 만들고 복구하기</h2>
     <p>문제를 정하고 작은 도구를 만든 다음 오류·저장·배포를 순서대로 확인합니다. 회고와 심화 장은 필요한 순간 찾아봅니다.</p><p><strong>이 책에서 남길 것</strong> — 실행 가능한 도구 · 오류 보고서 · 복구 버전</p>
     <details class="aib-reading-contract"><summary>이번 권의 학습 흐름과 다음 단계</summary><p>해결할 질문과 정상·실패 입력을 먼저 정합니다. 개발 회고는 해당 문제를 만났을 때 찾아보는 참고 경로입니다.</p><p><strong>읽는 중심선</strong><br>요구사항 → 첫 실행 → 오류 재현·수정 → 저장·복구 → 배포·사용자 확인</p><p><strong>다음 단계로 가기 전</strong><br>새 입력으로도 결과를 확인하고 이전 변경으로 되돌리는 방법을 기록했다면 4권의 코드 검증으로 이어가세요.</p></details><details><summary>준비물과 읽는 순서</summary><p>파일·폴더와 터미널의 기본 사용. 무료 배포와 유료 실행 비용을 구분합니다.</p><p>처음 배우는 독자: 1 → 2 → 4 → 3 → 5. 대표·운영 담당자: 5권의 운영판부터 시작하고 필요한 구현 장으로 이동하세요. 권 번호는 주제 구분이며 난이도 순서는 아닙니다.</p></details>
-    <nav aria-label="학습 경로"><a href="start-here.html">내게 맞는 책과 무료 첫 실습</a> · <a href="first-win.html">30분 첫 성공</a> · <a href="recipes.html">직업별 레시피</a> · <a href="failure-museum.html">실패 박물관</a> · <a href="#aib-update-20261025">이 책의 실습과 완료 기준</a> · <a href="en/sales.html" lang="en">English edition</a></nav>
+    <nav aria-label="학습 경로"><a href="start-here.html">내게 맞는 책과 무료 첫 실습</a> · <a href="first-win.html">30분 첫 성공</a> · <a href="recipes.html">직업별 레시피</a> · <a href="failure-museum.html">실패 박물관</a> · <a href="challenge.html">30일 챌린지</a> · <a href="monthly.html">이달의 변경</a> · <a href="#aib-update-20261025">이 책의 실습과 완료 기준</a> · <a href="en/sales.html" lang="en">English edition</a></nav>
     <p class="aib-small">과거 사례는 당시 기록입니다. 실행 환경과 비용은 현재 제공자의 공식 안내를 확인하세요. 읽기·제안·실행·검증은 서로 다른 완료 단계입니다.</p></section>
 <section class="aib-lab" data-lab="choice" id="aib-lab-v2" aria-labelledby="aib-lab-v2-title">
   <p class="lab-kicker">직접 해보기 · 인터랙티브 실습</p><h2 id="aib-lab-v2-title">에러 메시지 응급처치 — 첫 행동 고르기</h2>
@@ -1088,6 +1089,22 @@ a,button{-webkit-touch-callout:default!important;-webkit-user-select:auto!import
   <details class="lab-layer"><summary>실무 노트 — AI에게 에러를 넘기는 법</summary><p>에러 전문(잘라내지 않은 원문), 실행한 명령, 실행한 위치, 직전에 바꾼 것 한 줄을 함께 줍니다. 그리고 &quot;이 파일의 이 부분만 고쳐라, 다른 파일은 건드리지 마라&quot;로 범위를 좁힙니다. 고친 뒤에는 처음과 같은 명령으로 다시 실행해 에러가 사라졌는지 확인합니다. API 키 같은 비밀값은 어떤 경우에도 대화창에 붙이지 않습니다.</p></details>
   <script type="application/json" class="lab-data">{"steps": [{"context": "ModuleNotFoundError: No module named 'requests'", "q": "처음 실행한 프로그램에서 이 에러가 났습니다. 가장 먼저 할 일은?", "options": [{"label": "코드에서 import requests 줄을 지운다", "best": false, "why": "에러는 사라져도 그 모듈이 하던 기능(인터넷 요청)이 함께 사라집니다."}, {"label": "가상환경이 켜져 있는지 확인하고, 그 환경에 pip install requests 를 실행한다", "best": true, "why": "\"모듈이 없다\"는 뜻입니다. 설치는 했는데 다른 환경에 깔린 경우가 가장 흔하므로 환경부터 확인합니다."}, {"label": "파이썬을 지우고 다시 설치한다", "best": false, "why": "문제보다 훨씬 큰 조치입니다. 다른 프로젝트까지 망가뜨릴 수 있습니다."}]}, {"context": "AuthenticationError: 401 — invalid x-api-key", "q": "API 호출에서 인증 에러가 났습니다. 가장 안전한 첫 행동은?", "options": [{"label": "키를 코드에 직접 붙여 넣어 빨리 테스트한다", "best": false, "why": "그대로 저장·공유·업로드되면 키가 유출됩니다. 유출된 키는 남이 내 요금으로 씁니다."}, {"label": "AI 채팅창에 키를 보여 주고 무엇이 틀렸는지 묻는다", "best": false, "why": "비밀값은 대화창에도 붙이지 않습니다. 확인은 내 컴퓨터 안에서 합니다."}, {"label": "키 값은 출력하지 않고, 키가 읽혔는지(있음/없음)만 확인한 뒤 .env 위치와 변수 이름을 점검한다", "best": true, "why": "401의 대부분은 키가 안 읽혔거나, 변수 이름이 다르거나, 만료·삭제된 키입니다. 값을 노출하지 않고 원인을 좁힐 수 있습니다."}]}, {"context": "IndentationError: unexpected indent (line 42)", "q": "AI가 고친 코드를 실행했더니 들여쓰기 에러가 납니다. 어떻게 지시할까요?", "options": [{"label": "\"처음부터 전부 다시 짜 줘\"라고 한다", "best": false, "why": "잘 되던 부분까지 바뀌어 새 버그가 생깁니다. 2권의 \"전체 덮어쓰기 금지\" 규칙입니다."}, {"label": "에러 전문과 42줄 주변을 주고 \"이 함수만 들여쓰기를 공백 4칸으로 통일해\"라고 한다", "best": true, "why": "원인과 범위가 분명합니다. 고친 뒤 같은 명령으로 다시 실행해 확인합니다."}, {"label": "42줄을 주석 처리하고 넘어간다", "best": false, "why": "그 줄이 하던 일이 빠진 채로 실행됩니다. 나중에 더 찾기 어려운 버그가 됩니다."}]}, {"context": "서버 배포 후: ImportError: cannot import name 'load_config' from 'utils'", "q": "내 컴퓨터에서는 잘 되는데 서버에서만 실패합니다. 먼저 확인할 것은?", "options": [{"label": "서버를 재시작하고 될 때까지 다시 배포한다", "best": false, "why": "원인이 그대로라 같은 에러가 반복됩니다."}, {"label": "코드가 내 컴퓨터에만 있는 파일·경로를 참조하는지, 그 파일이 저장소에 포함됐는지 확인한다", "best": true, "why": "\"로컬은 되는데 서버만 실패\"의 가장 흔한 원인입니다. 2권 72일 일지의 실제 사고도 같은 원인이었습니다."}, {"label": "에러가 난 줄을 try/except 로 감싸 에러를 숨긴다", "best": false, "why": "에러는 안 보이지만 기능은 여전히 동작하지 않습니다."}]}], "results": [{"min": 4, "title": "응급처치 합격", "text": "원인을 좁히고, 범위를 제한하고, 비밀값을 지키는 순서가 몸에 배어 있습니다."}, {"min": 2, "title": "기본기는 있습니다", "text": "틀린 문항의 이유를 다시 읽어 보세요. 대부분 \"범위를 넓게 잡은 선택\"이었을 것입니다."}, {"min": 0, "title": "에러 읽는 순서부터", "text": "마지막 줄의 에러 이름 → 파일과 줄 번호 → 실행 환경 순서로 읽는 연습부터 하세요. 2권 5장이 이 내용입니다."}], "takeaway": "전문 복사 → 마지막 줄 확인 → 환경부터 의심 → 작은 범위만 고치게 지시 → 같은 명령으로 재실행."}</script>
 </section>
+<section class="aib-update aib-guide" id="aib-v2-paths" aria-labelledby="aib-v2-paths-t">
+<p class="aib-kicker">2권 읽는 순서</p><h2 id="aib-v2-paths-t">처음엔 필수 경로만, 나머지는 필요할 때</h2>
+<p>이 책은 72일 동안 쓴 기록을 쌓은 책이라 장 번호와 읽기 좋은 순서가 다릅니다(19장이 20장 뒤에 나옵니다). 처음 읽는다면 아래 <strong>필수 경로</strong>만으로 작은 도구 하나를 만들고 고치고 공개할 수 있습니다.</p>
+<h3>필수 경로 — 작은 도구 하나 완성 (약 6~8시간)</h3>
+<p><a href="#section-21">생존 키트</a> → <a href="#section-25">1장 실화</a> → <a href="#section-29">2장 설치</a> → <a href="#section-30">설치 체크리스트</a> → <a href="#section-37">3장 G-Stack</a> → <a href="#section-ch4">4장 배포</a> → <a href="#section-ch5">5장 디버깅</a> → <a href="#section-42">6장 파일 통제</a></p>
+<h3>막혔을 때 펴는 참고</h3>
+<p><a href="#section-11">상황별 빠른 찾기</a> → <a href="#section-47">7장 용어 사전</a> → <a href="#section-137">부록 D 개념 50선</a> → <a href="#section-136">부록 C 프롬프트 15선</a> → <a href="#section-121">부록 B 실수 기록</a></p>
+<h3>선택 경로 — 필수 경로를 끝낸 뒤 목적에 따라</h3>
+<p><strong>A. 비용과 실력</strong><br><a href="#section-74">13장 토큰 절약</a> → <a href="#section-122">19장 마스터 클래스</a> → <a href="#section-116">20장 3대 무기</a> → <a href="#section-160">심화 3 비용·속도</a> → <a href="#section-167">심화 4 공식문서 검증</a></p>
+<p><strong>B. 판매와 사업</strong><br><a href="#section-48">8장 실무 프롬프트</a> → <a href="#section-49">9장 비용·운영 실수</a> → <a href="#section-55">10장 생존 체크리스트</a> → <a href="#section-59">11장 도구 목록</a> → <a href="#section-66">12장 AITF</a> → <a href="#section-148">특별 부록 지식창업</a> → <a href="#section-154">심화 2 전자책 항해</a></p>
+<p><strong>C. 에이전트와 운영</strong> — 3권으로 이어집니다<br><a href="#section-89">15장 에이전트 팀</a> → <a href="#section-94">16장 보안</a> → <a href="#section-129">21장 운영 일지</a> → <a href="#section-144">부록 E 작업공유 MD</a></p>
+<p><strong>저자의 기록으로 읽기</strong><br><a href="#section-78">14장 72일 일지</a> → <a href="#section-102">17장 7가지 편견</a> → <a href="#section-110">18장 오토파일럿</a> → <a href="#section-72">에필로그</a></p>
+<p class="aib-small">필수 경로를 끝냈다면 <a href="first-win.html#kit-2-steps">30분 첫 성공 키트</a>로 같은 과정을 내 업무에 한 번 더 적용해 보세요.</p>
+</section>
+
+
 
     <div class="content-wrap">
 <p class='para'><br></p>
@@ -2500,6 +2517,13 @@ git push origin master
 <p class='para'>📌 [4장 지금 당장 할 것 1가지]
 GitHub 계정을 만드십시오(없다면). 그리고 새 저장소(Repository) 하나를 <code>my-first-empire</code>라는 이름으로 생성하십시오. 이것이 당신의 첫 번째 서버 영토입니다. 비어 있어도 됩니다. 깃발을 꽂는 것이 먼저입니다.</p>
 </blockquote>
+<section class="aib-lab" data-lab="steps" id="lab-v2-ch4" aria-labelledby="lab-v2-ch4-t">
+<p class="lab-kicker">본문 실습 · 이 장을 바로 써 보기</p><h2 id="lab-v2-ch4-t">배포 버튼 누르기 전 6단계 점검</h2>
+<p class="lab-meta"><span>⏱ 10분</span><span>🎯 배포 전 사고 6가지를 미리 막기</span></p>
+<p>이 장에서 만든 페이지를 공개하기 전에 하나씩 체크하세요. 2권 72일 일지의 실제 사고들이 이 목록의 출처입니다.</p>
+<div class="lab-mount"></div>
+<script type="application/json" class="lab-data">{"steps": [{"title": ".env 같은 비밀 파일이 .gitignore에 들어 있다", "detail": "git status에 .env가 보이면 아직 막히지 않은 것입니다."}, {"title": "코드에 내 컴퓨터 경로(C:/Users/...)가 없다", "detail": "서버에는 그 폴더가 없습니다. 첫 배포 날 ImportError의 원인이었습니다."}, {"title": "필요한 패키지가 requirements.txt(또는 package.json)에 모두 적혀 있다"}, {"title": "새 폴더에 저장소를 처음부터 받아서 다시 실행해 봤다", "detail": "내 컴퓨터에만 있던 파일이 빠졌는지 확인하는 가장 확실한 방법입니다."}, {"title": "API를 쓴다면 결제 한도와 금액 알림을 설정했다"}, {"title": "배포 후 실제 주소에서 핵심 기능을 한 번 눌러 봤다", "detail": "\"배포 성공\" 표시가 아니라 화면에서 확인합니다."}], "done": "배포 준비가 끝났습니다.", "next": "문제가 생기면 다음 장(디버깅)의 에러 읽는 순서로 돌아오세요."}</script>
+</section>
 <hr class='divider'>
 <h2 id='section-ch5' class='content-h2'>🚨 제5장 : 비개발자를 위한 디버깅 기본기 (에러 5선)</h2>
 <p class='para'>처음 빨간 화면을 봤을 때 어떤 느낌이었냐고요?</p>
@@ -2622,6 +2646,13 @@ GitHub 계정을 만드십시오(없다면). 그리고 새 저장소(Repository)
 <p class='para'>📌 [6장 지금 당장 할 것 1가지]
 지금 당장 <code>개발일지.md</code> 파일을 만드십시오. 오늘 날짜를 제목으로, 오늘 완성한 것 1줄, 막힌 것 1줄만 쓰십시오. 3줄이면 충분합니다. 이것을 매일 하는 사람과 안 하는 사람의 성장 속도는 한 달 뒤 완전히 다른 수준이 됩니다.</p>
 </blockquote>
+<section class="aib-lab" data-lab="choice" id="lab-v2-ch6" aria-labelledby="lab-v2-ch6-t">
+<p class="lab-kicker">본문 실습 · 이 장을 바로 써 보기</p><h2 id="lab-v2-ch6-t">잘 되던 기능을 지키는 지시법</h2>
+<p class="lab-meta"><span>⏱ 3분</span><span>🎯 범위·확인·복원 판단 3개</span></p>
+<p>파일 통제가 무너지는 순간은 대개 지시 한 줄에서 시작됩니다.</p>
+<div class="lab-mount"></div>
+<script type="application/json" class="lab-data">{"steps": [{"q": "로그인 버튼 색만 바꾸고 싶습니다. 어떻게 지시할까요?", "options": [{"label": "\"디자인 좀 더 예쁘게 해 줘\"", "best": false, "why": "AI가 범위를 스스로 정합니다. 다른 화면까지 바뀝니다."}, {"label": "\"login.html의 로그인 버튼 배경색만 #2563eb로 바꿔. 다른 파일과 다른 요소는 건드리지 마.\"", "best": true, "why": "파일·요소·값·금지가 모두 들어 있습니다."}]}, {"q": "AI가 \"완료했습니다\"라고 했는데 바뀐 파일이 3개입니다.", "options": [{"label": "결과 화면이 괜찮으면 넘어간다", "best": false, "why": "보이지 않는 곳의 변경이 나중에 문제를 만듭니다."}, {"label": "git diff로 바뀐 내용을 보고, 요청과 무관한 변경은 되돌린다", "best": true, "why": "변경 기록을 보는 습관이 파일 통제의 시작입니다."}]}, {"q": "수정 후 잘 되던 결제 버튼이 안 눌립니다. 30분째 AI와 고치는 중입니다.", "options": [{"label": "될 때까지 계속 수정을 요청한다", "best": false, "why": "고칠수록 원래 상태에서 멀어집니다."}, {"label": "마지막으로 정상이던 커밋으로 되돌린 뒤, 바꾸려던 것만 작게 다시 시도한다", "best": true, "why": "되돌리기가 고치기보다 빠를 때가 많습니다."}]}], "results": [{"min": 3, "title": "파일 통제 합격", "text": "범위를 좁히고, 변경을 확인하고, 필요하면 되돌릴 줄 압니다."}, {"min": 0, "title": "한 번 더", "text": "틀린 장면의 이유를 다시 읽어 보세요."}], "takeaway": "작게 지시하고, 바뀐 것을 보고, 망가지면 되돌린다."}</script>
+</section>
 <hr class='divider'>
 <h2 id='section-47' class='content-h2'>💬 제7장 : AI 비서와 통역 없이 소통하는 핵심 용어 사전 (★ 이 장은 필요할 때마다 펴보는 참고 챕터입니다)</h2>
 <blockquote class='quote'>
@@ -3046,6 +3077,13 @@ AI API를 연결할 때 발생하는 가장 허무한 쇼크입니다. <code>cla
 <p class='para'>❌ <em>"안녕하세요 클로드! 혹시 제가 지금 이 파이썬 파일에서 로그인 기능 부분에 에러가 나는 것 같은데, 제가 코딩을 잘 몰라서요, 혹시 봐주실 수 있으신가요? 너무 감사합니다."</em></p>
 <p class='para'>✅ <em>"login.py 23번째 줄 에러. <code>AttributeError: 'NoneType' object has no attribute 'id'</code>. 원인과 수정 코드."</em></p>
 <p class='para'>두 번째 프롬프트가 첫 번째보다 토큰이 80% 적습니다. 결과는 동일하거나 더 정확합니다. AI는 정중한 문장보다 정확한 문장에 더 잘 반응합니다.</p>
+<section class="aib-lab" data-lab="sort" id="lab-v2-ch13" aria-labelledby="lab-v2-ch13-t">
+<p class="lab-kicker">본문 실습 · 이 장을 바로 써 보기</p><h2 id="lab-v2-ch13-t">어떤 일에 어떤 모델을 쓸까</h2>
+<p class="lab-meta"><span>⏱ 4분</span><span>🎯 작업 6개를 모델 등급에 배치</span></p>
+<p>이 장의 &quot;모델 등급 3단계&quot;를 내 업무에 적용해 봅니다. 정답은 하나가 아니지만, 이유를 설명할 수 있어야 합니다.</p>
+<div class="lab-mount"></div>
+<script type="application/json" class="lab-data">{"levels": [{"id": "small", "label": "작고 빠른 모델 (Haiku급)", "desc": "분류·추출·짧은 응답, 대량"}, {"id": "mid", "label": "중간 모델 (Sonnet급)", "desc": "글쓰기·코드·분석 대부분"}, {"id": "large", "label": "큰 모델 (Opus급 이상)", "desc": "어렵고 틀리면 비싼 판단"}], "question": "각 작업에 알맞은 등급을 고르세요.", "items": [{"text": "고객 문의 1,000건을 \"배송/환불/기타\"로 분류", "answer": "small", "why": "정해진 칸에 넣는 일입니다. 양이 많아 단가가 중요합니다."}, {"text": "스팸 댓글 걸러내기", "answer": "small", "why": "짧고 반복적인 판정입니다."}, {"text": "블로그 초안 10편 쓰기", "answer": "mid", "why": "품질이 필요하지만 매번 최고 모델일 필요는 없습니다."}, {"text": "버그 원인 찾고 수정 코드 작성", "answer": "mid", "why": "대부분의 코드 작업은 중간 모델로 충분합니다. 막히면 올립니다."}, {"text": "여러 파일에 걸친 구조 변경 설계", "answer": "large", "why": "한 번 틀리면 되돌리는 비용이 큽니다."}, {"text": "계약 조건 비교와 위험 검토 (최종 판단은 사람)", "answer": "large", "why": "놓친 조건 하나가 비쌉니다. 그래도 결정은 사람이 합니다."}], "takeaway": "모델을 올리기 전에 캐시와 짧은 출력부터. 등급은 \"틀렸을 때 비용\"으로 고른다."}</script>
+</section>
 <hr class='divider'>
 <h2 id='section-78' class='content-h2'>📅 제14장 : 파이프라인 수립의 처절한 팩트 일지 — 클로드와 72일간의 사투록</h2>
 <p class='para'>이 챕터를 쓸까 말까 많이 고민했습니다.</p>

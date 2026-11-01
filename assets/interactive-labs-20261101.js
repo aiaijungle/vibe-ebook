@@ -226,7 +226,19 @@
       list.appendChild(li); boxes.push(cb);
       cb.addEventListener('change', update);
     });
+    var key = d.persist ? 'aib-steps-' + d.persist : null;
+    if (key) {
+      try {
+        var saved = JSON.parse(window.localStorage.getItem(key) || '[]');
+        saved.forEach(function (i) { if (boxes[i]) boxes[i].checked = true; });
+      } catch (e) { /* storage unavailable: progress simply is not remembered */ }
+    }
     function update() {
+      if (key) {
+        try {
+          window.localStorage.setItem(key, JSON.stringify(boxes.map(function (b, i) { return b.checked ? i : -1; }).filter(function (i) { return i >= 0; })));
+        } catch (e) { /* ignore */ }
+      }
       var n = boxes.filter(function (b) { return b.checked; }).length;
       fill.style.width = (n / boxes.length * 100) + '%';
       prog.textContent = n + ' / ' + boxes.length + ' 단계 완료';

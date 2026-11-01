@@ -124,3 +124,8 @@
 | `assets/interactive-labs-20261101.css/.js` | 인터랙티브 실습 엔진 (오류 찾기 · 판단 · 조립기 · 분류 · 단계 체크) |
 | `scripts/build_interactive_labs.py` | 1~5권 첫 화면 실습 삽입 (재실행 가능) |
 | `scripts/build_learning_pages.py` | 위 무료 페이지 3개 생성 (내용 수정 후 재실행) |
+| `challenge.html` | 무료 · 30일 챌린지(진행 상황 기기 저장) + 결과 카드 |
+| `monthly.html` | 무료 · 이달의 변경 (2026-11: 요금·API 버전·모델 ID) |
+| `examples/template-pack/` | 템플릿 6종 + ZIP |
+| `scripts/build_chapter_labs.py` | 1~5권 장 끝 본문 실습 12개 삽입 (재실행 가능) |
+| `scripts/build_reading_guides.py` | 2권 읽기 경로 · 5권 용어집 삽입 (재실행 가능) |

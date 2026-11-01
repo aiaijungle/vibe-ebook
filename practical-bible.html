@@ -566,6 +566,7 @@
 <script src="assets/interactive-labs-20261101.js?v=3" defer></script>
 <script src="assets/reader-sharing-20261031.js"></script>
 <link rel="alternate" hreflang="ko" href="https://aiaijungle.github.io/vibe-ebook/practical-bible.html"><link rel="alternate" hreflang="en" href="https://aiaijungle.github.io/vibe-ebook/en/practical-bible.html">
+<style id="aib-guide-style">.aib-guide h3{margin:22px 0 6px}.aib-guide p a{white-space:normal}.aib-glossary{margin:12px 0}.aib-glossary dt{font-weight:800;margin-top:12px}.aib-glossary dd{margin:2px 0 0;line-height:1.75}</style>
 </head>
 <body data-aib-volume="5">
 
@@ -704,7 +705,7 @@
     <p class="aib-kicker">AI BIBLE · 5권 독자 안내</p><h2 id="aib-route-title">팀의 업무와 운영 기준을 설계하기</h2>
     <p>맡길 업무 → 정본 자료 → 완료 기준 → 권한·승인 → 실행·확인 → 비용·복구 → 인수인계 순서로 운영을 설계합니다.</p><p><strong>이 책에서 남길 것</strong> — 업무 운영판 · 예산 · 승인과 재개 기준</p>
     <details class="aib-reading-contract"><summary>이번 권의 학습 흐름과 다음 단계</summary><p>대표·운영 담당자는 코드보다 업무·정본·책임·승인·예산을 먼저 정합니다. PM2·라우터·프레임워크 구현은 필요한 사람만 읽는 선택 경로입니다.</p><p><a href="#ch1">첫 실무: 회의 기록부터 시작하기 →</a> · 읽기 전에 반복 업무 하나와 담당자를 적어두세요.</p><p><strong>읽는 중심선</strong><br>업무 → 정본 자료 → 완료 기준 → 권한·승인 → 실행·확인 → 비용·복구 → 인수인계</p><p><strong>다음 단계로 가기 전</strong><br>대체 담당자가 운영판만 보고 중단 이유와 재개 조건을 설명할 수 있으면 작은 업무부터 시범 운영을 준비하세요.</p></details><details><summary>준비물과 읽는 순서</summary><p>반복 업무 하나와 업무 책임자. 코드 구현은 선택 경로이며 운영판부터 완성할 수 있습니다.</p><p>처음 배우는 독자: 1 → 2 → 4 → 3 → 5. 대표·운영 담당자: 5권의 운영판부터 시작하고 필요한 구현 장으로 이동하세요. 권 번호는 주제 구분이며 난이도 순서는 아닙니다.</p></details>
-    <nav aria-label="학습 경로"><a href="start-here.html">내게 맞는 책과 무료 첫 실습</a> · <a href="first-win.html">30분 첫 성공</a> · <a href="recipes.html">직업별 레시피</a> · <a href="failure-museum.html">실패 박물관</a> · <a href="#aib-update-20261025">이 책의 실습과 완료 기준</a> · <a href="en/sales.html" lang="en">English edition</a></nav>
+    <nav aria-label="학습 경로"><a href="start-here.html">내게 맞는 책과 무료 첫 실습</a> · <a href="first-win.html">30분 첫 성공</a> · <a href="recipes.html">직업별 레시피</a> · <a href="failure-museum.html">실패 박물관</a> · <a href="challenge.html">30일 챌린지</a> · <a href="monthly.html">이달의 변경</a> · <a href="#aib-update-20261025">이 책의 실습과 완료 기준</a> · <a href="en/sales.html" lang="en">English edition</a></nav>
     <p class="aib-small">과거 사례는 당시 기록입니다. 실행 환경과 비용은 현재 제공자의 공식 안내를 확인하세요. 읽기·제안·실행·검증은 서로 다른 완료 단계입니다.</p></section>
 <section class="aib-lab" data-lab="sort" id="aib-lab-v5" aria-labelledby="aib-lab-v5-title">
   <p class="lab-kicker">직접 해보기 · 인터랙티브 실습</p><h2 id="aib-lab-v5-title">L0~L4 권한 배치 연습</h2>
@@ -715,6 +716,13 @@
   <details class="lab-layer"><summary>실무 노트 — 표를 운영판으로</summary><p>배치가 끝나면 업무마다 담당자 · 단계 · 한도(건수·금액) · 승인자 · 기록 위치를 한 줄로 적습니다. 이것이 5권 운영판의 첫 줄입니다. 한 달 동안 사고 없이 돌아간 업무만 한 단계 내리고, 사고가 나면 즉시 한 단계 올립니다.</p></details>
   <script type="application/json" class="lab-data">{"levels": [{"id": "L0", "label": "L0 정보", "desc": "읽기·검색, 자유"}, {"id": "L1", "label": "L1 자율", "desc": "정해진 반복 업무, 건수 한도 안에서"}, {"id": "L2", "label": "L2 1-click", "desc": "외부에 쓰는 일, 책임자 클릭 승인"}, {"id": "L3", "label": "L3 강한 확인", "desc": "대량 발송·결제·권한 변경, 재확인 필수"}, {"id": "L4", "label": "L4 사람 전용", "desc": "AI는 추천만, 실행은 사람"}], "question": "각 업무에 알맞은 단계를 고르세요.", "items": [{"text": "지난주 회의록에서 결정 사항만 찾아 정리", "answer": "L0", "why": "읽고 정리만 합니다. 아무것도 바뀌지 않습니다."}, {"text": "매일 아침 정해진 형식으로 매출 요약을 팀 채널에 게시", "answer": "L1", "why": "내부 채널, 고정 형식, 하루 1건. 틀려도 바로 정정할 수 있습니다."}, {"text": "거래처 문의에 견적 회신 메일 보내기", "answer": "L2", "why": "외부로 나가는 한 건입니다. 책임자가 내용을 보고 클릭으로 승인합니다."}, {"text": "결제 실패한 구독 고객 전체에 재결제 실행", "answer": "L3", "why": "돈이 움직이고 대상이 많습니다. 대상 수와 금액을 재확인한 뒤 실행합니다."}, {"text": "신규 입사자에게 공유 드라이브 접근 권한 부여", "answer": "L3", "why": "권한은 주는 순간부터 정보가 열립니다. 대상과 범위를 재확인합니다."}, {"text": "홈페이지의 환불·이용 정책 문구 변경", "answer": "L4", "why": "법적 약속입니다. AI는 초안만, 결정과 게시는 사람이 합니다."}, {"text": "AI 자신의 운영 규칙 파일(CLAUDE.md 등) 수정", "answer": "L4", "why": "AI가 자기 규칙을 바꾸면 다른 모든 통제가 무력해집니다."}], "takeaway": "단계는 \"얼마나 똑똑한가\"가 아니라 \"틀렸을 때 얼마나 크게 번지는가\"로 정합니다."}</script>
 </section>
+<section class="aib-update aib-guide" id="aib-v5-glossary" aria-labelledby="aib-v5-glossary-t">
+<p class="aib-kicker">5권 용어집</p><h2 id="aib-v5-glossary-t">처음 보는 이름이 나오면 여기서 확인하세요</h2>
+<p>이 책은 저자 회사에서 실제로 쓰는 이름을 그대로 씁니다. 본문은 바꾸지 않고, 자주 나오는 이름만 모았습니다.</p>
+<dl class="aib-glossary"><dt>리미트리스맨</dt><dd>저자 김화현의 필명입니다. 회사 잔다(JANDA)를 운영합니다.</dd><dt>잔다 (JANDA)</dt><dd>저자가 운영하는 회사입니다. 이 책 사례 대부분의 출처이며, "JANDA 실측"은 이 회사에서 직접 잰 기록을 뜻합니다.</dd><dt>시황 (Sihwang)</dt><dd>잔다의 AI 운영 에이전트 이름입니다. 공저자로 표기되며, 18개 도구를 써서 회사 업무를 처리합니다. 매일 밤 자기 코드를 고치는 자가코딩 루프는 4권에도 나옵니다.</dd><dt>강.1 ~ 강.18</dt><dd>이 책의 강의 번호입니다. "강.12"는 12강을 뜻합니다.</dd><dt>6 도메인</dt><dd>책의 6개 큰 단원입니다. 데이터 · AI 활용 · 자동화 · AI 에이전트 · 디스코드 · 오케스트라 순서로 익힙니다.</dd><dt>Bridge</dt><dd>도메인과 도메인 사이를 잇는 짧은 연결 장입니다. 앞 단원에서 생긴 문제가 다음 단원으로 왜 이어지는지 설명합니다.</dd><dt>AITF (AI Team Flow)</dt><dd>저자가 만든 AI 플랫폼과 API 상품군 이름입니다. 2권 12장에서 처음 소개됩니다.</dd><dt>18 tool</dt><dd>시황이 쓰는 도구 18개입니다. 노션 페이지 만들기처럼 도구 이름이 곧 하는 일입니다.</dd><dt>silent_activator</dt><dd>사람이 시키지 않아도 정해진 시각에 스스로 일을 시작하는 작업자(워커)입니다. 잔다에서는 5개가 매일 일을 만듭니다.</dd><dt>L0 ~ L4</dt><dd>AI에게 주는 권한 단계입니다. L0 읽기 · L1 정해진 반복 · L2 사람 클릭 승인 · L3 강한 확인 · L4 사람 전용.</dd><dt>PIN</dt><dd>L3 작업을 실행하기 직전에 사람이 직접 입력하는 확인 문자입니다. 실수로 버튼을 누르는 일을 막습니다.</dd><dt>PM2 · Cron</dt><dd>PM2는 프로그램이 죽으면 다시 살리는 관리 도구, Cron은 정해진 시각에 작업을 실행하는 예약 도구입니다.</dd><dt>Webhook</dt><dd>어떤 일이 생기면 다른 시스템에 바로 알려 주는 연결입니다. 기다리지 않고 이벤트로 깨웁니다.</dd><dt>MCP</dt><dd>Claude를 노션·깃허브·DB 같은 외부 도구에 연결하는 표준 방식입니다.</dd><dt>Code · API · Cowork</dt><dd>Claude를 쓰는 세 방식입니다. Claude Code는 코드를 만들고, API는 프로그램에서 호출하고, Cowork는 그 시스템으로 업무를 운영합니다.</dd><dt>Reflexion</dt><dd>AI가 자기 답을 비평하고 다시 쓰게 하는 기법입니다. 비평을 반복한다고 항상 좋아지지는 않아, 같은 기준으로 확인합니다.</dd><dt>SPOF</dt><dd>단일 장애점입니다. 그것 하나가 멈추면 전체가 멈추는 지점입니다. 사장이 SPOF가 되는 것이 이 책이 가장 경계하는 상태입니다.</dd><dt>오케스트레이션</dt><dd>여러 에이전트가 따로 놀지 않도록 지휘자 역할이 순서와 담당을 조율하는 것입니다.</dd><dt>AI하우스</dt><dd>잔다가 운영하는 사장 정기 모임입니다. 새로운 도메인(업계 지식)을 사람에게서 얻는 자리로 소개됩니다.</dd><dt>알집</dt><dd>5권 마스터 상품에 포함된 AI 도구 10종 빌드키트입니다.</dd></dl>
+</section>
+
+
 
   <div class="top-bar">
     <button class="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('mobile-open')" aria-label="목차 열기"><span class="menu-icon">☰</span><span class="menu-label">목차</span></button>
@@ -2818,7 +2826,14 @@ pm2 list              # 가동 워커 목록</pre>
       <blockquote>💡 "노트북 끄면 멈추는 건 자동화가 아니다."</blockquote>
       <a class="next-ch" href="#ch8"><div class="arrow">⛓ 다음</div><div class="next-title">강.8 — Webhook, 이벤트로 깨우기</div></a>
     </div>
-  </section>
+  <section class="aib-lab" data-lab="choice" id="lab-v5-pm2" aria-labelledby="lab-v5-pm2-t">
+<p class="lab-kicker">본문 실습 · 이 장을 바로 써 보기</p><h2 id="lab-v5-pm2-t">새벽에 봇이 멈췄다</h2>
+<p class="lab-meta"><span>⏱ 3분</span><span>🎯 24시간 자동화가 멈췄을 때의 판단 3개</span></p>
+<p>아침에 보니 밤사이 돌아야 할 보고서가 없습니다. 이 장의 PM2와 Cron으로 어떻게 대응할까요?</p>
+<div class="lab-mount"></div>
+<script type="application/json" class="lab-data">{"steps": [{"q": "가장 먼저 무엇을 볼까요?", "options": [{"label": "일단 코드를 고친다", "best": false, "why": "원인을 모르고 고치면 다른 곳이 망가집니다."}, {"label": "pm2 status와 pm2 logs로 프로세스 상태와 마지막 에러를 본다", "best": true, "why": "살아 있는지, 언제 왜 죽었는지부터 확인합니다."}]}, {"q": "로그를 보니 밤 2시에 메모리 부족으로 죽은 뒤 다시 살아나지 않았습니다.", "options": [{"label": "매일 아침 사람이 수동으로 재시작한다", "best": false, "why": "사람이 단일 장애점이 됩니다. 이 장이 깨려는 바로 그 구조입니다."}, {"label": "자동 재시작 설정과 메모리 상한 재시작을 걸고, 재시작이 일어나면 알림을 받게 한다", "best": true, "why": "죽으면 살리고, 살렸다는 사실은 사람이 알게 합니다."}]}, {"q": "재발 방지까지 했습니다. 마지막으로 남길 것은?", "options": [{"label": "잘 돌아가니 아무것도 안 남긴다", "best": false, "why": "같은 일이 생기면 처음부터 다시 찾아야 합니다."}, {"label": "원인·조치·확인 방법을 결정 로그와 실수 기록에 남긴다", "best": true, "why": "기록이 쌓이면 다음 장애는 몇 분 만에 끝납니다."}]}], "results": [{"min": 3, "title": "운영 합격", "text": "확인 → 자동 복구 → 알림 → 기록의 순서가 잡혀 있습니다."}, {"min": 0, "title": "한 번 더", "text": "틀린 장면의 이유를 다시 읽어 보세요."}], "takeaway": "24시간 자동화의 조건은 \"죽지 않는 것\"이 아니라 \"죽으면 살아나고, 사람이 아는 것\"."}</script>
+</section>
+</section>
 
   <!-- 강.8 -->
   <section id="ch8" class="chapter">
@@ -3337,7 +3352,14 @@ async def payment(req: Request):
       <blockquote>💡 "휘발성과 영구성을 자동으로 잇는다."</blockquote>
       <a class="next-ch" href="#ch16"><div class="arrow">⛓ 다음 (Bridge E → Domain 6)</div><div class="next-title">강.16 — 18 tool 시스템</div></a>
     </div>
-  </section>
+  <section class="aib-lab" data-lab="builder" id="lab-v5-decision" aria-labelledby="lab-v5-decision-t">
+<p class="lab-kicker">본문 실습 · 이 장을 바로 써 보기</p><h2 id="lab-v5-decision-t">결정 로그 한 건 쓰기</h2>
+<p class="lab-meta"><span>⏱ 5분</span><span>🎯 나중에 다시 꺼내 볼 수 있는 결정 기록 1건</span></p>
+<p>이 장의 결정 로그를 우리 팀 결정 하나로 써 봅니다. 사람이 쓰든 AI가 정리하든 칸은 같습니다.</p>
+<div class="lab-mount"></div>
+<script type="application/json" class="lab-data">{"fields": [{"key": "what", "label": "결정 — 무엇을 정했나", "example": "고객 문의 1차 답변을 AI 초안 + 담당자 확인 방식으로 바꾼다", "placeholder": "예: 고객 문의 1차 답변을 AI 초안 + 담당자 확인 방식으로 바꾼다"}, {"key": "why", "label": "이유와 근거", "example": "지난달 문의 420건 중 70%가 배송 조회. 평균 첫 답변 시간이 6시간", "placeholder": "예: 지난달 문의 420건 중 70%가 배송 조회. 평균 첫 답변 시간이 6시"}, {"key": "alt", "label": "검토했지만 버린 안", "example": "AI 자동 발송 — 환불 문의에 잘못 답할 위험 때문에 제외", "placeholder": "예: AI 자동 발송 — 환불 문의에 잘못 답할 위험 때문에 제외"}, {"key": "who", "label": "결정한 사람과 실행 담당", "example": "결정: 대표 / 실행: CS 담당 이 매니저", "placeholder": "예: 결정: 대표 / 실행: CS 담당 이 매니저"}, {"key": "check", "label": "언제 다시 볼지와 되돌리는 기준", "example": "12월 1일 재검토. 잘못된 답변 2건 이상이면 이전 방식으로 복귀", "placeholder": "예: 12월 1일 재검토. 잘못된 답변 2건 이상이면 이전 방식으로 복귀"}], "checks": [{"key": "what", "min": 4, "ok": "결정 적음", "todo": "결정 채우기"}, {"key": "why", "min": 4, "ok": "이유와 근거 적음", "todo": "이유와 근거 채우기"}, {"key": "alt", "min": 4, "ok": "검토했지만 버린 안 적음", "todo": "검토했지만 버린 안 채우기"}, {"key": "who", "min": 4, "ok": "결정한 사람과 실행 담당 적음", "todo": "결정한 사람과 실행 담당 채우기"}, {"key": "check", "min": 4, "ok": "언제 다시 볼지와 되돌리는 기준 적음", "todo": "언제 다시 볼지와 되돌리는 기준 채우기"}], "footer": "## 보관\n결정 로그 폴더(노션·드라이브·디스코드 등 한 곳)에 날짜를 제목으로 저장한다."}</script>
+</section>
+</section>
 
   <!-- Bridge E -->
   <section id="bridge-e" class="chapter" style="background: var(--bg3);">

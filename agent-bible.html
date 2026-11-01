@@ -1117,7 +1117,7 @@
     <p class="aib-kicker">AI BIBLE · 3권 독자 안내</p><h2 id="aib-route-title">에이전트의 실행과 실패를 통제하기</h2>
     <p>단일 호출로 해결하지 못하는 지점을 확인한 뒤 도구·기억·분업을 추가합니다. 여러 에이전트가 항상 좋은 것은 아닙니다.</p><p><strong>이 책에서 남길 것</strong> — 업무 인계표 · 호출 한도 · 응답 유실 복구 기록</p>
     <details class="aib-reading-contract"><summary>이번 권의 학습 흐름과 다음 단계</summary><p>한 번의 호출로 해결되지 않는 이유를 먼저 확인합니다. 도구·기억·분업은 문제를 해결할 때만 추가합니다.</p><p><strong>읽는 중심선</strong><br>단일 요청 → 도구와 관찰 → 필요한 기억 → 단계 분리 → 승인 → 한도·복구</p><p><strong>다음 단계로 가기 전</strong><br>결과가 끊겨도 완료·미완료·확인 대기를 구분하고 다음 담당자에게 넘길 수 있다면 5권 운영판에 적용하세요.</p></details><details><summary>준비물과 읽는 순서</summary><p>작은 스크립트 실행 경험. API 실습은 별도 계정·요금·호출 한도를 확인합니다.</p><p>처음 배우는 독자: 1 → 2 → 4 → 3 → 5. 대표·운영 담당자: 5권의 운영판부터 시작하고 필요한 구현 장으로 이동하세요. 권 번호는 주제 구분이며 난이도 순서는 아닙니다.</p></details>
-    <nav aria-label="학습 경로"><a href="start-here.html">내게 맞는 책과 무료 첫 실습</a> · <a href="first-win.html">30분 첫 성공</a> · <a href="recipes.html">직업별 레시피</a> · <a href="failure-museum.html">실패 박물관</a> · <a href="#aib-update-20261025">이 책의 실습과 완료 기준</a> · <a href="en/sales.html" lang="en">English edition</a></nav>
+    <nav aria-label="학습 경로"><a href="start-here.html">내게 맞는 책과 무료 첫 실습</a> · <a href="first-win.html">30분 첫 성공</a> · <a href="recipes.html">직업별 레시피</a> · <a href="failure-museum.html">실패 박물관</a> · <a href="challenge.html">30일 챌린지</a> · <a href="monthly.html">이달의 변경</a> · <a href="#aib-update-20261025">이 책의 실습과 완료 기준</a> · <a href="en/sales.html" lang="en">English edition</a></nav>
     <p class="aib-small">과거 사례는 당시 기록입니다. 실행 환경과 비용은 현재 제공자의 공식 안내를 확인하세요. 읽기·제안·실행·검증은 서로 다른 완료 단계입니다.</p></section>
 <section class="aib-lab" data-lab="sort" id="aib-lab-v3" aria-labelledby="aib-lab-v3-title">
   <p class="lab-kicker">직접 해보기 · 인터랙티브 실습</p><h2 id="aib-lab-v3-title">에이전트에게 맡길 일, 승인받을 일, 맡기면 안 되는 일</h2>
@@ -2844,7 +2844,14 @@ if __name__ == "__main__":
           </div>
         </div>
       </div>
-    </section>
+    <section class="aib-lab" data-lab="choice" id="lab-v3-react" aria-labelledby="lab-v3-react-t">
+<p class="lab-kicker">본문 실습 · 이 장을 바로 써 보기</p><h2 id="lab-v3-react-t">ReAct 한 바퀴 직접 돌리기</h2>
+<p class="lab-meta"><span>⏱ 3분</span><span>🎯 생각 → 행동 → 관찰을 직접 선택</span></p>
+<p>&quot;내일 서울에서 우산을 챙길까?&quot;라는 질문을 받은 에이전트가 되어 다음 행동을 고르세요.</p>
+<div class="lab-mount"></div>
+<script type="application/json" class="lab-data">{"steps": [{"context": "Thought: 내일 서울 날씨를 알아야 한다. 사용 가능한 도구: get_weather(city, date)", "q": "다음 Action은?", "options": [{"label": "학습한 지식으로 \"아마 맑을 거예요\"라고 답한다", "best": false, "why": "모델은 내일 날씨를 모릅니다. 도구가 있는데 쓰지 않으면 지어내게 됩니다."}, {"label": "get_weather(\"서울\", \"내일\")을 호출한다", "best": true, "why": "필요한 정보가 없으면 도구로 관찰합니다. 이것이 ReAct의 Action입니다."}]}, {"context": "Observation: 강수확률 70%, 오후 3시부터 비", "q": "다음은?", "options": [{"label": "정확성을 위해 같은 도구를 5번 더 호출한다", "best": false, "why": "같은 결과를 반복해서 받으면 비용만 듭니다. 루프가 끝나지 않는 대표적인 원인입니다."}, {"label": "Thought: 비 올 확률이 높다 → 답: \"오후부터 비 예보(70%)라 우산을 챙기세요\"", "best": true, "why": "관찰이 충분하면 멈추고 답합니다. 근거(70%)를 함께 말합니다."}]}, {"context": "Observation: get_weather 오류 — timeout", "q": "도구가 실패했습니다. 어떻게 할까요?", "options": [{"label": "\"비 소식은 없습니다\"라고 답한다", "best": false, "why": "관찰하지 못한 것을 사실처럼 말하면 가장 위험한 실패입니다."}, {"label": "정해진 횟수만 재시도하고, 그래도 실패하면 \"확인하지 못했다\"고 알린다", "best": true, "why": "재시도 한도와 정직한 실패 보고가 에이전트의 기본기입니다."}]}], "results": [{"min": 3, "title": "ReAct 합격", "text": "모르면 관찰하고, 충분하면 멈추고, 실패하면 정직하게 말합니다."}, {"min": 0, "title": "한 번 더", "text": "틀린 장면의 이유를 다시 읽어 보세요."}], "takeaway": "도구가 있으면 지어내지 말고 관찰한다. 관찰이 충분하면 멈춘다. 실패는 숨기지 않는다."}</script>
+</section>
+</section>
     <section class="chapter paywall-locked" id="first" data-level="1" style="display:none">
       <div class="ch-header" style="--c1:#818cf8;--c2:#6366f1">
         <h1 class="ch-title">🚀 STEP 3 — 10분 만에 첫 에이전트 만들기</h1>
@@ -3537,7 +3544,14 @@ if __name__ == "__main__":
           </div>
         </div>
       </div>
-    </section>
+    <section class="aib-lab" data-lab="sort" id="lab-v3-memory" aria-labelledby="lab-v3-memory-t">
+<p class="lab-kicker">본문 실습 · 이 장을 바로 써 보기</p><h2 id="lab-v3-memory-t">이 정보는 어디에 기억할까</h2>
+<p class="lab-meta"><span>⏱ 4분</span><span>🎯 정보 6개를 기억 4종류에 배치</span></p>
+<p>이 장의 기억 4종류를 실제 상황에 적용해 봅니다.</p>
+<div class="lab-mount"></div>
+<script type="application/json" class="lab-data">{"levels": [{"id": "ctx", "label": "컨텍스트", "desc": "이번 대화 안에서만"}, {"id": "file", "label": "파일(JSON)", "desc": "재시작해도 남는 작은 상태"}, {"id": "db", "label": "DB(SQLite)", "desc": "많은 기록을 조건으로 조회"}, {"id": "vec", "label": "벡터DB", "desc": "\"비슷한 내용\" 찾기"}], "question": "각 정보에 알맞은 기억 방식을 고르세요.", "items": [{"text": "방금 사용자가 \"내 이름은 민수야\"라고 말함", "answer": "ctx", "why": "이 대화 안에서만 쓰면 됩니다."}, {"text": "봇이 마지막으로 처리한 뉴스 ID", "answer": "file", "why": "작은 값 하나, 재시작 후에도 이어 가야 합니다."}, {"text": "알림 받을 시간 같은 설정값 몇 개", "answer": "file", "why": "자주 바뀌지 않는 작은 설정입니다."}, {"text": "고객 3,000명의 주문 이력에서 \"지난달 2회 이상 구매\" 찾기", "answer": "db", "why": "조건으로 정확히 조회하는 일은 DB가 맞습니다."}, {"text": "월별 매출 합계 계산", "answer": "db", "why": "집계와 계산은 DB 쿼리로 정확하게 합니다."}, {"text": "\"환불 관련 문의와 비슷한 과거 답변\" 찾기", "answer": "vec", "why": "단어가 달라도 의미가 비슷한 것을 찾는 일입니다."}], "takeaway": "정확히 찾으면 DB, 비슷한 것을 찾으면 벡터DB, 작은 상태는 파일, 지금 대화는 컨텍스트."}</script>
+</section>
+</section>
     <section class="chapter paywall-locked" id="level2b" data-level="2" style="display:none">
       <div class="ch-header" style="--c1:#a78bfa;--c2:#7c3aed">
         <h1 class="ch-title">👥 STEP 6a — HITL (사람 승인 구조)</h1>

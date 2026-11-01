@@ -164,5 +164,7 @@ https://aiaijungle.github.io/vibe-ebook/sales.html
 
 ## 무료 인터랙티브 실습 (2026-11)
 - [30분 첫 성공](https://aiaijungle.github.io/vibe-ebook/first-win.html): 권별로 30분 안에 결과물 하나를 만드는 체크리스트와 지시서 조립기
-- [직업별 AI 레시피 10선](https://aiaijungle.github.io/vibe-ebook/recipes.html): 마케터·자영업자·영업·인사·회계·교사·공무원·크리에이터·기획자·취준생용 지시서와 검수 체크리스트
+- [직업별 AI 레시피 30선](https://aiaijungle.github.io/vibe-ebook/recipes.html): 마케터·자영업자·영업·인사·회계·교사·공무원·크리에이터·기획자·취준생용 지시서와 검수 체크리스트
 - [실패 박물관](https://aiaijungle.github.io/vibe-ebook/failure-museum.html): AI 자동화 운영 중 실제로 겪은 사고 6건의 원인·복구·재발 방지
+- [30일 챌린지](https://aiaijungle.github.io/vibe-ebook/challenge.html): 하루 15~30분, 30일 동안 결과물 10개를 만드는 체크리스트와 결과 카드, 템플릿 팩
+- [이달의 변경](https://aiaijungle.github.io/vibe-ebook/monthly.html): 독자 업무에 영향을 주는 AI 모델·요금·API 변화와 고칠 장 목록

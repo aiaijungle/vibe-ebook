@@ -317,7 +317,7 @@
     <p class="aib-kicker">AI BIBLE · 4권 독자 안내</p><h2 id="aib-route-title">Claude Code로 수정하고 검증하기</h2>
     <p>프로젝트 읽기 → 작은 변경 → 검사 → 변경 내역 검토가 본선입니다. MCP·Hooks·Subagents는 필요한 문제에 맞춰 선택합니다.</p><p><strong>이 책에서 남길 것</strong> — 수정 전 재현 · 변경 내역 · 실제 검사 결과</p>
     <details class="aib-reading-contract"><summary>이번 권의 학습 흐름과 다음 단계</summary><p>현재 프로젝트와 지침을 읽고 작은 오류를 재현합니다. 기능을 많이 연결하는 것보다 바뀐 동작을 확인하는 것이 먼저입니다.</p><p><strong>읽는 중심선</strong><br>프로젝트 이해 → 실패 재현 → 최소 수정 → 검사 → 변경 내역·복구 확인</p><p><strong>다음 단계로 가기 전</strong><br>입력·기대 결과·실제 결과를 비교하고 미실행 검사를 구분할 수 있다면 3권의 업무 연결을 검토하세요.</p></details><details><summary>준비물과 읽는 순서</summary><p>로컬 프로젝트와 Claude Code 사용 환경. 구독 로그인과 API 과금을 구분합니다.</p><p>처음 배우는 독자: 1 → 2 → 4 → 3 → 5. 대표·운영 담당자: 5권의 운영판부터 시작하고 필요한 구현 장으로 이동하세요. 권 번호는 주제 구분이며 난이도 순서는 아닙니다.</p></details>
-    <nav aria-label="학습 경로"><a href="start-here.html">내게 맞는 책과 무료 첫 실습</a> · <a href="first-win.html">30분 첫 성공</a> · <a href="recipes.html">직업별 레시피</a> · <a href="failure-museum.html">실패 박물관</a> · <a href="#aib-update-20261025">이 책의 실습과 완료 기준</a> · <a href="en/sales.html" lang="en">English edition</a></nav>
+    <nav aria-label="학습 경로"><a href="start-here.html">내게 맞는 책과 무료 첫 실습</a> · <a href="first-win.html">30분 첫 성공</a> · <a href="recipes.html">직업별 레시피</a> · <a href="failure-museum.html">실패 박물관</a> · <a href="challenge.html">30일 챌린지</a> · <a href="monthly.html">이달의 변경</a> · <a href="#aib-update-20261025">이 책의 실습과 완료 기준</a> · <a href="en/sales.html" lang="en">English edition</a></nav>
     <p class="aib-small">과거 사례는 당시 기록입니다. 실행 환경과 비용은 현재 제공자의 공식 안내를 확인하세요. 읽기·제안·실행·검증은 서로 다른 완료 단계입니다.</p></section>
 <section class="aib-lab" data-lab="builder" id="aib-lab-v4" aria-labelledby="aib-lab-v4-title">
   <p class="lab-kicker">직접 해보기 · 인터랙티브 실습</p><h2 id="aib-lab-v4-title">Claude Code 작업 지시서 조립기</h2>
@@ -1203,7 +1203,14 @@ claude</pre>
       </div>
 
     </div>
-  </section>
+  <section class="aib-lab" data-lab="builder" id="lab-v4-claudemd" aria-labelledby="lab-v4-claudemd-t">
+<p class="lab-kicker">본문 실습 · 이 장을 바로 써 보기</p><h2 id="lab-v4-claudemd-t">내 프로젝트 CLAUDE.md 조립기</h2>
+<p class="lab-meta"><span>⏱ 7분</span><span>🎯 프로젝트 지침 파일 초안 완성</span></p>
+<p>이 장의 황금 템플릿을 내 프로젝트로 채워 봅니다. 완성된 내용을 프로젝트 루트의 CLAUDE.md에 붙여 넣으세요.</p>
+<div class="lab-mount"></div>
+<script type="application/json" class="lab-data">{"fields": [{"key": "what", "label": "프로젝트 설명 — 무엇이고 누가 쓰나", "example": "동네 꽃집 예약 페이지. 사장 1명과 손님이 휴대폰으로 사용", "placeholder": "예: 동네 꽃집 예약 페이지. 사장 1명과 손님이 휴대폰으로 사용"}, {"key": "stack", "label": "구조와 실행 방법", "example": "index.html + app.js + style.css. 로컬 확인은 브라우저로 index.html 열기", "placeholder": "예: index.html + app.js + style.css. 로컬 확인은 "}, {"key": "rules", "label": "작업 규칙", "example": "수정 전에 계획을 먼저 보여 준다. 한 번에 한 기능만 바꾼다. 변경 후 바뀐 파일 목록을 알려 준다", "placeholder": "예: 수정 전에 계획을 먼저 보여 준다. 한 번에 한 기능만 바꾼다. 변경 후"}, {"key": "deny", "label": "절대 건드리지 말 것", "example": ".env, payment/ 폴더, 이미 배포된 주소의 경로 구조", "placeholder": "예: .env, payment/ 폴더, 이미 배포된 주소의 경로 구조"}, {"key": "done", "label": "완료 기준", "example": "휴대폰 화면에서 가로 넘침 없음, 예약 버튼 눌렀을 때 확인 문구 표시, 콘솔 에러 0개", "placeholder": "예: 휴대폰 화면에서 가로 넘침 없음, 예약 버튼 눌렀을 때 확인 문구 표시,"}], "checks": [{"key": "what", "min": 4, "ok": "프로젝트 설명 적음", "todo": "프로젝트 설명 채우기"}, {"key": "stack", "min": 4, "ok": "구조와 실행 방법 적음", "todo": "구조와 실행 방법 채우기"}, {"key": "rules", "min": 4, "ok": "작업 규칙 적음", "todo": "작업 규칙 채우기"}, {"key": "deny", "min": 4, "ok": "절대 건드리지 말 것 적음", "todo": "절대 건드리지 말 것 채우기"}, {"key": "done", "min": 4, "ok": "완료 기준 적음", "todo": "완료 기준 채우기"}], "footer": "## 주의\n이 파일은 매 대화에 읽히는 지침이지 강제 장치가 아니다. 반드시 막아야 할 것은 권한 설정이나 훅으로 막는다."}</script>
+</section>
+</section>
 
   <!-- ━━━━ CHAPTER 5 ━━━━ -->
   <section class="chapter paywall-locked" id="ch5" style="display:none">
@@ -1427,7 +1434,14 @@ claude</pre>
       </div>
 
     </div>
-  </section>
+  <section class="aib-lab" data-lab="sort" id="lab-v4-hooks" aria-labelledby="lab-v4-hooks-t">
+<p class="lab-kicker">본문 실습 · 이 장을 바로 써 보기</p><h2 id="lab-v4-hooks-t">이 일은 어떤 훅에 걸까</h2>
+<p class="lab-meta"><span>⏱ 4분</span><span>🎯 자동화 6개를 훅 이벤트에 배치</span></p>
+<p>훅은 &quot;언제&quot; 실행되느냐가 전부입니다. 각 자동화를 알맞은 시점에 연결해 보세요.</p>
+<div class="lab-mount"></div>
+<script type="application/json" class="lab-data">{"levels": [{"id": "pre", "label": "PreToolUse", "desc": "도구 실행 직전"}, {"id": "post", "label": "PostToolUse", "desc": "도구 실행 직후"}, {"id": "stop", "label": "Stop", "desc": "응답이 끝났을 때"}, {"id": "notif", "label": "Notification", "desc": "알림이 발생할 때"}, {"id": "prompt", "label": "UserPromptSubmit", "desc": "내가 입력을 보낼 때"}, {"id": "start", "label": "SessionStart", "desc": "세션을 시작할 때"}], "question": "각 자동화에 알맞은 훅을 고르세요.", "items": [{"text": "rm -rf 같은 위험 명령을 실행 전에 막기", "answer": "pre", "why": "실행된 뒤에는 늦습니다. 직전에 막아야 합니다."}, {"text": "파일을 수정할 때마다 린트·테스트 돌리기", "answer": "post", "why": "수정이 끝난 직후가 검사할 시점입니다."}, {"text": "작업이 끝나면 소리로 알려 주기", "answer": "stop", "why": "응답이 끝났을 때 한 번 실행됩니다."}, {"text": "권한 확인 요청이 오면 메신저로 알림 보내기", "answer": "notif", "why": "Claude가 확인을 기다릴 때 발생하는 알림에 연결합니다."}, {"text": "내가 보낸 메시지에 API 키 같은 비밀값이 있는지 검사", "answer": "prompt", "why": "입력이 모델에 전달되기 전에 걸러야 합니다."}, {"text": "시작할 때 오늘의 작업 메모와 git 상태 불러오기", "answer": "start", "why": "세션 시작 시점에 맥락을 넣어 줍니다."}], "takeaway": "막을 일은 Pre, 확인할 일은 Post, 알릴 일은 Stop·Notification."}</script>
+</section>
+</section>
 
   <!-- ━━━━ CHAPTER 7 ━━━━ -->
   <section class="chapter paywall-locked" id="ch7" style="display:none">
@@ -2472,7 +2486,14 @@ token*.pickle</pre>
       </div>
 
     </div>
-  </section>
+  <section class="aib-lab" data-lab="choice" id="lab-v4-mistakes" aria-labelledby="lab-v4-mistakes-t">
+<p class="lab-kicker">본문 실습 · 이 장을 바로 써 보기</p><h2 id="lab-v4-mistakes-t">실수 12가지 — 이 장면이면?</h2>
+<p class="lab-meta"><span>⏱ 4분</span><span>🎯 실수가 시작되는 순간 4개 판단</span></p>
+<p>12가지 실수는 대부분 &quot;이 정도는 괜찮겠지&quot;에서 시작됩니다. 그 순간을 골라 봤습니다.</p>
+<div class="lab-mount"></div>
+<script type="application/json" class="lab-data">{"steps": [{"q": "로그인 기능을 끝냈습니다. 이어서 같은 창에서 결제 기능을 시작하려 합니다.", "options": [{"label": "맥락이 이어지니 그대로 시작한다", "best": false, "why": "이전 작업의 맥락이 새 작업 판단을 흐립니다(실수 #2)."}, {"label": "커밋한 뒤 /clear로 비우고 새 작업을 시작한다", "best": true, "why": "독립 작업은 깨끗한 컨텍스트에서. 필요한 맥락은 CLAUDE.md와 작업 메모로 넘깁니다."}]}, {"q": "같은 에러로 Claude가 세 번째 같은 수정을 시도하고 있습니다.", "options": [{"label": "언젠가는 맞히겠지 기다린다", "best": false, "why": "루프에 빠진 상태입니다(실수 #10). 토큰만 쓰입니다."}, {"label": "멈추고, 지금까지 시도한 것과 결과를 정리하게 한 뒤 다른 접근을 묻는다", "best": true, "why": "멈추고 정리하는 것이 루프를 끊는 가장 빠른 방법입니다."}]}, {"q": "테스트를 위해 API 키를 코드에 잠깐 넣었습니다. 이제 커밋하려 합니다.", "options": [{"label": "나중에 지우면 되니 커밋한다", "best": false, "why": "한 번 커밋된 키는 이력에 남습니다(실수 #4). 이미 올렸다면 키를 폐기하고 새로 발급하세요."}, {"label": "키를 .env로 옮기고 .gitignore를 확인한 뒤 커밋한다", "best": true, "why": "비밀값은 코드 밖에 둡니다."}]}, {"q": "Claude가 \"이 라이브러리는 최신 버전에서 이 함수를 지원합니다\"라고 합니다.", "options": [{"label": "Claude가 말했으니 그대로 쓴다", "best": false, "why": "라이브러리 정보는 학습 시점 이후 바뀌었을 수 있습니다(실수 #12)."}, {"label": "공식 문서나 설치된 버전에서 직접 확인한다", "best": true, "why": "중요한 결정은 공식 문서와 대조합니다."}]}], "results": [{"min": 4, "title": "실수 예방 합격", "text": "실수가 시작되는 순간을 알아보는 눈이 있습니다."}, {"min": 2, "title": "거의 다 왔습니다", "text": "틀린 장면의 실수 번호를 본문에서 다시 읽어 보세요."}, {"min": 0, "title": "한 번 더", "text": "이 장의 12가지를 한 번 더 훑고 다시 풀어 보세요."}], "takeaway": "새 작업은 새 컨텍스트, 반복되면 멈춤, 비밀은 코드 밖, 중요한 사실은 공식 문서."}</script>
+</section>
+</section>
 
   <!-- ━━━━ BONUS 3: 비용·VS Code·Git ━━━━ -->
   <section class="chapter paywall-locked" id="ch13" style="display:none">
