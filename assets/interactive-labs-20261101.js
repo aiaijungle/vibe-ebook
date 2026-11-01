@@ -104,7 +104,8 @@
       stage.appendChild(opts);
     }
     function finish() {
-      stage.textContent = ''; next.hidden = true; fill.style.width = '100%';
+      if (d.steps.length > 1) stage.textContent = '';
+      next.hidden = true; fill.style.width = '100%';
       prog.textContent = '완료';
       var r = d.results.filter(function (x) { return score >= x.min; })[0];
       feedback(fb, score === d.steps.length ? 'ok' : '', d.steps.length + '개 중 ' + score + '개 · ' + r.title, [r.text].concat(d.takeaway ? ['정리 · ' + d.takeaway] : []));
@@ -207,7 +208,36 @@
     root.appendChild(act); root.appendChild(fb);
   }
 
-  var TYPES = { spot: spot, choice: choice, builder: builder, sort: sort };
+  /* 5. Steps: a timed checklist with progress and a finish line. */
+  function steps(root, d) {
+    var prog = el('p', { class: 'lab-progress', 'aria-live': 'polite' }), bar = el('div', { class: 'lab-bar' }), fill = el('i');
+    bar.appendChild(fill);
+    var list = el('ol', { class: 'lab-steps' }), boxes = [];
+    var fb = el('div', { class: 'lab-feedback ok', role: 'status' }); fb.hidden = true;
+    d.steps.forEach(function (s, i) {
+      var li = el('li'), lab = el('label');
+      var cb = el('input', { type: 'checkbox' });
+      lab.appendChild(cb);
+      var body = el('span');
+      body.appendChild(el('strong', null, (s.time ? '[' + s.time + '] ' : '') + s.title));
+      if (s.detail) { body.appendChild(el('br')); body.appendChild(document.createTextNode(s.detail)); }
+      lab.appendChild(body); li.appendChild(lab);
+      if (s.code) li.appendChild(el('pre', { class: 'lab-out' }, s.code));
+      list.appendChild(li); boxes.push(cb);
+      cb.addEventListener('change', update);
+    });
+    function update() {
+      var n = boxes.filter(function (b) { return b.checked; }).length;
+      fill.style.width = (n / boxes.length * 100) + '%';
+      prog.textContent = n + ' / ' + boxes.length + ' 단계 완료';
+      if (n === boxes.length) feedback(fb, 'ok', d.done || '완료했습니다.', d.next ? ['다음 · ' + d.next] : []);
+      else fb.hidden = true;
+    }
+    root.appendChild(prog); root.appendChild(bar); root.appendChild(list); root.appendChild(fb);
+    update();
+  }
+
+  var TYPES = { spot: spot, choice: choice, builder: builder, sort: sort, steps: steps };
   function init() {
     Array.prototype.forEach.call(document.querySelectorAll('section.aib-lab[data-lab]'), function (sec) {
       if (sec.dataset.ready) return;

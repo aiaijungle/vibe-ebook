@@ -306,8 +306,8 @@
 }</script>
 <link rel="stylesheet" href="assets/updates-20261025.css">
 <link rel="stylesheet" href="assets/learning-edition-20261031.css?v=3">
-<link rel="stylesheet" href="assets/interactive-labs-20261101.css?v=1">
-<script src="assets/interactive-labs-20261101.js?v=1" defer></script>
+<link rel="stylesheet" href="assets/interactive-labs-20261101.css?v=3">
+<script src="assets/interactive-labs-20261101.js?v=3" defer></script>
 <script src="assets/reader-sharing-20261031.js"></script>
 <link rel="canonical" href="https://aiaijungle.github.io/vibe-ebook/claude-code-bible.html">
 <link rel="alternate" hreflang="ko" href="https://aiaijungle.github.io/vibe-ebook/claude-code-bible.html"><link rel="alternate" hreflang="en" href="https://aiaijungle.github.io/vibe-ebook/en/claude-code-bible.html">
@@ -317,7 +317,7 @@
     <p class="aib-kicker">AI BIBLE · 4권 독자 안내</p><h2 id="aib-route-title">Claude Code로 수정하고 검증하기</h2>
     <p>프로젝트 읽기 → 작은 변경 → 검사 → 변경 내역 검토가 본선입니다. MCP·Hooks·Subagents는 필요한 문제에 맞춰 선택합니다.</p><p><strong>이 책에서 남길 것</strong> — 수정 전 재현 · 변경 내역 · 실제 검사 결과</p>
     <details class="aib-reading-contract"><summary>이번 권의 학습 흐름과 다음 단계</summary><p>현재 프로젝트와 지침을 읽고 작은 오류를 재현합니다. 기능을 많이 연결하는 것보다 바뀐 동작을 확인하는 것이 먼저입니다.</p><p><strong>읽는 중심선</strong><br>프로젝트 이해 → 실패 재현 → 최소 수정 → 검사 → 변경 내역·복구 확인</p><p><strong>다음 단계로 가기 전</strong><br>입력·기대 결과·실제 결과를 비교하고 미실행 검사를 구분할 수 있다면 3권의 업무 연결을 검토하세요.</p></details><details><summary>준비물과 읽는 순서</summary><p>로컬 프로젝트와 Claude Code 사용 환경. 구독 로그인과 API 과금을 구분합니다.</p><p>처음 배우는 독자: 1 → 2 → 4 → 3 → 5. 대표·운영 담당자: 5권의 운영판부터 시작하고 필요한 구현 장으로 이동하세요. 권 번호는 주제 구분이며 난이도 순서는 아닙니다.</p></details>
-    <nav aria-label="학습 경로"><a href="start-here.html">내게 맞는 책과 무료 첫 실습</a> · <a href="#aib-update-20261025">이 책의 실습과 완료 기준</a> · <a href="en/sales.html" lang="en">English edition</a></nav>
+    <nav aria-label="학습 경로"><a href="start-here.html">내게 맞는 책과 무료 첫 실습</a> · <a href="first-win.html">30분 첫 성공</a> · <a href="recipes.html">직업별 레시피</a> · <a href="failure-museum.html">실패 박물관</a> · <a href="#aib-update-20261025">이 책의 실습과 완료 기준</a> · <a href="en/sales.html" lang="en">English edition</a></nav>
     <p class="aib-small">과거 사례는 당시 기록입니다. 실행 환경과 비용은 현재 제공자의 공식 안내를 확인하세요. 읽기·제안·실행·검증은 서로 다른 완료 단계입니다.</p></section>
 <section class="aib-lab" data-lab="builder" id="aib-lab-v4" aria-labelledby="aib-lab-v4-title">
   <p class="lab-kicker">직접 해보기 · 인터랙티브 실습</p><h2 id="aib-lab-v4-title">Claude Code 작업 지시서 조립기</h2>
@@ -1578,19 +1578,21 @@ print(response.content[0].text)</pre>
 
       <h2>모델 선택 — 언제 뭘 쓸까</h2>
 
+      <p class="aib-current-note" style="font-size:.86rem;line-height:1.7;opacity:.9;margin:8px 0 14px;">📌 <strong>현재 기준 (2026년 10월, Anthropic 공식 1st-party API 요금)</strong> — 모델과 가격은 자주 바뀝니다. 결제 전에는 <a href="https://platform.claude.com/docs/en/about-claude/pricing" target="_blank" rel="noopener">공식 가격 페이지</a>를 확인하세요. 다른 회사 모델은 각 회사의 공식 가격 페이지를 확인하세요.</p>
       <table class="compare-table">
-        <thead><tr><th>모델</th><th>언제 쓰나</th><th>비용</th></tr></thead>
+        <thead><tr><th>모델 ID</th><th>언제 쓰나</th><th>입력 / 출력 (1M 토큰)</th></tr></thead>
         <tbody>
-          <tr><td>claude-haiku-4-5-20251001</td><td class="acc">분류, 스코어링, 짧은 응답, 고속 처리</td><td>가장 저렴</td></tr>
-          <tr><td>claude-sonnet-4-6</td><td class="acc">일반 개발, 분석, 긴 응답 (기본값)</td><td>중간</td></tr>
-          <tr><td>claude-opus-4-7</td><td>전략적 판단, 복잡한 추론</td><td>가장 비쌈</td></tr>
+          <tr><td>claude-haiku-5-5</td><td class="acc">분류, 스코어링, 짧은 응답, 고속 처리</td><td>$0.10 / $0.50</td></tr>
+          <tr><td>claude-sonnet-5-5</td><td class="acc">일반 개발, 분석, 대량 처리</td><td>$2 / $10</td></tr>
+          <tr><td>claude-opus-5-5</td><td class="acc">복잡한 코드 작업, 설계, 에이전트 (API 기본 추천)</td><td>$4 / $20</td></tr>
+          <tr><td>claude-fable-5-1</td><td>가장 어려운 추론, 장시간 작업</td><td>$10 / $50</td></tr>
         </tbody>
       </table>
 
       <div class="warn-box">
         <div class="label">💰 토큰 절약 원칙 (JANDA 운영 기준)</div>
-        대부분 Sonnet 4.6 고정. Haiku는 스코어링·분류·짧은 응답 전용.<br>
-        Opus 4.7은 월 예산 고려해서 꼭 필요할 때만. "더 좋은 답변"을 위해 쓰면 안 됨.
+        원칙은 그대로다. 단순 분류·요약은 Haiku, 대량 처리는 Sonnet, 어려운 코드·설계는 Opus.<br>
+        모델을 바꾸기 전에 프롬프트 캐시와 짧은 출력부터 적용하고, 같은 과제로 품질과 비용을 직접 비교해서 고른다.
       </div>
 
 <!-- ★ 독자 후기 위젯 -->

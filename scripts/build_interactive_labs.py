@@ -9,8 +9,8 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-CSS = '<link rel="stylesheet" href="assets/interactive-labs-20261101.css?v=1">'
-JS = '<script src="assets/interactive-labs-20261101.js?v=1" defer></script>'
+CSS = '<link rel="stylesheet" href="assets/interactive-labs-20261101.css?v=3">'
+JS = '<script src="assets/interactive-labs-20261101.js?v=3" defer></script>'
 
 LABS = {
     'book1.html': {

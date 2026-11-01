@@ -161,3 +161,8 @@ https://aiaijungle.github.io/vibe-ebook/sales.html
 - 4권: AI가 고친 코드를 믿기 전에 — https://aiaijungle.github.io/vibe-ebook/claude-code-bible.html#aib-update-20261025
 - 5권: AI 에이전트가 노는 세상, 온톨로지로 쉽게 시작하기 — https://aiaijungle.github.io/vibe-ebook/practical-bible.html#aib-update-20261025
 가상 데이터 기반의 교육용 실습입니다. 상세 본문은 기존 구매자 접근 방식으로 제공하며, 실습 코드는 실제 예약·결제·발송을 수행하지 않습니다.
+
+## 무료 인터랙티브 실습 (2026-11)
+- [30분 첫 성공](https://aiaijungle.github.io/vibe-ebook/first-win.html): 권별로 30분 안에 결과물 하나를 만드는 체크리스트와 지시서 조립기
+- [직업별 AI 레시피 10선](https://aiaijungle.github.io/vibe-ebook/recipes.html): 마케터·자영업자·영업·인사·회계·교사·공무원·크리에이터·기획자·취준생용 지시서와 검수 체크리스트
+- [실패 박물관](https://aiaijungle.github.io/vibe-ebook/failure-museum.html): AI 자동화 운영 중 실제로 겪은 사고 6건의 원인·복구·재발 방지

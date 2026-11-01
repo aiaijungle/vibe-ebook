@@ -1105,8 +1105,8 @@
 }</script>
 <link rel="stylesheet" href="assets/updates-20261025.css">
 <link rel="stylesheet" href="assets/learning-edition-20261031.css?v=3">
-<link rel="stylesheet" href="assets/interactive-labs-20261101.css?v=1">
-<script src="assets/interactive-labs-20261101.js?v=1" defer></script>
+<link rel="stylesheet" href="assets/interactive-labs-20261101.css?v=3">
+<script src="assets/interactive-labs-20261101.js?v=3" defer></script>
 <script src="assets/reader-sharing-20261031.js"></script>
 <link rel="canonical" href="https://aiaijungle.github.io/vibe-ebook/agent-bible.html">
 <link rel="alternate" hreflang="ko" href="https://aiaijungle.github.io/vibe-ebook/agent-bible.html"><link rel="alternate" hreflang="en" href="https://aiaijungle.github.io/vibe-ebook/en/agent-bible.html">
@@ -1117,7 +1117,7 @@
     <p class="aib-kicker">AI BIBLE · 3권 독자 안내</p><h2 id="aib-route-title">에이전트의 실행과 실패를 통제하기</h2>
     <p>단일 호출로 해결하지 못하는 지점을 확인한 뒤 도구·기억·분업을 추가합니다. 여러 에이전트가 항상 좋은 것은 아닙니다.</p><p><strong>이 책에서 남길 것</strong> — 업무 인계표 · 호출 한도 · 응답 유실 복구 기록</p>
     <details class="aib-reading-contract"><summary>이번 권의 학습 흐름과 다음 단계</summary><p>한 번의 호출로 해결되지 않는 이유를 먼저 확인합니다. 도구·기억·분업은 문제를 해결할 때만 추가합니다.</p><p><strong>읽는 중심선</strong><br>단일 요청 → 도구와 관찰 → 필요한 기억 → 단계 분리 → 승인 → 한도·복구</p><p><strong>다음 단계로 가기 전</strong><br>결과가 끊겨도 완료·미완료·확인 대기를 구분하고 다음 담당자에게 넘길 수 있다면 5권 운영판에 적용하세요.</p></details><details><summary>준비물과 읽는 순서</summary><p>작은 스크립트 실행 경험. API 실습은 별도 계정·요금·호출 한도를 확인합니다.</p><p>처음 배우는 독자: 1 → 2 → 4 → 3 → 5. 대표·운영 담당자: 5권의 운영판부터 시작하고 필요한 구현 장으로 이동하세요. 권 번호는 주제 구분이며 난이도 순서는 아닙니다.</p></details>
-    <nav aria-label="학습 경로"><a href="start-here.html">내게 맞는 책과 무료 첫 실습</a> · <a href="#aib-update-20261025">이 책의 실습과 완료 기준</a> · <a href="en/sales.html" lang="en">English edition</a></nav>
+    <nav aria-label="학습 경로"><a href="start-here.html">내게 맞는 책과 무료 첫 실습</a> · <a href="first-win.html">30분 첫 성공</a> · <a href="recipes.html">직업별 레시피</a> · <a href="failure-museum.html">실패 박물관</a> · <a href="#aib-update-20261025">이 책의 실습과 완료 기준</a> · <a href="en/sales.html" lang="en">English edition</a></nav>
     <p class="aib-small">과거 사례는 당시 기록입니다. 실행 환경과 비용은 현재 제공자의 공식 안내를 확인하세요. 읽기·제안·실행·검증은 서로 다른 완료 단계입니다.</p></section>
 <section class="aib-lab" data-lab="sort" id="aib-lab-v3" aria-labelledby="aib-lab-v3-title">
   <p class="lab-kicker">직접 해보기 · 인터랙티브 실습</p><h2 id="aib-lab-v3-title">에이전트에게 맡길 일, 승인받을 일, 맡기면 안 되는 일</h2>
@@ -4184,64 +4184,14 @@ def safe_query(user_input: str) -&gt; str:
 
           <p>비용 최적화의 첫 단계는 <strong>적을 아는 것</strong>이다.</p>
 
-          <h3>주요 모델 토큰 가격 (2026년 기준)</h3>
-
-          <div class="table-wrap">
-            <table style="width:100%; border-collapse:collapse; margin:20px 0;">
-              <tr style="background:#f0f0f0;">
-                <th style="border:1px solid #ddd; padding:12px;">모델</th>
-                <th style="border:1px solid #ddd; padding:12px;">Input (1M토큰)</th>
-                <th style="border:1px solid #ddd; padding:12px;">Output (1M토큰)</th>
-                <th style="border:1px solid #ddd; padding:12px;">적합 용도</th>
-              </tr>
-              <tr style="background:#fff7ed;">
-                <td style="border:1px solid #ddd; padding:12px;"><strong>Claude Opus 4.7</strong> ★</td>
-                <td style="border:1px solid #ddd; padding:12px;"><strong>$15.00</strong></td>
-                <td style="border:1px solid #ddd; padding:12px;"><strong>$75.00</strong></td>
-                <td style="border:1px solid #ddd; padding:12px;">롱폼 대본·복잡한 설계·전략 분석</td>
-              </tr>
-              <tr>
-                <td style="border:1px solid #ddd; padding:12px;"><strong>Claude Sonnet 4.6</strong></td>
-                <td style="border:1px solid #ddd; padding:12px;">$3.00</td>
-                <td style="border:1px solid #ddd; padding:12px;">$15.00</td>
-                <td style="border:1px solid #ddd; padding:12px;">코딩·분석·일반 에이전트 작업</td>
-              </tr>
-              <tr>
-                <td style="border:1px solid #ddd; padding:12px;"><strong>Claude Haiku 4.5</strong></td>
-                <td style="border:1px solid #ddd; padding:12px;">$0.80</td>
-                <td style="border:1px solid #ddd; padding:12px;">$4.00</td>
-                <td style="border:1px solid #ddd; padding:12px;">분류·요약·빠른 응답 봇</td>
-              </tr>
-              <tr>
-                <td style="border:1px solid #ddd; padding:12px;"><strong>GPT-4o</strong></td>
-                <td style="border:1px solid #ddd; padding:12px;">$2.50</td>
-                <td style="border:1px solid #ddd; padding:12px;">$10.00</td>
-                <td style="border:1px solid #ddd; padding:12px;">OpenAI 생태계 연동</td>
-              </tr>
-              <tr>
-                <td style="border:1px solid #ddd; padding:12px;"><strong>GPT-4o-mini</strong></td>
-                <td style="border:1px solid #ddd; padding:12px;">$0.15</td>
-                <td style="border:1px solid #ddd; padding:12px;">$0.60</td>
-                <td style="border:1px solid #ddd; padding:12px;">대량 처리 파이프라인</td>
-              </tr>
-              <tr>
-                <td style="border:1px solid #ddd; padding:12px;"><strong>Gemini 2.0 Flash</strong></td>
-                <td style="border:1px solid #ddd; padding:12px;">$0.10</td>
-                <td style="border:1px solid #ddd; padding:12px;">$0.40</td>
-                <td style="border:1px solid #ddd; padding:12px;">초저가 대용량·멀티모달</td>
-              </tr>
-              <tr>
-                <td style="border:1px solid #ddd; padding:12px;"><strong>DeepSeek V3</strong></td>
-                <td style="border:1px solid #ddd; padding:12px;">$0.27</td>
-                <td style="border:1px solid #ddd; padding:12px;">$1.10</td>
-                <td style="border:1px solid #ddd; padding:12px;">오픈웨이트 가성비</td>
-              </tr>
-            </table>
-          </div>
+          <h3>주요 모델 토큰 가격 (2026년 10월 기준)</h3>
+<p class="aib-current-note" style="font-size:.86rem;line-height:1.7;opacity:.9;margin:8px 0 14px;">📌 <strong>현재 기준 (2026년 10월, Anthropic 공식 1st-party API 요금)</strong> — 모델과 가격은 자주 바뀝니다. 결제 전에는 <a href="https://platform.claude.com/docs/en/about-claude/pricing" target="_blank" rel="noopener">공식 가격 페이지</a>를 확인하세요. 다른 회사 모델은 각 회사의 공식 가격 페이지를 확인하세요.</p>
+<div class="table-wrap"><table style="width:100%;border-collapse:collapse;"><tr><th>모델</th><th>Input (1M토큰)</th><th>Output (1M토큰)</th><th>적합 용도</th></tr><tr><td><strong>Claude Fable 5.1</strong></td><td>$10.00</td><td>$50.00</td><td>가장 어려운 추론·장시간 에이전트 작업</td></tr><tr><td><strong>Claude Opus 5.5</strong></td><td>$4.00</td><td>$20.00</td><td>복잡한 설계·전략 분석·긴 대본</td></tr><tr><td><strong>Claude Sonnet 5.5</strong></td><td>$2.00</td><td>$10.00</td><td>코딩·분석·일반 에이전트 작업</td></tr><tr><td><strong>Claude Haiku 5.5</strong></td><td>$0.10</td><td>$0.50</td><td>분류·요약·빠른 응답 봇 (입력 10만 토큰 이하 기준)</td></tr></table></div>
+<p style="font-size:.9rem;line-height:1.7;">같은 시스템 프롬프트를 반복해서 보내면 <strong>프롬프트 캐시</strong>로 읽기 비용이 기본 입력 단가의 약 10% 수준이 됩니다(처음 저장할 때는 약 1.25배). 비용이 가장 많이 줄어드는 지점은 대개 모델 교체가 아니라 캐시와 짧은 출력입니다.</p>
 
           <div class="highlight-box" style="margin:20px 0">
             <strong>🧠 모델 라우팅 전략 — 작업에 따라 다른 모델을 써라</strong><br><br>
-            모든 작업에 Opus를 쓰면 비용이 19배 폭등한다. 반대로 모든 작업에 Haiku를 쓰면 품질이 무너진다.<br>
+            모든 작업에 가장 비싼 모델을 쓰면 비용이 수십 배로 뛴다. 반대로 모든 작업에 Haiku를 쓰면 품질이 무너진다.<br>
             정답은 <strong>작업 복잡도에 따른 모델 라우팅</strong>이다.<br><br>
 
             <div class="table-wrap">
@@ -4253,19 +4203,19 @@ def safe_query(user_input: str) -&gt; str:
                 </tr>
                 <tr>
                   <td style="padding:10px;border-bottom:1px solid #f1f5f9">롱폼 대본 (40씬+) / 복잡한 전략 설계</td>
-                  <td style="padding:10px;border-bottom:1px solid #f1f5f9;text-align:center"><strong>Opus 4.7</strong>
+                  <td style="padding:10px;border-bottom:1px solid #f1f5f9;text-align:center"><strong>Opus 5.5</strong>
                   </td>
-                  <td style="padding:10px;border-bottom:1px solid #f1f5f9">32K 출력 토큰, 최고 품질</td>
+                  <td style="padding:10px;border-bottom:1px solid #f1f5f9">긴 출력·최고 품질</td>
                 </tr>
                 <tr>
                   <td style="padding:10px;border-bottom:1px solid #f1f5f9">에이전트 개발 / 코드 수정 / 분석</td>
-                  <td style="padding:10px;border-bottom:1px solid #f1f5f9;text-align:center"><strong>Sonnet 4.6</strong>
+                  <td style="padding:10px;border-bottom:1px solid #f1f5f9;text-align:center"><strong>Sonnet 5.5</strong>
                   </td>
                   <td style="padding:10px;border-bottom:1px solid #f1f5f9">성능/비용 최적 균형점</td>
                 </tr>
                 <tr>
                   <td style="padding:10px;border-bottom:1px solid #f1f5f9">분류 · 요약 · 단순 응답 봇</td>
-                  <td style="padding:10px;border-bottom:1px solid #f1f5f9;text-align:center"><strong>Haiku 4.5</strong>
+                  <td style="padding:10px;border-bottom:1px solid #f1f5f9;text-align:center"><strong>Haiku 5.5</strong>
                   </td>
                   <td style="padding:10px;border-bottom:1px solid #f1f5f9">Sonnet 대비 1/5 비용</td>
                 </tr>
@@ -4290,9 +4240,9 @@ model = ROUTING["complex"] if scene_count > 30 else ROUTING["standard"]
           <div class="tip-box">
             <strong>한국어 비용 절감 전략:</strong><br>
             ① 같은 지시를 한국어·영어로 써서 토큰 수를 직접 측정 → 차이가 크면 영어 지시 + 한국어 결과 요청<br>
-            ② 단순 분류/요약은 Haiku 4.5 → 창작/분석은 Sonnet 4.6 → 복잡한 설계만 Opus 4.7<br>
+            ② 단순 분류/요약은 Haiku 5.5 → 창작/분석은 Sonnet 5.5 → 복잡한 설계만 Opus 5.5<br>
             ③ 캐싱 활용: 동일 시스템 프롬프트 반복 시 Anthropic 프롬프트 캐시로 <strong>최대 90% 절감</strong><br>
-            ④ $10K API 크레딧 활용: AITF API 서버 통해 Opus 4.7 호출 → IDE 세션 토큰 절약
+            ④ $10K API 크레딧 활용: AITF API 서버 통해 Opus 5.5 호출 → IDE 세션 토큰 절약
           </div>
 
           <div class="analogy-box" style="margin:0 40px 0">

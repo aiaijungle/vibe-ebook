@@ -113,3 +113,14 @@
 ## 5. 실습 압축 검증 실패 원인
 
 `scripts/verify_exercise_archives.py`가 `volume2-starter.zip` 안의 `ontology_lab.py`·`sample_data.json`·`test_ontology_lab.py`와 `examples/agent-ontology/` 원본을 바이트 단위로 비교하다 실패한다. 압축 안 파일은 CRLF(Windows 줄바꿈), 원본은 LF이며, **줄바꿈을 무시하면 내용은 완전히 같다**. 이번 수정과는 무관한 기존 상태다. 압축을 LF로 다시 만들거나, 검사에서 줄바꿈을 정규화하면 해결된다.
+
+## 6. 2026-11-01 추가 자산
+
+| 파일 | 역할 |
+|---|---|
+| `first-win.html` | 무료 · 권별 30분 첫 성공 키트 5개 (단계 체크 + 지시서 조립기 + 판단 연습) |
+| `recipes.html` | 무료 · 직업별 AI 레시피 10선 (지시서 조립기 + 검수 체크리스트) |
+| `failure-museum.html` | 무료 · 저자 실제 사고 6건 판단 연습 |
+| `assets/interactive-labs-20261101.css/.js` | 인터랙티브 실습 엔진 (오류 찾기 · 판단 · 조립기 · 분류 · 단계 체크) |
+| `scripts/build_interactive_labs.py` | 1~5권 첫 화면 실습 삽입 (재실행 가능) |
+| `scripts/build_learning_pages.py` | 위 무료 페이지 3개 생성 (내용 수정 후 재실행) |
