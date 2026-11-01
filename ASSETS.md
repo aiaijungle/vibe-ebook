@@ -129,3 +129,6 @@
 | `examples/template-pack/` | 템플릿 6종 + ZIP |
 | `scripts/build_chapter_labs.py` | 1~5권 장 끝 본문 실습 12개 삽입 (재실행 가능) |
 | `scripts/build_reading_guides.py` | 2권 읽기 경로 · 5권 용어집 삽입 (재실행 가능) |
+| `en/essentials.html` | 영문 재작성 핵심판 — 서문 + 14장, 장마다 실습. 서문·1~3장 무료, 4장부터 기존 구매 코드로 해제 |
+| `en/recipes.html` · `en/failure-museum.html` · `en/challenge.html` | 영문 무료 페이지 (레시피 10 · 실패 박물관 6 · 30일 챌린지) |
+| `scripts/build_english_edition.py` | 영문 핵심판과 영문 무료 페이지 생성 (원고가 이 파일에 있음) |

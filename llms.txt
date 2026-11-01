@@ -168,3 +168,9 @@ https://aiaijungle.github.io/vibe-ebook/sales.html
 - [실패 박물관](https://aiaijungle.github.io/vibe-ebook/failure-museum.html): AI 자동화 운영 중 실제로 겪은 사고 6건의 원인·복구·재발 방지
 - [30일 챌린지](https://aiaijungle.github.io/vibe-ebook/challenge.html): 하루 15~30분, 30일 동안 결과물 10개를 만드는 체크리스트와 결과 카드, 템플릿 팩
 - [이달의 변경](https://aiaijungle.github.io/vibe-ebook/monthly.html): 독자 업무에 영향을 주는 AI 모델·요금·API 변화와 고칠 장 목록
+
+## English edition (2026-11)
+- [The AI Bible: Essentials](https://aiaijungle.github.io/vibe-ebook/en/essentials.html): rewritten English edition, 14 chapters with interactive exercises; intro and chapters 1-3 free
+- [AI recipes for 10 jobs](https://aiaijungle.github.io/vibe-ebook/en/recipes.html)
+- [Failure museum](https://aiaijungle.github.io/vibe-ebook/en/failure-museum.html)
+- [30-day challenge](https://aiaijungle.github.io/vibe-ebook/en/challenge.html)

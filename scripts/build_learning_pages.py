@@ -49,8 +49,8 @@ def page(name, title, desc, h1, lead, toc, body):
 <link rel="canonical" href="{SITE}{name}">
 <meta property="og:title" content="{E(title)}"><meta property="og:description" content="{E(desc)}"><meta property="og:image" content="{SITE}assets/og-1200x630.png">
 <style>{BASE_CSS}</style>
-<link rel="stylesheet" href="assets/interactive-labs-20261101.css?v=3">
-<script src="assets/interactive-labs-20261101.js?v=3" defer></script>
+<link rel="stylesheet" href="assets/interactive-labs-20261101.css?v=4">
+<script src="assets/interactive-labs-20261101.js?v=4" defer></script>
 </head><body>
 <header><nav class="top" aria-label="주 메뉴">{nav}</nav></header>
 <main>
