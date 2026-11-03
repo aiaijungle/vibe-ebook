@@ -1,0 +1,18 @@
+/* AI 바이블 모바일 UX 보정 (2026-11-04): 첫 화면 제목·버튼, 누르기 쉬운 버튼, 6권 안내. 본문 HTML은 건드리지 않음. */
+.aib-hero-cta{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:18px auto 8px;max-width:560px;padding:0 16px}
+.aib-hero-cta a{flex:1 1 200px;min-height:48px;display:flex;align-items:center;justify-content:center;border-radius:12px;font-weight:800;font-size:16px;text-decoration:none;transition:all .2s;word-break:keep-all}
+.aib-hero-cta .aib-cta-read{background:#FF8C00;color:#1a0a00;border:2px solid #1a0a00}
+.aib-hero-cta .aib-cta-buy{background:#fff;color:#1a0a00;border:2px solid #1a0a00}
+.aib-hero-cta a:hover{transform:translateY(-1px);filter:brightness(1.05)}
+.aib-next6{display:block;max-width:640px;margin:40px auto;padding:18px 20px;border-radius:14px;border:2px solid #FF8C00;background:rgba(255,140,0,.08);color:inherit;text-decoration:none;font-size:16px;line-height:1.6;word-break:keep-all;transition:all .2s}
+.aib-next6 strong{display:block;font-size:18px;margin-bottom:4px}
+.aib-next6:hover{background:rgba(255,140,0,.15)}
+@media(max-width:480px){
+  .gift-btn,.theme-btn,.pw-submit,.topbar-share-btn,.share-btn,#review-next-btn,[id^="share-btn"]{min-height:44px;min-width:44px}
+  .aib-hero-cta a{flex-basis:100%}
+  .aib-next6{margin:28px 16px}
+  .aib-series-row{flex-wrap:nowrap!important;overflow-x:auto!important;white-space:nowrap!important;justify-content:flex-start!important;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .aib-series-row>*{flex:0 0 auto!important}
+  #un-btn.aib-un-compact{font-size:0!important;width:48px!important;height:48px!important;min-width:48px;padding:0!important;border-radius:50%!important;overflow:hidden}
+  #un-btn.aib-un-compact::before{content:"🆕";font-size:20px;line-height:48px}
+}
