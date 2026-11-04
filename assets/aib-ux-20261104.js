@@ -17,6 +17,9 @@
       cta.innerHTML = '<a class="aib-cta-read" href="#aib-learning-route">📖 무료로 읽기 시작</a>' +
         '<a class="aib-cta-buy" href="sales.html?utm_source=aibible&amp;utm_medium=hero&amp;utm_content=vol' + vol + '">구매 안내 →</a>';
       h1.insertAdjacentElement('afterend', cta);
+      // 공유·선물 상자가 뒤늦게 제목 바로 뒤에 끼어들면 버튼이 밀리므로 로드 후 다시 제목 바로 아래로
+      var pin = function () { if (h1.nextElementSibling !== cta) h1.insertAdjacentElement('afterend', cta); };
+      window.addEventListener('load', function () { pin(); setTimeout(pin, 800); });
     }
     // 2) 5월 출간 알림 띠·"5권 출간" 문구는 지난 이벤트 → 숨김
     Array.prototype.forEach.call(document.querySelectorAll('body > div, body > a'), function (el) {
@@ -64,5 +67,8 @@
       if (foot) foot.insertAdjacentElement('beforebegin', a); else document.body.appendChild(a);
     }
   }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run); else run();
+  // defer 실행 시점엔 본문 인라인 스크립트(공유·선물 상자)의 DOMContentLoaded가 아직 남아 있음 → 그 뒤에 실행
+  var ran = false, once = function () { if (!ran) { ran = true; run(); } };
+  if (document.readyState === 'complete') once();
+  else { document.addEventListener('DOMContentLoaded', once); window.addEventListener('load', once); }
 })();
