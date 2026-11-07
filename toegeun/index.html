@@ -273,7 +273,7 @@ footer b{color:var(--text);font-family:var(--display);font-weight:800;font-size:
 </head>
 <body>
 <header><div class="wrap hd">
-  <a class="logo" href="#" id="home"><i aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="12.5" stroke="#d63c24" stroke-width="3"/><circle cx="16" cy="16" r="5" fill="#f1ede4"/><path d="M0 16h3.5M28.5 16H32" stroke="#3fcf9b" stroke-width="3"/></svg></i>퇴근극장</a>
+  <a class="logo" href="#" id="home"><i aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="12.5" stroke="#d63c24" stroke-width="3"/><circle cx="16" cy="16" r="5" fill="#f1ede4"/><path d="M0 16h3.5M28.5 16H32" stroke="#3fcf9b" stroke-width="3"/></svg></i><span id="logoT">퇴근극장</span></a>
   <nav class="nav" aria-label="메뉴"><button class="on" data-go="home">홈</button><button data-go="explore">탐색</button><button data-go="library">보관함</button></nav>
   <span class="sp"></span>
   <span class="pill">체험판</span>
@@ -342,9 +342,17 @@ var SHOWS = [
  {id:"binson_en", photo:"posters/binson.jpg", lang:"en", art:"art-en", motif:"stamp", genre:["Romance","Revenge"], tag:"K-Revenge Romance", title:"Leave With Nothing", hook:"My husband sent me to prison.<br>I woke up a year earlier.",
   meta:"K-Revenge Romance · Season 1 · English", eyebrow:"After Hours K-Original",
   syn:"Seoyun Han kept the books at her husband's company for ten years. Framed for embezzlement by her husband and his mistress, she died in prison. Then she opened her eyes one year earlier, at the same desk, in front of the same approval form. This time, she won't sign.",
-  proof:"", eps:[{t:"Back at the Signature Line",d:"She woke up one year before it all began",a:"audio/ep01_en.mp3"},{t:"The Stamp Was Already There",d:"Before she even got to work",a:"audio/ep02_en.mp3"},{t:"The Announcement at the Memorial Table",d:"In front of the whole family, she held back",a:"audio/ep03_en.mp3"}]}
+  proof:"", eps:[{t:"Back at the Signature Line",d:"She woke up one year before it all began",a:"audio/ep01_en.mp3"},{t:"The Stamp Was Already There",d:"Before she even got to work",a:"audio/ep02_en.mp3"},{t:"The Announcement at the Memorial Table",d:"In front of the whole family, she held back",a:"audio/ep03_en.mp3"}]},
+ {id:"system_en", photo:"posters/system.jpg", lang:"en", art:"art-intern", motif:"door", genre:["Fantasy"], tag:"Office LitRPG", title:"Overtime System", hook:"2 a.m. Still at my desk.<br>Then a quest window opened.",
+  meta:"Office Fantasy · Season 1 · English", eyebrow:"After Hours K-Original · New",
+  syn:"Cha Minho has been an assistant manager in Seoul for seven years, writing reports his boss takes credit for. At 2 a.m., a robotic voice tells him overtime has cost him four years of life. He refuses a daily quest, and the penalty is brutal: he can hear what everyone is really thinking. Then a hidden quest appears. The company will collapse in six months, and the person behind it was in today's meeting.",
+  proof:"", eps:[{t:"The Quest Window",d:"Overtime cost him four years of life",a:"audio/s7ep01_en.mp3"},{t:"The System Shop",d:"The price is thirty days of his life",a:"audio/s7ep02_en.mp3"}]},
+ {id:"lift_en", photo:"posters/lift.jpg", lang:"en", art:"art-game", motif:"door", genre:["Thriller","Horror"], tag:"K-Horror · Headphones on", title:"The 13th Floor", hook:"This building has no 13th floor.<br>The elevator stopped there anyway.",
+  meta:"K-Horror · Season 1 · English", eyebrow:"After Hours K-Original · New",
+  syn:"ER nurse Seo Jian comes home at 1 a.m. to an old Seoul apartment where the buttons skip from twelve to fourteen. Three years ago, the little girl next door vanished. Tonight the elevator stops on a floor that doesn't exist, and a child's voice calls her name.",
+  proof:"", eps:[{t:"The Floor That Isn't There",d:"A child's voice on a floor that doesn't exist",a:"audio/s9ep01_en.mp3"}]}
 ];
-var READY = {"binson:0": true, "binson:1": true, "binson:2": true, "binson:3": true, "binson:4": true, "binson:5": true, "binson:6": true, "binson:7": true, "intern:0": true, "intern:1": true, "intern:2": true, "game:0": true, "game:1": true, "game:2": true, "lasttrain:0": true, "lasttrain:1": true, "lasttrain:2": true, "glory:0": true, "glory:1": true, "fake:0": true, "fake:1": true, "fake:2": true, "system:0": true, "system:1": true, "mom:0": true, "lift:0": true, "binson_en:0": true, "binson_en:1": true, "binson_en:2": true}; // 빌드 때 실제 있는 오디오만 남김 (build_artifact.py)
+var READY = {"binson:0": true, "binson:1": true, "binson:2": true, "binson:3": true, "binson:4": true, "binson:5": true, "binson:6": true, "binson:7": true, "intern:0": true, "intern:1": true, "intern:2": true, "game:0": true, "game:1": true, "game:2": true, "lasttrain:0": true, "lasttrain:1": true, "lasttrain:2": true, "glory:0": true, "glory:1": true, "fake:0": true, "fake:1": true, "fake:2": true, "system:0": true, "system:1": true, "mom:0": true, "lift:0": true, "binson_en:0": true, "binson_en:1": true, "binson_en:2": true, "system_en:0": true, "system_en:1": true, "lift_en:0": true}; // 빌드 때 실제 있는 오디오만 남김 (build_artifact.py)
 
 // ── 열람 규칙: 1화 무료 · 2화 공유하면 바로 · 3화부터 24시간마다 1화 무료(기다리면 무료) 또는 시즌권 ──
 var KEY = "toegeun_v3", DAY = 24*3600*1000;
@@ -444,7 +452,7 @@ function home(filter){
         return '<button class="card" data-show="'+s.id+'">'+poster(s)+'<div class="sub"><b>'+esc(s.tag)+'</b>'+esc(s.hook.replace(/<br>/g," "))+'</div></button>' }).join("") + '</div></section>' + foot();
   scrollTo(0,0);
 }
-function foot(){ return '<footer class="wrap"><span><b>🎧 퇴근극장</b>&nbsp; '+(lang==="en"?"Short K-audio dramas for the ride home.":"퇴근길에 듣는 5분 K-오디오 드라마.")+'</span><span>잔다 제작 · AI 음성으로 제작한 창작 오디오 드라마 (ElevenLabs)</span></footer>' }
+function foot(){ return '<footer class="wrap"><span><b>🎧 '+(lang==="en"?"After Hours Theater":"퇴근극장")+'</b>&nbsp; '+(lang==="en"?"Short K-audio dramas for the ride home.":"퇴근길에 듣는 5분 K-오디오 드라마.")+'</span><span>'+(lang==="en"?"by JANDA · Original audio drama voiced with AI (ElevenLabs)":"잔다 제작 · AI 음성으로 제작한 창작 오디오 드라마 (ElevenLabs)")+'</span></footer>' }
 
 function detail(id){
   var s = SHOWS.filter(function(x){return x.id===id})[0]; if (!s) return home();
@@ -615,14 +623,18 @@ document.addEventListener("click", function(e){
 $("home").onclick = function(e){ e.preventDefault(); setNav("home"); home() };
 function setNav(g){ document.querySelectorAll("[data-go]").forEach(function(b){ if (b.closest(".nav,.mnav")) b.classList.toggle("on", b.getAttribute("data-go")===g) }) }
 function library(){ var sv=(S().saved)||{}, list=SHOWS.filter(function(s){return sv[s.id]});
-  app.innerHTML='<section class="wrap"><div class="kicker">LIBRARY</div><h2>보관함</h2>'+(list.length?'<div class="grid">'+list.map(function(s){return '<button class="card" data-show="'+s.id+'">'+poster(s)+'</button>'}).join("")+'</div>':'<p style="color:var(--muted)">아직 담은 작품이 없어요. 작품 화면에서 🔖 보관함에 담기를 눌러 보세요.</p><button class="btn primary" data-go="home">작품 둘러보기</button>')+'</section>'+foot() }
-$("lang").onchange = function(){ lang=this.value; home() };
+  app.innerHTML='<section class="wrap"><div class="kicker">LIBRARY</div><h2>'+(lang==="en"?"My Library":"보관함")+'</h2>'+(list.length?'<div class="grid">'+list.map(function(s){return '<button class="card" data-show="'+s.id+'">'+poster(s)+'</button>'}).join("")+'</div>':'<p style="color:var(--muted)">'+(lang==="en"?"Nothing saved yet. Tap 🔖 Save on any series.":"아직 담은 작품이 없어요. 작품 화면에서 🔖 보관함에 담기를 눌러 보세요.")+'</p><button class="btn primary" data-go="home">작품 둘러보기</button>')+'</section>'+foot() }
+function chrome(){ var en=lang==="en", N={home:en?"Home":"홈", explore:en?"Explore":"탐색", library:en?"Library":"보관함"}; // 고정 메뉴·로고 언어 전환
+  $("logoT").textContent = en?"After Hours Theater":"퇴근극장"; document.documentElement.lang = lang;
+  [].forEach.call(document.querySelectorAll(".nav [data-go], .mnav [data-go]"), function(b){ var k=b.getAttribute("data-go"), sp=b.querySelector("span"); if (N[k]) (sp||b).textContent=N[k] }) }
+$("lang").onchange = function(){ lang=this.value; chrome(); home() };
 // 초대 링크로 들어오면(?ref=) 2화 바로 열림 (ReelShort식 양쪽 보상: 공유한 사람은 공유 시, 들어온 사람은 방문 시)
-(function(){ var q=new URLSearchParams(location.search); ev("visit", {show:q.get("show")||null, ref:q.get("ref")||null});
-  if (q.get("ref") && q.get("ref")!==S().ref) { var st=S(); if (!st.invited){ st.invited=true; st.tokens=(st.tokens||0)+2; W(st); ev("invite_visit", {ref:q.get("ref"), show:q.get("show")||null}); setTimeout(function(){ toast("초대 선물: 2화 + 열람권 2장이 열렸어요") },800) } }
+(function(){ var q=new URLSearchParams(location.search), so=SHOWS.filter(function(x){ return x.id===q.get("show") })[0]; // 언어: 공유된 작품의 언어 > ?lang= > 브라우저 언어
+  lang = so ? so.lang : (q.get("lang")==="en"||q.get("lang")==="ko") ? q.get("lang") : /^en/.test(navigator.language||"") ? "en" : "ko"; $("lang").value=lang; chrome();
+  ev("visit", {show:q.get("show")||null, ref:q.get("ref")||null});
+  if (q.get("ref") && q.get("ref")!==S().ref) { var st=S(); if (!st.invited){ st.invited=true; st.tokens=(st.tokens||0)+2; W(st); ev("invite_visit", {ref:q.get("ref"), show:q.get("show")||null}); setTimeout(function(){ toast(lang==="en"?"Welcome gift: Ep.2 unlocked + 2 free tokens":"초대 선물: 2화 + 열람권 2장이 열렸어요") },800) } }
   if (S().ref) { try { fetch(EV_URL+"?referrals="+S().ref).then(function(r){ return r.json() }).then(function(j){ // Pocket FM Refer & Earn: 내 링크로 온 친구 1명당 열람권 2장
-    var st=S(), n=(j&&j.count)||0, done=st.refCredited||0; if (n>done){ st.tokens=(st.tokens||0)+2*(n-done); st.refCredited=n; W(st); setTimeout(function(){ toast("친구 "+(n-done)+"명이 내 링크로 들어왔어요! 열람권 "+(2*(n-done))+"장") },1500) } }).catch(function(){}) } catch(err){} }
-  if (/^en/.test(navigator.language||"") && !q.get("show")) { lang="en"; $("lang").value="en" }
+    var st=S(), n=(j&&j.count)||0, done=st.refCredited||0; if (n>done){ st.tokens=(st.tokens||0)+2*(n-done); st.refCredited=n; W(st); setTimeout(function(){ toast(lang==="en"?(n-done)+" friend(s) joined from your link! +"+(2*(n-done))+" tokens":"친구 "+(n-done)+"명이 내 링크로 들어왔어요! 열람권 "+(2*(n-done))+"장") },1500) } }).catch(function(){}) } catch(err){} }
   q.get("show") ? detail(q.get("show")) : home() })();
 </script>
 </body>
