@@ -72,6 +72,16 @@ select.lang{background:var(--panel);border:1px solid var(--border-2);color:var(-
 .rank{position:absolute;right:max(20px,env(safe-area-inset-right,0px));bottom:26px;z-index:2;font-family:var(--mono);font-size:12px;color:var(--muted);display:flex;gap:10px;align-items:center;letter-spacing:.04em;
   background:rgba(12,13,15,.75);border:1px solid var(--border-2);border-radius:6px;padding:7px 10px 7px 12px}
 .rank b{color:#ffb38f;font-size:16px;background:#1d0f0b;border-radius:3px;padding:1px 6px;text-shadow:0 0 10px rgba(255,110,78,.7);letter-spacing:.1em}
+/* Returning listeners and release rhythm stay close to the first-play action. */
+.home-quick{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding-block:16px}
+.quick-card{min-width:0;min-height:76px;padding:14px 18px;border:1px solid var(--border-2);border-radius:8px;background:linear-gradient(120deg,var(--panel-raised),var(--panel));display:flex;align-items:center;gap:14px;text-align:left;transition:all .2s}
+.quick-card:hover{border-color:var(--accent-hi);background:var(--panel-raised)}
+.quick-icon{width:38px;height:38px;flex:none;display:grid;place-items:center;border:1px solid var(--border-2);border-radius:50%;color:var(--accent-hi);font-size:15px}
+.quick-copy{min-width:0;display:grid;gap:4px}
+.quick-label{font-size:11px;font-weight:700;letter-spacing:.08em;color:var(--quiet)}
+.quick-title{font-size:14px;font-weight:700;overflow:hidden;text-overflow:ellipsis}
+.quick-detail{font-size:12px;color:var(--muted);overflow:hidden;text-overflow:ellipsis}
+.quick-arrow{margin-left:auto;color:var(--accent-hi);font-size:18px}
 /* 라인업 */
 section{padding-block:48px}
 .kicker{color:var(--quiet);font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.08em;display:flex;align-items:center;gap:10px}
@@ -228,13 +238,15 @@ footer b{color:var(--text);font-family:var(--display);font-weight:800;font-size:
 @media (max-width:760px){
   .nav,.pill{display:none}
   .hd{gap:12px;height:58px}
-  .hero{min-height:560px;align-items:flex-end}
-  .hero .bgart::after{background:linear-gradient(0deg,var(--bg) 46%,rgba(12,13,15,.7) 64%,rgba(12,13,15,.05) 92%)}
+  .hero{min-height:460px;align-items:flex-end}
+  .hero .bgart::after{background:linear-gradient(0deg,var(--bg) 42%,rgba(12,13,15,.68) 60%,rgba(12,13,15,.05) 92%)}
   .hero .motif{background-size:auto 64%!important;background-position:center -6px!important;opacity:.75!important}
-  .hero{min-height:600px}
-  .hero .in{padding-block:40px 84px}
-  .rank{right:auto;left:max(20px,env(safe-area-inset-left,0px));bottom:24px}
+  .hero .in{padding-block:28px 72px}
+  .rank{right:auto;left:max(20px,env(safe-area-inset-left,0px));bottom:14px}
   .big{font-size:clamp(40px,12vw,56px)}
+  .home-quick{grid-template-columns:1fr;gap:8px;padding-block:12px}
+  .quick-card{min-height:66px;padding:10px 13px}
+  .quick-icon{width:34px;height:34px}
   section{padding-block:36px}
   .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 12px}
   .poster .t{font-size:20px;left:11px;right:11px;bottom:11px}
@@ -431,6 +443,24 @@ var T = { ko:{play:"1화 무료로 듣기", view:"작품 보기", line:"오리�
           en:{play:"Play Ep.1 free", view:"View series", line:"Original lineup", kick:"K-ORIGINALS · STORIES THE WORLD ALREADY LOVED", all:"All", eps:"Episodes", free:"Free", lock:"Locked", share:"Share to unlock", home:"Home", save:"Save", auto:"Auto-play next available episode", soon:"Coming soon", made:"In production"} };
 function L(k){ return T[lang][k] }
 
+function resumeCard(){
+  var st=S(), pos=st.pos||{}, keys=[];
+  if(st.recent&&st.recent.show!=null&&st.recent.ep!=null) keys.push(st.recent.show+":"+st.recent.ep);
+  Object.keys(pos).reverse().forEach(function(k){if(keys.indexOf(k)<0)keys.push(k)});
+  for(var i=0;i<keys.length;i++){
+    var parts=keys[i].split(":"), id=parts[0], ep=Number(parts[1]), show=SHOWS.filter(function(x){return x.id===id&&x.lang===lang})[0];
+    var at=Number(pos[keys[i]]);
+    if(!show||!Number.isInteger(ep)||ep<0||!show.eps[ep]||!READY[id+":"+ep]||!Number.isFinite(at)||at<=5) continue;
+    var item=show.eps[ep], detail=(lang==="en"?"Ep. ":"")+ (lang==="en"?ep+1:(ep+1)+"화")+" · "+item.t+" · "+fmt(at);
+    return '<button class="quick-card" data-play="'+id+':'+ep+'" aria-label="'+(lang==="en"?"Continue listening to ":"이어 듣기 ")+esc(show.title)+', '+esc(item.t)+'"><span class="quick-icon" aria-hidden="true">▶</span><span class="quick-copy"><span class="quick-label">'+(lang==="en"?"PICK UP WHERE YOU LEFT OFF":"마지막으로 듣던 회차")+'</span><span class="quick-title">'+esc(show.title)+'</span><span class="quick-detail">'+esc(detail)+'</span></span><span class="quick-arrow" aria-hidden="true">↗</span></button>';
+  }
+  return "";
+}
+
+function releaseCard(){
+  return '<div class="quick-card" aria-label="'+(lang==="en"?"Release schedule":"정기 공개 일정")+'"><span class="quick-icon" aria-hidden="true">◷</span><span class="quick-copy"><span class="quick-label">'+(lang==="en"?"REGULAR RELEASES":"정기 공개")+'</span><span class="quick-title">'+(lang==="en"?"Mon · Wed · Fri · 6:00 PM KST":"월 · 수 · 금 · 오후 6시")+'</span><span class="quick-detail">'+(lang==="en"?"Three new episodes a week":"주 3회 새 회차 공개")+'</span></span></div>';
+}
+
 function home(filter){
   var list = shows(), main = list[0], g = ["all"].concat(Array.from(new Set(list.flatMap(function(s){return s.genre}))));
   filter = filter || "all";
@@ -438,6 +468,7 @@ function home(filter){
     + '<div class="eyebrow">'+esc(main.eyebrow)+'</div><div class="big">'+esc(main.title)+'</div><p class="hook">'+main.hook+'</p><div class="meta">'+esc(main.meta)+'</div>'
     + '<div class="btns"><button class="btn primary" data-play="'+main.id+':0">▶ '+L("play")+'</button><button class="btn" data-show="'+main.id+'">'+L("view")+' ↗</button></div></div></div>'
     + '<div class="rank">— '+(lang==="en"?"Today's pick":"오늘의 추천작")+' <b>01</b></div></div>'
+    + '<div class="home-quick wrap" aria-label="'+(lang==="en"?"Listening shortcuts":"듣기 바로가기")+'">'+resumeCard()+releaseCard()+'</div>'
     + '<section class="wrap"><div class="kicker">'+L("kick")+'</div><h2>'+L("line")+'</h2><div class="chips">'
     + g.map(function(x){ return '<button class="chip'+(x===filter?' on':'')+'" data-filter="'+esc(x)+'">'+(x==="all"?L("all"):esc(x))+'</button>' }).join("")
     + '</div><div class="grid">' + list.filter(function(s){ return filter==="all" || s.genre.indexOf(filter)>=0 }).map(function(s){
@@ -480,6 +511,7 @@ function play(id, i){
   var s = SHOWS.filter(function(x){return x.id===id})[0], e = s.eps[i];
   if (!e || !READY[id+":"+i]) return toast(lang==="en"?"Coming soon":"제작 중인 회차예요");
   if (!isOpen(s,i)) return gate(s,i)==="share" ? shareSheet(s) : waitSheet(s, i);
+  var state=S(); state.recent={show:id,ep:i}; W(state);
   cur = {s:s, i:i}; audio.src = e.a; audio.playbackRate = S().rate || 1; audio.play().catch(function(){});
   ev("play", {show:s.id, ep:i}); mediaMeta(s, e, i);
   $("dock").classList.add("on"); $("dmini").className = "mini "+s.art; $("dti").innerHTML = esc(s.title)+'<small>'+(i+1)+(lang==="en"?" · ":"화 · ")+esc(e.t)+'</small>';
