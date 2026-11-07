@@ -349,7 +349,8 @@ var READY = {"binson:0": true, "binson:1": true, "binson:2": true, "binson:3": t
 var KEY = "toegeun_v3", DAY = 24*3600*1000;
 function S(){ try{ return JSON.parse(localStorage.getItem(KEY)||"{}") }catch(e){ return {} } }
 function W(s){ try{ localStorage.setItem(KEY, JSON.stringify(s)) }catch(e){} }
-function gate(show, i){ return i===0 ? "free" : i===1 ? "share" : "wait" }
+function ab(){ var st=S(); if (!st.ab){ st.ab = Math.random()<0.5 ? "A" : "B"; W(st) } return st.ab } // WBS 11.3: 2화 잠금 A/B
+function gate(show, i){ return i===0 ? "free" : i===1 ? (ab()==="A" ? "share" : "wait") : "wait" }
 function isOpen(show, i){
   var s = S(), g = gate(show, i), sh = (s[show.id]||{});
   if (g==="free" || s.pass || (sh.opened||[]).indexOf(i)>=0) return true;
@@ -359,7 +360,7 @@ function isOpen(show, i){
 function thruOf(show){ // 기다리면 무료: 24시간이 지나면 열린 회차 수를 확정 저장
   var s = S(), sh = s[show.id] || {};
   if (sh.waitFrom && Date.now() >= sh.waitFrom + DAY) { sh.thru = Math.max(sh.thru||2, sh.waitFor||3); sh.waitFrom = 0; s[show.id] = sh; W(s) }
-  return sh.thru || 2;
+  return sh.thru || (ab()==="A" ? 2 : 1);
 }
 var $ = function(id){ return document.getElementById(id) };
 var app = $("app"), audio = $("audio"), lang = "ko", cur = null;
@@ -509,7 +510,7 @@ function mediaMeta(s, e, i){ // 잠금화면·이어폰 버튼 조작 (출퇴근
 function anon(){ var st=S(); if (!st.anon){ st.anon="a"+Math.random().toString(36).slice(2,12); W(st) } return st.anon }
 function ev(name, x){ // 운영 기록 — 실패해도 서비스엔 영향 없음
   x = x || {}; try { fetch(EV_URL, {method:"POST", headers:{"Content-Type":"application/json"}, keepalive:true,
-    body: JSON.stringify({event:name, anon:anon(), show:x.show||null, ep:(x.ep!=null?x.ep:null), ref:x.ref||null, lang:lang, value:(x.value!=null?x.value:null), meta:x.meta||{}})}).catch(function(){}) } catch(err){} }
+    body: JSON.stringify({event:name, anon:anon(), show:x.show||null, ep:(x.ep!=null?x.ep:null), ref:x.ref||null, lang:lang, value:(x.value!=null?x.value:null), meta:Object.assign({ab:ab()}, x.meta||{})})}).catch(function(){}) } catch(err){} }
 
 // ── 공유 · 기다무 · 시즌권 ──
 function sheet(h){ $("sheet").innerHTML = h; $("sheet").classList.add("on"); $("dim").classList.add("on") }
@@ -567,7 +568,9 @@ function loadPP(cb){ if (window.paypal) return cb(true); var x=document.createEl
 function passSheet(){ // AI바이블 checkout.html 방식 그대로: 이메일 + 환불 불가 동의 → PayPal 결제 → 캡처 → 주문 웹훅
   sheet('<h3>시즌권 '+PASS_PRICE+'</h3><p>퇴근극장 시즌1 전 작품을 결말까지 바로 들어요. 미국 달러로 PayPal 결제(약 7,000원, 카드사 환율 적용).</p>'
     + '<label class="pf" for="ppEmail">영수증 받을 이메일 *</label><input class="pin" type="email" id="ppEmail" placeholder="you@example.com" autocomplete="email">'
-    + '<label class="agree"><input type="checkbox" id="ppAgree"> <span><b>디지털 콘텐츠라 결제 후 환불되지 않아요.</b> 동의합니다.</span></label>'
+    + '<label class="agree"><input type="checkbox" id="ppAgree"> <span>'+(lang==="en"?'I agree that all Season 1 episodes are <b>unlocked immediately</b> after payment.':'결제 즉시 시즌1 전 회차가 <b>바로 열리는 것</b>에 동의합니다.')+'</span></label>'
+    + '<label class="agree" style="margin-top:8px"><input type="checkbox" id="ppAgree2"> <span>'+(lang==="en"?'I understand that once unlocked, <b>I lose my right of withdrawal</b> (no change-of-mind refunds). Faulty content is still refundable.':'열린 뒤에는 <b>단순 변심 환불(청약철회)이 제한</b>된다는 것을 확인했습니다. 재생 오류 등 하자는 환불됩니다.')+'</span></label>'
+    + '<p class="ppnote">'+(lang==="en"?'One-time payment. Not a subscription — nothing renews.':'1회 결제예요. 구독이 아니라 자동으로 다시 결제되지 않아요.')+'</p>'
     + '<div id="ppBtn" style="margin:14px 0 6px;min-height:46px"><p class="ppnote">PayPal 불러오는 중…</p></div>'
     + '<p class="ppnote">한국 PayPal 계정끼리는 결제가 막혀 있어요. 해외 발행 카드나 해외 PayPal 계정으로 결제해 주세요. 문의 housepeoplekorea@gmail.com</p>'
     + '<button class="x" data-p="try">미리보기: 체험판으로 열기 (0원)</button><button class="x" data-p="close">닫기</button>');
@@ -580,7 +583,7 @@ function passSheet(){ // AI바이블 checkout.html 방식 그대로: 이메일 +
     box.innerHTML="";
     paypal.Buttons({ style:{ layout:"vertical", height:44, tagline:false },
       onClick:function(d,a){ var em=$("ppEmail").value.trim(); if (em.indexOf("@")<1){ toast("이메일을 입력해 주세요"); return a.reject() }
-        if (!$("ppAgree").checked){ toast("환불 규정에 동의해 주세요"); return a.reject() } return a.resolve() },
+        if (!$("ppAgree").checked || !$("ppAgree2").checked){ toast(lang==="en"?"Please tick both boxes":"두 가지 확인에 모두 체크해 주세요"); return a.reject() } return a.resolve() },
       createOrder:function(d,a){ return a.order.create({ purchase_units:[{ amount:{ value:PASS_USD, currency_code:"USD" }, description:"Toegeun Theater Season 1 Pass (all series)", custom_id:$("ppEmail").value.trim() }] }) },
       onApprove:function(d,a){ return a.order.capture().then(function(det){
         var em=$("ppEmail").value.trim(), st=S(); st.pass=true; st.passOrder=d.orderID; W(st); ev("purchase", {value:+PASS_USD, meta:{order:d.orderID, product:"season1_pass"}});
