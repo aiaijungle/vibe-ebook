@@ -1,0 +1,606 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>퇴근극장</title>
+<meta name="description" content="퇴근길 5분 K-오디오 드라마. 이미 세계에서 통한 이야기를 귀로.">
+<meta property="og:title" content="퇴근극장 | 퇴근길 5분 K-오디오 드라마">
+<meta property="og:description" content="남편이 나를 감옥에 보냈다. 눈을 떠 보니, 1년 전 결재란 앞이었다.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700;800&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* 퇴근극장 디자인 — "막차 노선도 × 결재 도장 × 영수증"
+   밤 11시 47분, 형광등 꺼진 사무실을 나와 막차에 오르는 순간. 터널 블랙 위에 인주(印朱) 주홍 하나, 영수증 종이색 하나, 노선 초록 하나만 쓴다.
+   제목 = 나눔명조(드라마의 무게), 본문 = IBM Plex Sans KR, 시각·회차·가격 = IBM Plex Mono(전광판·영수증). */
+:root{
+  --bg:#0c0d0f; --bg-2:#111317; --panel:#15171b; --panel-raised:#1b1e23; --border:#2a2d33; --border-2:#3a3e46;
+  --text:#f1ede4; --muted:#b4aea4; --quiet:#8f8a82;
+  --accent:#d63c24; --accent-hi:#ff6e4e; --accent-ink:#ffffff; --paper:#efe8d9; --paper-ink:#1d1914; --paper-muted:#4d473e;
+  --line:#3fcf9b; --free:#5fdcab; --lock:#a8a197; --share:#f2d36e;
+  --radius:14px; --dock-height:86px; --mobile-nav:64px;
+  --display:"Nanum Myeongjo","Noto Serif KR",serif;
+  --sans:"IBM Plex Sans KR",Pretendard,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",system-ui,sans-serif;
+  --mono:"IBM Plex Mono","IBM Plex Sans KR",ui-monospace,"SFMono-Regular",Consolas,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{background:var(--bg)}
+body{margin:0;color:var(--text);font-family:var(--sans);word-break:keep-all;-webkit-font-smoothing:antialiased;
+  background:radial-gradient(900px 520px at 88% -8%,rgba(214,60,36,.10),transparent 62%),radial-gradient(700px 500px at -10% 40%,rgba(63,207,155,.045),transparent 60%),var(--bg);min-height:100vh}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;cursor:pointer}
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+/* 헤더 — 아래 경계선이 곧 노선도 */
+header{position:sticky;top:0;z-index:30;background:rgba(12,13,15,.86);backdrop-filter:blur(12px) saturate(1.2);-webkit-backdrop-filter:blur(12px) saturate(1.2)}
+header::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;
+  background:linear-gradient(90deg,var(--line) 0 18%,var(--border) 18% 82%,var(--accent) 82%);opacity:.9}
+.hd{display:flex;align-items:center;gap:28px;height:66px}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:800;font-size:20px;letter-spacing:-.02em}
+.logo i{width:30px;height:30px;display:grid;place-items:center;font-style:normal}
+.logo i svg{width:30px;height:30px;display:block}
+.nav{display:flex;gap:26px;height:100%}
+.nav button{background:none;border:0;color:var(--muted);font-weight:600;height:100%;border-bottom:2px solid transparent;transition:all .2s;position:relative;z-index:1}
+.nav button:hover{color:var(--text)}
+.nav button.on{color:var(--text);border-color:var(--text)}
+.hd .sp{flex:1}
+.pill{border:1px solid var(--border-2);border-radius:4px;padding:5px 10px;font-family:var(--mono);font-size:12px;font-weight:600;display:flex;align-items:center;gap:7px;color:var(--muted);letter-spacing:.04em}
+.pill::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--line);box-shadow:0 0 8px var(--line)}
+select.lang{background:var(--panel);border:1px solid var(--border-2);color:var(--text);border-radius:8px;padding:8px 10px;font-family:var(--mono);font-weight:600;font-size:13px}
+/* 히어로 */
+.hero{position:relative;min-height:520px;display:flex;align-items:center;overflow:hidden;border-bottom:1px solid var(--border)}
+.hero .bgart{position:absolute;inset:0}
+.hero .bgart::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--bg) 18%,rgba(12,13,15,.7) 48%,rgba(12,13,15,.05) 80%),linear-gradient(0deg,var(--bg) 0,transparent 38%)}
+.hero .motif{opacity:.62!important;background-size:auto 104%!important;background-position:right 5% 70%!important;animation:drift 24s ease-in-out infinite alternate}
+.hero::before{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:repeating-linear-gradient(90deg,var(--border-2) 0 8px,transparent 8px 14px);z-index:1}
+.hero .in{position:relative;padding-block:72px;max-width:640px;animation:rise .6s cubic-bezier(.2,.7,.2,1) both}
+.eyebrow{color:var(--accent-hi);font-size:13px;font-weight:600;display:flex;align-items:center;gap:10px;letter-spacing:.02em}
+.eyebrow::before{content:"";width:22px;height:2px;background:var(--accent-hi)}
+.big{font-family:var(--display);font-weight:800;font-size:clamp(46px,7.6vw,86px);line-height:1.04;margin:18px 0 22px;letter-spacing:-.045em}
+.hook{font-family:var(--display);font-size:clamp(20px,2.6vw,28px);line-height:1.45;margin:0 0 14px;font-weight:700;color:#e9e3d7;letter-spacing:-.02em}
+.meta{color:var(--muted);font-size:13.5px}
+.btns{display:flex;gap:10px;margin-top:28px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:13px 22px;font-weight:700;border:1px solid var(--border-2);background:rgba(21,23,27,.7);transition:all .2s;font-size:15px}
+.btn:hover{border-color:var(--muted);background:var(--panel-raised)}
+.btn:active{transform:scale(.98)}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);box-shadow:0 8px 28px -10px rgba(214,60,36,.8)}
+.btn.primary:hover{background:#e4452b;border-color:#e4452b}
+.btn[disabled]{opacity:.45;cursor:default;box-shadow:none}
+.btn[disabled]:active{transform:none}
+.btn.icon{padding:13px 16px}
+.rank{position:absolute;right:max(20px,env(safe-area-inset-right,0px));bottom:26px;z-index:2;font-family:var(--mono);font-size:12px;color:var(--muted);display:flex;gap:10px;align-items:center;letter-spacing:.04em;
+  background:rgba(12,13,15,.75);border:1px solid var(--border-2);border-radius:6px;padding:7px 10px 7px 12px}
+.rank b{color:#ffb38f;font-size:16px;background:#1d0f0b;border-radius:3px;padding:1px 6px;text-shadow:0 0 10px rgba(255,110,78,.7);letter-spacing:.1em}
+/* 라인업 */
+section{padding-block:48px}
+.kicker{color:var(--quiet);font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.08em;display:flex;align-items:center;gap:10px}
+.kicker::before{content:"";width:9px;height:9px;border-radius:50%;border:2px solid var(--line);flex:none}
+h2{font-family:var(--display);font-weight:800;font-size:34px;margin:10px 0 20px;letter-spacing:-.04em}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:26px}
+.chip{border:1px solid var(--border-2);background:transparent;color:var(--muted);border-radius:999px;padding:8px 16px;font-weight:600;font-size:14px;transition:all .2s}
+.chip:hover{color:var(--text);border-color:var(--muted)}
+.chip.on{background:var(--paper);color:var(--paper-ink);border-color:var(--paper)}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px 18px}
+@media (min-width:1100px){.grid{grid-template-columns:repeat(6,minmax(0,1fr))}.grid .poster .t{font-size:22px}}
+.card{text-align:left;background:none;border:0;padding:0;display:flex;flex-direction:column;gap:10px;color:var(--text);animation:rise .5s cubic-bezier(.2,.7,.2,1) both}
+.card:nth-child(2){animation-delay:.04s}.card:nth-child(3){animation-delay:.08s}.card:nth-child(4){animation-delay:.12s}.card:nth-child(5){animation-delay:.16s}.card:nth-child(6){animation-delay:.2s}
+/* 포스터 = CSS 키 아트 */
+.poster{position:relative;aspect-ratio:2/2.8;border-radius:6px;overflow:hidden;transition:transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s;max-width:100%;
+  box-shadow:0 0 0 1px rgba(255,255,255,.07) inset,0 18px 40px -22px rgba(0,0,0,.9);isolation:isolate}
+.poster::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:repeating-linear-gradient(0deg,rgba(255,255,255,.028) 0 1px,transparent 1px 3px),linear-gradient(0deg,rgba(6,6,8,.92) 0,rgba(6,6,8,.55) 28%,transparent 52%)}
+.poster::after{content:"TOEGEUN ORIGINAL";position:absolute;right:9px;top:10px;z-index:2;font-family:var(--mono);font-size:8.5px;letter-spacing:.16em;color:rgba(255,255,255,.6);writing-mode:vertical-rl}
+.card:hover .poster,.card:focus-visible .poster{transform:translateY(-4px);box-shadow:0 0 0 1px rgba(255,255,255,.14) inset,0 26px 50px -24px rgba(0,0,0,1)}
+.card:hover .poster .motif{transform:scale(1.04)}
+.poster .t{position:absolute;left:14px;right:14px;bottom:14px;z-index:2;font-family:var(--display);font-weight:800;font-size:25px;line-height:1.16;letter-spacing:-.05em;text-shadow:0 2px 18px rgba(0,0,0,.7)}
+.badge{position:absolute;left:10px;top:10px;z-index:2;font-family:var(--mono);font-size:10.5px;font-weight:600;padding:4px 7px;border-radius:3px;background:rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.18);letter-spacing:.02em}
+.badge.free{background:var(--paper);color:var(--paper-ink);border-color:var(--paper)}
+.card .sub{font-size:13px;color:var(--muted);line-height:1.5}
+.card .sub b{color:var(--accent-hi);margin-right:6px;font-weight:600}
+.motif{position:absolute;inset:0;background-repeat:no-repeat;background-position:center;background-size:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+/* 작품별 키 아트 배경 */
+.art-binson{background:
+  radial-gradient(60% 40% at 78% 26%,rgba(255,96,64,.45),transparent 70%),
+  repeating-linear-gradient(0deg,rgba(255,220,200,.05) 0 1px,transparent 1px 22px),
+  linear-gradient(170deg,#4a1712 0,#24100d 46%,#0d0808 100%)}
+.art-en{background:
+  radial-gradient(60% 40% at 78% 26%,rgba(255,96,64,.38),transparent 70%),
+  repeating-linear-gradient(0deg,rgba(220,230,255,.045) 0 1px,transparent 1px 22px),
+  linear-gradient(170deg,#1b2340 0,#151425 48%,#0a0a10 100%)}
+.art-game{background:
+  radial-gradient(70% 30% at 50% 0,rgba(220,255,170,.32),transparent 70%),
+  radial-gradient(40% 22% at 50% 26%,rgba(80,255,160,.22),transparent 70%),
+  linear-gradient(180deg,#2b331b 0,#151a10 42%,#090b08 100%)}
+.art-lasttrain{background:
+  radial-gradient(55% 30% at 72% 22%,rgba(255,170,190,.30),transparent 70%),
+  linear-gradient(180deg,#0f2e3e 0,#173f52 34%,#3b2a4a 58%,#0b0f16 100%)}
+.art-intern{background:
+  radial-gradient(45% 30% at 66% 40%,rgba(255,206,122,.28),transparent 70%),
+  repeating-linear-gradient(90deg,rgba(160,200,255,.05) 0 1px,transparent 1px 26px),
+  linear-gradient(180deg,#132845 0,#0f1b30 50%,#080b12 100%)}
+.art-glory{background:
+  radial-gradient(60% 34% at 30% 30%,rgba(206,180,255,.22),transparent 70%),
+  linear-gradient(180deg,#2c2440 0,#1a1527 50%,#0b0a10 100%)}
+.art-fake{background:
+  radial-gradient(55% 36% at 64% 30%,rgba(255,200,170,.40),transparent 70%),
+  linear-gradient(165deg,#6a2f45 0,#3a1b2a 46%,#120a0f 100%)}
+/* 작품 화면 */
+.back{display:inline-flex;gap:8px;align-items:center;color:var(--muted);background:none;border:0;padding:6px 0;margin:26px 0 22px;font-family:var(--mono);font-size:13px;transition:color .2s}
+.back:hover{color:var(--text)}
+.show{display:grid;grid-template-columns:188px 1fr;gap:34px;align-items:start;animation:rise .5s cubic-bezier(.2,.7,.2,1) both}
+.show .poster{width:188px;grid-row:span 3;box-shadow:0 0 0 1px rgba(255,255,255,.09) inset,0 30px 60px -26px rgba(0,0,0,1),0 0 80px -30px rgba(214,60,36,.45)}
+.show .syn,.show .btns{grid-column:2}
+.show .btns{margin-top:6px}
+.show .big{letter-spacing:-.05em}
+.show .meta b{font-weight:600}
+.syn{color:#d9d3c8;line-height:1.8;max-width:580px;margin:12px 0 0;font-size:15.5px}
+.syn span{font-size:12.5px!important;display:inline-block;margin-top:10px;letter-spacing:.01em;color:var(--quiet)!important}
+.epsHead{display:flex;justify-content:space-between;align-items:flex-end;margin-top:48px;max-width:900px;gap:12px;flex-wrap:wrap}
+.epsHead h2{margin-bottom:6px}
+.epsHead h2 small{color:var(--quiet);font-family:var(--mono);font-weight:500;font-size:18px;margin-left:10px;letter-spacing:0}
+.tag{font-size:12.5px;font-weight:600;color:var(--accent-hi);border:1.5px solid var(--accent-hi);border-radius:4px;padding:5px 9px;transform:rotate(-2deg);letter-spacing:.02em;margin-bottom:8px}
+.auto{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:13.5px;margin-bottom:16px}
+.auto input{accent-color:var(--line);width:17px;height:17px}
+/* 회차 = 노선도의 역 */
+.eps{position:relative;border-top:1px solid var(--border);max-width:900px}
+.eps::before{content:"";position:absolute;left:27px;top:0;bottom:0;width:3px;margin-left:-1px;border-radius:2px;background:linear-gradient(180deg,var(--line) 0,var(--line) 30%,var(--border-2) 70%)}
+.ep{display:grid;grid-template-columns:44px 1fr auto 44px;gap:14px;align-items:center;padding:16px 6px;border-bottom:1px solid var(--border);width:100%;background:none;border-left:0;border-right:0;border-top:0;text-align:left;transition:background .2s;color:var(--text)}
+.ep:hover{background:linear-gradient(90deg,rgba(255,255,255,.035),transparent)}
+.ep .n{position:relative;z-index:1;justify-self:center;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--bg);border:3px solid var(--line);color:var(--text);font-family:var(--mono);font-size:11px;font-weight:600}
+.ep:first-child .n{border-color:var(--accent-hi);box-shadow:0 0 0 4px rgba(255,110,78,.16)}
+.ep:has(.rb.lock) .n{border-color:var(--border-2);color:var(--quiet);border-style:dashed}
+.ep .t{font-weight:700;font-size:15.5px}
+.ep .d{color:var(--muted);font-size:13.5px;margin-top:3px}
+.ep .st{font-family:var(--mono);font-size:11.5px;font-weight:600;text-align:right;line-height:1.6;letter-spacing:.01em}
+.st .s-free{color:var(--free)} .st .s-lock{color:var(--lock)} .st .s-share{color:var(--share)} .st .len{color:var(--quiet);display:block;font-weight:500}
+.rb{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--accent);background:var(--accent);color:#fff;font-size:13px;transition:transform .2s}
+.ep:hover .rb:not(.lock){transform:scale(1.08)}
+.rb.lock{border-color:var(--border-2);background:transparent;color:var(--muted)}
+.note{color:var(--quiet);font-size:12.5px;margin-top:20px;max-width:900px;line-height:1.6}
+/* 이어 듣기 = 승차권 */
+.unlock{margin-top:34px;max-width:900px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.uc{position:relative;background:linear-gradient(180deg,var(--panel-raised),var(--panel));border:1px solid var(--border);border-radius:10px;padding:20px 22px 20px;display:flex;flex-direction:column;gap:9px;
+  -webkit-mask:radial-gradient(circle 9px at 0 58px,#0000 96%,#000) left/51% 100% no-repeat,radial-gradient(circle 9px at 100% 58px,#0000 96%,#000) right/51% 100% no-repeat;
+  mask:radial-gradient(circle 9px at 0 58px,#0000 96%,#000) left/51% 100% no-repeat,radial-gradient(circle 9px at 100% 58px,#0000 96%,#000) right/51% 100% no-repeat}
+.uc h3{margin:0;font-size:16px;font-weight:700;padding-bottom:14px;border-bottom:1.5px dashed var(--border-2);margin-bottom:4px}
+.uc p{margin:0;color:var(--muted);font-size:13.5px;line-height:1.6}
+.uc p b{font-family:var(--mono)}
+.uc .price{font-family:var(--mono);font-weight:600;font-size:30px;color:var(--accent);letter-spacing:-.02em;line-height:1}
+.uc .btn{justify-content:center;margin-top:auto;border-radius:8px}
+.uc:nth-child(1){box-shadow:inset 3px 0 0 var(--line)}
+.uc:nth-child(2){box-shadow:inset 3px 0 0 var(--share)}
+.uc:nth-child(3){box-shadow:inset 3px 0 0 #7fb3ff}
+.uc:nth-child(4){background:var(--paper);border-color:var(--paper);color:var(--paper-ink);box-shadow:none}
+.uc:nth-child(4) h3{border-color:rgba(29,25,20,.3)}
+.uc:nth-child(4) p{color:var(--paper-muted)}
+.uc:nth-child(4)::after{content:"PASS";position:absolute;right:16px;top:12px;width:52px;height:52px;border-radius:50%;border:2.5px solid rgba(214,60,36,.75);color:rgba(214,60,36,.8);font-family:var(--mono);font-weight:600;font-size:11px;letter-spacing:.12em;display:grid;place-items:center;transform:rotate(-14deg);box-shadow:inset 0 0 0 3px var(--paper),inset 0 0 0 4.5px rgba(214,60,36,.55);pointer-events:none}
+/* 재생 독 = 전광판 */
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:40;background:rgba(14,15,18,.96);border-top:1px solid var(--border);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  padding:12px max(20px,env(safe-area-inset-right,0px)) calc(12px + env(safe-area-inset-bottom,0px)) max(20px,env(safe-area-inset-left,0px));transform:translateY(110%);transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.dock::before{content:"";position:absolute;left:0;right:0;top:-1px;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent-hi) 30%,transparent 70%)}
+.dock:not(.on){visibility:hidden}
+.dock.on{transform:none}
+.dock .in{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:48px minmax(0,1fr) 46px;gap:14px;align-items:center}
+.dock .mini{width:48px;height:48px;border-radius:5px;box-shadow:0 0 0 1px rgba(255,255,255,.1) inset}
+.dock .ti{font-weight:700;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dock .ti small{color:var(--muted);font-weight:500;margin-left:8px;font-size:12.5px}
+.dock input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:16px;background:transparent;margin:4px 0 0;display:block}
+.dock input[type=range]::-webkit-slider-runnable-track{height:3px;background:var(--border-2);border-radius:3px}
+.dock input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:13px;height:13px;margin-top:-5px;border-radius:50%;background:var(--paper);border:3px solid var(--accent)}
+.dock input[type=range]::-moz-range-track{height:3px;background:var(--border-2);border-radius:3px}
+.dock input[type=range]::-moz-range-progress{height:3px;background:var(--accent);border-radius:3px}
+.dock input[type=range]::-moz-range-thumb{width:9px;height:9px;border-radius:50%;background:var(--paper);border:3px solid var(--accent)}
+.dock .tm{display:flex;justify-content:space-between;font-size:11px;color:var(--quiet);font-family:var(--mono);font-variant-numeric:tabular-nums}
+.pp{width:46px;height:46px;border-radius:50%;border:0;background:var(--accent);color:#fff;font-size:16px;box-shadow:0 6px 20px -6px rgba(214,60,36,.9);transition:transform .2s}
+.pp:active{transform:scale(.94)}
+/* 시트 = 영수증 */
+.dim{position:fixed;inset:0;background:rgba(4,4,6,.72);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);opacity:0;pointer-events:none;transition:opacity .25s;z-index:50}
+.dim.on{opacity:1;pointer-events:auto}
+.sheet{position:fixed;left:50%;top:50%;transform:translate(-50%,-46%);opacity:0;pointer-events:none;z-index:60;width:min(440px,calc(100% - 32px));max-height:calc(100vh - 40px);overflow:auto;
+  background:var(--panel-raised);border:1px solid var(--border-2);border-radius:14px;padding:22px 22px 18px;visibility:hidden;transition:transform .3s cubic-bezier(.2,.7,.2,1),opacity .25s,visibility 0s .3s;box-shadow:0 40px 80px -30px #000}
+.sheet.on{opacity:1;pointer-events:auto;transform:translate(-50%,-50%);visibility:visible;transition:transform .3s cubic-bezier(.2,.7,.2,1),opacity .25s}
+.sheet::before{content:"TOEGEUN THEATER · NIGHT LINE";display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;color:var(--accent-hi);padding-bottom:12px;margin-bottom:14px;border-bottom:1.5px dashed var(--border-2)}
+.sheet h3{font-family:var(--display);font-weight:800;font-size:24px;margin:0 0 8px;letter-spacing:-.04em;line-height:1.3}
+.sheet p{color:var(--muted);line-height:1.65;margin:0 0 16px;font-size:14px}
+.sgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.sgrid .btn{justify-content:center;border-radius:8px;padding:12px 14px;font-size:14px}
+.sgrid .wide{grid-column:1/-1}
+.x{display:block;margin:14px auto 0;background:none;border:0;color:var(--muted);font-size:13.5px;padding:6px 10px;border-radius:6px}
+.x:hover{color:var(--text)}
+.pf{display:block;font-size:13px;font-weight:700;margin-bottom:6px}
+.pin{width:100%;padding:12px 14px;border:1px solid var(--border-2);border-radius:8px;background:var(--bg);color:var(--text);font-size:15px;margin-bottom:12px;font-family:var(--mono)}
+.pin:focus{border-color:var(--accent-hi);outline:none;box-shadow:0 0 0 3px rgba(255,110,78,.18)}
+.agree{display:flex;gap:8px;align-items:flex-start;font-size:13.5px;color:var(--muted);line-height:1.5}
+.agree input{accent-color:var(--accent);margin-top:3px}
+.ppnote{color:var(--quiet);font-size:12.5px;line-height:1.55;margin:6px 0 0}
+.x+.x{margin-top:4px}
+.toast{position:fixed;left:50%;bottom:calc(var(--dock-height) + 20px + env(safe-area-inset-bottom,0px));transform:translate(-50%,8px);background:var(--paper);color:var(--paper-ink);padding:10px 18px;border-radius:999px;font-weight:700;font-size:14px;opacity:0;transition:opacity .2s,transform .25s;z-index:70;pointer-events:none;white-space:nowrap;max-width:calc(100% - 32px);overflow:hidden;text-overflow:ellipsis;box-shadow:0 12px 30px -10px #000}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+footer{border-top:1px dashed var(--border-2);margin-top:28px;padding-block:24px calc(var(--dock-height) + 30px);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--quiet);font-size:12.5px}
+footer b{color:var(--text);font-family:var(--display);font-weight:800;font-size:14px}
+.mnav{display:none}
+:focus-visible{outline:2px solid var(--accent-hi);outline-offset:3px;border-radius:4px}
+.card:focus-visible{outline:none}
+.card:focus-visible .poster{outline:2px solid var(--accent-hi);outline-offset:3px}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes drift{from{transform:translateX(0) scale(1)}to{transform:translateX(-14px) scale(1.03)}}
+@media (max-width:760px){
+  .nav,.pill{display:none}
+  .hd{gap:12px;height:58px}
+  .hero{min-height:560px;align-items:flex-end}
+  .hero .bgart::after{background:linear-gradient(0deg,var(--bg) 46%,rgba(12,13,15,.7) 64%,rgba(12,13,15,.05) 92%)}
+  .hero .motif{background-size:auto 64%!important;background-position:center -6px!important;opacity:.75!important}
+  .hero{min-height:600px}
+  .hero .in{padding-block:40px 84px}
+  .rank{right:auto;left:max(20px,env(safe-area-inset-left,0px));bottom:24px}
+  .big{font-size:clamp(40px,12vw,56px)}
+  section{padding-block:36px}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 12px}
+  .poster .t{font-size:20px;left:11px;right:11px;bottom:11px}
+  .poster::after{font-size:7.5px;right:7px}
+  .show{grid-template-columns:112px 1fr;gap:18px}
+  .show .poster{width:112px}
+  .show .big{font-size:34px!important;margin:10px 0!important}
+  .show .syn,.show .btns{grid-column:1/-1}
+  .eps::before{left:21px}
+  .ep{grid-template-columns:30px minmax(0,1fr) auto 38px;gap:10px}
+  .ep .n{width:28px;height:28px}
+  .rb{width:36px;height:36px}
+  .unlock{grid-template-columns:1fr}
+  .mnav{display:flex;position:fixed;left:0;right:0;bottom:0;height:calc(var(--mobile-nav) + env(safe-area-inset-bottom,0px));padding-bottom:env(safe-area-inset-bottom,0px);background:rgba(12,13,15,.97);border-top:1px solid var(--border);z-index:35;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+  .mnav button{flex:1;background:none;border:0;color:var(--quiet);font-size:11.5px;font-weight:600;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;position:relative;transition:color .2s}
+  .mnav button svg{width:22px;height:22px}
+  .mnav button.on{color:var(--text)}
+  .mnav button.on::before{content:"";position:absolute;top:-1px;left:30%;right:30%;height:2px;background:var(--accent-hi);border-radius:2px}
+  .dock{bottom:calc(var(--mobile-nav) + env(safe-area-inset-bottom,0px));padding-bottom:12px}
+  footer{padding-bottom:calc(var(--dock-height) + var(--mobile-nav) + 30px)}
+  .toast{bottom:calc(var(--dock-height) + var(--mobile-nav) + 16px + env(safe-area-inset-bottom,0px))}
+  /* 모바일: 아래에서 올라오는 영수증 시트 */
+  .sheet{left:0;right:0;top:auto;bottom:0;width:100%;max-height:88vh;border-radius:18px 18px 0 0;border-bottom:0;transform:translateY(102%);opacity:1;
+    padding:14px 20px calc(18px + env(safe-area-inset-bottom,0px));visibility:hidden;transition:transform .32s cubic-bezier(.2,.7,.2,1),visibility 0s .32s}
+  .sheet.on{transform:none;visibility:visible;transition:transform .32s cubic-bezier(.2,.7,.2,1)}
+  .sheet::before{padding-top:10px;background:linear-gradient(var(--border-2),var(--border-2)) center 0/40px 4px no-repeat}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
+.spd{font:600 11px/1 inherit;background:transparent;color:inherit;opacity:.85;border:1px solid currentColor;border-radius:999px;padding:3px 8px;cursor:pointer}
+.spd:hover{opacity:1}
+</style>
+</head>
+<body>
+<header><div class="wrap hd">
+  <a class="logo" href="#" id="home"><i aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="12.5" stroke="#d63c24" stroke-width="3"/><circle cx="16" cy="16" r="5" fill="#f1ede4"/><path d="M0 16h3.5M28.5 16H32" stroke="#3fcf9b" stroke-width="3"/></svg></i>퇴근극장</a>
+  <nav class="nav" aria-label="메뉴"><button class="on" data-go="home">홈</button><button data-go="explore">탐색</button><button data-go="library">보관함</button></nav>
+  <span class="sp"></span>
+  <span class="pill">체험판</span>
+  <select class="lang" id="lang" aria-label="언어"><option value="ko">한국어</option><option value="en">US · EN</option></select>
+</div></header>
+
+<main id="app"></main>
+
+<nav class="mnav" aria-label="하단 메뉴"><button class="on" data-go="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V20h-5v-6H9v6H4z"/></svg><span>홈</span></button><button data-go="explore"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h18"/><circle cx="6" cy="12" r="2.4" fill="currentColor"/><circle cx="12" cy="12" r="2.4"/><circle cx="18" cy="12" r="2.4"/></svg><span>탐색</span></button><button data-go="library"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3.5h10v17l-5-3.5-5 3.5z"/></svg><span>보관함</span></button></nav>
+
+<div class="dock" id="dock" aria-label="재생기"><div class="in">
+  <div class="mini" id="dmini"></div>
+  <div><div class="ti" id="dti"></div><input type="range" id="seek" min="0" max="100" step="0.1" value="0" aria-label="재생 위치"><div class="tm"><span id="cur">0:00</span><button type="button" class="spd" id="spd" aria-label="재생 속도">1.0x</button><span id="dur">0:00</span></div></div>
+  <button class="pp" id="pp" aria-label="재생">▶</button>
+</div></div>
+<audio id="audio" preload="metadata"></audio>
+<div class="dim" id="dim"></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true"></div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+// ── 콘텐츠 (claude-content/episodes.json 과 같은 내용) ──
+var SITE_URL = "https://aiaijungle.github.io/vibe-ebook/toegeun/"; // 공개 주소 (GitHub Pages)
+var PASS_USD = "4.99", PASS_PRICE = "$4.99"; // 시즌권(시즌1 전 작품) — PayPal USD. $3대는 고정 수수료 비율이 커서 $4.99 (수익구조_70퍼센트.md)
+var EV_URL = "https://hzobwciaqtbfaxxvcots.supabase.co/functions/v1/toegeun-event"; // 운영 기록(Supabase Edge Function, 허용 출처만 기록)
+var PP_CLIENT = "ARYadvgjGiunujqbqzACLOLGzPrs6ZeACC-GEm9gCr7JLTkcAjR5ESbuqXaAKJ2y3_mhVORlf29vvdLA"; // AI바이블 checkout.html과 같은 PayPal 계정(공개 client-id)
+var ORDER_HOOK = "https://aitf-api.onrender.com/webhook/ebook-order"; // AI바이블과 같은 주문 수집 웹훅
+var SHOWS = [
+ {id:"binson", lang:"ko", art:"art-binson", motif:"stamp", genre:["로맨스","복수"], tag:"복수 로맨스", title:"빈손으로 나가라더니", hook:"남편이 나를 감옥에 보냈다.<br>눈을 떠 보니, 1년 전 결재란 앞이었다.",
+  meta:"복수 로맨스 · 시즌 1 · 한국어", eyebrow:"잔다 K-오리지널 · 오늘의 추천작",
+  syn:"남편 회사의 장부를 10년 지킨 경리과장 한서윤. 남편과 내연녀에게 횡령 누명을 쓰고 감옥에서 생을 마감한 그녀가, 모든 일이 시작되기 1년 전 결재란 앞에서 눈을 뜬다. 이번엔 도장을 찍지 않는다.",
+  proof:"근거: 회귀 복수 웹소설 「내 남편과 결혼해줘」 4,600만 다운로드 공식",
+  eps:[{t:"다시, 결재란 앞에서",d:"감옥에서 눈을 뜨니 1년 전",a:"audio/ep01.mp3"},{t:"이미 찍힌 도장",d:"출근도 하기 전에, 결재란엔",a:"audio/ep02.mp3"},{t:"제사상 앞의 발표",d:"모두 앞에서, 그녀는 참았다",a:"audio/ep03.mp3"},{t:"녹화 버튼",d:"첫 번째 반격 — 은행 창구의 영상",a:"audio/ep04.mp3"},{t:"돈이 흐르는 길",d:"회장의 만년필, 엄마의 만년필",a:"audio/ep05.mp3"},{t:"앞당겨진 날짜",d:"꽃뱀 기사, 그리고 이십억 대출",a:"audio/ep06.mp3"}]},
+ {id:"game", lang:"ko", art:"art-game", motif:"door", genre:["스릴러"], tag:"생존 스릴러", title:"퇴근 게임", hook:"오늘 밤, 퇴근은<br>단 한 명만 할 수 있습니다.",
+  meta:"생존 스릴러 · 시즌 1 · 한국어", eyebrow:"잔다 K-오리지널",
+  syn:"경쟁 피티 전날 밤, 야근 중인 광고회사 아홉 명. 밤 11시 사내 AI 비서가 말한다. 출입문은 잠겼고, 아침 9시까지 마지막까지 남은 한 명만 퇴근할 수 있다. 진 사람의 비밀은 전 직원 메일함으로.",
+  proof:"근거: 생존 게임 엔진 — 「오징어 게임」 넷플릭스 역대 1위",
+  eps:[{t:"공지",d:"밤 11시, 출입문이 잠겼다",a:"audio/s3ep01.mp3"},{t:"비밀 걸기",d:"서로의 비밀을 하나씩 건다"},{t:"두 번째 진행자",d:"말하는 순간 가을이 탈락한다"}]},
+ {id:"lasttrain", lang:"ko", art:"art-lasttrain", motif:"train", genre:["로맨스","타임슬립"], tag:"타임슬립 로맨스", title:"막차는 2009년에 선다", hook:"야근 끝 막차에서 깼더니<br>첫사랑이 죽기 7일 전이었다.",
+  meta:"타임슬립 로맨스 · 시즌 1 · 한국어", eyebrow:"잔다 K-오리지널",
+  syn:"서른여섯 살 한여름이 졸다 깬 막차는 2009년에 섰다. 첫사랑 정우가 사고로 떠나기 7일 전. 자정이면 돌아가야 하고, 막차를 탈 때만 다시 올 수 있다. 그날 정우를 그 교차로로 불러낸 건, 열아홉 살의 나였다.",
+  proof:"근거: 타임슬립 구원 로맨스 — 「선재 업고 튀어」 비키 133개국 1위",
+  eps:[{t:"마지막 열차",d:"2009년 11월 1일, 정우를 다시 만나다",a:"audio/s4ep01.mp3"},{t:"열아홉 살의 나",d:"어린 내가 나를 미워하기 시작한다"}]},
+ {id:"intern", lang:"ko", art:"art-intern", motif:"cup", genre:["복수"], tag:"숨은 상속자", title:"인턴의 정체", hook:"커피 심부름하는 인턴이<br>사실은 회장님 손자다.",
+  meta:"오피스 드라마 · 시즌 1 · 한국어", eyebrow:"잔다 K-오리지널",
+  syn:"할아버지의 유언 조건은 단 하나. 1년 동안 신분을 숨기고 계열사 최말단 인턴으로 버틸 것. 정체를 아는 사촌 본부장은 일주일 안에 그를 잘라 내려 한다. 그리고 이 팀 안에, 회장을 배신한 사람이 있다.",
+  proof:"근거: 숨은 상속자 엔진 — Pocket FM 첫 100억 원 돌파작 공식",
+  eps:[{t:"커피 심부름",d:"무시당한 첫 출근, 그의 진짜 이름",a:"audio/s2ep01.mp3"},{t:"고쳐진 숫자",d:"그 보고서를 고친 사람은"}]},
+ {id:"glory", lang:"ko", art:"art-glory", motif:"book", genre:["복수"], tag:"학폭 복수", title:"졸업앨범", hook:"20년 만의 동창회.<br>초대장은 네 명에게만 갔다.", meta:"복수 스릴러 · 시즌 1 · 한국어", eyebrow:"잔다 K-오리지널", syn:"스무 해 전 졸업앨범에서 통째로 사라진 한 페이지. 그 페이지의 아이였던 문채원은 가입자 삼백만 동창회 앱의 얼굴 없는 대표가 되었다. 그리고 이십 년 만의 동창회 초대장을 단 네 명에게만 보낸다.", proof:"근거: 오래 준비한 복수 — 「더 글로리」 2023 상반기 넷플릭스 3위", eps:[{t:"초대장",d:"빠진 페이지를 찾았습니다",a:"audio/s5ep01.mp3"},{t:"먼저 온 손님",d:"네 명 중 한 명이 먼저 찾아온다"}]},
+ {id:"fake", lang:"ko", art:"art-fake", motif:"ring", genre:["로맨스"], tag:"계약 로코", title:"가짜 약혼, 진짜 법카", hook:"조건은 법인카드 무제한,<br>그리고 결혼식 날 공개 파혼.", meta:"로맨틱 코미디 · 시즌 1 · 한국어", eyebrow:"잔다 K-오리지널", syn:"청첩장 돌리기 일주일 전 파혼당한 칠 년 차 대리 오지유. 그 장면을 옆 테이블에서 본 고객사 대표가 제안한다. 그 남자가 새로 만난다는 따님은, 석 달 전까지 자기 약혼자였다고. 같은 사람들에게 버림받은 둘의 복수 계약. 조건은 법인카드 무제한, 그리고 결혼식 날 공개 파혼.", proof:"근거: 계약 연애 — 「사내맞선」 넷플릭스 글로벌 흥행", eps:[{t:"계약 조건",d:"전 약혼자 앞에 나타난 새 약혼자",a:"audio/s6ep01.mp3"},{t:"첫 공식 일정",d:"하필 그날, 대표의 어머니가 온다"}]},
+ {id:"binson_en", lang:"en", art:"art-en", motif:"stamp", genre:["Romance","Revenge"], tag:"K-Revenge Romance", title:"Leave With Nothing", hook:"My husband sent me to prison.<br>I woke up a year earlier.",
+  meta:"K-Revenge Romance · Season 1 · English", eyebrow:"After Hours K-Original",
+  syn:"Seoyun Han kept the books at her husband's company for ten years. Framed for embezzlement by her husband and his mistress, she died in prison. Then she opened her eyes one year earlier, at the same desk, in front of the same approval form. This time, she won't sign.",
+  proof:"", eps:[{t:"Back at the Signature Line",d:"She woke up one year before it all began",a:"audio/ep01_en.mp3"}]}
+];
+var READY = {"binson:0": true, "binson:1": true, "binson:2": true, "binson:3": true, "binson:4": true, "binson:5": true, "glory:0": true, "fake:0": true, "intern:0": true, "game:0": true, "lasttrain:0": true, "binson_en:0": true}; // 빌드 때 실제 있는 오디오만 남김 (build_artifact.py)
+
+// ── 열람 규칙: 1화 무료 · 2화 공유하면 바로 · 3화부터 24시간마다 1화 무료(기다리면 무료) 또는 시즌권 ──
+var KEY = "toegeun_v3", DAY = 24*3600*1000;
+function S(){ try{ return JSON.parse(localStorage.getItem(KEY)||"{}") }catch(e){ return {} } }
+function W(s){ try{ localStorage.setItem(KEY, JSON.stringify(s)) }catch(e){} }
+function gate(show, i){ return i===0 ? "free" : i===1 ? "share" : "wait" }
+function isOpen(show, i){
+  var s = S(), g = gate(show, i), sh = (s[show.id]||{});
+  if (g==="free" || s.pass || (sh.opened||[]).indexOf(i)>=0) return true;
+  if (g==="share") return !!(s.shared || s.invited);
+  return i+1 <= thruOf(show);
+}
+function thruOf(show){ // 기다리면 무료: 24시간이 지나면 열린 회차 수를 확정 저장
+  var s = S(), sh = s[show.id] || {};
+  if (sh.waitFrom && Date.now() >= sh.waitFrom + DAY) { sh.thru = Math.max(sh.thru||2, sh.waitFor||3); sh.waitFrom = 0; s[show.id] = sh; W(s) }
+  return sh.thru || 2;
+}
+var $ = function(id){ return document.getElementById(id) };
+var app = $("app"), audio = $("audio"), lang = "ko", cur = null;
+function esc(t){ return String(t).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c] }) }
+function fmt(x){ x=Math.max(0,x|0); return (x/60|0)+":"+("0"+x%60).slice(-2) }
+function toast(m){ var t=$("toast"); t.textContent=m; t.classList.add("on"); clearTimeout(t._h); t._h=setTimeout(function(){t.classList.remove("on")},2400) }
+function shows(){ return SHOWS.filter(function(s){ return s.lang===lang }) }
+function poster(s, small){ return '<div class="poster '+s.art+'"><div class="motif" style="background-image:url(\''+motif(s.motif)+'\')"></div>'+(small?'':'<span class="badge'+(s.eps.length?' free':'')+'">'+(s.eps.length? (lang==="en"?"Ep.1 free":"1화 무료") : (lang==="en"?"Coming soon":"공개 예정"))+'</span><div class="t">'+esc(s.title)+'</div>')+'</div>' }
+function motif(k){ // 작품별 키 아트(SVG data URI, 200×280 포스터 비율) — 이미지 없이 선·면으로 그린 표지
+  var R='#ff6e4e', G='#7dffb8', Y='#ffd27a', P='#ffb3c4';
+  var p = {
+    // 빈손으로 나가라더니: 결재란 3칸, 마지막 칸은 비어 있고 도장은 공중에 멈춰 있다. 아래엔 장부 줄, 뒤엔 번진 인주 자국.
+    stamp:'<circle cx="54" cy="176" r="46" stroke="'+R+'" stroke-width="7" stroke-opacity=".22"/><circle cx="54" cy="176" r="36" stroke="'+R+'" stroke-width="2" stroke-opacity=".22"/>'
+      +'<g stroke-opacity=".28"><path d="M22 150h156M22 164h156M22 178h156M22 192h156M22 206h156"/><path d="M58 146v64M142 146v64"/></g>'
+      +'<rect x="30" y="66" width="140" height="64" rx="2" fill="#fff" fill-opacity=".05"/><path d="M30 82h140M76.7 66v64M123.3 66v64"/>'
+      +'<path d="M40 98l10 10 18-22" stroke="'+R+'" stroke-width="3" stroke-opacity=".75"/><path d="M86 98l10 10 18-22" stroke="'+R+'" stroke-width="3" stroke-opacity=".75"/>'
+      +'<circle cx="146.6" cy="106" r="15" stroke="'+R+'" stroke-dasharray="3 5"/>'
+      +'<g transform="rotate(-12 150 40)"><rect x="139" y="8" width="22" height="34" rx="9" fill="#fff" fill-opacity=".1"/><rect x="133" y="40" width="34" height="11" rx="3" fill="'+R+'" stroke="'+R+'"/></g>'
+      +'<path d="M150 58v14" stroke-dasharray="2 4" stroke-opacity=".6"/>',
+    // 퇴근 게임: 형광등 천장 아래 잠긴 문, 초록 비상구 표시, 아홉 명 중 단 한 명만 붉다.
+    door:'<g stroke-opacity=".32"><path d="M0 22h200M0 44h200M100 22v22M40 22l-12 22M160 22l12 22"/></g>'
+      +'<rect x="58" y="24" width="30" height="5" rx="1" fill="#fff" fill-opacity=".7" stroke="none"/><rect x="112" y="24" width="30" height="5" rx="1" fill="#fff" fill-opacity=".25" stroke="none"/>'
+      +'<rect x="84" y="56" width="32" height="12" rx="2" stroke="'+G+'" fill="'+G+'" fill-opacity=".28"/><path d="M92 62h10m-3-3l3 3-3 3" stroke="'+G+'"/>'
+      +'<rect x="64" y="78" width="72" height="112" rx="1" fill="#000" fill-opacity=".25"/><rect x="72" y="86" width="56" height="44" stroke-opacity=".45"/><path d="M100 86v44" stroke-opacity=".45"/>'
+      +'<rect x="112" y="146" width="15" height="12" rx="2" stroke="'+R+'" stroke-width="2"/><path d="M115 146v-4a4.5 4.5 0 0 1 9 0v4" stroke="'+R+'" stroke-width="2"/>'
+      +'<path d="M16 190h168" stroke-opacity=".5"/>'
+      +'<g fill="#fff" fill-opacity=".55" stroke="none"><circle cx="24" cy="206" r="5"/><circle cx="43" cy="206" r="5"/><circle cx="62" cy="206" r="5"/><circle cx="81" cy="206" r="5"/><circle cx="119" cy="206" r="5"/><circle cx="138" cy="206" r="5"/><circle cx="157" cy="206" r="5"/><circle cx="176" cy="206" r="5"/></g>'
+      +'<circle cx="100" cy="206" r="6" fill="'+R+'" stroke="none"/>',
+    // 막차는 2009년에 선다: 손잡이가 흔들리는 막차 창밖으로 분홍 달, 아래는 2009로 가는 노선도.
+    train:'<g stroke-opacity=".6"><path d="M30 0v14M100 0v14M164 0v14"/><circle cx="30" cy="22" r="8"/><circle cx="100" cy="22" r="8"/><circle cx="164" cy="22" r="8"/></g>'
+      +'<rect x="22" y="44" width="156" height="104" rx="22" fill="#000" fill-opacity=".22"/>'
+      +'<circle cx="138" cy="80" r="15" fill="'+P+'" fill-opacity=".85" stroke="none"/>'
+      +'<path d="M22 128h14v-14h10v-20h12v30h10v-12h14v16h12v-26h10v22h12v-8h12v18h10v-12h12v20h14" stroke-opacity=".55"/>'
+      +'<path d="M30 116l12 0M120 106h8" stroke="'+Y+'" stroke-opacity=".8"/>'
+      +'<path d="M14 176h172" stroke="#3fcf9b" stroke-width="5"/>'
+      +'<g fill="#0b0f16" stroke="#fff" stroke-width="2.5"><circle cx="34" cy="176" r="6"/><circle cx="78" cy="176" r="6"/><circle cx="122" cy="176" r="6"/></g>'
+      +'<circle cx="166" cy="176" r="10" fill="'+P+'" stroke="#fff" stroke-width="3"/>',
+    // 인턴의 정체: 밤의 본사 빌딩, 꼭대기 회장실 한 칸만 불이 켜져 있고 앞엔 커피 한 잔.
+    cup:'<rect x="46" y="10" width="108" height="196" fill="#fff" fill-opacity=".04" stroke-opacity=".5"/>'
+      +'<g fill="#fff" fill-opacity=".14" stroke="none">'
+      +(function(){var s='';for(var r=0;r<7;r++)for(var c=0;c<4;c++){ if(!(r===0&&c===2)) s+='<rect x="'+(56+c*24)+'" y="'+(22+r*24)+'" width="16" height="13"/>' }return s})()
+      +'</g><rect x="104" y="22" width="16" height="13" fill="'+Y+'" stroke="none"/><rect x="98" y="16" width="28" height="25" fill="'+Y+'" fill-opacity=".15" stroke="none"/>'
+      +'<path d="M66 132q-6-10 0-18t0-18M84 132q-6-10 0-18t0-18" stroke-opacity=".55"/>'
+      +'<path d="M50 142h52l-6 66H56z" fill="#0a0f18" stroke-width="2"/><path d="M47 142h58" stroke-width="3"/><path d="M54 168h44" stroke="'+Y+'" stroke-opacity=".7"/>'
+      +'<path d="M102 156h7a9 9 0 0 1 0 18h-10" stroke-width="2"/>',
+    // 졸업앨범: 펼친 앨범, 얼굴 칸들 사이 한 페이지가 통째로 찢겨 나갔다. 초대장 다섯 장.
+    book:'<path d="M100 40v150" stroke-opacity=".5"/><path d="M18 46l82-6 82 6v148l-82-4-82 4z" fill="#000" fill-opacity=".22"/>'
+      +'<g stroke-opacity=".55">'
+      +(function(){var s='';for(var r=0;r<4;r++)for(var c=0;c<3;c++){ var x=28+c*23, y=56+r*32; s+='<rect x="'+x+'" y="'+y+'" width="17" height="22" rx="1"/><circle cx="'+(x+8.5)+'" cy="'+(y+9)+'" r="4"/>' }return s})()
+      +'</g>'
+      +'<path d="M108 46l8 10-6 12 9 10-7 14 8 12-6 14 9 12-7 14 8 12-6 16 10 12" stroke="#d9c7ff" stroke-width="2"/>'
+      +'<path d="M126 60h44M126 72h36M126 84h40" stroke-opacity=".2"/>'
+      +'<g transform="rotate(-8 150 210)"><rect x="120" y="198" width="54" height="34" rx="2" fill="#0b0a10" stroke="'+R+'" stroke-width="2"/><path d="M120 198l27 18 27-18" stroke="'+R+'" stroke-width="2"/></g>'
+      +'<g fill="'+R+'" stroke="none"><circle cx="30" cy="214" r="3"/><circle cx="42" cy="214" r="3"/><circle cx="54" cy="214" r="3"/><circle cx="66" cy="214" r="3"/><circle cx="78" cy="214" r="3"/></g>',
+    // 가짜 약혼, 진짜 법카: 금이 간 반지가 법인카드 위에 놓여 있다.
+    ring:'<g transform="rotate(-10 100 150)"><rect x="34" y="104" width="134" height="86" rx="9" fill="#fff" fill-opacity=".07" stroke-opacity=".7"/>'
+      +'<rect x="50" y="128" width="24" height="18" rx="3" stroke="'+Y+'" fill="'+Y+'" fill-opacity=".25"/><path d="M50 137h24M62 128v18" stroke="'+Y+'" stroke-opacity=".7"/>'
+      +'<path d="M50 168h18M74 168h18M98 168h18M122 168h18" stroke-width="3" stroke-opacity=".6"/><path d="M146 122a8 8 0 1 0 0 12" stroke-opacity=".6"/></g>'
+      +'<circle cx="112" cy="84" r="34" stroke="'+P+'" stroke-width="6"/><circle cx="112" cy="84" r="34" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/>'
+      +'<path d="M100 38l12-16 12 16-12 12z" fill="#fff" fill-opacity=".85" stroke="#fff"/>'
+      +'<path d="M132 58l-6 10 7 6-8 12" stroke="#120a0f" stroke-width="3.5"/>'
+      +'<path d="M42 40l4 8 8 4-8 4-4 8-4-8-8-4 8-4z" fill="#fff" fill-opacity=".6" stroke="none"/><path d="M168 30l2.5 5 5 2.5-5 2.5-2.5 5-2.5-5-5-2.5 5-2.5z" fill="#fff" fill-opacity=".5" stroke="none"/>'
+  }[k]||'';
+  return 'data:image/svg+xml;utf8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 280" preserveAspectRatio="xMidYMin meet" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+p+'</svg>');
+}
+var T = { ko:{play:"1화 무료로 듣기", view:"작품 보기", line:"오리지널 라인업", kick:"K-ORIGINALS · 이미 세계에서 통한 이야기", all:"전체", eps:"에피소드", free:"무료", lock:"잠김", share:"공유하면 열림", home:"홈으로", save:"보관함에 담기", auto:"들을 수 있는 다음 회차 자동 재생", soon:"공개 예정", made:"제작 중"},
+          en:{play:"Play Ep.1 free", view:"View series", line:"Original lineup", kick:"K-ORIGINALS · STORIES THE WORLD ALREADY LOVED", all:"All", eps:"Episodes", free:"Free", lock:"Locked", share:"Share to unlock", home:"Home", save:"Save", auto:"Auto-play next available episode", soon:"Coming soon", made:"In production"} };
+function L(k){ return T[lang][k] }
+
+function home(filter){
+  var list = shows(), main = list[0], g = ["all"].concat(Array.from(new Set(list.flatMap(function(s){return s.genre}))));
+  filter = filter || "all";
+  app.innerHTML = '<div class="hero"><div class="bgart '+main.art+'"><div class="motif" style="background-image:url(\''+motif(main.motif)+'\');background-position:78% 40%;background-size:34%"></div></div><div class="wrap" style="width:100%"><div class="in">'
+    + '<div class="eyebrow">'+esc(main.eyebrow)+'</div><div class="big">'+esc(main.title)+'</div><p class="hook">'+main.hook+'</p><div class="meta">'+esc(main.meta)+'</div>'
+    + '<div class="btns"><button class="btn primary" data-play="'+main.id+':0">▶ '+L("play")+'</button><button class="btn" data-show="'+main.id+'">'+L("view")+' ↗</button></div></div></div>'
+    + '<div class="rank">— '+(lang==="en"?"Today's pick":"오늘의 추천작")+' <b>01</b></div></div>'
+    + '<section class="wrap"><div class="kicker">'+L("kick")+'</div><h2>'+L("line")+'</h2><div class="chips">'
+    + g.map(function(x){ return '<button class="chip'+(x===filter?' on':'')+'" data-filter="'+esc(x)+'">'+(x==="all"?L("all"):esc(x))+'</button>' }).join("")
+    + '</div><div class="grid">' + list.filter(function(s){ return filter==="all" || s.genre.indexOf(filter)>=0 }).map(function(s){
+        return '<button class="card" data-show="'+s.id+'">'+poster(s)+'<div class="sub"><b>'+esc(s.tag)+'</b>'+esc(s.hook.replace(/<br>/g," "))+'</div></button>' }).join("") + '</div></section>' + foot();
+  scrollTo(0,0);
+}
+function foot(){ return '<footer class="wrap"><span><b>🎧 퇴근극장</b>&nbsp; '+(lang==="en"?"Short K-audio dramas for the ride home.":"퇴근길에 듣는 5분 K-오디오 드라마.")+'</span><span>잔다 제작 · AI 음성으로 제작한 창작 오디오 드라마 (ElevenLabs)</span></footer>' }
+
+function detail(id){
+  var s = SHOWS.filter(function(x){return x.id===id})[0]; if (!s) return home();
+  var n = s.eps.length;
+  app.innerHTML = '<div class="wrap"><button class="back" data-go="home">← '+L("home")+'</button><div class="show" data-id="'+s.id+'">'+poster(s,true)
+    + '<div><div class="eyebrow">'+esc(s.eyebrow)+'</div><div class="big" style="font-size:clamp(40px,6vw,72px);margin:12px 0">'+esc(s.title)+'</div><div class="meta"><b style="color:var(--text)">'+esc(s.meta)+'</b></div></div>'
+    + '<p class="syn">'+esc(s.syn || (lang==="en"?"Coming soon.":"곧 공개됩니다."))+(s.proof?'<br><span style="color:var(--quiet);font-size:13px">'+esc(s.proof)+'</span>':'')+'</p>'
+    + (n? '<div class="btns"><button class="btn primary" data-play="'+s.id+':0">▶ '+L("play")+'</button><button class="btn" data-save="'+s.id+'">🔖 '+L("save")+'</button><button class="btn icon" data-shareopen="'+s.id+'" aria-label="공유">⤴</button></div>':'')
+    + '</div>'
+    + (n? '<div class="epsHead"><div><div class="kicker">SEASON 01</div><h2>'+L("eps")+'<small>'+n+'</small></h2></div><span class="tag">'+(lang==="en"?"Ep.1 free":"1화 무료 · 2화 공유")+'</span></div>'
+      + '<label class="auto"><input type="checkbox" id="autonext" checked> '+L("auto")+'</label><div class="eps">'
+      + s.eps.map(function(e,i){ var ok = isOpen(s,i), have = READY[s.id+":"+i], g = gate(s,i);
+          var st = !have ? '<span class="s-lock">'+L("made")+'</span>' : ok ? '<span class="s-free">'+(g==="free"?L("free"):(lang==="en"?"Open":"열림"))+'</span>' : g==="share" ? '<span class="s-share">'+L("share")+'</span>' : '<span class="s-lock">'+L("lock")+'</span>';
+          return '<button class="ep" data-play="'+s.id+':'+i+'"><span class="n">'+("0"+(i+1)).slice(-2)+'</span><span><div class="t">'+esc(e.t)+'</div><div class="d">'+esc(e.d)+'</div></span><span class="st">'+st+'<span class="len" data-len="'+s.id+':'+i+'"></span></span><span class="rb'+(ok&&have?'':' lock')+'">'+(ok&&have?'▶':'🔒')+'</span></button>' }).join("")
+      + '</div>' + unlockPanel(s) + '<p class="note">'+(lang==="en"?"AI-voiced original audio drama. Sound design, music and voices made with ElevenLabs.":"AI 음성으로 제작한 창작 오디오 드라마 · 효과음·음악·목소리 ElevenLabs 제작 · 등장인물과 회사는 실제와 관계없습니다.")+'</p>' : '')
+    + '</div>' + foot();
+  scrollTo(0,0); fillLens();
+}
+function unlockPanel(s){
+  var sh = (S()[s.id]||{}), waiting = sh.waitFrom && Date.now() < sh.waitFrom + DAY, left = waiting ? Math.ceil((sh.waitFrom + DAY - Date.now())/3600000) : 0;
+  if (lang==="en") return '';
+  return '<div class="unlock">'
+   + '<div class="uc"><h3>🎁 친구 초대하고 열람권 받기</h3><p>내 초대 링크로 들어온 친구는 2화 + 열람권 2장. 나는 공유할 때마다 열람권 1장(하루 1번). 지금 내 열람권 <b style="color:var(--accent)">'+tokens()+'장</b></p><button class="btn" data-shareopen="'+s.id+'">초대 링크 공유하기</button></div>'
+   + '<div class="uc"><h3>📅 출석 체크</h3><p>매일 열람권 1장. 7일 연속이면 3장 더.'+(streak()?' 지금 '+streak()+'일 연속.':'')+'</p><button class="btn" data-checkin="1"'+(checkedToday()?' disabled':'')+'>'+(checkedToday()?'오늘 출석 완료':'출석하고 1장 받기')+'</button></div>'
+   + '<div class="uc"><h3>⏳ 기다리면 무료</h3><p>'+(waiting? '다음 회차까지 약 '+left+'시간 남았어요.' : '대기를 시작하면 24시간마다 한 회차가 열려요.')+'</p><button class="btn" data-wait="'+s.id+'"'+(waiting?' disabled':'')+'>'+(waiting?'기다리는 중':'무료 해제 기다리기')+'</button></div>'
+   + '<div class="uc"><h3>🎟 시즌권</h3><div class="price">'+PASS_PRICE+'</div><p>시즌1 전 작품을 결말까지 바로. 마지막 두 화는 시즌권 전용으로 먼저 공개돼요.</p><button class="btn primary" data-pass="'+s.id+'">시즌권 '+PASS_PRICE+' · PayPal</button></div></div>';
+}
+function fillLens(){ document.querySelectorAll("[data-len]").forEach(function(el){ var k=el.getAttribute("data-len"), p=k.split(":"), s=SHOWS.filter(function(x){return x.id===p[0]})[0], e=s.eps[+p[1]];
+  if (!e.a || !READY[k]) return; var a=new Audio(); a.preload="metadata"; a.src=e.a; a.onloadedmetadata=function(){ el.textContent=fmt(a.duration) } }) }
+
+// ── 재생 ──
+function play(id, i){
+  var s = SHOWS.filter(function(x){return x.id===id})[0], e = s.eps[i];
+  if (!e || !READY[id+":"+i]) return toast(lang==="en"?"Coming soon":"제작 중인 회차예요");
+  if (!isOpen(s,i)) return gate(s,i)==="share" ? shareSheet(s) : waitSheet(s, i);
+  cur = {s:s, i:i}; audio.src = e.a; audio.playbackRate = S().rate || 1; audio.play().catch(function(){});
+  ev("play", {show:s.id, ep:i}); mediaMeta(s, e, i);
+  $("dock").classList.add("on"); $("dmini").className = "mini "+s.art; $("dti").innerHTML = esc(s.title)+'<small>'+(i+1)+(lang==="en"?" · ":"화 · ")+esc(e.t)+'</small>';
+}
+$("pp").onclick = function(){ audio.paused ? audio.play().catch(function(){}) : audio.pause() };
+audio.onplay = function(){ $("pp").textContent="❚❚" }; audio.onpause = function(){ $("pp").textContent="▶" };
+audio.onloadedmetadata = function(){ $("dur").textContent = fmt(audio.duration); audio.playbackRate = S().rate || 1;
+  var k = cur && cur.s.id+":"+cur.i, at = k && (S().pos||{})[k]; // 이어 듣기
+  if (at > 5 && at < audio.duration - 10) { audio.currentTime = at; toast((lang==="en"?"Resuming at ":"이어 듣기 ")+fmt(at)) } };
+var lastSave = 0;
+audio.ontimeupdate = function(){ $("cur").textContent = fmt(audio.currentTime); if (audio.duration) $("seek").value = audio.currentTime/audio.duration*100;
+  if (cur && Date.now() - lastSave > 5000) { lastSave = Date.now(); var st = S(); st.pos = st.pos || {}; st.pos[cur.s.id+":"+cur.i] = audio.currentTime; W(st) } };
+$("seek").oninput = function(){ if (audio.duration) audio.currentTime = this.value/100*audio.duration };
+audio.onended = function(){ if (cur) { ev("complete", {show:cur.s.id, ep:cur.i}); var st=S(); st.pos=st.pos||{}; delete st.pos[cur.s.id+":"+cur.i]; W(st) }
+  var a=$("autonext"); if (cur && (!a || a.checked) && cur.i+1 < cur.s.eps.length) play(cur.s.id, cur.i+1) };
+var RATES = [1, 1.25, 1.5, 0.9];
+function rateLabel(r){ return (r===1?"1.0":String(r))+"x" }
+$("spd").onclick = function(){ var st=S(), r=RATES[(RATES.indexOf(st.rate||1)+1) % RATES.length]; st.rate=r; W(st); audio.playbackRate=r; this.textContent=rateLabel(r) };
+$("spd").textContent = rateLabel(S().rate||1);
+function mediaMeta(s, e, i){ // 잠금화면·이어폰 버튼 조작 (출퇴근 중 휴대폰 잠근 채로)
+  if (!("mediaSession" in navigator)) return;
+  try { navigator.mediaSession.metadata = new MediaMetadata({ title:(i+1)+(lang==="en"?". ":"화 · ")+e.t, artist:s.title, album:lang==="en"?"After Hours Theater":"퇴근극장" });
+    navigator.mediaSession.setActionHandler("play", function(){ audio.play() });
+    navigator.mediaSession.setActionHandler("pause", function(){ audio.pause() });
+    navigator.mediaSession.setActionHandler("seekbackward", function(){ audio.currentTime = Math.max(0, audio.currentTime-10) });
+    navigator.mediaSession.setActionHandler("seekforward", function(){ audio.currentTime = Math.min(audio.duration||0, audio.currentTime+10) });
+    navigator.mediaSession.setActionHandler("nexttrack", function(){ if (cur && cur.i+1 < cur.s.eps.length) play(cur.s.id, cur.i+1) });
+  } catch(err){} }
+function anon(){ var st=S(); if (!st.anon){ st.anon="a"+Math.random().toString(36).slice(2,12); W(st) } return st.anon }
+function ev(name, x){ // 운영 기록 — 실패해도 서비스엔 영향 없음
+  x = x || {}; try { fetch(EV_URL, {method:"POST", headers:{"Content-Type":"application/json"}, keepalive:true,
+    body: JSON.stringify({event:name, anon:anon(), show:x.show||null, ep:(x.ep!=null?x.ep:null), ref:x.ref||null, lang:lang, value:(x.value!=null?x.value:null), meta:x.meta||{}})}).catch(function(){}) } catch(err){} }
+
+// ── 공유 · 기다무 · 시즌권 ──
+function sheet(h){ $("sheet").innerHTML = h; $("sheet").classList.add("on"); $("dim").classList.add("on") }
+function closeSheet(){ $("sheet").classList.remove("on"); $("dim").classList.remove("on") }
+$("dim").onclick = closeSheet;
+function myRef(){ var s=S(); if(!s.ref){ s.ref=Math.random().toString(36).slice(2,8); W(s) } return s.ref }
+function link(s){ return (SITE_URL || location.href.split("#")[0].split("?")[0]) + "?show="+s.id+"&ref="+myRef() }
+function unlockShare(s){ var st=S(), d=today(), msg="2화가 열렸어요"; st.shared=true;
+  if (st.shareDay!==d){ st.shareDay=d; st.tokens=(st.tokens||0)+1; msg+=" · 열람권 1장 받았어요" } W(st); ev("share", {show:s.id}); closeSheet(); toast(msg); detail(s.id) }
+function today(){ var t=new Date(); return t.getFullYear()+"-"+(t.getMonth()+1)+"-"+t.getDate() }
+function tokens(){ return S().tokens||0 }
+function checkedToday(){ return S().checkDay===today() }
+function streak(){ return S().streak||0 }
+function checkin(){ var st=S(), d=today(); if (st.checkDay===d) return toast("오늘은 이미 출석했어요");
+  var y=new Date(Date.now()-DAY), yd=y.getFullYear()+"-"+(y.getMonth()+1)+"-"+y.getDate();
+  st.streak = st.checkDay===yd ? (st.streak||0)+1 : 1; st.checkDay=d; var add = st.streak%7===0 ? 4 : 1; st.tokens=(st.tokens||0)+add; W(st); ev("checkin", {meta:{streak:st.streak}});
+  toast("출석 완료! 열람권 "+add+"장"+(add>1?" (7일 연속 보너스)":"")); if (cur) detail(cur.s.id); else { var q=document.querySelector(".show"); q ? detail(q.dataset.id) : home() } }
+function useToken(s, at){ thruOf(s); var st=S(), sh=st[s.id]||{};
+  var i = (at!=null && !isOpen(s,at)) ? at : -1; if (i<0) for (var k=0;k<s.eps.length;k++){ if (!isOpen(s,k) && READY[s.id+":"+k]) { i=k; break } } if (i<0) return toast("모든 회차가 열려 있어요");
+  if ((st.tokens||0)<1) return toast("열람권이 없어요. 출석하거나 친구를 초대해 보세요");
+  st.tokens-=1; sh.opened=(sh.opened||[]).concat([i]); st[s.id]=sh; W(st); ev("token_use", {show:s.id, ep:i}); toast((i+1)+"화를 열람권으로 열었어요"); play(s.id,i); detail(s.id) }
+function shareSheet(s){
+  var text = s.title+" — "+s.hook.replace(/<br>/g," ")+" | 퇴근극장";
+  sheet('<h3>공유하면 2화가 바로 열려요</h3><p>이 이야기가 생각나는 사람에게 보내 주세요. 공유하면 열람권 1장도 드려요(하루 1번).</p><div class="sgrid">'
+    + (navigator.share? '<button class="btn primary wide" data-s="native">공유하기 (카카오톡 · 인스타 등)</button>':'')
+    + '<a class="btn" target="_blank" rel="noopener" data-s="x" href="https://x.com/intent/post?text='+encodeURIComponent(text)+'&url='+encodeURIComponent(link(s))+'">X</a>'
+    + '<a class="btn" target="_blank" rel="noopener" data-s="fb" href="https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(link(s))+'">페이스북</a>'
+    + '<a class="btn" target="_blank" rel="noopener" data-s="th" href="https://www.threads.net/intent/post?text='+encodeURIComponent(text+" "+link(s))+'">스레드</a>'
+    + '<a class="btn" target="_blank" rel="noopener" data-s="line" href="https://social-plugins.line.me/lineit/share?url='+encodeURIComponent(link(s))+'">LINE</a>'
+    + '<button class="btn" data-s="copy">링크 복사</button></div><p class="ppnote" style="margin-top:12px">내 초대 링크로 들어온 친구는 2화 + 열람권 2장을 받아요.</p><button class="x" data-s="close">닫기</button>');
+  $("sheet").onclick = function(e){ var b=e.target.closest("[data-s]"); if(!b) return; var k=b.getAttribute("data-s");
+    if (k==="close") return closeSheet();
+    if (k==="native") return navigator.share({title:"퇴근극장", text:text, url:link(s)}).then(function(){unlockShare(s)}).catch(function(){});
+    if (k==="copy") { var done=function(){ toast("링크를 복사했어요"); setTimeout(function(){unlockShare(s)},600) }; return navigator.clipboard ? navigator.clipboard.writeText(text+" "+link(s)).then(done,done) : done() }
+    setTimeout(function(){unlockShare(s)},1200); };
+}
+function waitSheet(s, at){
+  var tk=tokens();
+  sheet('<h3>결말까지 이어 듣기</h3><p>열람권으로 바로 열거나, 24시간 기다리면 한 회차가 무료로 열려요. 결말까지 한 번에 들으려면 시즌권('+PASS_PRICE+').</p><div class="sgrid">'
+    + '<button class="btn primary wide" data-w="token"'+(tk?'':' disabled')+'>열람권 1장으로 지금 열기 (보유 '+tk+'장)</button>'
+    + '<button class="btn" data-w="wait">무료 해제 기다리기</button><button class="btn" data-w="pass">시즌권 '+PASS_PRICE+'</button>'
+    + (tk?'':'<button class="btn wide" data-w="invite">🎁 친구 초대하고 열람권 받기</button>')
+    + '</div><button class="x" data-w="close">닫기</button>');
+  $("sheet").onclick = function(e){ var b=e.target.closest("[data-w]"); if(!b) return; var k=b.getAttribute("data-w"); closeSheet();
+    if (k==="wait") startWait(s); if (k==="pass") passSheet(); if (k==="token") useToken(s, at); if (k==="invite") shareSheet(s); };
+}
+function startWait(s){ var st=S(), sh=st[s.id]||{}; if (sh.waitFrom && Date.now()<sh.waitFrom+DAY) return toast("이미 기다리는 중이에요");
+  var t=thruOf(s); st=S(); sh=st[s.id]||{}; if (t >= s.eps.length) return toast("모든 회차가 열려 있어요");
+  sh.waitFrom=Date.now(); sh.waitFor=t+1; st[s.id]=sh; W(st); ev("wait_start", {show:s.id, ep:t}); toast("24시간 뒤 다음 회차가 열려요"); detail(s.id) }
+function hook(p){ p.sent_at=new Date().toISOString(); p.page_url=location.href; p.referrer=document.referrer||"";
+  try{ fetch(ORDER_HOOK,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=UTF-8"},body:JSON.stringify(p),keepalive:true}).catch(function(){}) }catch(e){} }
+function loadPP(cb){ if (window.paypal) return cb(true); var x=document.createElement("script");
+  x.src="https://www.paypal.com/sdk/js?client-id="+PP_CLIENT+"&currency=USD&intent=capture&locale="+(lang==="en"?"en_US":"ko_KR");
+  x.onload=function(){ cb(!!window.paypal) }; x.onerror=function(){ cb(false) }; document.head.appendChild(x) }
+function passSheet(){ // AI바이블 checkout.html 방식 그대로: 이메일 + 환불 불가 동의 → PayPal 결제 → 캡처 → 주문 웹훅
+  sheet('<h3>시즌권 '+PASS_PRICE+'</h3><p>퇴근극장 시즌1 전 작품을 결말까지 바로 들어요. 미국 달러로 PayPal 결제(약 7,000원, 카드사 환율 적용).</p>'
+    + '<label class="pf" for="ppEmail">영수증 받을 이메일 *</label><input class="pin" type="email" id="ppEmail" placeholder="you@example.com" autocomplete="email">'
+    + '<label class="agree"><input type="checkbox" id="ppAgree"> <span><b>디지털 콘텐츠라 결제 후 환불되지 않아요.</b> 동의합니다.</span></label>'
+    + '<div id="ppBtn" style="margin:14px 0 6px;min-height:46px"><p class="ppnote">PayPal 불러오는 중…</p></div>'
+    + '<p class="ppnote">한국 PayPal 계정끼리는 결제가 막혀 있어요. 해외 발행 카드나 해외 PayPal 계정으로 결제해 주세요. 문의 housepeoplekorea@gmail.com</p>'
+    + '<button class="x" data-p="try">미리보기: 체험판으로 열기 (0원)</button><button class="x" data-p="close">닫기</button>');
+  $("sheet").onclick = function(e){ var b=e.target.closest("[data-p]"); if(!b) return;
+    if (b.getAttribute("data-p")==="try"){ var st=S(); st.pass=true; W(st); toast("체험판 시즌권이 적용됐어요 (0원)") }
+    closeSheet(); cur ? detail(cur.s.id) : home() };
+  loadPP(function(ok){
+    var box=$("ppBtn"); if (!box) return;
+    if (!ok) { box.innerHTML='<p class="ppnote">이 화면에서는 PayPal을 불러올 수 없어요(미리보기 보안 제한). 정식 주소에서 결제됩니다.</p>'; return }
+    box.innerHTML="";
+    paypal.Buttons({ style:{ layout:"vertical", height:44, tagline:false },
+      onClick:function(d,a){ var em=$("ppEmail").value.trim(); if (em.indexOf("@")<1){ toast("이메일을 입력해 주세요"); return a.reject() }
+        if (!$("ppAgree").checked){ toast("환불 규정에 동의해 주세요"); return a.reject() } return a.resolve() },
+      createOrder:function(d,a){ return a.order.create({ purchase_units:[{ amount:{ value:PASS_USD, currency_code:"USD" }, description:"Toegeun Theater Season 1 Pass (all series)", custom_id:$("ppEmail").value.trim() }] }) },
+      onApprove:function(d,a){ return a.order.capture().then(function(det){
+        var em=$("ppEmail").value.trim(), st=S(); st.pass=true; st.passOrder=d.orderID; W(st); ev("purchase", {value:+PASS_USD, meta:{order:d.orderID, product:"season1_pass"}});
+        hook({ event:"paypal_purchase", product:"Toegeun Theater Season 1 Pass", amount:+PASS_USD, currency:"USD", email:em, buyerEmail:em,
+          buyerName: det && det.payer && det.payer.name ? [det.payer.name.given_name, det.payer.name.surname].filter(Boolean).join(" ") : "",
+          payment_method:"paypal", language:lang, region:"global", channel:"toegeun_theater", order_id:d.orderID, payer_id:d.payerID||"", paypal_status:det.status||"" });
+        closeSheet(); toast("결제 완료! 시즌1 전 작품이 열렸어요"); cur ? detail(cur.s.id) : home() }) },
+      onCancel:function(d){ hook({ event:"paypal_cancel", product:"Toegeun Theater Season 1 Pass", amount:+PASS_USD, currency:"USD", email:$("ppEmail").value.trim(), order_id:(d&&d.orderID)||"" }); ev("purchase_cancel"); toast("결제를 취소했어요") },
+      onError:function(err){ hook({ event:"paypal_error", product:"Toegeun Theater Season 1 Pass", amount:+PASS_USD, currency:"USD", email:$("ppEmail").value.trim(), error:String(err).slice(0,300) }); ev("purchase_error", {meta:{e:String(err).slice(0,120)}}); toast("결제가 완료되지 않았어요. 다른 카드로 다시 시도해 주세요") }
+    }).render("#ppBtn");
+  });
+}
+
+// ── 이동 ──
+document.addEventListener("click", function(e){
+  var t = e.target.closest("[data-go],[data-show],[data-play],[data-filter],[data-save],[data-shareopen],[data-wait],[data-pass],[data-checkin]"); if (!t) return;
+  if (t.hasAttribute("data-go")) { var g=t.getAttribute("data-go"); setNav(g); return g==="home" ? home() : g==="explore" ? home() : library() }
+  if (t.hasAttribute("data-show")) return detail(t.getAttribute("data-show"));
+  if (t.hasAttribute("data-filter")) return home(t.getAttribute("data-filter"));
+  if (t.hasAttribute("data-play")) { var p=t.getAttribute("data-play").split(":"); return play(p[0], +p[1]) }
+  if (t.hasAttribute("data-save")) { var st=S(); st.saved=st.saved||{}; st.saved[t.getAttribute("data-save")]=1; W(st); return toast(lang==="en"?"Saved":"보관함에 담았어요") }
+  if (t.hasAttribute("data-shareopen")) return shareSheet(SHOWS.filter(function(x){return x.id===t.getAttribute("data-shareopen")})[0]);
+  if (t.hasAttribute("data-wait")) return startWait(SHOWS.filter(function(x){return x.id===t.getAttribute("data-wait")})[0]);
+  if (t.hasAttribute("data-pass")) return passSheet();
+  if (t.hasAttribute("data-checkin")) return checkin();
+});
+$("home").onclick = function(e){ e.preventDefault(); setNav("home"); home() };
+function setNav(g){ document.querySelectorAll("[data-go]").forEach(function(b){ if (b.closest(".nav,.mnav")) b.classList.toggle("on", b.getAttribute("data-go")===g) }) }
+function library(){ var sv=(S().saved)||{}, list=SHOWS.filter(function(s){return sv[s.id]});
+  app.innerHTML='<section class="wrap"><div class="kicker">LIBRARY</div><h2>보관함</h2>'+(list.length?'<div class="grid">'+list.map(function(s){return '<button class="card" data-show="'+s.id+'">'+poster(s)+'</button>'}).join("")+'</div>':'<p style="color:var(--muted)">아직 담은 작품이 없어요. 작품 화면에서 🔖 보관함에 담기를 눌러 보세요.</p><button class="btn primary" data-go="home">작품 둘러보기</button>')+'</section>'+foot() }
+$("lang").onchange = function(){ lang=this.value; home() };
+// 초대 링크로 들어오면(?ref=) 2화 바로 열림 (ReelShort식 양쪽 보상: 공유한 사람은 공유 시, 들어온 사람은 방문 시)
+(function(){ var q=new URLSearchParams(location.search); ev("visit", {show:q.get("show")||null, ref:q.get("ref")||null});
+  if (q.get("ref") && q.get("ref")!==S().ref) { var st=S(); if (!st.invited){ st.invited=true; st.tokens=(st.tokens||0)+2; W(st); ev("invite_visit", {ref:q.get("ref"), show:q.get("show")||null}); setTimeout(function(){ toast("초대 선물: 2화 + 열람권 2장이 열렸어요") },800) } }
+  if (S().ref) { try { fetch(EV_URL+"?referrals="+S().ref).then(function(r){ return r.json() }).then(function(j){ // Pocket FM Refer & Earn: 내 링크로 온 친구 1명당 열람권 2장
+    var st=S(), n=(j&&j.count)||0, done=st.refCredited||0; if (n>done){ st.tokens=(st.tokens||0)+2*(n-done); st.refCredited=n; W(st); setTimeout(function(){ toast("친구 "+(n-done)+"명이 내 링크로 들어왔어요! 열람권 "+(2*(n-done))+"장") },1500) } }).catch(function(){}) } catch(err){} }
+  if (/^en/.test(navigator.language||"") && !q.get("show")) { lang="en"; $("lang").value="en" }
+  q.get("show") ? detail(q.get("show")) : home() })();
+</script>
+</body>
+</html>
