@@ -48,6 +48,10 @@ header::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;
 .pill{border:1px solid var(--border-2);border-radius:4px;padding:5px 10px;font-family:var(--mono);font-size:12px;font-weight:600;display:flex;align-items:center;gap:7px;color:var(--muted);letter-spacing:.04em}
 .pill::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--line);box-shadow:0 0 8px var(--line)}
 select.lang{background:var(--panel);border:1px solid var(--border-2);color:var(--text);border-radius:8px;padding:8px 10px;font-family:var(--mono);font-weight:600;font-size:13px}
+.profile-trigger{display:flex;align-items:center;gap:8px;min-width:0;padding:5px 9px 5px 5px;border:1px solid var(--border-2);border-radius:999px;background:var(--panel);transition:all .2s}
+.profile-trigger:hover{border-color:var(--accent-hi);background:var(--panel-raised)}
+.profile-avatar{width:30px;height:30px;flex:none;display:grid;place-items:center;border-radius:50%;background:var(--line);color:#082016;font-weight:800;font-size:13px}
+.profile-trigger-name{max-width:96px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px;font-weight:700}
 /* 히어로 */
 .hero{position:relative;min-height:520px;display:flex;align-items:center;overflow:hidden;border-bottom:1px solid var(--border)}
 .hero .bgart{position:absolute;inset:0}
@@ -215,6 +219,18 @@ h2{font-family:var(--display);font-weight:800;font-size:34px;margin:10px 0 20px;
 .agree input{accent-color:var(--accent);margin-top:3px}
 .ppnote{color:var(--quiet);font-size:12.5px;line-height:1.55;margin:6px 0 0}
 .x+.x{margin-top:4px}
+.profile-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:16px 0}
+.profile-cell{min-width:0;text-align:center}
+.profile-card{width:100%;min-width:0;min-height:110px;display:grid;justify-items:center;align-content:center;gap:8px;padding:12px;border:1px solid var(--border-2);border-radius:10px;background:var(--panel);color:var(--text);font:inherit;cursor:pointer;transition:all .2s}
+.profile-card:hover,.profile-card.active{border-color:var(--line);background:var(--panel-raised)}
+.profile-card .profile-avatar{width:48px;height:48px;font-size:18px}
+.profile-card-name{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:700}
+.profile-add{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px}
+.profile-add input{min-width:0;padding:11px 12px;border:1px solid var(--border-2);border-radius:8px;background:var(--bg);color:var(--text);font:inherit}
+.profile-add .btn{padding:10px 14px;border-radius:8px}
+.profile-warning{margin-top:14px;padding:11px 12px;border-left:3px solid var(--share);background:rgba(242,211,110,.08);color:var(--muted);font-size:12.5px;line-height:1.55}
+.profile-delete{border:0;background:none;color:var(--quiet);font-size:12px;text-decoration:underline;padding:4px}
+.profile-delete:hover{color:var(--accent-hi)}
 .toast{position:fixed;left:50%;bottom:calc(var(--dock-height) + 20px + env(safe-area-inset-bottom,0px));transform:translate(-50%,8px);background:var(--paper);color:var(--paper-ink);padding:10px 18px;border-radius:999px;font-weight:700;font-size:14px;opacity:0;transition:opacity .2s,transform .25s;z-index:70;pointer-events:none;white-space:nowrap;max-width:calc(100% - 32px);overflow:hidden;text-overflow:ellipsis;box-shadow:0 12px 30px -10px #000}
 .toast.on{opacity:1;transform:translate(-50%,0)}
 footer{border-top:1px dashed var(--border-2);margin-top:28px;padding-block:24px calc(var(--dock-height) + 30px);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--quiet);font-size:12.5px}
@@ -227,7 +243,13 @@ footer b{color:var(--text);font-family:var(--display);font-weight:800;font-size:
 @keyframes drift{from{transform:translateX(0) scale(1)}to{transform:translateX(-14px) scale(1.03)}}
 @media (max-width:760px){
   .nav,.pill{display:none}
-  .hd{gap:12px;height:58px}
+  .hd{gap:8px;height:58px}
+  .profile-trigger{padding:4px;border-radius:50%}
+  .profile-trigger-name{display:none}
+  .profile-avatar{width:30px;height:30px}
+  select.lang{padding:7px 6px;font-size:11px}
+  #sheet.profile-sheet{width:min(440px,calc(100% - 24px));padding:20px 16px 16px}
+  .profile-list{gap:8px}
   .hero{min-height:560px;align-items:flex-end}
   .hero .bgart::after{background:linear-gradient(0deg,var(--bg) 46%,rgba(12,13,15,.7) 64%,rgba(12,13,15,.05) 92%)}
   .hero .motif{background-size:auto 64%!important;background-position:center -6px!important;opacity:.75!important}
@@ -278,6 +300,10 @@ footer b{color:var(--text);font-family:var(--display);font-weight:800;font-size:
   <span class="sp"></span>
   <span class="pill">체험판</span>
   <select class="lang" id="lang" aria-label="언어"><option value="ko">한국어</option><option value="en">US · EN</option></select>
+  <button type="button" class="profile-trigger" id="profile-trigger" aria-haspopup="dialog">
+    <span class="profile-avatar" id="profile-trigger-avatar" aria-hidden="true">나</span>
+    <span class="profile-trigger-name" id="profile-trigger-name">내 프로필</span>
+  </button>
 </div></header>
 
 <main id="app"></main>
@@ -347,9 +373,58 @@ var SHOWS = [
 var READY = {"binson:0": true, "binson:1": true, "binson:2": true, "binson:3": true, "binson:4": true, "binson:5": true, "binson:6": true, "binson:7": true, "intern:0": true, "intern:1": true, "game:0": true, "game:1": true, "game:2": true, "lasttrain:0": true, "lasttrain:1": true, "lasttrain:2": true, "glory:0": true, "glory:1": true, "fake:0": true, "fake:1": true, "system:0": true, "mom:0": true, "lift:0": true, "binson_en:0": true, "binson_en:1": true, "binson_en:2": true}; // 빌드 때 실제 있는 오디오만 남김 (build_artifact.py)
 
 // ── 열람 규칙: 1화 무료 · 2화 공유하면 바로 · 3화부터 24시간마다 1화 무료(기다리면 무료) 또는 시즌권 ──
-var KEY = "toegeun_v3", DAY = 24*3600*1000;
-function S(){ try{ return JSON.parse(localStorage.getItem(KEY)||"{}") }catch(e){ return {} } }
-function W(s){ try{ localStorage.setItem(KEY, JSON.stringify(s)) }catch(e){} }
+var KEY = "toegeun_v3", PROFILE_KEY = "toegeun_profiles_v1", DAY = 24*3600*1000;
+var PROFILE_FIELDS = ["pos","saved","recent","rate"], profileStorageFailed = false;
+function emptyProfileStore(){ return {version:1, activeId:"main", profiles:[{id:"main",name:""}], states:{main:{}}} }
+function reportProfileStorageError(err){
+  profileStorageFailed = true;
+  console.error("Profile data could not be saved or loaded.", err);
+}
+function loadProfileStore(){
+  try{
+    var raw=localStorage.getItem(PROFILE_KEY);
+    if(raw){
+      var saved=JSON.parse(raw);
+      if(!saved || saved.version!==1 || !Array.isArray(saved.profiles) || !saved.profiles.length || !saved.profiles.every(function(p){return p&&typeof p.id==="string"}) || !saved.states || typeof saved.states!=="object" || Array.isArray(saved.states)) throw new Error("Invalid profile data");
+      if(!saved.profiles.some(function(p){return p.id===saved.activeId})) saved.activeId=saved.profiles[0].id;
+      return saved;
+    }
+    var legacy=JSON.parse(localStorage.getItem(KEY)||"{}");
+    if(!legacy || typeof legacy!=="object" || Array.isArray(legacy)) throw new Error("Invalid existing browser data");
+    var personal={};
+    PROFILE_FIELDS.forEach(function(k){ if(Object.prototype.hasOwnProperty.call(legacy,k)){ personal[k]=legacy[k]; delete legacy[k] } });
+    var fresh=emptyProfileStore();
+    fresh.states.main=personal;
+    localStorage.setItem(PROFILE_KEY,JSON.stringify(fresh));
+    localStorage.setItem(KEY,JSON.stringify(legacy));
+    return fresh;
+  }catch(err){
+    reportProfileStorageError(err);
+    return emptyProfileStore();
+  }
+}
+var PROFILE_STORE = loadProfileStore();
+function saveProfileStore(){
+  if(profileStorageFailed) return false;
+  try{ localStorage.setItem(PROFILE_KEY,JSON.stringify(PROFILE_STORE)); return true }
+  catch(err){ reportProfileStorageError(err); return false }
+}
+function profileLabel(p){ return p.id==="main" ? (lang==="en"?"My profile":"내 프로필") : p.name }
+function profileInitial(p){ return (profileLabel(p)||"?").trim().charAt(0).toUpperCase() }
+function S(){
+  var account={};
+  try{ account=JSON.parse(localStorage.getItem(KEY)||"{}")||{} }catch(err){ reportProfileStorageError(err) }
+  var personal=PROFILE_STORE.states[PROFILE_STORE.activeId]||{};
+  PROFILE_FIELDS.forEach(function(k){ if(Object.prototype.hasOwnProperty.call(personal,k)) account[k]=personal[k] });
+  return account;
+}
+function W(s){
+  var account=Object.assign({},s), personal={};
+  PROFILE_FIELDS.forEach(function(k){ if(Object.prototype.hasOwnProperty.call(account,k)){ personal[k]=account[k]; delete account[k] } });
+  try{ localStorage.setItem(KEY,JSON.stringify(account)) }catch(err){ reportProfileStorageError(err) }
+  PROFILE_STORE.states[PROFILE_STORE.activeId]=personal;
+  saveProfileStore();
+}
 function ab(){ var st=S(); if (!st.ab){ st.ab = Math.random()<0.5 ? "A" : "B"; W(st) } return st.ab } // WBS 11.3: 2화 잠금 A/B
 function gate(show, i){ return i===0 ? "free" : i===1 ? (ab()==="A" ? "share" : "wait") : "wait" }
 function isOpen(show, i){
@@ -364,7 +439,7 @@ function thruOf(show){ // 기다리면 무료: 24시간이 지나면 열린 회�
   return sh.thru || (ab()==="A" ? 2 : 1);
 }
 var $ = function(id){ return document.getElementById(id) };
-var app = $("app"), audio = $("audio"), lang = "ko", cur = null;
+var app = $("app"), audio = $("audio"), lang = "ko", cur = null, currentView = {type:"home",filter:"all"};
 function esc(t){ return String(t).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c] }) }
 function fmt(x){ x=Math.max(0,x|0); return (x/60|0)+":"+("0"+x%60).slice(-2) }
 function toast(m){ var t=$("toast"); t.textContent=m; t.classList.add("on"); clearTimeout(t._h); t._h=setTimeout(function(){t.classList.remove("on")},2400) }
@@ -434,6 +509,7 @@ function L(k){ return T[lang][k] }
 function home(filter){
   var list = shows(), main = list[0], g = ["all"].concat(Array.from(new Set(list.flatMap(function(s){return s.genre}))));
   filter = filter || "all";
+  currentView = {type:"home",filter:filter};
   app.innerHTML = '<div class="hero"><div class="bgart '+main.art+'"><div class="motif'+(main.photo?' photo':'')+'" style="background-image:url(\''+(main.photo||motif(main.motif))+'\')'+(main.photo?'':';background-position:78% 40%;background-size:34%')+'"></div></div><div class="wrap" style="width:100%"><div class="in">'
     + '<div class="eyebrow">'+esc(main.eyebrow)+'</div><div class="big">'+esc(main.title)+'</div><p class="hook">'+main.hook+'</p><div class="meta">'+esc(main.meta)+'</div>'
     + '<div class="btns"><button class="btn primary" data-play="'+main.id+':0">▶ '+L("play")+'</button><button class="btn" data-show="'+main.id+'">'+L("view")+' ↗</button></div></div></div>'
@@ -447,6 +523,7 @@ function home(filter){
 function foot(){ return '<footer class="wrap"><span><b>🎧 퇴근극장</b>&nbsp; '+(lang==="en"?"Short K-audio dramas for the ride home.":"퇴근길에 듣는 5분 K-오디오 드라마.")+'</span><span>잔다 제작 · AI 음성으로 제작한 창작 오디오 드라마 (ElevenLabs)</span></footer>' }
 
 function detail(id){
+  currentView = {type:"detail",id:id};
   var s = SHOWS.filter(function(x){return x.id===id})[0]; if (!s) return home();
   var n = s.eps.length;
   app.innerHTML = '<div class="wrap"><button class="back" data-go="home">← '+L("home")+'</button><div class="show" data-id="'+s.id+'">'+poster(s,true)
@@ -514,9 +591,81 @@ function ev(name, x){ // 운영 기록 — 실패해도 서비스엔 영향 없�
     body: JSON.stringify({event:name, anon:anon(), show:x.show||null, ep:(x.ep!=null?x.ep:null), ref:x.ref||null, lang:lang, value:(x.value!=null?x.value:null), meta:Object.assign({ab:ab()}, x.meta||{})})}).catch(function(){}) } catch(err){} }
 
 // ── 공유 · 기다무 · 시즌권 ──
-function sheet(h){ $("sheet").innerHTML = h; $("sheet").classList.add("on"); $("dim").classList.add("on") }
-function closeSheet(){ $("sheet").classList.remove("on"); $("dim").classList.remove("on") }
+function sheet(h){ $("sheet").innerHTML = h; $("sheet").classList.remove("profile-sheet"); $("sheet").removeAttribute("aria-label"); $("sheet").classList.add("on"); $("dim").classList.add("on") }
+function closeSheet(){ var wasProfile=$("sheet").classList.contains("profile-sheet"); $("sheet").classList.remove("on","profile-sheet"); $("dim").classList.remove("on"); if(wasProfile) $("profile-trigger").focus() }
 $("dim").onclick = closeSheet;
+function syncProfileButton(){
+  var p=PROFILE_STORE.profiles.filter(function(x){return x.id===PROFILE_STORE.activeId})[0]||PROFILE_STORE.profiles[0];
+  if(!p) return;
+  $("profile-trigger-avatar").textContent=profileInitial(p);
+  $("profile-trigger-name").textContent=profileLabel(p);
+  $("profile-trigger").setAttribute("aria-label",(lang==="en"?"Profiles. Current profile: ":"프로필. 현재 프로필: ")+profileLabel(p));
+}
+function refreshProfileView(){
+  if(currentView.type==="detail") detail(currentView.id);
+  else if(currentView.type==="library") library();
+  else home(currentView.filter);
+}
+function stopProfilePlayback(){
+  if(!cur) return;
+  if(audio.currentTime>0){
+    var st=S(); st.pos=st.pos||{}; st.pos[cur.s.id+":"+cur.i]=audio.currentTime; W(st);
+  }
+  audio.pause(); audio.removeAttribute("src"); audio.load();
+  $("dock").classList.remove("on"); cur=null;
+}
+function selectProfile(id){
+  var p=PROFILE_STORE.profiles.filter(function(x){return x.id===id})[0];
+  if(!p) return toast(lang==="en"?"That profile is unavailable.":"프로필을 찾을 수 없어요.");
+  if(id===PROFILE_STORE.activeId) return closeSheet();
+  stopProfilePlayback();
+  PROFILE_STORE.activeId=id;
+  if(!PROFILE_STORE.states[id]) PROFILE_STORE.states[id]={};
+  saveProfileStore(); syncProfileButton(); closeSheet(); refreshProfileView();
+}
+function profileSheet(){
+  var en=lang==="en", canAdd=PROFILE_STORE.profiles.length<4;
+  var cards=PROFILE_STORE.profiles.map(function(p){
+    return '<div class="profile-cell"><button type="button" class="profile-card'+(p.id===PROFILE_STORE.activeId?' active':'')+'" data-profile-select="'+esc(p.id)+'" aria-pressed="'+(p.id===PROFILE_STORE.activeId)+'">'
+      +'<span class="profile-avatar" aria-hidden="true">'+esc(profileInitial(p))+'</span><span class="profile-card-name">'+esc(profileLabel(p))+'</span></button>'
+      +(p.id!=="main"?'<button type="button" class="profile-delete" data-profile-delete="'+esc(p.id)+'">'+(en?"Remove":"삭제")+'</button>':'')+'</div>';
+  }).join("");
+  sheet('<h3>'+(en?"Who’s listening?":"누가 듣고 있나요?")+'</h3><div class="profile-list">'+cards+'</div>'
+    +(canAdd?'<form class="profile-add" id="profile-add-form"><input id="profile-name" type="text" maxlength="20" autocomplete="off" placeholder="'+(en?"New profile name":"새 프로필 이름")+'" aria-label="'+(en?"New profile name":"새 프로필 이름")+'"><button class="btn primary" type="submit">'+(en?"Add":"추가")+'</button></form>':'<p class="ppnote">'+(en?"You can create up to four profiles on this browser.":"이 브라우저에서는 프로필을 최대 4개까지 만들 수 있어요.")+'</p>')
+    +'<div class="profile-warning">'+(en?"Profiles, listening progress and saved shows are stored only in this browser. They are not connected to sign-in or synced across devices. Season passes and tickets still use the existing browser storage; this preview does not create a secure account.":"프로필·재생 위치·보관함은 이 브라우저에만 저장됩니다. 로그인이나 기기 간 동기화는 연결되어 있지 않습니다. 시즌권·열람권도 기존 브라우저 저장 방식을 그대로 사용하며, 이 미리보기는 보안 계정을 만들지 않습니다.")+(profileStorageFailed?'<br><strong>'+(en?"Browser storage is unavailable; changes may not persist.":"브라우저 저장소를 사용할 수 없어 변경 사항이 저장되지 않을 수 있습니다.")+'</strong>':'')+'</div>'
+    +'<button type="button" class="x" data-profile-close>'+(en?"Close":"닫기")+'</button>');
+  $("sheet").classList.add("profile-sheet");
+  $("sheet").setAttribute("aria-label",en?"Choose a profile":"프로필 선택");
+  $("sheet").onclick=function(e){
+    var action=e.target.closest("[data-profile-select],[data-profile-delete],[data-profile-close]");
+    if(!action) return;
+    if(action.hasAttribute("data-profile-close")) return closeSheet();
+    if(action.hasAttribute("data-profile-select")) return selectProfile(action.getAttribute("data-profile-select"));
+    var id=action.getAttribute("data-profile-delete"), p=PROFILE_STORE.profiles.filter(function(x){return x.id===id})[0];
+    if(!p || !window.confirm(en?'Delete "'+p.name+'" and its saved listening data from this browser?':'"'+p.name+'" 프로필과 이 브라우저에 저장된 재생 정보를 삭제할까요?')) return;
+    if(id===PROFILE_STORE.activeId) stopProfilePlayback();
+    PROFILE_STORE.profiles=PROFILE_STORE.profiles.filter(function(x){return x.id!==id});
+    delete PROFILE_STORE.states[id];
+    if(id===PROFILE_STORE.activeId) PROFILE_STORE.activeId="main";
+    saveProfileStore(); syncProfileButton(); profileSheet(); refreshProfileView();
+  };
+  var form=$("profile-add-form");
+  if(form) form.onsubmit=function(e){
+    e.preventDefault();
+    var name=$("profile-name").value.trim().slice(0,20);
+    if(!name) return toast(en?"Enter a profile name.":"프로필 이름을 입력해 주세요.");
+    if(PROFILE_STORE.profiles.length>=4) return toast(en?"You can create up to four profiles.":"프로필은 최대 4개까지 만들 수 있어요.");
+    var id;
+    do{id="p"+Math.random().toString(36).slice(2,10)}while(PROFILE_STORE.profiles.some(function(x){return x.id===id}));
+    PROFILE_STORE.profiles.push({id:id,name:name}); PROFILE_STORE.states[id]={};
+    saveProfileStore(); profileSheet();
+    var nextInput=$("profile-name"); if(nextInput) nextInput.focus();
+  };
+  var first=$("sheet").querySelector("[data-profile-select]");
+  if(first) first.focus();
+}
+$("profile-trigger").onclick=profileSheet;
+document.addEventListener("keydown",function(e){ if(e.key==="Escape" && $("sheet").classList.contains("profile-sheet")) closeSheet() });
 function myRef(){ var s=S(); if(!s.ref){ s.ref=Math.random().toString(36).slice(2,8); W(s) } return s.ref }
 function link(s){ return (SITE_URL || location.href.split("#")[0].split("?")[0]) + "?show="+s.id+"&ref="+myRef() }
 function unlockShare(s){ var st=S(), d=today(), msg="2화가 열렸어요"; st.shared=true;
@@ -614,16 +763,16 @@ document.addEventListener("click", function(e){
 });
 $("home").onclick = function(e){ e.preventDefault(); setNav("home"); home() };
 function setNav(g){ document.querySelectorAll("[data-go]").forEach(function(b){ if (b.closest(".nav,.mnav")) b.classList.toggle("on", b.getAttribute("data-go")===g) }) }
-function library(){ var sv=(S().saved)||{}, list=SHOWS.filter(function(s){return sv[s.id]});
+function library(){ currentView={type:"library"}; var sv=(S().saved)||{}, list=SHOWS.filter(function(s){return sv[s.id]});
   app.innerHTML='<section class="wrap"><div class="kicker">LIBRARY</div><h2>보관함</h2>'+(list.length?'<div class="grid">'+list.map(function(s){return '<button class="card" data-show="'+s.id+'">'+poster(s)+'</button>'}).join("")+'</div>':'<p style="color:var(--muted)">아직 담은 작품이 없어요. 작품 화면에서 🔖 보관함에 담기를 눌러 보세요.</p><button class="btn primary" data-go="home">작품 둘러보기</button>')+'</section>'+foot() }
-$("lang").onchange = function(){ lang=this.value; home() };
+$("lang").onchange = function(){ lang=this.value; syncProfileButton(); refreshProfileView() };
 // 초대 링크로 들어오면(?ref=) 2화 바로 열림 (ReelShort식 양쪽 보상: 공유한 사람은 공유 시, 들어온 사람은 방문 시)
 (function(){ var q=new URLSearchParams(location.search); ev("visit", {show:q.get("show")||null, ref:q.get("ref")||null});
   if (q.get("ref") && q.get("ref")!==S().ref) { var st=S(); if (!st.invited){ st.invited=true; st.tokens=(st.tokens||0)+2; W(st); ev("invite_visit", {ref:q.get("ref"), show:q.get("show")||null}); setTimeout(function(){ toast("초대 선물: 2화 + 열람권 2장이 열렸어요") },800) } }
   if (S().ref) { try { fetch(EV_URL+"?referrals="+S().ref).then(function(r){ return r.json() }).then(function(j){ // Pocket FM Refer & Earn: 내 링크로 온 친구 1명당 열람권 2장
     var st=S(), n=(j&&j.count)||0, done=st.refCredited||0; if (n>done){ st.tokens=(st.tokens||0)+2*(n-done); st.refCredited=n; W(st); setTimeout(function(){ toast("친구 "+(n-done)+"명이 내 링크로 들어왔어요! 열람권 "+(2*(n-done))+"장") },1500) } }).catch(function(){}) } catch(err){} }
   if (/^en/.test(navigator.language||"") && !q.get("show")) { lang="en"; $("lang").value="en" }
-  q.get("show") ? detail(q.get("show")) : home() })();
+  syncProfileButton(); q.get("show") ? detail(q.get("show")) : home() })();
 </script>
 </body>
 </html>
