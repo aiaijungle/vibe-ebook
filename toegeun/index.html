@@ -350,16 +350,42 @@ var SHOWS = [
  {id:"lift_en", photo:"posters/lift.jpg", lang:"en", art:"art-game", motif:"door", genre:["Thriller","Horror"], tag:"K-Horror · Headphones on", title:"The 13th Floor", hook:"This building has no 13th floor.<br>The elevator stopped there anyway.",
   meta:"K-Horror · Season 1 · English", eyebrow:"After Hours K-Original · New",
   syn:"ER nurse Seo Jian comes home at 1 a.m. to an old Seoul apartment where the buttons skip from twelve to fourteen. Three years ago, the little girl next door vanished. Tonight the elevator stops on a floor that doesn't exist, and a child's voice calls her name.",
-  proof:"", eps:[{t:"The Floor That Isn't There",d:"A child's voice on a floor that doesn't exist",a:"audio/s9ep01_en.mp3"}]}
+  proof:"", eps:[{t:"The Floor That Isn't There",d:"A child's voice on a floor that doesn't exist",a:"audio/s9ep01_en.mp3"}]},
+ // 11/8 코파일럿 원고 신작 2편 — 대표 지시로 전편 무료(free:true)
+ {id:"lost17", free:true, lang:"ko", art:"art-lasttrain", motif:"cup", genre:["미스터리","힐링"], tag:"생활 미스터리 · 전편 무료", title:"분실물 17번", hook:"주인이 둘인 물건이 있다.<br>보관함 17번의 마지막 기록.",
+  meta:"생활 미스터리 · 시즌 1 · 한국어 · 전편 무료", eyebrow:"잔다 K-오리지널 · 신작",
+  syn:"이전을 앞둔 해온역 유실물센터. 야간 임시직 윤가람은 오래된 보관함 17번을 정리하다, 주인이 두 명인 물건들을 만난다. 판결 대신 물건을 확인하고, 서로의 말을 듣고, 동의한 것만 기록하는 밤.",
+  proof:"", eps:[{t:"우산은 반씩",d:"주인 확인란에 이름이 두 개",a:"audio/s10ep01.mp3"},{t:"한 박자 쉬는 메트로놈",d:"열일곱 번째 박자에서 숨 쉬기",a:"audio/s10ep02.mp3"},{t:"데스크 벨의 마지막 종",d:"잃어버린 게 아니라 찾아 준 것",a:"audio/s10ep03.mp3"},{t:"주소 없는 엽서",d:"봉인된 엽서의 작은 별",a:"audio/s10ep04.mp3"},{t:"다섯 시의 보온병",d:"매주 금요일 새벽의 차",a:"audio/s10ep05.mp3"},{t:"이름 없는 기록",d:"빈칸이 잘못은 아닐 수도",a:"audio/s10ep06.mp3"}]},
+ {id:"lost17_en", free:true, lang:"en", art:"art-en", motif:"cup", genre:["Mystery","Healing"], tag:"Cozy mystery · All free", title:"Lost Item No. 17", hook:"One umbrella. Two owners.<br>The last file in locker seventeen.",
+  meta:"Cozy Mystery · Season 1 · English · All episodes free", eyebrow:"After Hours K-Original · New",
+  syn:"Haeon Station's lost-and-found is about to move. Night clerk Yoon Garam sorts the last records in locker seventeen and meets items with two owners each. No verdicts: check the item, hear both sides, record only what they agree to.",
+  proof:"", eps:[{t:"Share the Umbrella",d:"Two names in the claimant field",a:"audio/s10ep01_en.mp3"},{t:"Room for One Beat",d:"Breathe on the seventeenth beat",a:"audio/s10ep02_en.mp3"},{t:"The Last Ring",d:"Not lost. Found.",a:"audio/s10ep03_en.mp3"},{t:"The Postcard With No Address",d:"A small star on a sealed card",a:"audio/s10ep04_en.mp3"},{t:"The Five O'Clock Thermos",d:"Tea every Friday before dawn",a:"audio/s10ep05_en.mp3"},{t:"The Record Without a Name",d:"Maybe a blank wasn't a mistake",a:"audio/s10ep06_en.mp3"}]},
+ {id:"lastrelay", free:true, photo:"posters/lastrelay.jpg", lang:"ko", art:"art-game", motif:"train", genre:["미스터리","SF"], tag:"오디오 미스터리 · 무료", title:"마지막 중계소", hook:"전원을 내린 채널에서<br>네 번째 박자가 울렸다.",
+  meta:"근미래 미스터리 · 시즌 1 · 한국어 · 무료", eyebrow:"잔다 K-오리지널 · 신작",
+  syn:"폐쇄를 서른 날 앞둔 바닷가 중계소. 자정에 모든 채널의 전원을 내렸는데, 꺼진 스피커에서 세 번의 신호음과 늦게 온 네 번째 박자가 울린다. 누가, 무엇을 연결하려는 걸까.",
+  proof:"", eps:[{t:"네 번째 박자",d:"꺼진 채널에서 울린 신호",a:"audio/lastrelay_ep01.mp3"}]},
+ {id:"lastrelay_en", free:true, photo:"posters/lastrelay_en.jpg", lang:"en", art:"art-game", motif:"train", genre:["Mystery","Sci-fi"], tag:"Audio mystery · Free", title:"The Last Relay Station", hook:"Every channel was shut down.<br>Then came a fourth beat.",
+  meta:"Near-future Mystery · Season 1 · English · Free", eyebrow:"After Hours K-Original · New",
+  syn:"Thirty days before a coastal relay station closes, every channel goes dark at midnight. Then a silent speaker plays three tones, and a fourth that comes late. Someone, or something, wants to connect.",
+  proof:"", eps:[{t:"The Fourth Beat",d:"A signal from a dead channel",a:"audio/lastrelay_ep01_en.mp3"}]},
+ // 11/8 영어판 추가: 1·2화 Claude 현지화 + 3화 코파일럿 현지화 (기존 열람 규칙)
+ {id:"intern_en", photo:"posters/intern.jpg", lang:"en", art:"art-intern", motif:"cup", genre:["Revenge"], tag:"Hidden heir", title:"The Intern's Secret", hook:"The intern on the coffee run<br>is secretly the Chairman's grandson.",
+  meta:"Office Drama · Season 1 · English", eyebrow:"After Hours K-Original",
+  syn:"His grandfather's will has one condition: hide who he is and survive one year as the lowest intern in the company. His cousin, the division head, knows the secret and wants him fired within a week. And someone on this team has betrayed the Chairman.",
+  proof:"", eps:[{t:"The Coffee Run",d:"A humiliating first day, and his real name",a:"audio/s2ep01_en.mp3"},{t:"The Changed Number",d:"4.2 billion won vanishes from a report",a:"audio/s2ep02_en.mp3"},{t:"Seojin's Answer",d:"Taeo was standing outside the door",a:"audio/s2ep03_en.mp3"}]},
+ {id:"fake_en", photo:"posters/fake.jpg", lang:"en", art:"art-fake", motif:"ring", genre:["Romance"], tag:"Contract rom-com", title:"Fake Engagement, Real Company Card", hook:"The terms: a company card with no limit,<br>and a public breakup on the wedding day.",
+  meta:"Romantic Comedy · Season 1 · English", eyebrow:"After Hours K-Original",
+  syn:"Dumped at a café a week before sending her wedding invitations, ad agency copywriter Jiyu Oh gets an offer from the CEO at the next table: be his fiancée for three months. They were dumped by the same couple, and revenge comes with an unlimited company card.",
+  proof:"", eps:[{t:"The Terms",d:"Dumped by the same couple",a:"audio/s6ep01_en.mp3"},{t:"First Appointment",d:"His mother arrives with the contract",a:"audio/s6ep02_en.mp3"},{t:"Picture-Perfect",d:"Who leaked the copy?",a:"audio/s6ep03_en.mp3"}]}
 ];
-var READY = {"binson:0": true, "binson:1": true, "binson:2": true, "binson:3": true, "binson:4": true, "binson:5": true, "binson:6": true, "binson:7": true, "intern:0": true, "intern:1": true, "intern:2": true, "game:0": true, "game:1": true, "game:2": true, "lasttrain:0": true, "lasttrain:1": true, "lasttrain:2": true, "glory:0": true, "glory:1": true, "fake:0": true, "fake:1": true, "fake:2": true, "system:0": true, "system:1": true, "mom:0": true, "lift:0": true, "binson_en:0": true, "binson_en:1": true, "binson_en:2": true, "binson_en:3": true, "binson_en:4": true, "system_en:0": true, "system_en:1": true, "lift_en:0": true}; // 빌드 때 실제 있는 오디오만 남김 (build_artifact.py)
+var READY = {"binson:0": true, "binson:1": true, "binson:2": true, "binson:3": true, "binson:4": true, "binson:5": true, "binson:6": true, "binson:7": true, "intern:0": true, "intern:1": true, "intern:2": true, "game:0": true, "game:1": true, "game:2": true, "lasttrain:0": true, "lasttrain:1": true, "lasttrain:2": true, "glory:0": true, "glory:1": true, "fake:0": true, "fake:1": true, "fake:2": true, "system:0": true, "system:1": true, "mom:0": true, "lift:0": true, "binson_en:0": true, "binson_en:1": true, "binson_en:2": true, "binson_en:3": true, "binson_en:4": true, "system_en:0": true, "system_en:1": true, "lift_en:0": true, "lost17:0": true, "lost17_en:0": true, "lost17:1": true, "lost17_en:1": true, "lost17:2": true, "lost17_en:2": true, "lost17:3": true, "lost17_en:3": true, "lost17:4": true, "lost17_en:4": true, "lost17:5": true, "lost17_en:5": true, "lastrelay:0": true, "lastrelay_en:0": true, "intern_en:0": true, "intern_en:1": true, "intern_en:2": true, "fake_en:0": true, "fake_en:1": true, "fake_en:2": true}; // 빌드 때 실제 있는 오디오만 남김 (build_artifact.py)
 
 // ── 열람 규칙: 1화 무료 · 2화 공유하면 바로 · 3화부터 24시간마다 1화 무료(기다리면 무료) 또는 시즌권 ──
 var KEY = "toegeun_v3", DAY = 24*3600*1000;
 function S(){ try{ return JSON.parse(localStorage.getItem(KEY)||"{}") }catch(e){ return {} } }
 function W(s){ try{ localStorage.setItem(KEY, JSON.stringify(s)) }catch(e){} }
 function ab(){ var st=S(); if (!st.ab){ st.ab = Math.random()<0.5 ? "A" : "B"; W(st) } return st.ab } // WBS 11.3: 2화 잠금 A/B
-function gate(show, i){ return i===0 ? "free" : i===1 ? (ab()==="A" ? "share" : "wait") : "wait" }
+function gate(show, i){ return (i===0 || show.free) ? "free" : i===1 ? (ab()==="A" ? "share" : "wait") : "wait" }
 function isOpen(show, i){
   var s = S(), g = gate(show, i), sh = (s[show.id]||{});
   if (g==="free" || s.pass || (sh.opened||[]).indexOf(i)>=0) return true;
@@ -377,7 +403,7 @@ function esc(t){ return String(t).replace(/[&<>"]/g, function(c){ return {"&":"&
 function fmt(x){ x=Math.max(0,x|0); return (x/60|0)+":"+("0"+x%60).slice(-2) }
 function toast(m){ var t=$("toast"); t.textContent=m; t.classList.add("on"); clearTimeout(t._h); t._h=setTimeout(function(){t.classList.remove("on")},2400) }
 function shows(){ return SHOWS.filter(function(s){ return s.lang===lang }) }
-function poster(s, small){ return '<div class="poster '+s.art+'"><div class="motif'+(s.photo?' photo':'')+'" style="background-image:url(\''+(s.photo||motif(s.motif))+'\')"></div>'+(small?'':'<span class="badge'+(s.eps.length?' free':'')+'">'+(s.eps.length? (lang==="en"?"Ep.1 free":"1화 무료") : (lang==="en"?"Coming soon":"공개 예정"))+'</span><div class="t">'+esc(s.title)+'</div>')+'</div>' }
+function poster(s, small){ return '<div class="poster '+s.art+'"><div class="motif'+(s.photo?' photo':'')+'" style="background-image:url(\''+(s.photo||motif(s.motif))+'\')"></div>'+(small?'':'<span class="badge'+(s.eps.length?' free':'')+'">'+(s.eps.length? (s.free ? (lang==="en"?"All free":"전편 무료") : (lang==="en"?"Ep.1 free":"1화 무료")) : (lang==="en"?"Coming soon":"공개 예정"))+'</span><div class="t">'+esc(s.title)+'</div>')+'</div>' }
 function motif(k){ // 작품별 키 아트(SVG data URI, 200×280 포스터 비율) — 이미지 없이 선·면으로 그린 표지
   var R='#ff6e4e', G='#7dffb8', Y='#ffd27a', P='#ffb3c4';
   var p = {
@@ -462,7 +488,7 @@ function detail(id){
     + '<p class="syn">'+esc(s.syn || (lang==="en"?"Coming soon.":"곧 공개됩니다."))+(s.proof?'<br><span style="color:var(--quiet);font-size:13px">'+esc(s.proof)+'</span>':'')+'</p>'
     + (n? '<div class="btns"><button class="btn primary" data-play="'+s.id+':0">▶ '+L("play")+'</button><button class="btn" data-save="'+s.id+'">🔖 '+L("save")+'</button><button class="btn icon" data-shareopen="'+s.id+'" aria-label="공유">⤴</button></div>':'')
     + '</div>'
-    + (n? '<div class="epsHead"><div><div class="kicker">SEASON 01</div><h2>'+L("eps")+'<small>'+n+'</small></h2></div><span class="tag">'+(lang==="en"?"Ep.1 free":"1화 무료 · 2화 공유")+'</span></div>'
+    + (n? '<div class="epsHead"><div><div class="kicker">SEASON 01</div><h2>'+L("eps")+'<small>'+n+'</small></h2></div><span class="tag">'+(s.free ? (lang==="en"?"All episodes free":"전편 무료") : (lang==="en"?"Ep.1 free":"1화 무료 · 2화 공유"))+'</span></div>'
       + '<label class="auto"><input type="checkbox" id="autonext" checked> '+L("auto")+'</label><div class="eps">'
       + s.eps.map(function(e,i){ var ok = isOpen(s,i), have = READY[s.id+":"+i], g = gate(s,i);
           var st = !have ? '<span class="s-lock">'+L("made")+'</span>' : ok ? '<span class="s-free">'+(g==="free"?L("free"):(lang==="en"?"Open":"열림"))+'</span>' : g==="share" ? '<span class="s-share">'+L("share")+'</span>' : '<span class="s-lock">'+L("lock")+'</span>';
