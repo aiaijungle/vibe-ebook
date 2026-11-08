@@ -3,9 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>퇴근극장</title>
-<meta name="description" content="퇴근길 5분 K-오디오 드라마. 이미 세계에서 통한 이야기를 귀로.">
-<meta property="og:title" content="퇴근극장 | 퇴근길 5분 K-오디오 드라마">
+<title>퇴근극장 | After Hours Stories</title>
+<meta name="description" content="Korean audio dramas for your ride home. 퇴근길에 듣는 K-오디오 드라마.">
+<meta property="og:title" content="After Hours Stories | 퇴근극장">
+<meta property="og:description" content="Korean audio dramas for your ride home. 퇴근길에 듣는 K-오디오 드라마.">
 <meta property="og:description" content="남편이 나를 감옥에 보냈다. 눈을 떠 보니, 1년 전 결재란 앞이었다.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,6 +41,7 @@ header::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;
 .logo{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:800;font-size:20px;letter-spacing:-.02em}
 .logo i{width:30px;height:30px;display:grid;place-items:center;font-style:normal}
 .logo i svg{width:30px;height:30px;display:block}
+body[data-lang="en"] .logo-name{font-family:var(--sans);font-size:16px;letter-spacing:-.04em;white-space:nowrap}
 .nav{display:flex;gap:26px;height:100%}
 .nav button{background:none;border:0;color:var(--muted);font-weight:600;height:100%;border-bottom:2px solid transparent;transition:all .2s;position:relative;z-index:1}
 .nav button:hover{color:var(--text)}
@@ -101,6 +103,7 @@ h2{font-family:var(--display);font-weight:800;font-size:34px;margin:10px 0 20px;
 .poster::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
   background:repeating-linear-gradient(0deg,rgba(255,255,255,.028) 0 1px,transparent 1px 3px),linear-gradient(0deg,rgba(6,6,8,.92) 0,rgba(6,6,8,.55) 28%,transparent 52%)}
 .poster::after{content:"TOEGEUN ORIGINAL";position:absolute;right:9px;top:10px;z-index:2;font-family:var(--mono);font-size:8.5px;letter-spacing:.16em;color:rgba(255,255,255,.6);writing-mode:vertical-rl}
+body[data-lang="en"] .poster::after{content:"AFTER HOURS ORIGINAL"}
 .card:hover .poster,.card:focus-visible .poster{transform:translateY(-4px);box-shadow:0 0 0 1px rgba(255,255,255,.14) inset,0 26px 50px -24px rgba(0,0,0,1)}
 .card:hover .poster .motif{transform:scale(1.04)}
 .poster .t{position:absolute;left:14px;right:14px;bottom:14px;z-index:2;font-family:var(--display);font-weight:800;font-size:25px;line-height:1.16;letter-spacing:-.05em;text-shadow:0 2px 18px rgba(0,0,0,.7)}
@@ -211,6 +214,7 @@ h2{font-family:var(--display);font-weight:800;font-size:34px;margin:10px 0 20px;
   background:var(--panel-raised);border:1px solid var(--border-2);border-radius:14px;padding:22px 22px 18px;visibility:hidden;transition:transform .3s cubic-bezier(.2,.7,.2,1),opacity .25s,visibility 0s .3s;box-shadow:0 40px 80px -30px #000}
 .sheet.on{opacity:1;pointer-events:auto;transform:translate(-50%,-50%);visibility:visible;transition:transform .3s cubic-bezier(.2,.7,.2,1),opacity .25s}
 .sheet::before{content:"TOEGEUN THEATER · NIGHT LINE";display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;color:var(--accent-hi);padding-bottom:12px;margin-bottom:14px;border-bottom:1.5px dashed var(--border-2)}
+body[data-lang="en"] .sheet::before{content:"AFTER HOURS STORIES · AUDIO DRAMA"}
 .sheet h3{font-family:var(--display);font-weight:800;font-size:24px;margin:0 0 8px;letter-spacing:-.04em;line-height:1.3}
 .sheet p{color:var(--muted);line-height:1.65;margin:0 0 16px;font-size:14px}
 .sgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
@@ -238,6 +242,7 @@ footer b{color:var(--text);font-family:var(--display);font-weight:800;font-size:
 @media (max-width:760px){
   .nav,.pill{display:none}
   .hd{gap:12px;height:58px}
+  body[data-lang="en"] .logo-name{font-size:13px}
   .hero{min-height:460px;align-items:flex-end}
   .hero .bgart::after{background:linear-gradient(0deg,var(--bg) 42%,rgba(12,13,15,.68) 60%,rgba(12,13,15,.05) 92%)}
   .hero .motif{background-size:auto 64%!important;background-position:center -6px!important;opacity:.75!important}
@@ -285,7 +290,7 @@ footer b{color:var(--text);font-family:var(--display);font-weight:800;font-size:
 </head>
 <body>
 <header><div class="wrap hd">
-  <a class="logo" href="#" id="home"><i aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="12.5" stroke="#d63c24" stroke-width="3"/><circle cx="16" cy="16" r="5" fill="#f1ede4"/><path d="M0 16h3.5M28.5 16H32" stroke="#3fcf9b" stroke-width="3"/></svg></i>퇴근극장</a>
+  <a class="logo" href="#" id="home"><i aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="12.5" stroke="#d63c24" stroke-width="3"/><circle cx="16" cy="16" r="5" fill="#f1ede4"/><path d="M0 16h3.5M28.5 16H32" stroke="#3fcf9b" stroke-width="3"/></svg></i><span class="logo-name" id="brand-name">퇴근극장</span></a>
   <nav class="nav" aria-label="메뉴"><button class="on" data-go="home">홈</button><button data-go="explore">탐색</button><button data-go="library">보관함</button></nav>
   <span class="sp"></span>
   <span class="pill">체험판</span>
@@ -377,6 +382,13 @@ function thruOf(show){ // 기다리면 무료: 24시간이 지나면 열린 회�
 }
 var $ = function(id){ return document.getElementById(id) };
 var app = $("app"), audio = $("audio"), lang = "ko", cur = null;
+function brandName(){ return lang==="en"?"After Hours Stories":"퇴근극장" }
+function syncBrand(){
+  document.body.dataset.lang=lang;
+  document.documentElement.lang=lang;
+  $("brand-name").textContent=brandName();
+  document.title=lang==="en"?"After Hours Stories | 퇴근극장":"퇴근극장 | After Hours Stories";
+}
 function esc(t){ return String(t).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c] }) }
 function fmt(x){ x=Math.max(0,x|0); return (x/60|0)+":"+("0"+x%60).slice(-2) }
 function toast(m){ var t=$("toast"); t.textContent=m; t.classList.add("on"); clearTimeout(t._h); t._h=setTimeout(function(){t.classList.remove("on")},2400) }
@@ -475,7 +487,7 @@ function home(filter){
         return '<button class="card" data-show="'+s.id+'">'+poster(s)+'<div class="sub"><b>'+esc(s.tag)+'</b>'+esc(s.hook.replace(/<br>/g," "))+'</div></button>' }).join("") + '</div></section>' + foot();
   scrollTo(0,0);
 }
-function foot(){ return '<footer class="wrap"><span><b>🎧 퇴근극장</b>&nbsp; '+(lang==="en"?"Short K-audio dramas for the ride home.":"퇴근길에 듣는 5분 K-오디오 드라마.")+'</span><span>잔다 제작 · AI 음성으로 제작한 창작 오디오 드라마 (ElevenLabs)</span></footer>' }
+function foot(){ return '<footer class="wrap"><span><b>🎧 '+brandName()+'</b>&nbsp; '+(lang==="en"?"Korean audio dramas for your ride home.":"퇴근길에 듣는 K-오디오 드라마.")+'</span><span>'+(lang==="en"?"Made by JANDA · Original audio dramas with AI voices (ElevenLabs)":"잔다 제작 · AI 음성으로 제작한 창작 오디오 드라마 (ElevenLabs)")+'</span></footer>' }
 
 function detail(id){
   var s = SHOWS.filter(function(x){return x.id===id})[0]; if (!s) return home();
@@ -533,7 +545,7 @@ $("spd").onclick = function(){ var st=S(), r=RATES[(RATES.indexOf(st.rate||1)+1)
 $("spd").textContent = rateLabel(S().rate||1);
 function mediaMeta(s, e, i){ // 잠금화면·이어폰 버튼 조작 (출퇴근 중 휴대폰 잠근 채로)
   if (!("mediaSession" in navigator)) return;
-  try { navigator.mediaSession.metadata = new MediaMetadata({ title:(i+1)+(lang==="en"?". ":"화 · ")+e.t, artist:s.title, album:lang==="en"?"After Hours Theater":"퇴근극장" });
+  try { navigator.mediaSession.metadata = new MediaMetadata({ title:(i+1)+(lang==="en"?". ":"화 · ")+e.t, artist:s.title, album:brandName() });
     navigator.mediaSession.setActionHandler("play", function(){ audio.play() });
     navigator.mediaSession.setActionHandler("pause", function(){ audio.pause() });
     navigator.mediaSession.setActionHandler("seekbackward", function(){ audio.currentTime = Math.max(0, audio.currentTime-10) });
@@ -566,7 +578,7 @@ function useToken(s, at){ thruOf(s); var st=S(), sh=st[s.id]||{};
   if ((st.tokens||0)<1) return toast("열람권이 없어요. 출석하거나 친구를 초대해 보세요");
   st.tokens-=1; sh.opened=(sh.opened||[]).concat([i]); st[s.id]=sh; W(st); ev("token_use", {show:s.id, ep:i}); toast((i+1)+"화를 열람권으로 열었어요"); play(s.id,i); detail(s.id) }
 function shareSheet(s){
-  var text = s.title+" — "+s.hook.replace(/<br>/g," ")+" | 퇴근극장";
+  var brand=brandName(), text = s.title+" — "+s.hook.replace(/<br>/g," ")+" | "+brand;
   sheet('<h3>공유하면 2화가 바로 열려요</h3><p>이 이야기가 생각나는 사람에게 보내 주세요. 공유하면 열람권 1장도 드려요(하루 1번).</p><div class="sgrid">'
     + (navigator.share? '<button class="btn primary wide" data-s="native">공유하기 (카카오톡 · 인스타 등)</button>':'')
     + '<a class="btn" target="_blank" rel="noopener" data-s="x" href="https://x.com/intent/post?text='+encodeURIComponent(text)+'&url='+encodeURIComponent(link(s))+'">X</a>'
@@ -576,7 +588,7 @@ function shareSheet(s){
     + '<button class="btn" data-s="copy">링크 복사</button></div><p class="ppnote" style="margin-top:12px">내 초대 링크로 들어온 친구는 2화 + 열람권 2장을 받아요.</p><button class="x" data-s="close">닫기</button>');
   $("sheet").onclick = function(e){ var b=e.target.closest("[data-s]"); if(!b) return; var k=b.getAttribute("data-s");
     if (k==="close") return closeSheet();
-    if (k==="native") return navigator.share({title:"퇴근극장", text:text, url:link(s)}).then(function(){unlockShare(s)}).catch(function(){});
+    if (k==="native") return navigator.share({title:brand, text:text, url:link(s)}).then(function(){unlockShare(s)}).catch(function(){});
     if (k==="copy") { var done=function(){ toast("링크를 복사했어요"); setTimeout(function(){unlockShare(s)},600) }; return navigator.clipboard ? navigator.clipboard.writeText(text+" "+link(s)).then(done,done) : done() }
     setTimeout(function(){unlockShare(s)},1200); };
 }
@@ -618,7 +630,7 @@ function passSheet(){ // 가치 → 동의 2개 → PayPal(카드 게스트 결�
     box.innerHTML="";
     paypal.Buttons({ style:{ layout:"vertical", height:44, tagline:false },
       onClick:function(d,a){ if (!$("ppAgree").checked || !$("ppAgree2").checked){ toast(en?"Please tick both boxes":"두 가지 확인에 모두 체크해 주세요"); return a.reject() } return a.resolve() },
-      createOrder:function(d,a){ return a.order.create({ purchase_units:[{ amount:{ value:PASS_USD, currency_code:"USD" }, description:"Toegeun Theater Season 1 Pass (all series)" }], application_context:{ shipping_preference:"NO_SHIPPING" } }) },
+      createOrder:function(d,a){ return a.order.create({ purchase_units:[{ amount:{ value:PASS_USD, currency_code:"USD" }, description:"After Hours Stories Season 1 Pass (all series)" }], application_context:{ shipping_preference:"NO_SHIPPING" } }) },
       onApprove:function(d,a){ return a.order.capture().then(function(det){
         var py=(det&&det.payer)||{}, em=py.email_address||"", st=S(); st.pass=true; st.passOrder=d.orderID; W(st); ev("purchase", {value:+PASS_USD, meta:{order:d.orderID, product:"season1_pass"}});
         hook({ event:"paypal_purchase", product:"Toegeun Theater Season 1 Pass", amount:+PASS_USD, currency:"USD", email:em, buyerEmail:em,
@@ -648,13 +660,14 @@ $("home").onclick = function(e){ e.preventDefault(); setNav("home"); home() };
 function setNav(g){ document.querySelectorAll("[data-go]").forEach(function(b){ if (b.closest(".nav,.mnav")) b.classList.toggle("on", b.getAttribute("data-go")===g) }) }
 function library(){ var sv=(S().saved)||{}, list=SHOWS.filter(function(s){return sv[s.id]});
   app.innerHTML='<section class="wrap"><div class="kicker">LIBRARY</div><h2>보관함</h2>'+(list.length?'<div class="grid">'+list.map(function(s){return '<button class="card" data-show="'+s.id+'">'+poster(s)+'</button>'}).join("")+'</div>':'<p style="color:var(--muted)">아직 담은 작품이 없어요. 작품 화면에서 🔖 보관함에 담기를 눌러 보세요.</p><button class="btn primary" data-go="home">작품 둘러보기</button>')+'</section>'+foot() }
-$("lang").onchange = function(){ lang=this.value; home() };
+$("lang").onchange = function(){ lang=this.value; syncBrand(); home() };
 // 초대 링크로 들어오면(?ref=) 2화 바로 열림 (ReelShort식 양쪽 보상: 공유한 사람은 공유 시, 들어온 사람은 방문 시)
 (function(){ var q=new URLSearchParams(location.search); ev("visit", {show:q.get("show")||null, ref:q.get("ref")||null});
   if (q.get("ref") && q.get("ref")!==S().ref) { var st=S(); if (!st.invited){ st.invited=true; st.tokens=(st.tokens||0)+2; W(st); ev("invite_visit", {ref:q.get("ref"), show:q.get("show")||null}); setTimeout(function(){ toast("초대 선물: 2화 + 열람권 2장이 열렸어요") },800) } }
   if (S().ref) { try { fetch(EV_URL+"?referrals="+S().ref).then(function(r){ return r.json() }).then(function(j){ // Pocket FM Refer & Earn: 내 링크로 온 친구 1명당 열람권 2장
     var st=S(), n=(j&&j.count)||0, done=st.refCredited||0; if (n>done){ st.tokens=(st.tokens||0)+2*(n-done); st.refCredited=n; W(st); setTimeout(function(){ toast("친구 "+(n-done)+"명이 내 링크로 들어왔어요! 열람권 "+(2*(n-done))+"장") },1500) } }).catch(function(){}) } catch(err){} }
   if (/^en/.test(navigator.language||"") && !q.get("show")) { lang="en"; $("lang").value="en" }
+  syncBrand();
   q.get("show") ? detail(q.get("show")) : home() })();
 </script>
 </body>
