@@ -206,6 +206,7 @@ h2{font-family:var(--display);font-weight:800;font-size:34px;margin:10px 0 20px;
 .sgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .sgrid .btn{justify-content:center;border-radius:8px;padding:12px 14px;font-size:14px}
 .sgrid .wide{grid-column:1/-1}
+.share-note{margin-top:12px!important;font-size:12px!important}
 .x{display:block;margin:14px auto 0;background:none;border:0;color:var(--muted);font-size:13.5px;padding:6px 10px;border-radius:6px}
 .x:hover{color:var(--text)}
 .pf{display:block;font-size:13px;font-weight:700;margin-bottom:6px}
@@ -363,6 +364,7 @@ function gate(show, i){ return i===0 ? "free" : i===1 ? (ab()==="A" ? "share" : 
 function isOpen(show, i){
   var s = S(), g = gate(show, i), sh = (s[show.id]||{});
   if (g==="free" || s.pass || (sh.opened||[]).indexOf(i)>=0) return true;
+  if (i===1 && (s.shared || s.invited)) return true;
   if (g==="share") return !!(s.shared || s.invited);
   return i+1 <= thruOf(show);
 }
@@ -527,8 +529,8 @@ function closeSheet(){ $("sheet").classList.remove("on"); $("dim").classList.rem
 $("dim").onclick = closeSheet;
 function myRef(){ var s=S(); if(!s.ref){ s.ref=Math.random().toString(36).slice(2,8); W(s) } return s.ref }
 function link(s){ return (SITE_URL || location.href.split("#")[0].split("?")[0]) + "?show="+s.id+"&ref="+myRef() }
-function unlockShare(s){ var st=S(), d=today(), msg="2화가 열렸어요"; st.shared=true;
-  if (st.shareDay!==d){ st.shareDay=d; st.tokens=(st.tokens||0)+1; msg+=" · 열람권 1장 받았어요" } W(st); ev("share", {show:s.id}); closeSheet(); toast(msg); detail(s.id) }
+function unlockShare(s, channel){ var st=S(), d=today(), msg="2화가 열렸어요"; st.shared=true;
+  if (st.shareDay!==d){ st.shareDay=d; st.tokens=(st.tokens||0)+1; msg+=" · 열람권 1장 받았어요" } W(st); ev("share", {show:s.id, meta:{channel:channel||"manual"}}); closeSheet(); toast(msg); detail(s.id) }
 function today(){ var t=new Date(); return t.getFullYear()+"-"+(t.getMonth()+1)+"-"+t.getDate() }
 function tokens(){ return S().tokens||0 }
 function checkedToday(){ return S().checkDay===today() }
@@ -542,28 +544,54 @@ function useToken(s, at){ thruOf(s); var st=S(), sh=st[s.id]||{};
   if ((st.tokens||0)<1) return toast("열람권이 없어요. 출석하거나 친구를 초대해 보세요");
   st.tokens-=1; sh.opened=(sh.opened||[]).concat([i]); st[s.id]=sh; W(st); ev("token_use", {show:s.id, ep:i}); toast((i+1)+"화를 열람권으로 열었어요"); play(s.id,i); detail(s.id) }
 function shareSheet(s){
-  var text = s.title+" — "+s.hook.replace(/<br>/g," ")+" | 퇴근극장";
-  sheet('<h3>공유하면 2화가 바로 열려요</h3><p>이 이야기가 생각나는 사람에게 보내 주세요. 공유하면 열람권 1장도 드려요(하루 1번).</p><div class="sgrid">'
-    + (navigator.share? '<button class="btn primary wide" data-s="native">공유하기 (카카오톡 · 인스타 등)</button>':'')
-    + '<a class="btn" target="_blank" rel="noopener" data-s="x" href="https://x.com/intent/post?text='+encodeURIComponent(text)+'&url='+encodeURIComponent(link(s))+'">X</a>'
-    + '<a class="btn" target="_blank" rel="noopener" data-s="fb" href="https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(link(s))+'">페이스북</a>'
-    + '<a class="btn" target="_blank" rel="noopener" data-s="th" href="https://www.threads.net/intent/post?text='+encodeURIComponent(text+" "+link(s))+'">스레드</a>'
-    + '<a class="btn" target="_blank" rel="noopener" data-s="line" href="https://social-plugins.line.me/lineit/share?url='+encodeURIComponent(link(s))+'">LINE</a>'
-    + '<button class="btn" data-s="copy">링크 복사</button></div><p class="ppnote" style="margin-top:12px">내 초대 링크로 들어온 친구는 2화 + 열람권 2장을 받아요.</p><button class="x" data-s="close">닫기</button>');
+  var en=lang==="en", url=link(s), text=s.title+" — "+s.hook.replace(/<br>/g," ")+" | "+(en?"After Hours Theater":"퇴근극장");
+  var encodedText=encodeURIComponent(text), encodedUrl=encodeURIComponent(url), message=encodeURIComponent(text+" "+url);
+  var shareMethod="manual";
+  function copyShareLink(){
+    if(!navigator.clipboard || !navigator.clipboard.writeText){
+      window.prompt(en?"Copy this link and return to unlock Episode 2:":"이 링크를 복사한 뒤 돌아와 ‘공유 완료’를 눌러 주세요:",url);
+      return;
+    }
+    return navigator.clipboard.writeText(text+"\n"+url).then(function(){
+      toast(en?"Link copied":"링크를 복사했어요");
+      unlockShare(s,"copy");
+    }).catch(function(err){
+      console.error("Share link could not be copied.",err);
+      toast(en?"Could not copy. Use a social link or the share-complete button.":"복사하지 못했어요. SNS 링크 또는 ‘공유 완료’를 이용해 주세요.");
+    });
+  }
+  sheet('<h3>'+(en?"Share to unlock Episode 2":"공유하고 2화 바로 듣기")+'</h3><p>'+(en?"Share this story using your preferred app. Successful system sharing or link copy unlocks Episode 2.":"이 작품을 SNS로 공유하면 2화가 열려요. 공유 기능 또는 링크 복사가 완료되면 바로 열립니다.")+'</p><div class="sgrid">'
+    + (navigator.share? '<button class="btn primary wide" data-s="native">'+(en?"Share with an app (KakaoTalk, Instagram, etc.)":"카카오톡·인스타그램 등 앱으로 공유")+'</button>':'')
+    + '<a class="btn" target="_blank" rel="noopener noreferrer" data-s="x" href="https://x.com/intent/post?text='+encodedText+'&url='+encodedUrl+'">X</a>'
+    + '<a class="btn" target="_blank" rel="noopener noreferrer" data-s="fb" href="https://www.facebook.com/sharer/sharer.php?u='+encodedUrl+'">Facebook</a>'
+    + '<a class="btn" target="_blank" rel="noopener noreferrer" data-s="th" href="https://www.threads.net/intent/post?text='+message+'">Threads</a>'
+    + '<a class="btn" target="_blank" rel="noopener noreferrer" data-s="wa" href="https://wa.me/?text='+message+'">WhatsApp</a>'
+    + '<a class="btn" target="_blank" rel="noopener noreferrer" data-s="line" href="https://social-plugins.line.me/lineit/share?url='+encodedUrl+'">LINE</a>'
+    + '<button class="btn" data-s="copy">'+(en?"Copy link":"링크 복사")+'</button></div>'
+    + '<p class="ppnote share-note">'+(en?"External networks cannot confirm whether you posted. After sharing there, return and tap “I shared” to unlock. No sign-in is required.":"외부 SNS의 실제 게시 여부는 확인할 수 없어요. SNS 공유 후 돌아와 아래 ‘공유 완료’를 눌러 주세요. 로그인은 필요하지 않습니다.")+'</p>'
+    + '<button class="btn primary wide" style="width:100%;justify-content:center;margin-top:8px" data-s="done">'+(en?"I shared — unlock Episode 2":"공유 완료 · 2화 열기")+'</button>'
+    + '<p class="ppnote share-note">'+(en?"A friend opening your invite link gets Episode 2 and two tickets.":"내 초대 링크로 들어온 친구는 2화와 열람권 2장을 받아요.")+'</p><button class="x" data-s="close">'+(en?"Close":"닫기")+'</button>');
   $("sheet").onclick = function(e){ var b=e.target.closest("[data-s]"); if(!b) return; var k=b.getAttribute("data-s");
     if (k==="close") return closeSheet();
-    if (k==="native") return navigator.share({title:"퇴근극장", text:text, url:link(s)}).then(function(){unlockShare(s)}).catch(function(){});
-    if (k==="copy") { var done=function(){ toast("링크를 복사했어요"); setTimeout(function(){unlockShare(s)},600) }; return navigator.clipboard ? navigator.clipboard.writeText(text+" "+link(s)).then(done,done) : done() }
-    setTimeout(function(){unlockShare(s)},1200); };
+    if (k==="done") return unlockShare(s,shareMethod);
+    if (k==="x" || k==="fb" || k==="th" || k==="wa" || k==="line"){ shareMethod=k; return }
+    if (k==="native") return navigator.share({title:en?"After Hours Theater":"퇴근극장", text:text, url:url}).then(function(){unlockShare(s,"system")}).catch(function(err){
+      if(err && err.name==="AbortError") return;
+      console.error("Native sharing failed.",err);
+      return copyShareLink();
+    });
+    if (k==="copy") return copyShareLink();
+  };
 }
 function waitSheet(s, at){
   var tk=tokens();
   sheet('<h3>결말까지 이어 듣기</h3><p>열람권으로 바로 열거나, 24시간 기다리면 한 회차가 무료로 열려요. 결말까지 한 번에 들으려면 시즌권('+PASS_PRICE+').</p><div class="sgrid">'
     + '<button class="btn primary wide" data-w="token"'+(tk?'':' disabled')+'>열람권 1장으로 지금 열기 (보유 '+tk+'장)</button>'
     + '<button class="btn" data-w="wait">무료 해제 기다리기</button><button class="btn" data-w="pass">시즌권 '+PASS_PRICE+'</button>'
+    + (at===1?'<button class="btn wide" data-w="share">공유하고 2화 열기</button>':'')
     + (tk?'':'<button class="btn wide" data-w="invite">🎁 친구 초대하고 열람권 받기</button>')
     + '</div><button class="x" data-w="close">닫기</button>');
-  $("sheet").onclick = function(e){ var b=e.target.closest("[data-w]"); if(!b) return; var k=b.getAttribute("data-w"); closeSheet();
+  $("sheet").onclick = function(e){ var b=e.target.closest("[data-w]"); if(!b) return; var k=b.getAttribute("data-w"); if(k==="share") return shareSheet(s); closeSheet();
     if (k==="wait") startWait(s); if (k==="pass") passSheet(); if (k==="token") useToken(s, at); if (k==="invite") shareSheet(s); };
 }
 function startWait(s){ var st=S(), sh=st[s.id]||{}; if (sh.waitFrom && Date.now()<sh.waitFrom+DAY) return toast("이미 기다리는 중이에요");
