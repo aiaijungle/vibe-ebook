@@ -206,6 +206,7 @@ h2{font-family:var(--display);font-weight:800;font-size:34px;margin:10px 0 20px;
 .sgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .sgrid .btn{justify-content:center;border-radius:8px;padding:12px 14px;font-size:14px}
 .sgrid .wide{grid-column:1/-1}
+.share-note{margin-top:12px!important;font-size:12px!important}
 .x{display:block;margin:14px auto 0;background:none;border:0;color:var(--muted);font-size:13.5px;padding:6px 10px;border-radius:6px}
 .x:hover{color:var(--text)}
 .pf{display:block;font-size:13px;font-weight:700;margin-bottom:6px}
@@ -322,13 +323,13 @@ var SHOWS = [
   syn:"할아버지의 유언 조건은 단 하나. 1년 동안 신분을 숨기고 계열사 최말단 인턴으로 버틸 것. 정체를 아는 사촌 본부장은 일주일 안에 그를 잘라 내려 한다. 그리고 이 팀 안에, 회장을 배신한 사람이 있다.",
   proof:"근거: 숨은 상속자 엔진 — Pocket FM 첫 100억 원 돌파작 공식",
   eps:[{t:"커피 심부름",d:"무시당한 첫 출근, 그의 진짜 이름",a:"audio/s2ep01.mp3"},{t:"고쳐진 숫자",d:"사십이억이 사라진 칸",a:"audio/s2ep02.mp3"},{t:"서진의 답",d:"문밖에 태오가 서 있었다",a:"audio/s2ep03.mp3"}]},
- {id:"glory", photo:"posters/glory.jpg", lang:"ko", art:"art-glory", motif:"book", genre:["복수"], tag:"학폭 복수", title:"졸업앨범", hook:"20년 만의 동창회.<br>초대장은 네 명에게만 갔다.", meta:"복수 스릴러 · 시즌 1 · 한국어", eyebrow:"잔다 K-오리지널", syn:"스무 해 전 졸업앨범에서 통째로 사라진 한 페이지. 그 페이지의 아이였던 문채원은 가입자 삼백만 동창회 앱의 얼굴 없는 대표가 되었다. 그리고 이십 년 만의 동창회 초대장을 단 네 명에게만 보낸다.", proof:"근거: 오래 준비한 복수 — 「더 글로리」 2023 상반기 넷플릭스 3위", eps:[{t:"초대장",d:"빠진 페이지를 찾았습니다",a:"audio/s5ep01.mp3"},{t:"먼저 온 손님",d:"카메라 주인의 이름",a:"audio/s5ep02.mp3"}]},
+ {id:"glory", photo:"posters/glory.jpg", lang:"ko", art:"art-glory", motif:"book", genre:["복수"], tag:"학폭 복수", title:"졸업앨범", hook:"20년 만의 동창회.<br>초대장은 네 명에게만 갔다.", meta:"복수 스릴러 · 시즌 1 · 한국어", eyebrow:"잔다 K-오리지널", syn:"스무 해 전 졸업앨범에서 통째로 사라진 한 페이지. 그 페이지의 아이였던 문채원은 가입자 삼백만 동창회 앱의 얼굴 없는 대표가 되었다. 그리고 이십 년 만의 동창회 초대장을 단 네 명에게만 보낸다.", proof:"근거: 오래 준비한 복수 — 「더 글로리」 2023 상반기 넷플릭스 3위", eps:[{t:"초대장",d:"빠진 페이지를 찾았습니다",a:"audio/s5ep01.mp3"},{t:"먼저 온 손님",d:"카메라 주인의 이름",a:"audio/s5ep02.mp3"},{t:"증거 있니",d:"사라진 필름, 다섯 번째 사람",a:"audio/s5ep03.mp3"}]},
  {id:"fake", photo:"posters/fake.jpg", lang:"ko", art:"art-fake", motif:"ring", genre:["로맨스"], tag:"계약 로코", title:"가짜 약혼, 진짜 법카", hook:"조건은 법인카드 무제한,<br>그리고 결혼식 날 공개 파혼.", meta:"로맨틱 코미디 · 시즌 1 · 한국어", eyebrow:"잔다 K-오리지널", syn:"청첩장 돌리기 일주일 전 파혼당한 칠 년 차 대리 오지유. 그 장면을 옆 테이블에서 본 고객사 대표가 제안한다. 그 남자가 새로 만난다는 따님은, 석 달 전까지 자기 약혼자였다고. 같은 사람들에게 버림받은 둘의 복수 계약. 조건은 법인카드 무제한, 그리고 결혼식 날 공개 파혼.", proof:"근거: 계약 연애 — 「사내맞선」 넷플릭스 글로벌 흥행", eps:[{t:"계약 조건",d:"전 약혼자 앞에 나타난 새 약혼자",a:"audio/s6ep01.mp3"},{t:"첫 공식 일정",d:"한정판, 석 달만 판매합니다",a:"audio/s6ep02.mp3"},{t:"사진 속 계약서",d:"누가 내 서랍을 열었나",a:"audio/s6ep03.mp3"}]},
  {id:"mom", photo:"posters/mom.jpg", lang:"ko", art:"art-glory", motif:"ring", genre:["로맨스","복수"], tag:"엄마의 싸움", title:"엄마는 포기하지 않는다", hook:"돌잔치 날, 재벌가가 내 아들을 데려갔다.<br>삼 년 뒤, 나는 그 집 가정교사가 됐다.",
   meta:"패밀리 멜로 · 시즌 1 · 한국어", eyebrow:"잔다 K-오리지널 · 신작",
   syn:"쌍둥이 돌잔치 날, 시어머니는 아들만 '장손'으로 데려가고 윤해솔을 딸과 함께 쫓아냈다. 삼 년 뒤 해솔은 가짜 이름으로 그 저택의 입주 가정교사 면접장에 선다. 엄마를 잊은 아들이 말한다. 선생님 냄새가, 꿈에 나오는 엄마 냄새 같다고.",
   proof:"근거: 빼앗긴 아이·엄마의 싸움 — Pocket FM 매출 1위 'Saving Nora' 엔진",
-  eps:[{t:"돌잔치",d:"아들은 두고 가라",a:"audio/s8ep01.mp3"},{t:"금고 속 이름",d:"저택 금고에서 딸의 이름을 보다"}]},
+  eps:[{t:"돌잔치",d:"아들은 두고 가라",a:"audio/s8ep01.mp3"},{t:"금고 속 이름",d:"저택 금고에서 딸의 이름을 보다",a:"audio/s8ep02.mp3"}]},
  {id:"system", photo:"posters/system.jpg", lang:"ko", art:"art-intern", motif:"door", genre:["판타지"], tag:"레벨업 판타지", title:"야근 시스템", hook:"새벽 두 시, 야근하던 내 눈앞에<br>퀘스트 창이 떴다.",
   meta:"오피스 판타지 · 시즌 1 · 한국어", eyebrow:"잔다 K-오리지널 · 신작",
   syn:"칠 년 차 만년 대리 차민호. 새벽 두 시, 기계음이 말한다. 야근으로 수명이 사 년 줄었습니다. 일일 퀘스트를 거절한 벌로 사람들의 속마음이 들리기 시작했고, 히든 퀘스트가 열린다. 이 회사는 육 개월 뒤 망한다. 막을 것인가, 탈출할 것인가.",
@@ -376,9 +377,13 @@ var SHOWS = [
  {id:"fake_en", photo:"posters/fake.jpg", lang:"en", art:"art-fake", motif:"ring", genre:["Romance"], tag:"Contract rom-com", title:"Fake Engagement, Real Company Card", hook:"The terms: a company card with no limit,<br>and a public breakup on the wedding day.",
   meta:"Romantic Comedy · Season 1 · English", eyebrow:"After Hours K-Original",
   syn:"Dumped at a café a week before sending her wedding invitations, ad agency copywriter Jiyu Oh gets an offer from the CEO at the next table: be his fiancée for three months. They were dumped by the same couple, and revenge comes with an unlimited company card.",
-  proof:"", eps:[{t:"The Terms",d:"Dumped by the same couple",a:"audio/s6ep01_en.mp3"},{t:"First Appointment",d:"His mother arrives with the contract",a:"audio/s6ep02_en.mp3"},{t:"Picture-Perfect",d:"Who leaked the copy?",a:"audio/s6ep03_en.mp3"}]}
+  proof:"", eps:[{t:"The Terms",d:"Dumped by the same couple",a:"audio/s6ep01_en.mp3"},{t:"First Appointment",d:"His mother arrives with the contract",a:"audio/s6ep02_en.mp3"},{t:"Picture-Perfect",d:"Who leaked the copy?",a:"audio/s6ep03_en.mp3"}]},
+ {id:"lasttrain_en", photo:"posters/lasttrain.jpg", lang:"en", art:"art-lasttrain", motif:"train", genre:["Romance"], tag:"Time-slip romance", title:"The Last Train Stops in 2009", hook:"She fell asleep on the last train<br>and woke up 7 days before her first love died.",
+  meta:"Time-Slip Romance · Season 1 · English", eyebrow:"After Hours K-Original",
+  syn:"After another night of overtime, 36-year-old Yeoreum dozes off on the last train and wakes up in 2009, seven days before her first love Jungwoo dies in an accident. She must return at midnight and can only come back by riding the last train again. And the one who called Jungwoo to that intersection was her nineteen-year-old self.",
+  proof:"", eps:[{t:"The Last Train",d:"November 1, 2009. She meets Jungwoo again",a:"audio/s4ep01_en.mp3"},{t:"Nineteen-Year-Old Me",d:"Tell her who you are, and the train never returns",a:"audio/s4ep02_en.mp3"}]}
 ];
-var READY = {"binson:0": true, "binson:1": true, "binson:2": true, "binson:3": true, "binson:4": true, "binson:5": true, "binson:6": true, "binson:7": true, "intern:0": true, "intern:1": true, "intern:2": true, "game:0": true, "game:1": true, "game:2": true, "lasttrain:0": true, "lasttrain:1": true, "lasttrain:2": true, "glory:0": true, "glory:1": true, "fake:0": true, "fake:1": true, "fake:2": true, "system:0": true, "system:1": true, "mom:0": true, "lift:0": true, "binson_en:0": true, "binson_en:1": true, "binson_en:2": true, "binson_en:3": true, "binson_en:4": true, "system_en:0": true, "system_en:1": true, "lift_en:0": true, "lost17:0": true, "lost17_en:0": true, "lost17:1": true, "lost17_en:1": true, "lost17:2": true, "lost17_en:2": true, "lost17:3": true, "lost17_en:3": true, "lost17:4": true, "lost17_en:4": true, "lost17:5": true, "lost17_en:5": true, "lastrelay:0": true, "lastrelay_en:0": true, "intern_en:0": true, "intern_en:1": true, "intern_en:2": true, "fake_en:0": true, "fake_en:1": true, "fake_en:2": true}; // 빌드 때 실제 있는 오디오만 남김 (build_artifact.py)
+var READY = {"binson:0": true, "binson:1": true, "binson:2": true, "binson:3": true, "binson:4": true, "binson:5": true, "binson:6": true, "binson:7": true, "intern:0": true, "intern:1": true, "intern:2": true, "game:0": true, "game:1": true, "game:2": true, "lasttrain:0": true, "lasttrain:1": true, "lasttrain:2": true, "glory:0": true, "glory:1": true, "glory:2": true, "fake:0": true, "fake:1": true, "fake:2": true, "system:0": true, "system:1": true, "mom:0": true, "mom:1": true, "lift:0": true, "binson_en:0": true, "binson_en:1": true, "binson_en:2": true, "binson_en:3": true, "binson_en:4": true, "system_en:0": true, "system_en:1": true, "lift_en:0": true, "lost17:0": true, "lost17_en:0": true, "lost17:1": true, "lost17_en:1": true, "lost17:2": true, "lost17_en:2": true, "lost17:3": true, "lost17_en:3": true, "lost17:4": true, "lost17_en:4": true, "lost17:5": true, "lost17_en:5": true, "lastrelay:0": true, "lastrelay_en:0": true, "intern_en:0": true, "intern_en:1": true, "intern_en:2": true, "fake_en:0": true, "fake_en:1": true, "fake_en:2": true, "lasttrain_en:0": true, "lasttrain_en:1": true}; // 빌드 때 실제 있는 오디오만 남김 (build_artifact.py)
 
 // ── 열람 규칙: 1화 무료 · 2화 공유하면 바로 · 3화부터 24시간마다 1화 무료(기다리면 무료) 또는 시즌권 ──
 var KEY = "toegeun_v3", DAY = 24*3600*1000;
@@ -389,6 +394,7 @@ function gate(show, i){ return (i===0 || show.free) ? "free" : i===1 ? (ab()==="
 function isOpen(show, i){
   var s = S(), g = gate(show, i), sh = (s[show.id]||{});
   if (g==="free" || s.pass || (sh.opened||[]).indexOf(i)>=0) return true;
+  if (i===1 && (s.shared || s.invited)) return true;
   if (g==="share") return !!(s.shared || s.invited);
   return i+1 <= thruOf(show);
 }
@@ -553,8 +559,8 @@ function closeSheet(){ $("sheet").classList.remove("on"); $("dim").classList.rem
 $("dim").onclick = closeSheet;
 function myRef(){ var s=S(); if(!s.ref){ s.ref=Math.random().toString(36).slice(2,8); W(s) } return s.ref }
 function link(s){ return (SITE_URL || location.href.split("#")[0].split("?")[0]) + "?show="+s.id+"&ref="+myRef() }
-function unlockShare(s){ var st=S(), d=today(), msg="2화가 열렸어요"; st.shared=true;
-  if (st.shareDay!==d){ st.shareDay=d; st.tokens=(st.tokens||0)+1; msg+=" · 열람권 1장 받았어요" } W(st); ev("share", {show:s.id}); closeSheet(); toast(msg); detail(s.id) }
+function unlockShare(s, channel){ var st=S(), d=today(), msg="2화가 열렸어요"; st.shared=true;
+  if (st.shareDay!==d){ st.shareDay=d; st.tokens=(st.tokens||0)+1; msg+=" · 열람권 1장 받았어요" } W(st); ev("share", {show:s.id, meta:{channel:channel||"manual"}}); closeSheet(); toast(msg); detail(s.id) }
 function today(){ var t=new Date(); return t.getFullYear()+"-"+(t.getMonth()+1)+"-"+t.getDate() }
 function tokens(){ return S().tokens||0 }
 function checkedToday(){ return S().checkDay===today() }
@@ -568,28 +574,54 @@ function useToken(s, at){ thruOf(s); var st=S(), sh=st[s.id]||{};
   if ((st.tokens||0)<1) return toast("열람권이 없어요. 출석하거나 친구를 초대해 보세요");
   st.tokens-=1; sh.opened=(sh.opened||[]).concat([i]); st[s.id]=sh; W(st); ev("token_use", {show:s.id, ep:i}); toast((i+1)+"화를 열람권으로 열었어요"); play(s.id,i); detail(s.id) }
 function shareSheet(s){
-  var text = s.title+" — "+s.hook.replace(/<br>/g," ")+" | 퇴근극장";
-  sheet('<h3>공유하면 2화가 바로 열려요</h3><p>이 이야기가 생각나는 사람에게 보내 주세요. 공유하면 열람권 1장도 드려요(하루 1번).</p><div class="sgrid">'
-    + (navigator.share? '<button class="btn primary wide" data-s="native">공유하기 (카카오톡 · 인스타 등)</button>':'')
-    + '<a class="btn" target="_blank" rel="noopener" data-s="x" href="https://x.com/intent/post?text='+encodeURIComponent(text)+'&url='+encodeURIComponent(link(s))+'">X</a>'
-    + '<a class="btn" target="_blank" rel="noopener" data-s="fb" href="https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(link(s))+'">페이스북</a>'
-    + '<a class="btn" target="_blank" rel="noopener" data-s="th" href="https://www.threads.net/intent/post?text='+encodeURIComponent(text+" "+link(s))+'">스레드</a>'
-    + '<a class="btn" target="_blank" rel="noopener" data-s="line" href="https://social-plugins.line.me/lineit/share?url='+encodeURIComponent(link(s))+'">LINE</a>'
-    + '<button class="btn" data-s="copy">링크 복사</button></div><p class="ppnote" style="margin-top:12px">내 초대 링크로 들어온 친구는 2화 + 열람권 2장을 받아요.</p><button class="x" data-s="close">닫기</button>');
+  var en=lang==="en", url=link(s), text=s.title+" — "+s.hook.replace(/<br>/g," ")+" | "+(en?"After Hours Theater":"퇴근극장");
+  var encodedText=encodeURIComponent(text), encodedUrl=encodeURIComponent(url), message=encodeURIComponent(text+" "+url);
+  var shareMethod="manual";
+  function copyShareLink(){
+    if(!navigator.clipboard || !navigator.clipboard.writeText){
+      window.prompt(en?"Copy this link and return to unlock Episode 2:":"이 링크를 복사한 뒤 돌아와 ‘공유 완료’를 눌러 주세요:",url);
+      return;
+    }
+    return navigator.clipboard.writeText(text+"\n"+url).then(function(){
+      toast(en?"Link copied":"링크를 복사했어요");
+      unlockShare(s,"copy");
+    }).catch(function(err){
+      console.error("Share link could not be copied.",err);
+      toast(en?"Could not copy. Use a social link or the share-complete button.":"복사하지 못했어요. SNS 링크 또는 ‘공유 완료’를 이용해 주세요.");
+    });
+  }
+  sheet('<h3>'+(en?"Share to unlock Episode 2":"공유하고 2화 바로 듣기")+'</h3><p>'+(en?"Share this story using your preferred app. Successful system sharing or link copy unlocks Episode 2.":"이 작품을 SNS로 공유하면 2화가 열려요. 공유 기능 또는 링크 복사가 완료되면 바로 열립니다.")+'</p><div class="sgrid">'
+    + (navigator.share? '<button class="btn primary wide" data-s="native">'+(en?"Share with an app (KakaoTalk, Instagram, etc.)":"카카오톡·인스타그램 등 앱으로 공유")+'</button>':'')
+    + '<a class="btn" target="_blank" rel="noopener noreferrer" data-s="x" href="https://x.com/intent/post?text='+encodedText+'&url='+encodedUrl+'">X</a>'
+    + '<a class="btn" target="_blank" rel="noopener noreferrer" data-s="fb" href="https://www.facebook.com/sharer/sharer.php?u='+encodedUrl+'">Facebook</a>'
+    + '<a class="btn" target="_blank" rel="noopener noreferrer" data-s="th" href="https://www.threads.net/intent/post?text='+message+'">Threads</a>'
+    + '<a class="btn" target="_blank" rel="noopener noreferrer" data-s="wa" href="https://wa.me/?text='+message+'">WhatsApp</a>'
+    + '<a class="btn" target="_blank" rel="noopener noreferrer" data-s="line" href="https://social-plugins.line.me/lineit/share?url='+encodedUrl+'">LINE</a>'
+    + '<button class="btn" data-s="copy">'+(en?"Copy link":"링크 복사")+'</button></div>'
+    + '<p class="ppnote share-note">'+(en?"External networks cannot confirm whether you posted. After sharing there, return and tap “I shared” to unlock. No sign-in is required.":"외부 SNS의 실제 게시 여부는 확인할 수 없어요. SNS 공유 후 돌아와 아래 ‘공유 완료’를 눌러 주세요. 로그인은 필요하지 않습니다.")+'</p>'
+    + '<button class="btn primary wide" style="width:100%;justify-content:center;margin-top:8px" data-s="done">'+(en?"I shared — unlock Episode 2":"공유 완료 · 2화 열기")+'</button>'
+    + '<p class="ppnote share-note">'+(en?"A friend opening your invite link gets Episode 2 and two tickets.":"내 초대 링크로 들어온 친구는 2화와 열람권 2장을 받아요.")+'</p><button class="x" data-s="close">'+(en?"Close":"닫기")+'</button>');
   $("sheet").onclick = function(e){ var b=e.target.closest("[data-s]"); if(!b) return; var k=b.getAttribute("data-s");
     if (k==="close") return closeSheet();
-    if (k==="native") return navigator.share({title:"퇴근극장", text:text, url:link(s)}).then(function(){unlockShare(s)}).catch(function(){});
-    if (k==="copy") { var done=function(){ toast("링크를 복사했어요"); setTimeout(function(){unlockShare(s)},600) }; return navigator.clipboard ? navigator.clipboard.writeText(text+" "+link(s)).then(done,done) : done() }
-    setTimeout(function(){unlockShare(s)},1200); };
+    if (k==="done") return unlockShare(s,shareMethod);
+    if (k==="x" || k==="fb" || k==="th" || k==="wa" || k==="line"){ shareMethod=k; return }
+    if (k==="native") return navigator.share({title:en?"After Hours Theater":"퇴근극장", text:text, url:url}).then(function(){unlockShare(s,"system")}).catch(function(err){
+      if(err && err.name==="AbortError") return;
+      console.error("Native sharing failed.",err);
+      return copyShareLink();
+    });
+    if (k==="copy") return copyShareLink();
+  };
 }
 function waitSheet(s, at){
   var tk=tokens();
   sheet('<h3>결말까지 이어 듣기</h3><p>열람권으로 바로 열거나, 24시간 기다리면 한 회차가 무료로 열려요. 결말까지 한 번에 들으려면 시즌권('+PASS_PRICE+').</p><div class="sgrid">'
     + '<button class="btn primary wide" data-w="token"'+(tk?'':' disabled')+'>열람권 1장으로 지금 열기 (보유 '+tk+'장)</button>'
     + '<button class="btn" data-w="wait">무료 해제 기다리기</button><button class="btn" data-w="pass">시즌권 '+PASS_PRICE+'</button>'
+    + (at===1?'<button class="btn wide" data-w="share">공유하고 2화 열기</button>':'')
     + (tk?'':'<button class="btn wide" data-w="invite">🎁 친구 초대하고 열람권 받기</button>')
     + '</div><button class="x" data-w="close">닫기</button>');
-  $("sheet").onclick = function(e){ var b=e.target.closest("[data-w]"); if(!b) return; var k=b.getAttribute("data-w"); closeSheet();
+  $("sheet").onclick = function(e){ var b=e.target.closest("[data-w]"); if(!b) return; var k=b.getAttribute("data-w"); if(k==="share") return shareSheet(s); closeSheet();
     if (k==="wait") startWait(s); if (k==="pass") passSheet(); if (k==="token") useToken(s, at); if (k==="invite") shareSheet(s); };
 }
 function startWait(s){ var st=S(), sh=st[s.id]||{}; if (sh.waitFrom && Date.now()<sh.waitFrom+DAY) return toast("이미 기다리는 중이에요");
