@@ -215,6 +215,11 @@ h2{font-family:var(--display);font-weight:800;font-size:34px;margin:10px 0 20px;
 .agree{display:flex;gap:8px;align-items:flex-start;font-size:13.5px;color:var(--muted);line-height:1.5}
 .agree input{accent-color:var(--accent);margin-top:3px}
 .ppnote{color:var(--quiet);font-size:12.5px;line-height:1.55;margin:6px 0 0}
+.krw{margin:12px 0 4px;padding:12px;border:1px solid rgba(255,255,255,.14);border-radius:12px}
+.krw .ppnote{margin:0 0 8px}
+.krwrow{display:flex;gap:8px}
+.krwrow input{flex:1;min-width:0;padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.2);background:transparent;color:inherit;font-size:14px}
+.krwrow button{padding:10px 14px;border-radius:10px;border:0;background:var(--accent);color:#111;font-weight:700;font-size:14px;white-space:nowrap}
 .x+.x{margin-top:4px}
 .toast{position:fixed;left:50%;bottom:calc(var(--dock-height) + 20px + env(safe-area-inset-bottom,0px));transform:translate(-50%,8px);background:var(--paper);color:var(--paper-ink);padding:10px 18px;border-radius:999px;font-weight:700;font-size:14px;opacity:0;transition:opacity .2s,transform .25s;z-index:70;pointer-events:none;white-space:nowrap;max-width:calc(100% - 32px);overflow:hidden;text-overflow:ellipsis;box-shadow:0 12px 30px -10px #000}
 .toast.on{opacity:1;transform:translate(-50%,0)}
@@ -673,12 +678,17 @@ function passSheet(){ // 가치 → 동의 2개 → PayPal(카드 게스트 결�
     + '<label class="agree" style="margin-top:8px"><input type="checkbox" id="ppAgree2"> <span>'+(en?'I understand I then <b>lose the right of withdrawal</b> (no change-of-mind refunds). Faulty content is still refunded.':'열린 뒤에는 <b>단순 변심 환불(청약철회)이 제한</b>됨을 확인했습니다. 재생 오류 등 하자는 환불됩니다.')+'</span></label>'
     + '<div id="ppBtn" style="margin:14px 0 6px;min-height:46px"><p class="ppnote">'+(en?'Loading secure checkout…':'안전결제 불러오는 중…')+'</p></div>'
     + '<p class="ppnote">'+(en?'Pay by card or PayPal — no PayPal account needed for cards. Receipt goes to the email you use at checkout.':'카드 결제는 PayPal 계정 없이도 돼요(“직불 또는 신용카드”). 영수증은 결제 때 쓴 이메일로 가요. 약 7,000원, 카드사 환율 적용. 한국 PayPal 계정끼리는 결제가 막혀 있어 해외 카드·해외 계정을 써 주세요.')+' '+(en?'Help':'문의')+' housepeoplekorea@gmail.com</p>'
+    + (en ? '' : '<form id="krw" class="krw"><p class="ppnote"><b>국내 카드·간편결제는 준비 중이에요.</b> 이메일을 남기면 열리는 날 한 번만 알려 드려요.</p><div class="krwrow"><input type="email" id="krwMail" placeholder="이메일 주소" autocomplete="email" required aria-label="이메일 주소"><button type="submit">알림 받기</button></div></form>')
     + (PREVIEW ? '<button class="x" data-p="try">미리보기 전용: 체험판으로 열기 (0원)</button>' : '')
     + '<button class="x" data-p="close">'+(en?'Close':'닫기')+'</button>');
   ev("pass_view");
   $("sheet").onclick = function(e){ var b=e.target.closest("[data-p]"); if(!b) return;
     if (b.getAttribute("data-p")==="try" && PREVIEW){ var st=S(); st.pass=true; W(st); toast("체험판 시즌권이 적용됐어요 (0원)") }
     closeSheet(); cur ? detail(cur.s.id) : home() };
+  var krw=$("krw"); if (krw) krw.onsubmit=function(e){ e.preventDefault(); var m=$("krwMail").value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(m)) return toast("이메일 주소를 확인해 주세요");
+    ev("kr_waitlist", {meta:{email:m.slice(0,120)}}); var st=S(); st.krWait=1; W(st);
+    krw.innerHTML='<p class="ppnote"><b>신청됐어요.</b> 국내 결제가 열리면 '+esc(m)+' 로 알려 드릴게요.</p>' };
   loadPP(function(ok){
     var box=$("ppBtn"); if (!box) return;
     if (!ok) { box.innerHTML='<p class="ppnote">'+(en?'Checkout could not load here. Please open the official link.':'이 화면에서는 결제창을 불러올 수 없어요. 정식 주소에서 결제됩니다.')+'</p>'; return }
